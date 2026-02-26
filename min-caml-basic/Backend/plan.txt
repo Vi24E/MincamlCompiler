@@ -1,0 +1,73 @@
+Preference-based coloring plan (function-aware)
+
+1) Add function-level metadata in program.rs
+- Extend FunctionProg with:
+  - calls: callee labels (direct calls only)
+  - entry_int_args / entry_float_args (virtual regs loaded from arg regs at entry)
+  - caller_used_int / caller_used_float (regs saved by callers at call-sites, aggregated)
+  - callee_used_int / callee_used_float (regs used by this function)
+- Add analysis helpers:
+  - collect direct call graph edges
+  - collect entry argument mapping (arg position)
+  - collect per-function used physical regs
+
+2) Build BFS propagation from min_caml_start in main.rs
+- Traverse direct-call graph with BFS (library/call_cls ignored as requested).
+- Propagate per-path "used caller/callee sets" and depth map (recent_call_depth-like).
+- Aggregate per function:
+  - incoming caller-used / callee-used candidates
+  - min depth at which each physical reg is seen.
+- Save these summaries into FunctionProg metadata for later passes.
+
+3) Build preference model for virtual registers
+- Scan analyzed instructions and map each virtual reg to:
+  - function membership
+  - number of call-crossings in that function
+  - whether it is an entry argument and its arg index.
+- Priority policy:
+  - crossing <= 1: prefer caller-save
+  - crossing >= 2: prefer callee-save
+  - arg vars: tie-break by arg index
+  - regs marked as used by caller/callee in propagated metadata:
+    lower priority for those physical regs
+  - deeper-depth-used regs are preferred over shallow ones.
+
+4) Extend coloring.rs with Preference
+- Add optional preference input to Coloring::new (or setter).
+- In select phase, score candidate colors by preference:
+  - class preference (caller/callee)
+  - arg-index tie-break
+  - penalty from propagated used/depth metadata.
+- Keep existing correctness constraints (interference + forbidden) unchanged.
+
+5) Persist inter-procedural info for future analysis
+- Store in FunctionProg:
+  - caller_used_* (from callers)
+  - callee_used_* (self/targets summary)
+- Keep these fields populated each iteration (before coloring).
+
+6) Validate
+- Build backend and run tester/test.py --v2.
+- Confirm:
+  - correctness remains 100%
+  - call-site save sets no longer fight callee-save intent
+  - debug print (optional) shows preference buckets and crossings.
+
+
+それだとあまり効果は見込め無さそうなので、簡単なところから行きます。
+```
+Array.make small_const val
+```
+のような式がたくさんminrtには含まれます。
+これをemit時に、特化したコードを使えるようにします。
+
+つまり、
+Array.make 3 0.0
+なら、
+return_reg = hp;
+sw 0.0, 0(hp)
+sw 0.0, 4(hp)
+sw 0.0, 8(hp)
+addi hp, hp, 12
+のようにすることで、余計なループをなくせます。これをTKA/emitに実装してください。
+詳しいTKAの仕様は、/Users/koharayu/Desktop/大学/cpu実験/procon/TKA.txtを参考にしてください。

@@ -1,0 +1,12 @@
+1. makeる
+
+2. .s -> .bin生成 (./tkasm hoge.s -o hoge.bin)
+
+3. シミュ起動 (./sim hoge.bin)
+
+4. 操作説明
+
+s: 1ステップ進める
+r: 連続実行開始/停止
+d: outputをファイル出力 (output.bin)
+q: 終了

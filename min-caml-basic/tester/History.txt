@@ -1,0 +1,530 @@
+================================================
+2026-01-27 03:57:45 | Size: 32x32 | Cycles: 899308027 
+Accuracy: 100.00% | Compile: 2.294s | Sim: 72.411s
+Comment: 最適化なし
+================================================
+2026-01-27 04:01:15 | Size: 32x32 | Cycles: 894772998 
+Accuracy: 100.00% | Compile: 3.720s | Sim: 70.848s
+Comment: 基本的な最適化(inline = 0) + 関数純粋性解析
+================================================
+2026-01-27 04:09:38 | Size: 32x32 | Cycles: 525255283 
+Accuracy: 100.00% | Compile: 10.104s | Sim: 48.388s
+Comment: inline = 100
+================================================
+2026-01-27 07:10:41 | Size: 32x32 | Cycles: 570957757 
+Accuracy: 100.00% | Compile: 14.283s | Sim: 50.355s
+Comment: inline = 100, CSEのスタブ付きw/Gemini修正(未確認)
+================================================
+2026-01-27 14:06:23 | Size: 32x32 | Cycles: 533218827 
+Accuracy: 100.00% | Compile: 8.941s | Sim: 47.435s
+Comment: enable CSE; CSEがあまり動いてない？
+================================================
+2026-01-28 00:48:54 | Size: 32x32 | Cycles: 534621343 
+Accuracy: 100.00% | Compile: 10.413s | Sim: 47.171s
+Comment: enable TupleElim, disable CSE; メモリ周りの最適化なのであまり反映されないのはしょうがない
+================================================
+2026-01-28 01:29:56 | Size: 32x32 | Cycles: 534585191 
+Accuracy: 100.00% | Compile: 11.421s | Sim: 48.625s
+Comment: CSEを強化したけど微妙
+================================================
+2026-01-28 01:38:48 | Size: 32x32 | Cycles: 484847863 
+Accuracy: 0.00% | Compile: 38.602s | Sim: 33.297s
+Comment: inline = 200でバグ
+================================================
+2026-02-10 14:26:09 | Size: 64x64 | Cycles: 1868857293 
+Accuracy: 16.89% | Compile: 10.775s | Sim: 168.910s
+Comment: CyclesがInt32を超えるとシミュがバグる？
+================================================
+2026-02-11 22:28:15 | Size: 32x32 | Cycles: 614509937 
+Accuracy: 100.00% | Compile: 11.614s | Sim: 56.649s
+Comment: enable TupleElim with size = 10
+================================================
+2026-02-11 22:29:54 | Size: 32x32 | Cycles: 613117934 
+Accuracy: 100.00% | Compile: 10.376s | Sim: 54.586s
+Comment: disable TupleElim
+================================================
+2026-02-11 22:36:17 | Size: 32x32 | Cycles: 632273119 
+Accuracy: 100.00% | Compile: 11.571s | Sim: 57.382s
+Comment: enable TupleElim with size = 30
+================================================
+2026-02-12 00:26:47 | Size: 32x32 | Cycles: 632273119 
+Accuracy: 100.00% | Compile: 12.607s | Sim: 58.787s
+Comment: enable ArrayElim
+================================================
+2026-02-12 19:05:40 | Size: 64x64 | Cycles: 1922809960 
+Accuracy: 16.89% | Compile: 12.289s | Sim: 175.907s
+Comment: いや、単純にOcaml版を修正していなかったわ
+================================================
+2026-02-13 05:15:12 | Size: 32x32 | Cycles: 625254692 
+Accuracy: 100.00% | Compile: 36.524s | Sim: 59.166s
+Comment: Global変数の導入
+================================================
+2026-02-13 05:39:32 | Size: 32x32 | Cycles: 639814808 
+Accuracy: 100.00% | Compile: 1249.579s | Sim: 68.870s
+Comment: inline = 200, コンパイルが遅すぎ
+================================================
+2026-02-13 06:21:47 | Size: 256x256 | Cycles: 18864807116 
+Accuracy: 99.92% | Compile: 38.635s | Sim: 1822.126s
+Comment: 256 * 256, 18864807116 = 1.8 * 10^10命令程度
+================================================
+2026-02-13 08:24:37 | Size: 32x32 | Cycles: 625254692 
+Accuracy: 100.00% | Compile: 36.213s | Sim: 58.208s
+Comment: 
+================================================
+2026-02-13 19:07:53 | Size: 32x32 | Cycles: 632921706 
+Accuracy: 100.00% | Compile: 44.314s | Sim: 60.954s
+Comment: imm?
+================================================
+2026-02-17 03:15:46 | Mode: v1 | Size: 32x32 | Cycles: 632921706 
+Accuracy: 100.00% | Compile: 44.565s | Sim: 60.841s
+Comment: 
+================================================
+2026-02-18 03:24:54 | Mode: v1 | Size: 32x32 | Cycles: 632921706 
+Accuracy: 100.00% | Compile: 42.626s | Sim: 58.639s
+Comment: 
+================================================
+2026-02-18 22:42:20 | Mode: v1 | Size: 32x32 | Cycles: 632921706 
+Accuracy: 100.00% | Compile: 44.280s | Sim: 59.671s
+Comment: 
+================================================
+2026-02-19 01:59:58 | Mode: v2 | Size: 32x32 | Cycles: 617002274 
+Accuracy: 100.00% | Compile: 43.697s | Sim: 56.010s
+Comment: v2 works!!!
+================================================
+2026-02-19 21:27:59 | Mode: v2 | Size: 32x32 | Cycles: 612093296 
+Accuracy: 100.00% | Compile: 94.298s | Sim: 53.455s
+Comment: peephole
+================================================
+2026-02-19 23:50:53 | Mode: v2 | Size: 32x32 | Cycles: 601385336 
+Accuracy: 100.00% | Compile: 90.505s | Sim: 56.352s
+Comment: TailCall + better register allocation
+================================================
+2026-02-20 00:59:16 | Mode: v2 | Size: 32x32 | Cycles: 590635014 
+Accuracy: 100.00% | Compile: 147.157s | Sim: 55.033s
+Comment: better peephole + using %30 for return
+================================================
+2026-02-20 01:06:38 | Mode: v2 | Size: 32x32 | Cycles: 597684848 
+Accuracy: 100.00% | Compile: 160.178s | Sim: 59.665s
+Comment: inline = 120
+================================================
+2026-02-20 01:10:32 | Mode: v2 | Size: 32x32 | Cycles: 591698968 
+Accuracy: 100.00% | Compile: 134.318s | Sim: 55.673s
+Comment: inline = 110
+================================================
+2026-02-20 01:13:45 | Mode: v2 | Size: 32x32 | Cycles: 622460126 
+Accuracy: 100.00% | Compile: 104.228s | Sim: 56.629s
+Comment: inline = 90
+================================================
+2026-02-20 01:16:42 | Mode: v2 | Size: 32x32 | Cycles: 590334583 
+Accuracy: 100.00% | Compile: 103.560s | Sim: 54.544s
+Comment: inline = 105
+================================================
+2026-02-20 03:43:44 | Mode: v2 | Size: 32x32 | Cycles: 585657888 
+Accuracy: 100.00% | Compile: 91.705s | Sim: 54.463s
+Comment: better save policy
+================================================
+2026-02-20 05:28:57 | Mode: v2 | Size: 32x32 | Cycles: 611284275 
+Accuracy: 100.00% | Compile: 75.743s | Sim: 55.040s
+Comment: LoopInsertion
+================================================
+2026-02-20 06:24:54 | Mode: v2 | Size: 256x256 | Cycles: 17684588493 
+Accuracy: 15.82% | Compile: 122.343s | Sim: 1630.378s
+Comment: 
+================================================
+2026-02-20 13:28:20 | Mode: v2 | Size: 32x32 | Cycles: 603091421 
+Accuracy: 100.00% | Compile: 317.875s | Sim: 55.337s
+Comment: LoopUnroll with unroll_count = 5
+================================================
+2026-02-20 15:42:27 | Mode: v2 | Size: 32x32 | Cycles: 562050909 
+Accuracy: 100.00% | Compile: 72.965s | Sim: 49.311s
+Comment: frontend peephole for redundant if
+================================================
+2026-02-20 17:13:41 | Mode: v2 | Size: 32x32 | Cycles: 556234684 
+Accuracy: 100.00% | Compile: 85.089s | Sim: 84.213s
+Comment: using %i30, %f30 for return value
+================================================
+2026-02-20 19:35:52 | Mode: v2 | Size: 32x32 | Cycles: 532266263 
+Accuracy: 100.00% | Compile: 59.494s | Sim: 43.690s
+Comment: move global variable memory address to 0
+================================================
+2026-02-20 21:10:41 | Mode: v2 | Size: 32x32 | Cycles: 512332536 
+Accuracy: 100.00% | Compile: 82.719s | Sim: 47.077s
+Comment: fix unrolling loop
+================================================
+2026-02-20 21:27:57 | Mode: v2 | Size: 32x32 | Cycles: 508750869 
+Accuracy: 100.00% | Compile: 150.308s | Sim: 45.517s
+Comment: unroll_count = 3
+================================================
+2026-02-21 03:15:35 | Mode: v2 | Size: 32x32 | Cycles: 476490261 
+Accuracy: 100.00% | Compile: 161.432s | Sim: 42.246s
+Comment: implemented simm
+================================================
+2026-02-21 05:06:10 | Mode: v2 | Size: 32x32 | Cycles: 485618703 
+Accuracy: 100.00% | Compile: 149.369s | Sim: 43.149s
+Comment: callee-save, (and refactor of backend)
+================================================
+2026-02-21 05:32:54 | Mode: v2 | Size: 256x256 | Cycles: 14682560403 
+Accuracy: 99.92% | Compile: 146.869s | Sim: 1266.873s
+Comment: 
+================================================
+2026-02-22 05:20:23 | Mode: v2 | Size: 32x32 | Cycles: 455245480 
+Accuracy: 100.00% | Compile: 129.456s | Sim: 40.501s
+Comment: better register strategy (all caller-save, callee-save for return value, considering caller-offsprings in save/restore policy)
+================================================
+2026-02-22 06:25:57 | Mode: v2 | Size: 32x32 | Cycles: 454975182 
+Accuracy: 100.00% | Compile: 123.225s | Sim: 38.668s
+Comment: just a minor fix on library
+================================================
+2026-02-22 06:44:37 | Mode: v2 | Size: 32x32 | Cycles: 454975182 
+Accuracy: 100.00% | MemAccessRate: 21.16% | Compile: 122.824s | Sim: 36.394s
+TopFuncs:
+    #1 0x0001576c solve_each_element_fast.3016: 940,320 (30.3%)
+    #2 0x00007d00 solver_rect_fast.2908: 765,976 (24.7%)
+    #3 0x00009044 shadow_check_and_group.2993: 344,342 (11.1%)
+    #4 0x0002fbe0 min_caml_rsqrt: 245,461 (7.9%)
+    #5 0x0001a0ac solve_one_or_network_fast.3020: 197,207 (6.3%)
+================================================
+2026-02-22 08:49:08 | Mode: v2 | Size: 32x32 | Cycles: 446310847 
+Accuracy: 100.00% | MemAccessRate: 21.38% | Compile: 95.448s | Sim: 34.834s
+TopFuncs:
+    #1 0x00015194 solve_each_element_fast.3019: 940,320 (33.1%)
+    #2 0x00007b14 solver_rect_fast.2911: 765,976 (27.0%)
+    #3 0x00008dbc shadow_check_and_group.2996: 344,342 (12.1%)
+    #4 0x00019a14 solve_one_or_network_fast.3023: 197,207 (6.9%)
+    #5 0x00007f24 solver_second_fast.2924: 171,244 (6.0%)
+Comment: suppressing some redundant moves in prologue of function
+================================================
+2026-02-22 09:14:25 | Mode: v2 | Size: 256x256 | Cycles: 13491562982 
+Accuracy: 15.82% | MemAccessRate: 21.44% | Compile: 76.477s | Sim: 1076.908s
+TopFuncs:
+    #1 0x00015194 solve_each_element_fast.3019: 27,831,958 (32.5%)
+    #2 0x00007b14 solver_rect_fast.2911: 22,832,113 (26.7%)
+    #3 0x00008dbc shadow_check_and_group.2996: 10,652,825 (12.4%)
+    #4 0x00019a14 solve_one_or_network_fast.3023: 5,874,057 (6.9%)
+    #5 0x00007f24 solver_second_fast.2924: 5,248,394 (6.1%)
+Comment: 
+================================================
+2026-02-22 10:04:55 | Mode: v2 | Size: 32x32 | Cycles: 401744708 
+Accuracy: 100.00% | MemAccessRate: 25.11% | Compile: 41.068s | Sim: 32.920s
+TopFuncs:
+    #1 0x0000d424 solve_each_element_fast.3019: 940,320 (36.8%)
+    #2 0x00004d78 solver_rect_fast.2911: 765,976 (30.0%)
+    #3 0x00005e48 shadow_check_and_group.2996: 344,342 (13.5%)
+    #4 0x000050f4 solver_second_fast.2924: 171,244 (6.7%)
+    #5 0x0000f388 trace_or_matrix_fast.3027: 121,461 (4.8%)
+Comment: ifのemitがバカすぎた
+================================================
+2026-02-22 10:13:35 | Mode: v2 | Size: 32x32 | Cycles: 326372266 
+Accuracy: 100.00% | MemAccessRate: 30.91% | Compile: 34.980s | Sim: 25.658s
+TopFuncs:
+    #1 0x0000b8d4 solve_each_element_fast.3019: 940,320 (36.8%)
+    #2 0x00004408 solver_rect_fast.2911: 765,976 (30.0%)
+    #3 0x00004f40 shadow_check_and_group.2996: 344,342 (13.5%)
+    #4 0x00004684 solver_second_fast.2924: 171,244 (6.7%)
+    #5 0x0000d128 trace_or_matrix_fast.3027: 121,461 (4.8%)
+Comment: arrayとかifのemitがバカすぎた
+================================================
+2026-02-22 11:23:35 | Mode: v2 | Size: 32x32 | Cycles: 101312241 
+Accuracy: 100.00% | MemAccessRate: 32.71% | Compile: 42.719s | Sim: 7.330s
+TopFuncs:
+    #1 0x0000edf0 solve_each_element_fast.3019: 351,636 (46.6%)
+    #2 0x00007c24 solver_rect_fast.2911: 231,704 (30.7%)
+    #3 0x000086f8 shadow_check_and_group.2996: 46,197 (6.1%)
+    #4 0x00010524 trace_or_matrix_fast.3027: 42,501 (5.6%)
+    #5 0x00007e64 solver_second_fast.2924: 22,605 (3.0%)
+Comment: loopInvariant; this is ULTRA fast
+================================================
+2026-02-22 11:26:17 | Mode: v2 | Size: 32x32 | Cycles: 7497528 
+Accuracy: 50.00% | MemAccessRate: 32.92% | Compile: 48.160s | Sim: 0.779s
+TopFuncs:
+    #1 0x0000eeb8 solve_each_element_fast.3019: 13,674 (24.3%)
+    #2 0x00007c24 solver_rect_fast.2911: 8,865 (15.7%)
+    #3 0x0000bc80 solve_each_element.3005: 7,090 (12.6%)
+    #4 0x0001a184 min_caml_create_float_array: 4,352 (7.7%)
+    #5 0x000076d0 solver_rect.2876: 3,910 (6.9%)
+Comment: bug on loopInvariant with threshold = 150(and not in 105)
+================================================
+================================================
+2026-02-22 21:51:46 | Mode: v2 | Size: 32x32 | Cycles: 101312241 
+Accuracy: 100.00% | MemAccessRate: 32.71% | Compile: 42.790s | Sim: 8.004s
+TopFuncs:
+    #1 0x0000edf0 solve_each_element_fast.3019: 351,636 (46.6%)
+    #2 0x00007c24 solver_rect_fast.2911: 231,704 (30.7%)
+    #3 0x000086f8 shadow_check_and_group.2996: 46,197 (6.1%)
+    #4 0x00010524 trace_or_matrix_fast.3027: 42,501 (5.6%)
+    #5 0x00007e64 solver_second_fast.2924: 22,605 (3.0%)
+Comment: modified lw 0xf0000000, and now loopInvariant can detect (まさかの0xf0000000にぶち当たってた)
+================================================
+2026-02-23 04:10:45 | Mode: v2 | Size: 32x32 | Cycles: 99674379 
+Accuracy: 100.00% | MemAccessRate: 33.25% | Compile: 42.120s | Sim: 6.981s
+TopFuncs:
+    #1 0x0000e190 solve_each_element_fast.3019: 351,636 (46.6%)
+    #2 0x000070e4 solver_rect_fast.2911: 231,704 (30.7%)
+    #3 0x00007b88 shadow_check_and_group.2996: 46,197 (6.1%)
+    #4 0x0000f834 trace_or_matrix_fast.3027: 42,501 (5.6%)
+    #5 0x00007324 solver_second_fast.2924: 22,605 (3.0%)
+Comment: eliminate redundant jumps
+================================================
+2026-02-23 04:16:45 | Mode: v2 | Size: 128x128 | Cycles: 1594688241 
+Accuracy: 100.00% | MemAccessRate: 33.32% | Compile: 40.649s | Sim: 106.918s
+TopFuncs:
+    #1 0x0000e190 solve_each_element_fast.3019: 5,685,918 (47.3%)
+    #2 0x000070e4 solver_rect_fast.2911: 3,731,363 (31.1%)
+    #3 0x00007b88 shadow_check_and_group.2996: 716,350 (6.0%)
+    #4 0x0000f834 trace_or_matrix_fast.3027: 686,055 (5.7%)
+    #5 0x00007324 solver_second_fast.2924: 353,579 (2.9%)
+Comment: 
+================================================
+2026-02-23 05:03:55 | Mode: v2 | Size: 256x256 | Cycles: 6378279120 
+Accuracy: 100.00% | MemAccessRate: 33.33% | Compile: 42.898s | Sim: 436.115s
+TopFuncs:
+    #1 0x0000e190 solve_each_element_fast.3019: 22,757,578 (47.4%)
+    #2 0x000070e4 solver_rect_fast.2911: 14,931,315 (31.1%)
+    #3 0x00007b88 shadow_check_and_group.2996: 2,866,103 (6.0%)
+    #4 0x0000f834 trace_or_matrix_fast.3027: 2,749,792 (5.7%)
+    #5 0x00007324 solver_second_fast.2924: 1,414,172 (2.9%)
+Comment: 
+================================================
+2026-02-23 06:22:05 | Mode: v2 | Size: 32x32 | Cycles: 77928697 
+Accuracy: 100.00% | MemAccessRate: 30.98% | Compile: 288.337s | Sim: 5.928s
+TopFuncs:
+    #1 0x00023dc8 solve_each_element_fast.3019: 336,738 (68.8%)
+    #2 0x0001a668 solver_fast2.2948: 42,501 (8.7%)
+    #3 0x00027ddc judge_intersection_fast.3031: 41,340 (8.5%)
+    #4 0x0001ae68 shadow_check_and_group.2996: 31,007 (6.3%)
+    #5 0x0001f7a4 solve_each_element.3005: 8,474 (1.7%)
+Comment: inline = 200
+================================================
+2026-02-23 17:24:07 | Mode: v2 | Size: 32x32 | Cycles: 76300413 
+Accuracy: 100.00% | MemAccessRate: 31.64% | Compile: 137.408s | Sim: 6.419s
+TopFuncs:
+    #1 0x00027bb0 solve_each_element_fast.3019: 336,738 (69.6%)
+    #2 0x0001e89c solver_fast2.2948: 42,501 (8.8%)
+    #3 0x0002ba14 judge_intersection_fast.3031: 41,340 (8.5%)
+    #4 0x0001f0b0 shadow_check_and_group.2996: 31,007 (6.4%)
+    #5 0x0002375c solve_each_element.3005: 8,474 (1.8%)
+Comment: fma
+================================================
+2026-02-23 17:29:34 | Mode: v2 | Size: 128x128 | Cycles: 1224457606 
+Accuracy: 100.00% | MemAccessRate: 31.71% | Compile: 133.942s | Sim: 98.016s
+TopFuncs:
+    #1 0x00027bb0 solve_each_element_fast.3019: 5,421,258 (69.4%)
+    #2 0x0001e89c solver_fast2.2948: 686,055 (8.8%)
+    #3 0x0002ba14 judge_intersection_fast.3031: 667,560 (8.6%)
+    #4 0x0001f0b0 shadow_check_and_group.2996: 510,354 (6.5%)
+    #5 0x0002375c solve_each_element.3005: 135,662 (1.7%)
+Comment: 
+================================================
+2026-02-23 18:15:27 | Mode: v2 | Size: 128x128 | Cycles: 1224457606 
+Accuracy: 100.00% | MemAccessRate: 31.71% | Compile: 134.935s | Sim: 97.455s
+TopFuncs:
+    #1 0x00027bb0 solve_each_element_fast.3019: 5,421,258 (69.4%)
+    #2 0x0001e89c solver_fast2.2948: 686,055 (8.8%)
+    #3 0x0002ba14 judge_intersection_fast.3031: 667,560 (8.6%)
+    #4 0x0001f0b0 shadow_check_and_group.2996: 510,354 (6.5%)
+    #5 0x0002375c solve_each_element.3005: 135,662 (1.7%)
+Comment: 
+================================================
+2026-02-23 19:36:45 | Mode: v2 | Size: 32x32 | Cycles: 75758053 
+Accuracy: 100.00% | MemAccessRate: 31.64% | Compile: 125.596s | Sim: 6.157s
+TopFuncs:
+    #1 0x00027c54 solve_each_element_fast.3019: 336,738 (69.6%)
+    #2 0x0001e98c solver_fast2.2948: 42,501 (8.8%)
+    #3 0x0002ba54 judge_intersection_fast.3031: 41,340 (8.5%)
+    #4 0x0001f194 shadow_check_and_group.2996: 31,007 (6.4%)
+    #5 0x0002385c solve_each_element.3005: 8,474 (1.8%)
+Comment: Array_of_Tuple Elim is no good
+================================================
+2026-02-23 20:12:37 | Mode: v2 | Size: 32x32 | Cycles: 75746720 
+Accuracy: 100.00% | MemAccessRate: 31.64% | Compile: 120.169s | Sim: 6.044s
+TopFuncs:
+    #1 0x00027b14 solve_each_element_fast.3019: 336,738 (69.6%)
+    #2 0x0001e84c solver_fast2.2948: 42,501 (8.8%)
+    #3 0x0002b914 judge_intersection_fast.3031: 41,340 (8.5%)
+    #4 0x0001f054 shadow_check_and_group.2996: 31,007 (6.4%)
+    #5 0x0002371c solve_each_element.3005: 8,474 (1.8%)
+Comment: modified beta
+================================================
+2026-02-23 20:54:46 | Mode: v2 | Size: 128x128 | Cycles: 1215541385 
+Accuracy: 100.00% | MemAccessRate: 31.71% | Compile: 119.125s | Sim: 96.299s
+TopFuncs:
+    #1 0x00027b14 solve_each_element_fast.3019: 5,421,258 (69.4%)
+    #2 0x0001e84c solver_fast2.2948: 686,055 (8.8%)
+    #3 0x0002b914 judge_intersection_fast.3031: 667,560 (8.6%)
+    #4 0x0001f054 shadow_check_and_group.2996: 510,354 (6.5%)
+    #5 0x0002371c solve_each_element.3005: 135,662 (1.7%)
+Comment: 
+================================================
+2026-02-23 21:51:07 | Mode: v2 | Size: 128x128 | Cycles: 1194464391 
+Accuracy: 100.00% | MemAccessRate: 32.47% | Compile: 112.628s | Sim: 94.565s
+TopFuncs:
+    #1 0x00026014 solve_each_element_fast.3019: 5,421,258 (68.4%)
+    #2 0x0001c4d0 solver_fast2.2948: 686,055 (8.7%)
+    #3 0x0002a2b4 judge_intersection_fast.3031: 667,560 (8.4%)
+    #4 0x0001d0a4 shadow_check_and_group.2996: 510,354 (6.4%)
+    #5 0x00021bfc solve_each_element.3005: 135,662 (1.7%)
+Comment: IfFold 
+================================================
+2026-02-23 21:53:57 | Mode: v2 | Size: 32x32 | Cycles: 74442641 
+Accuracy: 100.00% | MemAccessRate: 32.39% | Compile: 111.791s | Sim: 5.874s
+TopFuncs:
+    #1 0x00026014 solve_each_element_fast.3019: 336,738 (68.6%)
+    #2 0x0001c4d0 solver_fast2.2948: 42,501 (8.7%)
+    #3 0x0002a2b4 judge_intersection_fast.3031: 41,340 (8.4%)
+    #4 0x0001d0a4 shadow_check_and_group.2996: 31,007 (6.3%)
+    #5 0x00021bfc solve_each_element.3005: 8,474 (1.7%)
+Comment: IfFold with threshold 30
+================================================
+2026-02-23 22:42:35 | Mode: v2 | Size: 32x32 | Cycles: 70165892 
+Accuracy: 100.00% | MemAccessRate: 34.37% | Compile: 117.652s | Sim: 5.578s
+TopFuncs:
+    #1 0x00027028 solve_each_element_fast.3019: 336,738 (68.6%)
+    #2 0x0001dc88 solver_fast2.2948: 42,501 (8.7%)
+    #3 0x0002af08 judge_intersection_fast.3031: 41,340 (8.4%)
+    #4 0x0001e810 shadow_check_and_group.2996: 31,007 (6.3%)
+    #5 0x00023050 solve_each_element.3005: 8,474 (1.7%)
+Comment: abolition of jzero
+================================================
+2026-02-24 01:48:49 | Mode: v2 | Size: 32x32 | Cycles: 82318932 
+Accuracy: 75.00% | MemAccessRate: 33.78% | Compile: 152.888s | Sim: 6.813s
+TopFuncs:
+    #1 0x00034120 solve_each_element_fast.3019: 392,184 (76.4%)
+    #2 0x00035e48 trace_or_matrix_fast.3027: 45,687 (8.9%)
+    #3 0x00041b38 trace_diffuse_ray.3060: 44,640 (8.7%)
+    #4 0x00023ce4 shadow_check_one_or_group.2999: 10,221 (2.0%)
+    #5 0x0002f3d4 solve_each_element.3005: 8,828 (1.7%)
+Comment: bug on inline = 300
+================================================
+2026-02-25 04:51:03 | Mode: v2 | Size: 32x32 | Cycles: 313388867 
+Accuracy: 100.00% | MemAccessRate: 31.85% | Compile: 56.062s | Sim: 23.928s
+TopFuncs:
+    #1 0x0001d98c solve_each_element_fast.3019: 940,320 (39.9%)
+    #2 0x0000b328 solver_rect_fast.2911: 765,976 (32.5%)
+    #3 0x0000c2d8 shadow_check_and_group.2996: 344,342 (14.6%)
+    #4 0x0002230c trace_or_matrix_fast.3027: 121,461 (5.2%)
+    #5 0x0001109c shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: INSANE bag found on LoopInvariant and so on; it is fixed now
+================================================
+2026-02-25 05:32:11 | Mode: v2 | Size: 32x32 | Cycles: 299753662 
+Accuracy: 100.00% | MemAccessRate: 32.33% | Compile: 53.308s | Sim: 23.534s
+TopFuncs:
+    #1 0x0001d258 solve_each_element_fast.3019: 940,320 (39.9%)
+    #2 0x0000b310 solver_rect_fast.2911: 765,976 (32.5%)
+    #3 0x0000c298 shadow_check_and_group.2996: 344,342 (14.6%)
+    #4 0x0002191c trace_or_matrix_fast.3027: 121,461 (5.2%)
+    #5 0x00010f34 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-25 05:39:43 | Mode: v2 | Size: 32x32 | Cycles: 299753662 
+Accuracy: 100.00% | MemAccessRate: 32.33% | Compile: 52.819s | Sim: 23.812s
+TopFuncs:
+    #1 0x0001d258 solve_each_element_fast.3019: 940,320 (39.9%)
+    #2 0x0000b310 solver_rect_fast.2911: 765,976 (32.5%)
+    #3 0x0000c298 shadow_check_and_group.2996: 344,342 (14.6%)
+    #4 0x0002191c trace_or_matrix_fast.3027: 121,461 (5.2%)
+    #5 0x00010f34 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: loopInvariant reverted
+================================================
+2026-02-25 05:48:38 | Mode: v2 | Size: 32x32 | Cycles: 270613357 
+Accuracy: 100.00% | MemAccessRate: 35.82% | Compile: 54.993s | Sim: 20.633s
+TopFuncs:
+    #1 0x0001ca44 solve_each_element_fast.3019: 940,320 (40.1%)
+    #2 0x0000c370 solver_rect_fast.2911: 765,976 (32.7%)
+    #3 0x0000d2b4 shadow_check_and_group.2996: 344,342 (14.7%)
+    #4 0x0002086c trace_or_matrix_fast.3027: 121,461 (5.2%)
+    #5 0x0001175c shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: jif reverted
+================================================
+2026-02-25 10:19:59 | Mode: v2 | Size: 256x256 | Cycles: 7882732532 
+Accuracy: 99.92% | MemAccessRate: 37.30% | Compile: 52.159s | Sim: 567.019s
+TopFuncs:
+    #1 0x00018cfc solve_each_element_fast.3019: 27,831,958 (39.2%)
+    #2 0x0000a6a8 solver_rect_fast.2911: 22,832,113 (32.2%)
+    #3 0x0000b4b4 shadow_check_and_group.2996: 10,652,825 (15.0%)
+    #4 0x0001c3a4 trace_or_matrix_fast.3027: 3,706,192 (5.2%)
+    #5 0x0000f034 shadow_check_one_or_matrix.3002: 2,194,662 (3.1%)
+Comment: 
+================================================
+2026-02-26 09:36:07 | Mode: v2 | Size: 32x32 | Cycles: 260501243 
+Accuracy: 100.00% | MemAccessRate: 37.00% | Compile: 52.621s | Sim: 19.107s
+TopFuncs:
+    #1 0x00017360 solve_each_element_fast.3019: 940,320 (38.5%)
+    #2 0x0000d2d0 solver_rect_fast.2911: 765,976 (31.4%)
+    #3 0x0000e0dc shadow_check_and_group.2996: 344,342 (14.1%)
+    #4 0x000191f8 trace_or_matrix_fast.3027: 121,461 (5.0%)
+    #5 0x0001022c shadow_check_one_or_group.2999: 92,140 (3.8%)
+Comment: 
+================================================
+2026-02-26 09:47:49 | Mode: v2 | Size: 32x32 | Cycles: 260303248 
+Accuracy: 100.00% | MemAccessRate: 37.67% | Compile: 26.669s | Sim: 17.455s
+TopFuncs:
+    #1 0x0001160c solve_each_element_fast.3019: 940,320 (39.2%)
+    #2 0x0000a964 solver_rect_fast.2911: 765,976 (32.0%)
+    #3 0x0000b770 shadow_check_and_group.2996: 344,342 (14.4%)
+    #4 0x000128b0 trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000cba0 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: modified loop Unrolling
+2026-02-26 10:12:20 | Mode: v2 | Size: 32x32 | Cycles: 260976615 
+Accuracy: 100.00% | MemAccessRate: 37.55% | Compile: 33.569s | Sim: 18.600s
+TopFuncs:
+    #1 0x000152f0 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x0000b288 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000c094 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x00016cc4 trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000e1e4 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 10:15:40 | Mode: v2 | Size: 32x32 | Cycles: 260652671 
+Accuracy: 100.00% | MemAccessRate: 37.60% | Compile: 30.466s | Sim: 18.159s
+TopFuncs:
+    #1 0x00014314 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x0000a2f8 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000b0b8 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x00015ce8 trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000d208 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 10:20:04 | Mode: v2 | Size: 32x32 | Cycles: 260652677 
+Accuracy: 100.00% | MemAccessRate: 37.60% | Compile: 32.150s | Sim: 17.697s
+TopFuncs:
+    #1 0x0001430c solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x0000a2f0 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000b0b0 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x00015ce0 trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000d200 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 10:26:30 | Mode: v2 | Size: 32x32 | Cycles: 260652676 
+Accuracy: 100.00% | MemAccessRate: 37.60% | Compile: 66.667s | Sim: 18.798s
+TopFuncs:
+    #1 0x00014308 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x0000a2ec solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000b0ac shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x00015cdc trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000d1fc shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 10:33:09 | Mode: v2 | Size: 32x32 | Cycles: 260483461 
+Accuracy: 100.00% | MemAccessRate: 37.63% | Compile: 61.505s | Sim: 17.472s
+TopFuncs:
+    #1 0x000146c8 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x0000a6c4 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000b46c shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x0001609c trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000d5bc shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 10:41:02 | Mode: v2 | Size: 32x32 | Cycles: 1752253793 [TIMED OUT after 120s]
+Accuracy: N/A | MemAccessRate: 34.53% | Compile: 74.973s | Sim: 120.014s
+TopFuncs:
+    #1 0x0002a168 create_pixel.3146: 4,266,467 (100.0%)
+    #2 0x0002a504 create_pixelline.3151: 21 (0.0%)
+Comment: 
+================================================
+2026-02-26 10:44:47 | Mode: v2 | Size: 32x32 | Cycles: 1726521331 [TIMED OUT after 120s]
+Accuracy: N/A | MemAccessRate: 34.30% | Compile: 77.189s | Sim: 120.012s
+TopFuncs:
+    #1 0x0002a168 create_pixel.3146: 4,161,114 (100.0%)
+    #2 0x0002a504 create_pixelline.3151: 21 (0.0%)
+Comment: 
+================================================

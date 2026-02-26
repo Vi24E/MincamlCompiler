@@ -1,0 +1,36 @@
+# macOS
+.DS_Store
+
+# Editor backups & swaps
+*~
+*.swp
+*.bak
+
+# OCaml compile files
+*.cmi
+*.cmo
+*.cmx
+*.o
+*.a
+*.cma
+*.cmxa
+*.opt
+*.byt
+
+# Dune build output
+_build/
+
+# Executables
+min-caml
+*.out
+*.exe
+
+# Rust / Cargo output
+target/
+**/*/target/
+Backend/target/
+
+# Python
+__pycache__/
+*.pyc
+venv/

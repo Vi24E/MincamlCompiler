@@ -1,0 +1,383 @@
+================================================================================
+v2 バグ調査報告・修正計画
+2026-02-24 (更新: 100%達成)
+================================================================================
+
+■ 調査結果サマリー
+  - バグ1: loopInvariant.ml の extract_hoistable_lets（導入: commit 7436760）
+  - バグ2: HEAD版の複数ファイル変更（TKA/*, main.ml, beta.ml, inline.ml, Backend/src/adhoc.rs）
+  - 現状: 両バグ修正済み → 100% 達成 (Cycles: 320,418,643)
+  
+  ■ 修正内容（すべて a1fb7eb 版に戻す）
+    loopInvariant.ml, main.ml, beta.ml, inline.ml
+    TKA/asm.ml, TKA/virtual.ml, TKA/simm.ml, TKA/regAlloc.ml, TKA/allocVirtual.ml, TKA/emit.ml
+    Backend/src/adhoc.rs, Backend/src/analysis.rs, Backend/src/finalize.rs,
+    Backend/src/main.rs, Backend/src/spilling.rs
+
+================================================================================
+【バグ1】loopInvariant.ml — extract_hoistable_lets の誤ったホイスト
+================================================================================
+
+■ 導入コミット: 7436760 ("temp")
+  - 変更前 (a1fb7eb): バグなし、100% 達成
+  - 変更後 (7436760〜HEAD): 1.46〜3.12% に激減
+
+■ 問題箇所
+  ファイル: min-caml-basic/loopInvariant.ml
+  関数: extract_hoistable_lets
+
+■ 正しい実装 (a1fb7eb 版)
+  ```ocaml
+  let extract_hoistable_lets dep_set const_arrays body =
+    let rec go = function
+      | Let((x, _) as xt, e1, e2) ->
+          let hoistable = (not (S.mem x dep_set)) && is_hoistable_exp const_arrays e1 in
+          let hs, tail = go e2 in
+          if hoistable then ((xt, e1) :: hs, tail)
+          else (hs, Let(xt, e1, tail))
+      | e -> ([], e)   (* ← Let 以外のノードでは即座に停止する *)
+    in
+    go body
+  ```
+  ポイント: go は連続した Let チェーンのみを辿り、IfEq/IfLE/LetRec/While
+  などに出会った時点で再帰を止める（`| e -> ([], e)`）。
+
+■ バグのある実装 (7436760〜HEAD 版)
+  ```ocaml
+  | IfEq(x, y, e1, e2) ->
+      let wrap1, e1' = go e1 in
+      let wrap2, e2' = go e2 in
+      (fun t -> wrap1 (wrap2 t)), IfEq(x, y, e1', e2')
+  | IfLE(x, y, e1, e2) ->
+      let wrap1, e1' = go e1 in
+      let wrap2, e2' = go e2 in
+      (fun t -> wrap1 (wrap2 t)), IfLE(x, y, e1', e2')
+  ```
+
+■ バグの本質
+  IfEq/IfLE の then 分岐と else 分岐の内部にある Let-binding を、
+  それぞれ走査して wrapper として収集し、最終的に
+  `wrap1 (wrap2 t)` として「If 式よりも外側」に配置してしまう。
+
+  本来は条件が成立したときしか実行されないはずのコードが、
+  無条件に（ループの先頭で）実行されることになる。
+
+  具体例（scan_line の外側ループで発生）:
+    while y < size do
+      (* ここに then/else 内部の let が移動させられてしまう *)
+      let a = Array.get arr i in   (* ← then-branch 内だったが外に出る *)
+      if   size <= y then exit     (* ← 本来の条件 *)
+      else (計算して y → y+1 して続行)
+    done
+
+  結果: y が 0 のとき「size <= y」は偽で本来は計算が進むべきだが、
+  ホイストされた let の評価が誤った副作用を起こし、
+  ループが 1 回しか実行されない（出力が 32 pixels = 1行分のみ）。
+
+■ 修正方針
+  a1fb7eb 版の実装に戻す（現在適用済み）。
+  より高精度なホイストを実装するには、IfEq/IfLE 分岐内の
+  let-binding を「両方の分岐で共通かつ副作用なし」の場合に限定して
+  ホイストする厳密な条件が必要（要別途設計）。
+
+■ 現在の状態
+  loopInvariant.ml は a1fb7eb 版に戻されている。（修正済み）
+
+
+================================================================================
+【バグ2（複合）】HEAD版の複数ファイル変更が引き起こす誤動作
+================================================================================
+
+バグ2は単一箇所ではなく、HEAD(0d4db38)で導入された複数ファイルの変更が
+組み合わさって 94.73% → 100% の誤差を生じさせている。
+以下に各ファイルの変更詳細と問題点を示す。
+
+--------------------------------------------------------------------------------
+■ 2-A: main.ml — 最適化パスの変更
+--------------------------------------------------------------------------------
+
+【a1fb7eb → HEAD の diff】
+  @@ -5,9 +5,11 @@
+     let e' = e |> VariableChecker.f
+  +            (* |> ArrayOfTupleElim.f *)   ← コメントアウトで無効化
+               |> TupleElim.f
+               |> ArrayElim.f
+               |> Elim.f
+  +            |> IfFold.f                   ← 新規パス追加（a1fb7ebには存在しない）
+               |> ConstFold.f
+               ...
+
+  @@ -30,16 +32,16 @@
+     let optimize_input =
+       if !enable_loop_insert && !Asm.virtual_mode then
+  -      alpha |> TupleElim.f
+  +      alpha (*|> ArrayOfTupleElim.f*)
+  +            |> TupleElim.f
+               |> ArrayElim.f
+               |> ConstFold.f
+               |> Assoc.f
+               |> Beta.f
+               |> Elim.f
+               |> LoopInsert.f
+  -            |> LoopInvariant.f            ← 1回目
+  -            |> LoopUnroll.f
+  -            |> LoopInvariant.f            ← 2回目（a1fb7ebは2回呼ぶ）
+  +            |> LoopInvariant.f            ← 1回のみ（HEADは1回に削減）
+  +            |> LoopUnroll.f
+               |> FunctionChecker.f
+
+【問題点】
+  - IfFold.f パスが a1fb7eb には存在しない → 適用するとパターンマッチ失敗の
+    可能性（または誤った最適化）
+  - LoopInvariant.f の呼び出し回数が 2回 → 1回 に削減されている
+    （バグ1の loopInvariant.ml が HEAD版だと問題)
+  - ArrayOfTupleElim.f がコメントアウトされると一部最適化が無効になる
+
+--------------------------------------------------------------------------------
+■ 2-B: beta.ml — β簡約の eq_env 追加と自己代入除去
+--------------------------------------------------------------------------------
+
+【a1fb7eb → HEAD の diff（主要変更）】
+  -let rec g mutable_set env = function
+  +let rec g mutable_set env eq_env = function   ← 等価エイリアス環境を追加
+
+  - IfEq/IfLE分岐では eq_env を M.empty でリセット（分岐間のエイリアスを引き継がない）
+  - Assign(x, y, e) に自己代入除去を追加:
+  +  let y_val = find y env in
+  +  let y_eq = find y_val eq_env in
+  +  if x = y_val || x = y_eq then
+  +    g mutable_set env eq_env e   ← 自己代入ならスキップ
+
+  - While 内の g 呼び出しで eq_env を M.empty にリセット
+
+【問題点】
+  - eq_env による自己代入除去が誤判定するケースがある
+    （特に While ループ内の Assign が不正削除される可能性）
+  - a1fb7eb の beta.ml には eq_env 機構が存在しないため互換性なし
+
+--------------------------------------------------------------------------------
+■ 2-C: inline.ml — インライン展開閾値・サイズ計算の変更
+--------------------------------------------------------------------------------
+
+【a1fb7eb → HEAD の diff】
+  -let threshold = ref 105
+  +let threshold = ref 200   ← 閾値を 105 → 200 に拡大
+
+  -  | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2)
+  -  | Let(_, e1, e2) | LetRec({ body = e1; tags = _ }, e2)
+  +  | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2)| LetRec({ body = e1; tags = _ }, e2)
+     | While(e1, e2) -> 1 + size e1 + size e2
+  +  | Let(_, e1, e2) ->
+  +      (match e1 with
+  +      | Int(_) -> size e2    ← Int の Let は 0 カウント（サイズ縮小）
+  +      | _ -> 1 + size e1 + size e2)
+
+【問題点】
+  - 閾値 200 により、a1fb7eb では展開されなかった大きな関数がインライン展開される
+    → コードサイズ増大、それ単体は問題ないが他バグと組み合わさると誤動作を増幅
+  - Int の Let が size=0 でカウントされるためサイズ計算が相違
+
+--------------------------------------------------------------------------------
+■ 2-D: TKA/asm.ml — CmpLT・CmpFLT 命令の追加
+--------------------------------------------------------------------------------
+
+【a1fb7eb → HEAD の diff】
+  +  | CmpLT of Id.t * id_or_imm   ← 新規: 整数 "strictly less than" 比較
+  +  | CmpFLT of Id.t * Id.t        ← 新規: 浮動小数点 "strictly less than" 比較
+
+  -  | CmpEq(x, y') | CmpLE(x, y') -> x :: fv_id_or_imm y'
+  -  | CmpFEq(x, y) | CmpFLE(x, y) -> [x; y]
+  +  | CmpEq(x, y') | CmpLE(x, y') | CmpLT(x, y') -> x :: fv_id_or_imm y'
+  +  | CmpFEq(x, y) | CmpFLE(x, y) | CmpFLT(x, y) -> [x; y]
+
+【問題点】
+  - CmpLT/CmpFLT を a1fb7eb の emit.ml は処理できない（パターンマッチ失敗の原因）
+  - virtual.ml の inv_cmp_exp_of_ifle が CmpLT を生成 → 後段で未処理エラー
+
+--------------------------------------------------------------------------------
+■ 2-E: TKA/virtual.ml — bool_not_to_int・inv_cmp_exp_of_ifle の変更
+--------------------------------------------------------------------------------
+
+【a1fb7eb → HEAD の diff (主要変更)】
+  -let bool_not_to_int x =
+  -  let n = Id.genid "bnot" in
+  -  Let((n, Type.Int), Neg(x), Ans(Add(n, C(1))))   ← NOT(x) を neg+add で実装
+  +let bool_not_to_int x =
+  +  Ans(CmpEq(x, C(0)))                              ← NOT(x) = (x == 0) で実装
+
+  +(* not(x <= y) = y < x  → CmpLT を使う新関数 *)
+  +let inv_cmp_exp_of_ifle env const_env x y =
+  +  match find_type x env with
+  +  | Type.Bool | Type.Int -> CmpLT(y, int_cmp_rhs const_env x)
+  +  | Type.Float -> CmpFLT(y, x)
+  +  | _ -> failwith "..."
+
+  -let t = Id.genid "cmp" in
+  -Let((t, Type.Int), cmp_exp, bool_not_to_int t)    ← IfLE Invert で一時変数
+  +Let((t, Type.Int), cmp_exp, Ans(CmpEq(t, C(0))))  ← CmpEq に変更
+
+  -as_int_result (cmp_exp_of_ifle env const_env x y)  ← Keep/Invert 共通処理
+  +(match proj with
+  + | Keep -> Ans(cmp_exp_of_ifle env const_env x y)
+  + | Invert -> Ans(inv_cmp_exp_of_ifle env const_env x y))  ← 直接 CmpLT 生成
+
+【問題点】
+  - inv_cmp_exp_of_ifle が CmpLT/CmpFLT を生成するが、a1fb7eb の allocVirtual.ml,
+    regAlloc.ml, simm.ml, emit.ml はこれらの命令を処理しない → Fatal error
+
+--------------------------------------------------------------------------------
+■ 2-F: TKA/simm.ml, regAlloc.ml, allocVirtual.ml — CmpLT/CmpFLT ハンドリング追加
+--------------------------------------------------------------------------------
+
+【各ファイルの変更（同様のパターン）】
+  simm.ml:
+  +  | CmpLT(x, y') ->
+  +      let x' = replace_int_id env x in
+  +      let y'' = replace_id_or_imm env y' in
+  +      (CmpLT(x', y''), use_union (use_id x') (use_id_or_imm y''))
+  +  | CmpFLT(x, y) ->  (CmpFLT 版も同様)
+
+  regAlloc.ml:
+  +  | CmpLT(x, y') -> (Ans(CmpLT(find x Type.Int regenv, find' y' regenv)), regenv)
+  +  | CmpFLT(x, y) -> (Ans(CmpFLT(find x Type.Float regenv, find y Type.Float regenv)), regenv)
+
+  allocVirtual.ml:
+  +  | CmpLT(x, y') -> find_and_bind x Type.Int regenv (fun rx ->
+  +      find_and_bind' y' regenv (fun ry' -> (Ans(CmpLT(rx, ry')), regenv)))
+  +  | CmpFLT(x, y) -> (同様)
+
+【問題点】
+  - これらは CmpLT/CmpFLT 命令に対応するために追加されたもの
+  - a1fb7eb にはこの命令自体が存在しないため、逆に a1fb7eb の emit.ml では
+    パターンマッチが網羅されず Fatal error になる（commit a5e8b77 でエラーを確認済み）
+
+--------------------------------------------------------------------------------
+■ 2-G: TKA/emit.ml — emit_cond_jump_op・emit_nle_jump・CmpLT/CmpFLT 生成
+--------------------------------------------------------------------------------
+
+【a1fb7eb → HEAD の主要変更（概要）】
+  - 新関数 emit_cond_jump_op oc op lhs y' label:
+      jeq/jleq/jlt の条件分岐命令をまとめて出力するヘルパー
+      ConstInt 定数をインライン最適化（%i0 参照または emit_movi）
+
+  - 新関数 emit_nle_jump oc lhs y' label:
+      NOT(x <= y) = y < x として jlt y, x, label を出力
+
+  +  | NonTail(x), CmpFLT(y, z) ->
+  +      Printf.fprintf oc "\tflt\t%s, %s, %s\n" x y z   ← flt 命令を出力
+
+  +  | NonTail(x), CmpLT(y, z') ->
+  +      (* clti/clt 命令を出力、即値は clti に最適化 *)
+
+  - Tail 節の分岐テーブルに CmpLT, CmpFLT を追加:
+  -  | Tail, (SetInt _ | ... | CmpEq _ | CmpLE _ | CmpFEq _ | CmpFLE _ as exp) ->
+  +  | Tail, (SetInt _ | ... | CmpEq _ | CmpLE _ | CmpLT _ | CmpFEq _ | CmpFLE _ | CmpFLT _ as exp) ->
+
+  - 不要な reg_sp バインドの削除（Tail 節の複数箇所で `-let reg_sp = ...` を除去）
+
+--------------------------------------------------------------------------------
+■ 2-H: Backend/src/adhoc.rs — relax_branches_opt・jump_trampoline_elim の追加
+--------------------------------------------------------------------------------
+
+【a1fb7eb → HEAD の diff（主要追加）】
+  a1fb7eb の adhoc.rs: optimize() は trampoline_elim のみ
+  HEAD の adhoc.rs に以下を追加:
+
+  1. jump_trampoline_elim() — ジャンプトランポリンの beta 簡約
+     set_label %rX, TARGET; jmp %i0, 0(%rX) のパターンを検出し、
+     そのラベルへの参照を直接 TARGET に書き換える最適化。
+     BRANCH_THRESHOLD = 2000 命令以内の条件分岐のみ書き換え。
+
+  2. relax_branches_opt() — 遠距離条件分岐の間接ジャンプ変換
+     jeq/jleq/jlt/jzero が後退またはオフセット > 2048 の場合:
+       jleq rs1, rs2, far_target
+     を以下に展開:
+       cleq %i31, rs1, rs2
+       jzero %i0, %i31, Lrelax_skip_N
+       set_label %i31, far_target
+       jmp %i0, 0(%i31)
+     Lrelax_skip_N:
+
+  3. OptimizeResult に trampoline_elim_rewrites, branch_relax_rewrites フィールドを追加
+
+【relax_branches_opt のバグ（%i31 破壊問題）】
+  relax 展開後に %i31 が cleq/ceq の出力（0 or 1）に上書きされる。
+  後続命令が %i31 の元の値（lw 等でロードした値）を期待している場合に誤動作。
+  ただし実際には main.ml, beta.ml 等の他の変更と組み合わさって発現しており、
+  adhoc.rs 単体を HEAD にしても 94.73% だった。
+
+
+================================================================================
+■ 現在適用されているファイルの状態まとめ
+================================================================================
+
+  ファイル                          | 現在のバージョン | 影響
+  ----------------------------------|-----------------|----------------------------------
+  loopInvariant.ml                  | a1fb7eb         | バグ1修正（IfEq/IfLE内ホイスト除去）
+  main.ml                           | a1fb7eb         | IfFold.f / LoopInvariant 2回呼び出しを元に戻す
+  beta.ml                           | a1fb7eb         | eq_env・自己代入除去を元に戻す
+  inline.ml                         | a1fb7eb         | 閾値 200→105, size計算を元に戻す
+  TKA/asm.ml                        | a1fb7eb         | CmpLT/CmpFLT 命令定義を除去
+  TKA/virtual.ml                    | a1fb7eb         | inv_cmp_exp_of_ifle / bool_not_to_int を元に戻す
+  TKA/simm.ml                       | a1fb7eb         | CmpLT/CmpFLT ハンドリングを除去
+  TKA/regAlloc.ml                   | a1fb7eb         | CmpLT/CmpFLT ハンドリングを除去
+  TKA/allocVirtual.ml               | a1fb7eb         | CmpLT/CmpFLT ハンドリングを除去
+  TKA/emit.ml                       | a1fb7eb         | emit_cond_jump_op等・CmpLT/CmpFLT出力を除去
+  Backend/src/adhoc.rs              | a1fb7eb         | relax_branches_opt / jump_trampoline_elim を除去
+  Backend/src/analysis.rs           | a1fb7eb         | HEAD変更を元に戻す
+  Backend/src/finalize.rs           | a1fb7eb         | HEAD変更を元に戻す
+  Backend/src/main.rs               | a1fb7eb         | branch_relax_rewritesレポートを除去
+  Backend/src/spilling.rs           | a1fb7eb         | HEAD変更を元に戻す
+
+  テスト結果:
+    v2 Accuracy: 100.00% (Cycles: 320,418,643, Compile: 18.759s, Sim: 22.693s)
+    v1 Accuracy: 100%
+
+
+================================================================================
+■ コミット対照表
+================================================================================
+
+  コミット      | 内容                  | v2テスト結果
+  --------------|----------------------|-----------------------------------
+  bad0679       | v2.8.1               | ✅ 100% (440,229,928 cycles)
+  a1fb7eb       | (不明)               | ✅ 100% (320,418,643 cycles)
+  a5e8b77       | emit.ml 変更のみ     | ❌ Fatal error (Pattern match)
+  7436760       | "temp"               | ❌ 1.46% (loopInvariant.ml バグ1導入)
+  a7d92e8       | fix Get-bug          | ❌ 3.12%
+  0d4db38(HEAD) | 2.9.1                | ❌ 3.12% (バグ1+バグ2)
+
+
+================================================================================
+■ 今後の改善検討事項（オプション）
+================================================================================
+
+  1. loopInvariant.ml の高精度ホイスト再設計
+     HEAD版の extract_hoistable_lets はより多くのケースを対象にしているが、
+     IfEq/IfLE 内の let を外にホイストしてしまう問題がある。
+     「両分岐で共通かつ副作用なし」の条件を厳密に検査すれば安全に実装可能。
+     現在の a1fb7eb 版は単純に `| e -> ([], e)` で即停止するため最適化機会を逃している。
+
+  2. CmpLT/CmpFLT 命令の安全な再導入
+     TK CPU には jlt 命令があるため、虚偽判定の最適化（NOT(x<=y) = y<x）は
+     原理的に有用。ただし emit.ml 側での正しい処理と、
+     virtual.ml での bool_not_to_int との整合性確保が必要。
+
+  3. Backend/src/adhoc.rs の relax_branches_opt 修正
+     遠距離分岐の間接ジャンプ変換は minrt の大きなプログラムでは必須。
+     %i31 の多重利用（比較結果の格納 + アドレス格納）を切り離す設計が必要。
+     推奨: jzero に別のラベルジャンプ機構、または %i31 使用箇所の前後で退避復元。
+
+  4. beta.ml の eq_env 自己代入除去の安全化
+     While ループ内の Assign 削除は loop-carried dependency を破壊する可能性がある。
+     eq_env を While ループ境界でリセットするだけでは不十分な場合があり、
+     依存グラフ解析と組み合わせた安全性検証が必要。
+
+================================================================================
+
+
+小さな定数におけるArray.makeでは、つまり
+1. 現在のヒープポインタのreturn(1行)
+2. 初期値のストア(n行)
+3. ヒープポインタの移動(1行)
+の計n + 2行のみを出力します。これ以外は一切出力しないようにしてください。

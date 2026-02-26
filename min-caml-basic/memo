@@ -1,0 +1,61 @@
+- if-fold
+- loop argの固定化
+- if ... then () else ...やif ... then ... else ()の簡略化
+- 命令リオーダリング
+- iterの最後にloopInvariantを入れる
+
+
+```
+	ceqi	%i31, %i4, 0
+	ceqi	%i31, %i31, 0
+	jzero	%i0, %i31, skip
+	set_label	%i31, else
+	jmp	%i0, 0(%i31)
+skip:
+	...
+	set_label	%i31, cont
+	jmp	%i0, 0(%i31)
+else:
+	...
+cont:
+	...
+``` if文
+
+```
+	ceqi	%i31, %i4, 0
+	jzero	%i0, %i31, else
+skip:
+	...
+	set_label	%i31, cont
+	jmp	%i0, 0(%i31)
+else:
+	...
+cont:
+	...
+``` done!
+
+```
+	sub	%i4, %i0, %i4
+	addi	%i4, %i4, 1
+``` 明らかに畳み込める
+~x = -1 - x
+
+```
+	ceqi	%i4, %i10, 0
+	slli	%i4, %i4, 1
+	sub	%i4, %i0, %i4
+	addi	%i4, %i4, 1
+```
+
+```
+	movi	%i4, 1
+	slli	%i4, %i4, 2
+	add	%i31, %i16, %i4
+	lf	%f2, 0(%i31)
+```オフセットで簡略化可能 done!
+
+lf	%f2, 4(%i16)
+
+cont.32441:
+	set_label	%i31, cont.32439
+	jmp	%i0, 0(%i31)

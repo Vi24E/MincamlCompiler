@@ -1,0 +1,37 @@
+(executable
+ (name main)
+ (package min-caml)
+ (public_name mincaml)
+ (foreign_stubs
+  (language c)
+  (names float)))
+
+(ocamllex lexer)
+
+(ocamlyacc parser)
+
+(copy_files
+ (files TKA/*)
+ (enabled_if
+  (or
+   (= %{profile} tka)
+   (= %{profile} dev)
+   (= %{profile} release)))
+  (alias to_tka))
+
+(copy_files
+ (files x86/*)
+ (enabled_if
+  (= %{profile} x86))
+ (alias to_x86))
+
+(copy_files
+ (files PowerPC/*)
+ (enabled_if
+  (= %{profile} ppc))
+ (alias to_ppc))
+
+(env
+ (dev
+  (flags
+   (:standard -warn-error -a))))

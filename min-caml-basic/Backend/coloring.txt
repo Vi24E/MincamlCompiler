@@ -1,0 +1,136 @@
+Rust Backend: 彩色戦略まとめ（新方針）
+
+================================================================================
+設計方針
+================================================================================
+minrt 実測に基づき、以下のハイブリッド方式を採用する。
+
+- 基本は「全 caller-save」。プロローグ/エピローグで callee-save を大量に
+  保存するオーバーヘッドを排除する。
+- %i3（リターンアドレス）のみ callee-save 扱いとする。
+  jmp 命令が毎回 %i3 を上書きするため、全コールサイトで sw/lw %i3 が発生
+  していたが、callee-save にすれば prologue で 1回保存するだけで済む。
+- 呼び出しグラフを SCC で縮約したDAGに基づく offspring-aware 彩色により、
+  callee が使わないレジスタを cross-call 変数に優先割当てし、コールサイトの
+  caller-save 本数を最小化する。
+  理想的には save 本数が 0 になり、call frame 自体も消滅する。
+
+根拠（minrt 32x32 実測）:
+  全 caller-save + %i3 callee-save (455.2M) < 全 caller-save のみ (468.6M)
+  < simm旧版 (476.5M) < callee-save 14本 (478.4M)
+  callee-save はプロローグ/エピローグのコストが大きく、minrt のような
+  呼び出し回数の少ないプログラムでは不利。
+
+================================================================================
+
+1) 対象と前提
+- 干渉グラフのノードは仮想レジスタのみ:
+  - int: %vi*
+  - float: %vf*
+- 物理レジスタ（%i*, %f*）はノードにしない。干渉時は「禁止色(forbidden
+  color)」として反映する。
+- 固定/特殊レジスタ（%i0, %i1, %i2, %i3, %f0）は彩色対象外。
+
+2) 色とレジスタ対応
+- int 色数 K_int = 26
+  - color 0..25 -> %i4..%i29
+  - 全て caller-save（デフォルト）。finalize が呼び出しサイトごとに
+    live_out に基づいて save/restore する。
+- float 色数 K_float = 29
+  - color 0..28 -> %f1..%f29
+  - 全て caller-save（デフォルト）。
+- 予約:
+  - %i3: リターンアドレス（callee-save: prolog で保存、epilog で復元）
+  - %i30, %f30: 戻り値レジスタ
+  - %i31, %f31: 一時レジスタ（spill 展開等）
+
+3) 彩色アルゴリズム本体
+- Chaitin-Briggs の simplify/select を型ごと（int/float）に独立実行。
+- simplify:
+  - 次数 < K のノードをスタックへ積む。
+  - 積めない場合は最大次数ノードを potential spill として積む。
+- select:
+  - スタックを pop して使用可能色を選択。
+  - 隣接ノードで既使用の色 + forbidden 色を除外。
+  - 割当不能なら spill（Err）。
+
+4) preference（色選好）— crossing-based clustering + offspring clobber
+- デフォルト有効（BACKEND_COLOR_PREFERENCE=1 扱い）。
+- 全 caller-save モードでも crossing に基づくクラスタリングを使う。
+  register file を「caller 色域（色 0..11/0..14）」と「callee 色域
+  （色 12..25/15..28）」に仮想的に分割し、crossing の多い変数を callee
+  色域へ、少ない変数を caller 色域へ集約する。finalize 上は全て caller-save
+  だが、クラスタリングにより干渉が減り効率的な彩色が得られる。
+
+  4-a) 呼び出しグラフ解析（SCC → DAG）
+  - Tarjan SCC で呼び出しグラフを縮約し、DAGのトポロジカル順でボトム
+    アップに clobber summary を集約する。
+  - summary[F] = F 自身の def ∪ ⋃ summary[callee of F]
+  - 各関数の callee_clobber_union = ⋃ summary[direct callee of F]
+
+  4-b) ペナルティ設計
+  - 主要因: crossing mismatch penalty (8000)
+    - crossing < threshold かつ callee 色域: +8000
+    - crossing >= threshold かつ caller 色域: +8000
+    → 変数のタイプ（crossing/非crossing）に応じた色域への集約。
+  - 2次要因: offspring clobber penalty (2000)
+    - 色 c が callee_clobber_union に含まれ、かつ crossings > 0 の場合: +2000
+    - この色に cross-call 変数を割り当てると、コールサイトで sw/lw が
+      必要になるため避ける。
+  - tie-break: 引数位置ボーナス（prefer_caller/prefer_callee に関係なく適用）
+    - 引数由来の仮想レジスタは対応する引数位置の色を優先する。
+    - ボーナス: +(200 - |color - arg_index|).min(200)
+
+5) %i3 の callee-save 処理
+- %i3 は jmp 命令で毎回上書きされる特殊なレジスタ。
+- 従来: 毎コールサイトで sw %i3 / lw %i3（minrt で 1231 sw + 1208 lw）
+- 新方式: プロローグで 1回 sw %i3、エピローグで 1回 lw %i3。
+  コールサイトの call frame から %i3 の sw/lw を除去する。
+- 効果（minrt 静的命令数）:
+  - 897/1194 コールサイトで、%i3 のみが save 対象（他 0本）
+    → call frame 全体（subi/sw/lw/addi の 4命令）が消滅
+  - 残り 297 サイトでも sw/lw の 2命令が消滅
+  - 合計: 約 4,200 命令削減（静的）
+
+6) コールサイトの save/restore（caller-save）
+- call_dir 展開:
+  - %i3 の保存は不要（callee-save）
+  - live_out から caller-save レジスタを抽出
+  - clobber_hint（offspring clobber summary）でフィルタし、callee が
+    壊さないレジスタは save をスキップ
+  - liveness refinement: defined_before_call ∨ live_in_at_block_entry に
+    含まれないレジスタもスキップ
+  - save 本数が 0 なら call frame 自体を省略（subi/addi も不要）
+- call_cls 展開:
+  - ターゲット不明のため、clobber_hint = None（保守的に全 live_out を保存）
+
+7) spill 処理
+- 1回の彩色で spill が出たら、その仮想レジスタを spill 展開して再度
+  analyze -> graph -> color を繰り返す。
+- spill 展開は quick/slow 方式:
+  - 単独 spill は scratch（%i31/%f31、条件により %i30）で load/store を
+    前後に挿入。
+  - 複数 spill 同時出現時は victim 退避を含む slow 方式を使う。
+
+8) 環境変数による制御
+- BACKEND_ALL_CALLER_SAVE (default: 1)
+  全レジスタ caller-save モード。0 で従来の 12/14 分割に戻す。
+- BACKEND_CROSSING_THRESHOLD (default: 4)
+  callee-save preference の閾値（ALL_CALLER_SAVE=0 時のみ有効）。
+  crossing >= threshold の変数を callee-save 側に選好する。
+- BACKEND_DISABLE_CALLEE_FILTER (default: 0)
+  1 で ancestor_used による callee-save 絞り込みを無効化。
+- BACKEND_DISABLE_CALLER_HINT (default: 0)
+  1 で clobber_hint による caller-save 絞り込みを無効化。
+
+9) 将来拡張ポイント
+- 少数 callee-save の選択的導入:
+  crossing が極端に多い変数（例: ループカウンタ）に限定して数本の
+  callee-save レジスタを使うオプション。N回のコールサイト保存を
+  1回のプロローグ保存に集約できる。
+- per-call-site clobber 精度の向上:
+  現在は関数全体の clobber union を使っているが、各コールサイトの
+  callee ごとに個別の clobber set を使えばさらに save を削減できる。
+- zero-save call の検出と最適化:
+  save 本数が 0 のコールサイトでは、subi/addi/sw/lw を全て省略し
+  set_label + jmp のみの最小展開にする。

@@ -1,0 +1,132 @@
+# min-caml-basic/tools 設計（命令列検索ツール）
+
+## 1. 目的
+- コンパイル後アセンブリ（例: `min-caml-basic/test/minrt.s`, `min-caml-basic/Backend/minrt_colored.s`）を対象に、
+  特定の命令列を高速・再現可能に検索する。
+- 人間と Codex の両方が使いやすい CLI を提供する。
+
+## 2. 配置
+- ツール本体: `min-caml-basic/tools/asmseq.py`
+- 設計: `min-caml-basic/tools/plan.txt`
+- パターン置き場: `min-caml-basic/tools/patterns/`
+
+## 3. スコープ
+### 3.1 対象
+- テキスト形式アセンブリ (`.s`)
+- 命令列検索（連続、または小さなギャップ付き）
+- ラベル検索（`label:*`, `label:<regex>`）
+
+### 3.2 非対象（初版）
+- CFG を跨ぐ経路探索
+- バイナリ (`.bin`) 直接解析
+
+## 4. CLI インターフェース
+### 4.1 基本コマンド
+- `python3 min-caml-basic/tools/asmseq.py find --asm <path> --pattern <inline>`
+- `python3 min-caml-basic/tools/asmseq.py find --asm <path> --pattern-file <path>`
+
+### 4.2 オプション（初版）
+- `--asm <path>`: 検索対象アセンブリ
+- `--pattern <text>`: `;` 区切りのパターン
+- `--pattern-file <path>`: 改行区切りパターン（`#` コメント可）
+- `--allow-gap <N>`: 最大ギャップ命令数（default `0`）
+- `--function <label_regex>`: 関数ラベルで範囲限定
+- `--context <N>`: 前後N行表示
+- `--max-matches <N>`: 最大表示件数
+- `--json`: JSON出力
+- `--count-only`: 件数のみ
+- `--distinct "$1,$2;$2,$3"`: 相異制約（inlineパターン向け）
+
+### 4.3 終了コード
+- `0`: 正常終了（0件も正常）
+- `2`: CLI入力エラー
+- `3`: ファイル読込/パースエラー
+
+## 5. パターン記法
+### 5.1 命令パターン
+- 形式: `<mnemonic> <op1>, <op2>, ...`
+- 例: `add $1, $2, op*`
+
+### 5.2 オペランドワイルドカード
+- `op*`: 任意オペランド1個（非空）
+- `%*`: 任意レジスタ1個（`%i..`, `%f..`, `%vi..`, `%vf..` など `%` 始まり）
+
+### 5.3 変数束縛
+- `$1`, `$2`, ... : 束縛変数
+- 同じ変数名は同一値に一致する必要あり
+
+### 5.4 相異制約（distinct）
+- 目的: `$1` と `$2` は一致させたくない、を明示する
+- 指定方法1（pattern file内ディレクティブ）:
+  - `distinct: $1,$2`
+  - `distinct: $1,$2,$3`（この行内は全て相異）
+- 指定方法2（CLIオプション）:
+  - `--distinct "$1,$2;$2,$3"`
+
+### 5.5 ラベル検索
+- `label:*` : ラベルがあれば一致
+- `label:<regex>` : ラベル名が正規表現に一致
+- 例:
+  - `label:skip\\..*`
+  - `label:read_int_helper\\..*`
+
+## 6. マッチ対象行の扱い
+- 既定では命令行を対象
+- `label:` パターンが含まれる場合のみラベル行/ラベル付き命令を対象にする
+- ディレクティブ行（`.func_entry` など）は初版では対象外
+
+## 7. 出力仕様
+### 7.1 テキスト
+- `match_id`, `function`, `start_line`, `end_line`
+- 一致命令列
+- `--context` 指定時は前後行
+
+### 7.2 JSON（Codex向け）
+- 配列形式
+- 各要素:
+  - `asm_path`
+  - `function`
+  - `start_line`
+  - `end_line`
+  - `matched_items`（命令または label 条件）
+  - `bindings`（例: `{ "$1": "%i4" }`）
+  - `distinct_constraints`（適用制約）
+
+## 8. アルゴリズム（初版）
+1. `.s` を行番号付きで読み込む
+2. ラベル/命令を正規化して内部表現化
+3. パターンをトークン化（命令項目 + label項目 + distinct制約）
+4. 先頭から順序一致探索
+   - `allow-gap=0`: 連続一致
+   - `allow-gap>0`: 最大N命令までスキップ可
+5. 束縛整合チェック（`$1` 等）
+6. distinct制約チェック（`$1 != $2`）
+7. 結果を出力
+
+## 9. 使い方例
+- tail-call 候補
+  - `python3 min-caml-basic/tools/asmseq.py find --asm min-caml-basic/test/minrt.s --pattern "call_dir op*; ret" --json`
+- beta move 候補（相異制約あり）
+  - `python3 min-caml-basic/tools/asmseq.py find --asm min-caml-basic/Backend/minrt_colored.s --pattern "mov $1, $2; mov $3, $1" --distinct "$1,$2;$1,$3"`
+- ラベル付き if ブロック探索
+  - `python3 min-caml-basic/tools/asmseq.py find --asm min-caml-basic/Backend/minrt_colored.s --pattern "label:skip\\..*; jzero %i0, $1, op*"`
+
+## 10. 実装ステップ
+1. `asmseq.py` 雛形（argparse, exit code）
+2. アセンブリパーサ（ラベル/命令分離）
+3. パターンパーサ（`op*`, `$n`, `label:`, `distinct`）
+4. 連続一致 (`allow-gap=0`)
+5. distinct制約評価
+6. JSON出力
+7. `allow-gap` 対応
+8. サンプル `patterns/*.pat` 追加
+
+## 11. テスト方針
+- スモーク:
+  - `call_dir op*; ret` が `minrt.s` で検出できる
+- 相異制約:
+  - `$1==$2` になる候補が正しく除外される
+- ラベル:
+  - `label:skip\\..*` が想定箇所でヒットする
+- 失敗系:
+  - 不正regex、不正distinct、存在しないファイル

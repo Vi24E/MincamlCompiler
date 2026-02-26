@@ -1,0 +1,263 @@
+// Peephole rules.
+// Syntax:
+//   <lhs inst 1>
+//   <lhs inst 2>
+//   ...
+//   ->
+//   <rhs inst 1>
+//   <rhs inst 2>
+//   ...;
+//
+// `%r1`, `%r2`, ... are placeholders.
+// `;` ends one rule.
+// `//` starts a comment.
+
+// ---- explicit nop removal ----
+nop
+->
+;
+
+// ---- self-nop removal ----
+addi %r1, %r1, 0
+->
+;
+
+// ---- single-instruction canonicalization ----
+addi %r1, %r2, 0
+->
+mov %r1, %r2;
+
+subi %r1, %r2, 0
+->
+mov %r1, %r2;
+
+slli %r1, %r2, 0
+->
+mov %r1, %r2;
+
+sar %r1, %r2, 0
+->
+mov %r1, %r2;
+
+// ---- immediate / label materialization propagation ----
+movi %r1, %r2
+mov %r3, %r1
+->
+movi %r3, %r2;
+
+movi %r1, %r2
+add %r3, %r4, %r1
+->
+addi %r3, %r4, %r2;
+
+movi %r1, %r2
+sub %r3, %r4, %r1
+->
+subi %r3, %r4, %r2;
+
+movi %r1, %r2
+sll %r3, %r4, %r1
+->
+slli %r3, %r4, %r2;
+
+movi %r1, %r2
+ceq %r3, %r4, %r1
+->
+ceqi %r3, %r4, %r2;
+
+movi %r1, %r2
+ceq %r3, %r1, %r4
+->
+ceqi %r3, %r4, %r2;
+
+movi %r1, %r2
+cleq %r3, %r4, %r1
+->
+cleqi %r3, %r4, %r2;
+
+// Variants where destination/source aliasing prevents the generic rules
+// (the matcher enforces %r* placeholders are pairwise distinct unless reused).
+movi %r1, %r2
+add %r1, %r3, %r1
+->
+addi %r1, %r3, %r2;
+
+movi %r1, %r2
+add %r3, %r3, %r1
+->
+addi %r3, %r3, %r2;
+
+movi %r1, %r2
+sub %r1, %r3, %r1
+->
+subi %r1, %r3, %r2;
+
+movi %r1, %r2
+sub %r3, %r3, %r1
+->
+subi %r3, %r3, %r2;
+
+movi %r1, %r2
+sll %r1, %r3, %r1
+->
+slli %r1, %r3, %r2;
+
+movi %r1, %r2
+sll %r3, %r3, %r1
+->
+slli %r3, %r3, %r2;
+
+movui %r1, %r2
+mov %r3, %r1
+->
+movui %r3, %r2;
+
+set_label %r1, %r2
+mov %r3, %r1
+->
+set_label %r3, %r2;
+
+// ---- beta move elimination ----
+mov %r1, %r2
+mov %r3, %r1
+->
+mov %r3, %r2;
+
+fmov %r1, %r2
+fmov %r3, %r1
+->
+fmov %r3, %r2;
+
+// ---- redundant overwrite elimination ----
+mov %r1, %r2
+mov %r1, %r3
+->
+mov %r1, %r3;
+
+fmov %r1, %r2
+fmov %r1, %r3
+->
+fmov %r1, %r3;
+
+// ---- copy propagation to consumers ----
+mov %r1, %r2
+addi %r3, %r1, %r4
+->
+addi %r3, %r2, %r4;
+
+mov %r1, %r2
+add %r3, %r1, %r4
+->
+add %r3, %r2, %r4;
+
+mov %r1, %r2
+add %r3, %r4, %r1
+->
+add %r3, %r4, %r2;
+
+mov %r1, %r2
+sub %r3, %r4, %r1
+->
+sub %r3, %r4, %r2;
+
+mov %r1, %r2
+sw %r1, %r3(%r4)
+->
+sw %r2, %r3(%r4);
+
+mov %r1, %r2
+sb %r1, %r3(%r4)
+->
+sb %r2, %r3(%r4);
+
+fmov %r1, %r2
+sf %r1, %r3(%r4)
+->
+sf %r2, %r3(%r4);
+
+fmov %r1, %r2
+fadd %r3, %r1, %r4
+->
+fadd %r3, %r2, %r4;
+
+fmov %r1, %r2
+fadd %r3, %r4, %r1
+->
+fadd %r3, %r4, %r2;
+
+fmov %r1, %r2
+fsub %r3, %r4, %r1
+->
+fsub %r3, %r4, %r2;
+
+fmov %r1, %r2
+fmul %r3, %r1, %r4
+->
+fmul %r3, %r2, %r4;
+
+fmov %r1, %r2
+fmul %r3, %r4, %r1
+->
+fmul %r3, %r4, %r2;
+
+// ---- address calculation folding ----
+addi %r1, %r2, %r3
+lw %r4, 0(%r1)
+->
+lw %r4, %r3(%r2);
+
+addi %r1, %r2, %r3
+sw %r4, 0(%r1)
+->
+sw %r4, %r3(%r2);
+
+mov %r1, %r2
+lw %r3, %r4(%r1)
+->
+lw %r3, %r4(%r2);
+
+mov %r1, %r2
+sw %r3, %r4(%r1)
+->
+sw %r3, %r4(%r2);
+
+// ---- float zero materialization folding ----
+// movi+mif to create 0.0 can be replaced by direct %f0 use.
+movi %r1, 0
+mif %r2, %r1
+fleq %r1, %r3, %r2
+ceqi %r1, %r1, 0
+->
+fleq %r1, %r3, %f0
+ceqi %r1, %r1, 0;
+
+movi %r1, 0
+mif %r2, %r1
+fleq %r3, %r4, %r2
+ceqi %r3, %r3, 0
+->
+fleq %r3, %r4, %f0
+ceqi %r3, %r3, 0;
+
+// ---- swap-like no-op sequence simplification ----
+mov %r1, %r2
+mov %r2, %r1
+->
+mov %r1, %r2;
+
+fmov %r1, %r2
+fmov %r2, %r1
+->
+fmov %r1, %r2;
+
+// ---- fma ----
+fmul %r1, %r2, %r3
+fadd %r4, %r1, %r5
+->
+fma %r4, %r2, %r3, %r5;
+
+fmul %r1, %r2, %r3
+fadd %r4, %r5, %r1
+->
+fma %r4, %r2, %r3, %r5;
+
