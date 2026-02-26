@@ -12,6 +12,7 @@ use std::process;
 mod spilling;
 
 mod finalize;
+mod reordering;
 
 use std::collections::BTreeMap;
 use std::collections::BTreeSet;
@@ -718,6 +719,175 @@ struct ConstraintStats {
     spilled_float_forbidden_all: usize,
 }
 
+struct FunctionColorStats {
+    name: String,
+    kind: program::FunctionKind,
+    total_virtual: usize,
+    total_int_virtual: usize,
+    total_float_virtual: usize,
+    colored_virtual: usize,
+    spilled_virtual: usize,
+    used_int_colors: BTreeSet<usize>,
+    used_float_colors: BTreeSet<usize>,
+    peak_live_virtual: usize,
+    peak_live_int: usize,
+    peak_live_float: usize,
+}
+
+impl Default for FunctionColorStats {
+    fn default() -> Self {
+        Self {
+            name: String::new(),
+            kind: program::FunctionKind::Unknown,
+            total_virtual: 0,
+            total_int_virtual: 0,
+            total_float_virtual: 0,
+            colored_virtual: 0,
+            spilled_virtual: 0,
+            used_int_colors: BTreeSet::new(),
+            used_float_colors: BTreeSet::new(),
+            peak_live_virtual: 0,
+            peak_live_int: 0,
+            peak_live_float: 0,
+        }
+    }
+}
+
+fn function_kind_name(kind: program::FunctionKind) -> &'static str {
+    match kind {
+        program::FunctionKind::MainRegion => "main",
+        program::FunctionKind::UserFunction => "user",
+        program::FunctionKind::LibraryFunction => "lib",
+        program::FunctionKind::Unknown => "unknown",
+    }
+}
+
+fn color_range_string(colors: &BTreeSet<usize>) -> String {
+    if colors.is_empty() {
+        "-".to_string()
+    } else {
+        let min_c = colors.first().copied().unwrap_or(0);
+        let max_c = colors.last().copied().unwrap_or(0);
+        format!("{}..{}", min_c, max_c)
+    }
+}
+
+fn collect_function_color_stats(
+    work_program: &[program::FunctionProg],
+    work_instructions: &[input::Instruction],
+    analyzed: &[analysis::AnalyzedInstruction],
+    allocation: &coloring::Allocation,
+) -> Vec<FunctionColorStats> {
+    let mut stats: Vec<FunctionColorStats> = work_program
+        .iter()
+        .map(|f| FunctionColorStats {
+            name: f.name.clone(),
+            kind: f.kind,
+            ..FunctionColorStats::default()
+        })
+        .collect();
+
+    for (fi, func) in work_program.iter().enumerate() {
+        let mut regs = BTreeSet::new();
+        for r in func.used_regs.iter().chain(func.def_regs.iter()) {
+            if is_virtual_reg(r) {
+                regs.insert(r.clone());
+            }
+        }
+        let s = &mut stats[fi];
+        s.total_virtual = regs.len();
+        for r in regs {
+            if is_virtual_int_reg(&r) {
+                s.total_int_virtual += 1;
+            } else if is_virtual_float_reg(&r) {
+                s.total_float_virtual += 1;
+            }
+            match allocation.get(&r) {
+                Some(Ok(c)) => {
+                    s.colored_virtual += 1;
+                    if is_virtual_int_reg(&r) {
+                        s.used_int_colors.insert(*c);
+                    } else if is_virtual_float_reg(&r) {
+                        s.used_float_colors.insert(*c);
+                    }
+                }
+                Some(Err(())) => {
+                    s.spilled_virtual += 1;
+                }
+                None => {}
+            }
+        }
+    }
+
+    let ranges = program::partition_function_ranges(work_instructions);
+    for (fi, range) in ranges.iter().enumerate() {
+        if fi >= stats.len() {
+            break;
+        }
+        for idx in range.clone() {
+            if idx >= analyzed.len() {
+                break;
+            }
+            let inst = &analyzed[idx];
+            for live in [&inst.live_in, &inst.live_out] {
+                let mut live_int = 0usize;
+                let mut live_float = 0usize;
+                for r in live {
+                    if is_virtual_int_reg(r) {
+                        live_int += 1;
+                    } else if is_virtual_float_reg(r) {
+                        live_float += 1;
+                    }
+                }
+                let live_total = live_int + live_float;
+                let s = &mut stats[fi];
+                s.peak_live_int = s.peak_live_int.max(live_int);
+                s.peak_live_float = s.peak_live_float.max(live_float);
+                s.peak_live_virtual = s.peak_live_virtual.max(live_total);
+            }
+        }
+    }
+
+    stats
+}
+
+fn print_function_color_stats(stats: &[FunctionColorStats]) {
+    println!("Function coloring report:");
+    println!(
+        "  {:<34} {:<6} {:>6} {:>6} {:>6} {:>8} {:>10} {:>10} {:>9} {:>10}",
+        "name",
+        "kind",
+        "vregs",
+        "intv",
+        "fltv",
+        "spills",
+        "int_col",
+        "flt_col",
+        "live_pk",
+        "live_i/f"
+    );
+    for s in stats {
+        println!(
+            "  {:<34} {:<6} {:>6} {:>6} {:>6} {:>8} {:>10} {:>10} {:>9} {:>4}/{:<4}",
+            s.name,
+            function_kind_name(s.kind),
+            s.total_virtual,
+            s.total_int_virtual,
+            s.total_float_virtual,
+            s.spilled_virtual,
+            format!("{}({})", s.used_int_colors.len(), color_range_string(&s.used_int_colors)),
+            format!(
+                "{}({})",
+                s.used_float_colors.len(),
+                color_range_string(&s.used_float_colors)
+            ),
+            s.peak_live_virtual,
+            s.peak_live_int,
+            s.peak_live_float
+        );
+    }
+}
+
 fn collect_allocation_stats(allocation: &coloring::Allocation) -> AllocationStats {
     let mut stats = AllocationStats::default();
 
@@ -877,17 +1047,29 @@ fn main() {
             let enable_stage2 = env_enabled("BACKEND_PEEPHOLE_STAGE2", false);
             let enable_stage3 = env_enabled("BACKEND_PEEPHOLE_STAGE3", true);
             let enable_preference = env_enabled("BACKEND_COLOR_PREFERENCE", true);
+            let enable_reorder = env_enabled("BACKEND_REORDER", false);
+            let reorder_seed = env::var("BACKEND_REORDER_SEED")
+                .ok()
+                .and_then(|v| v.parse::<u64>().ok());
             let verbose_stats = env_enabled("BACKEND_VERBOSE_STATS", false);
+            let function_color_report = env_enabled("BACKEND_FUNC_COLOR_REPORT", false);
+            let function_color_filter = env::var("BACKEND_FUNC_COLOR_FILTER").ok();
+            let function_color_limit = env::var("BACKEND_FUNC_COLOR_LIMIT")
+                .ok()
+                .and_then(|v| v.parse::<usize>().ok())
+                .unwrap_or(usize::MAX);
             println!(
-                "Peephole config: stage1={} stage2={} stage3={} preference={} rules={}/{}/{} verbose_stats={}",
+                "Peephole config: stage1={} stage2={} stage3={} preference={} reorder={} rules={}/{}/{} verbose_stats={} func_color_report={}",
                 enable_stage1,
                 enable_stage2,
                 enable_stage3,
                 enable_preference,
+                enable_reorder,
                 rules_path_stage1,
                 rules_path_stage2,
                 rules_path_stage3,
-                verbose_stats
+                verbose_stats,
+                function_color_report
             );
 
             if enable_stage1 {
@@ -905,6 +1087,17 @@ fn main() {
                 current_program = program::from_instructions(stage1.instructions);
             } else {
                 println!("Peephole stage1 (frontend-like regs) rewrites: 0 (disabled)");
+            }
+            if enable_reorder {
+                let reordered =
+                    reordering::reorder(program::flatten(&current_program), reorder_seed);
+                println!(
+                    "Reordering priority sort: windows={} swaps={} seed={}",
+                    reordered.windows, reordered.swaps, reordered.seed
+                );
+                current_program = program::from_instructions(reordered.instructions);
+            } else {
+                println!("Reordering priority sort: 0 (disabled)");
             }
             let mut iteration = 0;
             const MAX_ITERATIONS: usize = 20;
@@ -965,6 +1158,28 @@ fn main() {
                     print_allocation_stats(&alloc_stats);
                     let constraint_stats = collect_constraint_stats(coloring.graph(), &allocation);
                     print_constraint_stats(&constraint_stats);
+                }
+                if function_color_report {
+                    let mut function_stats = collect_function_color_stats(
+                        &work_program,
+                        &work_instructions,
+                        &analyzed,
+                        &allocation,
+                    );
+                    function_stats.sort_by(|a, b| {
+                        b.peak_live_virtual
+                            .cmp(&a.peak_live_virtual)
+                            .then_with(|| b.spilled_virtual.cmp(&a.spilled_virtual))
+                            .then_with(|| b.total_virtual.cmp(&a.total_virtual))
+                            .then_with(|| a.name.cmp(&b.name))
+                    });
+                    if let Some(filter) = function_color_filter.as_ref() {
+                        function_stats.retain(|s| s.name.contains(filter));
+                    }
+                    if function_stats.len() > function_color_limit {
+                        function_stats.truncate(function_color_limit);
+                    }
+                    print_function_color_stats(&function_stats);
                 }
                 debug_call_liveness(&analyzed, &allocation);
 
@@ -1042,13 +1257,14 @@ fn main() {
 
                     let adhoc_opt = adhoc::optimize(stage3_instructions);
                     println!(
-                        "Adhoc trampoline_elim rewrites: {}, branch_relax rewrites: {}, short_jump_fold rewrites: {}, global_access_opt rewrites: {}, zero_base_fold rewrites: {}, word_offset_scale rewrites: {}",
+                        "Adhoc trampoline_elim rewrites: {}, branch_relax rewrites: {}, short_jump_fold rewrites: {}, global_access_opt rewrites: {}, zero_base_fold rewrites: {}, word_offset_scale rewrites: {}, val_trace rewrites: {}",
                         adhoc_opt.trampoline_elim_rewrites,
                         adhoc_opt.branch_relax_rewrites,
                         adhoc_opt.short_jump_fold_rewrites,
                         adhoc_opt.global_access_rewrites,
                         adhoc_opt.zero_base_fold_rewrites,
-                        adhoc_opt.word_offset_rewrites
+                        adhoc_opt.word_offset_rewrites,
+                        adhoc_opt.val_trace_rewrites
                     );
 
                     // Generate Code

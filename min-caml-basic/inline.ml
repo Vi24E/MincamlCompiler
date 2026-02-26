@@ -1,12 +1,16 @@
 open KNormal
 
 (* インライン展開する関数の最大サイズ (caml2html: inline_threshold) *)
-let threshold = ref 200 (* Mainで-inlineオプションによりセットされる *)
+let threshold = ref 500 (* Mainで-inlineオプションによりセットされる *)
 
 let rec size = function
   | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2)
-  | Let(_, e1, e2) | LetRec({ body = e1; tags = _ }, e2)
+  | LetRec({ body = e1; tags = _ }, e2)
   | While(e1, e2) -> 1 + size e1 + size e2
+  | Let(_, e1, e2) -> 
+    (match e1 with
+    | Int(_) -> size e2
+    | _ -> 1 + size e1 + size e2)
   | Assign(_, _, e1) -> 1 + size e1
   | LetTuple(_, _, e) -> 1 + size e
   | _ -> 1

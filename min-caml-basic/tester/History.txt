@@ -494,37 +494,283 @@ TopFuncs:
     #5 0x0000d200 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
 Comment: 
 ================================================
-2026-02-26 10:26:30 | Mode: v2 | Size: 32x32 | Cycles: 260652676 
-Accuracy: 100.00% | MemAccessRate: 37.60% | Compile: 66.667s | Sim: 18.798s
+2026-02-26 11:26:41 | Mode: v2 | Size: 32x32 | Cycles: 260652690 
+Accuracy: 100.00% | MemAccessRate: 37.60% | Compile: 59.750s | Sim: 17.414s
 TopFuncs:
-    #1 0x00014308 solve_each_element_fast.3019: 940,320 (39.0%)
-    #2 0x0000a2ec solver_rect_fast.2911: 765,976 (31.7%)
-    #3 0x0000b0ac shadow_check_and_group.2996: 344,342 (14.3%)
-    #4 0x00015cdc trace_or_matrix_fast.3027: 109,020 (4.5%)
-    #5 0x0000d1fc shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+    #1 0x000144f4 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x0000a4d8 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000b298 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x00015ec8 trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000d3e8 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
 Comment: 
 ================================================
-2026-02-26 10:33:09 | Mode: v2 | Size: 32x32 | Cycles: 260483461 
-Accuracy: 100.00% | MemAccessRate: 37.63% | Compile: 61.505s | Sim: 17.472s
+2026-02-26 11:40:07 | Mode: v2 | Size: 32x32 | Cycles: 260652669 
+Accuracy: 100.00% | MemAccessRate: 37.60% | Compile: 60.012s | Sim: 17.434s
 TopFuncs:
-    #1 0x000146c8 solve_each_element_fast.3019: 940,320 (39.0%)
-    #2 0x0000a6c4 solver_rect_fast.2911: 765,976 (31.7%)
-    #3 0x0000b46c shadow_check_and_group.2996: 344,342 (14.3%)
-    #4 0x0001609c trace_or_matrix_fast.3027: 109,020 (4.5%)
-    #5 0x0000d5bc shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+    #1 0x000143f8 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x0000a3dc solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000b19c shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x00015dcc trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000d2ec shadow_check_one_or_matrix.3002: 71,212 (3.0%)
 Comment: 
 ================================================
-2026-02-26 10:41:02 | Mode: v2 | Size: 32x32 | Cycles: 1752253793 [TIMED OUT after 120s]
-Accuracy: N/A | MemAccessRate: 34.53% | Compile: 74.973s | Sim: 120.014s
+2026-02-26 11:43:52 | Mode: v2 | Size: 32x32 | Cycles: 260490128 
+Accuracy: 100.00% | MemAccessRate: 37.62% | Compile: 60.399s | Sim: 17.551s
 TopFuncs:
-    #1 0x0002a168 create_pixel.3146: 4,266,467 (100.0%)
-    #2 0x0002a504 create_pixelline.3151: 21 (0.0%)
+    #1 0x00014314 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x0000a310 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000b0b8 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x00015ce8 trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000d208 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
 Comment: 
 ================================================
-2026-02-26 10:44:47 | Mode: v2 | Size: 32x32 | Cycles: 1726521331 [TIMED OUT after 120s]
-Accuracy: N/A | MemAccessRate: 34.30% | Compile: 77.189s | Sim: 120.012s
+2026-02-26 11:49:46 | Mode: v2 | Size: 32x32 | Cycles: 260489064 
+Accuracy: 100.00% | MemAccessRate: 37.62% | Compile: 60.882s | Sim: 17.504s
 TopFuncs:
-    #1 0x0002a168 create_pixel.3146: 4,161,114 (100.0%)
-    #2 0x0002a504 create_pixelline.3151: 21 (0.0%)
+    #1 0x000142f4 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x0000a2f0 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000b098 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x00015cc8 trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000d1e8 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 11:53:01 | Mode: v2 | Size: 32x32 | Cycles: 260427189 
+Accuracy: 100.00% | MemAccessRate: 37.61% | Compile: 58.400s | Sim: 19.315s
+TopFuncs:
+    #1 0x000140e4 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x0000a16c solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000ae88 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x00015ab8 trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000cfd8 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 12:11:42 | Mode: v2 | Size: 32x32 | Cycles: 260427187 
+Accuracy: 100.00% | MemAccessRate: 37.61% | Compile: 59.907s | Sim: 17.499s
+TopFuncs:
+    #1 0x000140e0 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x0000a168 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000ae84 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x00015ab4 trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000cfd4 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 12:32:10 | Mode: v2 | Size: 32x32 | Cycles: 260200306 
+Accuracy: 100.00% | MemAccessRate: 37.64% | Compile: 63.837s | Sim: 18.429s
+TopFuncs:
+    #1 0x00014048 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x0000a150 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000ae6c shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x000159ec trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000cf6c shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 12:35:14 | Mode: v2 | Size: 32x32 | Cycles: 260154282 
+Accuracy: 100.00% | MemAccessRate: 37.65% | Compile: 64.084s | Sim: 18.266s
+TopFuncs:
+    #1 0x00013fd0 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x0000a108 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000adf4 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x00015974 trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000cef4 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 14:05:27 | Mode: v2 | Size: 32x32 | Cycles: 259907561 
+Accuracy: 100.00% | MemAccessRate: 37.68% | Compile: 63.928s | Sim: 17.830s
+TopFuncs:
+    #1 0x00013bbc solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x00009f64 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000ac38 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x0001553c trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000ccdc shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 14:13:07 | Mode: v2 | Size: 32x32 | Cycles: 259907557 
+Accuracy: 100.00% | MemAccessRate: 37.68% | Compile: 63.417s | Sim: 17.918s
+TopFuncs:
+    #1 0x00013bac solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x00009f54 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000ac28 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x0001552c trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000cccc shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 14:25:57 | Mode: v2 | Size: 32x32 | Cycles: 264347057 
+Accuracy: 100.00% | MemAccessRate: 38.62% | Compile: 62.511s | Sim: 18.126s
+TopFuncs:
+    #1 0x00012d34 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x0000a0ac solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000ad90 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x000146b0 trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000cf20 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 14:29:17 | Mode: v2 | Size: 32x32 | Cycles: 259907557 
+Accuracy: 100.00% | MemAccessRate: 37.68% | Compile: 64.209s | Sim: 17.647s
+TopFuncs:
+    #1 0x00013bac solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x00009f54 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000ac28 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x0001552c trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000cccc shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 14:31:35 | Mode: v2 | Size: 32x32 | Cycles: 2546508 
+Accuracy: 10.74% | MemAccessRate: 36.08% | Compile: 57.017s | Sim: 0.247s
+TopFuncs:
+    #1 0x00013bc8 solve_each_element_fast.3019: 10,680 (45.8%)
+    #2 0x00009f6c solver_rect_fast.2911: 6,596 (28.3%)
+    #3 0x0001f374 try_exploit_neighbors.3101: 900 (3.9%)
+    #4 0x00015548 trace_or_matrix_fast.3027: 772 (3.3%)
+    #5 0x000106f0 solve_each_element.3005: 602 (2.6%)
+Comment: 
+================================================
+2026-02-26 14:33:13 | Mode: v2 | Size: 32x32 | Cycles: 259907557 
+Accuracy: 100.00% | MemAccessRate: 37.68% | Compile: 59.221s | Sim: 17.277s
+TopFuncs:
+    #1 0x00013bac solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x00009f54 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000ac28 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x0001552c trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000cccc shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 17:19:44 | Mode: v2 | Size: 32x32 | Cycles: 259907557 
+Accuracy: 100.00% | MemAccessRate: 37.68% | Compile: 63.166s | Sim: 17.743s
+TopFuncs:
+    #1 0x00013bac solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x00009f54 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000ac28 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x0001552c trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000cccc shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 21:13:18 | Mode: v2 | Size: 32x32 | Cycles: 16121550 
+Accuracy: 0.49% | MemAccessRate: 38.69% | Compile: 68.960s | Sim: 1.041s
+TopFuncs:
+    #1 0x00013c80 solve_each_element_fast.3019: 65,916 (53.6%)
+    #2 0x00014e6c solve_one_or_network_fast.3023: 10,672 (8.7%)
+    #3 0x00017c1c judge_intersection_fast.3031: 8,400 (6.8%)
+    #4 0x00009fcc solver_rect_fast.2911: 6,870 (5.6%)
+    #5 0x0000ac9c shadow_check_and_group.2996: 5,671 (4.6%)
+Comment: 
+================================================
+2026-02-26 21:16:33 | Mode: v2 | Size: 32x32 | Cycles: 259907644 
+Accuracy: 100.00% | MemAccessRate: 37.68% | Compile: 64.426s | Sim: 18.328s
+TopFuncs:
+    #1 0x00013b40 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x00009ee8 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000abbc shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x000154c0 trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000cc60 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 21:18:05 | Mode: v2 | Size: 32x32 | Cycles: 259906476 
+Accuracy: 100.00% | MemAccessRate: 37.68% | Compile: 63.063s | Sim: 18.039s
+TopFuncs:
+    #1 0x00013b50 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x00009ef8 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000abcc shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x000154d0 trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000cc70 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 21:27:04 | Mode: v2 | Size: 32x32 | Cycles: 259908324 
+Accuracy: 100.00% | MemAccessRate: 37.68% | Compile: 64.241s | Sim: 17.892s
+TopFuncs:
+    #1 0x00013b10 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x00009eb8 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000ab8c shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x00015490 trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000cc30 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 21:28:31 | Mode: v2 | Size: 32x32 | Cycles: 259908625 
+Accuracy: 100.00% | MemAccessRate: 37.68% | Compile: 62.839s | Sim: 17.746s
+TopFuncs:
+    #1 0x00013b04 solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x00009eac solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000ab80 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x00015484 trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000cc24 shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 21:40:42 | Mode: v2 | Size: 32x32 | Cycles: 259907557 
+Accuracy: 100.00% | MemAccessRate: 37.68% | Compile: 63.144s | Sim: 17.829s
+TopFuncs:
+    #1 0x00013bac solve_each_element_fast.3019: 940,320 (39.0%)
+    #2 0x00009f54 solver_rect_fast.2911: 765,976 (31.7%)
+    #3 0x0000ac28 shadow_check_and_group.2996: 344,342 (14.3%)
+    #4 0x0001552c trace_or_matrix_fast.3027: 109,020 (4.5%)
+    #5 0x0000cccc shadow_check_one_or_matrix.3002: 71,212 (3.0%)
+Comment: 
+================================================
+2026-02-26 21:49:32 | Mode: v2 | Size: 32x32 | Cycles: 257573129 
+Accuracy: 100.00% | MemAccessRate: 36.92% | Compile: 54.022s | Sim: 16.932s
+TopFuncs:
+    #1 0x0000ef38 solve_each_element_fast.3019: 864,858 (41.1%)
+    #2 0x00009c04 solver_rect_fast.2911: 765,976 (36.4%)
+    #3 0x00014e74 trace_diffuse_ray.3060: 109,020 (5.2%)
+    #4 0x00010130 trace_or_matrix_fast.3027: 109,020 (5.2%)
+    #5 0x0000af78 shadow_check_one_or_group.2999: 85,596 (4.1%)
+Comment: 
+================================================
+2026-02-26 21:56:12 | Mode: v2 | Size: 32x32 | Cycles: 269045875 
+Accuracy: 100.00% | MemAccessRate: 37.03% | Compile: 43.121s | Sim: 16.080s
+TopFuncs:
+    #1 0x00009c2c solve_each_element_fast.3019: 864,858 (40.0%)
+    #2 0x00007818 solver_rect_fast.2911: 626,898 (29.0%)
+    #3 0x000079f0 solver_fast.2930: 352,692 (16.3%)
+    #4 0x0000d914 trace_diffuse_ray.3060: 109,020 (5.0%)
+    #5 0x0000b244 utexture.3042: 70,572 (3.3%)
+Comment: 
+================================================
+2026-02-26 22:00:27 | Mode: v2 | Size: 32x32 | Cycles: 4566402 
+Accuracy: 0.49% | MemAccessRate: 37.23% | Compile: 109.536s | Sim: 0.387s
+TopFuncs:
+    #1 0x0000e6b8 shadow_check_and_group.2996: 1,984 (25.5%)
+    #2 0x0000d770 solver.2907: 1,488 (19.1%)
+    #3 0x0001bbdc write_rgb.3114: 1,024 (13.2%)
+    #4 0x0001a4fc try_exploit_neighbors.3101: 900 (11.6%)
+    #5 0x0000e318 iter_setup_dirvec_constants.2960: 601 (7.7%)
+Comment: 
+================================================
+2026-02-26 22:16:34 | Mode: v2 | Size: 32x32 | Cycles: 202235332 
+Accuracy: 100.00% | MemAccessRate: 34.70% | Compile: 812.709s | Sim: 21.772s
+TopFuncs:
+    #1 0x00066ad4 trace_or_matrix_fast.3027: 110,149 (41.8%)
+    #2 0x000bafd4 trace_diffuse_ray.3060: 109,020 (41.4%)
+    #3 0x00065430 solve_one_or_network_fast.3023: 15,281 (5.8%)
+    #4 0x0007dc58 judge_intersection_fast.3031: 11,280 (4.3%)
+    #5 0x0007fa44 utexture.3042: 6,030 (2.3%)
+Comment: 
+================================================
+2026-02-26 22:49:52 | Mode: v2 | Size: 32x32 | Cycles: 223571704 
+Accuracy: 100.00% | MemAccessRate: 36.71% | Compile: 256.542s | Sim: 14.932s
+TopFuncs:
+    #1 0x00017008 solve_each_element_fast.3019: 864,858 (85.4%)
+    #2 0x0001e5dc trace_diffuse_ray.3060: 109,020 (10.8%)
+    #3 0x0001504c shadow_check_and_group.2996: 29,173 (2.9%)
+    #4 0x00019460 utexture.3042: 6,030 (0.6%)
+    #5 0x00014b50 solver.2907: 1,432 (0.1%)
+Comment: Inline = 400, insert while in complex function
+================================================
+2026-02-27 00:12:07 | Mode: v2 | Size: 32x32 | Cycles: 201218309 
+Accuracy: 100.00% | MemAccessRate: 34.48% | Compile: 366.963s | Sim: 17.112s
+TopFuncs:
+    #1 0x0001e5dc trace_or_matrix_fast.3027: 68,809 (46.3%)
+    #2 0x000255f4 trace_diffuse_ray.3060: 41,340 (27.8%)
+    #3 0x0001c620 shadow_check_and_group.2996: 29,173 (19.6%)
+    #4 0x00020478 utexture.3042: 6,030 (4.1%)
+    #5 0x0001c124 solver.2907: 1,432 (1.0%)
+Comment: Inline = 500; much better, but compile time is too long
+================================================
+2026-02-27 00:15:52 | Mode: v2 | Size: 32x32 | Cycles: 12357575 [TIMED OUT after 1s]
+Accuracy: N/A | MemAccessRate: 34.92% | Compile: 388.821s | Sim: 1.008s
+TopFuncs:
+    #1 0x0001e5dc trace_or_matrix_fast.3027: 4,812 (47.8%)
+    #2 0x000255f4 trace_diffuse_ray.3060: 2,896 (28.8%)
+    #3 0x0001c620 shadow_check_and_group.2996: 1,094 (10.9%)
+    #4 0x0001c124 solver.2907: 424 (4.2%)
+    #5 0x0001de24 solve_each_element.3005: 256 (2.5%)
 Comment: 
 ================================================

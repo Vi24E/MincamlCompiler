@@ -28,9 +28,11 @@ let offset x =
 let stacksize () = align ((List.length !stackmap + 1) * 4)
 
 let reg_zero = ("%i0", Id.Known(Id.Register, Id.None)) (* hardcoded as it is not exposed in asm.mli *)
+let reg_fzero = ("%f0", Id.Known(Id.Register, Id.None)) (* hardcoded as it is not exposed in asm.mli *)
 
 let check_imm i = -2048 <= i && i < 2048
-let create_array_unroll_threshold = 5
+let create_array_unroll_threshold = 8
+let is_pos_zero_float f = Int64.bits_of_float f = 0L
 
 let int_return_reg () =
   if !Asm.virtual_mode then regs.(0) else Asm.reg_cl
@@ -103,6 +105,29 @@ let const_int_of_id = function
   | x when Id.to_string x = Id.to_string reg_zero -> Some 0
   | _ -> None
 
+let const_float_of_id = function
+  | (_, Id.Known(_, Id.ConstFloat f)) -> Some f
+  | x when Id.to_string x = Id.to_string reg_fzero -> Some 0.0
+  | _ -> None
+
+let prepare_unrolled_int_fill oc y =
+  match const_int_of_id y with
+  | Some(0) -> Id.to_string reg_zero
+  | Some(i) ->
+      emit_movi oc Asm.reg_sw i;
+      Id.to_string Asm.reg_sw
+  | None -> Id.to_string y
+
+let prepare_unrolled_float_fill oc z =
+  match const_float_of_id z with
+  | Some(f) when is_pos_zero_float f -> Id.to_string reg_fzero
+  | Some(f) ->
+      let bits = Int32.to_int (get_single_bits f) in
+      emit_movi oc Asm.reg_sw bits;
+      Printf.fprintf oc "\tmif\t%s, %s\n" (Id.to_string Asm.reg_fsw) (Id.to_string Asm.reg_sw);
+      Id.to_string Asm.reg_fsw
+  | None -> Id.to_string z
+
 let small_const_count ys =
   match ys with
   | n :: _ ->
@@ -120,6 +145,29 @@ let emit_unrolled_create_array oc ~is_float ~count ~ret_reg ~fill_reg =
   done;
   emit_addi oc Asm.reg_hp Asm.reg_hp (count * 4)
 
+let is_zero_int_fill y =
+  match const_int_of_id y with
+  | Some(0) -> true
+  | _ -> false
+
+let is_zero_float_fill z =
+  match const_float_of_id z with
+  | Some(f) when is_pos_zero_float f -> true
+  | _ -> false
+
+let emit_zero_filled_create_array_const oc ~count ~ret_reg =
+  let hp = Id.to_string Asm.reg_hp in
+  Printf.fprintf oc "\tmov\t%s, %s\n" ret_reg hp;
+  emit_addi oc Asm.reg_hp Asm.reg_hp (count * 4)
+
+let emit_zero_filled_create_array_dynamic oc ~count_reg ~ret_reg =
+  let hp = Id.to_string Asm.reg_hp in
+  let i15 = "%i15" in
+  Printf.fprintf oc "\tmov\t%s, %s\n" i15 count_reg;
+  Printf.fprintf oc "\tmov\t%s, %s\n" ret_reg hp;
+  Printf.fprintf oc "\tslli\t%s, %s, 2\n" i15 i15;
+  Printf.fprintf oc "\tadd\t%s, %s, %s\n" hp hp i15
+
 
 (* 関数呼び出しのために引数を並べ替える(register shuffling) (caml2html: emit_shuffle) *)
 let rec shuffle sw xys =
@@ -136,6 +184,20 @@ type dest = Tail | NonTail of Id.t (* 末尾かどうかを表すデータ型 (c
 
 (* Check if an expression is a no-op (unit value) *)
 let is_nop = function Ans(Nop) -> true | _ -> false
+
+(* True when control never falls through to the next instruction. *)
+let rec must_terminate_t = function
+  | Ans(exp) -> must_terminate_exp exp
+  | Let((_, _), exp, e) ->
+      if must_terminate_exp exp then true else must_terminate_t e
+and must_terminate_exp = function
+  | Break(_, _, _) -> true
+  | IfEq(_, _, e1, e2)
+  | IfLE(_, _, e1, e2)
+  | IfFEq(_, _, e1, e2)
+  | IfFLE(_, _, e1, e2) ->
+      must_terminate_t e1 && must_terminate_t e2
+  | _ -> false
 
 (* Emit a direct conditional jump instruction (jeq/jleq/jlt) based on the given op.
    Loads the rhs into reg_sw if it's a constant or ConstInt variable.
@@ -722,8 +784,10 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let stackset_back = !stackset in
       g oc ss (NonTail(z), e2);
       let stackset2 = !stackset in
-      Printf.fprintf oc "\tset_label\t%s, %s\n" reg_sw b_cont_s;
-      Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero_s reg_sw; (* goto cont *)
+      if not (must_terminate_t e2) then (
+        Printf.fprintf oc "\tset_label\t%s, %s\n" reg_sw b_cont_s;
+        Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero_s reg_sw (* goto cont *)
+      );
       Printf.fprintf oc "%s:\n" b_then_s;
       stackset := stackset_back;
       g oc ss (NonTail(z), e1);
@@ -742,8 +806,10 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let stackset_back = !stackset in
       g oc ss (NonTail(z), e2);
       let stackset2 = !stackset in
-      Printf.fprintf oc "\tset_label\t%s, %s\n" reg_sw b_cont_s;
-      Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero_s reg_sw; (* goto cont *)
+      if not (must_terminate_t e2) then (
+        Printf.fprintf oc "\tset_label\t%s, %s\n" reg_sw b_cont_s;
+        Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero_s reg_sw (* goto cont *)
+      );
       Printf.fprintf oc "%s:\n" b_then_s;
       stackset := stackset_back;
       g oc ss (NonTail(z), e1);
@@ -932,34 +998,44 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let rsw    = Id.to_string Asm.reg_sw in
       let loop_s = Id.to_string (Id.genid "ca_loop") in
       let cont_s = Id.to_string (Id.genid "ca_cont") in
+      let finish_tail () =
+        if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
+        let reg_ra = Id.to_string Asm.reg_ra in
+        if !Asm.virtual_mode then Printf.fprintf oc "\tret\n"
+        else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz reg_ra
+      in
       (match ys with
-      | _ :: fill_y :: _ ->
-          (match small_const_count ys with
-          | Some count ->
-              emit_unrolled_create_array oc ~is_float:false ~count ~ret_reg:ret ~fill_reg:(Id.to_string fill_y);
-              if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
-              let reg_ra = Id.to_string Asm.reg_ra in
-              if !Asm.virtual_mode then Printf.fprintf oc "\tret\n"
-              else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz reg_ra
-          | None ->
-              g'_args oc [] ys [];    (* After: regs.(0)=%i4=count, regs.(1)=%i5=fill value *)
-              let i5 = Id.to_string regs.(1) in
-              Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));  (* counter = count *)
-              Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;                        (* result = heap start *)
-              Printf.fprintf oc "%s:\n" loop_s;
-              Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;                  (* rsw = (counter==0)?1:0 *)
-              Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;          (* if counter!=0, forward to cont *)
-              (* fall-through: counter==0, return *)
-              if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
-              let reg_ra = Id.to_string Asm.reg_ra in
-              if !Asm.virtual_mode then Printf.fprintf oc "\tret\n"
-              else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz reg_ra;
-              Printf.fprintf oc "%s:\n" cont_s;
-              Printf.fprintf oc "\tsw\t%s, 0(%s)\n" i5 i2;
-              Printf.fprintf oc "\taddi\t%s, %s, 4\n" i2 i2;
-              Printf.fprintf oc "\tsubi\t%s, %s, 1\n" i15 i15;
-              Printf.fprintf oc "\tset_label\t%s, %s\n" rsw loop_s;             (* backward jump via reg *)
-              Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw)
+      | count_y :: fill_y :: _ ->
+          if is_zero_int_fill fill_y then begin
+            (match const_int_of_id count_y with
+             | Some(c) when c >= 0 ->
+                 emit_zero_filled_create_array_const oc ~count:c ~ret_reg:ret
+             | _ ->
+                 g'_args oc [] ys [];
+                 emit_zero_filled_create_array_dynamic oc ~count_reg:(Id.to_string regs.(0)) ~ret_reg:ret);
+            finish_tail ()
+          end else
+            (match small_const_count ys with
+            | Some count ->
+                let fill_reg = prepare_unrolled_int_fill oc fill_y in
+                emit_unrolled_create_array oc ~is_float:false ~count ~ret_reg:ret ~fill_reg;
+                finish_tail ()
+            | None ->
+                g'_args oc [] ys [];    (* After: regs.(0)=%i4=count, regs.(1)=%i5=fill value *)
+                let i5 = Id.to_string regs.(1) in
+                Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));  (* counter = count *)
+                Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;                        (* result = heap start *)
+                Printf.fprintf oc "%s:\n" loop_s;
+                Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;                  (* rsw = (counter==0)?1:0 *)
+                Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;          (* if counter!=0, forward to cont *)
+                (* fall-through: counter==0, return *)
+                finish_tail ();
+                Printf.fprintf oc "%s:\n" cont_s;
+                Printf.fprintf oc "\tsw\t%s, 0(%s)\n" i5 i2;
+                Printf.fprintf oc "\taddi\t%s, %s, 4\n" i2 i2;
+                Printf.fprintf oc "\tsubi\t%s, %s, 1\n" i15 i15;
+                Printf.fprintf oc "\tset_label\t%s, %s\n" rsw loop_s;             (* backward jump via reg *)
+                Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw)
       | _ ->
           g'_args oc [] ys [];
           let i5 = Id.to_string regs.(1) in
@@ -987,34 +1063,44 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let rsw    = Id.to_string Asm.reg_sw in
       let loop_s = Id.to_string (Id.genid "cfa_loop") in
       let cont_s = Id.to_string (Id.genid "cfa_cont") in
+      let finish_tail () =
+        if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
+        let reg_ra = Id.to_string Asm.reg_ra in
+        if !Asm.virtual_mode then Printf.fprintf oc "\tret\n"
+        else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz reg_ra
+      in
       (match ys, zs with
-      | _ :: _, fill_z :: _ ->
-          (match small_const_count ys with
-          | Some count ->
-              emit_unrolled_create_array oc ~is_float:true ~count ~ret_reg:ret ~fill_reg:(Id.to_string fill_z);
-              if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
-              let reg_ra = Id.to_string Asm.reg_ra in
-              if !Asm.virtual_mode then Printf.fprintf oc "\tret\n"
-              else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz reg_ra
-          | None ->
-              g'_args oc [] ys zs;    (* After: regs.(0)=%i4=count, fregs.(0)=%f1=float fill value *)
-              let f1 = Id.to_string fregs.(0) in
-              Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));
-              Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;
-              Printf.fprintf oc "%s:\n" loop_s;
-              Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
-              Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;          (* if counter!=0, forward to cont *)
-              (* fall-through: counter==0, return *)
-              if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
-              let reg_ra = Id.to_string Asm.reg_ra in
-              if !Asm.virtual_mode then Printf.fprintf oc "\tret\n"
-              else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz reg_ra;
-              Printf.fprintf oc "%s:\n" cont_s;
-              Printf.fprintf oc "\tsf\t%s, 0(%s)\n" f1 i2;
-              Printf.fprintf oc "\taddi\t%s, %s, 4\n" i2 i2;
-              Printf.fprintf oc "\tsubi\t%s, %s, 1\n" i15 i15;
-              Printf.fprintf oc "\tset_label\t%s, %s\n" rsw loop_s;
-              Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw)
+      | count_y :: _, fill_z :: _ ->
+          if is_zero_float_fill fill_z then begin
+            (match const_int_of_id count_y with
+             | Some(c) when c >= 0 ->
+                 emit_zero_filled_create_array_const oc ~count:c ~ret_reg:ret
+             | _ ->
+                 g'_args oc [] ys zs;
+                 emit_zero_filled_create_array_dynamic oc ~count_reg:(Id.to_string regs.(0)) ~ret_reg:ret);
+            finish_tail ()
+          end else
+            (match small_const_count ys with
+            | Some count ->
+                let fill_reg = prepare_unrolled_float_fill oc fill_z in
+                emit_unrolled_create_array oc ~is_float:true ~count ~ret_reg:ret ~fill_reg;
+                finish_tail ()
+            | None ->
+                g'_args oc [] ys zs;    (* After: regs.(0)=%i4=count, fregs.(0)=%f1=float fill value *)
+                let f1 = Id.to_string fregs.(0) in
+                Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));
+                Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;
+                Printf.fprintf oc "%s:\n" loop_s;
+                Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
+                Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;          (* if counter!=0, forward to cont *)
+                (* fall-through: counter==0, return *)
+                finish_tail ();
+                Printf.fprintf oc "%s:\n" cont_s;
+                Printf.fprintf oc "\tsf\t%s, 0(%s)\n" f1 i2;
+                Printf.fprintf oc "\taddi\t%s, %s, 4\n" i2 i2;
+                Printf.fprintf oc "\tsubi\t%s, %s, 1\n" i15 i15;
+                Printf.fprintf oc "\tset_label\t%s, %s\n" rsw loop_s;
+                Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw)
       | _ ->
           g'_args oc [] ys zs;
           let f1 = Id.to_string fregs.(0) in
@@ -1125,35 +1211,49 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let ret    = Id.to_string (int_return_reg ()) in
       let rz     = Id.to_string reg_zero in
       let rsw    = Id.to_string Asm.reg_sw in
+      let move_result () =
+        let a_str = Id.to_string a in
+        if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
+          Printf.fprintf oc "\tmov\t%s, %s\n" a_str ret
+      in
       (match ys with
-      | _ :: fill_y :: _ ->
-          (match small_const_count ys with
-          | Some count ->
-              emit_unrolled_create_array oc ~is_float:false ~count ~ret_reg:(Id.to_string a) ~fill_reg:(Id.to_string fill_y)
-          | None ->
-              g'_args oc [] ys [];    (* After: %i4=count, %i5=fill value *)
-              let i5 = Id.to_string regs.(1) in
-              let loop_s = Id.to_string (Id.genid "ca_loop") in
-              let cont_s = Id.to_string (Id.genid "ca_cont") in
-              let done_s = Id.to_string (Id.genid "ca_done") in
-              Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));
-              Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;
-              Printf.fprintf oc "%s:\n" loop_s;
-              Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;          (* rsw = (counter==0)?1:0 *)
-              Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;  (* if counter!=0, forward to cont *)
-              (* fall-through: counter==0, jump to done *)
-              Printf.fprintf oc "\tset_label\t%s, %s\n" rsw done_s;
-              Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw;
-              Printf.fprintf oc "%s:\n" cont_s;
-              Printf.fprintf oc "\tsw\t%s, 0(%s)\n" i5 i2;
-              Printf.fprintf oc "\taddi\t%s, %s, 4\n" i2 i2;
-              Printf.fprintf oc "\tsubi\t%s, %s, 1\n" i15 i15;
-              Printf.fprintf oc "\tset_label\t%s, %s\n" rsw loop_s;     (* backward jump via reg *)
-              Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw;
-              Printf.fprintf oc "%s:\n" done_s;
-              let a_str = Id.to_string a in
-              if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
-                Printf.fprintf oc "\tmov\t%s, %s\n" a_str ret)
+      | count_y :: fill_y :: _ ->
+          if is_zero_int_fill fill_y then begin
+            (match const_int_of_id count_y with
+             | Some(c) when c >= 0 ->
+                 emit_zero_filled_create_array_const oc ~count:c ~ret_reg:ret
+             | _ ->
+                 g'_args oc [] ys [];
+                 emit_zero_filled_create_array_dynamic oc ~count_reg:(Id.to_string regs.(0)) ~ret_reg:ret);
+            move_result ()
+          end else
+            (match small_const_count ys with
+            | Some count ->
+                let fill_reg = prepare_unrolled_int_fill oc fill_y in
+                emit_unrolled_create_array oc ~is_float:false ~count ~ret_reg:ret ~fill_reg;
+                move_result ()
+            | None ->
+                g'_args oc [] ys [];    (* After: %i4=count, %i5=fill value *)
+                let i5 = Id.to_string regs.(1) in
+                let loop_s = Id.to_string (Id.genid "ca_loop") in
+                let cont_s = Id.to_string (Id.genid "ca_cont") in
+                let done_s = Id.to_string (Id.genid "ca_done") in
+                Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));
+                Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;
+                Printf.fprintf oc "%s:\n" loop_s;
+                Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;          (* rsw = (counter==0)?1:0 *)
+                Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;  (* if counter!=0, forward to cont *)
+                (* fall-through: counter==0, jump to done *)
+                Printf.fprintf oc "\tset_label\t%s, %s\n" rsw done_s;
+                Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw;
+                Printf.fprintf oc "%s:\n" cont_s;
+                Printf.fprintf oc "\tsw\t%s, 0(%s)\n" i5 i2;
+                Printf.fprintf oc "\taddi\t%s, %s, 4\n" i2 i2;
+                Printf.fprintf oc "\tsubi\t%s, %s, 1\n" i15 i15;
+                Printf.fprintf oc "\tset_label\t%s, %s\n" rsw loop_s;     (* backward jump via reg *)
+                Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw;
+                Printf.fprintf oc "%s:\n" done_s;
+                move_result ())
       | _ ->
           g'_args oc [] ys [];
           let i5 = Id.to_string regs.(1) in
@@ -1175,44 +1275,56 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
           Printf.fprintf oc "\tset_label\t%s, %s\n" rsw loop_s;
           Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw;
           Printf.fprintf oc "%s:\n" done_s;
-          let a_str = Id.to_string a in
-          if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
-            Printf.fprintf oc "\tmov\t%s, %s\n" a_str ret)
+          move_result ())
   | NonTail(a), CallDir(Id.L("min_caml_create_float_array"), ys, zs) ->
       let i2     = Id.to_string Asm.reg_hp in
       let i15    = "%i15" in
       let ret    = Id.to_string (int_return_reg ()) in
       let rz     = Id.to_string reg_zero in
       let rsw    = Id.to_string Asm.reg_sw in
+      let move_result () =
+        let a_str = Id.to_string a in
+        if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
+          Printf.fprintf oc "\tmov\t%s, %s\n" a_str ret
+      in
       (match ys, zs with
-      | _ :: _, fill_z :: _ ->
-          (match small_const_count ys with
-          | Some count ->
-              emit_unrolled_create_array oc ~is_float:true ~count ~ret_reg:(Id.to_string a) ~fill_reg:(Id.to_string fill_z)
-          | None ->
-              g'_args oc [] ys zs;    (* After: %i4=count, %f1=float fill value *)
-              let f1 = Id.to_string fregs.(0) in
-              let loop_s = Id.to_string (Id.genid "cfa_loop") in
-              let cont_s = Id.to_string (Id.genid "cfa_cont") in
-              let done_s = Id.to_string (Id.genid "cfa_done") in
-              Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));
-              Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;
-              Printf.fprintf oc "%s:\n" loop_s;
-              Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
-              Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;  (* if counter!=0, forward to cont *)
-              (* fall-through: counter==0, jump to done *)
-              Printf.fprintf oc "\tset_label\t%s, %s\n" rsw done_s;
-              Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw;
-              Printf.fprintf oc "%s:\n" cont_s;
-              Printf.fprintf oc "\tsf\t%s, 0(%s)\n" f1 i2;
-              Printf.fprintf oc "\taddi\t%s, %s, 4\n" i2 i2;
-              Printf.fprintf oc "\tsubi\t%s, %s, 1\n" i15 i15;
-              Printf.fprintf oc "\tset_label\t%s, %s\n" rsw loop_s;
-              Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw;
-              Printf.fprintf oc "%s:\n" done_s;
-              let a_str = Id.to_string a in
-              if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
-                Printf.fprintf oc "\tmov\t%s, %s\n" a_str ret)
+      | count_y :: _, fill_z :: _ ->
+          if is_zero_float_fill fill_z then begin
+            (match const_int_of_id count_y with
+             | Some(c) when c >= 0 ->
+                 emit_zero_filled_create_array_const oc ~count:c ~ret_reg:ret
+             | _ ->
+                 g'_args oc [] ys zs;
+                 emit_zero_filled_create_array_dynamic oc ~count_reg:(Id.to_string regs.(0)) ~ret_reg:ret);
+            move_result ()
+          end else
+            (match small_const_count ys with
+            | Some count ->
+                let fill_reg = prepare_unrolled_float_fill oc fill_z in
+                emit_unrolled_create_array oc ~is_float:true ~count ~ret_reg:ret ~fill_reg;
+                move_result ()
+            | None ->
+                g'_args oc [] ys zs;    (* After: %i4=count, %f1=float fill value *)
+                let f1 = Id.to_string fregs.(0) in
+                let loop_s = Id.to_string (Id.genid "cfa_loop") in
+                let cont_s = Id.to_string (Id.genid "cfa_cont") in
+                let done_s = Id.to_string (Id.genid "cfa_done") in
+                Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));
+                Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;
+                Printf.fprintf oc "%s:\n" loop_s;
+                Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
+                Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;  (* if counter!=0, forward to cont *)
+                (* fall-through: counter==0, jump to done *)
+                Printf.fprintf oc "\tset_label\t%s, %s\n" rsw done_s;
+                Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw;
+                Printf.fprintf oc "%s:\n" cont_s;
+                Printf.fprintf oc "\tsf\t%s, 0(%s)\n" f1 i2;
+                Printf.fprintf oc "\taddi\t%s, %s, 4\n" i2 i2;
+                Printf.fprintf oc "\tsubi\t%s, %s, 1\n" i15 i15;
+                Printf.fprintf oc "\tset_label\t%s, %s\n" rsw loop_s;
+                Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw;
+                Printf.fprintf oc "%s:\n" done_s;
+                move_result ())
       | _ ->
           g'_args oc [] ys zs;
           let f1 = Id.to_string fregs.(0) in
@@ -1233,9 +1345,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
           Printf.fprintf oc "\tset_label\t%s, %s\n" rsw loop_s;
           Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw;
           Printf.fprintf oc "%s:\n" done_s;
-          let a_str = Id.to_string a in
-          if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
-            Printf.fprintf oc "\tmov\t%s, %s\n" a_str ret)
+          move_result ())
   | NonTail(a), CallDir(Id.L(x), ys, zs) ->
       if !Asm.virtual_mode then (
         g'_args oc [] ys zs;
@@ -1294,8 +1404,10 @@ and g'_non_tail_if oc ss dest cmp_reg e1 e2 =
   let stackset_back = !stackset in
   g oc ss (dest, e1);
   let stackset1 = !stackset in
-  Printf.fprintf oc "\tset_label\t%s, %s\n" reg_sw b_cont_s;
-  Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero reg_sw; (* goto cont *)
+  if not (must_terminate_t e1) then (
+    Printf.fprintf oc "\tset_label\t%s, %s\n" reg_sw b_cont_s;
+    Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero reg_sw (* goto cont *)
+  );
   Printf.fprintf oc "%s:\n" b_else_s;
   stackset := stackset_back;
   g oc ss (dest, e2);

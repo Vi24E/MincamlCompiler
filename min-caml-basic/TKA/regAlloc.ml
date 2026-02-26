@@ -173,11 +173,22 @@ and g' dest cont regenv = function
                 (fun src r ->
                   match snd src with
                   | Id.Known(_, Id.ConstInt i) -> (fst r, Id.Known(Id.Register, Id.ConstInt i))
+                  | _ when fst src = "%i0" -> (fst r, Id.Known(Id.Register, Id.ConstInt 0))
                   | _ -> r)
                 ys
                 ys_regs
             in
-            CallDir(Id.L(x), ys_tagged, zs_regs))
+            let zs_tagged =
+              List.map2
+                (fun src r ->
+                  match snd src with
+                  | Id.Known(_, Id.ConstFloat f) -> (fst r, Id.Known(Id.Register, Id.ConstFloat f))
+                  | _ when fst src = "%f0" -> (fst r, Id.Known(Id.Register, Id.ConstFloat 0.0))
+                  | _ -> r)
+                zs
+                zs_regs
+            in
+            CallDir(Id.L(x), ys_tagged, zs_tagged))
           ys
           zs
   | Loop(l_start, l_end, e) ->

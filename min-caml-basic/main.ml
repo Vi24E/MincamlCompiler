@@ -6,7 +6,6 @@ let rec iter n e =
   if n = 0 then e else
   let e' = e |> VariableChecker.f
              |> TupleElim.f
-             |> ArrayElim.f
              |> Elim.f 
              |> ConstFold.f 
              |> CommonExpElim.f
@@ -32,15 +31,14 @@ let lexbuf filename outchan l =
   let optimize_input =
     if !enable_loop_insert then
       alpha |> TupleElim.f
-            |> ArrayElim.f
             |> ConstFold.f 
             |> Assoc.f 
             |> Beta.f
             |> Elim.f 
             |> LoopInsert.f 
-            |> LoopInvariant.f ~peel:true
+            |> LoopInvariant.f ~peel:false
             |> Inline.f
-            |> LoopUnroll.f 
+            (* |> LoopUnroll.f  *)
             |> FunctionChecker.f
     else
       alpha

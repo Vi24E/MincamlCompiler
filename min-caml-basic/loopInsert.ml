@@ -16,6 +16,7 @@ let merge_scan a b =
 let mark_invalid r = { r with has_invalid_use = true }
 
 let uses_id name x = Id.compare name x = 0
+let same_id x y = Id.compare x y = 0
 
 let rec scan_self_usage name tail_pos = function
   | Unit | Int(_) | Float(_) | ExtArray(_) -> empty_scan
@@ -31,8 +32,9 @@ let rec scan_self_usage name tail_pos = function
       in
       merge_scan here
         (merge_scan (scan_self_usage name tail_pos e1) (scan_self_usage name tail_pos e2))
-  | Let((_, _), e1, e2) ->
-      let r1 = scan_self_usage name false e1 in
+  | Let((x, _), e1, e2) ->
+      let e1_tail = tail_pos && (match e2 with Var(y) when same_id x y -> true | _ -> false) in
+      let r1 = scan_self_usage name e1_tail e1 in
       let r2 = scan_self_usage name tail_pos e2 in
       merge_scan r1 r2
   | Var(x) ->
@@ -119,6 +121,8 @@ let rec transform_tail name args ret_t tail_pos = function
           y,
           transform_tail name args ret_t tail_pos e1,
           transform_tail name args ret_t tail_pos e2 )
+  | Let((x, _), e1, Var(y)) when tail_pos && same_id x y ->
+      transform_tail name args ret_t true e1
   | Let(xt, e1, e2) ->
       Let(xt, transform_tail name args ret_t false e1, transform_tail name args ret_t tail_pos e2)
   | LetRec({ name = xt; args = yts; body = e1; tags = tags }, e2) ->

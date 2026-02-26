@@ -36,13 +36,15 @@ let rec elimable target_id e alias_env is_branch is_tail =
 	match e with
 	| Var(id') when List.mem (Id.to_string id') alias_env -> not is_tail
 	| Let((x, _), e1, e2) ->
-		let new_alias_env = match e1 with
-		| Var(id') when List.mem (Id.to_string id') alias_env -> (Id.to_string x) :: alias_env
-		| _ -> alias_env
-		in
-		let b1 = elimable target_id e1 new_alias_env is_branch false in
-		let b2 = elimable target_id e2 new_alias_env is_branch is_tail in
-		b1 && b2
+		(match e1 with
+		| Var(id') when List.mem (Id.to_string id') alias_env ->
+			(* Alias tracking in eliminate() is not sound yet.
+			   Reject elimination when array aliasing is introduced. *)
+			false
+		| _ ->
+			let b1 = elimable target_id e1 alias_env is_branch false in
+			let b2 = elimable target_id e2 alias_env is_branch is_tail in
+			b1 && b2)
 	| LetRec({ name = (x, _); args = _; body = e1; tags = _ }, e2) ->
 		let new_alias_env = (Id.to_string x) :: alias_env in
 		let b1 = not_shown e1 alias_env in
@@ -78,46 +80,46 @@ let rec elimable target_id e alias_env is_branch is_tail =
 	| ExtFunApp(_, xs) -> List.for_all (fun x -> not (List.mem (Id.to_string x) alias_env)) xs
 	| _ -> true
 
-let rec eliminate target_x t e env =
+let rec eliminate target_x t_elem e env =
 	match e with
-	| Let((x', t), e1, e2) when Id.to_string x' = Id.to_string target_x ->
+	| Let((x', t_bind), e1, e2) when Id.to_string x' = Id.to_string target_x ->
 		let init_val = (match e1 with 
 		| ExtFunApp(("create_array", _), [_; v]) | ExtFunApp(("create_float_array", _), [_; v]) -> v
 		| _ -> failwith "ArrayElim: Not Array")
 		in 
 		let len = Array.length env in
 		let rec loop i =
-			if i = len then eliminate target_x t e2 env
-			else Let((env.(i), t), Var(init_val), loop (i + 1))
+			if i = len then eliminate target_x t_elem e2 env
+			else Let((env.(i), t_elem), Var(init_val), loop (i + 1))
 		in loop 0
-	| Let((x, t), e1, e2) ->
-		let e1' = eliminate target_x t e1 env in
-		let e2' = eliminate target_x t e2 env in
-		Let((x, t), e1', e2')
+	| Let((x, t_bind), e1, e2) ->
+		let e1' = eliminate target_x t_elem e1 env in
+		let e2' = eliminate target_x t_elem e2 env in
+		Let((x, t_bind), e1', e2')
 	| LetRec(fundef, e2) ->
-		let e2' = eliminate target_x t e2 env in
+		let e2' = eliminate target_x t_elem e2 env in
 		LetRec(fundef, e2')
 	| IfEq(x, y, e1, e2) ->
-		let e1' = eliminate target_x t e1 env in
-		let e2' = eliminate target_x t e2 env in
+		let e1' = eliminate target_x t_elem e1 env in
+		let e2' = eliminate target_x t_elem e2 env in
 		IfEq(x, y, e1', e2')
 	| IfLE(x, y, e1, e2) ->
-		let e1' = eliminate target_x t e1 env in
-		let e2' = eliminate target_x t e2 env in
+		let e1' = eliminate target_x t_elem e1 env in
+		let e2' = eliminate target_x t_elem e2 env in
 		IfLE(x, y, e1', e2')
 		| LetTuple(xts, y, e) ->
-			let e' = eliminate target_x t e env in
+			let e' = eliminate target_x t_elem e env in
 			LetTuple(xts, y, e')
 		| Assign(x, y, e) ->
-			Assign(x, y, eliminate target_x t e env)
+			Assign(x, y, eliminate target_x t_elem e env)
 		| While(e1, e2) ->
-			While(eliminate target_x t e1 env, eliminate target_x t e2 env)
+			While(eliminate target_x t_elem e1 env, eliminate target_x t_elem e2 env)
 		| Put(arr, y, z) when Id.to_string arr = Id.to_string target_x -> 
     (match VariableChecker.find_const (Id.to_string y) with
     | Some(offset) ->
       let new_id = Id.genid "ArrayElim" in
       Array.set env offset new_id;
-      Let((new_id, t), Var(z), Var(new_id))
+      Let((new_id, t_elem), Var(z), Unit)
     | None -> assert false)
 	| Get(arr, y) when Id.to_string arr = Id.to_string target_x -> 
     (match VariableChecker.find_const (Id.to_string y) with

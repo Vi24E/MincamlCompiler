@@ -220,11 +220,23 @@ and g' dest cont regenv = function
               (fun src r ->
                 match snd src with
                 | Id.Known(_, Id.ConstInt i) -> (fst r, Id.Known(Id.Register, Id.ConstInt i))
+                | _ when fst src = "%i0" -> (fst r, Id.Known(Id.Register, Id.ConstInt 0))
                 | _ -> r)
               ys
               int_arg_regs
           in
-          let call_inst = CallDir(Id.L(x), int_arg_regs, List.map fst fargs) in
+          let float_arg_regs = List.map fst fargs in
+          let float_arg_regs =
+            List.map2
+              (fun src r ->
+                match snd src with
+                | Id.Known(_, Id.ConstFloat f) -> (fst r, Id.Known(Id.Register, Id.ConstFloat f))
+                | _ when fst src = "%f0" -> (fst r, Id.Known(Id.Register, Id.ConstFloat 0.0))
+                | _ -> r)
+              zs
+              float_arg_regs
+          in
+          let call_inst = CallDir(Id.L(x), int_arg_regs, float_arg_regs) in
           
           let set_args_expr body =
             let rec loop args fargs =

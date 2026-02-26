@@ -97,6 +97,12 @@ pub fn optimize(
             block_start = block_end;
         }
 
+        let (out, sandwich_rewrites) = fold_sp_addi_subi_sandwich_opt(out);
+        if sandwich_rewrites > 0 {
+            rewrites += sandwich_rewrites;
+            changed = true;
+        }
+
         current = out;
         if !changed {
             break;
@@ -126,6 +132,70 @@ pub fn optimize(
         instructions: current,
         rewrites,
     }
+}
+
+// Fold:
+//   addi %i1, %i1, K
+//   <inst that does not touch %i1>
+//   subi %i1, %i1, K
+// into:
+//   <inst>
+//
+// We keep this intentionally narrow/safe:
+// - %i1-only (stack pointer),
+// - all three instructions are unlabeled,
+// - middle instruction is a real non-terminator instruction and does not mention %i1.
+fn fold_sp_addi_subi_sandwich_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    let mut out = Vec::with_capacity(instructions.len());
+    let mut rewrites = 0usize;
+    let mut i = 0usize;
+    let n = instructions.len();
+
+    while i < n {
+        if i + 2 < n {
+            if let Some(mid) = fold_sp_addi_subi_triplet(&instructions[i], &instructions[i + 1], &instructions[i + 2]) {
+                out.push(mid);
+                rewrites += 1;
+                i += 3;
+                continue;
+            }
+        }
+        out.push(instructions[i].clone());
+        i += 1;
+    }
+
+    (out, rewrites)
+}
+
+fn fold_sp_addi_subi_triplet(i0: &Instruction, i1: &Instruction, i2: &Instruction) -> Option<Instruction> {
+    if i0.label.is_some() || i1.label.is_some() || i2.label.is_some() {
+        return None;
+    }
+    if i0.mnemonic.as_deref() != Some("addi") || i2.mnemonic.as_deref() != Some("subi") {
+        return None;
+    }
+    if i0.operands.len() != 3 || i2.operands.len() != 3 {
+        return None;
+    }
+    if !is_real_instruction(i1) || is_terminator(i1) {
+        return None;
+    }
+
+    let sp = "%i1";
+    if i0.operands[0] != sp || i0.operands[1] != sp {
+        return None;
+    }
+    if i2.operands[0] != sp || i2.operands[1] != sp {
+        return None;
+    }
+    if i0.operands[2] != i2.operands[2] {
+        return None;
+    }
+    if inst_mentions_reg(i1, sp) {
+        return None;
+    }
+
+    Some(i1.clone())
 }
 
 fn rule_brief(rule: &Rule) -> String {
@@ -851,6 +921,20 @@ fn parse_mem_base(op: &str) -> Option<String> {
         return None;
     }
     Some(op[start + 1..end].trim().to_string())
+}
+
+fn inst_mentions_reg(inst: &Instruction, reg: &str) -> bool {
+    for op in &inst.operands {
+        if op == reg {
+            return true;
+        }
+        if let Some(base) = parse_mem_base(op) {
+            if base == reg {
+                return true;
+            }
+        }
+    }
+    false
 }
 
 fn labels_are_safe(block: &[Instruction], matched: &[usize], anchor: usize) -> bool {

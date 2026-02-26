@@ -7,6 +7,7 @@ pub struct OptimizeResult {
     pub global_access_rewrites: usize,
     pub zero_base_fold_rewrites: usize,
     pub word_offset_rewrites: usize,
+    pub val_trace_rewrites: usize,
     pub trampoline_elim_rewrites: usize,
     pub branch_relax_rewrites: usize,
     pub short_jump_fold_rewrites: usize,
@@ -25,15 +26,566 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
     let (instructions, global_access_rewrites) = global_access_opt(instructions);
     let (instructions, zero_base_fold_rewrites) = fold_zero_base_addr_opt(instructions);
     let (instructions, word_offset_rewrites) = scale_word_mem_offset_opt(instructions);
+    let (instructions, val_trace_rewrites) = const_reuse_with_val_trace_opt(instructions);
     OptimizeResult {
         instructions,
         global_access_rewrites,
         zero_base_fold_rewrites,
         word_offset_rewrites,
+        val_trace_rewrites,
         trampoline_elim_rewrites,
         branch_relax_rewrites,
         short_jump_fold_rewrites,
     }
+}
+
+#[derive(Debug, Default, Clone)]
+struct ValTrace {
+    // 1. const: register -> concrete constant value
+    const_values: HashMap<String, i32>,
+    // 2. bool: register is known to be 0/1
+    bool_regs: HashSet<String>,
+    // 3. eq_regs: register -> equal register set
+    eq_regs: HashMap<String, HashSet<String>>,
+}
+
+impl ValTrace {
+    fn new() -> Self {
+        let mut s = Self::default();
+        s.seed_zero_reg();
+        s
+    }
+
+    fn seed_zero_reg(&mut self) {
+        self.const_values.insert("%i0".to_string(), 0);
+        self.bool_regs.insert("%i0".to_string());
+        let mut s = HashSet::new();
+        s.insert("%i0".to_string());
+        self.eq_regs.insert("%i0".to_string(), s);
+    }
+
+    fn clear_for_new_block(&mut self) {
+        self.const_values.clear();
+        self.bool_regs.clear();
+        self.eq_regs.clear();
+        self.seed_zero_reg();
+    }
+
+    fn const_of(&self, reg: &str) -> Option<i32> {
+        self.const_values.get(reg).copied()
+    }
+
+    fn is_bool(&self, reg: &str) -> bool {
+        self.bool_regs.contains(reg) || self.const_of(reg) == Some(0) || self.const_of(reg) == Some(1)
+    }
+
+    fn set_const(&mut self, reg: &str, value: i32) {
+        if reg == "%i0" {
+            return;
+        }
+        self.const_values.insert(reg.to_string(), value);
+        if value == 0 || value == 1 {
+            self.bool_regs.insert(reg.to_string());
+        } else {
+            self.bool_regs.remove(reg);
+        }
+        self.eq_regs.remove(reg);
+        for peers in self.eq_regs.values_mut() {
+            peers.remove(reg);
+        }
+    }
+
+    fn set_bool(&mut self, reg: &str) {
+        if reg == "%i0" {
+            return;
+        }
+        self.kill_reg(reg);
+        self.bool_regs.insert(reg.to_string());
+    }
+
+    fn kill_reg(&mut self, reg: &str) {
+        if reg == "%i0" {
+            return;
+        }
+        self.const_values.remove(reg);
+        self.bool_regs.remove(reg);
+        self.eq_regs.remove(reg);
+        for peers in self.eq_regs.values_mut() {
+            peers.remove(reg);
+        }
+    }
+
+    fn set_equal(&mut self, lhs: &str, rhs: &str) {
+        if lhs == rhs {
+            return;
+        }
+        let mut merged = HashSet::new();
+        merged.insert(lhs.to_string());
+        merged.insert(rhs.to_string());
+        if let Some(s) = self.eq_regs.get(lhs) {
+            merged.extend(s.clone());
+        }
+        if let Some(s) = self.eq_regs.get(rhs) {
+            merged.extend(s.clone());
+        }
+        for r in merged.clone() {
+            self.eq_regs.insert(r, merged.clone());
+        }
+    }
+
+    fn find_const_reg(&self, value: i32, exclude: &str) -> Option<String> {
+        let mut best: Option<String> = None;
+        for (reg, v) in &self.const_values {
+            if *v != value || reg == exclude {
+                continue;
+            }
+            if !is_int_reg(reg) {
+                continue;
+            }
+            match &best {
+                None => best = Some(reg.clone()),
+                Some(cur) => {
+                    if reg_rank(reg) < reg_rank(cur) {
+                        best = Some(reg.clone());
+                    }
+                }
+            }
+        }
+        best
+    }
+
+    fn observe_instruction(&mut self, inst: &Instruction) {
+        let Some(mnem) = inst.mnemonic.as_deref() else {
+            return;
+        };
+
+        if let Some(rd) = defined_int_reg(inst) {
+            match mnem {
+                "movi" if inst.operands.len() == 2 => {
+                    if let Some(v) = parse_imm_i32(&inst.operands[1]) {
+                        self.set_const(rd, v);
+                    } else {
+                        self.kill_reg(rd);
+                    }
+                }
+                "mov" if inst.operands.len() == 2 => {
+                    let rs = &inst.operands[1];
+                    if let Some(v) = self.const_of(rs) {
+                        self.set_const(rd, v);
+                    } else if self.is_bool(rs) {
+                        self.set_bool(rd);
+                    } else {
+                        self.kill_reg(rd);
+                    }
+                    self.set_equal(rd, rs);
+                }
+                "ceq" | "clt" | "cleq" if inst.operands.len() == 3 => {
+                    let rs1 = &inst.operands[1];
+                    let rs2 = &inst.operands[2];
+                    match (self.const_of(rs1), self.const_of(rs2)) {
+                        (Some(a), Some(b)) => {
+                            let v = match mnem {
+                                "ceq" => i32::from(a == b),
+                                "clt" => i32::from(a < b),
+                                "cleq" => i32::from(a <= b),
+                                _ => unreachable!(),
+                            };
+                            self.set_const(rd, v);
+                        }
+                        _ => self.set_bool(rd),
+                    }
+                }
+                "ceqi" | "clti" | "cleqi" if inst.operands.len() == 3 => {
+                    let rs = &inst.operands[1];
+                    if let Some(imm) = parse_imm_i32(&inst.operands[2]) {
+                        if let Some(a) = self.const_of(rs) {
+                            let v = match mnem {
+                                "ceqi" => i32::from(a == imm),
+                                "clti" => i32::from(a < imm),
+                                "cleqi" => i32::from(a <= imm),
+                                _ => unreachable!(),
+                            };
+                            self.set_const(rd, v);
+                        } else {
+                            self.set_bool(rd);
+                        }
+                    } else {
+                        self.set_bool(rd);
+                    }
+                }
+                "feq" | "fleq" | "flt" => {
+                    self.set_bool(rd);
+                }
+                "xori" if inst.operands.len() == 3 => {
+                    let rs = &inst.operands[1];
+                    if let Some(imm) = parse_imm_i32(&inst.operands[2]) {
+                        if let Some(v) = self.const_of(rs) {
+                            self.set_const(rd, v ^ imm);
+                        } else if self.is_bool(rs) && imm == 1 {
+                            self.set_bool(rd);
+                        } else {
+                            self.kill_reg(rd);
+                        }
+                    } else {
+                        self.kill_reg(rd);
+                    }
+                }
+                "xor" if inst.operands.len() == 3 => {
+                    let rs1 = &inst.operands[1];
+                    let rs2 = &inst.operands[2];
+                    if rs1 == rs2 {
+                        self.set_const(rd, 0);
+                    } else if self.eq_regs.get(rs1).is_some_and(|s| s.contains(rs2)) {
+                        self.set_const(rd, 0);
+                    } else if let (Some(a), Some(b)) = (self.const_of(rs1), self.const_of(rs2)) {
+                        self.set_const(rd, a ^ b);
+                    } else if self.is_bool(rs1) && self.is_bool(rs2) {
+                        self.set_bool(rd);
+                    } else {
+                        self.kill_reg(rd);
+                    }
+                }
+                _ => self.kill_reg(rd),
+            }
+        }
+
+        if is_trace_barrier(mnem) {
+            self.clear_for_new_block();
+        }
+    }
+}
+
+fn is_int_reg(reg: &str) -> bool {
+    let Some(rest) = reg.strip_prefix("%i") else {
+        return false;
+    };
+    !rest.is_empty() && rest.chars().all(|c| c.is_ascii_digit())
+}
+
+fn int_reg_index(reg: &str) -> Option<usize> {
+    let rest = reg.strip_prefix("%i")?;
+    rest.parse::<usize>().ok()
+}
+
+fn reg_rank(reg: &str) -> (usize, String) {
+    if let Some(idx) = int_reg_index(reg) {
+        (idx, String::new())
+    } else {
+        (usize::MAX, reg.to_string())
+    }
+}
+
+fn parse_imm_i32(s: &str) -> Option<i32> {
+    if let Ok(v) = s.parse::<i32>() {
+        return Some(v);
+    }
+    if let Some(hex) = s.strip_prefix("0x") {
+        return i32::from_str_radix(hex, 16).ok();
+    }
+    if let Some(hex) = s.strip_prefix("-0x") {
+        return i32::from_str_radix(hex, 16).ok().map(|v| -v);
+    }
+    None
+}
+
+fn mnemonic_defines_first_operand(mnemonic: &str, rd: &str) -> bool {
+    if mnemonic.starts_with('.') {
+        return false;
+    }
+    match mnemonic {
+        "sw" | "sb" | "sf" | "jzero" | "jeq" | "jlt" | "jleq" | "ret" | "call_dir"
+        | "call_cls" => false,
+        "jmp" => rd != "%i0",
+        _ => true,
+    }
+}
+
+fn defined_int_reg(inst: &Instruction) -> Option<&str> {
+    let mnem = inst.mnemonic.as_deref()?;
+    let rd = inst.operands.first()?.as_str();
+    if !is_int_reg(rd) {
+        return None;
+    }
+    if !mnemonic_defines_first_operand(mnem, rd) {
+        return None;
+    }
+    Some(rd)
+}
+
+fn is_trace_barrier(mnemonic: &str) -> bool {
+    matches!(
+        mnemonic,
+        "jmp" | "jzero" | "jeq" | "jlt" | "jleq" | "ret" | "call_dir" | "call_cls"
+    ) || mnemonic.starts_with('.')
+}
+
+fn const_reuse_with_val_trace_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    let mut out = Vec::with_capacity(instructions.len());
+    let mut rewrites = 0usize;
+    let mut trace = ValTrace::new();
+    let mut i = 0usize;
+    let n = instructions.len();
+
+    while i < n {
+        if instructions[i].label.is_some() {
+            trace.clear_for_new_block();
+        }
+
+        if i + 2 < n {
+            if let Some(new_inst) =
+                fold_mov_xor_ceqi_pattern(&instructions[i], &instructions[i + 1], &instructions[i + 2])
+            {
+                trace.observe_instruction(&new_inst);
+                out.push(new_inst);
+                rewrites += 1;
+                i += 3;
+                continue;
+            }
+        }
+
+        if i + 1 < n {
+            if let Some(new_inst) = fold_xor_ceqi_pattern(&instructions[i], &instructions[i + 1]) {
+                trace.observe_instruction(&new_inst);
+                out.push(new_inst);
+                rewrites += 1;
+                i += 2;
+                continue;
+            }
+        }
+
+        if i + 3 < n {
+            if let Some(new_insts) = fold_bool_to_pm1_pattern(
+                &instructions[i],
+                &instructions[i + 1],
+                &instructions[i + 2],
+                &instructions[i + 3],
+            ) {
+                for inst in &new_insts {
+                    trace.observe_instruction(inst);
+                    out.push(inst.clone());
+                }
+                rewrites += 1;
+                i += 4;
+                continue;
+            }
+        }
+
+        if i + 1 < n {
+            if let Some(new_inst) = fold_bool_neg_pattern(&instructions[i], &instructions[i + 1], &trace) {
+                trace.observe_instruction(&new_inst);
+                out.push(new_inst);
+                rewrites += 1;
+                i += 2;
+                continue;
+            }
+        }
+
+        if i + 1 < n {
+            if let Some(new_inst) = fold_mov_xor_pattern(&instructions[i], &instructions[i + 1]) {
+                trace.observe_instruction(&new_inst);
+                out.push(new_inst);
+                rewrites += 1;
+                i += 2;
+                continue;
+            }
+        }
+
+        let mut inst = instructions[i].clone();
+        if inst.mnemonic.as_deref() == Some("movi") && inst.operands.len() == 2 {
+            let rd = inst.operands[0].clone();
+            if is_int_reg(&rd) {
+                if let Some(imm) = parse_imm_i32(&inst.operands[1]) {
+                    if trace.const_of(&rd) == Some(imm) {
+                        inst.mnemonic = Some("mov".to_string());
+                        inst.operands = vec![rd.clone(), rd];
+                        rewrites += 1;
+                    } else if let Some(src) = trace.find_const_reg(imm, &rd) {
+                        inst.mnemonic = Some("mov".to_string());
+                        inst.operands = vec![rd, src];
+                        rewrites += 1;
+                    }
+                }
+            }
+        }
+        trace.observe_instruction(&inst);
+        out.push(inst);
+        i += 1;
+    }
+
+    (out, rewrites)
+}
+
+fn fold_xor_ceqi_pattern(i0: &Instruction, i1: &Instruction) -> Option<Instruction> {
+    if i1.label.is_some() {
+        return None;
+    }
+    if i0.mnemonic.as_deref() != Some("xor") || i1.mnemonic.as_deref() != Some("ceqi") {
+        return None;
+    }
+    if i0.operands.len() != 3 || i1.operands.len() != 3 {
+        return None;
+    }
+    let rd = &i0.operands[0];
+    if !is_int_reg(rd) {
+        return None;
+    }
+    if i1.operands[0] != *rd || i1.operands[1] != *rd || i1.operands[2] != "0" {
+        return None;
+    }
+    Some(Instruction {
+        label: i0.label.clone(),
+        mnemonic: Some("ceq".to_string()),
+        operands: vec![rd.clone(), i0.operands[1].clone(), i0.operands[2].clone()],
+    })
+}
+
+fn fold_mov_xor_ceqi_pattern(i0: &Instruction, i1: &Instruction, i2: &Instruction) -> Option<Instruction> {
+    if i1.label.is_some() || i2.label.is_some() {
+        return None;
+    }
+    if i0.mnemonic.as_deref() != Some("mov")
+        || i1.mnemonic.as_deref() != Some("xor")
+        || i2.mnemonic.as_deref() != Some("ceqi")
+    {
+        return None;
+    }
+    if i0.operands.len() != 2 || i1.operands.len() != 3 || i2.operands.len() != 3 {
+        return None;
+    }
+    let rd = &i0.operands[0];
+    let src = &i0.operands[1];
+    if !is_int_reg(rd) || !is_int_reg(src) {
+        return None;
+    }
+    if i1.operands[0] != *rd {
+        return None;
+    }
+    if i2.operands[0] != *rd || i2.operands[1] != *rd || i2.operands[2] != "0" {
+        return None;
+    }
+    if i1.operands[1] == *rd {
+        return Some(Instruction {
+            label: i0.label.clone(),
+            mnemonic: Some("ceq".to_string()),
+            operands: vec![rd.clone(), src.clone(), i1.operands[2].clone()],
+        });
+    }
+    if i1.operands[2] == *rd {
+        return Some(Instruction {
+            label: i0.label.clone(),
+            mnemonic: Some("ceq".to_string()),
+            operands: vec![rd.clone(), i1.operands[1].clone(), src.clone()],
+        });
+    }
+    None
+}
+
+fn fold_mov_xor_pattern(i0: &Instruction, i1: &Instruction) -> Option<Instruction> {
+    if i1.label.is_some() {
+        return None;
+    }
+    if i0.mnemonic.as_deref() != Some("mov") || i1.mnemonic.as_deref() != Some("xor") {
+        return None;
+    }
+    if i0.operands.len() != 2 || i1.operands.len() != 3 {
+        return None;
+    }
+    let rd = &i0.operands[0];
+    let src = &i0.operands[1];
+    if !is_int_reg(rd) || !is_int_reg(src) {
+        return None;
+    }
+    if i1.operands[0] != *rd {
+        return None;
+    }
+    let mut out = i1.clone();
+    out.label = i0.label.clone();
+    if i1.operands[1] == *rd {
+        out.operands[1] = src.clone();
+        return Some(out);
+    }
+    if i1.operands[2] == *rd {
+        out.operands[2] = src.clone();
+        return Some(out);
+    }
+    None
+}
+
+fn fold_bool_to_pm1_pattern(
+    i0: &Instruction,
+    i1: &Instruction,
+    i2: &Instruction,
+    i3: &Instruction,
+) -> Option<Vec<Instruction>> {
+    if i1.label.is_some() || i2.label.is_some() || i3.label.is_some() {
+        return None;
+    }
+    if i0.mnemonic.as_deref() != Some("ceqi")
+        || i1.mnemonic.as_deref() != Some("slli")
+        || i2.mnemonic.as_deref() != Some("sub")
+        || i3.mnemonic.as_deref() != Some("addi")
+    {
+        return None;
+    }
+    if i0.operands.len() != 3 || i1.operands.len() != 3 || i2.operands.len() != 3 || i3.operands.len() != 3 {
+        return None;
+    }
+    let rd = &i0.operands[0];
+    if !is_int_reg(rd) {
+        return None;
+    }
+    if i0.operands[1] != *rd || i0.operands[2] != "0" {
+        return None;
+    }
+    if i1.operands[0] != *rd || i1.operands[1] != *rd || i1.operands[2] != "1" {
+        return None;
+    }
+    if i2.operands[0] != *rd || i2.operands[1] != "%i0" || i2.operands[2] != *rd {
+        return None;
+    }
+    if i3.operands[0] != *rd || i3.operands[1] != *rd || i3.operands[2] != "1" {
+        return None;
+    }
+
+    Some(vec![
+        Instruction {
+            label: i0.label.clone(),
+            mnemonic: Some("slli".to_string()),
+            operands: vec![rd.clone(), rd.clone(), "1".to_string()],
+        },
+        Instruction {
+            label: None,
+            mnemonic: Some("addi".to_string()),
+            operands: vec![rd.clone(), rd.clone(), "-1".to_string()],
+        },
+    ])
+}
+
+fn fold_bool_neg_pattern(i0: &Instruction, i1: &Instruction, trace: &ValTrace) -> Option<Instruction> {
+    if i1.label.is_some() {
+        return None;
+    }
+    if i0.mnemonic.as_deref() != Some("sub") || i1.mnemonic.as_deref() != Some("addi") {
+        return None;
+    }
+    if i0.operands.len() != 3 || i1.operands.len() != 3 {
+        return None;
+    }
+    let rd = &i0.operands[0];
+    if !is_int_reg(rd) || !trace.is_bool(rd) {
+        return None;
+    }
+    if i0.operands[1] != "%i0" || i0.operands[2] != *rd {
+        return None;
+    }
+    if i1.operands[0] != *rd || i1.operands[1] != *rd || i1.operands[2] != "1" {
+        return None;
+    }
+    Some(Instruction {
+        label: i0.label.clone(),
+        mnemonic: Some("xori".to_string()),
+        operands: vec![rd.clone(), rd.clone(), "1".to_string()],
+    })
 }
 
 /// Jump-trampoline beta-reduction:
