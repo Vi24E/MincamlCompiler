@@ -196,52 +196,6 @@ let rec print_int x =
           print_char 57))
 in 
 
-
-let rec read_int_helper t =
-  let c = read_char () in
-  if c >= 48 then
-    if c <= 57 then
-      let t = t * 8 + t * 2 + (c - 48) in
-      read_int_helper t
-    else
-      t
-  else
-    t
-in
-
-let rec read_int z =
-  let c = read_char () in
-  if c = 45 then
-    let x = read_int_helper 0 in
-    -x
-  else
-    read_int_helper (c - 48)
-in
-
-let rec read_float_helper t d =
-  let c = read_char () in
-  if c = 46 then read_float_helper t 10.
-  else if c = 45 then 
-    let x = read_float_helper 0. (-1.) in
-    -.x
-  else if c >= 48 then
-    if c <= 57 then
-      if d <= 0. then
-        let t = t *. 10. +. float_of_int (c - 48) in
-        read_float_helper t d
-      else
-        let t = t +. float_of_int (c - 48) /. d in
-        read_float_helper t (d *. 10.)
-    else
-      t
-  else
-    t
-in
-
-let rec read_float z =
-  read_float_helper 0. (-1.)
-in
-
 let rec fabs x =
   if x < 0. then -.x else x
 in

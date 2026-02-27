@@ -89,9 +89,9 @@ def parse_profile_stats(output):
         "mem_access_count": None,
         "mem_access_rate": None,
         "top_functions": [],
+        "opcode_counts": [],
     }
     in_section = False
-    top_n = 0
     for line in output.splitlines():
         if line.strip() == "=== ProfileStats ===":
             in_section = True
@@ -108,14 +108,153 @@ def parse_profile_stats(output):
             stats["mem_access_rate"] = float(m.group(1))
         m = re.match(r"TopFunctions:\s*(\d+)", line)
         if m:
-            top_n = int(m.group(1))
+            pass
         m = re.match(r"\s+Func PC=(0x[0-9a-f]+)\s+calls=(\d+)(?:\s+#\s*(.+))?", line)
         if m:
             addr = m.group(1)
             calls = int(m.group(2))
             name = m.group(3).strip() if m.group(3) else None
             stats["top_functions"].append((addr, calls, name))
+        m = re.match(r"\s+Opcode\s+([A-Z0-9_]+)\s+count=([\d,]+)", line)
+        if m:
+            opname = m.group(1)
+            count = int(m.group(2).replace(",", ""))
+            stats["opcode_counts"].append((opname, count))
     return stats
+
+def format_top_opcode_rates(opcode_counts, top_n=15, per_line=5):
+    if not opcode_counts:
+        return ""
+    total_ops = sum(c for _, c in opcode_counts)
+    if total_ops <= 0:
+        return ""
+    parts = []
+    for rank, (opname, count) in enumerate(opcode_counts[:top_n], 1):
+        pct = (count / total_ops) * 100.0
+        parts.append(f"{rank}. {opname}: {pct:.0f}%")
+    lines = []
+    for i in range(0, len(parts), per_line):
+        lines.append(" | ".join(parts[i:i + per_line]))
+    return "\n".join(lines)
+
+
+def _looks_like_text_input(data):
+    if not data:
+        return False
+    printable = 0
+    for b in data:
+        if b in (9, 10, 13) or 32 <= b <= 126:
+            printable += 1
+    return (printable / len(data)) > 0.98
+
+
+def convert_minrt_text_input_to_binary(text):
+    """
+    Convert tokenized text input into raw 32-bit binary.
+    Whitespace (space/newline/tab) is only a separator.
+    Each numeric token becomes 4 bytes:
+      - int token   -> signed int32 (big-endian)
+      - float token -> IEEE754 float32 (big-endian)
+    """
+    out = bytearray()
+    tokens = text.split()
+    for idx, tok in enumerate(tokens):
+        try:
+            if any(c in tok for c in ".eE"):
+                out.extend(struct.pack(">f", float(tok)))
+            else:
+                v = int(tok, 0)
+                if v < -2147483648 or v > 2147483647:
+                    raise ValueError("int32 out of range")
+                out.extend(struct.pack(">i", v))
+        except ValueError as e:
+            raise ValueError(f"Failed to parse token #{idx + 1} '{tok}': {e}") from e
+    return bytes(out)
+
+
+def convert_minrt_text_input_to_binary_typed(text):
+    """
+    Convert minrt text input into raw 32-bit binary by following the exact
+    read_int/read_float order used in test/minrt.ml (read_parameter path).
+    """
+    tokens = text.split()
+    out = bytearray()
+    idx = 0
+
+    def read_token():
+        nonlocal idx
+        if idx >= len(tokens):
+            raise ValueError("unexpected end of tokens")
+        t = tokens[idx]
+        idx += 1
+        return t
+
+    def read_int_token():
+        tok = read_token()
+        try:
+            v = int(tok, 0)
+        except ValueError:
+            fv = float(tok)
+            if not fv.is_integer():
+                raise ValueError(f"token '{tok}' is not an integer")
+            v = int(fv)
+        if v < -2147483648 or v > 2147483647:
+            raise ValueError(f"int32 out of range: {v}")
+        out.extend(struct.pack(">i", v))
+        return v
+
+    def read_float_token():
+        tok = read_token()
+        out.extend(struct.pack(">f", float(tok)))
+
+    # read_screen_settings: 5 floats
+    for _ in range(5):
+        read_float_token()
+
+    # read_light: 1 int + 3 floats
+    read_int_token()
+    for _ in range(3):
+        read_float_token()
+
+    # read_all_object
+    for _ in range(60):
+        texture = read_int_token()
+        if texture == -1:
+            break
+        read_int_token()  # form
+        read_int_token()  # refltype
+        isrot_p = read_int_token()
+        for _ in range(12):  # abc, xyz, invert, reflparam, color
+            read_float_token()
+        if isrot_p != 0:
+            for _ in range(3):
+                read_float_token()
+
+    # read_and_network
+    while True:
+        first = read_int_token()
+        if first == -1:
+            break
+        while True:
+            item = read_int_token()
+            if item == -1:
+                break
+
+    # read_or_network
+    while True:
+        first = read_int_token()
+        if first == -1:
+            break
+        while True:
+            item = read_int_token()
+            if item == -1:
+                break
+
+    if idx != len(tokens):
+        raise ValueError(f"unused tokens remain after typed conversion: used {idx}/{len(tokens)}")
+
+    return bytes(out)
+
 
 
 def parse_args():
@@ -140,6 +279,11 @@ def parse_args():
         dest="no_option",
         choices=["timelimit"],
         help="disable an option (e.g. `--no timelimit`)",
+    )
+    parser.add_argument(
+        "--input-source",
+        default="../bill_sim/input.bin",
+        help="source input file for minrt (text or binary) (default: ../bill_sim/input.bin)",
     )
     return parser.parse_args()
 
@@ -177,6 +321,39 @@ def main():
     # Change current working directory to project root
     os.chdir(project_root)
     print(f"Working directory: {os.getcwd()}")
+
+    # Prepare simulator input.
+    input_source_path = os.path.abspath(os.path.join(project_root, args.input_source))
+    sim_input_path = os.path.join(project_root, "input.bin")
+    if not os.path.exists(input_source_path):
+        print(f"Error: input source not found: {input_source_path}")
+        sys.exit(1)
+    try:
+        with open(input_source_path, "rb") as f:
+            source_bytes = f.read()
+        if _looks_like_text_input(source_bytes):
+            source_text = source_bytes.decode("ascii", errors="strict")
+            force_lexical = os.environ.get("MINRT_INPUT_LEXICAL", "") == "1"
+            if force_lexical:
+                sim_bytes = convert_minrt_text_input_to_binary(source_text)
+                mode_str = "text->binary(lexical i32/f32)"
+            else:
+                try:
+                    sim_bytes = convert_minrt_text_input_to_binary_typed(source_text)
+                    mode_str = "text->binary(minrt-typed i32/f32)"
+                except Exception as e:
+                    print(f"Warning: typed conversion failed, fallback to lexical conversion: {e}")
+                    sim_bytes = convert_minrt_text_input_to_binary(source_text)
+                    mode_str = "text->binary(lexical i32/f32)"
+        else:
+            sim_bytes = source_bytes
+            mode_str = "binary(pass-through)"
+        with open(sim_input_path, "wb") as f:
+            f.write(sim_bytes)
+        print(f"Prepared simulator input: {sim_input_path} ({mode_str}, {len(sim_bytes)} bytes)")
+    except Exception as e:
+        print(f"Error: Failed to prepare simulator input: {e}")
+        sys.exit(1)
 
     # 0. Extract Image Size from minrt.ml
     minrt_ml_path = os.path.join(project_root, "test/minrt.ml")
@@ -333,6 +510,9 @@ def main():
                 print(f"  #{rank:2d}  {addr}  {calls:>12,} calls  ({pct:5.1f}%){label}")
         else:
             print("  (no profile data available)")
+        if profile["opcode_counts"]:
+            print("\nTop Opcode Rates (partial):")
+            print(format_top_opcode_rates(profile["opcode_counts"], top_n=15, per_line=5))
 
         # Write to history
         history_path = os.path.join(script_dir, "History.txt")
@@ -348,6 +528,11 @@ def main():
                 lbl = f" {name}" if name else ""
                 lines.append(f"    #{rank} {addr}{lbl}: {calls:,} ({pct:.1f}%)")
             top_funcs_str = "TopFuncs:\n" + "\n".join(lines) + "\n"
+        top_opcodes_str = ""
+        if profile["opcode_counts"]:
+            compact = format_top_opcode_rates(profile["opcode_counts"], top_n=15, per_line=5)
+            if compact:
+                top_opcodes_str = "TopOpcodeRates:\n" + compact + "\n"
         formatted_log = (
             f"{timestamp} | Mode: v{mode} | "
             f"Size: {image_size_str} | "
@@ -357,6 +542,7 @@ def main():
             f"Compile: {compile_time:.3f}s | "
             f"Sim: {sim_time:.3f}s\n"
             f"{top_funcs_str}"
+            f"{top_opcodes_str}"
             f"Comment: \n"
             f"================================================\n"
         )
@@ -367,7 +553,7 @@ def main():
 
 
     print("Step 6: Running OCaml reference implementation...")
-    input_bin_path = os.path.join(project_root, "../bill_sim/input.bin")
+    input_bin_path = input_source_path
     
     if not os.path.exists(input_bin_path):
         print(f"Error: input.bin not found at {input_bin_path}")
@@ -444,6 +630,9 @@ def main():
             pct = (calls / total_calls * 100.0) if total_calls > 0 else 0.0
             label = f"  {name}" if name else ""
             print(f"  #{rank:2d}  {addr}  {calls:>12,} calls  ({pct:5.1f}%){label}")
+    if profile["opcode_counts"]:
+        print("\nTop Opcode Rates:")
+        print(format_top_opcode_rates(profile["opcode_counts"], top_n=15, per_line=5))
     
     if accuracy < 100.0:
         print("  Differences found. Saving logs...")
@@ -468,6 +657,11 @@ def main():
             label = f" {name}" if name else ""
             lines.append(f"    #{rank} {addr}{label}: {calls:,} ({pct:.1f}%)")
         top_funcs_str = "TopFuncs:\n" + "\n".join(lines) + "\n"
+    top_opcodes_str = ""
+    if profile["opcode_counts"]:
+        compact = format_top_opcode_rates(profile["opcode_counts"], top_n=15, per_line=5)
+        if compact:
+            top_opcodes_str = "TopOpcodeRates:\n" + compact + "\n"
 
     formatted_log = (
         f"{timestamp} | Mode: {mode_str} | "
@@ -478,6 +672,7 @@ def main():
         f"Compile: {compile_time:.3f}s | "
         f"Sim: {sim_time:.3f}s\n"
         f"{top_funcs_str}"
+        f"{top_opcodes_str}"
         f"Comment: \n"
         f"================================================\n"
     )

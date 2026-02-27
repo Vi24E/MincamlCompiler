@@ -17,6 +17,36 @@ min_caml_read_char:
 	lb %i30, 0(%i5)
 	jmp	%i0, 0(%i3)
 
+min_caml_read_int:
+    movui %i5, 0xf0000
+    lb %i30, 0(%i5)
+    slli %i30, %i30, 8
+    lb %i31, 0(%i5)
+    or %i30, %i31, %i30
+    slli %i30, %i30, 8
+    lb %i31, 0(%i5)
+    or %i30, %i31, %i30
+    slli %i30, %i30, 8
+    lb %i31, 0(%i5)
+    or %i30, %i31, %i30
+    jmp	%i0, 0(%i3)
+
+min_caml_read_float:
+    movui %i5, 0xf0000
+    lb %i30, 0(%i5)
+    slli %i30, %i30, 8
+    lb %i31, 0(%i5)
+    or %i30, %i31, %i30
+    slli %i30, %i30, 8
+    lb %i31, 0(%i5)
+    or %i30, %i31, %i30
+    slli %i30, %i30, 8
+    lb %i31, 0(%i5)
+    or %i30, %i31, %i30
+    mif %f30, %i30
+    jmp	%i0, 0(%i3)
+
+
 .global min_caml_create_array # done!
 min_caml_create_array:
     mov    %i15, %i4

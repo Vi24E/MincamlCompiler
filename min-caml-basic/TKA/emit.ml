@@ -168,6 +168,21 @@ let emit_zero_filled_create_array_dynamic oc ~count_reg ~ret_reg =
   Printf.fprintf oc "\tslli\t%s, %s, 2\n" i15 i15;
   Printf.fprintf oc "\tadd\t%s, %s, %s\n" hp hp i15
 
+let emit_read_u32_to_int oc ~dst_reg =
+  let i5 = Id.to_string regs.(1) in
+  let rsw = Id.to_string Asm.reg_sw in
+  Printf.fprintf oc "\tmovui\t%s, 0xf0000\n" i5;
+  Printf.fprintf oc "\tlb\t%s, 0(%s)\n" dst_reg i5;
+  Printf.fprintf oc "\tslli\t%s, %s, 8\n" dst_reg dst_reg;
+  Printf.fprintf oc "\tlb\t%s, 0(%s)\n" rsw i5;
+  Printf.fprintf oc "\tor\t%s, %s, %s\n" dst_reg rsw dst_reg;
+  Printf.fprintf oc "\tslli\t%s, %s, 8\n" dst_reg dst_reg;
+  Printf.fprintf oc "\tlb\t%s, 0(%s)\n" rsw i5;
+  Printf.fprintf oc "\tor\t%s, %s, %s\n" dst_reg rsw dst_reg;
+  Printf.fprintf oc "\tslli\t%s, %s, 8\n" dst_reg dst_reg;
+  Printf.fprintf oc "\tlb\t%s, 0(%s)\n" rsw i5;
+  Printf.fprintf oc "\tor\t%s, %s, %s\n" dst_reg rsw dst_reg
+
 
 (* 関数呼び出しのために引数を並べ替える(register shuffling) (caml2html: emit_shuffle) *)
 let rec shuffle sw xys =
@@ -970,6 +985,24 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let reg_ra = Id.to_string Asm.reg_ra in
       if !Asm.virtual_mode then Printf.fprintf oc "\tret\n"
       else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero reg_ra
+  | Tail, CallDir(Id.L("min_caml_read_int"), [], []) ->
+      let r0 = Id.to_string (int_return_reg ()) in
+      emit_read_u32_to_int oc ~dst_reg:r0;
+      if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
+      let reg_zero = Id.to_string reg_zero in
+      let reg_ra = Id.to_string Asm.reg_ra in
+      if !Asm.virtual_mode then Printf.fprintf oc "\tret\n"
+      else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero reg_ra
+  | Tail, CallDir(Id.L("min_caml_read_float"), [], []) ->
+      let r0 = Id.to_string (int_return_reg ()) in
+      let fr = Id.to_string (float_return_reg ()) in
+      emit_read_u32_to_int oc ~dst_reg:r0;
+      Printf.fprintf oc "\tmif\t%s, %s\n" fr r0;
+      if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
+      let reg_zero = Id.to_string reg_zero in
+      let reg_ra = Id.to_string Asm.reg_ra in
+      if !Asm.virtual_mode then Printf.fprintf oc "\tret\n"
+      else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero reg_ra
   | Tail, CallDir(Id.L("min_caml_rsqrt"), [], [z]) ->
       g'_args oc [] [] [z];
       let f0 = Id.to_string fregs.(0) in
@@ -1189,6 +1222,20 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       Printf.fprintf oc "\tlb\t%s, 0(%s)\n" r0 i5;
       if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
         Printf.fprintf oc "\tmov\t%s, %s\n" a_str r0
+  | NonTail(a), CallDir(Id.L("min_caml_read_int"), [], []) ->
+      let a_str = Id.to_string a in
+      let r0 = Id.to_string (int_return_reg ()) in
+      emit_read_u32_to_int oc ~dst_reg:r0;
+      if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
+        Printf.fprintf oc "\tmov\t%s, %s\n" a_str r0
+  | NonTail(a), CallDir(Id.L("min_caml_read_float"), [], []) ->
+      let a_str = Id.to_string a in
+      let r0 = Id.to_string (int_return_reg ()) in
+      let fr = Id.to_string (float_return_reg ()) in
+      emit_read_u32_to_int oc ~dst_reg:r0;
+      Printf.fprintf oc "\tmif\t%s, %s\n" fr r0;
+      if (List.mem a allfregs || a = Asm.reg_fsw) && a <> float_return_reg () then
+        Printf.fprintf oc "\tfmov\t%s, %s\n" a_str fr
   | NonTail(a), CallDir(Id.L("min_caml_rsqrt"), [], [z]) ->
       g'_args oc [] [] [z];
       let a_str = Id.to_string a in

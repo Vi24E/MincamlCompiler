@@ -1043,9 +1043,11 @@ fn main() {
                 env::var("BACKEND_RULES_PATH_STAGE2").unwrap_or_else(|_| rules_path.clone());
             let rules_path_stage3 =
                 env::var("BACKEND_RULES_PATH_STAGE3").unwrap_or_else(|_| rules_path.clone());
-            let enable_stage1 = env_enabled("BACKEND_PEEPHOLE_STAGE1", true);
+            // let enable_stage1 = env_enabled("BACKEND_PEEPHOLE_STAGE1", true);
+            let enable_stage1 = env_enabled("BACKEND_PEEPHOLE_STAGE1", false);
             let enable_stage2 = env_enabled("BACKEND_PEEPHOLE_STAGE2", false);
-            let enable_stage3 = env_enabled("BACKEND_PEEPHOLE_STAGE3", true);
+            // let enable_stage3 = env_enabled("BACKEND_PEEPHOLE_STAGE3", true);
+            let enable_stage3 = env_enabled("BACKEND_PEEPHOLE_STAGE3", false);
             let enable_preference = env_enabled("BACKEND_COLOR_PREFERENCE", true);
             let enable_reorder = env_enabled("BACKEND_REORDER", false);
             let reorder_seed = env::var("BACKEND_REORDER_SEED")

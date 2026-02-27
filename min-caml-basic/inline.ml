@@ -3,9 +3,11 @@ open KNormal
 (* インライン展開する関数の最大サイズ (caml2html: inline_threshold) *)
 let threshold = ref 500 (* Mainで-inlineオプションによりセットされる *)
 
+let same_id x y = Id.compare x y = 0
+
 let rec size = function
   | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2)
-  | LetRec({ body = e1; tags = _ }, e2)
+  | LetRec({ body = e1; tags = _; _ }, e2)
   | While(e1, e2) -> 1 + size e1 + size e2
   | Let(_, e1, e2) -> 
     (match e1 with
@@ -15,12 +17,51 @@ let rec size = function
   | LetTuple(_, _, e) -> 1 + size e
   | _ -> 1
 
+(* true if function [name] has a self-recursive call in non-tail position. *)
+let rec has_non_tail_self_call name tail_pos = function
+  | App(f, _) when same_id f name -> not tail_pos
+  | App(_, _) -> false
+  | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) ->
+      has_non_tail_self_call name tail_pos e1
+      || has_non_tail_self_call name tail_pos e2
+  | Let((x, _), e1, e2) ->
+      let e1_tail =
+        tail_pos
+        &&
+        match e2 with
+        | Var(y) when same_id x y -> true
+        | _ -> false
+      in
+      has_non_tail_self_call name e1_tail e1
+      || has_non_tail_self_call name tail_pos e2
+  | LetRec({ name = (f, _); body; tags = _; args = _ }, e2) ->
+      if same_id f name then
+        has_non_tail_self_call name tail_pos e2
+      else
+        has_non_tail_self_call name false body
+        || has_non_tail_self_call name tail_pos e2
+  | LetTuple(_, _, e) ->
+      has_non_tail_self_call name tail_pos e
+  | Assign(_, _, e) ->
+      has_non_tail_self_call name tail_pos e
+  | While(e1, e2) ->
+      has_non_tail_self_call name false e1
+      || has_non_tail_self_call name false e2
+  | Unit | Int(_) | Float(_) | Neg(_) | Add(_, _) | Sub(_, _) | Sll(_, _) | Sra(_, _)
+  | FNeg(_) | FAdd(_, _) | FSub(_, _) | FMul(_, _) | FDiv(_, _) | Var(_) | Tuple(_)
+  | Get(_, _) | Put(_, _, _) | ExtArray(_) | ExtFunApp(_, _) | Break(_) ->
+      false
+
 let rec g env = function (* インライン展開ルーチン本体 (caml2html: inline_g) *)
   | IfEq(x, y, e1, e2) -> IfEq(x, y, g env e1, g env e2)
   | IfLE(x, y, e1, e2) -> IfLE(x, y, g env e1, g env e2)
   | Let(xt, e1, e2) -> Let(xt, g env e1, g env e2)
   | LetRec({ name = (x, t); args = yts; body = e1; tags = _ }, e2) -> (* 関数定義の場合 (caml2html: inline_letrec) *)
-      let env = if size e1 > !threshold then env else M.add x (yts, e1) env in
+      let can_inline =
+        size e1 <= !threshold
+        && not (has_non_tail_self_call x true e1)
+      in
+      let env = if can_inline then M.add x (yts, e1) env else env in
       let fundef = { name = (x, t); args = yts; body = g env e1; tags = KNormal.default_tag() } in
       FunctionChecker.registerFunctionDef fundef;
       LetRec(fundef, g env e2)
@@ -29,7 +70,7 @@ let rec g env = function (* インライン展開ルーチン本体 (caml2html: 
       (* Format.eprintf "inlining %s@." x; *)
       let env' =
         List.fold_left2
-          (fun env' (z, t) y -> M.add z y env')
+          (fun env' (z, _t) y -> M.add z y env')
           M.empty
           zs
           ys in

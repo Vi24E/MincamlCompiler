@@ -764,13 +764,110 @@ TopFuncs:
     #5 0x0001c124 solver.2907: 1,432 (1.0%)
 Comment: Inline = 500; much better, but compile time is too long
 ================================================
-2026-02-27 00:15:52 | Mode: v2 | Size: 32x32 | Cycles: 12357575 [TIMED OUT after 1s]
-Accuracy: N/A | MemAccessRate: 34.92% | Compile: 388.821s | Sim: 1.008s
+
+2026-02-27 17:46:31 | Mode: v2 | Size: 32x32 | Cycles: 729134590 [TIMED OUT after 120s]
+Accuracy: N/A | MemAccessRate: 43.41% | Compile: 399.055s | Sim: 120.024s
 TopFuncs:
-    #1 0x0001e5dc trace_or_matrix_fast.3027: 4,812 (47.8%)
-    #2 0x000255f4 trace_diffuse_ray.3060: 2,896 (28.8%)
-    #3 0x0001c620 shadow_check_and_group.2996: 1,094 (10.9%)
-    #4 0x0001c124 solver.2907: 424 (4.2%)
-    #5 0x0001de24 solve_each_element.3005: 256 (2.5%)
+    #1 0x00020cb4 read_net_item.2813: 497,676 (100.0%)
+    #2 0x0001fd20 rotate_quadratic_matrix.2804: 3 (0.0%)
+TopOpcodeRates:
+1. LB: 17% | 2. SW: 15% | 3. SLLI: 13% | 4. OR: 13% | 5. ADD: 11%
+6. LW: 11% | 7. ADDI: 4% | 8. MOVUI: 4% | 9. MOVI: 4% | 10. JEQ: 4%
+11. CEQ: 1% | 12. SUBI: 0% | 13. JMP: 0% | 14. FADD: 0% | 15. MIF: 0%
+Comment: 
+================================================
+2026-02-27 17:55:39 | Mode: v2 | Size: 32x32 | Cycles: 52896274 [TIMED OUT after 5s]
+Accuracy: N/A | MemAccessRate: 22.73% | Compile: 76.866s | Sim: 5.011s
+TopFuncs:
+    #1 0x0000901c rotate_quadratic_matrix.2804: 3 (100.0%)
+TopOpcodeRates:
+1. LB: 18% | 2. SLLI: 18% | 3. ADD: 14% | 4. OR: 14% | 5. MOVUI: 9%
+6. SW: 5% | 7. ADDI: 5% | 8. MOVI: 5% | 9. JEQ: 5% | 10. JMP: 5%
+11. ORI: 5% | 12. FADD: 0% | 13. MIF: 0% | 14. SF: 0% | 15. SUBI: 0%
+Comment: 
+================================================
+2026-02-27 18:08:31 | Mode: v2 | Size: 32x32 | Cycles: 10191564 [TIMED OUT after 1s]
+Accuracy: N/A | MemAccessRate: 22.74% | Compile: 70.367s | Sim: 1.012s
+TopFuncs:
+    #1 0x0000901c rotate_quadratic_matrix.2804: 3 (100.0%)
+TopOpcodeRates:
+1. LB: 18% | 2. SLLI: 18% | 3. ADD: 14% | 4. OR: 14% | 5. MOVUI: 9%
+6. SW: 5% | 7. ADDI: 5% | 8. MOVI: 5% | 9. JEQ: 5% | 10. JMP: 5%
+11. ORI: 5% | 12. FADD: 0% | 13. MIF: 0% | 14. SF: 0% | 15. SUBI: 0%
+Comment: 
+================================================
+2026-02-27 18:39:00 | Mode: v2 | Size: 32x32 | Cycles: 1848850984 [TIMED OUT after 120s]
+Accuracy: N/A | MemAccessRate: 42.01% | Compile: 59.697s | Sim: 120.010s
+TopFuncs:
+    #1 0x0000f7f0 read_net_item.2813: 2,734,928 (100.0%)
+    #2 0x0000e85c rotate_quadratic_matrix.2804: 3 (0.0%)
+TopOpcodeRates:
+1. LB: 19% | 2. SW: 14% | 3. SLLI: 14% | 4. OR: 14% | 5. ADD: 10%
+6. LW: 9% | 7. MOVUI: 5% | 8. ADDI: 5% | 9. MOVI: 5% | 10. JEQ: 5%
+11. SUBI: 0% | 12. JMP: 0% | 13. ORI: 0% | 14. FADD: 0% | 15. MIF: 0%
+Comment: 
+================================================
+2026-02-27 18:46:24 | Mode: v2 | Size: 32x32 | Cycles: 932983284 [TIMED OUT after 90s]
+Accuracy: N/A | MemAccessRate: 43.41% | Compile: 230.324s | Sim: 90.018s
+TopFuncs:
+    #1 0x00020cb4 read_net_item.2813: 636,822 (100.0%)
+    #2 0x0001fd20 rotate_quadratic_matrix.2804: 3 (0.0%)
+TopOpcodeRates:
+1. LB: 17% | 2. SW: 15% | 3. SLLI: 13% | 4. OR: 13% | 5. ADD: 11%
+6. LW: 11% | 7. ADDI: 4% | 8. MOVUI: 4% | 9. MOVI: 4% | 10. JEQ: 4%
+11. CEQ: 1% | 12. SUBI: 0% | 13. JMP: 0% | 14. FADD: 0% | 15. MIF: 0%
+Comment: 
+================================================
+2026-02-27 20:39:58 | Mode: v2 | Size: 32x32 | Cycles: 1768295959 [TIMED OUT after 90s]
+Accuracy: N/A | MemAccessRate: 29.17% | Compile: 27.573s | Sim: 90.009s
+TopFuncs:
+    #1 0x00009294 read_net_item.2813: 73,677,362 (100.0%)
+    #2 0x00008300 rotate_quadratic_matrix.2804: 3 (0.0%)
+TopOpcodeRates:
+1. LB: 17% | 2. SW: 13% | 3. SLLI: 12% | 4. OR: 12% | 5. ADD: 8%
+6. MOVUI: 8% | 7. SUBI: 8% | 8. ADDI: 4% | 9. MOVI: 4% | 10. JEQ: 4%
+11. JMP: 4% | 12. ORI: 4% | 13. FADD: 0% | 14. MIF: 0% | 15. SF: 0%
+Comment: 
+================================================
+2026-02-27 20:54:54 | Mode: v2 | Size: 32x32 | Cycles: 905717156 
+Accuracy: 0.49% | MemAccessRate: 32.63% | Compile: 25.776s | Sim: 59.077s
+TopFuncs:
+    #1 0x000099c4 shadow_check_and_group.2950: 246,016 (71.3%)
+    #2 0x00012ff0 trace_diffuse_ray.3014: 59,520 (17.3%)
+    #3 0x0000db6c utexture.2996: 32,672 (9.5%)
+    #4 0x0000cb4c judge_intersection_fast.2985: 1,920 (0.6%)
+    #5 0x0000a08c shadow_check_one_or_matrix.2956: 1,920 (0.6%)
+TopOpcodeRates:
+1. LW: 18% | 2. LF: 13% | 3. JEQ: 13% | 4. FMUL: 9% | 5. ADD: 8%
+6. MOVI: 5% | 7. SLLI: 5% | 8. FSUB: 5% | 9. FADD: 5% | 10. MOVUI: 3%
+11. FLT: 3% | 12. ADDI: 2% | 13. MIF: 2% | 14. JMP: 1% | 15. SUBI: 1%
+Comment: 
+================================================
+2026-02-27 21:11:32 | Mode: v2 | Size: 32x32 | Cycles: 905717156 
+Accuracy: 0.49% | MemAccessRate: 32.63% | Compile: 26.472s | Sim: 60.966s
+TopFuncs:
+    #1 0x000099c4 shadow_check_and_group.2950: 246,016 (71.3%)
+    #2 0x00012ff0 trace_diffuse_ray.3014: 59,520 (17.3%)
+    #3 0x0000db6c utexture.2996: 32,672 (9.5%)
+    #4 0x0000cb4c judge_intersection_fast.2985: 1,920 (0.6%)
+    #5 0x0000a08c shadow_check_one_or_matrix.2956: 1,920 (0.6%)
+TopOpcodeRates:
+1. LW: 18% | 2. LF: 13% | 3. JEQ: 13% | 4. FMUL: 9% | 5. ADD: 8%
+6. MOVI: 5% | 7. SLLI: 5% | 8. FSUB: 5% | 9. FADD: 5% | 10. MOVUI: 3%
+11. FLT: 3% | 12. ADDI: 2% | 13. MIF: 2% | 14. JMP: 1% | 15. SUBI: 1%
+Comment: 
+================================================
+2026-02-27 21:18:46 | Mode: v2 | Size: 32x32 | Cycles: 206969493 
+Accuracy: 100.00% | MemAccessRate: 33.53% | Compile: 38.324s | Sim: 21.005s
+TopFuncs:
+    #1 0x0000bb84 trace_or_matrix_fast.2981: 68,809 (46.3%)
+    #2 0x00012ff0 trace_diffuse_ray.3014: 41,340 (27.8%)
+    #3 0x000099c4 shadow_check_and_group.2950: 29,173 (19.6%)
+    #4 0x0000db6c utexture.2996: 6,030 (4.1%)
+    #5 0x00009444 solver.2861: 1,432 (1.0%)
+TopOpcodeRates:
+1. LW: 18% | 2. LF: 14% | 3. JEQ: 13% | 4. ADD: 11% | 5. FMUL: 8%
+6. SLLI: 7% | 7. MOVI: 5% | 8. FADD: 3% | 9. FSUB: 3% | 10. FLT: 3%
+11. MOVUI: 2% | 12. ADDI: 2% | 13. SUBI: 2% | 14. JMP: 2% | 15. ITOF: 1%
 Comment: 
 ================================================
