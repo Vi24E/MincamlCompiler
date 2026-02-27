@@ -7,7 +7,7 @@ let rec iter n e =
   let e' = e |> VariableChecker.f
              |> ArrayScalarize.f
              |> TupleElim.f
-             (* |> ArrayElim.f *)
+             |> ArrayElim.f
              |> Elim.f 
              |> ConstFold.f 
              |> CommonExpElim.f

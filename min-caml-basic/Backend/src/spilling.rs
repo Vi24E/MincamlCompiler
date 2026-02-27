@@ -148,24 +148,49 @@ pub fn perform_spilling(
             let used_int_regs = collect_used_regs(inst, false, spill_map, allocation);
             let used_float_regs = collect_used_regs(inst, true, spill_map, allocation);
 
-            let int_plan = build_class_plan(
-                &int_spills,
-                spill_map,
-                false,
-                &used_int_regs,
-                &inst.operands,
-                &def_indices,
-                &use_indices,
-            );
-            let float_plan = build_class_plan(
-                &float_spills,
-                spill_map,
-                true,
-                &used_float_regs,
-                &inst.operands,
-                &def_indices,
-                &use_indices,
-            );
+            let is_ctrl = is_control_transfer(mnem);
+            let int_plan = if is_ctrl {
+                build_control_transfer_class_plan(
+                    &int_spills,
+                    spill_map,
+                    false,
+                    &used_int_regs,
+                    &inst.operands,
+                    &def_indices,
+                    &use_indices,
+                )
+            } else {
+                build_class_plan(
+                    &int_spills,
+                    spill_map,
+                    false,
+                    &used_int_regs,
+                    &inst.operands,
+                    &def_indices,
+                    &use_indices,
+                )
+            };
+            let float_plan = if is_ctrl {
+                build_control_transfer_class_plan(
+                    &float_spills,
+                    spill_map,
+                    true,
+                    &used_float_regs,
+                    &inst.operands,
+                    &def_indices,
+                    &use_indices,
+                )
+            } else {
+                build_class_plan(
+                    &float_spills,
+                    spill_map,
+                    true,
+                    &used_float_regs,
+                    &inst.operands,
+                    &def_indices,
+                    &use_indices,
+                )
+            };
 
             let mut op_map = int_plan.map;
             op_map.extend(float_plan.map);
@@ -254,6 +279,58 @@ fn build_class_plan(
         def_indices,
         use_indices,
     )
+}
+
+fn build_control_transfer_class_plan(
+    vars: &[String],
+    spill_map: &HashMap<String, i32>,
+    is_float: bool,
+    used_regs: &HashSet<String>,
+    operands: &[String],
+    def_indices: &[usize],
+    use_indices: &[usize],
+) -> ClassPlan {
+    let mut sorted = vars.to_vec();
+    sorted.sort();
+
+    let mut plan = ClassPlan::default();
+    let mut used = used_regs.clone();
+
+    for var in sorted {
+        let offset = spill_map
+            .get(&var)
+            .copied()
+            .unwrap_or_else(|| panic!("missing spill slot for {}", var))
+            * 4;
+        let reg = choose_victim(is_float, &used)
+            .unwrap_or_else(|| panic!("no victim register available for {}", var));
+        used.insert(reg.clone());
+        plan.map.insert(var.clone(), reg.clone());
+
+        let (need_load, need_store) = need_load_store(&var, operands, def_indices, use_indices);
+        if need_load {
+            emit_mem_load(
+                &mut plan.pre,
+                if is_float { "lf" } else { "lw" },
+                &reg,
+                offset,
+                &used,
+            );
+        }
+        if need_store {
+            // For control-transfer instructions, post-restores can be skipped on taken edges.
+            // Keep this for rare DEF cases only; conditional branches in this IR are USE-only.
+            emit_mem_store(
+                &mut plan.post,
+                if is_float { "sf" } else { "sw" },
+                &reg,
+                offset,
+                &used,
+            );
+        }
+    }
+
+    plan
 }
 
 fn build_class_plan_rec(
