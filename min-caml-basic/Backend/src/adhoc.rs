@@ -782,7 +782,8 @@ pub fn jump_trampoline_elim(instructions: Vec<Instruction>) -> (Vec<Instruction>
 /// Relax conditional branches (`jeq`, `jleq`, `jlt`, `jzero`) if they jump
 /// backward or if they jump forward by more than 2048 instructions.
 /// tkasm limits conditional branch offsets to 12-bit unsigned (max 4095).
-/// Uses %i30 as a scratch register (safe: not used as return address at this point).
+/// Uses %i31 as a scratch register.
+/// %i31 is reserved as a dedicated scratch register in this backend.
 pub fn relax_branches_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
     let mut out = Vec::with_capacity(instructions.len());
     let mut rewrites = 0usize;
@@ -816,50 +817,50 @@ pub fn relax_branches_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, 
                     let skip_label = format!("Lrelax_skip_{}", relax_id);
                     relax_id += 1;
 
-                    // Compute comparison into %i30 (not %i31, which may be live)
+                    // Compute comparison into %i31 (dedicated scratch register).
                     let cmp_mnem = match mnem {
                         "jeq"  => "ceq",
                         "jleq" => "cleq",
                         "jlt"  => "clt",
-                        "jzero" => "ceq", // jzero rd, rs, tgt -> ceq %i30, rs, %i0
+                        "jzero" => "ceq", // jzero rd, rs, tgt -> ceq %i31, rs, %i0
                         _ => unreachable!(),
                     };
 
                     let orig_label = inst.label.take();
 
                     if mnem == "jzero" {
-                        // jzero rd, rs, tgt => ceq %i30, rs, %i0
+                        // jzero rd, rs, tgt => ceq %i31, rs, %i0
                         out.push(Instruction {
                             label: orig_label,
                             mnemonic: Some("ceq".to_string()),
-                            operands: vec!["%i30".to_string(), rs2.clone(), "%i0".to_string()],
+                            operands: vec!["%i31".to_string(), rs2.clone(), "%i0".to_string()],
                         });
                     } else {
-                        // jeq/jleq/jlt rs1, rs2, tgt => ceq/cleq/clt %i30, rs1, rs2
+                        // jeq/jleq/jlt rs1, rs2, tgt => ceq/cleq/clt %i31, rs1, rs2
                         out.push(Instruction {
                             label: orig_label,
                             mnemonic: Some(cmp_mnem.to_string()),
-                            operands: vec!["%i30".to_string(), rs1.clone(), rs2.clone()],
+                            operands: vec!["%i31".to_string(), rs1.clone(), rs2.clone()],
                         });
                     }
 
-                    // Branch over the jump if condition is false (%i30 == 0)
+                    // Branch over the jump if condition is false (%i31 == 0)
                     out.push(Instruction {
                         label: None,
                         mnemonic: Some("jzero".to_string()),
-                        operands: vec!["%i0".to_string(), "%i30".to_string(), skip_label.clone()],
+                        operands: vec!["%i0".to_string(), "%i31".to_string(), skip_label.clone()],
                     });
 
-                    // Emit indirect jump to target via %i30
+                    // Emit indirect jump to target via %i31
                     out.push(Instruction {
                         label: None,
                         mnemonic: Some("set_label".to_string()),
-                        operands: vec!["%i30".to_string(), target_label.clone()],
+                        operands: vec!["%i31".to_string(), target_label.clone()],
                     });
                     out.push(Instruction {
                         label: None,
                         mnemonic: Some("jmp".to_string()),
-                        operands: vec!["%i0".to_string(), "0(%i30)".to_string()],
+                        operands: vec!["%i0".to_string(), "0(%i31)".to_string()],
                     });
 
                     // Attach skip label

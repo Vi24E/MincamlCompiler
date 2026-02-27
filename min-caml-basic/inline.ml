@@ -1,7 +1,7 @@
 open KNormal
 
 (* インライン展開する関数の最大サイズ (caml2html: inline_threshold) *)
-let threshold = ref 500 (* Mainで-inlineオプションによりセットされる *)
+let threshold = ref 50000 (* Mainで-inlineオプションによりセットされる *)
 
 let same_id x y = Id.compare x y = 0
 
@@ -68,13 +68,24 @@ let rec g env = function (* インライン展開ルーチン本体 (caml2html: 
   | App(x, ys) when M.mem x env -> (* 関数適用の場合 (caml2html: inline_app) *)
       let (zs, e) = M.find x env in
       (* Format.eprintf "inlining %s@." x; *)
-      let env' =
+      let params' =
+        List.map
+          (fun (z, t) -> (Id.genid (Id.to_string z), t))
+          zs
+      in
+      let alpha_env =
         List.fold_left2
-          (fun env' (z, _t) y -> M.add z y env')
+          (fun env' (z, _t) (z', _t') -> M.add z z' env')
           M.empty
           zs
-          ys in
-      Alpha.g env' e
+          params'
+      in
+      let body' = Alpha.g alpha_env e in
+      List.fold_right2
+        (fun (z', t) y acc -> Let((z', t), Var(y), acc))
+        params'
+        ys
+        body'
   | LetTuple(xts, y, e) -> LetTuple(xts, y, g env e)
   | Assign(x, y, e) -> Assign(x, y, g env e)
   | While(e1, e2) -> While(g env e1, g env e2)

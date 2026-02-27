@@ -5,7 +5,9 @@ let rec iter n e =
   Format.eprintf "iteration %d@." n;
   if n = 0 then e else
   let e' = e |> VariableChecker.f
+             |> ArrayScalarize.f
              |> TupleElim.f
+             (* |> ArrayElim.f *)
              |> Elim.f 
              |> ConstFold.f 
              |> CommonExpElim.f

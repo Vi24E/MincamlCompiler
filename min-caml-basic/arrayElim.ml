@@ -16,17 +16,17 @@ let rec not_shown e alias_env =
 		not_shown e1 alias_env && not_shown e2 alias_env
 	| IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) ->
 		not_shown e1 alias_env && not_shown e2 alias_env
-		| LetTuple(_, _, e) ->
-			not_shown e alias_env
-		| While(e1, e2) ->
-			not_shown e1 alias_env && not_shown e2 alias_env
-		| Assign(x, y, e) ->
-			not (List.mem (Id.to_string x) alias_env)
-			&& not (List.mem (Id.to_string y) alias_env)
-			&& not_shown e alias_env
-		| Break(x) -> not (List.mem (Id.to_string x) alias_env)
-		| Put(x, _, _) -> not (List.mem (Id.to_string x) alias_env)
-		| Get(x, _) -> not (List.mem (Id.to_string x) alias_env)
+	| LetTuple(_, _, e) ->
+		not_shown e alias_env
+	| While(e1, e2) ->
+		not_shown e1 alias_env && not_shown e2 alias_env
+	| Assign(x, y, e) ->
+		not (List.mem (Id.to_string x) alias_env)
+		&& not (List.mem (Id.to_string y) alias_env)
+		&& not_shown e alias_env
+	| Break(x) -> not (List.mem (Id.to_string x) alias_env)
+	| Put(x, _, _) -> not (List.mem (Id.to_string x) alias_env)
+	| Get(x, _) -> not (List.mem (Id.to_string x) alias_env)
 	| Tuple(xs) -> List.for_all (fun x -> not (List.mem (Id.to_string x) alias_env)) xs
 	| App(_, xs) -> List.for_all (fun x -> not (List.mem (Id.to_string x) alias_env)) xs
 	| ExtFunApp(_, xs) -> List.for_all (fun x -> not (List.mem (Id.to_string x) alias_env)) xs
@@ -54,17 +54,17 @@ let rec elimable target_id e alias_env is_branch is_tail =
 		let b1 = elimable target_id e1 alias_env true is_tail in
 		let b2 = elimable target_id e2 alias_env true is_tail in
 		b1 && b2
-		| LetTuple(_, _, e) ->
-			elimable target_id e alias_env is_branch is_tail
-		| While(e1, e2) ->
-			let b1 = elimable target_id e1 alias_env true false in
-			let b2 = elimable target_id e2 alias_env true false in
-			b1 && b2
-		| Assign(x, y, e) ->
-			if List.mem (Id.to_string x) alias_env || List.mem (Id.to_string y) alias_env then false
-			else elimable target_id e alias_env is_branch is_tail
-		| Break(x) -> not (List.mem (Id.to_string x) alias_env)
-		| Put(_, _, z) when List.mem (Id.to_string z) alias_env -> false
+	| LetTuple(_, _, e) ->
+		elimable target_id e alias_env is_branch is_tail
+	| While(e1, e2) ->
+		let b1 = elimable target_id e1 alias_env true false in
+		let b2 = elimable target_id e2 alias_env true false in
+		b1 && b2
+	| Assign(x, y, e) ->
+		if List.mem (Id.to_string x) alias_env || List.mem (Id.to_string y) alias_env then false
+		else elimable target_id e alias_env is_branch is_tail
+	| Break(x) -> not (List.mem (Id.to_string x) alias_env)
+	| Put(_, _, z) when List.mem (Id.to_string z) alias_env -> false
 	| Put(x, y, _) when List.mem (Id.to_string x) alias_env -> 
 		if (not is_branch) then 
       match VariableChecker.find_const (Id.to_string y) with
