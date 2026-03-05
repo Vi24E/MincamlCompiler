@@ -9,12 +9,40 @@ min_caml_start:
 	ori	%i2, %i2, 0
 	set_label	%i3, fin
 	subi	%i1, %i1, 8
-	movi	%vi1, 1
-	sw	%vi1, 32(%i0)
-	mov	%vi2, %vi1
-	sw	%vi2, 36(%i0)
-	mov	%vi3, %vi2
-	sw	%vi3, 44(%i0)
+	mov	%vi1, %i0
+	sw	%vi1, 0(%i0)
+	print_debug	1
+	mov	%vi2, %i0
+	sw	%vi2, 4(%i0)
+	mov	%vi3, %i0
+	sw	%vi3, 8(%i0)
+	mov	%vi4, %i0
+	sw	%vi4, 12(%i0)
+	.virtual_def	%vi7, %vi10
+	jeq	%i0, %i0, then.473
+	movi	%vi8, 2
+	mov	%vi3, %vi8
+	mov	%vi9, %vi8
+	mov	%vi10, %vi9
+	set_label	%i31, cont.474
+	jmp	%i0, 0(%i31)
+then.473:
+	movi	%vi5, 1
+	mov	%vi3, %vi5
+	mov	%vi6, %vi5
+	mov	%vi7, %vi6
+cont.474:
+	.virtual_def	%vi7, %vi10
+	jeq	%i0, %i0, then.475
+	mov	%vi11, %i0
+	set_label	%i31, cont.476
+	jmp	%i0, 0(%i31)
+then.475:
+	movi	%vi11, 1
+cont.476:
+	sw	%vi11, 16(%i0)
+	tern	%vi12, %vi11, %vi7, %vi10
+	sw	%vi12, 20(%i0)
 fin:
 	set_label	%i31, fin
 	jmp	%i0, 0(%i31)

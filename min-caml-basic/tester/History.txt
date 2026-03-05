@@ -811,3 +811,17 @@ TopFuncs:
 Comment: with Phi nodes, many arrays are inlined
 ================================================
 
+2026-03-06 04:57:55 | Mode: v2 | Size: 32x32 | Cycles: 241182114 
+Accuracy: 100.00% | MemAccessRate: 24.70% | Compile: 140.646s | Sim: 21.469s
+TopFuncs:
+    #1 0x0007c020 read_net_item.3881: 43 (93.5%)
+    #2 0x0007c104 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-06 05:05:05 | Mode: v2 | Size: 32x32 | Cycles: 241182114 
+Accuracy: 100.00% | MemAccessRate: 24.70% | Compile: 141.139s | Sim: 21.392s
+TopFuncs:
+    #1 0x0007c020 read_net_item.3881: 43 (93.5%)
+    #2 0x0007c104 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================

@@ -1,27 +1,27 @@
 LetRec{
-	name: (main.197, Fun([Int], Int));
-	args: [(n.198, Int)];
+	name: (main.414, Fun([Int], Int));
+	args: [(n.415, Int)];
 	tag: Impure;
 	body: 
-	Int Ti15.201 = 2;
-	Int Ti16.202 = 0;
-	Array(Int) a.203 = __Ext__ create_array(Ti15.201, Ti16.202);
-	Int Ti17.204 = 0;
-	Unit w.205 = If (n.198 = Ti17.204) {
-		Int Ti18.209 = 0;
-		Int Ti19.210 = 1;
-		a.203[Ti18.209] = Ti19.210;
+	Int Ti15.416 = 2;
+	Int Ti16.417 = 0;
+	Array(Int) a.418 = __Ext__ create_array(Ti15.416, Ti16.417);
+	Int Ti17.419 = 0;
+	Unit w.420 = If (n.415 = Ti17.419) {
+		Int Ti18.421 = 0;
+		Int Ti19.422 = 1;
+		a.418[Ti18.421] = Ti19.422;
 		
 	}
 	else {
-		Int Ti20.207 = 0;
-		Int Ti21.208 = 2;
-		a.203[Ti20.207] = Ti21.208;
+		Int Ti20.423 = 0;
+		Int Ti21.424 = 2;
+		a.418[Ti20.423] = Ti21.424;
 		
 	};
-	Int Ti22.206 = 0;
-	a.203[Ti22.206]
+	Int Ti22.425 = 0;
+	a.418[Ti22.425]
 }
-Int Ti14.199 = 0;
-Int r.200 = main.197(Ti14.199);
+Int Ti14.426 = 0;
+Int r.427 = main.414(Ti14.426);
 Unit

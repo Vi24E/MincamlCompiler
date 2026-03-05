@@ -6,10 +6,10 @@ let threshold = ref 50000 (* Mainで-inlineオプションによりセットさ�
 let same_id x y = Id.compare x y = 0
 let uses_id = same_id
 
-let inline_debug_trace_enabled =
-  match Sys.getenv_opt "INLINE_DEBUG_TRACE" with
-  | Some("1") | Some("true") | Some("TRUE") -> true
-  | _ -> false
+let inline_debug_trace_enabled = ref false
+
+let set_debug_trace b =
+  inline_debug_trace_enabled := b
 
 module SM = Map.Make(String)
 
@@ -34,14 +34,14 @@ let get_or_assign_debug_id f =
       id
 
 let make_inline_debug_marker f body =
-  if not inline_debug_trace_enabled then body
+  if not !inline_debug_trace_enabled then body
   else
     let marker_fn = (Printf.sprintf "print_debug.%d" (get_or_assign_debug_id f), Id.Unknown) in
     let dbg_tmp = Id.gentmp Type.Unit in
     Let((dbg_tmp, Type.Unit), ExtFunApp(marker_fn, []), body)
 
 let dump_inline_debug_map () =
-  if inline_debug_trace_enabled then begin
+  if !inline_debug_trace_enabled then begin
     let path = inline_debug_map_path () in
     let oc = open_out path in
     List.rev !debug_id_entries
