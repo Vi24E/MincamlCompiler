@@ -285,6 +285,11 @@ def parse_args():
         default="../bill_sim/input.bin",
         help="source input file for minrt (text or binary) (default: ../bill_sim/input.bin)",
     )
+    parser.add_argument(
+        "--ocaml-input-source",
+        default="../bill_sim/input_ascii_backup.bin",
+        help="text input file for OCaml reference (used when --input-source is binary)",
+    )
     return parser.parse_args()
 
 
@@ -553,14 +558,29 @@ def main():
 
 
     print("Step 6: Running OCaml reference implementation...")
-    input_bin_path = input_source_path
-    
-    if not os.path.exists(input_bin_path):
-        print(f"Error: input.bin not found at {input_bin_path}")
+    ocaml_input_path = input_source_path
+    if not _looks_like_text_input(source_bytes):
+        ocaml_input_path = os.path.abspath(os.path.join(project_root, args.ocaml_input_source))
+
+    if not os.path.exists(ocaml_input_path):
+        print(f"Error: OCaml input not found at {ocaml_input_path}")
         sys.exit(1)
-        
+
     try:
-        with open(input_bin_path, "rb") as infile:
+        with open(ocaml_input_path, "rb") as f:
+            ocaml_input_bytes = f.read()
+    except Exception as e:
+        print(f"Error: Failed to read OCaml input: {e}")
+        sys.exit(1)
+
+    if not _looks_like_text_input(ocaml_input_bytes):
+        print(
+            f"Error: OCaml input must be text token stream, but got binary-like file: {ocaml_input_path}"
+        )
+        sys.exit(1)
+
+    try:
+        with open(ocaml_input_path, "rb") as infile:
              ocaml_result = subprocess.run(
                 ["ocaml", "test/minrt_for_ocaml.ml"],
                 stdin=infile,

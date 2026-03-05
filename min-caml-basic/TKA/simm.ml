@@ -118,9 +118,28 @@ let rec g env = function
         if (not (trackable x)) || S.mem x env.mut_env then true
         else
           match exp with
-          | SetInt(0) -> false
-          | SetFloat(f) when is_pos_zero_float f -> false
-          | SetInt(_) -> S.mem x used_e
+          | SetInt(0) -> true
+            (* 旧: false (無条件削除)
+               修正理由: TernPhiInsert が if 枝内で SetInt(0) の phi 変数を生成するが、
+               Tern 命令が if 外でその変数を参照する。keep=false だと Let 束縛が
+               消去され zero_env のスコープ外で変数が未定義になり allocVirtual がクラッシュする。
+               keep=true にしても zero_env による同スコープ内の reg_zero 置換は引き続き有効。 *)
+          | SetFloat(f) when is_pos_zero_float f -> true
+            (* 同上: SetFloat(+0.0) も同じ構造で問題が発生しうる *)
+          | SetInt(_) ->
+            (* phi 変数 (_phi. を含む) は if 枝内で定義され TernPhi が if 外で参照する。
+               used_e のスコープが枝内に限られるため枝外の参照を検出できない。
+               phi 変数は always keep、その他は通常の used チェック。 *)
+            let sx = Id.to_string x in
+            let has_phi =
+              let len = String.length sx in
+              let rec check i =
+                if i + 5 > len then false
+                else if String.sub sx i 5 = "_phi." then true
+                else check (i + 1)
+              in check 0
+            in
+            if has_phi then true else S.mem x used_e
           | _ -> true
       in
       if keep then (Let((x, t), exp', e'), used_out)
@@ -240,6 +259,16 @@ and g_exp env = function
       let x' = replace_float_id env x in
       let y' = replace_float_id env y in
       (CmpFLT(x', y'), use_union (use_id x') (use_id y'))
+  | Tern(c, x, y) ->
+      let c' = replace_int_id env c in
+      let x' = replace_int_id env x in
+      let y' = replace_int_id env y in
+      (Tern(c', x', y'), use_union (use_id c') (use_union (use_id x') (use_id y')))
+  | TernF(c, x, y) ->
+      let c' = replace_int_id env c in
+      let x' = replace_float_id env x in
+      let y' = replace_float_id env y in
+      (TernF(c', x', y'), use_union (use_id c') (use_union (use_id x') (use_id y')))
   | IfEq(x, y', e1, e2) ->
       let x' = replace_int_id env x in
       let y'' = replace_id_or_imm env y' in

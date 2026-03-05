@@ -2,10 +2,11 @@ open Asm
 
 let data = ref []
 let global_env = ref M.empty
+let all_type_env = ref M.empty
 let enable_if_simplify =
   match Sys.getenv_opt "MC_IFSIMPLIFY" with
-  | Some("0") -> false
-  | _ -> true
+  | Some("1") | Some("true") | Some("TRUE") -> true
+  | _ -> false
 
 let rec collect_globals = function
   | Closure.Let((x, t), _, e) ->
@@ -16,11 +17,56 @@ let rec collect_globals = function
       collect_globals e
   | _ -> () (* Other constructs don't define globals locally in the body sequence *)
 
+let add_type_if_absent acc (x, t) =
+  if M.mem x acc then acc else M.add x t acc
+
+let starts_with s prefix =
+  let ls = String.length s and lp = String.length prefix in
+  ls >= lp && String.sub s 0 lp = prefix
+
+let infer_type_from_id x =
+  let s = Id.to_string x in
+  if starts_with s "Ti" then Some(Type.Int)
+  else if starts_with s "Td" then Some(Type.Float)
+  else if starts_with s "Tb" then Some(Type.Bool)
+  else if starts_with s "Tu" then Some(Type.Unit)
+  else if starts_with s "Ta" then Some(Type.Array(Type.Int))
+  else None
+
+let rec collect_all_types acc = function
+  | Closure.Let((x, t), e1, e2) ->
+      let acc' = add_type_if_absent acc (x, t) in
+      collect_all_types (collect_all_types acc' e1) e2
+  | Closure.LetTuple(xts, _, e) ->
+      let acc' = List.fold_left add_type_if_absent acc xts in
+      collect_all_types acc' e
+  | Closure.MakeCls((x, t), _, e) ->
+      collect_all_types (add_type_if_absent acc (x, t)) e
+  | Closure.IfEq(_, _, e1, e2) | Closure.IfLE(_, _, e1, e2) ->
+      collect_all_types (collect_all_types acc e1) e2
+  | Closure.Loop(e) ->
+      collect_all_types acc e
+  | Closure.Assign(_, _, e) ->
+      collect_all_types acc e
+  | Closure.Unit | Closure.Int(_) | Closure.Float(_) | Closure.Neg(_)
+  | Closure.Add(_, _) | Closure.Sub(_, _) | Closure.Sll(_, _) | Closure.Sra(_, _)
+  | Closure.FNeg(_) | Closure.FAdd(_, _) | Closure.FSub(_, _) | Closure.FMul(_, _)
+  | Closure.FDiv(_) | Closure.Var(_) | Closure.AppCls(_, _) | Closure.AppDir(_, _)
+  | Closure.Tuple(_) | Closure.Get(_, _) | Closure.Put(_, _, _) | Closure.ExtArray(_)
+  | Closure.TernPhi(_, _, _) | Closure.Break(_) ->
+      acc
+
 let find_type x env =
   try M.find x env
   with Not_found ->
-    if Id.is_global x then M.find x !global_env
-    else raise Not_found
+    (match M.find_opt x !all_type_env with
+    | Some t -> t
+    | None ->
+        if Id.is_global x then M.find x !global_env
+        else
+          (match infer_type_from_id x with
+          | Some t -> t
+          | None -> raise Not_found))
 
 let classify xts ini addf addi =
   List.fold_left
@@ -387,6 +433,11 @@ let rec g env const_env break_label continue_label e =
                   Ans(St(z, x, V(offset)))))
       | _ -> assert false)
     | Closure.ExtArray(Id.L(x)) -> Ans(SetLabel(Id.L("min_caml_" ^ x)))
+    | Closure.TernPhi(c, x, y) ->
+      (match find_type x env with
+      | Type.Unit -> Ans(Nop)
+      | Type.Float -> Ans(TernF(c, x, y))
+      | _ -> Ans(Tern(c, x, y)))
     | Closure.Loop(e) ->
       let l_start = Id.genid "loop_start" in
       let l_end = Id.genid "loop_end" in
@@ -425,6 +476,18 @@ let h { Closure.name = (Id.L(x), t); Closure.args = yts; Closure.formal_fv = zts
 let f (Closure.Prog(fundefs, e)) =
     data := [];
     global_env := M.empty;
+    all_type_env := M.empty;
+    let collected =
+      List.fold_left
+        (fun acc { Closure.args; formal_fv; body; _ } ->
+          let acc' = List.fold_left add_type_if_absent acc args in
+          let acc'' = List.fold_left add_type_if_absent acc' formal_fv in
+          collect_all_types acc'' body)
+        M.empty
+        fundefs
+      |> fun acc -> collect_all_types acc e
+    in
+    all_type_env := collected;
     collect_globals e;
     let fundefs = List.map h fundefs in
     let e = g M.empty M.empty None None e in

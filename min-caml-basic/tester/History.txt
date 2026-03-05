@@ -803,14 +803,11 @@ TopOpcodeRates:
 11. MOVUI: 2% | 12. ADDI: 2% | 13. SUBI: 1% | 14. JMP: 1% | 15. ITOF: 1%
 Comment: Inline = inf
 ================================================
-2026-02-28 02:12:30 | Mode: v2 | Size: 32x32 | Cycles: 975457 
-Accuracy: 0.00% | MemAccessRate: 29.87% | Compile: 294.146s | Sim: 0.101s
+2026-03-06 04:28:06 | Mode: v2 | Size: 32x32 | Cycles: 241182114 
+Accuracy: 100.00% | MemAccessRate: 24.70% | Compile: 155.680s | Sim: 22.649s
 TopFuncs:
-    #1 0x0006023c read_net_item.2813: 43 (93.5%)
-    #2 0x00060314 read_or_network.2815: 3 (6.5%)
-TopOpcodeRates:
-1. LF: 14% | 2. FMUL: 11% | 3. LW: 8% | 4. ADD: 8% | 5. JEQ: 7%
-6. MOVUI: 6% | 7. ADDI: 6% | 8. SF: 6% | 9. FADD: 4% | 10. MIF: 4%
-11. SLLI: 4% | 12. MOVI: 3% | 13. SW: 2% | 14. SUBI: 2% | 15. JMP: 2%
-Comment: 
+    #1 0x0007c020 read_net_item.3881: 43 (93.5%)
+    #2 0x0007c104 read_or_network.3895: 3 (6.5%)
+Comment: with Phi nodes, many arrays are inlined
 ================================================
+

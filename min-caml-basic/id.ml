@@ -4,6 +4,7 @@ and local_tag =
   | Global of int
   | Local
   | Register
+  | Leakable
 and const_tag = 
   | None
   | ConstInt of int
@@ -34,6 +35,10 @@ let rec pp_list = function
 
 let is_global = function
   | (_, Known (Global _, _)) -> true
+  | _ -> false
+
+let is_leakable = function
+  | (_, Known (Leakable, _)) -> true
   | _ -> false
 
 let offset = function

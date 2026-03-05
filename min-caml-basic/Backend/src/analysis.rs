@@ -1,11 +1,27 @@
 /// Liveness analysis and interference graph construction.
 use crate::input::Instruction;
-use std::collections::{BTreeMap, BTreeSet};
+use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet, VecDeque};
 
 fn call_debug_enabled() -> bool {
     std::env::var("BACKEND_DEBUG_CALL")
         .map(|v| v != "0")
         .unwrap_or(false)
+}
+
+fn live_debug_enabled() -> bool {
+    std::env::var("BACKEND_DEBUG_LIVE")
+        .map(|v| v != "0")
+        .unwrap_or(false)
+}
+
+fn cfg_debug_enabled() -> bool {
+    std::env::var("BACKEND_DEBUG_CFG")
+        .map(|v| v != "0")
+        .unwrap_or(false)
+}
+
+fn debug_var_name() -> Option<String> {
+    std::env::var("BACKEND_DEBUG_VAR").ok()
 }
 
 #[derive(Debug, Clone)]
@@ -40,25 +56,6 @@ fn is_graph_register(s: &str) -> bool {
     is_virtual_register(s)
 }
 
-/// Extract register names from an operand string.
-/// Handles plain registers and offset(register) format.
-fn extract_registers(s: &str) -> Vec<String> {
-    let mut regs = Vec::new();
-    if let Some(start) = s.find('(') {
-        if let Some(end) = s.find(')') {
-            let base = &s[start + 1..end];
-            if is_register(base) {
-                regs.push(base.to_string());
-            }
-            return regs;
-        }
-    }
-    if is_register(s) {
-        regs.push(s.to_string());
-    }
-    regs
-}
-
 fn parse_offset_operand(s: &str) -> Option<(i32, String)> {
     let start = s.find('(')?;
     let end = s.find(')')?;
@@ -75,6 +72,32 @@ fn parse_offset_operand(s: &str) -> Option<(i32, String)> {
     Some((off, base))
 }
 
+fn expect_direct_reg(op: &str, mnemonic: &str, index: usize) -> String {
+    if !is_register(op) {
+        panic!(
+            "analysis::get_def_use: expected register operand at {}[{}], got '{}'",
+            mnemonic, index, op
+        );
+    }
+    op.to_string()
+}
+
+fn expect_offset_base_reg(op: &str, mnemonic: &str, index: usize) -> String {
+    let Some((_, base)) = parse_offset_operand(op) else {
+        panic!(
+            "analysis::get_def_use: expected offset(base) operand at {}[{}], got '{}'",
+            mnemonic, index, op
+        );
+    };
+    if !is_register(&base) {
+        panic!(
+            "analysis::get_def_use: expected base register in {}[{}], got '{}'",
+            mnemonic, index, base
+        );
+    }
+    base
+}
+
 /// Get DEF and USE sets for an instruction, following the plan's DEF/USE definitions.
 fn get_def_use(inst: &Instruction) -> (BTreeSet<String>, BTreeSet<String>) {
     let mut defs = BTreeSet::new();
@@ -84,157 +107,148 @@ fn get_def_use(inst: &Instruction) -> (BTreeSet<String>, BTreeSet<String>) {
         let args = &inst.operands;
         match mnemonic.as_str() {
             // 3-operand arithmetic/comparison: dest, src1, src2
-            "add" | "sub" | "sll" | "sar" | "xor" | "ceq" | "cleq" | "clt" | "feq" | "fleq"
-            | "flt" => {
-                if args.len() >= 1 {
-                    defs.insert(args[0].clone());
+            "add" | "sub" | "sll" | "sar" | "or" | "xor" | "ceq" | "cleq" | "clt" | "feq"
+            | "fleq" | "flt" => {
+                if let Some(op0) = args.get(0) {
+                    defs.insert(expect_direct_reg(op0, mnemonic, 0));
                 }
-                for arg in args.iter().skip(1) {
-                    for r in extract_registers(arg) {
-                        uses.insert(r);
-                    }
+                if let Some(op1) = args.get(1) {
+                    uses.insert(expect_direct_reg(op1, mnemonic, 1));
+                }
+                if let Some(op2) = args.get(2) {
+                    uses.insert(expect_direct_reg(op2, mnemonic, 2));
                 }
             }
             // 3-operand float arithmetic: dest, src1, src2
             "fadd" | "fsub" | "fmul" | "fdiv" => {
-                if args.len() >= 1 {
-                    defs.insert(args[0].clone());
+                if let Some(op0) = args.get(0) {
+                    defs.insert(expect_direct_reg(op0, mnemonic, 0));
                 }
-                for arg in args.iter().skip(1) {
-                    for r in extract_registers(arg) {
-                        uses.insert(r);
-                    }
+                if let Some(op1) = args.get(1) {
+                    uses.insert(expect_direct_reg(op1, mnemonic, 1));
+                }
+                if let Some(op2) = args.get(2) {
+                    uses.insert(expect_direct_reg(op2, mnemonic, 2));
+                }
+            }
+            // Ternary select: dest, cond, then, else
+            "tern" | "ternf" => {
+                if let Some(op0) = args.get(0) {
+                    defs.insert(expect_direct_reg(op0, mnemonic, 0));
+                }
+                if let Some(op1) = args.get(1) {
+                    uses.insert(expect_direct_reg(op1, mnemonic, 1));
+                }
+                if let Some(op2) = args.get(2) {
+                    uses.insert(expect_direct_reg(op2, mnemonic, 2));
+                }
+                if let Some(op3) = args.get(3) {
+                    uses.insert(expect_direct_reg(op3, mnemonic, 3));
                 }
             }
             // 3-operand immediate: dest, src, imm
             "addi" | "subi" | "slli" | "sari" | "ori" | "xori" | "ceqi" | "cleqi" | "clti" => {
-                if args.len() >= 1 {
-                    defs.insert(args[0].clone());
+                if let Some(op0) = args.get(0) {
+                    defs.insert(expect_direct_reg(op0, mnemonic, 0));
                 }
-                if args.len() > 1 {
-                    for r in extract_registers(&args[1]) {
-                        uses.insert(r);
-                    }
+                if let Some(op1) = args.get(1) {
+                    uses.insert(expect_direct_reg(op1, mnemonic, 1));
                 }
             }
             // 2-operand: dest, src
             "mov" | "neg" => {
-                if args.len() >= 1 {
-                    defs.insert(args[0].clone());
+                if let Some(op0) = args.get(0) {
+                    defs.insert(expect_direct_reg(op0, mnemonic, 0));
                 }
-                for arg in args.iter().skip(1) {
-                    for r in extract_registers(arg) {
-                        uses.insert(r);
-                    }
+                if let Some(op1) = args.get(1) {
+                    uses.insert(expect_direct_reg(op1, mnemonic, 1));
                 }
             }
             // 2-operand float: dest, src
             "fmov" | "fneg" | "finv" | "frsqrt" | "ffloor" => {
-                if args.len() >= 1 {
-                    defs.insert(args[0].clone());
+                if let Some(op0) = args.get(0) {
+                    defs.insert(expect_direct_reg(op0, mnemonic, 0));
                 }
-                for arg in args.iter().skip(1) {
-                    for r in extract_registers(arg) {
-                        uses.insert(r);
-                    }
+                if let Some(op1) = args.get(1) {
+                    uses.insert(expect_direct_reg(op1, mnemonic, 1));
                 }
             }
             // Cross-domain: ftoi rd, fs / itof fd, rs
-            "ftoi" => {
-                if args.len() >= 1 {
-                    defs.insert(args[0].clone()); // int dest
+            "ftoi" | "itof" => {
+                if let Some(op0) = args.get(0) {
+                    defs.insert(expect_direct_reg(op0, mnemonic, 0));
                 }
-                for arg in args.iter().skip(1) {
-                    for r in extract_registers(arg) {
-                        uses.insert(r); // float src
-                    }
-                }
-            }
-            "itof" => {
-                if args.len() >= 1 {
-                    defs.insert(args[0].clone()); // float dest
-                }
-                for arg in args.iter().skip(1) {
-                    for r in extract_registers(arg) {
-                        uses.insert(r); // int src
-                    }
+                if let Some(op1) = args.get(1) {
+                    uses.insert(expect_direct_reg(op1, mnemonic, 1));
                 }
             }
             // Immediate load: dest only, no register source
             "movi" | "movui" => {
-                if args.len() >= 1 {
-                    defs.insert(args[0].clone());
+                if let Some(op0) = args.get(0) {
+                    defs.insert(expect_direct_reg(op0, mnemonic, 0));
                 }
             }
             // mif fd, rs - move int to float
             "mif" => {
-                if args.len() >= 1 {
-                    defs.insert(args[0].clone()); // float dest
+                if let Some(op0) = args.get(0) {
+                    defs.insert(expect_direct_reg(op0, mnemonic, 0));
                 }
-                if args.len() > 1 {
-                    for r in extract_registers(&args[1]) {
-                        uses.insert(r); // int src
-                    }
+                if let Some(op1) = args.get(1) {
+                    uses.insert(expect_direct_reg(op1, mnemonic, 1));
                 }
             }
             // Load: lw/lf/lb dest, offset(base) -> DEF={dest}, USE={base}
             "lw" | "lf" | "lb" => {
-                if args.len() >= 1 {
-                    defs.insert(args[0].clone());
+                if let Some(op0) = args.get(0) {
+                    defs.insert(expect_direct_reg(op0, mnemonic, 0));
                 }
-                for arg in args.iter().skip(1) {
-                    for r in extract_registers(arg) {
-                        uses.insert(r);
-                    }
+                if let Some(op1) = args.get(1) {
+                    uses.insert(expect_offset_base_reg(op1, mnemonic, 1));
                 }
             }
             // Store: sw/sf/sb src, offset(base) -> DEF={}, USE={src, base}
             "sw" | "sf" | "sb" => {
-                for arg in args {
-                    for r in extract_registers(arg) {
-                        uses.insert(r);
-                    }
+                if let Some(op0) = args.get(0) {
+                    uses.insert(expect_direct_reg(op0, mnemonic, 0));
+                }
+                if let Some(op1) = args.get(1) {
+                    uses.insert(expect_offset_base_reg(op1, mnemonic, 1));
                 }
             }
             // set_label: dest, label -> DEF={dest}, USE={}
             "set_label" => {
-                if args.len() >= 1 {
-                    defs.insert(args[0].clone());
+                if let Some(op0) = args.get(0) {
+                    defs.insert(expect_direct_reg(op0, mnemonic, 0));
                 }
             }
             // jzero: jzero rd, rs, label -> DEF={}, USE={rs}
             // rd is %i0 (zero reg, writing is no-op)
             "jzero" => {
-                if args.len() >= 2 {
-                    // args[0] = rd (typically %i0, ignored for defs)
-                    // args[1] = rs (condition register)
-                    for r in extract_registers(&args[1]) {
-                        uses.insert(r);
-                    }
+                if let Some(op1) = args.get(1) {
+                    uses.insert(expect_direct_reg(op1, mnemonic, 1));
                 }
             }
             // jeq rs1, rs2, offset -> DEF={}, USE={rs1, rs2}
             // jlt rs1, rs2, offset -> DEF={}, USE={rs1, rs2}
             // jleq rs1, rs2, offset -> DEF={}, USE={rs1, rs2}
             "jeq" | "jlt" | "jleq" => {
-                for arg in args.iter().take(2) {
-                    for r in extract_registers(arg) {
-                        uses.insert(r);
-                    }
+                if let Some(op0) = args.get(0) {
+                    uses.insert(expect_direct_reg(op0, mnemonic, 0));
+                }
+                if let Some(op1) = args.get(1) {
+                    uses.insert(expect_direct_reg(op1, mnemonic, 1));
                 }
             }
             // jmp: jmp rd, offset(rb) -> DEF={rd if not %i0}, USE={rb}
             "jmp" => {
-                if args.len() >= 1 {
-                    let rd = &args[0];
+                if let Some(rd) = args.get(0) {
+                    let rd = expect_direct_reg(rd, mnemonic, 0);
                     if rd != "%i0" {
-                        defs.insert(rd.clone());
+                        defs.insert(rd);
                     }
                 }
-                for arg in args.iter().skip(1) {
-                    for r in extract_registers(arg) {
-                        uses.insert(r);
-                    }
+                if let Some(op1) = args.get(1) {
+                    uses.insert(expect_offset_base_reg(op1, mnemonic, 1));
                 }
                 // Return-jump convention: jmp %i0, 0(%i3)
                 // This consumes return value registers.
@@ -254,10 +268,8 @@ fn get_def_use(inst: &Instruction) -> (BTreeSet<String>, BTreeSet<String>) {
             // call_cls: DEF = return regs only, USE = {<reg>}
             "call_cls" => {
                 // The closure register argument
-                if args.len() >= 1 {
-                    for r in extract_registers(&args[0]) {
-                        uses.insert(r);
-                    }
+                if let Some(op0) = args.get(0) {
+                    uses.insert(expect_direct_reg(op0, mnemonic, 0));
                 }
                 // Same clobber/arg rules as call_dir.
                 add_call_clobbers(&mut defs);
@@ -267,23 +279,26 @@ fn get_def_use(inst: &Instruction) -> (BTreeSet<String>, BTreeSet<String>) {
                 uses.insert("%i30".to_string());
                 uses.insert("%f30".to_string());
             }
+            // .virtual_def: pseudo-instruction for liveness barrier.
+            // Treated as DEF of all operand registers, USE of none.
+            // This stops backward liveness propagation at the merge point
+            // for ternf/tern phi-bridge variables.
+            ".virtual_def" => {
+                for op in args {
+                    if op.starts_with('%') {
+                        defs.insert(op.clone());
+                    }
+                }
+            }
             // nop and directives
-            "nop" | ".data" | ".text" | ".align" | ".global" | ".section" | ".func_entry"
-            | ".long" => {}
-            // Unknown
+            "nop" | "print_debug" | ".data" | ".text" | ".align" | ".global" | ".section" | ".func_entry"
+            | ".end_function" | ".long" => {}
+            // Unknown mnemonic is a backend bug. Do not fallback silently.
             _ => {
-                // Fallback: treat as generic instruction
-                // First operand = def, rest = uses
-                if args.len() >= 1 {
-                    if is_register(&args[0]) {
-                        defs.insert(args[0].clone());
-                    }
-                }
-                for arg in args.iter().skip(1) {
-                    for r in extract_registers(arg) {
-                        uses.insert(r);
-                    }
-                }
+                panic!(
+                    "analysis::get_def_use: unknown mnemonic '{}' operands={:?}",
+                    mnemonic, args
+                );
             }
         }
     }
@@ -329,6 +344,12 @@ pub fn analyze(instructions: &[Instruction]) -> Vec<AnalyzedInstruction> {
         let mut is_terminator = false;
 
         if let Some(mnemonic) = &inst.mnemonic {
+            if mnemonic.starts_with('.') && mnemonic != ".virtual_def" {
+                // Assembler directives are not executable instructions.
+                // Do not create fall-through edges through them.
+                analyzed[i].succ = succs;
+                continue;
+            }
             match mnemonic.as_str() {
                 "jzero" => {
                     // Conditional branch: jzero rd, rs, label
@@ -437,7 +458,27 @@ pub fn analyze(instructions: &[Instruction]) -> Vec<AnalyzedInstruction> {
         analyzed[i].succ = succs;
     }
 
-    // Pass 3: Liveness Analysis (Mogensen/Rehof-style worklist fixed point)
+    if cfg_debug_enabled() {
+        let mut pred0: Vec<usize> = Vec::new();
+        for (i, ai) in analyzed.iter().enumerate() {
+            if ai.succ.iter().any(|&s| s == 0) {
+                pred0.push(i);
+            }
+        }
+        eprintln!("[cfg-debug] preds_of_0_count={}", pred0.len());
+        for i in pred0.into_iter().take(20) {
+            let inst = &analyzed[i].instruction;
+            eprintln!(
+                "[cfg-debug] edge {} -> 0  label={:?} mnem={:?} ops={:?}",
+                i, inst.label, inst.mnemonic, inst.operands
+            );
+        }
+    }
+
+    // Pass 3: Liveness Analysis (pair-propagation worklist)
+    // Q <- {(n, v) | v in use(n)}
+    // seen is a hash set of (instruction index, variable id)
+    // This avoids whole-function set unions/clones on each iteration.
     let n = analyzed.len();
     let mut preds: Vec<Vec<usize>> = vec![Vec::new(); n];
     for (i, inst) in analyzed.iter().enumerate() {
@@ -448,40 +489,173 @@ pub fn analyze(instructions: &[Instruction]) -> Vec<AnalyzedInstruction> {
         }
     }
 
-    let mut in_wl = vec![true; n];
-    let mut wl: std::collections::VecDeque<usize> = (0..n).collect();
+    // Coordinate-compress register names to integer ids.
+    let mut reg_to_id: HashMap<String, usize> = HashMap::new();
+    let mut id_to_reg: Vec<String> = Vec::new();
+    let mut intern_reg = |r: &str| -> usize {
+        if let Some(&id) = reg_to_id.get(r) {
+            id
+        } else {
+            let id = id_to_reg.len();
+            reg_to_id.insert(r.to_string(), id);
+            id_to_reg.push(r.to_string());
+            id
+        }
+    };
 
-    while let Some(i) = wl.pop_front() {
-        in_wl[i] = false;
+    let mut defs_ids: Vec<HashSet<usize>> = Vec::with_capacity(n);
+    let mut uses_ids: Vec<Vec<usize>> = Vec::with_capacity(n);
+    let mut uses_set_ids: Vec<HashSet<usize>> = Vec::with_capacity(n);
+    for inst in &analyzed {
+        let mut dset = HashSet::new();
+        for r in &inst.defs {
+            dset.insert(intern_reg(r));
+        }
+        defs_ids.push(dset);
 
-        // live_out[i] = union(live_in[s]) for s in succ[i]
-        let mut new_out = BTreeSet::new();
+        let mut uvec = Vec::new();
+        let mut uset = HashSet::new();
+        for r in &inst.uses {
+            let id = intern_reg(r);
+            uvec.push(id);
+            uset.insert(id);
+        }
+        uses_ids.push(uvec);
+        uses_set_ids.push(uset);
+    }
+
+    let encode_pair = |i: usize, v: usize| -> u64 { ((i as u64) << 32) | (v as u64) };
+    let decode_pair = |k: u64| -> (usize, usize) { ((k >> 32) as usize, (k as u32) as usize) };
+
+    let mut seen: HashSet<u64> = HashSet::new();
+    let mut queued: HashSet<u64> = HashSet::new();
+    let mut wl: VecDeque<u64> = VecDeque::new();
+    let live_debug = live_debug_enabled();
+    let mut pop_count: usize = 0;
+    let mut push_count: usize = 0;
+
+    for i in 0..n {
+        for &v in &uses_ids[i] {
+            let k = encode_pair(i, v);
+            if queued.insert(k) {
+                wl.push_back(k);
+                push_count += 1;
+            }
+        }
+    }
+
+    while let Some(k) = wl.pop_front() {
+        let (i, v) = decode_pair(k);
+        pop_count += 1;
+        if live_debug && pop_count % 1_000_000 == 0 {
+            eprintln!(
+                "[live-debug] pops={} pushes={} seen={} queued={}",
+                pop_count,
+                push_count,
+                seen.len(),
+                queued.len()
+            );
+        }
+        queued.remove(&k);
+        if !seen.insert(k) {
+            continue;
+        }
+
+        // Stop at definitions unless this instruction also uses the value.
+        if defs_ids[i].contains(&v) && !uses_set_ids[i].contains(&v) {
+            continue;
+        }
+
+        for &p in &preds[i] {
+            let pk = encode_pair(p, v);
+            if !seen.contains(&pk) && queued.insert(pk) {
+                wl.push_back(pk);
+                push_count += 1;
+            }
+        }
+    }
+    if live_debug {
+        eprintln!(
+            "[live-debug] done pops={} pushes={} seen={}",
+            pop_count,
+            push_count,
+            seen.len()
+        );
+    }
+
+    if let Some(var) = debug_var_name() {
+        if let Some(&vid) = reg_to_id.get(&var) {
+            let mut seen_idx: Vec<usize> = seen
+                .iter()
+                .filter_map(|&k| {
+                    let (i, v) = decode_pair(k);
+                    if v == vid { Some(i) } else { None }
+                })
+                .collect();
+            seen_idx.sort_unstable();
+            seen_idx.dedup();
+            let mut def_idx: Vec<usize> = Vec::new();
+            let mut use_idx: Vec<usize> = Vec::new();
+            for i in 0..n {
+                if defs_ids[i].contains(&vid) {
+                    def_idx.push(i);
+                }
+                if uses_set_ids[i].contains(&vid) {
+                    use_idx.push(i);
+                }
+            }
+            eprintln!(
+                "[live-debug-var] var={} defs={} uses={} seen_nodes={}",
+                var,
+                def_idx.len(),
+                use_idx.len(),
+                seen_idx.len()
+            );
+            eprintln!(
+                "[live-debug-var] first_defs={:?}",
+                def_idx.iter().take(8).collect::<Vec<_>>()
+            );
+            eprintln!(
+                "[live-debug-var] first_uses={:?}",
+                use_idx.iter().take(8).collect::<Vec<_>>()
+            );
+            eprintln!(
+                "[live-debug-var] first_seen={:?}",
+                seen_idx.iter().take(16).collect::<Vec<_>>()
+            );
+        } else {
+            eprintln!("[live-debug-var] var={} not found in reg table", var);
+        }
+    }
+
+    let mut live_in_ids: Vec<HashSet<usize>> = vec![HashSet::new(); n];
+    for &k in &seen {
+        let (i, v) = decode_pair(k);
+        if i < n {
+            live_in_ids[i].insert(v);
+        }
+    }
+
+    for i in 0..n {
+        let mut live_in = BTreeSet::new();
+        for &v in &live_in_ids[i] {
+            live_in.insert(id_to_reg[v].clone());
+        }
+        analyzed[i].live_in = live_in;
+
+        let mut live_out_ids: HashSet<usize> = HashSet::new();
         for &s in &analyzed[i].succ {
             if s < n {
-                for r in &analyzed[s].live_in {
-                    new_out.insert(r.clone());
+                for &v in &live_in_ids[s] {
+                    live_out_ids.insert(v);
                 }
             }
         }
-
-        // live_in[i] = use[i] U (live_out[i] \ def[i])
-        let mut new_in = analyzed[i].uses.clone();
-        for r in &new_out {
-            if !analyzed[i].defs.contains(r) {
-                new_in.insert(r.clone());
-            }
+        let mut live_out = BTreeSet::new();
+        for v in live_out_ids {
+            live_out.insert(id_to_reg[v].clone());
         }
-
-        if new_in != analyzed[i].live_in || new_out != analyzed[i].live_out {
-            analyzed[i].live_in = new_in;
-            analyzed[i].live_out = new_out;
-            for &p in &preds[i] {
-                if !in_wl[p] {
-                    wl.push_back(p);
-                    in_wl[p] = true;
-                }
-            }
-        }
+        analyzed[i].live_out = live_out;
     }
 
     analyzed

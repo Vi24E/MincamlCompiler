@@ -17,15 +17,79 @@ module S = Set.Make(struct
   let compare = String.compare
 end)
 
+module LeakM = Map.Make(struct
+  type t = Id.t
+  let compare = Id.compare
+end)
+
 let const_env_ref = ref C.empty
 let mutable_env_ref = ref S.empty
+let leakable_env_ref : bool LeakM.t ref = ref LeakM.empty
 
 let find_const x = C.find_opt x !const_env_ref
+
+let leakable_env () = !leakable_env_ref
+
+let is_leakable_defined x =
+  match LeakM.find_opt x !leakable_env_ref with
+  | Some true -> true
+  | _ -> false
+
+let add_leakable_use x env =
+  if Id.is_leakable x && not (LeakM.mem x env) then LeakM.add x false env else env
+
+let mark_leakable_def x env =
+  if Id.is_leakable x then LeakM.add x true env else env
+
+let rec collect_leakable_env env = function
+  | Unit | Int(_) | Float(_) | ExtArray(_) -> env
+  | Neg(x) | FNeg(x) | Var(x) | Break(x) ->
+      add_leakable_use x env
+  | Add(x, y) | Sub(x, y) | Sll(x, y) | Sra(x, y)
+  | FAdd(x, y) | FSub(x, y) | FMul(x, y) | FDiv(x, y)
+  | Get(x, y) ->
+      add_leakable_use y (add_leakable_use x env)
+  | Put(x, y, z) ->
+      add_leakable_use z (add_leakable_use y (add_leakable_use x env))
+  | IfEq(x, y, e1, e2) | IfLE(x, y, e1, e2) ->
+      let env1 = add_leakable_use y (add_leakable_use x env) in
+      let env2 = collect_leakable_env env1 e1 in
+      collect_leakable_env env2 e2
+  | Let((x, _), e1, e2) ->
+      let env1 = collect_leakable_env env e1 in
+      let env2 = mark_leakable_def x env1 in
+      collect_leakable_env env2 e2
+  | LetRec({ name = (f, _); args; body; tags = _ }, e2) ->
+      let env1 = mark_leakable_def f env in
+      let env2 = List.fold_left (fun acc (a, _) -> mark_leakable_def a acc) env1 args in
+      let env3 = collect_leakable_env env2 body in
+      collect_leakable_env env3 e2
+  | App(f, ys) ->
+      List.fold_left (fun acc y -> add_leakable_use y acc) (add_leakable_use f env) ys
+  | Tuple(xs) | ExtFunApp(_, xs) ->
+      List.fold_left (fun acc x -> add_leakable_use x acc) env xs
+  | LetTuple(xts, y, e) ->
+      let env1 = add_leakable_use y env in
+      let env2 = List.fold_left (fun acc (x, _) -> mark_leakable_def x acc) env1 xts in
+      collect_leakable_env env2 e
+  | TernPhi(c, x, y) ->
+      add_leakable_use y (add_leakable_use x (add_leakable_use c env))
+  | Assign(x, y, e, _) ->
+      let env1 = add_leakable_use y env in
+      let env2 = mark_leakable_def x env1 in
+      collect_leakable_env env2 e
+  | While(e1, e2) ->
+      let env1 = collect_leakable_env env e1 in
+      collect_leakable_env env1 e2
+
+let recompute_leakable_env e =
+  leakable_env_ref := collect_leakable_env LeakM.empty e
 
 let replace_tag (x, t) global_env =
   let local = 
     if M.mem x global_env then Id.Global (M.find x global_env)
     else match t with
+    | Id.Known(Id.Leakable, _) -> Id.Leakable
     | Id.Known(l, _) -> l
     | Id.Unknown -> Id.Local
   in
@@ -68,7 +132,11 @@ let rec g e is_top_level global_env const_env global_ptr =
   | Let(((x, tag), t), e1, e2) ->
       let e1' = g e1 false global_env const_env global_ptr in
       let e2' = g e2 false global_env const_env global_ptr in
-      Let(((x, Id.Known(Id.Local, Id.None)), t), e1', e2')
+      let local = match tag with
+        | Id.Known(Id.Leakable, _) -> Id.Leakable
+        | _ -> Id.Local
+      in
+      Let(((x, Id.Known(local, Id.None)), t), e1', e2')
   | LetRec({ name = (x, t); args = yts; body = e1; tags = tags }, e2) ->
       let e1' = g e1 false global_env const_env global_ptr in
       let e2' = g e2 is_top_level global_env const_env global_ptr in
@@ -102,11 +170,14 @@ let rec g e is_top_level global_env const_env global_ptr =
       While(
         g e1 false global_env const_env global_ptr,
         g e2 false global_env const_env global_ptr)
-  | Assign(x, y, e) ->
+  | Assign(x, y, e, tag) ->
       Assign(
         replace_tag x global_env,
         replace_tag y global_env,
-        g e false global_env const_env global_ptr)
+        g e false global_env const_env global_ptr,
+        tag)
+  | TernPhi(c, x, y) ->
+      TernPhi(replace_tag c global_env, replace_tag x global_env, replace_tag y global_env)
   | Break(x) -> Break(replace_tag x global_env)
   | Var(x) -> Var(replace_tag x global_env)
   | App(x, ys) -> App(replace_tag x global_env, List.map (fun y -> replace_tag y global_env) ys)
@@ -140,15 +211,19 @@ let rec get_const_env e const_env =
   | While(e1, e2) ->
     let const_env = get_const_env e1 const_env in
     get_const_env e2 const_env
-  | Assign(x, _, e) ->
+  | Assign(x, _, e, _) ->
     get_const_env e (C.remove (fst x) const_env)
+  | TernPhi(_, _, _) ->
+    const_env
   | Break(_) -> const_env
   | _ -> const_env
 
 let rec get_mutable_env e acc =
   match e with
-  | Assign(x, _, e2) ->
+  | Assign(x, _, e2, _) ->
     get_mutable_env e2 (S.add (fst x) acc)
+  | TernPhi(_, _, _) ->
+    acc
   | Let((_, _), e1, e2)
   | IfEq(_, _, e1, e2)
   | IfLE(_, _, e1, e2)
@@ -164,4 +239,5 @@ let f e =
   mutable_env_ref := get_mutable_env e S.empty;
   let const_env = get_const_env e C.empty in
   const_env_ref := S.fold C.remove !mutable_env_ref const_env;
+  recompute_leakable_env e;
   g e true M.empty const_env 0

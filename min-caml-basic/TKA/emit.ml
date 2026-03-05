@@ -46,6 +46,26 @@ let is_float_reg x =
   (String.sub s 0 2 = "%f" ||
    (String.length s >= 3 && String.sub s 0 3 = "%vf"))
 
+let starts_with s prefix =
+  let ls = String.length s and lp = String.length prefix in
+  ls >= lp && String.sub s 0 lp = prefix
+
+let print_debug_call_prefix = "min_caml_print_debug."
+
+let print_debug_id_of_call_label label =
+  if starts_with label print_debug_call_prefix then
+    let suffix =
+      String.sub label (String.length print_debug_call_prefix) (String.length label - String.length print_debug_call_prefix)
+    in
+    try Some (int_of_string suffix) with _ -> None
+  else
+    None
+
+let emit_print_debug oc label =
+  match print_debug_id_of_call_label label with
+  | Some id -> Printf.fprintf oc "\tprint_debug\t%d\n" id
+  | None -> ()
+
 let emit_movi oc r i =
   let r = Id.to_string r in
   if check_imm i then
@@ -273,9 +293,27 @@ and g_pre' = function
   | Save(x, y) when List.mem x allfregs -> savef y
   | _ -> ()
 
+(* 命令列を先読みして最初のTernF/Ternの引数を返す (phi bridge 変数の検出) *)
+let rec find_tern_phi_args = function
+  | Ans(TernF(_, y, z)) | Ans(Tern(_, y, z)) -> Some (y, z)
+  | Let(_, TernF(_, y, z), _) | Let(_, Tern(_, y, z), _) -> Some (y, z)
+  | Let(_, _, e) -> find_tern_phi_args e
+  | _ -> None
+
+let is_if_exp = function
+  | IfEq(_, _, _, _) | IfLE(_, _, _, _) | IfFEq(_, _, _, _) | IfFLE(_, _, _, _) -> true
+  | _ -> false
+
 let rec g oc ss = function (* 命令列のアセンブリ生成 (caml2html: emit_g) *)
   | dest, Ans(exp) -> g' oc ss (dest, exp)
   | dest, Let((x, _), exp, e) ->
+      (* expが分岐のときのみ後続にTernF/Ternがあるか先読みする。
+         あれば expを emit する前に .virtual_def を置き、if block内での逆伝播を防ぐ *)
+      if is_if_exp exp then
+        (match find_tern_phi_args e with
+         | Some (y, z) ->
+             Printf.fprintf oc "\t.virtual_def\t%s, %s\n" (Id.to_string y) (Id.to_string z)
+         | None -> ());
       g' oc ss (NonTail(x), exp);
       g oc ss (dest, e)
 and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gprime) *)
@@ -487,6 +525,18 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
            if check_imm i then Printf.fprintf oc "\tclti\t%s, %s, %d\n" x y i
            else (emit_movi oc Asm.reg_sw i;
                  Printf.fprintf oc "\tclt\t%s, %s, %s\n" x y (Id.to_string Asm.reg_sw)))
+  | NonTail(x), Tern(c, y, z) ->
+      let x = Id.to_string x in
+      let c = Id.to_string c in
+      let y = Id.to_string y in
+      let z = Id.to_string z in
+      Printf.fprintf oc "\ttern\t%s, %s, %s, %s\n" x c y z
+  | NonTail(x), TernF(c, y, z) ->
+      let x = Id.to_string x in
+      let c = Id.to_string c in
+      let y = Id.to_string y in
+      let z = Id.to_string z in
+      Printf.fprintf oc "\tternf\t%s, %s, %s, %s\n" x c y z
   | NonTail(x), LdF(y, V(z)) -> 
       let x = Id.to_string x in
       let y = Id.to_string y in
@@ -592,14 +642,14 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
       if !Asm.virtual_mode then Printf.fprintf oc "\tret\n"
       else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero reg_ra
-  | Tail, (SetInt _ | SetLabel _ | Mov _ | Neg _ | Add _ | Sub _ | Sll _ | Sra _ | Ld _ | CmpEq _ | CmpLE _ | CmpLT _ | CmpFEq _ | CmpFLE _ | CmpFLT _ as exp) ->
+  | Tail, (SetInt _ | SetLabel _ | Mov _ | Neg _ | Add _ | Sub _ | Sll _ | Sra _ | Ld _ | CmpEq _ | CmpLE _ | CmpLT _ | CmpFEq _ | CmpFLE _ | CmpFLT _ | Tern _ as exp) ->
       g' oc ss (NonTail(int_return_reg ()), exp);
       let reg_zero = Id.to_string reg_zero in
       let reg_ra = Id.to_string Asm.reg_ra in
       if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
       if !Asm.virtual_mode then Printf.fprintf oc "\tret\n"
       else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero reg_ra
-  | Tail, (SetFloat _ | FMov _ | FNeg _ | FAdd _ | FSub _ | FMul _ | FDiv _ | FInv _ | LdF _ as exp) ->
+  | Tail, (SetFloat _ | FMov _ | FNeg _ | FAdd _ | FSub _ | FMul _ | FDiv _ | FInv _ | LdF _ | TernF _ as exp) ->
       g' oc ss (NonTail(float_return_reg ()), exp);
       let reg_zero = Id.to_string reg_zero in
       let reg_ra = Id.to_string Asm.reg_ra in
@@ -914,6 +964,13 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       Printf.fprintf oc "\tlw\t%s, 0(%s)\n" reg_sw reg_cl;
       if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
       Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero reg_sw
+  | Tail, CallDir(Id.L(x), [], []) when starts_with x print_debug_call_prefix ->
+      emit_print_debug oc x;
+      let reg_zero = Id.to_string reg_zero in
+      let reg_ra = Id.to_string Asm.reg_ra in
+      if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
+      if !Asm.virtual_mode then Printf.fprintf oc "\tret\n"
+      else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero reg_ra
   | Tail, CallDir(Id.L(x), [], [z]) when x = "min_caml_int_of_float" || x = "min_caml_float_to_int" ->
       g'_args oc [] [] [z];
       let r0 = Id.to_string (int_return_reg ()) in
@@ -1202,6 +1259,8 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let y = Id.to_string y in
       let z = Id.to_string z in
       Printf.fprintf oc "\txor\t%s, %s, %s\n" a y z
+  | NonTail(_), CallDir(Id.L(x), [], []) when starts_with x print_debug_call_prefix ->
+      emit_print_debug oc x
   | NonTail(_), CallDir(Id.L("min_caml_print_newline"), [], []) ->
       let i5 = Id.to_string regs.(1) in
       let i31 = Id.to_string Asm.reg_sw in

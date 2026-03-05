@@ -25,6 +25,7 @@ type t =
   | Get of Id.t * Id.t
   | Put of Id.t * Id.t * Id.t
   | ExtArray of Id.l
+  | TernPhi of Id.t * Id.t * Id.t
   | Loop of t
   | Assign of Id.t * Id.t * t
   | Break of Id.t

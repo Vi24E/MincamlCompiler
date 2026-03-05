@@ -25,6 +25,7 @@ type t = (* クロージャ変換後の式 (caml2html: closure_t) *)
   | Get of Id.t * Id.t
   | Put of Id.t * Id.t * Id.t
   | ExtArray of Id.l
+  | TernPhi of Id.t * Id.t * Id.t
   | Loop of t
   | Assign of Id.t * Id.t * t
   | Break of Id.t
@@ -53,6 +54,7 @@ let rec fv = function
       let s = S.diff (fv e) (S.of_list (List.map fst xts)) in
       if Id.is_global y then s else S.add y s
   | Put(x, y, z) -> S.of_list (List.filter (fun v -> not (Id.is_global v)) [x; y; z])
+  | TernPhi(c, x, y) -> S.of_list (List.filter (fun v -> not (Id.is_global v)) [c; x; y])
   | Loop(e) -> fv e
   | Assign(x, y, e) ->
       let s = fv e in
@@ -118,7 +120,8 @@ let rec g env known = function (* クロージャ変換ルーチン本体 (caml2
   | KNormal.Put(x, y, z) -> Put(x, y, z)
   | KNormal.ExtArray(x) -> ExtArray(Id.L(Id.to_string x))
   | KNormal.ExtFunApp(x, ys) -> AppDir(Id.L("min_caml_" ^ (Id.to_string x)), ys)
-  | KNormal.Assign(x, y, e) -> Assign(x, y, g env known e)
+  | KNormal.TernPhi(c, x, y) -> TernPhi(c, x, y)
+  | KNormal.Assign(x, y, e, _) -> Assign(x, y, g env known e)
   | KNormal.While(KNormal.Int(1), e) -> Loop(g env known e)
   | KNormal.While(_, _) -> failwith "closure: While currently supports only while(1)"
   | KNormal.Break(x) -> Break(x)

@@ -1,0 +1,221 @@
+Assign Semantics Migration Plan
+
+Date: 2026-02-28
+Scope: KNormal Assign が「while 更新専用」前提から「一般代入」として使われ始めた影響整理
+
+1. 現状認識
+
+- これまで Assign は LoopInsert/While 系の更新用途が中心だった。
+- 現在は ArrayElim が `Put(target, const_idx, z)` を `Assign(slot[idx], z, Unit)` に変換している。
+  - 参照: `arrayElim.ml` の `rewrite_expr` (`Put -> Assign`)
+- その結果、Assign がプログラム全体に大量出現し、既存最適化の前提と衝突している。
+  - 観測値: `minrt.anormal` の Assign 0 行 -> `minrt.optimized` の Assign 2433 行。
+
+2. 直接バグ（最優先）
+
+- `constFold.ml` の `Let((x,t), e1, e2)` 処理が、`e1` 内の Assign 効果を `e2` 側環境に反映していない。
+  - `e2' = g (M.add x e1' env) e2` としており、mutable 更新後の値を失う。
+  - これにより、ArrayElim で scalar 化された値（例: image_size）が古い定数で誤畳み込みされる。
+  - 実害: `write_ppm_header` が `000 000` を出力し、Accuracy 0% に直結。
+
+3. 高リスク領域（意味破壊の潜在）
+
+- regalloc/emitter 系で Assign は実質 `mov/fmov` 扱いで、メモリへの永続化は Save に依存している。
+  - `regAlloc.ml` の global save 挿入は `Let` の束縛時点中心で、Assign 後値の保存を常に保証しない。
+  - `emit.ml` の Assign 出力は `mov/fmov` のみ。
+- Assign が while 専用なら露見しにくいが、ArrayElim 由来で一般更新に使うと危険。
+
+4. 高リスク領域（誤最適化の潜在）
+
+- `loopUnroll.ml` は `Assign*; Unit` 末尾を「continue 更新列」と解釈して展開する。
+- ArrayElim 由来 Assign も同形になるため、while 更新でない代入を誤って更新列扱いする可能性がある。
+- 現在 LoopUnroll 無効でも、将来有効化時の再発リスクとして残る。
+
+5. 品質劣化領域（主に性能）
+
+- `commonExpElim.ml`: Assign で環境破棄が強くかかる。
+- `variableChecker.ml`: Assign された変数は mutable 扱いになり定数タグ付けが落ちる。
+- `TKA/simm.ml`: mutable 扱いで置換最適化が抑制される。
+- これらは主に最適化機会減少だが、Assign の大量化で影響が拡大する。
+
+6. 影響範囲まとめ（優先順位）
+
+Priority A (正しさ):
+- constFold の Let/Assign 伝搬不整合
+- regalloc/emitter の Assign 後保存モデル
+
+Priority B (誤変換リスク):
+- loopUnroll の Assign 連鎖解釈
+
+Priority C (性能劣化):
+- commonExpElim / variableChecker / simm の mutable 保守化
+
+7. 確定方針
+
+- `TernPhi` は後段 (Closure/TKA/Backend) まで残す。Lower は行わない。
+- `Put -> Assign` は ArrayElim で一時的に導入するが、直後に PhiInsert で消す。
+- 最終的に残る `Assign` は while 由来のみとする。
+- while 由来 `Assign` は `TernPhi` 化しない（メリットが薄く、既存最適化を壊しやすいため）。
+
+8. 備考
+
+- 旧方針（Assign を while 専用へ戻す）は採用しない。
+- 本計画は「Put -> Assign を使うが、即座に Phi で消す」前提で統一する。
+
+9. TernPhiノード導入方針（確定）
+
+9.1 仕様
+
+- ノード: `TernPhi(cond_id, then_id, else_id)`。
+- 型: `Id.t * Id.t * Id.t`。
+- 用途: if 合流専用。
+- while には適用しない。
+- 真偽規約: `cond_id != 0` のとき `then_id`、`cond_id = 0` のとき `else_id` を選ぶ。
+
+9.2 Assign のタグ付け
+
+- `Assign` を `Id.t * Id.t * Id.t * AssignTag` に拡張する。
+- `AssignTag`:
+  - `AssignWhile` (LoopInsert/while 更新由来)
+  - `AssignArray` (ArrayElim の Put 由来)
+- PhiInsert の対象は `AssignArray` のみ。
+- `AssignWhile` は既存 while 変換・unroll 前提を維持。
+
+9.3 パス順序（必須）
+
+- `ArrayElim` 内で `Put -> AssignArray` を生成した直後に PhiInsert を呼ぶ。
+- 目的: `AssignArray` を他最適化へ流さず、即時に消去する。
+- これにより Assign の由来混在を避ける。
+- 単位: PhiInsert は関数単位で1回実行する。
+- 不変条件: PhiInsert 後、その関数内に `AssignArray` が残っていたらバグとして扱う。
+
+10. 変換仕様（if 内の任意位置に対応）
+
+対象:
+- `let _ = if cond then E_then else E_else in E_cont`
+- `AssignArray` は枝の末尾限定ではなく、枝内部の任意位置で扱う。
+
+基本変換:
+- then/else それぞれで、`AssignArray` を「代入写像 + 本体式」に分解する。
+- 各枝の後続式には、枝内代入の結果を置換して反映する。
+- 合流点で各変数に `TernPhi` を挿入し、`E_cont` を置換する。
+
+10.1 PhiInsert のしきい値分岐（追加方針）
+
+- PhiInsert 後の if 残部サイズを `S` とする（`S` は then/else の Assign 通過後の残部式 + 合流後継続式のサイズ）。
+- `S < phi_threshold`:
+  - 従来どおり `TernPhi` を挿入する。
+- `S >= phi_threshold`:
+  - `TernPhi` を挿入せず、逐次更新（branch-local fresh 代入）に切り替える。
+  - 目的: 大規模 if での phi 入力値の長大 live 化を抑制する。
+
+10.2 `S >= phi_threshold` 時の逐次更新変換
+
+- 変換対象:
+  - `let _ = if cond then expr1; x <- x'; expr2 else expr3; x <- x''; expr4 in expr5`
+- 変換後:
+  - then 側: `expr1; let new_x = x' in [x/new_x]expr2`
+  - else 側: `expr3; let new_x = x'' in [x/new_x]expr4`
+  - if 後: `[x/new_x]expr5`
+- 片側のみ更新される場合:
+  - 更新されない側に `let new_x = x` を補完して両枝で同名 fresh を定義する。
+- 複数変数更新:
+  - 各更新変数ごとに fresh (`new_x`, `new_y`, ...) を作る。
+  - 枝内更新は逐次順序を保持して置換する。
+- スコープ:
+  - `new_x` が if 外で参照される形を許容する（本計画の if 外可視仕様に従う）。
+
+例（方針）:
+- 変換前:
+  - `if cond then expr1; x <- x'; expr2 else expr3; x <- x''; expr4`
+- 変換後:
+  - then: `expr1; [x/x']expr2`
+  - else: `expr3; [x/x'']expr4`
+- join: `new_x = TernPhi(cond, x', x'')`
+- cont: `[x/new_x]E_cont`
+
+補足（この規則を一般形に適用）:
+- 次の形は常に同じ規則で扱う:
+  - 変換前:
+    - `if cond then expr1; x <- x'; expr2 else expr3; x <- x''; expr4`
+  - 変換後:
+    - then: `expr1; [x/x']expr2`
+    - else: `expr3; [x/x'']expr4`
+    - join: `new_x = TernPhi(cond, x', x'')`
+    - cont: `[x/new_x]E_cont`
+- 重要: `expr1` / `expr3` には置換をかけない（`Assign` 通過後の後続式にのみ置換を適用）。
+
+片側のみ代入:
+- 片側に `x <- v`、他方に代入なしなら、他方は恒等 (`x`) とみなす。
+- `new_x = TernPhi(cond, v, x)` / `new_x = TernPhi(cond, x, v)` を使う。
+
+11. 逐次代入と swap 対応
+
+- 枝内の複数 `AssignArray` は逐次実行として解釈する。
+- `x <- y`, `y <- x` などを壊さないため、Assign ごとに fresh スナップショット変数を使う。
+- 実装規則:
+  1. 式を先頭から走査し、状態 `(rewritten_expr, subst)` を更新する。
+  2. `AssignArray(x, y)` に到達した時点でのみ `rhs = subst(y)` を評価する。
+  3. `tmp_x = rhs` (fresh) を導入し、`AssignArray` 自体は削除する。
+  4. 置換環境を `x -> tmp_x` に更新し、以後の後続式にのみ適用する。
+  5. `Assign` より前の式には適用しない（時点依存の意味保存）。
+- この規則で循環依存でも意味保存できる。
+
+11.1 ネスト if の扱い
+
+- 実装インターフェースは `expr -> (expr', subst_out)` とする。
+- then/else を再帰的に処理し、各枝の `subst_out` を得る。
+- 合流点では `subst_out_then` と `subst_out_else` の差分から `TernPhi` を生成し、
+  合流後 `subst_join` を構成して `E_cont` に適用する。
+- PhiInsert は関数単位で1回実行する（ArrayElim で Put->AssignArray 生成後に即実行）。
+
+12. 可視性（if外参照）方針
+
+- if 内で定義された値も if 外で参照可能にしてよい（alpha 変換済み前提）。
+- 未到達分岐側の値は未定義として扱う。
+- この仕様に合わせて `ClosureChecker` など free-variable 判定を修正する。
+
+13. 影響範囲（更新）
+
+- KNormal:
+  - `kNormal.ml/.mli` (`AssignTag` 追加)
+  - `arrayElim.ml` (`AssignArray` 生成 + 即 PhiInsert 呼び出し)
+  - `ternPhiInsert.ml` (任意位置 Assign 解析、fresh 化、Phi 生成)
+  - `debug.ml` (タグ表示)
+- 解析/最適化:
+  - `variableChecker.ml`, `functionChecker.ml`, `constFold.ml`, `commonExpElim.ml`, `beta.ml`, `loopUnroll.ml`
+  - `AssignTag` に応じた振る舞い分岐
+- Closure/TKA/Backend:
+  - `closure.ml`, `closureChecker.ml`
+  - `TKA/virtual.ml`, `TKA/asm.ml`, `TKA/simm.ml`, `TKA/regAlloc.ml`, `TKA/allocVirtual.ml`, `TKA/emit.ml`
+  - `TernPhi` 残存前提の受理、および free-variable 判定緩和
+
+14. 実装タスク
+
+Phase A: AST/タグ導入
+1. [done] `AssignTag` 導入と全 match 網羅更新。
+2. [done] ArrayElim の `Put -> AssignArray` 化。
+
+Phase B: 即時 Phi 化
+3. [done] ArrayElim 内で PhiInsert を呼び、`AssignArray` をその場で消去。
+4. [done] PhiInsert を「末尾限定」から「任意位置 Assign」対応へ拡張。
+5. [done] 片側代入欠損時の恒等補完。
+6. [done] swap/cycle 対応の fresh スナップショット実装。
+7. [done] PhiInsert 後の `AssignArray` 残存検査（関数単位）を追加し、残存時はデバッグ出力して失敗させる。
+8. [done] `phi_threshold` を導入し、`S` による `TernPhi`/逐次更新の分岐実装。
+9. [done] `S >= phi_threshold` 経路で branch-local fresh 代入変換（片側更新のダミー `let new_x = x` 含む）を実装。
+
+Phase C: Checker/Backend 整合
+10. [done] if 外参照を許す仕様に合わせて `ClosureChecker` 等を修正。
+11. [todo] `AssignWhile` のみが残ることを検証し、while 系最適化との整合確認。
+12. [todo] `S >= phi_threshold` 変換で導入される `new_x` の if 外可視参照が後段で自由変数扱いされないことを再確認。
+
+Phase D: 検証
+13. [todo] `tester/test.py --v2 --timelimit 90` で Accuracy 100% を確認。
+14. [todo] inline=100 / inline=inf の両方で Accuracy 100% を確認。
+
+15. 受け入れ基準
+
+- Accuracy が 100%（minrt テスト）であること。
+- ArrayElim 由来 `AssignArray` が最終 IR から消えていること。
+- while 由来 `AssignWhile` のみ残ること。

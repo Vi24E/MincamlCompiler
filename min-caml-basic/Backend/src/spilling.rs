@@ -809,10 +809,52 @@ fn parse_offset(s: &str) -> Option<(i32, String)> {
     Some((off, base.to_string()))
 }
 
+fn expect_operand<'a>(operands: &'a [String], mnemonic: &str, index: usize) -> &'a str {
+    operands.get(index).map(String::as_str).unwrap_or_else(|| {
+        panic!(
+            "spilling::get_def_use_indices: missing operand {} for '{}' operands={:?}",
+            index, mnemonic, operands
+        )
+    })
+}
+
+fn expect_direct_reg_operand(operands: &[String], mnemonic: &str, index: usize) {
+    let op = expect_operand(operands, mnemonic, index);
+    if !op.starts_with('%') {
+        panic!(
+            "spilling::get_def_use_indices: expected register at {}[{}], got '{}'",
+            mnemonic, index, op
+        );
+    }
+}
+
+fn expect_offset_base_reg_operand(operands: &[String], mnemonic: &str, index: usize) {
+    let op = expect_operand(operands, mnemonic, index);
+    let Some((_, base)) = parse_offset(op) else {
+        panic!(
+            "spilling::get_def_use_indices: expected offset(base) at {}[{}], got '{}'",
+            mnemonic, index, op
+        );
+    };
+    if !base.starts_with('%') {
+        panic!(
+            "spilling::get_def_use_indices: expected base register at {}[{}], got '{}'",
+            mnemonic, index, base
+        );
+    }
+}
+
 fn extract_base(s: &str) -> Option<&str> {
     let start = s.find('(')?;
     let end = s.find(')')?;
-    Some(&s[start + 1..end])
+    let base = &s[start + 1..end];
+    if !base.starts_with('%') {
+        panic!(
+            "spilling::extract_base: non-register base '{}' in operand '{}'",
+            base, s
+        );
+    }
+    Some(base)
 }
 
 fn extract_regs_from_op(s: &str) -> Vec<String> {
@@ -823,9 +865,13 @@ fn extract_regs_from_op(s: &str) -> Vec<String> {
     }
 
     if let Some((_, base)) = parse_offset(s) {
-        if base.starts_with('%') {
-            out.push(base);
+        if !base.starts_with('%') {
+            panic!(
+                "spilling::extract_regs_from_op: non-register base '{}' in operand '{}'",
+                base, s
+            );
         }
+        out.push(base);
     }
 
     out
@@ -837,58 +883,145 @@ fn get_def_use_indices(mnemonic: &str, operands: &[String]) -> (Vec<usize>, Vec<
     let mut uses = Vec::new();
 
     match mnemonic {
+        // 3-operand reg-reg/reg-float ops: dst, src1, src2
+        "add" | "sub" | "sll" | "sar" | "or" | "xor" | "ceq" | "cleq" | "clt" | "feq"
+        | "fleq" | "flt" | "fadd" | "fsub" | "fmul" | "fdiv" => {
+            if n > 0 {
+                expect_direct_reg_operand(operands, mnemonic, 0);
+                defs.push(0);
+            }
+            if n > 1 {
+                expect_direct_reg_operand(operands, mnemonic, 1);
+                uses.push(1);
+            }
+            if n > 2 {
+                expect_direct_reg_operand(operands, mnemonic, 2);
+                uses.push(2);
+            }
+        }
+        // Ternary select: dst, cond, then, else
+        "tern" | "ternf" => {
+            if n > 0 {
+                expect_direct_reg_operand(operands, mnemonic, 0);
+                defs.push(0);
+            }
+            if n > 1 {
+                expect_direct_reg_operand(operands, mnemonic, 1);
+                uses.push(1);
+            }
+            if n > 2 {
+                expect_direct_reg_operand(operands, mnemonic, 2);
+                uses.push(2);
+            }
+            if n > 3 {
+                expect_direct_reg_operand(operands, mnemonic, 3);
+                uses.push(3);
+            }
+        }
+        // 3-operand immediate ops: dst, src, imm
+        "addi" | "subi" | "slli" | "sari" | "ori" | "xori" | "ceqi" | "cleqi" | "clti" => {
+            if n > 0 {
+                expect_direct_reg_operand(operands, mnemonic, 0);
+                defs.push(0);
+            }
+            if n > 1 {
+                expect_direct_reg_operand(operands, mnemonic, 1);
+                uses.push(1);
+            }
+        }
+        // 2-operand ops: dst, src
+        "mov" | "neg" | "fmov" | "fneg" | "finv" | "frsqrt" | "ffloor" | "ftoi" | "itof"
+        | "mif" => {
+            if n > 0 {
+                expect_direct_reg_operand(operands, mnemonic, 0);
+                defs.push(0);
+            }
+            if n > 1 {
+                expect_direct_reg_operand(operands, mnemonic, 1);
+                uses.push(1);
+            }
+        }
+        // Loads: dst, off(base)
+        "lw" | "lf" | "lb" => {
+            if n > 0 {
+                expect_direct_reg_operand(operands, mnemonic, 0);
+                defs.push(0);
+            }
+            if n > 1 {
+                expect_offset_base_reg_operand(operands, mnemonic, 1);
+                uses.push(1);
+            }
+        }
         "sw" | "sf" | "sb" => {
-            for i in 0..n {
-                uses.push(i);
+            if n > 0 {
+                expect_direct_reg_operand(operands, mnemonic, 0);
+                uses.push(0);
+            }
+            if n > 1 {
+                expect_offset_base_reg_operand(operands, mnemonic, 1);
+                uses.push(1);
             }
         }
         "jzero" => {
             if n > 1 {
+                expect_direct_reg_operand(operands, mnemonic, 1);
                 uses.push(1);
             }
         }
         // jeq rs1, rs2, label  / jlt rs1, rs2, label  / jleq rs1, rs2, label
         "jeq" | "jlt" | "jleq" => {
             if n > 0 {
+                expect_direct_reg_operand(operands, mnemonic, 0);
                 uses.push(0);
             }
             if n > 1 {
+                expect_direct_reg_operand(operands, mnemonic, 1);
                 uses.push(1);
             }
         }
         "jmp" => {
             if n > 0 && operands[0] != "%i0" {
+                expect_direct_reg_operand(operands, mnemonic, 0);
                 defs.push(0);
             }
             if n > 1 {
+                expect_offset_base_reg_operand(operands, mnemonic, 1);
                 uses.push(1);
             }
         }
         "call_dir" => {}
         "call_cls" => {
             if n > 0 {
+                expect_direct_reg_operand(operands, mnemonic, 0);
                 uses.push(0);
             }
         }
         "ret" => {}
         "movi" | "movui" => {
             if n > 0 {
+                expect_direct_reg_operand(operands, mnemonic, 0);
                 defs.push(0);
             }
         }
         "set_label" => {
             if n > 0 {
+                expect_direct_reg_operand(operands, mnemonic, 0);
                 defs.push(0);
             }
         }
-        _ => {
-            if n > 0 {
-                defs.push(0);
-            }
-            for i in 1..n {
-                uses.push(i);
+        // .virtual_def: DEF of all operand registers, USE of none.
+        ".virtual_def" => {
+            for idx in 0..n {
+                expect_direct_reg_operand(operands, mnemonic, idx);
+                defs.push(idx);
             }
         }
+        "" | "nop" | "print_debug" | ".data" | ".text" | ".align" | ".global" | ".section" | ".func_entry"
+        | ".end_function" | ".long" => {}
+        _ => panic!(
+            "spilling::get_def_use_indices: unknown mnemonic '{}' operands={:?}",
+            mnemonic, operands
+        ),
     }
 
     (defs, uses)

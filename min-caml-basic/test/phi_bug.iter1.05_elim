@@ -1,0 +1,26 @@
+Int Ti14.199 = 0;
+Int r.200 = Int n.428 = Ti14.199;
+Int Ti15.429 = 2;
+Int Ti16.430 = 0;
+Int Ti441 = Ti16.430;
+Int Ti442 = Ti16.430;
+Int Ti17.432 = 0;
+Unit w.433 = If (n.428 = Ti17.432) {
+	Unit Tu452 = Unit;
+	Int Ti441_phi.450 = Ti19.438;
+	Tu452
+}
+else {
+	Unit Tu453 = Unit;
+	Int Ti441_phi.451 = Ti21.436;
+	Tu453
+};
+Int phi_cond.454 = If (n.428 = Ti17.432) {
+	1
+}
+else {
+	0
+};
+Int Ti441_phi.449 = TernPhi(phi_cond.454, Ti441_phi.450, Ti441_phi.451);
+Ti441_phi.449;
+Unit

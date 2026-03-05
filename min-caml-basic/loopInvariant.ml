@@ -13,7 +13,8 @@ let rec collect_written_arrays acc = function
       collect_written_arrays (collect_written_arrays acc e1) e2
   | LetRec({ body; _ }, e2) ->
       collect_written_arrays (collect_written_arrays acc body) e2
-  | LetTuple(_, _, e) | Assign(_, _, e) -> collect_written_arrays acc e
+  | LetTuple(_, _, e) | Assign(_, _, e, _) -> collect_written_arrays acc e
+  | TernPhi(_, _, _) -> acc
   | While(e1, e2) -> collect_written_arrays (collect_written_arrays acc e1) e2
   | Unit | Int(_) | Float(_) | Neg(_) | Add(_, _) | Sub(_, _) | Sll(_, _)
   | Sra(_, _) | FNeg(_) | FAdd(_, _) | FSub(_, _) | FMul(_, _) | FDiv(_, _)
@@ -27,7 +28,8 @@ let rec collect_read_arrays acc = function
       collect_read_arrays (collect_read_arrays acc e1) e2
   | LetRec({ body; _ }, e2) ->
       collect_read_arrays (collect_read_arrays acc body) e2
-  | LetTuple(_, _, e) | Assign(_, _, e) -> collect_read_arrays acc e
+  | LetTuple(_, _, e) | Assign(_, _, e, _) -> collect_read_arrays acc e
+  | TernPhi(_, _, _) -> acc
   | While(e1, e2) -> collect_read_arrays (collect_read_arrays acc e1) e2
   | Put(_, _, _) | Unit | Int(_) | Float(_) | Neg(_) | Add(_, _) | Sub(_, _)
   | Sll(_, _) | Sra(_, _) | FNeg(_) | FAdd(_, _) | FSub(_, _) | FMul(_, _)
@@ -36,7 +38,8 @@ let rec collect_read_arrays acc = function
       acc
 
 let rec collect_assign_lhs_arrays acc = function
-  | Assign(x, _, e) -> collect_assign_lhs_arrays (S.add x acc) e
+  | Assign(x, _, e, _) -> collect_assign_lhs_arrays (S.add x acc) e
+  | TernPhi(_, _, _) -> acc
   | Let(_, e1, e2) | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) ->
       collect_assign_lhs_arrays (collect_assign_lhs_arrays acc e1) e2
   | LetRec({ body; _ }, e2) ->
@@ -66,11 +69,36 @@ let rec collect_let_rhs_arrays acc = function
       collect_let_rhs_arrays (collect_let_rhs_arrays acc e1) e2
   (* LetTuple はタプルから取り出すだけなので、取り出した変数は non-const にしない。
      タプルに入れる側の Tuple([...]) を non-const にするだけで十分。 *)
-  | LetTuple(_, _, e) | Assign(_, _, e) -> collect_let_rhs_arrays acc e
+  | LetTuple(_, _, e) | Assign(_, _, e, _) -> collect_let_rhs_arrays acc e
+  | TernPhi(_, _, _) -> acc
   | While(e1, e2) -> collect_let_rhs_arrays (collect_let_rhs_arrays acc e1) e2
   | Put(_, _, _) | Unit | Int(_) | Float(_) | Neg(_) | Add(_, _) | Sub(_, _)
   | Sll(_, _) | Sra(_, _) | FNeg(_) | FAdd(_, _) | FSub(_, _) | FMul(_, _)
   | FDiv(_, _) | Var(_) | App(_, _) | Tuple(_) | Get(_, _) | ExtArray(_)
+  | ExtFunApp(_, _) | Break(_) ->
+      acc
+
+(* 不純な App() 呼び出しに渡された引数変数を収集する。
+   不純関数は内部で配列を書き換える可能性があるため、
+   引数として渡された変数は const_arrays から除外する必要がある。 *)
+let rec collect_impure_app_args acc = function
+  | App(f, args) ->
+      (* FunctionChecker で不純と判定された App は引数を全て non-const 扱い *)
+      let impure = not (FunctionChecker.checkExpPurity (App(f, args))) in
+      if impure then
+        List.fold_left (fun a v -> S.add v a) acc args
+      else acc
+  | Let(_, e1, e2) | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) ->
+      collect_impure_app_args (collect_impure_app_args acc e1) e2
+  | LetRec({ body; _ }, e2) ->
+      collect_impure_app_args (collect_impure_app_args acc body) e2
+  | LetTuple(_, _, e) | Assign(_, _, e, _) -> collect_impure_app_args acc e
+  | TernPhi(_, _, _) -> acc
+  | While(e1, e2) ->
+      collect_impure_app_args (collect_impure_app_args acc e1) e2
+  | Put(_, _, _) | Unit | Int(_) | Float(_) | Neg(_) | Add(_, _) | Sub(_, _)
+  | Sll(_, _) | Sra(_, _) | FNeg(_) | FAdd(_, _) | FSub(_, _) | FMul(_, _)
+  | FDiv(_, _) | Var(_) | Tuple(_) | Get(_, _) | ExtArray(_)
   | ExtFunApp(_, _) | Break(_) ->
       acc
 
@@ -79,8 +107,11 @@ let collect_const_read_arrays body =
   let assign_lhs_arrays = collect_assign_lhs_arrays S.empty body in
   let put_lhs_arrays = collect_written_arrays S.empty body in
   let let_rhs_arrays = collect_let_rhs_arrays S.empty body in
+  (* 不純関数呼び出しの引数も non-const に含める（App越えの配列書き込みを保守的に処理） *)
+  let impure_app_args = collect_impure_app_args S.empty body in
   let non_const =
-    S.union assign_lhs_arrays (S.union put_lhs_arrays let_rhs_arrays)
+    S.union impure_app_args
+      (S.union assign_lhs_arrays (S.union put_lhs_arrays let_rhs_arrays))
   in
   S.diff read_arrays non_const
 
@@ -101,9 +132,11 @@ let rec collect_rev_edges graph = function
           xts
       in
       collect_rev_edges graph' e
-  | Assign(x, y, e) ->
+  | Assign(x, y, e, _) ->
       let graph' = add_rev_edge y x graph in
       collect_rev_edges graph' e
+  | TernPhi(_, _, _) ->
+      graph
   | While(e1, e2) -> collect_rev_edges (collect_rev_edges graph e1) e2
   | Put(_, _, _) | Unit | Int(_) | Float(_) | Neg(_) | Add(_, _) | Sub(_, _)
   | Sll(_, _) | Sra(_, _) | FNeg(_) | FAdd(_, _) | FSub(_, _) | FMul(_, _)
@@ -144,7 +177,8 @@ let rec collect_impure_let_defs const_arrays acc = function
   | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) ->
       collect_impure_let_defs const_arrays
         (collect_impure_let_defs const_arrays acc e1) e2
-  | LetTuple(_, _, e) | Assign(_, _, e) -> collect_impure_let_defs const_arrays acc e
+  | LetTuple(_, _, e) | Assign(_, _, e, _) -> collect_impure_let_defs const_arrays acc e
+  | TernPhi(_, _, _) -> acc
   | While(e1, e2) ->
       collect_impure_let_defs const_arrays
         (collect_impure_let_defs const_arrays acc e1) e2
@@ -182,7 +216,8 @@ let rec contains_break = function
   | Break _ -> true
   | Let(_, _, e2) -> contains_break e2
   | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) -> contains_break e1 || contains_break e2
-  | Assign(_, _, e) -> contains_break e
+  | Assign(_, _, e, _) -> contains_break e
+  | TernPhi(_, _, _) -> false
   | LetTuple(_, _, e) -> contains_break e
   | While(_, _) -> false
   | _ -> false
@@ -193,7 +228,8 @@ let rec rewrite_exits replacement = function
   | Break(v) -> Var(v)
   | Unit -> replacement
   | Let(xt, e1, e2) -> Let(xt, e1, rewrite_exits replacement e2)
-  | Assign(x, y, e) -> Assign(x, y, rewrite_exits replacement e)
+  | Assign(x, y, e, tag) -> Assign(x, y, rewrite_exits replacement e, tag)
+  | TernPhi(c, x, y) -> TernPhi(c, x, y)
   | IfEq(x, y, e1, e2) ->
       IfEq(x, y, rewrite_exits replacement e1, rewrite_exits replacement e2)
   | IfLE(x, y, e1, e2) ->
@@ -215,7 +251,8 @@ let rec g ~peel arg_set = function
   | IfEq(x, y, e1, e2) -> IfEq(x, y, g ~peel arg_set e1, g ~peel arg_set e2)
   | IfLE(x, y, e1, e2) -> IfLE(x, y, g ~peel arg_set e1, g ~peel arg_set e2)
   | LetTuple(xts, y, e) -> LetTuple(xts, y, g ~peel arg_set e)
-  | Assign(x, y, e) -> Assign(x, y, g ~peel arg_set e)
+  | Assign(x, y, e, tag) -> Assign(x, y, g ~peel arg_set e, tag)
+  | TernPhi(c, x, y) -> TernPhi(c, x, y)
   | While(cond, body) ->
       let cond' = g ~peel arg_set cond in
       (* ボディを同じ peel フラグで処理：内側 While も peel=true ならピール可能。

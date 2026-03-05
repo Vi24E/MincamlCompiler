@@ -3,6 +3,16 @@ open KNormal
 let max_interp_steps = ref 30000
 let interp_steps = ref 0
 
+(* Collect all Assign target variables in an expression (for While env cleanup) *)
+let rec collect_assign_targets acc = function
+  | Assign(x, _, e, _) -> collect_assign_targets (S.add x acc) e
+  | Let(_, e1, e2) | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) | While(e1, e2) ->
+      collect_assign_targets (collect_assign_targets acc e1) e2
+  | LetRec({ body; _ }, e2) ->
+      collect_assign_targets (collect_assign_targets acc body) e2
+  | LetTuple(_, _, e) -> collect_assign_targets acc e
+  | _ -> acc
+
 type memo_res = Ok of t | Error of string
 
 module ArgList = struct
@@ -110,7 +120,7 @@ let rec interpret env expr =
     | Let((x, _t), e1, e2) ->
         let v1 = interpret env e1 in
         interpret (M.add x v1 env) e2
-    | Assign(_, _, _) | While(_, _) | Break(_) ->
+    | Assign(_, _, _, _) | While(_, _) | Break(_) ->
         raise (Failure "unsupported control expression in interpreter")
     | App(f, args) ->
         (try
@@ -149,56 +159,84 @@ let rec interpret env expr =
     | _ -> raise (Failure "unsupported expression in interpreter")
 
 let rec g env = function (* 定数畳み込みルーチン本体 *)
-  | Var(x) when memi x env -> Int(findi x env)
+  | Var(x) when memi x env -> (Int(findi x env), env)
   (* | Var(x) when memf x env -> Float(findf x env) *)
   (* | Var(x) when memt x env -> Tuple(findt x env) *)
-  | Neg(x) when memi x env -> Int(-(findi x env))
-  | Add(x, y) when memi x env && memi y env -> Int(findi x env + findi y env)
-  | Sub(x, y) when memi x env && memi y env -> Int(findi x env - findi y env)
-  | FNeg(x) when memf x env -> Float(-.(findf x env))
-  | FAdd(x, y) when memf x env && memf y env -> Float(findf x env +. findf y env)
-  | FSub(x, y) when memf x env && memf y env -> Float(findf x env -. findf y env)
-  | FMul(x, y) when memf x env && memf y env -> Float(findf x env *. findf y env)
-  | FDiv(x, y) when memf x env && memf y env -> Float(findf x env /. findf y env)
+  | Neg(x) when memi x env -> (Int(-(findi x env)), env)
+  | Add(x, y) when memi x env && memi y env -> (Int(findi x env + findi y env), env)
+  | Sub(x, y) when memi x env && memi y env -> (Int(findi x env - findi y env), env)
+  | FNeg(x) when memf x env -> (Float(-.(findf x env)), env)
+  | FAdd(x, y) when memf x env && memf y env -> (Float(findf x env +. findf y env), env)
+  | FSub(x, y) when memf x env && memf y env -> (Float(findf x env -. findf y env), env)
+  | FMul(x, y) when memf x env && memf y env -> (Float(findf x env *. findf y env), env)
+  | FDiv(x, y) when memf x env && memf y env -> (Float(findf x env /. findf y env), env)
   | IfEq(x, y, e1, e2) when memi x env && memi y env -> if findi x env = findi y env then g env e1 else g env e2
   | IfEq(x, y, e1, e2) when memf x env && memf y env -> if findf x env = findf y env then g env e1 else g env e2
-  | IfEq(x, y, e1, e2) -> IfEq(x, y, g env e1, g env e2)
+  | IfEq(x, y, e1, e2) ->
+      let (e1', env1) = g env e1 in
+      let (e2', env2) = g env e2 in
+      let merged = M.fold (fun k v acc -> M.add k v acc) env2 env1 in
+      (IfEq(x, y, e1', e2'), merged)
   | IfLE(x, y, e1, e2) when memi x env && memi y env -> if findi x env <= findi y env then g env e1 else g env e2
   | IfLE(x, y, e1, e2) when memf x env && memf y env -> if findf x env <= findf y env then g env e1 else g env e2
-  | IfLE(x, y, e1, e2) -> IfLE(x, y, g env e1, g env e2)
+  | IfLE(x, y, e1, e2) ->
+      let (e1', env1) = g env e1 in
+      let (e2', env2) = g env e2 in
+      let merged = M.fold (fun k v acc -> M.add k v acc) env2 env1 in
+      (IfLE(x, y, e1', e2'), merged)
   | Let((x, t), e1, e2) ->
-      let e1' = g env e1 in
-      let e2' = g (M.add x e1' env) e2 in
-      Let((x, t), e1', e2')
+      let (e1', env1) = g env e1 in
+      let (e2', env2) = g (M.add x e1' env1) e2 in
+      (Let((x, t), e1', e2'), env2)
   | LetRec({ name = x; args = ys; body = e1; tags = tags }, e2) ->
-      let fundef = { name = x; args = ys; body = g env e1; tags = tags } in
+      let (body', _) = g env e1 in
+      let fundef = { name = x; args = ys; body = body'; tags = tags } in
       FunctionChecker.registerFunctionDef fundef;
-      LetRec(fundef, g env e2)
+      let (e2', env2) = g env e2 in
+      (LetRec(fundef, e2'), env2)
   | LetTuple(xts, y, e) when memt y env ->
-      List.fold_left2
+      let (e', env') = g env e in
+      (List.fold_left2
         (fun e' xt z -> Let(xt, Var(z), e'))
-        (g env e)
+        e'
         xts
-        (findt y env)
-  | LetTuple(xts, y, e) -> LetTuple(xts, y, g env e)
-  | Assign(x, y, e) ->
+        (findt y env), env')
+  | LetTuple(xts, y, e) ->
+      let (e', env') = g env e in
+      (LetTuple(xts, y, e'), env')
+  | Assign(x, y, e, tag) ->
       let env' =
         if memi y env then M.add x (Int(findi y env)) env
         else if memf y env then M.add x (Float(findf y env)) env
         else M.remove x env
       in
-      Assign(x, y, g env' e)
+      let (e', env_out) = g env' e in
+      (Assign(x, y, e', tag), env_out)
+  | TernPhi(c, x, y) ->
+      (match findi c env with
+      | 0 -> (Var(y), env)
+      | _ -> (Var(x), env)
+      | exception Not_found -> (TernPhi(c, x, y), env))
   | While(e1, e2) ->
-      While(g env e1, g M.empty e2)
-  | Break(x) -> Break(x)
+      (* Remove mutable variables (Assign targets in body) from env
+         for the condition, so loop counters are not folded to their
+         initial constants.  The body already uses M.empty. *)
+      let mutable_in_body = collect_assign_targets S.empty e2 in
+      let safe_env = M.fold (fun k v acc ->
+        if S.mem k mutable_in_body then acc else M.add k v acc
+      ) env M.empty in
+      let (e1', _) = g safe_env e1 in
+      let (e2', _) = g M.empty e2 in
+      (While(e1', e2'), safe_env)
+  | Break(x) -> (Break(x), env)
   | App(f, args) as app -> 
       (try
         let fundef = FunctionChecker.findFunction (Id.L(Id.to_string f)) in
         match fundef with
-        | None -> app
+        | None -> (app, env)
         | Some(fundef) ->
           let pure = FunctionChecker.checkFunctionPurity fundef in
-          if not pure then app else
+          if not pure then (app, env) else
           let arg_values = List.map (fun arg ->
             if memi arg env then Int (findi arg env)
             else if memf arg env then Float (findf arg env)
@@ -214,12 +252,12 @@ let rec g env = function (* 定数畳み込みルーチン本体 *)
                 raise (Failure msg)
             | None ->
                 interpret env app in
-          result
+          (result, env)
       with
-      | Not_found -> app
+      | Not_found -> (app, env)
       | Failure msg ->
           Format.eprintf "  failed to const-fold %s: %s@." (Id.to_string f) msg;
-          app)
-  | e -> e
+          (app, env))
+  | e -> (e, env)
 
-let f = g M.empty
+let f e = fst (g M.empty e)

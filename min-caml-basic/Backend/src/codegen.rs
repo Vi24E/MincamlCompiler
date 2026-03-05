@@ -99,6 +99,10 @@ pub fn emit_assembly(instructions: &[Instruction]) -> String {
         if let Some(mnemonic) = &inst.mnemonic {
             // Skip directives that don't need register resolution
             match mnemonic.as_str() {
+                ".virtual_def" => {
+                    // Liveness-only pseudo-instruction: strip from output.
+                    continue;
+                }
                 ".data" | ".text" | ".align" | ".global" | ".section" | ".func_entry" => {
                     // Pass through as-is
                     line.push_str(mnemonic);

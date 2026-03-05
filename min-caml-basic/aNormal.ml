@@ -10,7 +10,7 @@ let rec flatten_let e =
   | Sll(_, _) | Sra(_, _)
   | FNeg(_) | FAdd(_, _) | FSub(_, _) | FMul(_, _) | FDiv(_, _)
   | Var(_) | ExtArray(_) | Tuple(_) | Get(_, _) | Put(_, _, _)
-  | App(_, _) | ExtFunApp(_, _) | Break(_) -> e
+  | App(_, _) | ExtFunApp(_, _) | TernPhi(_, _, _) | Break(_) -> e
   
   | IfEq(x, y, e1, e2) ->
       let e1' = flatten_let e1 in
@@ -41,8 +41,8 @@ let rec flatten_let e =
   | LetTuple(xts, y, e) ->
       let e' = flatten_let e in
       LetTuple(xts, y, e')
-  | Assign(x, y, e) ->
-      Assign(x, y, flatten_let e)
+  | Assign(x, y, e, tag) ->
+      Assign(x, y, flatten_let e, tag)
   | While(e1, e2) ->
       While(flatten_let e1, flatten_let e2)
 

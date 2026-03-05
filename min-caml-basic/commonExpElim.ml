@@ -29,9 +29,16 @@ let rec expr_to_list t =
   | ExtFunApp (f, xs) -> [22; s2i (Id.to_string f); List.length xs] @ (List.map (fun x -> s2i (Id.to_string x)) xs)
   | Sll (x, y) -> [23; s2i (Id.to_string x); s2i (Id.to_string y)]
   | Sra (x, y) -> [24; s2i (Id.to_string x); s2i (Id.to_string y)]
-  | Assign (x, y, e) -> [25; s2i (Id.to_string x); s2i (Id.to_string y)] @ (expr_to_list e)
-  | While (e1, e2) -> [26] @ (expr_to_list e1) @ (expr_to_list e2)
-  | Break (x) -> [27; s2i (Id.to_string x)]
+  | TernPhi(c, x, y) -> [25; s2i (Id.to_string c); s2i (Id.to_string x); s2i (Id.to_string y)]
+  | Assign (x, y, e, tag) ->
+      let tag_i =
+        match tag with
+        | AssignWhile -> 0
+        | AssignArray -> 1
+      in
+      [26; tag_i; s2i (Id.to_string x); s2i (Id.to_string y)] @ (expr_to_list e)
+  | While (e1, e2) -> [27] @ (expr_to_list e1) @ (expr_to_list e2)
+  | Break (x) -> [28; s2i (Id.to_string x)]
 
 (* 位置情報を無視して式を比較する関数 *)
 let compare_expr e1 e2 =
@@ -121,7 +128,8 @@ let simplify_expr (const_env : const_env_t) e =
         | Put (x, y, z) -> Put (rename env x, rename env y, rename env z)
         | ExtArray x -> ExtArray x
         | ExtFunApp (f, xs) -> ExtFunApp (f, List.map (rename env) xs)
-        | Assign (x, y, e2) -> Assign (x, rename env y, helper env e2)
+        | TernPhi(c, x, y) -> TernPhi(rename env c, rename env x, rename env y)
+        | Assign (x, y, e2, tag) -> Assign (x, rename env y, helper env e2, tag)
         | While (e1, e2) -> While (helper env e1, helper env e2)
         | Break x -> Break (rename env x)
         )
@@ -184,9 +192,11 @@ let rec g (const_env : const_env_t) e env =
     let fundef' = { name = (x, t); args = yts; body = g inner_const_env e1 M.empty; tags = KNormal.default_tag()} in
     FunctionChecker.registerFunctionDef fundef';
     LetRec(fundef', g (IdMap.remove x const_env) e2 env)
-  | Assign(x, y, e2) ->
+  | Assign(x, y, e2, tag) ->
       let const_env' = IdMap.remove x const_env in
-      Assign(x, y, g const_env' e2 M.empty)
+      Assign(x, y, g const_env' e2 M.empty, tag)
+  | TernPhi(c, x, y) ->
+      TernPhi(c, x, y)
   | While(e1, e2) ->
       While(g const_env e1 M.empty, g IdMap.empty e2 M.empty)
   | Break(x) -> Break(x)

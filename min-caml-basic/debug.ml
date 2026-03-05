@@ -92,8 +92,15 @@ let rec knormal_to_string = function
   | KNormal.ExtFunApp (id, ids) ->
       let args_str = String.concat ", " (List.map Id.to_string ids) in
       "__Ext__ " ^ (Id.to_string id) ^ "(" ^ args_str ^ ")"
-  | KNormal.Assign (x, y, e) ->
-      (Id.to_string x) ^ " <- " ^ (Id.to_string y) ^ ";\n" ^ knormal_to_string e
+  | KNormal.TernPhi (c, x, y) ->
+      "TernPhi(" ^ Id.to_string c ^ ", " ^ Id.to_string x ^ ", " ^ Id.to_string y ^ ")"
+  | KNormal.Assign (x, y, e, tag) ->
+      let tag_s =
+        match tag with
+        | KNormal.AssignWhile -> "while"
+        | KNormal.AssignArray -> "array"
+      in
+      (Id.to_string x) ^ " <- " ^ (Id.to_string y) ^ " {" ^ tag_s ^ "};\n" ^ knormal_to_string e
   | KNormal.While (cond, body) ->
       "while (" ^ knormal_to_string cond ^ ") {\n" ^ knormal_to_string body ^ "\n}"
   | KNormal.Break x ->
@@ -166,7 +173,7 @@ let indent str =
     | [] -> []
     | line :: rest -> 
       depth := !depth - (count_char line '}');
-      let indented = ((String.make !depth '\t') ^ line) in
+      let indented = ((String.make (max 0 !depth) '\t') ^ line) in
       depth := !depth + (count_char line '{');
       indented :: helper rest
   in
@@ -214,6 +221,8 @@ let rec closure_to_string = function
   | Closure.ExtArray label -> 
       let label_str = match label with Id.L(s) -> s in
       "ExtArray(" ^ label_str ^ ")"
+  | Closure.TernPhi (c, x, y) ->
+      "TernPhi(" ^ Id.to_string c ^ ", " ^ Id.to_string x ^ ", " ^ Id.to_string y ^ ")"
   | Closure.Loop e ->
       "loop {\n" ^ closure_to_string e ^ "\n}"
   | Closure.Assign (x, y, e) ->

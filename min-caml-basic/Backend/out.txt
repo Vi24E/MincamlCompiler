@@ -1,0 +1,32 @@
+Peephole config: stage1=false stage2=false stage3=false preference=true reorder=false rules=rules.txt/rules.txt/rules.txt verbose_stats=false func_color_report=false
+Peephole stage1 (frontend-like regs) rewrites: 0 (disabled)
+Reordering priority sort: 0 (disabled)
+--- Iteration 1 ---
+Function count: 4 (main=1, user=2, library=1)
+Instruction count: 50670
+Analyze time: 40.473s
+Liveness stats: insts=50670 avg_live_in=1219.74 avg_live_out=1219.82 max_live_in=1348@10051 max_live_out=1348@10044 unique_live_regs=18474
+  max_live_in_inst idx=10051 mnem=set_label ops=["%i31", "cont.232544"]
+  max_live_in_sample(first16_sorted)=["%f0", "%i0", "%i31", "%vf10006", "%vf10007", "%vf10008", "%vf10076", "%vf10077", "%vf10078", "%vf10079", "%vf10080", "%vf10081", "%vf10082", "%vf10083", "%vf10084", "%vf10085"]
+  max_live_out_inst idx=10044 mnem=jeq ops=["%vi1505", "%i31", "then.232539"]
+  max_live_out_sample(first16_sorted)=["%f0", "%i0", "%i31", "%vf10006", "%vf10007", "%vf10008", "%vf10076", "%vf10077", "%vf10078", "%vf10079", "%vf10080", "%vf10081", "%vf10082", "%vf10083", "%vf10084", "%vf10085"]
+Liveness sanity: virtual_regs_with_def=19225 live_before_first_def_pairs=37463869
+  live-before-def: reg=%vf10006 live_in_at=0 first_def_at=22617
+  live-before-def: reg=%vf10007 live_in_at=0 first_def_at=22624
+  live-before-def: reg=%vf10008 live_in_at=0 first_def_at=22631
+  live-before-def: reg=%vf10076 live_in_at=0 first_def_at=22842
+  live-before-def: reg=%vf10077 live_in_at=0 first_def_at=22843
+  live-before-def: reg=%vf10078 live_in_at=0 first_def_at=22844
+  live-before-def: reg=%vf10079 live_in_at=0 first_def_at=22845
+  live-before-def: reg=%vf10080 live_in_at=0 first_def_at=22853
+  live-before-def: reg=%vf10081 live_in_at=0 first_def_at=22854
+  live-before-def: reg=%vf10082 live_in_at=0 first_def_at=22855
+  live-before-def: reg=%vf10083 live_in_at=0 first_def_at=22856
+  live-before-def: reg=%vf10084 live_in_at=0 first_def_at=22864
+[live-dump] idx=10044 mnem=jeq ops=["%vi1505", "%i31", "then.232539"] live_in=1347 live_out=1348
+[live-dump]   live_in(first 64 sorted)=["%f0", "%i0", "%i31", "%vf10006", "%vf10007", "%vf10008", "%vf10076", "%vf10077", "%vf10078", "%vf10079", "%vf10080", "%vf10081", "%vf10082", "%vf10083", "%vf10084", "%vf10085", "%vf10086", "%vf10087", "%vf10139", "%vf10140", "%vf10141", "%vf10158", "%vf10198", "%vf10199", "%vf10200", "%vf10268", "%vf10269", "%vf10270", "%vf10271", "%vf10272", "%vf10273", "%vf10274", "%vf10275", "%vf10276", "%vf10277", "%vf10278", "%vf10279", "%vf10291", "%vf10292", "%vf10293", "%vf10402", "%vf10403", "%vf10404", "%vf10472", "%vf10473", "%vf10474", "%vf10475", "%vf10476", "%vf10477", "%vf10478", "%vf10479", "%vf10480", "%vf10481", "%vf10482", "%vf10483", "%vf10535", "%vf10536", "%vf10537", "%vf10554", "%vf10594", "%vf10595", "%vf10596", "%vf10664", "%vf10665"]
+[live-dump]   live_out(first 64 sorted)=["%f0", "%i0", "%i31", "%vf10006", "%vf10007", "%vf10008", "%vf10076", "%vf10077", "%vf10078", "%vf10079", "%vf10080", "%vf10081", "%vf10082", "%vf10083", "%vf10084", "%vf10085", "%vf10086", "%vf10087", "%vf10139", "%vf10140", "%vf10141", "%vf10158", "%vf10198", "%vf10199", "%vf10200", "%vf10268", "%vf10269", "%vf10270", "%vf10271", "%vf10272", "%vf10273", "%vf10274", "%vf10275", "%vf10276", "%vf10277", "%vf10278", "%vf10279", "%vf10291", "%vf10292", "%vf10293", "%vf10402", "%vf10403", "%vf10404", "%vf10472", "%vf10473", "%vf10474", "%vf10475", "%vf10476", "%vf10477", "%vf10478", "%vf10479", "%vf10480", "%vf10481", "%vf10482", "%vf10483", "%vf10535", "%vf10536", "%vf10537", "%vf10554", "%vf10594", "%vf10595", "%vf10596", "%vf10664", "%vf10665"]
+[live-dump] idx=10051 mnem=set_label ops=["%i31", "cont.232544"] live_in=1348 live_out=1348
+[live-dump]   live_in(first 64 sorted)=["%f0", "%i0", "%i31", "%vf10006", "%vf10007", "%vf10008", "%vf10076", "%vf10077", "%vf10078", "%vf10079", "%vf10080", "%vf10081", "%vf10082", "%vf10083", "%vf10084", "%vf10085", "%vf10086", "%vf10087", "%vf10139", "%vf10140", "%vf10141", "%vf10158", "%vf10198", "%vf10199", "%vf10200", "%vf10268", "%vf10269", "%vf10270", "%vf10271", "%vf10272", "%vf10273", "%vf10274", "%vf10275", "%vf10276", "%vf10277", "%vf10278", "%vf10279", "%vf10291", "%vf10292", "%vf10293", "%vf10402", "%vf10403", "%vf10404", "%vf10472", "%vf10473", "%vf10474", "%vf10475", "%vf10476", "%vf10477", "%vf10478", "%vf10479", "%vf10480", "%vf10481", "%vf10482", "%vf10483", "%vf10535", "%vf10536", "%vf10537", "%vf10554", "%vf10594", "%vf10595", "%vf10596", "%vf10664", "%vf10665"]
+[live-dump]   live_out(first 64 sorted)=["%f0", "%i0", "%i31", "%vf10006", "%vf10007", "%vf10008", "%vf10076", "%vf10077", "%vf10078", "%vf10079", "%vf10080", "%vf10081", "%vf10082", "%vf10083", "%vf10084", "%vf10085", "%vf10086", "%vf10087", "%vf10139", "%vf10140", "%vf10141", "%vf10158", "%vf10198", "%vf10199", "%vf10200", "%vf10268", "%vf10269", "%vf10270", "%vf10271", "%vf10272", "%vf10273", "%vf10274", "%vf10275", "%vf10276", "%vf10277", "%vf10278", "%vf10279", "%vf10291", "%vf10292", "%vf10293", "%vf10402", "%vf10403", "%vf10404", "%vf10472", "%vf10473", "%vf10474", "%vf10475", "%vf10476", "%vf10477", "%vf10478", "%vf10479", "%vf10480", "%vf10481", "%vf10482", "%vf10483", "%vf10535", "%vf10536", "%vf10537", "%vf10554", "%vf10594", "%vf10595", "%vf10596", "%vf10664", "%vf10665"]
+Stopped after analyze by BACKEND_STOP_AFTER_ANALYZE=1

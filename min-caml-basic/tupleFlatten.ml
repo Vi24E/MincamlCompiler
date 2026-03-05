@@ -194,9 +194,11 @@ let rec g_out_tuple env e =
 
     | ExtFunApp(fname, args) ->
         (ExtFunApp(fname, args), env)
-    | Assign(x, y, e1) ->
+    | Assign(x, y, e1, tag) ->
         let (e1', env1) = g_out_tuple env e1 in
-        (Assign(x, y, e1'), env1)
+        (Assign(x, y, e1', tag), env1)
+    | TernPhi(c, x, y) ->
+        (TernPhi(c, x, y), env)
     | While(e1, e2) ->
         let (e1', _) = g_out_tuple env e1 in
         let (e2', _) = g_out_tuple env e2 in

@@ -78,10 +78,14 @@ let rec scan states = function
   | LetTuple(xts, y, e) ->
       mark_bad states y;
       scan (remove_keys states (List.map fst xts)) e
-  | Assign(x, y, e) ->
+  | Assign(x, y, e, _) ->
       mark_bad states x;
       mark_bad states y;
       scan states e
+  | TernPhi(c, x, y) ->
+      mark_bad states c;
+      mark_bad states x;
+      mark_bad states y
   | While(e1, e2) ->
       scan states e1;
       scan states e2
@@ -168,7 +172,8 @@ let rec rewrite_get maps = function
   | Put(x, y, z) -> Put(x, y, z)
   | ExtArray(x) -> ExtArray(x)
   | ExtFunApp(f, ys) -> ExtFunApp(f, ys)
-  | Assign(x, y, e) -> Assign(x, y, rewrite_get maps e)
+  | TernPhi(c, x, y) -> TernPhi(c, x, y)
+  | Assign(x, y, e, tag) -> Assign(x, y, rewrite_get maps e, tag)
   | While(e1, e2) -> While(rewrite_get maps e1, rewrite_get maps e2)
   | Break(x) -> Break(x)
 
@@ -207,10 +212,12 @@ let rec g = function
       IfLE(x, y, g e1, g e2)
   | LetTuple(xts, y, e) ->
       LetTuple(xts, y, g e)
-  | Assign(x, y, e) ->
-      Assign(x, y, g e)
+  | Assign(x, y, e, tag) ->
+      Assign(x, y, g e, tag)
   | While(e1, e2) ->
       While(g e1, g e2)
+  | TernPhi(c, x, y) ->
+      TernPhi(c, x, y)
   | e -> e
 
 let f e = g e

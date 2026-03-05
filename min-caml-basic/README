@@ -1,57 +1,688 @@
-An educational compiler for a minimal subset of OCaml, written in
-~2000 lines of OCaml.  For details, see:
+# min-caml-basic — 拡張版 MinCaml コンパイラ
 
-http://esumii.github.io/min-caml/ (Japanese Web page)
-http://esumii.github.io/min-caml/jpaper.pdf (Japanese academic paper)
-http://esumii.github.io/min-caml/index-e.html (English Web page)
-http://esumii.github.io/min-caml/paper.pdf (English academic paper)
+## 概要
 
-1. Install OCaml (http://caml.inria.fr/) if you haven't
+min-caml-basic は、東京大学 住井教授の MinCaml コンパイラをベースに大幅な拡張を施したプロジェクトである。
+対象アーキテクチャは独自 CPU「TKA」で、レイトレーシングベンチマーク (min-rt) を主要ターゲットとして最適化を進めている。
+バックエンドとして OCaml 版 (v1: TKA/) と Rust 版 (v2: Backend/) の二系統を持ち、v2 では仮想レジスタモードで出力したアセンブリを Rust 製レジスタアロケータ + peephole 最適化器に通す構成を取る。
 
-2. Download (and expand) MinCaml, e.g.
-   git clone https://github.com/esumii/min-caml.git
+---
 
-3. cd min-caml/
+## ディレクトリ構成
 
-4. Execute ./to_x86 for x86
-   (or ./to_sparc for SPARC, ./to_ppc for PowerPC)
+| ディレクトリ / ファイル | 概要 |
+|---|---|
+| `*.ml` / `*.mli` (トップ) | フロントエンド（字句・構文・型推論）+ KNormal/ANormal 中間表現・最適化パス群 |
+| `TKA/` | OCaml 実装のバックエンド（仮想命令選択 → 即値最適化 → レジスタ割り当て → アセンブリ出力） |
+| `Backend/` | Rust 実装のバックエンド（解析 → 干渉グラフ彩色 → spill → peephole → 出力） |
+| `Lib/` | 標準ライブラリ (`sin`, `cos`, `atan`, `print_int` 等のランタイム関数を ML で定義) |
+| `min-rt/` | レイトレーサー本体 + シーンデータ (`.sld`) |
+| `test/` | テストケース群 + minrt の中間表現ダンプ |
+| `tester/` | テストドライバ (`test.py`) + 実行履歴 (`History.txt`) |
+| `bill_sim/` | TKA ISA 用シミュレータ (`sim`) + アセンブラ (`tkasm`) |
 
-5. make
+---
 
-6. If you like, try the ray tracer
+## コンパイルパイプライン
 
-     cd min-rt/ ; make
+```
+  ML ソース
+     │
+     ▼
+  Lexer (lexer.mll) → Parser (parser.mly) → Syntax.t
+     │
+     ▼
+  型推論  (Typing.f)
+     │
+     ▼
+  K 正規化  (KNormal.f)            ← let 束縛 + if/let rec + 配列操作
+     │
+     ▼
+  A 正規化  (ANormal.f)            ← ネスト Let の平坦化
+     │
+     ▼
+  α変換    (Alpha.f)
+     │
+     ▼
+  関数純粋性解析 (FunctionChecker.f)
+     │
+     ▼
+  不要定義削除  (Elim.f)
+     │
+     ▼
+  [LoopInsert 前処理]             ← enable_loop_insert=true の場合
+  │  TupleElim → (*ConstFold*) → Assoc → Beta → Elim
+  │  → LoopInsert.f               ← 末尾再帰関数を While(1) + Assign + Break に変換
+  │  → LoopInvariant.f            ← ループ不変式のホイスト
+  │  → Inline.f → FunctionChecker.f
+  │
+  ▼
+  最適化ループ  (iter: 最大 10 回、固定点まで)
+  │  VariableChecker               ← 変数にグローバル/定数タグを付与
+  │  ArrayScalarize                 ← 読み取り専用配列引数のスカラー化
+  │  TupleElim                      ← タプル生成→分解パターンの除去
+  │  ArrayElim                      ← 小配列の SROA (Put→AssignArray + TernPhiInsert)
+  │  Elim                           ← 不要定義削除
+  │  (*ConstFold*)                  ← 定数畳み込み ★現在無効化 (バグ4)
+  │  CommonExpElim                  ← 共通部分式除去
+  │  Inline                         ← インライン展開 (threshold 可変)
+  │  Assoc                          ← let 結合 (let x = (let y = e1 in e2) in e3 → ...)
+  │  Beta                           ← コピー伝播
+  │  LoopInvariant                  ← ループ不変式ホイスト
+  │
+  ▼
+  クロージャ変換  (Closure.f)       ← 直接呼び出し可能な関数は AppDir へ
+     │
+     ▼
+  ClosureChecker                    ← 型・スコープ整合性検査
+     │
+     ▼
+  ═══ v1 (OCaml Backend) ═══          ═══ v2 (Rust Backend) ═══
+  │                                    │
+  Virtual.f (命令選択)                 Virtual.f (-virtual モード)
+  │                                    │
+  Simm.f  (即値最適化)                 → test/minrt.s (仮想レジスタ付き asm)
+  │                                    │
+  RegAlloc.f (グラフ彩色)              Backend (cargo run --release)
+  │                                    │ 1. Peephole Stage1
+  Emit.f (アセンブリ出力)              │ 2. 引数 move 正規化
+  │                                    │ 3. 反復 liveness + 干渉グラフ彩色
+  test/minrt.s                        │ 4. Spill 処理
+                                       │ 5. Peephole Stage2
+                                       │ 6. Finalize (プロローグ/エピローグ)
+                                       │ 7. 物理レジスタ解決 + Peephole Stage3
+                                       │
+                                       Backend/minrt_colored.s
+  │                                    │
+  ▼ tkasm                             ▼ tkasm
+  test/minrt.bin → sim (ヘッドレス) → PPM 画像出力
+```
 
-   though it takes time because of OCaml bytecode (for testing by
-   comparison), not MinCaml
+---
 
-[FAQ 1] Is there an x86_64 version?
+## 主要最適化パスの詳細
 
-[A] There is, but it is left as an exercise for students and _not_
-included in this distribution.
+### VariableChecker (`variableChecker.ml`)
+- 全変数にタグ (Global/Local/Leakable, ConstInt/ConstFloat/None) を付与する。
+- グローバル変数はメモリオフセット付きで管理し、後段で `Ld(%i0, offset)` に変換される。
+- `Assign` された変数は mutable 扱いとし、定数タグを除去する。
+- **Leakable タグを保存**: `replace_tag` で既存の `Id.Known(Id.Leakable, _)` を `Id.Leakable` として保持。
+  非トップレベル Let も同様に既存タグを尊重する。
+- env の扱い: `get_const_env` が IfEq/IfLE 枝間で定数情報をリークするが、
+  alpha 変換後のユニーク名前提では無害。
 
-[FAQ 2] Is there a version that emits C code?
+### ArrayScalarize (`arrayScalarize.ml`)
+- 関数引数が配列型かつ関数内で定数インデックス `Get` のみ（`Put` なし・escape なし）の場合、関数冒頭でスカラー変数に展開する。
+- 対象インデックス数の上限は `max_indices` (デフォルト 8)。
+- dconst 等のホットパスで `LW/LF` を削減し、CSE・レジスタ割り当ての効率を改善する。
 
-[A] See above.
+### ArrayElim (`arrayElim.ml`)
+- 小定数サイズの非逃避配列を SROA (Scalar Replacement of Aggregates) する。
+- `Array.make N init` で `N ≤ max_size` (デフォルト 8) かつ定数インデックスのみの配列が対象。
+- `Get(a, i)` → スカラー変数参照、`Put(a, i, z)` → `Assign(slot, z, Unit, AssignArray)` に変換。
+- **AssignArray は直後に TernPhiInsert で消去**される（他の最適化パスに AssignArray を漏らさない設計）。
+- env なし。const_int_of_id はタグベースで判定するのみ。
 
-[Updates on October 9, 2013]
+### TernPhiInsert (`ternPhiInsert.ml`)
+- `ArrayElim` が生成した `AssignArray` を SSA 的な TernPhi ノードに変換するパス。
+- if の then/else 枝それぞれの Assign を逐次走査し、`(rewritten_expr, subst)` を更新する。
+- 合流点で `TernPhi(cond, then_val, else_val)` を挿入し、後続式の参照を置換する。
+- swap / 循環依存にも対応（Assign ごとに fresh スナップショット変数を導入）。
+- `phi_threshold` 以上のサイズの場合は TernPhi を使わず、枝ローカルの fresh 変数 + 分岐内末尾代入に切り替え（fallback モード）。
+- **phi 変数には `Id.Known(Id.Leakable, Id.None)` タグが付与される（6箇所）**。
+  これにより alpha.ml のリーク伝搬で正しく if 枝外に漏れる。
+- **subst の設計**: 変数→最新SSA名の写像。IfEq/IfLEで then/else それぞれの subst_out を受け取り、
+  差分がある変数について TernPhi を生成、join_subst を構築。
+  - `drop_scope_from_subst`: Let/LetRec/LetTuple のスコープ変数を subst から除去。
+  - `append_post`: phi バインディングを式の末尾に追加（Leakable 変数はスコープ外に出て良い設計）。
+  - `append_at_tail`: 式の末尾 Let チェーンを掘り下げてスコープ内に挿入。
 
-- Moved from SourceForge https://sourceforge.net/p/min-caml/code/ to
-  GitHub https://github.com/esumii/min-caml
+### TernPhi ノード (`KNormal.TernPhi(c, x, y)`)
+- `c ≠ 0` のとき `x`、`c = 0` のとき `y` を選択する条件分岐合流ノード。
+- While のループ変数には適用せず、if 合流専用。
+- 後段 (Closure, TKA/Virtual, Backend) まで残存し、`Tern`/`TernF` 命令として出力される。
 
-- Merged the Mac OS patch by shinh
-  https://twitter.com/shinh/status/322043108021907458
+### LoopInsert (`loopInsert.ml`)
+- 末尾再帰関数を `While(Int 1, body)` + `Assign` + `Break` パターンに変換する。
+- 対象: 末尾位置でのみ自己再帰呼び出しがあり、不正な使用がない関数。
+- `build_parallel_assign` でパラメータの並列代入（tmp変数経由）を生成。
 
-[Update on July 24, 2012]
+### LoopInvariant (`loopInvariant.ml`)
+- While ループ本体の先頭 Let チェーンから、ループ依存変数に触れないホイスタブルな定義を抽出してループ外に移動する。
+- 配列の読み書き解析を行い、ループ内で書き換えられる配列への Get はホイストしない。
+- `peel=true` 時にループピーリング（最初のイテレーションを展開）。iter ループ内では `peel=false` で呼び出し。
+- env は関数引数集合のみで、値情報を持たない。
 
-- 32-bit x86 (with SSE2, that is, Pentium IV or later) is now
-  supported (on Linux and Cygwin); execute ./to_x86 before make.
+### ConstFold (`constFold.ml`) ★現在無効化
+- 定数畳み込み + 部分評価器（最大 `max_interp_steps` ステップの関数呼び出し実行）。
+- メモ化テーブルにより同一引数の再評価を回避。
+- **現在 main.ml で 2 箇所コメントアウトされ無効化** (バグ 4 参照)。
+- `g` は `(KNormal.t * KNormal.t M.t)` を返す（式, 定数環境）。
+- **IfEq/IfLE で env1 と env2 を full merge** (`M.fold ... env2 env1`)。
+  これが phi 条件変数の誤畳み込みの原因（バグ 4）。
+- While: `collect_assign_targets` で body 内の Assign 対象を env から除去してから条件式を処理（バグ 3 修正済み）。
 
-[Updates on September 17, 2008]
+### CommonExpElim (`commonExpElim.ml`)
+- 式のハッシュベースの共通部分式除去。
+- **IfEq/IfLE**: 同一 `const_env` と `env` を両枝に渡し、マージしない。安全。
+- **While**: 条件に外側 `const_env` を使用、body は `IdMap.empty` でリセット。
+- **Assign**: `const_env` から x を除去、`M.empty` で expr env をリセット。安全。
 
-- PowerPC is now supported (in addition to SPARC), thanks to
-  Ms. Masuko and Prof. Asai in Ochanomizu University.  You _must_
-  execute either ./to_ppc or ./to_sparc _before_ make.
+### Inline (`inline.ml`)
+- 関数サイズが `threshold` (デフォルト 50000) 以下の非再帰関数をインライン展開。
+- 非末尾再帰のある関数は展開しない。
+- インライン展開時に `Alpha.g alpha_env e` を呼ぶが、leak env は `_` で破棄（正しい: 展開されたコードの内部リネームが外に漏れる必要はない）。
 
-- The register allocator now uses a simpler algorithm.  It omits the
-  backtracking (ToSpill and NoSpill) in previous versions.
+### Alpha (`alpha.ml`)
+- α変換（識別子のユニーク化）。
+- **`g` は `(KNormal.t * Id.t M.t)` を返す**。第二要素は **Leakable 変数のみのリーク環境**。
+- **設計方針**: phi 変数 (Leakable タグ) は if 枝内で定義されるが、枝外の TernPhi から参照される。
+  そのため Leakable 変数のリネーム情報だけを枝外に伝搬する必要がある。
+- **IfEq/IfLE**: 両枝の leak env が矛盾しないことを assertion で確認
+  （同一キーが異なる値→assert false）。矛盾なければ union merge。
+  **assertion が発射しないことは iter=5 の minrt コンパイルで確認済み。**
+- **Let**: `leak1`（e1 内 Leakable）を env に合流して e2 を処理。
+  自身が Leakable なら `M.add x x' leak2` を出力。
+- **LetRec**: body の leak は `_` で破棄（関数は独立スコープ）。e2 の leak2 はそのまま返す。
+- **While**: 両枝の leak を捨て `M.empty` を返す（While 内の Leakable は While 外に出ない）。
+- **TernPhi**: `find c env, find x env, find y env` で変数を解決、`M.empty` を返す。
+  TernPhi 自体は Leakable を生成しない（TernPhi の結果は Let 束縛される）。
+
+### Beta (`beta.ml`)
+- コピー伝播。`let x = y` → 以後の x 参照を y に置換。
+- mutable 変数 (Assign 対象) は alias 追跡を行い、Assign 時に旧 alias を破棄する。
+- `_as.` / `_phi.` を含む変数名は保持（TernPhi 関連の変数削除を防止）。
+- **env**: immutable 変数の置換マップ。**alias_env**: mutable 変数のエイリアス追跡。
+- **IfEq/IfLE**: 同一 `env` / `alias_env` を両枝に渡し、マージしない。安全。
+- **While**: `alias_env` を `M.empty` にリセット。安全。
+- **Assign**: `assign_alias` で alias_env を更新、`kill_aliases_of x` で旧エイリアスを破棄。
+- **`invalidate_assigned`**: e1 内で Assign される変数を alias_env から事前に無効化。
+
+### Elim (`elim.ml`)
+- 不要定義削除。副作用がなく、後続で参照されない Let 束縛を除去。
+- TernPhi を含む式・`_phi.` / `_as.` 変数は保守的に保持。
+- `contains_ternphi` チェックは保守的すぎる（TernPhi がどこかに存在すれば、任意の Let を保持）が安全。
+- env なし。`fv` 解析ベース。
+
+### IfFold (`ifFold.ml`)
+- `let x = if c then e1 else e2 in e_cont` パターンで、`e_cont` が十分小さい場合に if の外に巻き出す。
+- サイズしきい値 `threshold` (デフォルト 30)。
+- env なし。構造変換のみ。
+
+### Assoc (`assoc.ml`)
+- ネストした Let の平坦化（`let x = (let y = e1 in e2) in e3` → `let y = e1 in let x = e2 in e3`）。
+- env なし。純粋な構造変換。
+- `insert` 関数が `Let`/`LetRec`/`LetTuple` を掘り下げて末尾に新バインディングを配置。
+  `Assign`/`While`/`TernPhi` はターミナルとして扱い、それ以上掘り下げない。これは正しい。
+
+### TupleElim (`tupleElim.ml`)
+- `let t = Tuple(xs) in ... LetTuple(ys, t, e)` パターンを直接の変数束縛に置換。
+- **env**: `Id.t → Id.t list` マップ（タプル変数→要素変数リスト）。
+- **IfEq/IfLE**: 同一 env を両枝に渡し、枝内の更新を破棄。安全。
+- **While**: 同一 env を両枝に渡し、更新を破棄。安全。
+- 内部で `TupleFlatten.f` を先に呼ぶ。
+
+### TupleFlatten (`tupleFlatten.ml`)
+- ネストしたタプル型 `Tuple(Tuple(a, b), c)` をフラット化。
+- **env**: `Id.t → Id.t list` マップ（タプル変数→展開済み要素リスト）。
+- **IfEq/IfLE**: 同一 env を両枝に渡し、枝内のenv更新を `_` で破棄。元の env を返す。安全。
+- **While**: 同上、枝内の env を棄て元の env を返す。安全。
+- **Let**: `(e2', env2) = g_out_tuple env' e2` で env2 をそのまま返す。
+  **Let 内で追加された env エントリがスコープ外にリークする** が、
+  alpha 変換済みユニーク名の前提下では衝突しないため実害なし。設計上は不衛生。
+- **Assign/TernPhi**: 構造的に素通り。envの変更なし。
+
+### FunctionChecker (`functionChecker.ml`)
+- グローバル `Hashtbl` に関数定義を登録し、純粋性 (purity) を判定する。
+- `checkExpPurity` で `TernPhi` は `false`（不純）。
+  → CSE・Elim で TernPhi を含む式が保守的に扱われる（安全な方向）。
+- AST 変換は行わない（`f e` は `e` をそのまま返す）。
+- env リークの問題なし。
+
+### ArrayOfTupleElim (`arrayOfTupleElim.ml`)
+- `Array<Tuple<T1, T2, ...>>` を `Array<T1>`, `Array<T2>`, ... に分解。
+
+---
+
+## Leakable 変数の設計
+
+### 概要
+
+`Id.local_tag = Leakable` は TernPhiInsert が if 枝内で生成する phi 変数に付与されるタグ。
+KNormal の通常のスコープ規則では if 枝内で定義された変数は枝外から参照できないが、
+TernPhi は if 枝外に配置されるため、phi の引数変数が枝を跨いで参照される必要がある。
+
+### リーク伝搬のメカニズム
+
+1. **TernPhiInsert** が phi 変数に `Id.Known(Id.Leakable, Id.None)` を付与（6箇所）。
+2. **Alpha.ml** の `g` が `(expr', leak)` を返す。`leak` は Leakable 変数のリネーム情報のみ。
+3. If 枝処理後、`leak1` と `leak2` を assertion 付き union merge。
+4. Let ハンドラで `leak1`（e1 内 Leakable）を env に合流してから e2 を処理。
+5. **VariableChecker** の `replace_tag` が Leakable タグを保存。
+
+### assertion の意味
+
+Alpha.ml の IfEq/IfLE ハンドラで:
+```ocaml
+M.iter (fun k v1 ->
+  match M.find_opt k leak2 with
+  | Some v2 when Id.compare v1 v2 <> 0 -> assert false
+  | _ -> ()
+) leak1;
+```
+これが発射しないことは「TernPhiInsert が正しく phi 変数を導入している」ことの証明。
+**iter=5 の minrt コンパイルでこの assertion は発射しない（確認済み）。**
+
+---
+
+## TKA バックエンド (OCaml, v1)
+
+| ファイル | 役割 |
+|---|---|
+| `TKA/asm.ml` / `.mli` | TKA ISA の命令型定義。レジスタ 32 本 (`%i0`–`%i30` + `%i31` scratch) + 浮動小数点 32 本 (`%f0`–`%f30` + `%f31` scratch)。Loop / Assign / Break / Tern / TernF 命令を含む。 |
+| `TKA/virtual.ml` | Closure IR → Asm IR への命令選択。`FDiv` → `FInv + FMul`、if の boolean 結果最適化 (CmpEq 直接化)、浮動小数点符号パターン最適化など。env は type env（型情報のみ）。const_env は Loop 内で M.empty にリセット。**IfEq/IfLE**: 同一 env を両枝。安全。 |
+| `TKA/simm.ml` | 即値最適化 + DCE。定数オペランドを即値エンコーディングに変換。phi 変数の保護ロジックあり。 |
+| `TKA/regAlloc.ml` | グラフ彩色ベースのレジスタ割り当て。スピル時はスタックへ Save/Restore。 |
+| `TKA/allocVirtual.ml` | 仮想レジスタ割り当て (`-virtual` モード)。ローカル変数に `%vi*` / `%vf*` の一意な仮想レジスタを割り当て、グローバル変数は `Ld(%i0, offset)` でロード。 |
+| `TKA/emit.ml` | アセンブリテキスト出力。TKA ISA の全命令をテキスト形式で出力。大即値のための `movui + addi` パターン等を含む。 |
+
+### Simm.ml の DCE ロジック
+
+Simm.ml は Let 束縛の DCE を行うが、TernPhi 関連の変数は特別扱い:
+- **SetInt(0)** / **SetFloat(+0.0)**: 常に `keep=true`（バグ 1 修正）。
+- **SetInt(n) (n≠0)**: 変数名に `_phi.` を含む場合は常に `keep=true`。
+  理由: phi 変数は if 枝内で定義されるが、Tern 命令は if 枝外で参照する。
+  `used_e` は枝内スコープなので枝外の参照を検出できない。
+- **IfEq/IfLE**: 同一 env を両枝に渡し、used は `S.union`。安全。
+
+---
+
+## Rust バックエンド (v2)
+
+| ファイル | 役割 |
+|---|---|
+| `Backend/src/main.rs` | エントリポイント。パイプライン全体のオーケストレーション。 |
+| `Backend/src/input.rs` | 仮想レジスタ付きアセンブリの読み込み・パース。 |
+| `Backend/src/analysis.rs` | DEF/USE 解析、CFG 構築、ワークリストベースの liveness 解析。 |
+| `Backend/src/coloring.rs` | 干渉グラフ構築 + レジスタ彩色。forbidden color 制約付き。 |
+| `Backend/src/spilling.rs` | スピル処理。彩色失敗時に load/store を挿入して再解析。 |
+| `Backend/src/peephole.rs` | ルールファイルベースの peephole 最適化 (3 段階)。 |
+| `Backend/src/finalize.rs` | プロローグ/エピローグ挿入、フレームサイズ計算。 |
+| `Backend/src/codegen.rs` | 仮想→物理レジスタ解決 + 最終アセンブリ出力。 |
+| `Backend/src/adhoc.rs` | アドホックな命令書き換え。 |
+| `Backend/src/reordering.rs` | 命令スケジューリング。 |
+
+---
+
+## 型システム
+
+```ocaml
+type t =
+  | Unit | Bool | Int | Float
+  | Fun of t list * t      (* 非カリー化引数 *)
+  | Tuple of t list
+  | Array of t
+  | Var of t option ref    (* 型変数 (単一化) *)
+```
+
+---
+
+## 識別子システム (`id.ml`)
+
+```ocaml
+type t = string * tag_type
+and tag_type = Unknown | Known of local_tag * const_tag
+and local_tag = Global of int | Local | Register | Leakable
+and const_tag = None | ConstInt of int | ConstFloat of float
+```
+
+- `Global(offset)` : グローバル変数。メモリ上のオフセット付き。
+- `Local` : 通常のローカル変数。
+- `Register` : レジスタ割り当て済み変数。
+- `Leakable` : phi 変数。if 枝外へのリークが許可される（TernPhiInsert が付与）。
+- `ConstInt(i)` / `ConstFloat(f)` : 定数タグ。後段の即値最適化・定数畳み込みで活用。
+- `_phi.` / `_as.` を含む変数名は Beta・Elim で保護される。
+- `genid` は `.` の前の部分を切り出してカウンタを付加: `"foo.123"` → `"foo.456"`。
+
+---
+
+## KNormal IR 拡張
+
+標準 MinCaml の KNormal に対し、以下のノードを追加：
+
+| ノード | 型 | 用途 |
+|---|---|---|
+| `TernPhi(c, x, y)` | `Id.t * Id.t * Id.t` | if 合流ノード (c≠0 → x, c=0 → y) |
+| `Assign(x, y, e, tag)` | `Id.t * Id.t * t * assign_tag` | 変数代入 + 後続式 |
+| `While(e1, e2)` | `t * t` | while ループ (条件 × 本体) |
+| `Break(x)` | `Id.t` | ループ脱出 |
+| `Sll(x, y)` / `Sra(x, y)` | `Id.t * Id.t` | シフト演算 |
+
+`assign_tag` は `AssignWhile`（LoopInsert 由来）と `AssignArray`（ArrayElim 由来）を区別する。
+**`AssignArray` は TernPhiInsert 通過後に存在してはならない**（assertion で検査）。
+
+---
+
+## テスト体制
+
+### tester/test.py
+- `--v1` : OCaml バックエンド (RegAlloc) 経由
+- `--v2` : Rust バックエンド (Backend) 経由
+- 処理手順:
+  1. mincaml でコンパイル → `.s` 生成
+  2. (v2 の場合) Backend でレジスタ割り当て → `minrt_colored.s`
+  3. tkasm でアセンブル → `.bin`
+  4. sim (ヘッドレスモード) でシミュレーション実行
+  5. OCaml 参照実装 (`test/minrt_for_ocaml.ml`) と PPM 画像をピクセル単位比較
+  6. Accuracy (%) + Cycles + プロファイル統計を History.txt に記録
+
+### 正確性の基準
+
+**Accuracy が 100% でないことはバグである。**
+特に 32x32 では 100% になるべき。Accuracy の数値自体は当てにならず、
+100% か否かが重要。Accuracy が下がっても正しい方向に進んでいる場合もある。
+iter=0 と iter=N の出力が一致しない場合、最適化が意味を破壊している。
+
+### 性能推移 (抜粋)
+| 日付 | Mode | Cycles | Accuracy | 備考 |
+|---|---|---|---|---|
+| 2026-01-27 | v1 | 899,308,027 | 100% | 最適化なし |
+| 2026-01-27 | v1 | 525,255,283 | 100% | inline=100 |
+| 2026-02-19 | v2 | 617,002,274 | 100% | v2 初動作 |
+| 2026-02-27 | v2 | 201,218,309 | 100% | inline=500, while 変換 |
+| 2026-02-27 | v2 | 206,969,493 | 100% | 安定版 (最終正常) |
+| 2026-02-28 | v2 | 975,457 | **0%** | **PhiNode 導入後バグ発生** |
+| 2026-03-01 | v2 | 173,985 | **0%** | バグ修正前 |
+| **2026-03-01** | **v2** | **400,004,826** | **100%** | **Simm.ml 修正後 (iter=3)** |
+| **2026-03-01** | **v2** | **—** | **100%** | **TernPhiInsert + ConstFold 修正後 (iter=4)** |
+| **2026-03-02** | **v2** | **—** | **78.8%** | **iter=5 vs iter=0 (ConstFold 無効化 + alpha Leakable 修正後)** |
+
+---
+
+## 既知のバグと修正状況
+
+### バグ 1: Simm.ml の SetInt(0) 無条件消去 — **修正済み**
+
+#### 原因
+
+`TKA/simm.ml` が `SetInt(0)` の Let 束縛を無条件に削除 (`keep = false`) していたため、
+TernPhiInsert が if 枝内で生成した phi 変数の定義が消失し、if 枝外の `Tern` 命令が未定義変数を参照してクラッシュしていた。
+
+#### 適用した修正
+
+```ocaml
+(* TKA/simm.ml  Let handler 内の keep 判定 *)
+(* 旧: *)
+| SetInt(0) -> false                          (* 無条件削除 → クラッシュ *)
+| SetFloat(f) when is_pos_zero_float f -> false
+
+(* 修正後: *)
+| SetInt(0) -> true                           (* 常に保持。zero_env による同スコープ置換は有効 *)
+| SetFloat(f) when is_pos_zero_float f -> true
+```
+
+さらに `SetInt(n)` (n≠0) でも `_phi.` を含む変数名は常に keep:
+
+```ocaml
+| SetInt(_) ->
+    let sx = Id.to_string x in
+    let has_phi = (* _phi. の部分文字列検査 *) in
+    if has_phi then true else S.mem x used_e
+```
+
+### バグ 2: TernPhiInsert の While ハンドラがスカラ化スロットのループ伝搬を壊す — **修正済み**
+
+#### 原因
+
+`ternPhiInsert.ml` の While ハンドラに 2 つの問題があった：
+
+1. **SSA phi チェーンがループ本体内で閉じている**: phi.N は While 本体内で Let 束縛されるため While 外のコードからは参照不可能。While ハンドラの `subst_out = subst` により While 後のコードは古い phi バージョンを参照。
+
+2. **ループ搬送依存の破壊**: While 本体の処理に入力 subst をそのまま渡していたため、ループ本体内での `Var(slot)` が常にループ開始前の値を参照。
+
+#### 適用した修正
+
+1. `Assign(AssignArray)` ハンドラを `in_while` フラグで二分化:
+   - While 内: ミュータブル代入のみ (`AssignWhile`)、SSA phi を作らない
+   - While 外: ミュータブル代入 + SSA phi 別名の両方を生成
+
+2. While ハンドラで `collect_assign_array_targets` により body 内で変更されるスロットを
+   `subst` から除去してから body を処理。
+
+### バグ 3: ConstFold の While 条件式でのミュータブル変数リーク — **修正済み**
+
+#### 原因
+
+While ハンドラが条件式 `e1` に外側の定数環境 `env` をそのまま渡していた。
+While ボディで Assign されるループカウンタ変数が定数に畳まれ、条件式が恒真化。
+
+#### 適用した修正
+
+`collect_assign_targets` で body 内の Assign 対象を env から除去:
+
+```ocaml
+| While(e1, e2) ->
+    let mutable_in_body = collect_assign_targets S.empty e2 in
+    let safe_env = M.fold (fun k v acc ->
+      if S.mem k mutable_in_body then acc else M.add k v acc
+    ) env M.empty in
+    let (e1', _) = g safe_env e1 in
+    let (e2', _) = g M.empty e2 in
+    (While(e1', e2'), safe_env)
+```
+
+### バグ 4: ConstFold の IfEq/IfLE envフルマージ — **未修正（無効化で回避）**
+
+#### 原因
+
+`constFold.ml` の IfEq/IfLE ハンドラが `g env e1` → `env1`、`g env e2` → `env2` を取り、
+`M.fold (fun k v acc -> M.add k v acc) env2 env1` でフルマージしている。
+これにより if 枝内の Assign で更新された定数情報が枝外に漏れる。
+
+**具体的な問題**: if 枝内で `Assign(phi_cond, ..., ...)` が `phi_cond → Int(1)` / `Int(0)` を
+env に追加し、枝外で `TernPhi(phi_cond, x, y)` が `phi_cond` を定数として畳み込み、
+TernPhi が破壊される。
+
+#### 現在の状態
+
+main.ml で 2 箇所コメントアウト:
+```ocaml
+(* iter ループ内 *)
+let e6 = e5 (* apply_constfold e5 *) in
+(* LoopInsert 前処理 *)
+let p2 = p1 (* apply_constfold p1 *) in
+```
+`apply_constfold` 関数自体は残存（unused warning あり）。
+
+#### 修正方針（未実施）
+
+IfEq/IfLE で env をフルマージせず、元の env（枝に入る前の env）を返すようにする。
+ただし、枝の中で定義された新しい Let 束縛の定数情報は正しく後続に伝搬する必要があるため、
+「枝に入る前に存在していたキーのみ保持 + 枝内の新規 Let は伝搬」という方針が必要。
+
+### バグ 5: Alpha.ml の IfEq/IfLE envフルマージ — **修正済み**
+
+#### 原因（旧状態）
+
+旧 alpha.ml は `g` が `(KNormal.t * Id.t M.t)` を返し、If 枝の `env1` と `env2` を
+フルマージしていた。これにより非 Leakable 変数のリネーム情報も枝外に漏れていた。
+
+#### 適用した修正
+
+leak env を **Leakable 変数のみ** に限定。
+- 単純なノード: `M.empty` を返す
+- Let: 自身が Leakable なら `M.add x x' leak2`、そうでなければ `leak2`
+- IfEq/IfLE: assertion 付き union merge
+- While: `M.empty`
+- LetRec: body leak は破棄、e2 leak を返す
+
+---
+
+## 現在のオープン問題: iter=5 vs iter=0 が 78.8%
+
+### 症状
+
+ConstFold を無効化し Alpha を Leakable-only に修正した状態で:
+- iter=0 と iter=5 の出力を比較: 78.8% (100% であるべき)
+- Alpha の assertion は発射しない（TernPhi 導入自体は正しい）
+
+### 調査状況 (2026-03-02 時点)
+
+全フロントエンド最適化パスを env リーク観点で監査完了:
+
+| パス | env 種別 | If 枝 | While | 結果 |
+|---|---|---|---|---|
+| `alpha.ml` | リネーム + Leakable leak | assertion付きmerge | discard | ✓ 修正済み |
+| `beta.ml` | immutable env + alias_env | 同一env、マージなし | M.empty alias | ✓ |
+| `constFold.ml` | 定数 env | フルマージ | 修正済み | ★無効化中 |
+| `commonExpElim.ml` | const_env + expr→Id | 同一env、マージなし | M.empty | ✓ |
+| `elim.ml` | なし (fv解析) | — | — | ✓ |
+| `inline.ml` | 関数定義マップ | 枝に入らない | — | ✓ |
+| `assoc.ml` | なし | 再帰f | 再帰f | ✓ |
+| `tupleElim.ml` | tuple→elems | 同一env、更新破棄 | 同一env | ✓ |
+| `tupleFlatten.ml` | tuple→elems | 同一env、更新破棄 | 同一env | ✓ (不衛生だが無害) |
+| `arrayElim.ml` | なし | — | — | ✓ |
+| `loopInvariant.ml` | 引数集合 | — | — | ✓ |
+| `variableChecker.ml` | global/const env | IfEq/IfLEリーク | — | ✓ (ユニーク名で無害) |
+| `functionChecker.ml` | グローバルHashtbl | — | — | ✓ |
+| `closure.ml` | クロージャ env | 同一env | 同一env | ✓ |
+| `virtual.ml` | type env + const_env | 同一env | Loop: M.empty | ✓ |
+| `simm.ml` | const/zero env | 同一env、usedはS.union | — | ✓ |
+
+**env リークが原因のバグは見つかっていない。** 78.8% の不一致は別の原因が疑われる。
+
+### 次に調査すべき方向性
+
+1. **固定点判定**: `if e = e' then e else iter (n-1) e'` で構造的等価性を使っているが、
+   タグ (`Id.tag_type`) が変わると同一式でも等価にならず、無限ループ or 過剰イテレーションの可能性。
+2. **ConstFold 無効化の影響**: ConstFold が無いことで他のパスの前提が崩れている可能性。
+3. **iter 固有の SROA 対象の拡大**: iter=5 で light, n_objects が追加 SROA されるが、
+   この SROA 自体（ArrayElim + TernPhiInsert の組み合わせ）に問題がある可能性。
+4. **特定パスの意味破壊**: env リーク以外の理由（例: Beta のエイリアス追跡の誤り、
+   Elim の過剰削除、LoopInvariant のホイスト誤り）で意味が壊れている可能性。
+5. **IfFold**: iter ループ内では使われていない（main.ml に IfFold.f の呼び出しなし）。
+   ただし CommonExpElim.f の末尾で `IfFold.f` → `Assoc.f` を呼んでいる。
+
+---
+
+## iter ごとの SROA 対象と影響
+
+| iter | 追加 SROA 対象 | 状態 |
+|---|---|---|
+| 1–3 | viewpoint, beam, rgb, image_size, image_center, scan_pitch, screenx_dir, n_reflections | **正常** |
+| 4 | screen, screeny_dir, screenz_dir | **正常 (Accuracy 100%)** |
+| 5 | light, n_objects | **78.8%** (要調査) |
+| ≥6 | 多数 (全関数が main にインライン化) | 未検証 |
+
+---
+
+## テスト実行コマンド
+
+### フルパイプライン (v2, iter=N)
+
+```bash
+cd min-caml-basic
+
+# コンパイル
+dune exec mincaml -- -virtual -iter N test/minrt
+
+# バックエンド
+cd Backend && cargo run --release -- ../test/minrt.s && cd ..
+
+# アセンブル
+../bill_sim/tkasm Backend/minrt_colored.s -o test/minrt.bin
+
+# シミュレーション (gtimeout 120 推奨)
+gtimeout 120 ../bill_sim/sim test/minrt.bin --headless \
+  < ../bill_sim/input.bin > /tmp/sim_iterN.ppm 2>/dev/null
+```
+
+### PPM 比較
+
+```python
+python3 -c "
+def read_ppm_p3(path):
+    with open(path) as f:
+        tokens = f.read().split()
+    tokens = [t for t in tokens if t.lstrip('-').isdigit()]
+    w, h = int(tokens[0]), int(tokens[1])
+    pixels = list(map(int, tokens[3:]))
+    return w, h, pixels
+
+w0, h0, p0 = read_ppm_p3('/tmp/sim_iter0.ppm')
+wN, hN, pN = read_ppm_p3('/tmp/sim_iterN.ppm')
+total = min(len(p0), len(pN)) // 3
+match = sum(1 for i in range(total) if p0[3*i:3*i+3] == pN[3*i:3*i+3])
+print(f'{match}/{total} = {match*100.0/total:.1f}%')
+"
+```
+
+### 中間表現ダンプ
+
+```bash
+DUMP_OPT_STAGES=1 dune exec mincaml -- -virtual -iter N test/minrt
+# → test/minrt.iter1.01_variableChecker, test/minrt.iter1.02_arrayScalarize, ...
+```
+
+### 現在の推奨設定
+
+```bash
+# iter=4 まで安定して動作 (全修正適用済み)
+dune exec mincaml -- -virtual -iter 4 test/minrt
+cd Backend && cargo run --release -- ../test/minrt.s && cd ..
+../bill_sim/tkasm Backend/minrt_colored.s -o test/minrt.bin
+../bill_sim/sim test/minrt.bin --headless
+# → Accuracy: 100%
+```
+
+---
+
+## ビルド方法
+
+```bash
+# OCaml コンパイラのビルド
+dune build
+
+# minrt コンパイル (v1: OCaml バックエンド)
+dune exec mincaml test/minrt
+
+# minrt コンパイル (v2: Rust バックエンド経由)
+dune exec mincaml -- -virtual test/minrt
+cd Backend && cargo run --release -- ../test/minrt.s && cd ..
+../bill_sim/tkasm Backend/minrt_colored.s -o test/minrt.bin
+
+# シミュレーション実行
+../bill_sim/sim test/minrt.bin --headless
+
+# 自動テスト (OCaml 参照実装との比較)
+cd tester && python3 test.py --v2
+```
+
+### コンパイラオプション
+
+| オプション | 説明 |
+|---|---|
+| `-inline N` | インライン展開しきい値 (デフォルト: 50000) |
+| `-iter N` | 最適化繰り返し回数 (デフォルト: 10) |
+| `-loop-insert` | LoopInsert 有効化 (デフォルト) |
+| `-no-loop-insert` | LoopInsert 無効化 |
+| `-unroll N` | ループアンロールしきい値 |
+| `-virtual` | 仮想レジスタモード (v2 パイプライン用) |
+
+### 環境変数
+
+| 変数名 | 説明 |
+|---|---|
+| `DUMP_OPT_STAGES=1` | 各最適化パスの中間表現をファイルにダンプ |
+| `DISABLE_CONSTFOLD=1` | 定数畳み込みを無効化 |
+| `DUMP_TERNPHI_TRACE=1` | TernPhiInsert のトレースログを出力 |
+| `TERNPHI_THRESHOLD=N` | TernPhi/fallback 切り替えのサイズしきい値 |
+| `ENABLE_TERNPHI_FALLBACK=1` | TernPhi fallback モードを有効化 |
+| `MC_IFSIMPLIFY=1` | if の boolean 結果最適化を有効化 |
+| `DUMP_ASSIGNARRAY_IR=1` | ArrayElim の AssignArray 中間表現をダンプ |
+
+---
+
+## ライセンス
+
+MinCaml 本体は住井英二郎教授によるもの。詳細は LICENSE を参照。

@@ -2,7 +2,10 @@
 - loop argの固定化
 - if ... then () else ...やif ... then ... else ()の簡略化
 - 命令リオーダリング
-
+- Global変数のlivein/liveout
+-- Globalが生存している時には1命令あたりコスト1
+-- Globalを読み出し/保存するのには1命令あたりコストS(~ 50)
+-- 以上に従ってコストを最小化する。これはそれぞれの変数についてdp[index][state] := min_costで、計算できる。(ただし変数がuseされているにも拘らず、state=liveoutの時はコストinfとする。)
 
 ```
 	ceqi	%i31, %i4, 0

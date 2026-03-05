@@ -28,6 +28,8 @@ and exp =
   | CmpFEq of Id.t * Id.t
   | CmpFLE of Id.t * Id.t
   | CmpFLT of Id.t * Id.t
+  | Tern of Id.t * Id.t * Id.t
+  | TernF of Id.t * Id.t * Id.t
   | IfEq of Id.t * id_or_imm * t * t
   | IfLE of Id.t * id_or_imm * t * t
   | IfFEq of Id.t * Id.t * t * t
@@ -108,6 +110,7 @@ let rec fv_exp = function
   | Mov(x) | Neg(x) | FMov(x) | FNeg(x) | FInv(x) | Save(x, _) -> [x]
   | CmpEq(x, y') | CmpLE(x, y') | CmpLT(x, y') -> x :: fv_id_or_imm y'
   | CmpFEq(x, y) | CmpFLE(x, y) | CmpFLT(x, y) -> [x; y]
+  | Tern(c, x, y) | TernF(c, x, y) -> [c; x; y]
   | Sll(x, y') | Sra(x, y') -> x :: fv_id_or_imm y'
   | Add(x, y') | Sub(x, y') | Ld(x, y') | LdF(x, y') -> x :: fv_id_or_imm y'
   | St(x, y, z') | StF(x, y, z') -> x :: y :: fv_id_or_imm z'

@@ -26,11 +26,15 @@ type t = (* K正規化後の式 (caml2html: knormal_t) *)
   | Put of Id.t * Id.t * Id.t
   | ExtArray of Id.t
   | ExtFunApp of Id.t * Id.t list
-  | Assign of Id.t * Id.t * t
+  | TernPhi of Id.t * Id.t * Id.t
+  | Assign of Id.t * Id.t * t * assign_tag
   | While of t * t
   | Break of Id.t
 and fundef = { name : Id.t * Type.t; args : (Id.t * Type.t) list; body : t; tags : tag ref}
 and tag = purity_tag
+and assign_tag =
+  | AssignWhile
+  | AssignArray
 and purity_tag =
   | Pure
   | Impure
@@ -52,9 +56,27 @@ let rec fv = function (* 式に出現する（自由な）変数 (caml2html: kno
   | Tuple(xs) | ExtFunApp(_, xs) -> S.of_list xs
   | Put(x, y, z) -> S.of_list [x; y; z]
   | LetTuple(xs, y, e) -> S.add y (S.diff (fv e) (S.of_list (List.map fst xs)))
-  | Assign(x, y, e) -> S.add x (S.add y (fv e))
+  | TernPhi(c, x, y) -> S.of_list [c; x; y]
+  | Assign(x, y, e, _) -> S.add x (S.add y (fv e))
   | While(e1, e2) -> S.union (fv e1) (fv e2)
   | Break(x) -> S.singleton x
+
+(* Leakable変数（if分岐内で定義され、分岐外のTernPhiで参照される変数）を
+   式全体から収集する。fvの返り値と和集合を取ることで、Elimが
+   分岐内のphi束縛を誤って除去することを防ぐ。 *)
+let rec collect_leakable = function
+  | Let((x, _), e1, e2) ->
+      let s = S.union (collect_leakable e1) (collect_leakable e2) in
+      if Id.is_leakable x then S.add x s else s
+  | LetRec({ body; _ }, e2) ->
+      S.union (collect_leakable body) (collect_leakable e2)
+  | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) | While(e1, e2) ->
+      S.union (collect_leakable e1) (collect_leakable e2)
+  | LetTuple(_, _, e) | Assign(_, _, e, _) -> collect_leakable e
+  | _ -> S.empty
+
+(* fvの返り値とLeakable変数集合の和集合を返す *)
+let fv_with_leakable leakable e = S.union (fv e) leakable
 
 let insert_let (e, t) k = (* letを挿入する補助関数 (caml2html: knormal_insert) *)
   match e with

@@ -17,6 +17,6 @@ let rec f = function (* ネストしたletの簡約 (caml2html: assoc_f) *)
       FunctionChecker.registerFunctionDef fundef;
       LetRec(fundef, f e2)
   | LetTuple(xts, y, e) -> LetTuple(xts, y, f e)
-  | Assign(x, y, e) -> Assign(x, y, f e)
+  | Assign(x, y, e, tag) -> Assign(x, y, f e, tag)
   | While(e1, e2) -> While(f e1, f e2)
   | e -> e

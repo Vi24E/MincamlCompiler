@@ -53,14 +53,15 @@ let rec subst_expr subst = function
   | Put(x, y, z) -> Put(subst_id subst x, subst_id subst y, subst_id subst z)
   | ExtArray(x) -> ExtArray(x)
   | ExtFunApp(f, xs) -> ExtFunApp(f, List.map (subst_id subst) xs)
-  | Assign(x, y, e) ->
+  | TernPhi(c, x, y) -> TernPhi(subst_id subst c, subst_id subst x, subst_id subst y)
+  | Assign(x, y, e, tag) ->
       (* Assignment kills the previous substituted value of x. *)
-      Assign(x, subst_id subst y, subst_expr (IdMap.remove x subst) e)
+      Assign(x, subst_id subst y, subst_expr (IdMap.remove x subst) e, tag)
   | While(e1, e2) -> While(subst_expr subst e1, subst_expr subst e2)
   | Break(x) -> Break(subst_id subst x)
 
 let rec collect_assign_chain acc = function
-  | Assign(x, y, e) -> collect_assign_chain ((x, y) :: acc) e
+  | Assign(x, y, e, AssignWhile) -> collect_assign_chain ((x, y) :: acc) e
   | e -> (List.rev acc, e)
 
 let subst_map_of_assign_tail tail =
@@ -144,7 +145,8 @@ let rec g = function
   | LetRec({ name = xt; args = yts; body = e1; tags = tags }, e2) ->
       LetRec({ name = xt; args = yts; body = g e1; tags = tags }, g e2)
   | LetTuple(xts, y, e) -> LetTuple(xts, y, g e)
-  | Assign(x, y, e) -> Assign(x, y, g e)
+  | Assign(x, y, e, tag) -> Assign(x, y, g e, tag)
+  | TernPhi(c, x, y) -> TernPhi(c, x, y)
   | While(Int(1), body) ->
       let body' = g body in
       While(Int(1), unroll_while_body_until_threshold body')

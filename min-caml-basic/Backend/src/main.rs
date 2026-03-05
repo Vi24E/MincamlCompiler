@@ -7,6 +7,8 @@ mod peephole;
 mod program;
 
 use std::env;
+use std::fs::File;
+use std::io::Write;
 use std::process;
 
 mod spilling;
@@ -23,6 +25,232 @@ fn call_debug_enabled() -> bool {
     std::env::var("BACKEND_DEBUG_CALL")
         .map(|v| v != "0")
         .unwrap_or(false)
+}
+
+fn live_stats_enabled() -> bool {
+    std::env::var("BACKEND_LIVE_STATS")
+        .map(|v| v != "0")
+        .unwrap_or(false)
+}
+
+fn live_dump_indices() -> Vec<usize> {
+    let Some(raw) = std::env::var("BACKEND_LIVE_DUMP_IDX").ok() else {
+        return Vec::new();
+    };
+    raw.split(',')
+        .filter_map(|s| s.trim().parse::<usize>().ok())
+        .collect()
+}
+
+fn live_dump_limit() -> usize {
+    std::env::var("BACKEND_LIVE_DUMP_LIMIT")
+        .ok()
+        .and_then(|v| v.parse::<usize>().ok())
+        .unwrap_or(64)
+}
+
+fn dump_liveness_at_indices(analyzed: &[analysis::AnalyzedInstruction]) {
+    let idxs = live_dump_indices();
+    if idxs.is_empty() {
+        return;
+    }
+    let limit = live_dump_limit();
+    for idx in idxs {
+        let Some(inst) = analyzed.get(idx) else {
+            println!("[live-dump] idx={} out_of_range(len={})", idx, analyzed.len());
+            continue;
+        };
+        let mnem = inst.instruction.mnemonic.as_deref().unwrap_or("");
+        let mut live_in: Vec<String> = inst.live_in.iter().cloned().collect();
+        let mut live_out: Vec<String> = inst.live_out.iter().cloned().collect();
+        live_in.sort();
+        live_out.sort();
+        let in_show = live_in.iter().take(limit).cloned().collect::<Vec<_>>();
+        let out_show = live_out.iter().take(limit).cloned().collect::<Vec<_>>();
+        println!(
+            "[live-dump] idx={} mnem={} ops={:?} defs={} uses={} live_in={} live_out={}",
+            idx,
+            mnem,
+            inst.instruction.operands,
+            inst.defs.len(),
+            inst.uses.len(),
+            live_in.len(),
+            live_out.len()
+        );
+        let mut defs: Vec<String> = inst.defs.iter().cloned().collect();
+        let mut uses: Vec<String> = inst.uses.iter().cloned().collect();
+        defs.sort();
+        uses.sort();
+        println!("[live-dump]   defs={:?}", defs);
+        println!("[live-dump]   uses={:?}", uses);
+        println!("[live-dump]   live_in(first {} sorted)={:?}", limit, in_show);
+        println!("[live-dump]   live_out(first {} sorted)={:?}", limit, out_show);
+    }
+}
+
+fn stop_after_analyze_enabled() -> bool {
+    std::env::var("BACKEND_STOP_AFTER_ANALYZE")
+        .map(|v| v != "0")
+        .unwrap_or(false)
+}
+
+fn dump_live_all_enabled() -> bool {
+    std::env::var("BACKEND_DUMP_LIVE_ALL")
+        .map(|v| v != "0")
+        .unwrap_or(false)
+}
+
+fn dump_live_all_path() -> String {
+    std::env::var("BACKEND_DUMP_LIVE_PATH")
+        .unwrap_or_else(|_| "../test/minrt.live_all.txt".to_string())
+}
+
+fn format_instruction_line(inst: &input::Instruction) -> String {
+    let mut s = String::new();
+    if let Some(label) = &inst.label {
+        s.push_str(label);
+        s.push(':');
+        if inst.mnemonic.is_some() {
+            s.push(' ');
+        }
+    }
+    if let Some(mnemonic) = &inst.mnemonic {
+        s.push_str(mnemonic);
+        if !inst.operands.is_empty() {
+            s.push(' ');
+            s.push_str(&inst.operands.join(", "));
+        }
+    }
+    if s.is_empty() {
+        "<empty>".to_string()
+    } else {
+        s
+    }
+}
+
+fn dump_liveness_full(analyzed: &[analysis::AnalyzedInstruction]) {
+    if !dump_live_all_enabled() {
+        return;
+    }
+    let path = dump_live_all_path();
+    let mut file = File::create(&path)
+        .unwrap_or_else(|e| panic!("failed to create liveness dump '{}': {}", path, e));
+    for (idx, inst) in analyzed.iter().enumerate() {
+        let line = format_instruction_line(&inst.instruction);
+        let live_in = inst.live_in.iter().cloned().collect::<Vec<_>>().join(", ");
+        let live_out = inst.live_out.iter().cloned().collect::<Vec<_>>().join(", ");
+        writeln!(
+            file,
+            "{:06}: {}\t# live_in=[{}] live_out=[{}]",
+            idx, line, live_in, live_out
+        )
+        .unwrap_or_else(|e| panic!("failed to write liveness dump '{}': {}", path, e));
+    }
+    println!("Liveness full dump written to {}", path);
+}
+
+fn print_liveness_stats(analyzed: &[analysis::AnalyzedInstruction]) {
+    let n = analyzed.len();
+    if n == 0 {
+        println!("Liveness stats: empty");
+        return;
+    }
+    let mut total_in = 0usize;
+    let mut total_out = 0usize;
+    let mut max_in = 0usize;
+    let mut max_out = 0usize;
+    let mut max_in_idx = 0usize;
+    let mut max_out_idx = 0usize;
+    let mut all_regs: BTreeSet<String> = BTreeSet::new();
+
+    for (i, inst) in analyzed.iter().enumerate() {
+        let li = inst.live_in.len();
+        let lo = inst.live_out.len();
+        total_in += li;
+        total_out += lo;
+        if li > max_in {
+            max_in = li;
+            max_in_idx = i;
+        }
+        if lo > max_out {
+            max_out = lo;
+            max_out_idx = i;
+        }
+        for r in &inst.live_in {
+            all_regs.insert(r.clone());
+        }
+        for r in &inst.live_out {
+            all_regs.insert(r.clone());
+        }
+    }
+    let avg_in = total_in as f64 / n as f64;
+    let avg_out = total_out as f64 / n as f64;
+    println!(
+        "Liveness stats: insts={} avg_live_in={:.2} avg_live_out={:.2} max_live_in={}@{} max_live_out={}@{} unique_live_regs={}",
+        n,
+        avg_in,
+        avg_out,
+        max_in,
+        max_in_idx,
+        max_out,
+        max_out_idx,
+        all_regs.len()
+    );
+    if let Some(inst) = analyzed.get(max_in_idx) {
+        let mnem = inst.instruction.mnemonic.as_deref().unwrap_or("");
+        println!(
+            "  max_live_in_inst idx={} mnem={} ops={:?}",
+            max_in_idx, mnem, inst.instruction.operands
+        );
+        let mut sample: Vec<String> = inst.live_in.iter().take(16).cloned().collect();
+        sample.sort();
+        println!("  max_live_in_sample(first16_sorted)={:?}", sample);
+    }
+    if let Some(inst) = analyzed.get(max_out_idx) {
+        let mnem = inst.instruction.mnemonic.as_deref().unwrap_or("");
+        println!(
+            "  max_live_out_inst idx={} mnem={} ops={:?}",
+            max_out_idx, mnem, inst.instruction.operands
+        );
+        let mut sample: Vec<String> = inst.live_out.iter().take(16).cloned().collect();
+        sample.sort();
+        println!("  max_live_out_sample(first16_sorted)={:?}", sample);
+    }
+}
+
+fn print_liveness_dominance_sanity(analyzed: &[analysis::AnalyzedInstruction]) {
+    let mut first_def: BTreeMap<String, usize> = BTreeMap::new();
+    for (idx, inst) in analyzed.iter().enumerate() {
+        for r in &inst.defs {
+            if (r.starts_with("%vi") || r.starts_with("%vf")) && !first_def.contains_key(r) {
+                first_def.insert(r.clone(), idx);
+            }
+        }
+    }
+    let mut bad: Vec<(usize, String, usize)> = Vec::new(); // (idx, reg, def_idx)
+    for (idx, inst) in analyzed.iter().enumerate() {
+        for r in &inst.live_in {
+            if !(r.starts_with("%vi") || r.starts_with("%vf")) {
+                continue;
+            }
+            if let Some(&didx) = first_def.get(r) {
+                if idx < didx {
+                    bad.push((idx, r.clone(), didx));
+                }
+            }
+        }
+    }
+    println!(
+        "Liveness sanity: virtual_regs_with_def={} live_before_first_def_pairs={}",
+        first_def.len(),
+        bad.len()
+    );
+    for (idx, reg, didx) in bad.into_iter().take(12) {
+        println!(
+            "  live-before-def: reg={} live_in_at={} first_def_at={}",
+            reg, idx, didx
+        );
+    }
 }
 
 fn call_debug_limit() -> usize {
@@ -1133,12 +1361,28 @@ fn main() {
                 println!("Instruction count: {}", work_instructions.len());
 
                 // 1. Analyze
+                let t_analyze = std::time::Instant::now();
                 let analyzed = analysis::analyze(&work_instructions);
+                println!("Analyze time: {:.3}s", t_analyze.elapsed().as_secs_f64());
+                if live_stats_enabled() {
+                    print_liveness_stats(&analyzed);
+                    print_liveness_dominance_sanity(&analyzed);
+                }
+                dump_liveness_at_indices(&analyzed);
+                dump_liveness_full(&analyzed);
+                if stop_after_analyze_enabled() {
+                    println!("Stopped after analyze by BACKEND_STOP_AFTER_ANALYZE=1");
+                    process::exit(0);
+                }
+                let t_pref = std::time::Instant::now();
                 let preferences =
                     build_preference_map(&work_program, &work_instructions, &analyzed);
+                println!("Preference time: {:.3}s", t_pref.elapsed().as_secs_f64());
 
                 // 2. Build Graph
+                let t_graph = std::time::Instant::now();
                 let graph = analysis::InterferenceGraph::build(&analyzed);
+                println!("Graph build time: {:.3}s", t_graph.elapsed().as_secs_f64());
                 println!("Interference Graph Stats:");
                 println!("Nodes: {}", graph.adj.len());
                 // Edges count not strictly needed for logic, skipping for brevity
@@ -1150,11 +1394,13 @@ fn main() {
                 // %i31/%f31 are dedicated scratch registers for spill expansion.
                 let k = 26;
                 println!("Coloring (K={})...", k);
+                let t_color = std::time::Instant::now();
                 let mut coloring = coloring::Coloring::new(k, graph);
                 if enable_preference {
                     coloring.set_preferences(preferences);
                 }
                 let allocation = coloring.color();
+                println!("Coloring time: {:.3}s", t_color.elapsed().as_secs_f64());
                 if verbose_stats {
                     let alloc_stats = collect_allocation_stats(&allocation);
                     print_allocation_stats(&alloc_stats);

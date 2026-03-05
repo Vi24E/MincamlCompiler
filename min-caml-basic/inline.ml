@@ -4,6 +4,50 @@ open KNormal
 let threshold = ref 50000 (* Mainで-inlineオプションによりセットされる *)
 
 let same_id x y = Id.compare x y = 0
+let uses_id = same_id
+
+let inline_debug_trace_enabled =
+  match Sys.getenv_opt "INLINE_DEBUG_TRACE" with
+  | Some("1") | Some("true") | Some("TRUE") -> true
+  | _ -> false
+
+module SM = Map.Make(String)
+
+let debug_id_map : int SM.t ref = ref SM.empty
+let debug_id_entries : (int * string) list ref = ref []
+let next_debug_id = ref 1
+
+let inline_debug_map_path () =
+  match Sys.getenv_opt "INLINE_DEBUG_MAP_FILE" with
+  | Some p when p <> "" -> p
+  | _ -> "test/inline_debug_map.txt"
+
+let get_or_assign_debug_id f =
+  let name = Id.to_string f in
+  match SM.find_opt name !debug_id_map with
+  | Some id -> id
+  | None ->
+      let id = !next_debug_id in
+      incr next_debug_id;
+      debug_id_map := SM.add name id !debug_id_map;
+      debug_id_entries := (id, name) :: !debug_id_entries;
+      id
+
+let make_inline_debug_marker f body =
+  if not inline_debug_trace_enabled then body
+  else
+    let marker_fn = (Printf.sprintf "print_debug.%d" (get_or_assign_debug_id f), Id.Unknown) in
+    let dbg_tmp = Id.gentmp Type.Unit in
+    Let((dbg_tmp, Type.Unit), ExtFunApp(marker_fn, []), body)
+
+let dump_inline_debug_map () =
+  if inline_debug_trace_enabled then begin
+    let path = inline_debug_map_path () in
+    let oc = open_out path in
+    List.rev !debug_id_entries
+    |> List.iter (fun (id, name) -> Printf.fprintf oc "%d %s\n" id name);
+    close_out oc
+  end
 
 let rec size = function
   | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2)
@@ -13,8 +57,9 @@ let rec size = function
     (match e1 with
     | Int(_) -> size e2
     | _ -> 1 + size e1 + size e2)
-  | Assign(_, _, e1) -> 1 + size e1
+  | Assign(_, _, e1, _) -> 1 + size e1
   | LetTuple(_, _, e) -> 1 + size e
+  | TernPhi(_, _, _) -> 1
   | _ -> 1
 
 (* true if function [name] has a self-recursive call in non-tail position. *)
@@ -42,8 +87,10 @@ let rec has_non_tail_self_call name tail_pos = function
         || has_non_tail_self_call name tail_pos e2
   | LetTuple(_, _, e) ->
       has_non_tail_self_call name tail_pos e
-  | Assign(_, _, e) ->
+  | Assign(_, _, e, _) ->
       has_non_tail_self_call name tail_pos e
+  | TernPhi(c, x, y) ->
+      uses_id name c || uses_id name x || uses_id name y
   | While(e1, e2) ->
       has_non_tail_self_call name false e1
       || has_non_tail_self_call name false e2
@@ -80,15 +127,22 @@ let rec g env = function (* インライン展開ルーチン本体 (caml2html: 
           zs
           params'
       in
-      let body' = Alpha.g alpha_env e in
-      List.fold_right2
-        (fun (z', t) y acc -> Let((z', t), Var(y), acc))
-        params'
-        ys
-        body'
+      let (body', _) = Alpha.g alpha_env e in
+      let inlined =
+        List.fold_right2
+          (fun (z', t) y acc -> Let((z', t), Var(y), acc))
+          params'
+          ys
+          body'
+      in
+      make_inline_debug_marker x inlined
   | LetTuple(xts, y, e) -> LetTuple(xts, y, g env e)
-  | Assign(x, y, e) -> Assign(x, y, g env e)
+  | Assign(x, y, e, tag) -> Assign(x, y, g env e, tag)
+  | TernPhi(c, x, y) -> TernPhi(c, x, y)
   | While(e1, e2) -> While(g env e1, g env e2)
   | e -> e
 
-let f e = g M.empty e
+let f e =
+  let e' = g M.empty e in
+  dump_inline_debug_map ();
+  e'

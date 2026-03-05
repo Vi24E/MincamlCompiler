@@ -9,8 +9,9 @@ let rec size = function
     (match e1 with
     | Int(_)  -> size e2
     | _ -> 1 + size e1 + size e2)
-  | Assign(_, _, e1) -> 1 + size e1
+  | Assign(_, _, e1, _) -> 1 + size e1
   | LetTuple(_, _, e) -> 1 + size e
+  | TernPhi(_, _, _) -> 1
   | _ -> 1
   
 let rec g e = 
@@ -29,7 +30,8 @@ let rec g e =
       let fundef = { name = xt; args = yts; body = g e1; tags = KNormal.default_tag()} in
       FunctionChecker.registerFunctionDef fundef;
       LetRec(fundef, g e2)
-  | Assign(x, y, e) -> Assign(x, y, g e)
+  | Assign(x, y, e, tag) -> Assign(x, y, g e, tag)
+  | TernPhi(c, x, y) -> TernPhi(c, x, y)
   | _ -> e
 
 let f e =

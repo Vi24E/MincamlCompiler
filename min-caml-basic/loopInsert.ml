@@ -64,11 +64,13 @@ let rec scan_self_usage name tail_pos = function
       in
       let shadowed = List.exists (fun (x, _) -> uses_id name x) xts in
       if shadowed then here else merge_scan here (scan_self_usage name tail_pos e)
-  | Assign(x, y, e) ->
+  | Assign(x, y, e, _) ->
       let here =
         if uses_id name x || uses_id name y then mark_invalid empty_scan else empty_scan
       in
       merge_scan here (scan_self_usage name tail_pos e)
+  | TernPhi(c, x, y) ->
+      if uses_id name c || uses_id name x || uses_id name y then mark_invalid empty_scan else empty_scan
   | While(e1, e2) ->
       merge_scan (scan_self_usage name false e1) (scan_self_usage name false e2)
   | Break(x) ->
@@ -95,7 +97,7 @@ let build_parallel_assign args ys cont =
     in
     let after_assign =
       List.fold_right2
-        (fun (arg, _t) (tmp, _tmp_t, _y) acc -> Assign(arg, tmp, acc))
+        (fun (arg, _t) (tmp, _tmp_t, _y) acc -> Assign(arg, tmp, acc, AssignWhile))
         args
         tmps
         cont
@@ -131,8 +133,10 @@ let rec transform_tail name args ret_t tail_pos = function
         transform_tail name args ret_t tail_pos e2)
   | LetTuple(xts, y, e) ->
       LetTuple(xts, y, transform_tail name args ret_t tail_pos e)
-  | Assign(x, y, e) ->
-      Assign(x, y, transform_tail name args ret_t tail_pos e)
+  | Assign(x, y, e, tag) ->
+      Assign(x, y, transform_tail name args ret_t tail_pos e, tag)
+  | TernPhi(c, x, y) ->
+      TernPhi(c, x, y)
   | While(e1, e2) ->
       While(transform_tail name args ret_t false e1, transform_tail name args ret_t false e2)
   | App(f, ys) when tail_pos && uses_id name f ->
@@ -161,7 +165,8 @@ let rec visit = function
   | IfEq(x, y, e1, e2) -> IfEq(x, y, visit e1, visit e2)
   | IfLE(x, y, e1, e2) -> IfLE(x, y, visit e1, visit e2)
   | LetTuple(xts, y, e) -> LetTuple(xts, y, visit e)
-  | Assign(x, y, e) -> Assign(x, y, visit e)
+  | Assign(x, y, e, tag) -> Assign(x, y, visit e, tag)
+  | TernPhi(c, x, y) -> TernPhi(c, x, y)
   | While(e1, e2) -> While(visit e1, visit e2)
   | e -> e
 

@@ -28,6 +28,8 @@ and exp =
   | CmpFEq of Id.t * Id.t
   | CmpFLE of Id.t * Id.t
   | CmpFLT of Id.t * Id.t
+  | Tern of Id.t * Id.t * Id.t
+  | TernF of Id.t * Id.t * Id.t
   | IfEq of Id.t * id_or_imm * t * t
   | IfLE of Id.t * id_or_imm * t * t
   | IfFEq of Id.t * Id.t * t * t

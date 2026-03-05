@@ -8,7 +8,7 @@ module S = Set.Make(struct
 end)
 
 let rec collect_mutable acc = function
-  | Assign(x, _, e) -> collect_mutable (S.add x acc) e
+  | Assign(x, _, e, _) -> collect_mutable (S.add x acc) e
   | Let(_, e1, e2) -> collect_mutable (collect_mutable acc e1) e2
   | LetRec({ body; _ }, e2) -> collect_mutable (collect_mutable acc body) e2
   | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) ->
@@ -18,8 +18,22 @@ let rec collect_mutable acc = function
   | Unit | Int(_) | Float(_) | Neg(_) | Add(_, _) | Sub(_, _) | Sll(_, _)
   | Sra(_, _) | FNeg(_) | FAdd(_, _) | FSub(_, _) | FMul(_, _) | FDiv(_,_)
   | Var(_) | Tuple(_) | Get(_, _) | Put(_, _, _) | App(_, _) | ExtArray(_)
-  | ExtFunApp(_, _) | Break(_) ->
+  | ExtFunApp(_, _) | TernPhi(_, _, _) | Break(_) ->
       acc
+
+let contains_sub s sub =
+  let ls = String.length s in
+  let lsub = String.length sub in
+  let rec go i =
+    if i + lsub > ls then false
+    else if String.sub s i lsub = sub then true
+    else go (i + 1)
+  in
+  go 0
+
+let should_keep_binding x =
+  let s = Id.to_string x in
+  contains_sub s "_as." || contains_sub s "_phi."
 
 let kill_aliases_of x env =
   M.filter (fun _ v -> Id.compare v x <> 0) env
@@ -44,7 +58,7 @@ let assign_alias x y_rep alias_env =
 (* 式の中で Assign される変数をすべて収集する。
    Let の e1 処理後に e2 用の alias_env を無効化するために使用する。 *)
 let rec collect_assigned acc = function
-  | Assign(x, _, e) -> collect_assigned (S.add x acc) e
+  | Assign(x, _, e, _) -> collect_assigned (S.add x acc) e
   | Let(_, e1, e2) -> collect_assigned (collect_assigned acc e1) e2
   | LetRec({ body; _ }, e2) -> collect_assigned (collect_assigned acc body) e2
   | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) ->
@@ -86,7 +100,10 @@ let rec g mutable_set env alias_env = function (* β簡約ルーチン本体 (ca
           (* y を env で解決し、さらに alias_env_base で代表値を求める *)
           let y' = find y env in
           let y_rep = find_rep y' alias_env_base in
-          if S.mem x mutable_set || S.mem y' mutable_set then
+          if should_keep_binding x then
+            let alias_env' = M.add x y_rep alias_env_base in
+            Let((x, t), Var(y'), g mutable_set env alias_env' e2)
+          else if S.mem x mutable_set || S.mem y' mutable_set then
             (* x か y のどちらかがミュータブル → let バインディングを保持する。
                x が immutable (Td8144 のような一時変数) でも y がミュータブル (q0) なら
                alias_env[x] = y_rep を記録しておく必要がある。
@@ -117,7 +134,8 @@ let rec g mutable_set env alias_env = function (* β簡約ルーチン本体 (ca
   | App(g, xs) -> App(find g env, List.map (fun x -> find x env) xs)
   | ExtArray(x) -> ExtArray(x)
   | ExtFunApp(x, ys) -> ExtFunApp(x, List.map (fun y -> find y env) ys)
-  | Assign(x, y, e) ->
+  | TernPhi(c, x, y) -> TernPhi(find c env, find x env, find y env)
+  | Assign(x, y, e, tag) ->
       let y' = find y env in
       (* x と y' それぞれの代表値を求め、一致すれば冗長な代入を除去 *)
       let x_rep = find_rep x alias_env in
@@ -128,7 +146,7 @@ let rec g mutable_set env alias_env = function (* β簡約ルーチン本体 (ca
         (* x はすでに y_rep と等価 → Assign を消去 *)
         g mutable_set env' alias_env' e
       else
-        Assign(x, y', g mutable_set env' alias_env' e)
+        Assign(x, y', g mutable_set env' alias_env' e, tag)
   (* While ボディは前イテレーションの alias_env を引き継がない *)
   | While(e1, e2) -> While(g mutable_set env M.empty e1, g mutable_set env M.empty e2)
   | Break(x) -> Break(find x env)

@@ -77,7 +77,8 @@ let rec tupleEliminator e env =
   | LetTuple(xts, y, e2) -> LetTuple(xts, y, tupleEliminator e2 env)
   | IfEq(x, y, e1, e2) -> IfEq(x, y, tupleEliminator e1 env, tupleEliminator e2 env)
   | IfLE(x, y, e1, e2) -> IfLE(x, y, tupleEliminator e1 env, tupleEliminator e2 env)  
-  | Assign(x, y, e) -> Assign(x, y, tupleEliminator e env)
+  | Assign(x, y, e, tag) -> Assign(x, y, tupleEliminator e env, tag)
+  | TernPhi(c, x, y) -> TernPhi(c, x, y)
   | While(e1, e2) -> While(tupleEliminator e1 env, tupleEliminator e2 env)
   | e -> e
 

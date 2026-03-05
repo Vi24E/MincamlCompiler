@@ -6,6 +6,7 @@ let id_or_imm_is_reg = function
   | _ -> false
 
 let reg_zero = ("%i0", Id.Known(Id.Register, Id.None))
+let ever_bound_env : Id.t M.t ref = ref M.empty
 
 (* 関数やグローバル変数のアドレスをロードする命令かどうか *)
 let is_load_addr = function
@@ -28,7 +29,9 @@ let alloc x t regenv =
 (* 仮想レジスタ環境への追加 *)
 let add x r regenv =
   if is_reg x then (assert (x = r); regenv) else
-  M.add x r regenv
+  let regenv' = M.add x r regenv in
+  ever_bound_env := M.add x r !ever_bound_env;
+  regenv'
 
 let loop_envs = ref []
 
@@ -67,7 +70,14 @@ let find_and_bind x t regenv k =
         in
         let (e, reg_out) = k r in
         (Let((r, t), load_instr, e), reg_out)
-      else k x
+      else
+        (match M.find_opt x !ever_bound_env with
+        | Some r -> k r
+        | None ->
+            failwith
+              (Printf.sprintf
+                 "allocVirtual: unbound local id %s"
+                 (Id.to_string x)))
 
 let find_and_bind' x' regenv k =
   match x' with
@@ -114,6 +124,16 @@ and g' dest cont regenv = function
   | CmpFEq(x, y) -> find_and_bind x Type.Float regenv (fun rx -> find_and_bind y Type.Float regenv (fun ry -> (Ans(CmpFEq(rx, ry)), regenv)))
   | CmpFLE(x, y) -> find_and_bind x Type.Float regenv (fun rx -> find_and_bind y Type.Float regenv (fun ry -> (Ans(CmpFLE(rx, ry)), regenv)))
   | CmpFLT(x, y) -> find_and_bind x Type.Float regenv (fun rx -> find_and_bind y Type.Float regenv (fun ry -> (Ans(CmpFLT(rx, ry)), regenv)))
+  | Tern(c, x, y) ->
+      find_and_bind c Type.Int regenv (fun rc ->
+        find_and_bind x Type.Int regenv (fun rx ->
+          find_and_bind y Type.Int regenv (fun ry ->
+            (Ans(Tern(rc, rx, ry)), regenv))))
+  | TernF(c, x, y) ->
+      find_and_bind c Type.Int regenv (fun rc ->
+        find_and_bind x Type.Float regenv (fun rx ->
+          find_and_bind y Type.Float regenv (fun ry ->
+            (Ans(TernF(rc, rx, ry)), regenv))))
   
   | IfEq(x, y', e1, e2) -> 
       find_and_bind x Type.Int regenv (fun rx -> 
@@ -274,10 +294,41 @@ and g' dest cont regenv = function
   | Save(_, _) -> assert false (* 仮想モードでは明示的なSaveは生成されないはず *)
 
 and g'_if dest cont regenv constr e1 e2 =
-  let (e1', _) = g dest cont regenv e1 in
-  let (e2', _) = g dest cont regenv e2 in
-  (* ifの結果はdestに入るように生成されるので、単純に結合 *)
-  (Ans(constr e1' e2'), regenv)
+  let rec may_fallthrough = function
+    | Ans(Break(_, _, _)) -> false
+    | Ans(_) -> true
+    | Let(_, Break(_, _, _), _) -> false
+    | Let(_, _, e) -> may_fallthrough e
+  in
+  let merge_common_env regenv1 regenv2 =
+    (* Post-if environment is computed from branch results only.
+       Keep bindings that are identical across both branches. *)
+    let keys =
+      let add_keys m acc = M.fold (fun k _ s -> S.add k s) m acc in
+      add_keys regenv2 (add_keys regenv1 S.empty)
+    in
+    S.fold
+      (fun x acc ->
+        if is_reg x then acc
+        else
+          match (M.find_opt x regenv1, M.find_opt x regenv2) with
+          | Some(r1), Some(r2) when r1 = r2 -> M.add x r1 acc
+          | _ -> acc)
+      keys
+      M.empty
+  in
+  let (e1', regenv1) = g dest cont regenv e1 in
+  let (e2', regenv2) = g dest cont regenv e2 in
+  let regenv' =
+    let f1 = may_fallthrough e1' in
+    let f2 = may_fallthrough e2' in
+    match (f1, f2) with
+    | true, true -> merge_common_env regenv1 regenv2
+    | true, false -> regenv1
+    | false, true -> regenv2
+    | false, false -> regenv
+  in
+  (Ans(constr e1' e2'), regenv')
 
 let h { name = Id.L(x); args = ys; fargs = zs; body = e; ret = t } = 
   (* ステップ1: 引数の仮想レジスタへのマッピング作成 *)
@@ -301,6 +352,7 @@ let h { name = Id.L(x); args = ys; fargs = zs; body = e; ret = t } =
       zs
       (Array.to_list (Array.sub fregs 0 (List.length zs)))
   in
+  ever_bound_env := regenv;
   
   (* ステップ2: 関数本体の処理 *)
   (* 戻り値の格納先決定 *)
@@ -332,5 +384,6 @@ let h { name = Id.L(x); args = ys; fargs = zs; body = e; ret = t } =
 let f (Prog(data, fundefs, e)) =
   Format.eprintf "virtual register allocation mode@.";
   let fundefs' = List.map h fundefs in
+  ever_bound_env := M.empty;
   let e', _ = g (Id.gentmp Type.Unit, Type.Unit) (Ans(Nop)) M.empty e in
   Prog(data, fundefs', e')

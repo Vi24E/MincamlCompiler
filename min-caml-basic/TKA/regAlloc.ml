@@ -149,6 +149,10 @@ and g' dest cont regenv = function
   | CmpFEq(x, y) -> (Ans(CmpFEq(find x Type.Float regenv, find y Type.Float regenv)), regenv)
   | CmpFLE(x, y) -> (Ans(CmpFLE(find x Type.Float regenv, find y Type.Float regenv)), regenv)
   | CmpFLT(x, y) -> (Ans(CmpFLT(find x Type.Float regenv, find y Type.Float regenv)), regenv)
+  | Tern(c, x, y) ->
+      (Ans(Tern(find c Type.Int regenv, find x Type.Int regenv, find y Type.Int regenv)), regenv)
+  | TernF(c, x, y) ->
+      (Ans(TernF(find c Type.Int regenv, find x Type.Float regenv, find y Type.Float regenv)), regenv)
   | IfEq(x, y', e1, e2) as exp -> g'_if dest cont regenv exp (fun e1' e2' -> IfEq(find x Type.Int regenv, find' y' regenv, e1', e2')) e1 e2
   | IfLE(x, y', e1, e2) as exp -> g'_if dest cont regenv exp (fun e1' e2' -> IfLE(find x Type.Int regenv, find' y' regenv, e1', e2')) e1 e2
   | IfFEq(x, y, e1, e2) as exp -> g'_if dest cont regenv exp (fun e1' e2' -> IfFEq(find x Type.Float regenv, find y Type.Float regenv, e1', e2')) e1 e2

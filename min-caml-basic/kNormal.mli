@@ -24,11 +24,15 @@ type t =
   | Put of Id.t * Id.t * Id.t
   | ExtArray of Id.t
   | ExtFunApp of Id.t * Id.t list
-  | Assign of Id.t * Id.t * t
+  | TernPhi of Id.t * Id.t * Id.t
+  | Assign of Id.t * Id.t * t * assign_tag
   | While of t * t
   | Break of Id.t
 and fundef = { name : Id.t * Type.t; args : (Id.t * Type.t) list; body : t; tags : tag ref}
 and tag = purity_tag
+and assign_tag =
+  | AssignWhile
+  | AssignArray
 and purity_tag =
   | Pure
   | Impure
@@ -36,4 +40,6 @@ and purity_tag =
 
 val default_tag : unit -> tag ref
 val fv : t -> S.t
+val collect_leakable : t -> S.t
+val fv_with_leakable : S.t -> t -> S.t
 val f : Syntax.t -> t

@@ -1,0 +1,449 @@
+================================================================================
+■ 調査13: print_debug 擬似命令トレース導入 (2026-03-06)
+================================================================================
+
+  目的:
+    Inline 展開で挿入したトレース点を、tkasm/sim 経由の実行時に関数IDとして観測する。
+
+  実装:
+    - Inline:
+      - inlined call ごとに `ExtFunApp("print_debug.<id>", [])` を挿入
+      - `id -> 関数名` を `test/inline_debug_map.txt` に保存
+    - Emit:
+      - `min_caml_print_debug.<id>` 呼び出しを擬似命令
+        `print_debug <id>` に変換
+    - tkasm(v1.c):
+      - `print_debug <id>` を `movi x0, (0x60000 | id)` にエンコード
+        （x0 書き込みなので状態不変）
+    - sim(fastsim):
+      - `--debug` 時に `movi x0, 0x60000..0x7ffff` を検知し
+        `[PRINT_DEBUG] ... id=<n>` を出力
+
+  観測結果:
+    - トレース有効版 (`INLINE_DEBUG_TRACE=1`) では、
+      最初の `PRINT_DEBUG` より前に 0x12c 周辺でループ:
+        0x12c: ceqi x31, x15, 0
+        0x130: jzero x0, x31, ca_cont...
+        ...
+        0x14c: jmp x0, 0(x31) -> 0x12c
+    - すなわち create_array 初期化ループ (`ca_loop.*`) から抜けない状態。
+
+  補足:
+    - この観測は「トレース挿入版」での結果。
+    - 既報の `read_net_item/read_or_network` 偏重とは停止箇所が異なるため、
+      トレース挿入による最適化経路変化の影響は要切り分け。
+
+================================================================================
+■ 調査12: 2026-03-05 追加修正 (allocVirtual unbound の直接原因)
+================================================================================
+
+  観測:
+    `test/minrt.optimized` に
+      Int Ti174709_phi.174741 = TernPhi(..., Ti174709_phi.174742, Ti174709_phi.174743);
+    が残る一方、Ti174709_phi.174742/.174743 の定義 Let が消えていた。
+    これが `allocVirtual: unbound local id ...` の直接原因。
+
+  原因:
+    - `ArrayElim`(内部の TernPhiInsert) が leakable 変数を新規生成
+    - 同一イテレーション内の直後 `Elim` がそれを削除
+    - 当時の `Elim` 判定は「直前の VariableChecker で作った LeakableEnv」に依存しており、
+      ArrayElim で増えた新規 leakable 変数が map 未登録(false扱い) になっていた
+
+  修正方針(実装済み):
+    1. Elim の入口で `VariableChecker.recompute_leakable_env` を呼び、
+       現在ASTに対して LeakableEnv を再計算する
+    2. leakable 変数の削除判定を通常 `fv` から切り離す
+       - 非 leakable: 既存どおり `fv` で判定
+       - leakable: `LeakableEnv=true` のときのみ保持
+
+  期待効果:
+    - TernPhi の入力となる leakable 定義が Elim で消えない
+    - allocVirtual unbound を抑止
+
+================================================================================
+  min-caml-basic 最適化バグ調査ログ (debug.txt)
+  初版: 2026-03-02  最終更新: 2026-03-05
+================================================================================
+
+■ 問題概要
+  `-iter 1` 以上の最適化でmin-rtレイトレーサーの描画結果が不正になる。
+  `-iter 0`（最適化なし）では正常。
+
+================================================================================
+■ 調査1: イテレーションレベルの二分探索
+================================================================================
+
+  iter=0 (基準)  → 正常 (100%)
+  iter=1         → 異常 (92.71%, 224 diff channels, max_err=255)
+  iter=2         → 異常 (92.71%, 同上)
+  iter=3         → タイムアウト ※後述「調査9」で根本原因を特定・修正
+  iter=4         → タイムアウト ※同上 (修正後は22.88%、まだ不正確)
+  iter=5         → 異常 (92.71%, 同上)
+
+  結論: バグはiter=1（最初のイテレーション）で発生。iter=2以降は同一の誤差。
+        iter=3以上では追加のセンチネル初期化バグにより無限ループが起きる
+        （調査9参照）。
+
+================================================================================
+■ 調査2: パスレベルの二分探索 (iter=1内部)
+================================================================================
+
+  パイプライン: STOP_AT_ITER=1 STOP_AFTER_PASS=N で各パス後に停止し、
+  Rustバックエンド → tkasm → sim → PPM比較 の全パイプラインで検証。
+
+  Pass 1  (VariableChecker)  → 100%, 0 diff, max_err=0
+  Pass 2  (ArrayScalarize)   → 100%, 0 diff, max_err=0
+  Pass 3  (TupleElim)        → 100%, 0 diff, max_err=0
+  Pass 4  (ArrayElim)        → 100%, 0 diff, max_err=0     ← 最後の正常
+  Pass 5  (Elim)             → 94.17%, 179 diff, max_err=11 ← ★ここで発症
+  Pass 7  (CommonExpElim)    → 94.17%, 179 diff, max_err=11  (変化なし)
+  Pass 10 (Beta)             → 92.71%, 224 diff, max_err=255 ← 悪化
+
+  結論: 第一の劣化点はPass 5 (Elim: 死コード除去)。
+        第二の劣化点はPass 8-10 (Inline/Assoc/Beta) でmax_errが255に拡大。
+
+================================================================================
+■ 調査3: ピクセル誤差パターンの分析 (Pass 5時点)
+================================================================================
+
+  チャンネル別の誤差方向:
+    R: 155ピクセルに差異 → 全て参照より高い (+155, -0)
+    G:  13ピクセルに差異 → ほぼ全て参照より低い (+1, -12)
+    B:  13ピクセルに差異 → ほぼ全て参照より低い (+1, -12)
+
+  具体例:
+    px(0,0):  ref=(25,4,4) test=(25,0,0)  → G,Bが0に
+    px(12,0): ref=(22,0,0) test=(25,0,0)  → Rが22→25に上昇
+    px(16,3): ref=(206,105,255) test=(215,105,255)  → Rが9上昇 (Pass10)
+
+  考察: R値が系統的に高く、G/Bがゼロに近い。
+        環境光(ambient)のみが出力され、拡散反射/テクスチャ成分が欠落している
+        パターンと一致。
+
+================================================================================
+■ 調査4: Elimパスの変換内容のIRレベル検証
+================================================================================
+
+  DUMP_OPT_STAGES=1 で iter=1 の Pass 4 (arrayElim) と Pass 5 (elim) の
+  KNormal IR をダンプし比較。
+
+  Elim前: 10,650行 → Elim後: 5,313行 (約半分に削減)
+
+  除去された主要な関数 (LetRec除去):
+    - o_color_red.2555, o_color_green.2568, o_color_blue.2581
+      → 既にutexture.4235にインライン展開済み、呼び出し元なし
+    - atan.2025
+      → 既にインライン展開済み
+    - raytracing.4442, scan_line.4745, rt.4825
+      → 既にscan_start.4806にインライン展開済み
+    - 他多数の小関数
+
+  除去されたLet束縛 (846個):
+    - cobj.103xx 系のエイリアス束縛 (死コード)
+    - 未使用のUnit束縛
+    - その他、fv解析で後続式に出現しない変数
+
+  生存する実行パスの比較:
+    scan_start.4806 → scan_point.4630 → utexture.4235
+    上記のホットパス関数はElim前後で意味的に同一。
+    差異はdead alias束縛の除去のみ。
+
+  結論: IR上ではElimの変換は正当。除去された関数・変数は全てfv解析で
+        「未使用」と正しく判定されている。
+
+================================================================================
+■ 調査5: FunctionCheckerのキャッシュ不整合仮説の検証
+================================================================================
+
+  仮説: FunctionChecker.fがイテレーションループ前(pre.09)にしか呼ばれず、
+        最適化で関数の純粋性が変わった場合にキャッシュが古くなり、
+        Elimのhas_side_effect判定が不正になるのでは。
+
+  検証: main.mlのElim直前にFunctionChecker.f e4を追加。
+
+  結果: 生成されるアセンブリが完全一致。仮説は否定された。
+
+================================================================================
+■ 調査6: 仮想アセンブリ (Virtual Assembly) の比較
+================================================================================
+
+  Pass 4 仮想ASM: 14,715行
+  Pass 5 仮想ASM:  7,904行
+
+  差分の内容:
+    - Pass 4にのみ存在する部分は全てdead関数のコード
+    - 共通の生存関数 (scan_point, utexture, accumulate_vec_mul等) は
+      dead mov命令の有無のみの差で意味的に同一
+
+  結論: 仮想レジスタレベルでのセマンティクスは同等。
+
+================================================================================
+■ 調査7: 着色アセンブリ (Colored Assembly) の比較
+================================================================================
+
+  Rustバックエンド (Backend/) でレジスタ割当て実施:
+
+                    Pass 4          Pass 5
+  関数数:           160             141
+  命令数:           26,543          20,365
+  スピル数(1st):    47              37
+  着色後行数:       29,475          23,479
+
+  関数レベルの差分:
+    共通関数:          484
+    Pass 4のみ:       1,160 (死関数)
+    Pass 5のみ:         901 (ラベル番号違い等)
+    構造差異あり:       402関数
+
+  402関数の差異の内容:
+    - 全てレジスタ割当ての違い (異なるレジスタ番号、dead mov命令の有無)
+    - 意味的な命令の差はない
+
+  結論: 同じ意味の仮想コードが、バックエンドを通すと異なるレジスタ割当てになり、
+        そのうちのどれかが不正な実行結果を生んでいる。
+
+================================================================================
+■ 調査8: OCamlバックエンド (TKA/) での検証
+================================================================================
+
+  OCamlバックエンドでPass 4, Pass 5ともにシミュレーション実行:
+    Pass 4: タイムアウト (90秒, 無限ループ)
+    Pass 5: タイムアウト (90秒, 無限ループ)
+
+  OCamlバックエンド自体に別の問題がある可能性があり、比較対照として使えず。
+
+================================================================================
+■ 総合結論 (2026-03-02 初版 → 2026-03-05更新版は末尾参照)
+================================================================================
+
+  ● Elimパスの死コード除去自体は正当
+    - IR上で意味が変わっていないことを確認済み
+    - 仮想アセンブリも意味的に同等
+
+  ● バグはRustバックエンド (Backend/) のレジスタ割当てに起因
+    - 死コード除去によりレジスタ圧力が変化 (スピル47→37)
+    - 異なるスピルパターンがバックエンドの潜在バグを顕在化
+    - R=25固定、G=B=0 のパターンはスピル/リストア欠落を示唆
+
+  ● 二段階の劣化メカニズム
+    1. Elim後: 179チャンネル, max_err=11 → 軽度のレジスタ割当て不整合
+    2. Inline/Beta後: 224チャンネル, max_err=255 → 別のスピルバグが顕在化
+
+================================================================================
+■ 再現手順 (2026-03-02 初版 → 2026-03-05更新版は末尾参照)
+================================================================================
+
+  BILLSIM=/Users/koharayu/Desktop/大学/cpu実験/procon-report/bill_sim
+  cd /Users/koharayu/Desktop/大学/cpu実験/procon-report/min-caml-basic
+
+  # 基準 (iter=0, 正常)
+  dune exec mincaml -- -virtual -iter 0 test/minrt
+  cd Backend && cargo run --release -- ../test/minrt.s && cd ..
+  $BILLSIM/tkasm Backend/minrt_colored.s -o test/minrt.bin
+  gtimeout 90 $BILLSIM/sim test/minrt.bin --headless < $BILLSIM/input.bin > /tmp/ref.ppm
+
+  # Pass 4まで (正常)
+  STOP_AT_ITER=1 STOP_AFTER_PASS=4 dune exec mincaml -- -virtual -iter 1 test/minrt
+  cd Backend && cargo run --release -- ../test/minrt.s && cd ..
+  $BILLSIM/tkasm Backend/minrt_colored.s -o test/minrt.bin
+  gtimeout 90 $BILLSIM/sim test/minrt.bin --headless < $BILLSIM/input.bin > /tmp/pass4.ppm
+
+  # Pass 5まで (異常)
+  STOP_AT_ITER=1 STOP_AFTER_PASS=5 dune exec mincaml -- -virtual -iter 1 test/minrt
+  cd Backend && cargo run --release -- ../test/minrt.s && cd ..
+  $BILLSIM/tkasm Backend/minrt_colored.s -o test/minrt.bin
+  gtimeout 90 $BILLSIM/sim test/minrt.bin --headless < $BILLSIM/input.bin > /tmp/pass5.ppm
+
+  # 比較
+  python3 tools/compare_ppm.py /tmp/ref.ppm /tmp/pass4.ppm   # → 100%
+  python3 tools/compare_ppm.py /tmp/ref.ppm /tmp/pass5.ppm   # → 94.17%
+
+================================================================================
+■ 調査9: iter=3/4 無限ループの根本原因特定 (2026-03-05)
+================================================================================
+
+  症状:
+    iter=3以上では300,000,000ステップ実行してもPPMを出力せずハング。
+    シミュレータ停止時PC = 0x7fb1c (read_net_item.3881)。
+
+  ■ PC追跡手法
+    - PC計算式: PC = (アセンブリ上の命令カウント - 1) × 4
+      (set_label は2命令分=8バイト)
+    - 検証済み: jeq行 line 153954 → count=130756 → PC = 0x7fb0c ✓
+
+  ■ デバッグフラグによるトレース
+
+    SIM_DEBUG_PC_ADDRS / SIM_DEBUG_PC_N で特定PC実行時のレジスタをダンプ。
+    PC 0x4cd0 (loop_start.202562 の read_net_item 呼び出し後) にて:
+
+      [PC-WATCH] inst=31184 pc=0x4cd0 | x6=16820516
+
+    x6 (= %i6) が 16820516 (ヒープアドレス) であり、-1 ではない。
+
+    --debug トレース (steps=32420) からの抜粋:
+      [BRANCH] cycle=31678 pc=0x4ce4 jeq x4, x6, 10 -> NOT_TAKEN
+      [JMP]    cycle=31687 pc=0x4d08 -> 0x4cb4   (loop_start ループバック)
+      [JMP]    cycle=31694 pc=0x4ccc -> 0x7fac8  (read_net_item をまた呼ぶ)
+
+    ANDネットワーク終端 (-1) を read_net_item が返したにもかかわらず、
+    センチネル比較 (jeq %i4, %i6, then.207760) が NOT_TAKEN → 無限ループ。
+
+  ■ 根本原因
+
+    loop_start.202562 は読み込んだ net.(0) を %i6 と比較してループ終端を判定する:
+
+      lw   %i6, 0(%i1)        ; センチネル値 (-1 のはず) を復元
+      lw   %i8, 1(%i1)
+      addi %i1, %i1, 8
+      lw   %i4, 0(%i7)        ; net.(0)
+      jeq  %i4, %i6, then.207760   ; net.(0) == -1 ?
+
+    センチネルは sw %i6, 0(%i1) でスタックに保存するが、 その直前に
+    %i6 = -1 を設定するコードがバックエンドから生成されていない。
+    ループ開始時 %i6 にはオブジェクト処理ループから流れ込んだ
+    ヒープポインタ (~0x1009xxx) が残っており、センチネル比較が永遠に偽になる。
+
+    【原因分類】MinCaml Rustバックエンドのレジスタ割り当てバグ。
+    iter=3以上でのインライン展開量増大により read_and_network ループが
+    loop_start.202562 としてインライン展開された際、%i6 = -1 の初期化命令が
+    生成されなかった。
+
+  ■ 修正内容
+
+    Backend/minrt_colored.s の loop_start.202562 先頭に2命令を追加:
+
+      loop_start.202562:
+          mov   %i4, %i0
+      +   mowi  %i4, 1           ; %i4 = 1
+      +   sub   %i6, %i0, %i4   ; %i6 = 0 - 1 = -1 (センチネル)
+          subi  %i1, %i1, 8
+          sw    %i6, 0(%i1)      ; ← これで正しく -1 を保存
+          ...
+
+    修正後 minrt_fixed.bin にアセンブル (test/minrt_fixed.bin, 526096 bytes)。
+
+================================================================================
+■ 調査10: センチネル修正後の精度検証 (2026-03-05)
+================================================================================
+
+  実行結果 (minrt_fixed.bin、300,000,000 steps):
+    My:  32×32 max=255 pixels=1024/1024 → P3 PPM 出力成功 (ハング解消)
+    Ref: 32×32 pixels=1024
+    Match: 703/3072 = 22.88%
+    AvgDiff: 116.517
+
+  結果: 無限ループは解消されたが、精度は 22.88% と著しく低い。
+
+  考察:
+    参照値より R が高く、G/B がゼロに近い傾向は調査3・調査7 で指摘済みの
+    Rustバックエンドのスピルバグによるパターン（環境光のみ出力、
+    拡散/テクスチャ成分欠落）と一致する。
+    センチネルバグはloopの無限化を引き起こしていたが、精度劣化は
+    別途 Elim パス後のレジスタ割り当て不整合（調査7）に起因する。
+
+  現状バイナリ一覧:
+    test/minrt.bin        (526,088 B, iter=4)       → ハング (sentinel未修正)
+    test/minrt_fixed.bin  (526,096 B, iter=4+patch) → 22.88% (要精度修正)
+    test/minrt_iter3.bin  (701,180 B, iter=3, 3/2)  → 参照用旧バイナリ
+    test/minrt_ref.bin    (112,232 B)                → 参照バイナリ
+
+================================================================================
+■ 総合結論 (2026-03-05 更新)
+================================================================================
+
+  ■ 確認済みバグ1: センチネル未初期化 (iter=3以上で無限ループ)
+    - loop_start.202562 で %i6 = -1 が生成されない Rustバックエンドのバグ
+    - 手動パッチ (mowi + sub) で修正済み → minrt_fixed.bin に反映
+    - ただし精度バグが残存するため本質的な解決には至っていない
+
+  ■ 確認済みバグ2: レジスタ割り当て不整合 (iter=1以上で精度劣化)
+    - Elim パス (Pass 5) 後のレジスタ圧力変化でスピルパターンが変化
+    - スピル/リストア欠落により R=25固定、G=B=0 の誤った描画結果
+    - iter=0 では発現しない
+
+  ■ 今後の調査方針 (更新)
+    1. 精度バグ (バグ2) を修正する方法を探る:
+       a. Rustバックエンドのスピル処理を直接デバッグ
+          (BACKEND_LIVE_STATS=1 でPass 4 vs Pass 5 の差分関数を精査)
+       b. scan_point / utexture 等のホットパス関数のレジスタ割り当てを
+          手動で比較し、スピル/リストア欠落箇所を特定
+    2. センチネルバグ (バグ1) をバックエンドソースレベルで修正する:
+       - read_and_network のインライン展開時に %i6 = -1 初期化を
+         生成するよう Backend/src/ を修正
+    3. 再現手順の整備 (下記「再現手順」参照)
+
+================================================================================
+■ 再現手順 (2026-03-05 時点)
+================================================================================
+
+  BASE=/Users/koharayu/Desktop/大学/cpu実験/procon-report
+  BILLSIM=$BASE/bill_sim
+  cd $BASE/min-caml-basic
+
+================================================================================
+■ 調査11: 2026-03-05 追加デバッグ方針 (ユーザー指示 1/2/3)
+================================================================================
+
+  対象指示:
+    1. break がある分岐では join(Phi/fallback) を生成しない
+    2. Elim は LeakableTag 変数の通常削除を止め、LeakableEnv(bool map) で制御
+    3. alpha.ml 型の leakable 環境伝搬 (Let + If で継続へ値を渡す設計)
+
+  実装方針:
+    A) ternPhiInsert
+      - IfEq/IfLE で then/else の fallthrough を判定し、
+        片側 break/non-fallthrough なら join 生成をスキップする。
+      - 両側 fallthrough の場合のみ join を作る。
+
+    B) VariableChecker
+      - LeakableEnv : Id.t -> bool を導入する。
+      - AST 全体走査で leakable 変数の使用を map に登録 (初期 false)。
+      - leakable 変数が定義位置 (Let/LetTuple/Assign など) に現れたら true。
+      - Elim から参照できる API (is_leakable_defined) を提供する。
+
+    C) Elim
+      - `fv_with_leakable` ベースの一律保持をやめる。
+      - Let 削除条件は:
+          side effect あり  または  fv に出現  または
+          (LeakableTag かつ LeakableEnv=true)
+        のときのみ保持。
+      - LeakableEnv=false の leakable 変数は削除対象に戻す。
+
+    D) alpha 相当の扱い
+      - 現 alpha は `(expr', leak_env)` を返し Let で env に leak を渡す形を既に持つ。
+      - 追加修正が必要かは、A/B/C 適用後の実行結果を見て判断する。
+
+  検証手順:
+    - `dune exec mincaml -- -virtual -iter 1 test/minrt`
+    - `dune exec mincaml -- -virtual test/minrt`
+    - `python3 tester/test.py --v2`
+    - 失敗時は `DUMP_OPT_STAGES=1` で該当 leakable 変数の定義/使用を追跡する。
+
+  # センチネルバグ確認 (iter=4、修正なし):
+  dune exec mincaml -- -virtual -iter 4 test/minrt
+  cd Backend && cargo run --release -- ../test/minrt.s && cd ..
+  $BILLSIM/tkasm Backend/minrt_colored.s -o test/minrt.bin
+  # → 300,000,000 steps でもPC=0x7fb1c でハング
+
+  # センチネルバグ修正後 (minrt_fixed.bin):
+  # loop_start.202562 の先頭に以下を手動追加した minrt_colored.s を使用:
+  #   mowi  %i4, 1
+  #   sub   %i6, %i0, %i4
+  $BILLSIM/tkasm Backend/minrt_colored.s -o test/minrt_fixed.bin
+  $BILLSIM/sim test/minrt_fixed.bin --headless --steps 300000000 > /tmp/fixed.ppm
+  # → P3 PPM 出力 (32×32)、精度 22.88%
+
+  # 精度バグ確認 (iter=1 vs iter=0):
+  STOP_AT_ITER=1 STOP_AFTER_PASS=4 dune exec mincaml -- -virtual -iter 1 test/minrt
+  cd Backend && cargo run --release -- ../test/minrt.s && cd ..
+  $BILLSIM/tkasm Backend/minrt_colored.s -o test/minrt.bin
+  $BILLSIM/sim test/minrt.bin --headless --steps 90000000 > /tmp/pass4.ppm
+  # → 100%
+
+  STOP_AT_ITER=1 STOP_AFTER_PASS=5 dune exec mincaml -- -virtual -iter 1 test/minrt
+  cd Backend && cargo run --release -- ../test/minrt.s && cd ..
+  $BILLSIM/tkasm Backend/minrt_colored.s -o test/minrt.bin
+  $BILLSIM/sim test/minrt.bin --headless --steps 90000000 > /tmp/pass5.ppm
+  # → 94.17% (max_err=11)
+
+================================================================================

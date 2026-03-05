@@ -1,6 +1,6 @@
 /// Chaitin-Briggs graph coloring register allocator.
 use crate::analysis::InterferenceGraph;
-use std::collections::{BTreeMap, BTreeSet};
+use std::collections::{BTreeMap, BTreeSet, BinaryHeap, VecDeque};
 
 /// Allocation maps variable name -> Result<color, ()>.
 /// Ok(color) = successfully colored, Err(()) = spilled.
@@ -181,26 +181,61 @@ impl Coloring {
             remaining.remove(pc);
         }
 
-        // Only virtual registers need to be pushed onto stack
-        loop {
-            // Simplify: find nodes with degree < k
-            let mut simplified_any = true;
-            while simplified_any {
-                simplified_any = false;
-                let candidates: Vec<String> = remaining
-                    .iter()
-                    .filter(|n| {
-                        let deg = self.effective_degree(n, &adj, &removed);
-                        deg < k
-                    })
-                    .cloned()
-                    .collect();
+        // Incremental degree maintenance:
+        // avoid O(V^2) rescans of `remaining` by updating neighbors on each removal.
+        let mut degree: BTreeMap<String, usize> = BTreeMap::new();
+        for (node, neighbors) in &adj {
+            degree.insert(node.clone(), neighbors.len());
+        }
 
-                for node in candidates {
-                    stack.push((node.clone(), false));
-                    removed.insert(node.clone());
-                    remaining.remove(&node);
-                    simplified_any = true;
+        let mut low_queue: VecDeque<String> = VecDeque::new();
+        for node in &remaining {
+            if degree.get(node).copied().unwrap_or(0) < k {
+                low_queue.push_back(node.clone());
+            }
+        }
+
+        // Max-heap for spill candidate selection (degree, stamp, node).
+        // stale entries are discarded by checking current degree/remaining.
+        let mut heap: BinaryHeap<(usize, usize, String)> = BinaryHeap::new();
+        let mut stamp = 0usize;
+        for node in &remaining {
+            let d = degree.get(node).copied().unwrap_or(0);
+            heap.push((d, stamp, node.clone()));
+            stamp += 1;
+        }
+
+        while !remaining.is_empty() {
+            // Simplify as much as possible with low-degree nodes.
+            while let Some(node) = low_queue.pop_front() {
+                if !remaining.contains(&node) {
+                    continue;
+                }
+                if degree.get(&node).copied().unwrap_or(0) >= k {
+                    continue;
+                }
+                remaining.remove(&node);
+                removed.insert(node.clone());
+                stack.push((node.clone(), false));
+
+                if let Some(neighbors) = adj.get(&node) {
+                    for neighbor in neighbors {
+                        if removed.contains(neighbor) {
+                            continue;
+                        }
+                        let old_deg = degree.get(neighbor).copied().unwrap_or(0);
+                        let new_deg = old_deg.saturating_sub(1);
+                        if new_deg != old_deg {
+                            degree.insert(neighbor.clone(), new_deg);
+                            if remaining.contains(neighbor) {
+                                if new_deg < k {
+                                    low_queue.push_back(neighbor.clone());
+                                }
+                                heap.push((new_deg, stamp, neighbor.clone()));
+                                stamp += 1;
+                            }
+                        }
+                    }
                 }
             }
 
@@ -208,16 +243,46 @@ impl Coloring {
                 break;
             }
 
-            // Potential Spill: pick node with highest degree
-            let spill_candidate = remaining
-                .iter()
-                .max_by_key(|n| self.effective_degree(n, &adj, &removed))
-                .cloned()
-                .unwrap();
-
-            stack.push((spill_candidate.clone(), true));
-            removed.insert(spill_candidate.clone());
+            // Potential Spill: pick highest current degree in remaining.
+            let spill_candidate = loop {
+                if let Some((d, _s, node)) = heap.pop() {
+                    if !remaining.contains(&node) {
+                        continue;
+                    }
+                    let cur = degree.get(&node).copied().unwrap_or(0);
+                    if d != cur {
+                        continue;
+                    }
+                    break node;
+                }
+                // Fallback: should not happen, but keep allocator total.
+                if let Some(node) = remaining.iter().next().cloned() {
+                    break node;
+                }
+            };
             remaining.remove(&spill_candidate);
+            removed.insert(spill_candidate.clone());
+            stack.push((spill_candidate.clone(), true));
+
+            if let Some(neighbors) = adj.get(&spill_candidate) {
+                for neighbor in neighbors {
+                    if removed.contains(neighbor) {
+                        continue;
+                    }
+                    let old_deg = degree.get(neighbor).copied().unwrap_or(0);
+                    let new_deg = old_deg.saturating_sub(1);
+                    if new_deg != old_deg {
+                        degree.insert(neighbor.clone(), new_deg);
+                        if remaining.contains(neighbor) {
+                            if new_deg < k {
+                                low_queue.push_back(neighbor.clone());
+                            }
+                            heap.push((new_deg, stamp, neighbor.clone()));
+                            stamp += 1;
+                        }
+                    }
+                }
+            }
         }
 
         // Select: pop from stack and assign colors
@@ -333,21 +398,6 @@ impl Coloring {
         best.map(|(_, c)| c)
     }
 
-    fn effective_degree(
-        &self,
-        node: &str,
-        adj: &BTreeMap<String, BTreeSet<String>>,
-        removed: &BTreeSet<String>,
-    ) -> usize {
-        if let Some(neighbors) = adj.get(node) {
-            neighbors
-                .iter()
-                .filter(|n| !removed.contains(n.as_str()))
-                .count()
-        } else {
-            0
-        }
-    }
 }
 
 fn is_caller_color(color: usize, is_int: bool) -> bool {

@@ -51,7 +51,7 @@ let rec eliminable target_id e alias_env is_branch is_tail =
   | While(e1, e2) ->
       eliminable target_id e1 alias_env true false
       && eliminable target_id e2 alias_env true false
-  | Assign(x, y, e2) ->
+  | Assign(x, y, e2, _) ->
       if mem x || mem y then false
       else eliminable target_id e2 alias_env is_branch is_tail
   | Break(x) -> not (mem x)
@@ -78,7 +78,7 @@ and not_shown e alias_env =
       not_shown e1 alias_env && not_shown e2 alias_env
   | LetTuple(_, _, e) -> not_shown e alias_env
   | While(e1, e2) -> not_shown e1 alias_env && not_shown e2 alias_env
-  | Assign(x, y, e) ->
+  | Assign(x, y, e, _) ->
       not (mem x) && not (mem y) && not_shown e alias_env
   | Break(x) -> not (mem x)
   | Put(x, _, _) | Get(x, _) -> not (mem x)
@@ -152,8 +152,8 @@ let rec eliminate target_x elem_types e sub_arrays =
                  eliminate target_x elem_types e2 sub_arrays)
   | LetTuple(xts, y, e2) ->
       LetTuple(xts, y, eliminate target_x elem_types e2 sub_arrays)
-  | Assign(x, y, e2) ->
-      Assign(x, y, eliminate target_x elem_types e2 sub_arrays)
+  | Assign(x, y, e2, tag) ->
+      Assign(x, y, eliminate target_x elem_types e2 sub_arrays, tag)
   | While(e1, e2) ->
       While(eliminate target_x elem_types e1 sub_arrays,
             eliminate target_x elem_types e2 sub_arrays)
@@ -191,7 +191,8 @@ let rec g e =
   | IfEq(x, y, e1, e2) -> IfEq(x, y, g e1, g e2)
   | IfLE(x, y, e1, e2) -> IfLE(x, y, g e1, g e2)
   | LetTuple(xts, y, e2) -> LetTuple(xts, y, g e2)
-  | Assign(x, y, e2) -> Assign(x, y, g e2)
+  | Assign(x, y, e2, tag) -> Assign(x, y, g e2, tag)
+  | TernPhi(c, x, y) -> TernPhi(c, x, y)
   | While(e1, e2) -> While(g e1, g e2)
   | _ -> e
 

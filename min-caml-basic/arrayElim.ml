@@ -6,6 +6,42 @@ type usage = {
 }
 
 let max_size = ref 8
+let dump_seq = ref 0
+let scalarized_slots : (Id.t * Id.t array) list ref = ref []
+
+let dump_assignarray_summary path slot_labels e =
+  let ch = open_out path in
+  let label_of_slot x =
+    match Hashtbl.find_opt slot_labels (Id.to_string x) with
+    | Some label -> label
+    | None -> "-"
+  in
+  let rec walk current_fun = function
+    | Assign(x, y, e_tail, AssignArray) ->
+        Printf.fprintf
+          ch
+          "fun=%s lhs=%s slot=%s rhs=%s tag=array\n"
+          current_fun
+          (Id.to_string x)
+          (label_of_slot x)
+          (Id.to_string y);
+        walk current_fun e_tail
+    | Let(_, e1, e2) | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) | While(e1, e2) ->
+        walk current_fun e1;
+        walk current_fun e2
+    | LetRec({ name = (f, _); body; _ }, e2) ->
+        walk (Id.to_string f) body;
+        walk current_fun e2
+    | LetTuple(_, _, e1) | Assign(_, _, e1, _) ->
+        walk current_fun e1
+    | Unit | Int(_) | Float(_) | Neg(_) | Add(_, _) | Sub(_, _) | Sll(_, _) | Sra(_, _)
+    | FNeg(_) | FAdd(_, _) | FSub(_, _) | FMul(_, _) | FDiv(_) | Var(_) | App(_, _)
+    | Tuple(_) | Get(_, _) | Put(_, _, _) | ExtArray(_) | ExtFunApp(_, _) | Break(_)
+    | TernPhi(_, _, _) ->
+        ()
+  in
+  walk "<main>" e;
+  close_out ch
 
 let same_id x y = Id.compare x y = 0
 
@@ -51,8 +87,10 @@ let rec contains_target target = function
       List.exists (fun (x, _) -> same_id x target) xts
       || same_id y target
       || contains_target target e
-  | Assign(x, y, e) ->
+  | Assign(x, y, e, _) ->
       same_id x target || same_id y target || contains_target target e
+  | TernPhi(c, x, y) ->
+      same_id c target || same_id x target || same_id y target
   | While(e1, e2) ->
       contains_target target e1 || contains_target target e2
   | Break(x) -> same_id x target
@@ -98,10 +136,14 @@ let rec scan_usage usage target size e =
       List.iter (fun (x, _) -> mark_bad_if_target usage target x) xts;
       mark_bad_if_target usage target y;
       scan_usage usage target size e1
-  | Assign(x, y, e1) ->
+  | Assign(x, y, e1, _) ->
       mark_bad_if_target usage target x;
       mark_bad_if_target usage target y;
       scan_usage usage target size e1
+  | TernPhi(c, x, y) ->
+      mark_bad_if_target usage target c;
+      mark_bad_if_target usage target x;
+      mark_bad_if_target usage target y
   | While(e1, e2) ->
       scan_usage usage target size e1;
       scan_usage usage target size e2
@@ -150,16 +192,30 @@ let rec rewrite_expr target elem_t slots size e =
   | Get(x, y) -> Get(x, y)
   | Put(x, y, z) when same_id x target ->
       (match const_int_of_id y with
-      | Some idx when 0 <= idx && idx < size -> Assign(slots.(idx), z, Unit)
+      | Some idx when 0 <= idx && idx < size -> Assign(slots.(idx), z, Unit, AssignArray)
       | _ -> Put(x, y, z))
   | Put(x, y, z) -> Put(x, y, z)
   | ExtArray(x) -> ExtArray(x)
   | ExtFunApp(f, ys) -> ExtFunApp(f, ys)
-  | Assign(x, y, e1) ->
-      Assign(x, y, rewrite_expr target elem_t slots size e1)
+  | Assign(x, y, e1, tag) ->
+      Assign(x, y, rewrite_expr target elem_t slots size e1, tag)
+  | TernPhi(c, x, y) ->
+      TernPhi(c, x, y)
   | While(e1, e2) ->
       While(rewrite_expr target elem_t slots size e1, rewrite_expr target elem_t slots size e2)
   | Break(x) -> Break(x)
+
+let rec count_assign_array = function
+  | Assign(_, _, e, AssignArray) -> 1 + count_assign_array e
+  | Let(_, e1, e2) | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) | While(e1, e2) ->
+      count_assign_array e1 + count_assign_array e2
+  | LetRec({ body; _ }, e2) -> count_assign_array body + count_assign_array e2
+  | LetTuple(_, _, e) | Assign(_, _, e, _) -> count_assign_array e
+  | Unit | Int(_) | Float(_) | Neg(_) | Add(_, _) | Sub(_, _) | Sll(_, _) | Sra(_, _)
+  | FNeg(_) | FAdd(_, _) | FSub(_, _) | FMul(_, _) | FDiv(_) | Var(_) | App(_, _)
+  | Tuple(_) | Get(_, _) | Put(_, _, _) | ExtArray(_) | ExtFunApp(_, _) | Break(_)
+  | TernPhi(_, _, _) ->
+      0
 
 let initialize_slots elem_t init slots body =
   Array.fold_right
@@ -178,6 +234,7 @@ let rec g e =
           | Some size when 0 <= size && size <= !max_size && can_scalarize x size e2' ->
 							Format.eprintf "Array %s can be scalarized (size: %d)@." (Id.to_string x) size;
               let init_slots = Array.init size (fun _ -> Id.gentmp elem_t) in
+              scalarized_slots := (x, init_slots) :: !scalarized_slots;
               let body' = rewrite_expr x elem_t init_slots size e2' in
               initialize_slots elem_t init init_slots body'
           | _ ->
@@ -195,10 +252,46 @@ let rec g e =
       IfLE(x, y, g e1, g e2)
   | LetTuple(xts, y, e1) ->
       LetTuple(xts, y, g e1)
-  | Assign(x, y, e1) ->
-      Assign(x, y, g e1)
+  | Assign(x, y, e1, tag) ->
+      Assign(x, y, g e1, tag)
+  | TernPhi(c, x, y) ->
+      TernPhi(c, x, y)
   | While(e1, e2) ->
       While(g e1, g e2)
   | _ -> e
 
-let f e = g e
+let f e =
+  scalarized_slots := [];
+  let e' = g e in
+  let assign_array_count = count_assign_array e' in
+  let slot_labels = Hashtbl.create 256 in
+  List.iter
+    (fun (arr, slots) ->
+      Array.iteri
+        (fun idx slot ->
+          Hashtbl.replace
+            slot_labels
+            (Id.to_string slot)
+            (Printf.sprintf "%s[%d]" (Id.to_string arr) idx))
+        slots)
+    !scalarized_slots;
+  (match Sys.getenv_opt "DUMP_ASSIGNARRAY_IR" with
+  | Some("1") | Some("true") | Some("TRUE") ->
+      Format.eprintf "ArrayElim: pre-phi AssignArray=%d@." assign_array_count;
+      if assign_array_count > 0 then begin
+        let filename =
+          Printf.sprintf "test/minrt.assignarray.prephi.%03d" !dump_seq
+        in
+        incr dump_seq;
+        (try
+           dump_assignarray_summary filename slot_labels e';
+           Format.eprintf
+             "ArrayElim: dumped pre-phi AssignArray summary to %s@."
+             filename
+         with exn ->
+           Format.eprintf
+             "ArrayElim: dump failed (%s)@."
+             (Printexc.to_string exn))
+      end
+  | _ -> ());
+  TernPhiInsert.f e'
