@@ -885,7 +885,7 @@ fn get_def_use_indices(mnemonic: &str, operands: &[String]) -> (Vec<usize>, Vec<
     match mnemonic {
         // 3-operand reg-reg/reg-float ops: dst, src1, src2
         "add" | "sub" | "sll" | "sar" | "or" | "xor" | "ceq" | "cleq" | "clt" | "feq"
-        | "fleq" | "flt" | "fadd" | "fsub" | "fmul" | "fdiv" => {
+        | "fneq" | "fleq" | "flt" | "fadd" | "fsub" | "fmul" | "fdiv" => {
             if n > 0 {
                 expect_direct_reg_operand(operands, mnemonic, 0);
                 defs.push(0);
@@ -900,7 +900,7 @@ fn get_def_use_indices(mnemonic: &str, operands: &[String]) -> (Vec<usize>, Vec<
             }
         }
         // Ternary select: dst, cond, then, else
-        "tern" | "ternf" => {
+        "tern" | "ftern" => {
             if n > 0 {
                 expect_direct_reg_operand(operands, mnemonic, 0);
                 defs.push(0);

@@ -9,6 +9,7 @@ let rec iter n e =
              |> ArrayScalarize.f
              |> TupleElim.f
              |> ArrayElim.f
+             |> TernPhiInsert.f
              |> Elim.f
              |> ConstFold.f
              |> CommonExpElim.f

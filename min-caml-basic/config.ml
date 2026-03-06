@@ -66,6 +66,9 @@ module TernPhiInsert = struct
   (* Size threshold used by TernPhi fallback heuristic. *)
   let phi_threshold = ref 20
 
+  (* Maximum branch size for if-to-TernPhi conversion. *)
+  let small_if_threshold = ref 6
+
   (* Dump detailed TernPhiInsert trace logs. *)
   let trace_enabled = ref false
 
@@ -76,7 +79,7 @@ end
 module TKA = struct
   module Virtual = struct
     (* Enable if-simplify lowering in TKA virtual instruction selection. *)
-    let enable_if_simplify = ref false
+    let enable_if_simplify = ref true
   end
 
   module Emit = struct

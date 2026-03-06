@@ -41,6 +41,7 @@ end
 
 module TernPhiInsert : sig
   val phi_threshold : int ref
+  val small_if_threshold : int ref
   val trace_enabled : bool ref
   val fallback_enabled : bool ref
 end

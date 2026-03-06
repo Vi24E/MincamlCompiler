@@ -205,6 +205,9 @@ and g_exp env = function
   | FMov(x) ->
       let x' = replace_float_id env x in
       (FMov(x'), use_id x')
+  | Mif(x) ->
+      let x' = replace_int_id env x in
+      (Mif(x'), use_id x')
   | FNeg(x) ->
       let x' = replace_float_id env x in
       (FNeg(x'), use_id x')
@@ -265,7 +268,7 @@ and g_exp env = function
       let y' = replace_int_id env y in
       (Tern(c', x', y'), use_union (use_id c') (use_union (use_id x') (use_id y')))
   | TernF(c, x, y) ->
-      let c' = replace_int_id env c in
+      let c' = replace_float_id env c in
       let x' = replace_float_id env x in
       let y' = replace_float_id env y in
       (TernF(c', x', y'), use_union (use_id c') (use_union (use_id x') (use_id y')))

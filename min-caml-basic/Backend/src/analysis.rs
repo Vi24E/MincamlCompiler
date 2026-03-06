@@ -108,7 +108,7 @@ fn get_def_use(inst: &Instruction) -> (BTreeSet<String>, BTreeSet<String>) {
         match mnemonic.as_str() {
             // 3-operand arithmetic/comparison: dest, src1, src2
             "add" | "sub" | "sll" | "sar" | "or" | "xor" | "ceq" | "cleq" | "clt" | "feq"
-            | "fleq" | "flt" => {
+            | "fneq" | "fleq" | "flt" => {
                 if let Some(op0) = args.get(0) {
                     defs.insert(expect_direct_reg(op0, mnemonic, 0));
                 }
@@ -132,7 +132,7 @@ fn get_def_use(inst: &Instruction) -> (BTreeSet<String>, BTreeSet<String>) {
                 }
             }
             // Ternary select: dest, cond, then, else
-            "tern" | "ternf" => {
+            "tern" | "ftern" => {
                 if let Some(op0) = args.get(0) {
                     defs.insert(expect_direct_reg(op0, mnemonic, 0));
                 }
@@ -282,7 +282,7 @@ fn get_def_use(inst: &Instruction) -> (BTreeSet<String>, BTreeSet<String>) {
             // .virtual_def: pseudo-instruction for liveness barrier.
             // Treated as DEF of all operand registers, USE of none.
             // This stops backward liveness propagation at the merge point
-            // for ternf/tern phi-bridge variables.
+            // for ftern/tern phi-bridge variables.
             ".virtual_def" => {
                 for op in args {
                     if op.starts_with('%') {
@@ -533,7 +533,6 @@ pub fn analyze(instructions: &[Instruction]) -> Vec<AnalyzedInstruction> {
     let live_debug = live_debug_enabled();
     let mut pop_count: usize = 0;
     let mut push_count: usize = 0;
-
     for i in 0..n {
         for &v in &uses_ids[i] {
             let k = encode_pair(i, v);
@@ -543,7 +542,6 @@ pub fn analyze(instructions: &[Instruction]) -> Vec<AnalyzedInstruction> {
             }
         }
     }
-
     while let Some(k) = wl.pop_front() {
         let (i, v) = decode_pair(k);
         pop_count += 1;

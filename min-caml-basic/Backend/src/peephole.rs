@@ -102,12 +102,17 @@ pub fn optimize(
             rewrites += sandwich_rewrites;
             changed = true;
         }
-
         current = out;
         if !changed {
             break;
         }
     }
+
+    // Apply simple local folds once at the end so they do not keep feeding
+    // additional rule matches across sweeps.
+    let (out, trivial_rewrites) = fold_trivial_identities(current);
+    current = out;
+    rewrites += trivial_rewrites;
 
     if trace_rule_counts {
         eprintln!(
@@ -196,6 +201,124 @@ fn fold_sp_addi_subi_triplet(i0: &Instruction, i1: &Instruction, i2: &Instructio
     }
 
     Some(i1.clone())
+}
+
+fn fold_trivial_identities(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    let mut out = Vec::with_capacity(instructions.len());
+    let mut rewrites = 0usize;
+
+    for inst in instructions {
+        let mut replaced: Option<Instruction> = None;
+        let mut remove_noop = false;
+
+        if let Some(mn) = inst.mnemonic.as_deref() {
+            match mn {
+                // addi/subi/slli/sari dst, src, 0 -> mov dst, src
+                "addi" | "subi" | "slli" | "sari" if inst.operands.len() == 3 => {
+                    let dst = &inst.operands[0];
+                    let src = &inst.operands[1];
+                    let imm = &inst.operands[2];
+                    if imm_is_zero(imm) {
+                        if dst == src {
+                            remove_noop = true;
+                        } else {
+                            replaced = Some(rewrite_like(&inst, "mov", vec![dst.clone(), src.clone()]));
+                        }
+                    }
+                }
+                // Self-compare is constant.
+                "ceq" | "cleq" | "clt" | "feq" | "fleq" | "flt" if inst.operands.len() == 3 => {
+                    let dst = &inst.operands[0];
+                    let lhs = &inst.operands[1];
+                    let rhs = &inst.operands[2];
+                    if lhs == rhs {
+                        let value = match mn {
+                            "clt" | "flt" => "0",
+                            _ => "1",
+                        };
+                        if dst == "%i0" {
+                            remove_noop = true;
+                        } else {
+                            replaced = Some(rewrite_like(
+                                &inst,
+                                "movi",
+                                vec![dst.clone(), value.to_string()],
+                            ));
+                        }
+                    }
+                }
+                // tern/ftern with identical branches does not depend on condition.
+                "tern" if inst.operands.len() == 4 => {
+                    let dst = &inst.operands[0];
+                    let y = &inst.operands[2];
+                    let z = &inst.operands[3];
+                    if y == z {
+                        if dst == y {
+                            remove_noop = true;
+                        } else {
+                            replaced = Some(rewrite_like(&inst, "mov", vec![dst.clone(), y.clone()]));
+                        }
+                    }
+                }
+                "ftern" if inst.operands.len() == 4 => {
+                    let dst = &inst.operands[0];
+                    let y = &inst.operands[2];
+                    let z = &inst.operands[3];
+                    if y == z {
+                        if dst == y {
+                            remove_noop = true;
+                        } else {
+                            replaced = Some(rewrite_like(&inst, "fmov", vec![dst.clone(), y.clone()]));
+                        }
+                    }
+                }
+                _ => {}
+            }
+        }
+
+        if let Some(new_inst) = replaced {
+            rewrites += 1;
+            out.push(new_inst);
+            continue;
+        }
+        if remove_noop {
+            rewrites += 1;
+            if let Some(label) = inst.label.clone() {
+                out.push(Instruction {
+                    label: Some(label),
+                    mnemonic: None,
+                    operands: Vec::new(),
+                });
+            }
+            continue;
+        }
+        out.push(inst);
+    }
+
+    (out, rewrites)
+}
+
+fn rewrite_like(orig: &Instruction, mnemonic: &str, operands: Vec<String>) -> Instruction {
+    Instruction {
+        label: orig.label.clone(),
+        mnemonic: Some(mnemonic.to_string()),
+        operands,
+    }
+}
+
+fn imm_is_zero(s: &str) -> bool {
+    let t = s.trim();
+    if t == "0" || t == "+0" || t == "-0" {
+        return true;
+    }
+    if let Ok(v) = t.parse::<i64>() {
+        return v == 0;
+    }
+    let lower = t.to_ascii_lowercase();
+    if let Some(rest) = lower.strip_prefix("0x") {
+        return i64::from_str_radix(rest, 16).map(|v| v == 0).unwrap_or(false);
+    }
+    false
 }
 
 fn rule_brief(rule: &Rule) -> String {

@@ -16,6 +16,7 @@ and exp =
   | St of Id.t * Id.t * id_or_imm
   | StF of Id.t * Id.t * id_or_imm
   | FMov of Id.t
+  | Mif of Id.t
   | FNeg of Id.t
   | FAdd of Id.t * Id.t
   | FSub of Id.t * Id.t

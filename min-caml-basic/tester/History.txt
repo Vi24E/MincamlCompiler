@@ -810,67 +810,17 @@ TopFuncs:
     #2 0x0007c104 read_or_network.3895: 3 (6.5%)
 Comment: with Phi nodes, many arrays are inlined
 ================================================
-
-2026-03-06 04:57:55 | Mode: v2 | Size: 32x32 | Cycles: 241182114 
-Accuracy: 100.00% | MemAccessRate: 24.70% | Compile: 140.646s | Sim: 21.469s
+2026-03-07 01:19:07 | Mode: v2 | Size: 32x32 | Cycles: 232829416 
+Accuracy: 100.00% | MemAccessRate: 26.20% | Compile: 218.701s | Sim: 28.516s
 TopFuncs:
-    #1 0x0007c020 read_net_item.3881: 43 (93.5%)
-    #2 0x0007c104 read_or_network.3895: 3 (6.5%)
-Comment: 
+    #1 0x0006e4f4 read_net_item.3881: 43 (93.5%)
+    #2 0x0006e5cc read_or_network.3895: 3 (6.5%)
+Comment: Inserting TernPhi for small-if
 ================================================
-2026-03-06 05:05:05 | Mode: v2 | Size: 32x32 | Cycles: 241182114 
-Accuracy: 100.00% | MemAccessRate: 24.70% | Compile: 141.139s | Sim: 21.392s
+2026-03-07 02:59:19 | Mode: v2 | Size: 32x32 | Cycles: 231232605 
+Accuracy: 100.00% | MemAccessRate: 26.38% | Compile: 126.218s | Sim: 20.222s
 TopFuncs:
-    #1 0x0007c020 read_net_item.3881: 43 (93.5%)
-    #2 0x0007c104 read_or_network.3895: 3 (6.5%)
-Comment: 
-================================================
-2026-03-06 16:42:45 | Mode: v2 | Size: 256x256 | Cycles: 7251445555 
-Accuracy: 99.92% | MemAccessRate: 24.91% | Compile: 138.404s | Sim: 656.675s
-TopFuncs:
-    #1 0x0007aaa8 read_net_item.3881: 43 (93.5%)
-    #2 0x0007ab84 read_or_network.3895: 3 (6.5%)
-Comment: 
-================================================
-2026-03-06 17:04:47 | Mode: v2 | Size: 32x32 | Cycles: 239948385 
-Accuracy: 100.00% | MemAccessRate: 24.72% | Compile: 142.380s | Sim: 21.766s
-TopFuncs:
-    #1 0x0007aa70 read_net_item.3881: 43 (93.5%)
-    #2 0x0007ab48 read_or_network.3895: 3 (6.5%)
-Comment: 
-================================================
-2026-03-06 18:21:24 | Mode: v2 | Size: 32x32 | Cycles: 241664119 
-Accuracy: 100.00% | MemAccessRate: 25.24% | Compile: 139.780s | Sim: 21.997s
-TopFuncs:
-    #1 0x0007b3f8 read_net_item.3881: 43 (93.5%)
-    #2 0x0007b4d0 read_or_network.3895: 3 (6.5%)
-Comment: 
-================================================
-2026-03-06 19:04:50 | Mode: v2 | Size: 32x32 | Cycles: 241662920 
-Accuracy: 100.00% | MemAccessRate: 25.24% | Compile: 136.578s | Sim: 22.198s
-TopFuncs:
-    #1 0x0007b408 read_net_item.3881: 43 (93.5%)
-    #2 0x0007b4e0 read_or_network.3895: 3 (6.5%)
-Comment: 
-================================================
-2026-03-06 19:10:46 | Mode: v2 | Size: 32x32 | Cycles: 241662920 
-Accuracy: 100.00% | MemAccessRate: 25.24% | Compile: 137.062s | Sim: 23.252s
-TopFuncs:
-    #1 0x0007b408 read_net_item.3881: 43 (93.5%)
-    #2 0x0007b4e0 read_or_network.3895: 3 (6.5%)
-Comment: 
-================================================
-2026-03-06 19:58:22 | Mode: v2 | Size: 32x32 | Cycles: 240131426 
-Accuracy: 43.36% | MemAccessRate: 25.24% | Compile: 133.389s | Sim: 21.859s
-TopFuncs:
-    #1 0x0007b360 read_net_item.3881: 43 (93.5%)
-    #2 0x0007b438 read_or_network.3895: 3 (6.5%)
-Comment: 
-================================================
-2026-03-06 20:26:42 | Mode: v2 | Size: 32x32 | Cycles: 241662920 
-Accuracy: 100.00% | MemAccessRate: 25.24% | Compile: 136.236s | Sim: 23.025s
-TopFuncs:
-    #1 0x0007b408 read_net_item.3881: 43 (93.5%)
-    #2 0x0007b4e0 read_or_network.3895: 3 (6.5%)
+    #1 0x0006e2e8 read_net_item.3881: 43 (93.5%)
+    #2 0x0006e3c0 read_or_network.3895: 3 (6.5%)
 Comment: 
 ================================================

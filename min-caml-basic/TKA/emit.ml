@@ -300,6 +300,46 @@ let rec find_tern_phi_args = function
   | Let(_, _, e) -> find_tern_phi_args e
   | _ -> None
 
+(* x が t の中で let 束縛として定義されるかを判定する。
+   .virtual_def は if 内で定義される phi bridge 変数にのみ付与し、
+   既存値まで kill しないようにする。 *)
+let rec is_defined_in_t x = function
+  | Ans(exp) -> is_defined_in_exp x exp
+  | Let((y, _), exp, e) ->
+      Id.to_string x = Id.to_string y || is_defined_in_exp x exp || is_defined_in_t x e
+and is_defined_in_exp x = function
+  | IfEq(_, _, e1, e2)
+  | IfLE(_, _, e1, e2)
+  | IfFEq(_, _, e1, e2)
+  | IfFLE(_, _, e1, e2) ->
+      is_defined_in_t x e1 || is_defined_in_t x e2
+  | Loop(_, _, e) ->
+      is_defined_in_t x e
+  | _ ->
+      false
+
+let emit_virtual_def_for_if oc if_exp cont =
+  match find_tern_phi_args cont, if_exp with
+  | Some(y, z), (IfEq(_, _, e1, e2)
+               | IfLE(_, _, e1, e2)
+               | IfFEq(_, _, e1, e2)
+               | IfFLE(_, _, e1, e2)) ->
+      let y_defined = is_defined_in_t y e1 || is_defined_in_t y e2 in
+      let z_defined = is_defined_in_t z e1 || is_defined_in_t z e2 in
+      begin
+        match y_defined, z_defined with
+        | true, true ->
+            Printf.fprintf oc "\t.virtual_def\t%s, %s\n" (Id.to_string y) (Id.to_string z)
+        | true, false ->
+            Printf.fprintf oc "\t.virtual_def\t%s\n" (Id.to_string y)
+        | false, true ->
+            Printf.fprintf oc "\t.virtual_def\t%s\n" (Id.to_string z)
+        | false, false ->
+            ()
+      end
+  | _ ->
+      ()
+
 let is_if_exp = function
   | IfEq(_, _, _, _) | IfLE(_, _, _, _) | IfFEq(_, _, _, _) | IfFLE(_, _, _, _) -> true
   | _ -> false
@@ -308,12 +348,8 @@ let rec g oc ss = function (* 命令列のアセンブリ生成 (caml2html: emit
   | dest, Ans(exp) -> g' oc ss (dest, exp)
   | dest, Let((x, _), exp, e) ->
       (* expが分岐のときのみ後続にTernF/Ternがあるか先読みする。
-         あれば expを emit する前に .virtual_def を置き、if block内での逆伝播を防ぐ *)
-      if is_if_exp exp then
-        (match find_tern_phi_args e with
-         | Some (y, z) ->
-             Printf.fprintf oc "\t.virtual_def\t%s, %s\n" (Id.to_string y) (Id.to_string z)
-         | None -> ());
+         if内で定義された phi bridge 変数に限って .virtual_def を置く *)
+      if is_if_exp exp then emit_virtual_def_for_if oc exp e;
       g' oc ss (NonTail(x), exp);
       g oc ss (dest, e)
 and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gprime) *)
@@ -321,6 +357,10 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
   | NonTail(_), Nop -> ()
   | NonTail(x), SetInt(i) -> (* CE2025 Movi logic *)
       emit_movi oc x i
+  | NonTail(x), SetFloat(f) when is_pos_zero_float f ->
+      let x = Id.to_string x in
+      let f0 = Id.to_string reg_fzero in
+      if x <> f0 then Printf.fprintf oc "\tfmov\t%s, %s\n" x f0
   | NonTail(x), SetFloat(f) -> 
       let i = Int32.to_int (get_single_bits f) in
       emit_movi oc Asm.reg_sw i;
@@ -437,6 +477,10 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let x = Id.to_string x in
       let y = Id.to_string y in
       if x <> y then Printf.fprintf oc "\tfmov\t%s, %s\n" x y
+  | NonTail(x), Mif(y) ->
+      let x = Id.to_string x in
+      let y = Id.to_string y in
+      Printf.fprintf oc "\tmif\t%s, %s\n" x y
   | NonTail(x), FNeg(y) ->
       let x = Id.to_string x in
       let y = Id.to_string y in
@@ -536,7 +580,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let c = Id.to_string c in
       let y = Id.to_string y in
       let z = Id.to_string z in
-      Printf.fprintf oc "\tternf\t%s, %s, %s, %s\n" x c y z
+      Printf.fprintf oc "\tftern\t%s, %s, %s, %s\n" x c y z
   | NonTail(x), LdF(y, V(z)) -> 
       let x = Id.to_string x in
       let y = Id.to_string y in
@@ -649,7 +693,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
       if !Asm.virtual_mode then Printf.fprintf oc "\tret\n"
       else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero reg_ra
-  | Tail, (SetFloat _ | FMov _ | FNeg _ | FAdd _ | FSub _ | FMul _ | FDiv _ | FInv _ | LdF _ | TernF _ as exp) ->
+  | Tail, (SetFloat _ | FMov _ | Mif _ | FNeg _ | FAdd _ | FSub _ | FMul _ | FDiv _ | FInv _ | LdF _ | TernF _ as exp) ->
       g' oc ss (NonTail(float_return_reg ()), exp);
       let reg_zero = Id.to_string reg_zero in
       let reg_ra = Id.to_string Asm.reg_ra in
@@ -925,7 +969,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let y = Id.to_string y in
       let reg_sw = Id.to_string Asm.reg_sw in
       let reg_zero_s = Id.to_string reg_zero in
-      Printf.fprintf oc "\tfle\t%s, %s, %s\n" reg_sw y x;
+      Printf.fprintf oc "\tflt\t%s, %s, %s\n" reg_sw y x;
       (* Printf.fprintf oc "\tfleq\t%s, %s, %s\n" reg_sw x y;
       Printf.fprintf oc "\tceqi\t%s, %s, 0\n" reg_sw reg_sw; *)
       let b_cont = Id.genid "cont" in

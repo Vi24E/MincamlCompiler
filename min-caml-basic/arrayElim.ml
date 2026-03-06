@@ -294,4 +294,4 @@ let f e =
            (Printexc.to_string exn))
     end
   end;
-  TernPhiInsert.f e'
+  e'

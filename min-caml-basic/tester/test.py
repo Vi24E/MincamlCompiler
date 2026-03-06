@@ -318,6 +318,8 @@ def main():
     args = parse_args()
     mode = get_mode(args)
     print(f"Running in v{mode} mode.")
+    dune_profile = os.environ.get("DUNE_PROFILE", "release")
+    print(f"Dune profile: {dune_profile}")
 
     # Setup paths
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -386,7 +388,10 @@ def main():
         # v1: Compiled by mincaml -> Assembled by tkasm
         print("Step 1 (v1): Compiling minrt with mincaml...")
         try:
-            subprocess.run(["dune", "exec", "mincaml", "test/minrt"], check=True)
+            subprocess.run(
+                ["dune", "exec", "--profile", dune_profile, "mincaml", "--", "test/minrt"],
+                check=True,
+            )
         except subprocess.CalledProcessError:
             print("Error: Failed to run mincaml.")
             sys.exit(1)
@@ -405,7 +410,19 @@ def main():
         # We assume Backend is built.
         print("Step 1 (v2): Compiling minrt with mincaml --virtual...")
         try:
-            subprocess.run(["dune", "exec", "mincaml", "--", "-virtual", "test/minrt"], check=True)
+            subprocess.run(
+                [
+                    "dune",
+                    "exec",
+                    "--profile",
+                    dune_profile,
+                    "mincaml",
+                    "--",
+                    "-virtual",
+                    "test/minrt",
+                ],
+                check=True,
+            )
         except subprocess.CalledProcessError:
             print("Error: Failed to run mincaml --virtual.")
             sys.exit(1)

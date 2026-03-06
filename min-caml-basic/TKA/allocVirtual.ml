@@ -113,6 +113,7 @@ and g' dest cont regenv = function
   | StF(x, y, z') -> find_and_bind x Type.Float regenv (fun rx -> find_and_bind y Type.Int regenv (fun ry -> find_and_bind' z' regenv (fun rz' -> (Ans(StF(rx, ry, rz')), regenv))))
   | FInv(x) -> find_and_bind x Type.Float regenv (fun rx -> (Ans(FInv(rx)), regenv))
   | FMov(x) -> find_and_bind x Type.Float regenv (fun rx -> (Ans(FMov(rx)), regenv))
+  | Mif(x) -> find_and_bind x Type.Int regenv (fun rx -> (Ans(Mif(rx)), regenv))
   | FNeg(x) -> find_and_bind x Type.Float regenv (fun rx -> (Ans(FNeg(rx)), regenv))
   | FAdd(x, y) -> find_and_bind x Type.Float regenv (fun rx -> find_and_bind y Type.Float regenv (fun ry -> (Ans(FAdd(rx, ry)), regenv)))
   | FSub(x, y) -> find_and_bind x Type.Float regenv (fun rx -> find_and_bind y Type.Float regenv (fun ry -> (Ans(FSub(rx, ry)), regenv)))
@@ -130,7 +131,7 @@ and g' dest cont regenv = function
           find_and_bind y Type.Int regenv (fun ry ->
             (Ans(Tern(rc, rx, ry)), regenv))))
   | TernF(c, x, y) ->
-      find_and_bind c Type.Int regenv (fun rc ->
+      find_and_bind c Type.Float regenv (fun rc ->
         find_and_bind x Type.Float regenv (fun rx ->
           find_and_bind y Type.Float regenv (fun ry ->
             (Ans(TernF(rc, rx, ry)), regenv))))

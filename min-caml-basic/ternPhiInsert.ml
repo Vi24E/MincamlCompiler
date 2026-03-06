@@ -25,8 +25,24 @@ let trace_events : string list ref = ref []
 let trace_limit = 20000
 let trace_event_count = ref 0
 let phi_threshold = Config.TernPhiInsert.phi_threshold
+let small_if_threshold = Config.TernPhiInsert.small_if_threshold
 let trace_enabled_flag = Config.TernPhiInsert.trace_enabled
 let ternphi_fallback_enabled = Config.TernPhiInsert.fallback_enabled
+
+let rec size e =
+  match e with
+  | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2)
+  | LetRec({ body = e1; tags = _; _ }, e2) -> 1 + size e1 + size e2
+  | While(_, _) -> 1000000
+  | Let(_, e1, e2) -> 
+    (match e1 with
+    | Int(_) -> size e2
+    | _ -> 1 + size e1 + size e2)
+  | Assign(_, _, e1, _) -> 1 + size e1
+  | LetTuple(_, _, e) -> 1 + size e
+  | TernPhi(_, _, _) -> 1
+  | App(_, _) | ExtFunApp(_, _) -> 1000000
+  | _ -> 1
 
 let trace_enabled () =
   !trace_enabled_flag
@@ -178,6 +194,88 @@ let append_post env expr post =
       let tmp = Id.gentmp t in
       Let((tmp, t), expr, wrap_post_before post (Var(tmp)))
 
+let is_boolification_if then_e else_e =
+  match then_e, else_e with
+  | Int(1), Int(0) | Int(0), Int(1) -> true
+  | _ -> false
+
+let is_small_pure_callee f =
+  match FunctionChecker.findFunction (Id.L (Id.to_string f)) with
+  | Some fundef ->
+      FunctionChecker.checkFunctionPurity fundef
+      && size fundef.body <= !small_if_threshold
+  | None ->
+      false
+
+let rec is_pure_small_expr = function
+  | Let(_, e1, e2) ->
+      is_pure_small_expr e1 && is_pure_small_expr e2
+  | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) ->
+      is_pure_small_expr e1 && is_pure_small_expr e2
+  | LetTuple(_, _, e) ->
+      is_pure_small_expr e
+  | App(f, _) as e ->
+      FunctionChecker.checkExpPurity e && is_small_pure_callee f
+  | e ->
+      FunctionChecker.checkExpPurity e
+
+let can_small_if_to_tern bound_t if_expr then_e else_e =
+  bound_t <> Type.Unit
+  && size if_expr <= !small_if_threshold
+  && is_pure_small_expr then_e
+  && is_pure_small_expr else_e
+  && not (is_boolification_if then_e else_e)
+
+let rec insert_small_if_to_tern = function
+  | Let((dst, t), IfEq(x, y, then_e, else_e), cont) ->
+      let then_e' = insert_small_if_to_tern then_e in
+      let else_e' = insert_small_if_to_tern else_e in
+      let cont' = insert_small_if_to_tern cont in
+      let if_expr = IfEq(x, y, then_e', else_e') in
+      if can_small_if_to_tern t if_expr then_e' else_e' then
+        let then_v = Id.gentmp t in
+        let else_v = Id.gentmp t in
+        let cond_v = Id.genid "small_phi_cond" in
+        Let((then_v, t), then_e',
+          Let((else_v, t), else_e',
+            Let((cond_v, Type.Int), IfEq(x, y, Int(1), Int(0)),
+              Let((dst, t), TernPhi(cond_v, then_v, else_v), cont'))))
+      else
+        Let((dst, t), if_expr, cont')
+  | Let((dst, t), IfLE(x, y, then_e, else_e), cont) ->
+      let then_e' = insert_small_if_to_tern then_e in
+      let else_e' = insert_small_if_to_tern else_e in
+      let cont' = insert_small_if_to_tern cont in
+      let if_expr = IfLE(x, y, then_e', else_e') in
+      if can_small_if_to_tern t if_expr then_e' else_e' then
+        let then_v = Id.gentmp t in
+        let else_v = Id.gentmp t in
+        let cond_v = Id.genid "small_phi_cond" in
+        Let((then_v, t), then_e',
+          Let((else_v, t), else_e',
+            Let((cond_v, Type.Int), IfLE(x, y, Int(1), Int(0)),
+              Let((dst, t), TernPhi(cond_v, then_v, else_v), cont'))))
+      else
+        Let((dst, t), if_expr, cont')
+  | Let((x, t), e1, e2) ->
+      Let((x, t), insert_small_if_to_tern e1, insert_small_if_to_tern e2)
+  | LetRec({ name = (f, ft); args; body; tags }, e2) ->
+      LetRec(
+        { name = (f, ft); args; body = insert_small_if_to_tern body; tags },
+        insert_small_if_to_tern e2)
+  | IfEq(x, y, e1, e2) ->
+      IfEq(x, y, insert_small_if_to_tern e1, insert_small_if_to_tern e2)
+  | IfLE(x, y, e1, e2) ->
+      IfLE(x, y, insert_small_if_to_tern e1, insert_small_if_to_tern e2)
+  | LetTuple(xts, y, e) ->
+      LetTuple(xts, y, insert_small_if_to_tern e)
+  | Assign(x, y, e, tag) ->
+      Assign(x, y, insert_small_if_to_tern e, tag)
+  | While(e1, e2) ->
+      While(insert_small_if_to_tern e1, insert_small_if_to_tern e2)
+  | e ->
+      e
+
 let make_cond_var_if_eq x y =
   let c = Id.genid "phi_cond" in
   ((c, Type.Int), IfEq(x, y, Int(1), Int(0)), c)
@@ -214,7 +312,7 @@ let get_phi_threshold () =
 
 let use_fallback_join cont_size then_expr else_expr =
   if !ternphi_fallback_enabled then
-    let s = cont_size + Inline.size then_expr + Inline.size else_expr in
+    let s = cont_size + size then_expr + size else_expr in
     s >= get_phi_threshold ()
   else
     false
@@ -285,7 +383,7 @@ let rec rewrite ?(cont_size=0) ?(in_while=false) env subst e =
         post = [];
       }
   | Let((x, t), e1, e2) ->
-      let out1 = rewrite ~cont_size:(cont_size + Inline.size e2) ~in_while env subst e1 in
+      let out1 = rewrite ~cont_size:(cont_size + size e2) ~in_while env subst e1 in
       let env2 = IdMap.add x t env in
       let subst2 = IdMap.remove x out1.subst_out in
       let out2 = rewrite ~cont_size ~in_while env2 subst2 e2 in
@@ -383,7 +481,7 @@ let rec rewrite ?(cont_size=0) ?(in_while=false) env subst e =
           (Printf.sprintf
              "fallback IfEq: threshold=%d size=%d bindings=%d"
              (get_phi_threshold ())
-             (cont_size + Inline.size then_expr + Inline.size else_expr)
+             (cont_size + size then_expr + size else_expr)
              (List.length branch_bindings));
         { expr = IfEq(x', y', then_expr', else_expr'); subst_out = !join_subst; post = [] }
       else
@@ -483,7 +581,7 @@ let rec rewrite ?(cont_size=0) ?(in_while=false) env subst e =
           (Printf.sprintf
              "fallback IfLE: threshold=%d size=%d bindings=%d"
              (get_phi_threshold ())
-             (cont_size + Inline.size then_expr + Inline.size else_expr)
+             (cont_size + size then_expr + size else_expr)
              (List.length branch_bindings));
         { expr = IfLE(x', y', then_expr', else_expr'); subst_out = !join_subst; post = [] }
       else
@@ -616,8 +714,9 @@ let rec transform = function
 let f e =
   trace_events := [];
   trace_event_count := 0;
+  let e0 = insert_small_if_to_tern e in
   let e' =
-    match transform e with
+    match transform e0 with
     | e1 -> e1
   in
   let out = rewrite IdMap.empty IdMap.empty e' in

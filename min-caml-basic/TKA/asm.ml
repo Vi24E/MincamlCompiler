@@ -16,6 +16,7 @@ and exp =
   | St of Id.t * Id.t * id_or_imm
   | StF of Id.t * Id.t * id_or_imm
   | FMov of Id.t
+  | Mif of Id.t
   | FNeg of Id.t
   | FAdd of Id.t * Id.t
   | FSub of Id.t * Id.t
@@ -107,7 +108,7 @@ let rec remove_and_uniq xs = function
 let fv_id_or_imm = function V(x) -> [x] | _ -> []
 let rec fv_exp = function
   | Nop | SetInt(_) | SetFloat(_) | SetLabel(_) | Restore(_) -> []
-  | Mov(x) | Neg(x) | FMov(x) | FNeg(x) | FInv(x) | Save(x, _) -> [x]
+  | Mov(x) | Neg(x) | FMov(x) | Mif(x) | FNeg(x) | FInv(x) | Save(x, _) -> [x]
   | CmpEq(x, y') | CmpLE(x, y') | CmpLT(x, y') -> x :: fv_id_or_imm y'
   | CmpFEq(x, y) | CmpFLE(x, y) | CmpFLT(x, y) -> [x; y]
   | Tern(c, x, y) | TernF(c, x, y) -> [c; x; y]

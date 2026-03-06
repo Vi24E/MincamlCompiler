@@ -213,7 +213,7 @@ impl ValTrace {
                         self.set_bool(rd);
                     }
                 }
-                "feq" | "fleq" | "flt" => {
+                "feq" | "fneq" | "fleq" | "flt" => {
                     self.set_bool(rd);
                 }
                 "xori" if inst.operands.len() == 3 => {

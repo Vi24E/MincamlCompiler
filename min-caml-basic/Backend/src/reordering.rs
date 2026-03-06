@@ -96,6 +96,7 @@ fn is_pure_mnemonic(m: &str) -> bool {
             | "fmul"
             | "fdiv"
             | "feq"
+            | "fneq"
             | "fleq"
             | "flt"
             | "mov"

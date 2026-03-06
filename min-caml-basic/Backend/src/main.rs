@@ -572,7 +572,8 @@ fn normalize_movui_addi_to_ori(
 
 fn mnemonic_defines_first_operand(mnemonic: &str, rd: &str) -> bool {
     match mnemonic {
-        "add" | "sub" | "sll" | "sar" | "xor" | "ceq" | "cleq" | "clt" | "feq" | "fleq" | "flt"
+        "add" | "sub" | "sll" | "sar" | "xor" | "ceq" | "cleq" | "clt" | "feq" | "fneq"
+        | "fleq" | "flt"
         | "fadd" | "fsub" | "fmul" | "fdiv" | "addi" | "subi" | "slli" | "sari" | "ori"
         | "xori" | "ceqi" | "cleqi" | "clti" | "mov" | "neg" | "fmov" | "fneg" | "finv"
         | "frsqrt" | "ffloor" | "ftoi" | "itof" | "movi" | "movui" | "mif" | "lw" | "lf" | "lb"

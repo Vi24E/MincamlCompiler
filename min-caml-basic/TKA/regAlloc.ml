@@ -138,6 +138,7 @@ and g' dest cont regenv = function
   | StF(x, y, z') -> (Ans(StF(find x Type.Float regenv, find y Type.Int regenv, find' z' regenv)), regenv)
   | FInv(x) -> (Ans(FInv(find x Type.Float regenv)), regenv)
   | FMov(x) -> (Ans(FMov(find x Type.Float regenv)), regenv)
+  | Mif(x) -> (Ans(Mif(find x Type.Int regenv)), regenv)
   | FNeg(x) -> (Ans(FNeg(find x Type.Float regenv)), regenv)
   | FAdd(x, y) -> (Ans(FAdd(find x Type.Float regenv, find y Type.Float regenv)), regenv)
   | FSub(x, y) -> (Ans(FSub(find x Type.Float regenv, find y Type.Float regenv)), regenv)
@@ -152,7 +153,7 @@ and g' dest cont regenv = function
   | Tern(c, x, y) ->
       (Ans(Tern(find c Type.Int regenv, find x Type.Int regenv, find y Type.Int regenv)), regenv)
   | TernF(c, x, y) ->
-      (Ans(TernF(find c Type.Int regenv, find x Type.Float regenv, find y Type.Float regenv)), regenv)
+      (Ans(TernF(find c Type.Float regenv, find x Type.Float regenv, find y Type.Float regenv)), regenv)
   | IfEq(x, y', e1, e2) as exp -> g'_if dest cont regenv exp (fun e1' e2' -> IfEq(find x Type.Int regenv, find' y' regenv, e1', e2')) e1 e2
   | IfLE(x, y', e1, e2) as exp -> g'_if dest cont regenv exp (fun e1' e2' -> IfLE(find x Type.Int regenv, find' y' regenv, e1', e2')) e1 e2
   | IfFEq(x, y, e1, e2) as exp -> g'_if dest cont regenv exp (fun e1' e2' -> IfFEq(find x Type.Float regenv, find y Type.Float regenv, e1', e2')) e1 e2
