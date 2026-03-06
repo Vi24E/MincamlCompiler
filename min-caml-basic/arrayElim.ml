@@ -5,9 +5,10 @@ type usage = {
   mutable touched : bool;
 }
 
-let max_size = ref 8
+let max_size = Config.ArrayElim.max_size
 let dump_seq = ref 0
 let scalarized_slots : (Id.t * Id.t array) list ref = ref []
+let dump_assignarray_ir = Config.ArrayElim.dump_assignarray_ir
 
 let dump_assignarray_summary path slot_labels e =
   let ch = open_out path in
@@ -275,23 +276,22 @@ let f e =
             (Printf.sprintf "%s[%d]" (Id.to_string arr) idx))
         slots)
     !scalarized_slots;
-  (match Sys.getenv_opt "DUMP_ASSIGNARRAY_IR" with
-  | Some("1") | Some("true") | Some("TRUE") ->
-      Format.eprintf "ArrayElim: pre-phi AssignArray=%d@." assign_array_count;
-      if assign_array_count > 0 then begin
-        let filename =
-          Printf.sprintf "test/minrt.assignarray.prephi.%03d" !dump_seq
-        in
-        incr dump_seq;
-        (try
-           dump_assignarray_summary filename slot_labels e';
-           Format.eprintf
-             "ArrayElim: dumped pre-phi AssignArray summary to %s@."
-             filename
-         with exn ->
-           Format.eprintf
-             "ArrayElim: dump failed (%s)@."
-             (Printexc.to_string exn))
-      end
-  | _ -> ());
+  if !dump_assignarray_ir then begin
+    Format.eprintf "ArrayElim: pre-phi AssignArray=%d@." assign_array_count;
+    if assign_array_count > 0 then begin
+      let filename =
+        Printf.sprintf "test/minrt.assignarray.prephi.%03d" !dump_seq
+      in
+      incr dump_seq;
+      (try
+         dump_assignarray_summary filename slot_labels e';
+         Format.eprintf
+           "ArrayElim: dumped pre-phi AssignArray summary to %s@."
+           filename
+       with exn ->
+         Format.eprintf
+           "ArrayElim: dump failed (%s)@."
+           (Printexc.to_string exn))
+    end
+  end;
   TernPhiInsert.f e'

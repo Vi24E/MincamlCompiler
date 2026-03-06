@@ -1,6 +1,6 @@
 open KNormal
 
-let threshold = ref 30
+let threshold = Config.IfFold.threshold
 
 let rec size = function
   | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2)| LetRec({ body = e1; _ }, e2)

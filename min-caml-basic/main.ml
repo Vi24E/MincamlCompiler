@@ -1,6 +1,6 @@
-let limit = ref 10
-let enable_loop_insert = ref true
-let debug = ref false
+let limit = Config.Main.iter_limit
+let enable_loop_insert = Config.Main.enable_loop_insert
+let debug = Config.Main.inline_debug
 
 let rec iter n e =
   Format.eprintf "iteration %d@." n;

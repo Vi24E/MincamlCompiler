@@ -1,7 +1,7 @@
 open KNormal
 
 (* M は Id.t → Id.t listの写像 *)
-let threshold = ref 30
+let threshold = Config.TupleElim.threshold
 
 module M = Map.Make(struct
   type t = Id.t

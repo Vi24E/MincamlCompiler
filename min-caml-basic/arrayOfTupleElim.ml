@@ -14,7 +14,7 @@ open KNormal
                            Put(a2, i, t2); ...
 *)
 
-let threshold = ref 6
+let threshold = Config.ArrayOfTupleElim.threshold
 
 module M = Map.Make(struct
   type t = Id.t

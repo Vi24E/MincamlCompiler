@@ -5,7 +5,7 @@ module IdMap = Map.Make(struct
   let compare = Id.compare
 end)
 
-let threshold = ref 500
+let threshold = Config.LoopUnroll.threshold
 
 let subst_id subst x =
   match IdMap.find_opt x subst with

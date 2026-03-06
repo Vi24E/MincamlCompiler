@@ -30,16 +30,22 @@ let find_const x = C.find_opt x !const_env_ref
 
 let leakable_env () = !leakable_env_ref
 
+(* bool payload means "appeared in use position at least once". *)
 let is_leakable_defined x =
   match LeakM.find_opt x !leakable_env_ref with
   | Some true -> true
   | _ -> false
 
 let add_leakable_use x env =
-  if Id.is_leakable x && not (LeakM.mem x env) then LeakM.add x false env else env
+  if Id.is_leakable x then LeakM.add x true env else env
 
 let mark_leakable_def x env =
-  if Id.is_leakable x then LeakM.add x true env else env
+  if Id.is_leakable x then
+    match LeakM.find_opt x env with
+    | Some b -> LeakM.add x b env
+    | None -> LeakM.add x false env
+  else
+    env
 
 let rec collect_leakable_env env = function
   | Unit | Int(_) | Float(_) | ExtArray(_) -> env

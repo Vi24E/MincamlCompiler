@@ -1,12 +1,12 @@
 open KNormal
 
 (* インライン展開する関数の最大サイズ (caml2html: inline_threshold) *)
-let threshold = ref 50000 (* Mainで-inlineオプションによりセットされる *)
+let threshold = Config.Inline.threshold (* Mainで-inlineオプションによりセットされる *)
 
 let same_id x y = Id.compare x y = 0
 let uses_id = same_id
 
-let inline_debug_trace_enabled = ref false
+let inline_debug_trace_enabled = Config.Inline.debug_trace_enabled
 
 let set_debug_trace b =
   inline_debug_trace_enabled := b
@@ -18,9 +18,7 @@ let debug_id_entries : (int * string) list ref = ref []
 let next_debug_id = ref 1
 
 let inline_debug_map_path () =
-  match Sys.getenv_opt "INLINE_DEBUG_MAP_FILE" with
-  | Some p when p <> "" -> p
-  | _ -> "test/inline_debug_map.txt"
+  Config.Inline.debug_map_path
 
 let get_or_assign_debug_id f =
   let name = Id.to_string f in

@@ -1,6 +1,6 @@
 open KNormal
 
-let max_interp_steps = ref 30000
+let max_interp_steps = Config.ConstFold.max_interp_steps
 let interp_steps = ref 0
 
 (* Collect all Assign target variables in an expression (for While env cleanup) *)

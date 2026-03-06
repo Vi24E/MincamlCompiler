@@ -31,7 +31,7 @@ let reg_zero = ("%i0", Id.Known(Id.Register, Id.None)) (* hardcoded as it is not
 let reg_fzero = ("%f0", Id.Known(Id.Register, Id.None)) (* hardcoded as it is not exposed in asm.mli *)
 
 let check_imm i = -2048 <= i && i < 2048
-let create_array_unroll_threshold = 8
+let create_array_unroll_threshold = Config.TKA.Emit.create_array_unroll_threshold
 let is_pos_zero_float f = Int64.bits_of_float f = 0L
 
 let int_return_reg () =
@@ -152,7 +152,7 @@ let small_const_count ys =
   match ys with
   | n :: _ ->
       (match const_int_of_id n with
-      | Some c when 0 <= c && c <= create_array_unroll_threshold -> Some c
+      | Some c when 0 <= c && c <= !create_array_unroll_threshold -> Some c
       | _ -> None)
   | [] -> None
 
@@ -1566,7 +1566,8 @@ let h oc { name = Id.L(x); args = _; fargs = _; body = e; ret = _ } =
   );
   if !Asm.virtual_mode then Printf.fprintf oc "\t.end_function\n"
 
-let f oc (Prog(data, fundefs, e)) =
+let f oc prog =
+  let Prog(data, fundefs, e) = OptLeakable.prune_emit prog in
   Format.eprintf "generating assembly...@.";
   Printf.fprintf oc ".data\n";
   Printf.fprintf oc ".align\t8\n";

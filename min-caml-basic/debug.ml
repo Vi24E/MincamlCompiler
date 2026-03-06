@@ -181,6 +181,13 @@ let indent str =
 
 let anormal_to_string = knormal_to_string
 
+let id_to_tag id =
+  let (_, t) = id in
+  match t with
+  | Id.Known(Id.Leakable, _) -> " [leakable]"
+  | _ -> ""
+
+
 let rec closure_to_string = function
   | Closure.Unit -> "Unit"
   | Closure.Int i -> string_of_int i
@@ -197,7 +204,7 @@ let rec closure_to_string = function
   | Closure.FDiv (id1, id2) -> (Id.to_string id1) ^ " / " ^ (Id.to_string id2)
   | Closure.IfEq (id1, id2, t1, t2) -> "If (" ^ (Id.to_string id1) ^ " = " ^ (Id.to_string id2) ^ ") {\n" ^ closure_to_string t1 ^ "\n}\nelse {\n" ^ closure_to_string t2 ^ "\n}"
   | Closure.IfLE (id1, id2, t1, t2) -> "If (" ^ (Id.to_string id1) ^ " <= " ^ (Id.to_string id2) ^ ") {\n" ^ closure_to_string t1 ^ "\n}\nelse {\n" ^ closure_to_string t2 ^ "\n}"
-  | Closure.Let ((id, ty), t1, t2) -> type_to_string ty ^ " " ^ (Id.to_string id) ^ " = " ^ closure_to_string t1 ^ ";\n" ^ closure_to_string t2
+  | Closure.Let ((id, ty), t1, t2) -> type_to_string ty ^ " " ^ (Id.to_string id) ^ " = " ^ closure_to_string t1 ^ ";\n" ^ closure_to_string t2 ^ (id_to_tag id)
   | Closure.Var id -> (Id.to_string id)
   | Closure.MakeCls ((id, ty), { Closure.entry = l; actual_fv = ys }, t) ->
       let closure_label = match l with Id.L(s) -> s in

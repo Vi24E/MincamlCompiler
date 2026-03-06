@@ -3,10 +3,7 @@ open Asm
 let data = ref []
 let global_env = ref M.empty
 let all_type_env = ref M.empty
-let enable_if_simplify =
-  match Sys.getenv_opt "MC_IFSIMPLIFY" with
-  | Some("1") | Some("true") | Some("TRUE") -> true
-  | _ -> false
+let enable_if_simplify = Config.TKA.Virtual.enable_if_simplify
 
 let rec collect_globals = function
   | Closure.Let((x, t), _, e) ->
@@ -238,7 +235,7 @@ let rec g env const_env break_label continue_label e =
         let id = Id.genid "f" in
         Let((id, Type.Float), FInv(y), Ans(FMul(x, id)))
     | Closure.IfEq(x, y, e1, e2) ->
-      if enable_if_simplify then
+      if !enable_if_simplify then
         (match float_sign_pattern_of_branches (e1, e2) with
         | Some(pattern) ->
             build_signed_float_from_cmp (cmp_exp_of_ifeq env const_env x y) pattern
@@ -291,7 +288,7 @@ let rec g env const_env break_label continue_label e =
                    g env const_env break_label continue_label e2 ))
         | _ -> failwith "equality supported only for bool, int, and float")
     | Closure.IfLE(x, y, e1, e2) ->
-      if enable_if_simplify then
+      if !enable_if_simplify then
         (match float_sign_pattern_of_branches (e1, e2) with
         | Some(pattern) ->
             build_signed_float_from_cmp (cmp_exp_of_ifle env const_env x y) pattern

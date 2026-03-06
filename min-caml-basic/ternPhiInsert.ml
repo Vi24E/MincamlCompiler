@@ -24,12 +24,12 @@ let trace_seq = ref 0
 let trace_events : string list ref = ref []
 let trace_limit = 20000
 let trace_event_count = ref 0
-let phi_threshold = ref 20
+let phi_threshold = Config.TernPhiInsert.phi_threshold
+let trace_enabled_flag = Config.TernPhiInsert.trace_enabled
+let ternphi_fallback_enabled = Config.TernPhiInsert.fallback_enabled
 
 let trace_enabled () =
-  match Sys.getenv_opt "DUMP_TERNPHI_TRACE" with
-  | Some("1") | Some("true") | Some("TRUE") -> true
-  | _ -> false
+  !trace_enabled_flag
 
 let trace_log msg =
   if trace_enabled () && !trace_event_count < trace_limit then begin
@@ -209,24 +209,15 @@ let rec has_assign_array = function
   | TernPhi(_, _, _) ->
       false
 
-let maybe_parse_int s =
-  try Some(int_of_string s) with _ -> None
-
 let get_phi_threshold () =
-  match Sys.getenv_opt "TERNPHI_THRESHOLD" with
-  | Some s ->
-      (match maybe_parse_int s with
-      | Some n when n >= 0 -> n
-      | _ -> !phi_threshold)
-  | None -> !phi_threshold
+  !phi_threshold
 
 let use_fallback_join cont_size then_expr else_expr =
-  match Sys.getenv_opt "ENABLE_TERNPHI_FALLBACK" with
-  | Some("1") | Some("true") | Some("TRUE") ->
-      let s = cont_size + Inline.size then_expr + Inline.size else_expr in
-      s >= get_phi_threshold ()
-  | _ ->
-      false
+  if !ternphi_fallback_enabled then
+    let s = cont_size + Inline.size then_expr + Inline.size else_expr in
+    s >= get_phi_threshold ()
+  else
+    false
 
 let rec may_fallthrough = function
   | Break(_) -> false

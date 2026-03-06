@@ -152,5 +152,6 @@ let rec g mutable_set env alias_env = function (* β簡約ルーチン本体 (ca
   | Break(x) -> Break(find x env)
 
 let f e =
+  let e = OptLeakable.beta_optimize e in
   let mutable_set = collect_mutable S.empty e in
   g mutable_set M.empty M.empty e

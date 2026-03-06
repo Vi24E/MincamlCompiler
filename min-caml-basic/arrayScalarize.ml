@@ -22,7 +22,7 @@ type scalar_plan = {
   entries : (int * Id.t) list;
 }
 
-let max_indices = ref 8
+let max_indices = Config.ArrayScalarize.max_indices
 
 let const_int_of_id = function
   | (_, Id.Known(_, Id.ConstInt i)) -> Some i
