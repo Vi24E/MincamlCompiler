@@ -2,8 +2,6 @@ let limit = ref 10
 let enable_loop_insert = ref true
 let debug = ref false
 
-let apply_constfold e = e
-
 let rec iter n e =
   Format.eprintf "iteration %d@." n;
   if n = 0 then e else
@@ -12,7 +10,7 @@ let rec iter n e =
              |> TupleElim.f
              |> ArrayElim.f
              |> Elim.f
-             |> apply_constfold
+             |> ConstFold.f
              |> CommonExpElim.f
              |> Inline.f
              |> Assoc.f
@@ -36,7 +34,7 @@ let lexbuf filename outchan l =
   let optimize_input =
     if !enable_loop_insert then
       alpha |> TupleElim.f
-            |> apply_constfold
+            |> ConstFold.f
             |> Assoc.f
             |> Beta.f
             |> Elim.f

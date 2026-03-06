@@ -887,8 +887,9 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let y = Id.to_string y in
       let reg_sw = Id.to_string Asm.reg_sw in
       let reg_zero_s = Id.to_string reg_zero in
-      Printf.fprintf oc "\tfeq\t%s, %s, %s\n" reg_sw x y;
-      Printf.fprintf oc "\tceqi\t%s, %s, 0\n" reg_sw reg_sw;  (* invert: 0 when feq=1 *)
+      Printf.fprintf oc "\tfneq\t%s, %s, %s\n" reg_sw x y;
+      (* Printf.fprintf oc "\tfeq\t%s, %s, %s\n" reg_sw x y;
+      Printf.fprintf oc "\tceqi\t%s, %s, 0\n" reg_sw reg_sw; *)
       let b_cont = Id.genid "cont" in
       let b_cont_s = Id.to_string b_cont in
       Printf.fprintf oc "\tjzero\t%s, %s, %s\n" reg_zero_s reg_sw b_cont_s;
@@ -924,8 +925,9 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let y = Id.to_string y in
       let reg_sw = Id.to_string Asm.reg_sw in
       let reg_zero_s = Id.to_string reg_zero in
-      Printf.fprintf oc "\tfleq\t%s, %s, %s\n" reg_sw x y;
-      Printf.fprintf oc "\tceqi\t%s, %s, 0\n" reg_sw reg_sw;  (* invert: 0 when fleq=1 *)
+      Printf.fprintf oc "\tfle\t%s, %s, %s\n" reg_sw y x;
+      (* Printf.fprintf oc "\tfleq\t%s, %s, %s\n" reg_sw x y;
+      Printf.fprintf oc "\tceqi\t%s, %s, 0\n" reg_sw reg_sw; *)
       let b_cont = Id.genid "cont" in
       let b_cont_s = Id.to_string b_cont in
       Printf.fprintf oc "\tjzero\t%s, %s, %s\n" reg_zero_s reg_sw b_cont_s;
@@ -1116,9 +1118,9 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
                 Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));  (* counter = count *)
                 Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;                        (* result = heap start *)
                 Printf.fprintf oc "%s:\n" loop_s;
-                Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;                  (* rsw = (counter==0)?1:0 *)
-                Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;          (* if counter!=0, forward to cont *)
-                (* fall-through: counter==0, return *)
+                (* Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
+                Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;  *)
+                Printf.fprintf oc "\tjlt\t%s, %s, %s\n" rz i15 cont_s;                  (* rsw = (counter==0)?1:0 *)
                 finish_tail ();
                 Printf.fprintf oc "%s:\n" cont_s;
                 Printf.fprintf oc "\tsw\t%s, 0(%s)\n" i5 i2;
@@ -1132,8 +1134,9 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
           Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));  (* counter = count *)
           Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;                        (* result = heap start *)
           Printf.fprintf oc "%s:\n" loop_s;
-          Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;                  (* rsw = (counter==0)?1:0 *)
-          Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;          (* if counter!=0, forward to cont *)
+          (* Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
+          Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s; *)
+          Printf.fprintf oc "\tjlt\t%s, %s, %s\n" rz i15 cont_s;
           (* fall-through: counter==0, return *)
           if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
           let reg_ra = Id.to_string Asm.reg_ra in
@@ -1181,8 +1184,9 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
                 Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));
                 Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;
                 Printf.fprintf oc "%s:\n" loop_s;
-                Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
-                Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;          (* if counter!=0, forward to cont *)
+                (* Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
+                Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s; *)
+                Printf.fprintf oc "\tjlt\t%s, %s, %s\n" rz i15 cont_s;                  (* if counter==0, forward to cont *)
                 (* fall-through: counter==0, return *)
                 finish_tail ();
                 Printf.fprintf oc "%s:\n" cont_s;
@@ -1197,8 +1201,9 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
           Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));
           Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;
           Printf.fprintf oc "%s:\n" loop_s;
-          Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
-          Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;          (* if counter!=0, forward to cont *)
+          (* Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
+          Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s; *)
+          Printf.fprintf oc "\tjlt\t%s, %s, %s\n" rz i15 cont_s; 
           (* fall-through: counter==0, return *)
           if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
           let reg_ra = Id.to_string Asm.reg_ra in
@@ -1347,8 +1352,9 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
                 Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));
                 Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;
                 Printf.fprintf oc "%s:\n" loop_s;
-                Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;          (* rsw = (counter==0)?1:0 *)
-                Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;  (* if counter!=0, forward to cont *)
+                (* Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
+                Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s; *)
+                Printf.fprintf oc "\tjlt\t%s, %s, %s\n" rz i15 cont_s; 
                 (* fall-through: counter==0, jump to done *)
                 Printf.fprintf oc "\tset_label\t%s, %s\n" rsw done_s;
                 Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw;
@@ -1369,8 +1375,9 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
           Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));
           Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;
           Printf.fprintf oc "%s:\n" loop_s;
-          Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;          (* rsw = (counter==0)?1:0 *)
-          Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;  (* if counter!=0, forward to cont *)
+          (* Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
+          Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s; *)
+          Printf.fprintf oc "\tjlt\t%s, %s, %s\n" rz i15 cont_s; 
           (* fall-through: counter==0, jump to done *)
           Printf.fprintf oc "\tset_label\t%s, %s\n" rsw done_s;
           Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw;
@@ -1418,8 +1425,9 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
                 Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));
                 Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;
                 Printf.fprintf oc "%s:\n" loop_s;
-                Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
-                Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;  (* if counter!=0, forward to cont *)
+                (* Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
+                Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s; *)
+                Printf.fprintf oc "\tjlt\t%s, %s, %s\n" rz i15 cont_s; 
                 (* fall-through: counter==0, jump to done *)
                 Printf.fprintf oc "\tset_label\t%s, %s\n" rsw done_s;
                 Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw;
@@ -1440,8 +1448,9 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
           Printf.fprintf oc "\tmov\t%s, %s\n" i15 (Id.to_string regs.(0));
           Printf.fprintf oc "\tmov\t%s, %s\n" ret i2;
           Printf.fprintf oc "%s:\n" loop_s;
-          Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
-          Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s;
+          (* Printf.fprintf oc "\tceqi\t%s, %s, 0\n" rsw i15;
+          Printf.fprintf oc "\tjzero\t%s, %s, %s\n" rz rsw cont_s; *)
+          Printf.fprintf oc "\tjlt\t%s, %s, %s\n" rz i15 cont_s; 
           Printf.fprintf oc "\tset_label\t%s, %s\n" rsw done_s;
           Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw;
           Printf.fprintf oc "%s:\n" cont_s;
