@@ -3,6 +3,7 @@ let enable_loop_insert = Config.Main.enable_loop_insert
 let debug = Config.Main.inline_debug
 
 let rec iter n e =
+  Debug.print_anormal ("minrt.optimized_" ^ string_of_int n) e;
   Format.eprintf "iteration %d@." n;
   if n = 0 then e else
   let e' = e |> VariableChecker.f
@@ -16,7 +17,7 @@ let rec iter n e =
              |> Inline.f
              |> Assoc.f
              |> Beta.f
-             |> LoopInvariant.f in
+             |> LoopInvariant.f ~peel:false in
   if e = e' then e else
   iter (n - 1) e'
 
@@ -47,7 +48,7 @@ let lexbuf filename outchan l =
     else
       alpha
   in
-  let optimized = iter !limit optimize_input |> VariableChecker.f in
+  let optimized = (iter !limit optimize_input |> VariableChecker.f) |> LoopInvariant.f ~peel:true in
   Debug.print_anormal (filename ^ ".optimized") optimized;
   let closure = Closure.f optimized in
   ClosureChecker.f closure;

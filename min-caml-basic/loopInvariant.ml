@@ -222,6 +222,30 @@ let rec contains_break = function
   | While(_, _) -> false
   | _ -> false
 
+(* body_tail に While ノードが含まれるか確認する（ネストしたループの検出）。
+   これが true の場合、外側の While はピールしない（一番内側のみピール対象）。 *)
+let rec contains_while_node = function
+  | While(_, _) -> true
+  | Let(_, e1, e2) | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) ->
+      contains_while_node e1 || contains_while_node e2
+  | LetRec({ body; _ }, e2) ->
+      contains_while_node body || contains_while_node e2
+  | LetTuple(_, _, e) | Assign(_, _, e, _) -> contains_while_node e
+  | TernPhi(_, _, _) -> false
+  | _ -> false
+
+(* テール位置の Unit（continue点）の個数を数える。rewrite_exits と同じパターンで再帰。 *)
+let rec count_continue_exits = function
+  | Unit -> 1
+  | Break _ -> 0
+  | Let(_, _, e2) -> count_continue_exits e2
+  | Assign(_, _, e, _) -> count_continue_exits e
+  | TernPhi(_, _, _) -> 0
+  | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) ->
+      count_continue_exits e1 + count_continue_exits e2
+  | LetTuple(_, _, e) -> count_continue_exits e
+  | _ -> 0
+
 (* テール位置の Break(v) → Var(v)、Unit（continue点）→ replacement に書き換える。
    これにより while ループの「最初のイテレーション」を展開できる（ループピーリング）。 *)
 let rec rewrite_exits replacement = function
@@ -284,7 +308,8 @@ let rec g ~peel arg_set = function
          while ループのボディは Alpha.f で新鮮なコピーを作る。
          fresh_body は g を通さないため、同一 While が2回ピールされることはない。 *)
       let result =
-        if peel && contains_break body_tail then
+        if peel && contains_break body_tail && count_continue_exits body_tail = 1
+         && not (contains_while_node body_tail) then
           let fresh_body = Alpha.f body_tail in
           let while_expr = While(cond', fresh_body) in
           rewrite_exits while_expr body_tail

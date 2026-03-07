@@ -89,6 +89,7 @@ def parse_profile_stats(output):
         "mem_access_count": None,
         "mem_access_rate": None,
         "top_functions": [],
+        "top_jmp_targets": [],
         "opcode_counts": [],
     }
     in_section = False
@@ -115,12 +116,26 @@ def parse_profile_stats(output):
             calls = int(m.group(2))
             name = m.group(3).strip() if m.group(3) else None
             stats["top_functions"].append((addr, calls, name))
+        m = re.match(r"\s+JmpTarget PC=(0x[0-9a-f]+)\s+count=(\d+)(?:\s+#\s*(.+))?", line)
+        if m:
+            addr = m.group(1)
+            count = int(m.group(2))
+            name = m.group(3).strip() if m.group(3) else None
+            stats["top_jmp_targets"].append((addr, count, name))
         m = re.match(r"\s+Opcode\s+([A-Z0-9_]+)\s+count=([\d,]+)", line)
         if m:
             opname = m.group(1)
             count = int(m.group(2).replace(",", ""))
             stats["opcode_counts"].append((opname, count))
     return stats
+
+
+def pick_hot_targets(profile):
+    if profile["top_jmp_targets"]:
+        return "jmp", profile["top_jmp_targets"]
+    if profile["top_functions"]:
+        return "call", profile["top_functions"]
+    return None, []
 
 def format_top_opcode_rates(opcode_counts, top_n=15, per_line=5):
     if not opcode_counts:
@@ -523,13 +538,16 @@ def main():
     if timed_out:
         print(f"\n[TIMED OUT] Partial stats after {sim_timeout:.1f}s:")
         print(f"  Cycles so far: {cycles}")
-        if profile["top_functions"]:
-            total_calls = sum(c for _, c, _ in profile["top_functions"])
-            print("\nTop Called Functions (partial):")
-            for rank, (addr, calls, name) in enumerate(profile["top_functions"][:10], 1):
-                pct = (calls / total_calls * 100.0) if total_calls > 0 else 0.0
+        hot_kind, hot_targets = pick_hot_targets(profile)
+        if hot_targets:
+            total_hits = sum(c for _, c, _ in hot_targets)
+            title = "Top Jmp Targets" if hot_kind == "jmp" else "Top Called Functions"
+            unit = "hits" if hot_kind == "jmp" else "calls"
+            print(f"\n{title} (partial):")
+            for rank, (addr, cnt, name) in enumerate(hot_targets[:10], 1):
+                pct = (cnt / total_hits * 100.0) if total_hits > 0 else 0.0
                 label = f"  {name}" if name else ""
-                print(f"  #{rank:2d}  {addr}  {calls:>12,} calls  ({pct:5.1f}%){label}")
+                print(f"  #{rank:2d}  {addr}  {cnt:>12,} {unit}  ({pct:5.1f}%){label}")
         else:
             print("  (no profile data available)")
         if profile["opcode_counts"]:
@@ -541,15 +559,17 @@ def main():
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         mem_rate_str = (f"{profile['mem_access_rate']:.2f}%"
                         if profile["mem_access_rate"] is not None else "N/A")
-        top_funcs_str = ""
-        if profile["top_functions"]:
-            total_calls = sum(c for _, c, _ in profile["top_functions"])
+        top_targets_str = ""
+        hot_kind, hot_targets = pick_hot_targets(profile)
+        if hot_targets:
+            total_hits = sum(c for _, c, _ in hot_targets)
             lines = []
-            for rank, (addr, calls, name) in enumerate(profile["top_functions"][:5], 1):
-                pct = (calls / total_calls * 100.0) if total_calls > 0 else 0.0
+            for rank, (addr, cnt, name) in enumerate(hot_targets[:5], 1):
+                pct = (cnt / total_hits * 100.0) if total_hits > 0 else 0.0
                 lbl = f" {name}" if name else ""
-                lines.append(f"    #{rank} {addr}{lbl}: {calls:,} ({pct:.1f}%)")
-            top_funcs_str = "TopFuncs:\n" + "\n".join(lines) + "\n"
+                lines.append(f"    #{rank} {addr}{lbl}: {cnt:,} ({pct:.1f}%)")
+            header = "TopJmps" if hot_kind == "jmp" else "TopFuncs"
+            top_targets_str = f"{header}:\n" + "\n".join(lines) + "\n"
         top_opcodes_str = ""
         if profile["opcode_counts"]:
             compact = format_top_opcode_rates(profile["opcode_counts"], top_n=15, per_line=5)
@@ -563,7 +583,7 @@ def main():
             f"MemAccessRate: {mem_rate_str} | "
             f"Compile: {compile_time:.3f}s | "
             f"Sim: {sim_time:.3f}s\n"
-            f"{top_funcs_str}"
+            f"{top_targets_str}"
             f"{top_opcodes_str}"
             f"Comment: \n"
             f"================================================\n"
@@ -660,13 +680,16 @@ def main():
     print(f"Result: {accuracy:.2f}% ({match_count}/{num_pixels} pixels)")
 
     # Show top functions
-    if profile["top_functions"]:
-        print("\nTop Called Functions:")
-        total_calls = sum(c for _, c, _ in profile["top_functions"])
-        for rank, (addr, calls, name) in enumerate(profile["top_functions"][:10], 1):
-            pct = (calls / total_calls * 100.0) if total_calls > 0 else 0.0
+    hot_kind, hot_targets = pick_hot_targets(profile)
+    if hot_targets:
+        title = "Top Jmp Targets" if hot_kind == "jmp" else "Top Called Functions"
+        unit = "hits" if hot_kind == "jmp" else "calls"
+        print(f"\n{title}:")
+        total_hits = sum(c for _, c, _ in hot_targets)
+        for rank, (addr, cnt, name) in enumerate(hot_targets[:10], 1):
+            pct = (cnt / total_hits * 100.0) if total_hits > 0 else 0.0
             label = f"  {name}" if name else ""
-            print(f"  #{rank:2d}  {addr}  {calls:>12,} calls  ({pct:5.1f}%){label}")
+            print(f"  #{rank:2d}  {addr}  {cnt:>12,} {unit}  ({pct:5.1f}%){label}")
     if profile["opcode_counts"]:
         print("\nTop Opcode Rates:")
         print(format_top_opcode_rates(profile["opcode_counts"], top_n=15, per_line=5))
@@ -685,15 +708,17 @@ def main():
     mem_rate_str = (f"{profile['mem_access_rate']:.2f}%"
                     if profile["mem_access_rate"] is not None else "N/A")
 
-    top_funcs_str = ""
-    if profile["top_functions"]:
-        total_calls = sum(c for _, c, _ in profile["top_functions"])
+    top_targets_str = ""
+    hot_kind, hot_targets = pick_hot_targets(profile)
+    if hot_targets:
+        total_hits = sum(c for _, c, _ in hot_targets)
         lines = []
-        for rank, (addr, calls, name) in enumerate(profile["top_functions"][:5], 1):
-            pct = (calls / total_calls * 100.0) if total_calls > 0 else 0.0
+        for rank, (addr, cnt, name) in enumerate(hot_targets[:5], 1):
+            pct = (cnt / total_hits * 100.0) if total_hits > 0 else 0.0
             label = f" {name}" if name else ""
-            lines.append(f"    #{rank} {addr}{label}: {calls:,} ({pct:.1f}%)")
-        top_funcs_str = "TopFuncs:\n" + "\n".join(lines) + "\n"
+            lines.append(f"    #{rank} {addr}{label}: {cnt:,} ({pct:.1f}%)")
+        header = "TopJmps" if hot_kind == "jmp" else "TopFuncs"
+        top_targets_str = f"{header}:\n" + "\n".join(lines) + "\n"
     top_opcodes_str = ""
     if profile["opcode_counts"]:
         compact = format_top_opcode_rates(profile["opcode_counts"], top_n=15, per_line=5)
@@ -708,7 +733,7 @@ def main():
         f"MemAccessRate: {mem_rate_str} | "
         f"Compile: {compile_time:.3f}s | "
         f"Sim: {sim_time:.3f}s\n"
-        f"{top_funcs_str}"
+        f"{top_targets_str}"
         f"{top_opcodes_str}"
         f"Comment: \n"
         f"================================================\n"

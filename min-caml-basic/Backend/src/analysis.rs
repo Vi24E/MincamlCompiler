@@ -543,6 +543,7 @@ pub fn analyze(instructions: &[Instruction]) -> Vec<AnalyzedInstruction> {
     let decode_pair = |k: u64| -> (usize, usize) { ((k >> 32) as usize, (k as u32) as usize) };
 
     let mut seen: HashSet<u64> = HashSet::new();
+    let mut killed: HashSet<u64> = HashSet::new();
     let mut queued: HashSet<u64> = HashSet::new();
     let mut wl: VecDeque<u64> = VecDeque::new();
     let live_debug = live_debug_enabled();
@@ -562,26 +563,29 @@ pub fn analyze(instructions: &[Instruction]) -> Vec<AnalyzedInstruction> {
         pop_count += 1;
         if live_debug && pop_count % 1_000_000 == 0 {
             eprintln!(
-                "[live-debug] pops={} pushes={} seen={} queued={}",
+                "[live-debug] pops={} pushes={} seen={} killed={} queued={}",
                 pop_count,
                 push_count,
                 seen.len(),
+                killed.len(),
                 queued.len()
             );
         }
         queued.remove(&k);
-        if !seen.insert(k) {
+        if seen.contains(&k) || killed.contains(&k) {
             continue;
         }
 
         // Stop at definitions unless this instruction also uses the value.
         if defs_ids[i].contains(&v) && !uses_set_ids[i].contains(&v) {
+            killed.insert(k);
             continue;
         }
+        seen.insert(k);
 
         for &p in &preds[i] {
             let pk = encode_pair(p, v);
-            if !seen.contains(&pk) && queued.insert(pk) {
+            if !seen.contains(&pk) && !killed.contains(&pk) && queued.insert(pk) {
                 wl.push_back(pk);
                 push_count += 1;
             }
@@ -589,10 +593,11 @@ pub fn analyze(instructions: &[Instruction]) -> Vec<AnalyzedInstruction> {
     }
     if live_debug {
         eprintln!(
-            "[live-debug] done pops={} pushes={} seen={}",
+            "[live-debug] done pops={} pushes={} seen={} killed={}",
             pop_count,
             push_count,
-            seen.len()
+            seen.len(),
+            killed.len()
         );
     }
 

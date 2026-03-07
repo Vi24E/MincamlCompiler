@@ -145,6 +145,7 @@ struct {
   uint64_t branch_total = 0;
   uint64_t mem_access_count = 0;
   map<uint32_t, uint64_t> func_call_count; // target_pc -> call count
+  map<uint32_t, uint64_t> jmp_target_count; // target_pc -> executed jmp count
 } stats;
 
 void record_reg_change(int reg, uint32_t old_val) {
@@ -935,6 +936,7 @@ void exec_one_step(bool running) {
 
   case JMP: {
     uint32_t target_addr = inst.imm + get_x(inst.rs1);
+    stats.jmp_target_count[target_addr]++;
     if (inst.rd != 0) { // call (saves return address)
       stats.func_call_count[target_addr]++;
     }
@@ -1391,6 +1393,25 @@ int main(int argc, char **argv) {
         name = "  # " + symbols[fn_pc];
       cout << "  Func PC=0x" << hex << setw(8) << setfill('0') << fn_pc << dec
            << setfill(' ') << " calls=" << func_sorted[i].first << name << endl;
+    }
+
+    // Sort jmp_target_count by hit count descending
+    vector<pair<uint64_t, uint32_t>> jmp_sorted;
+    jmp_sorted.reserve(stats.jmp_target_count.size());
+    for (auto &kv : stats.jmp_target_count)
+      jmp_sorted.push_back({kv.second, kv.first});
+    sort(jmp_sorted.rbegin(), jmp_sorted.rend());
+
+    int top_jmp_n = min((int)jmp_sorted.size(), 20);
+    cout << "TopJmpTargets: " << top_jmp_n << endl;
+    for (int i = 0; i < top_jmp_n; i++) {
+      uint32_t target_pc = jmp_sorted[i].second;
+      string name = "";
+      if (symbols.count(target_pc))
+        name = "  # " + symbols[target_pc];
+      cout << "  JmpTarget PC=0x" << hex << setw(8) << setfill('0') << target_pc
+           << dec << setfill(' ') << " count=" << jmp_sorted[i].first << name
+           << endl;
     }
     cout << "=== EndProfileStats ===" << endl;
 

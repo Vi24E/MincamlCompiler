@@ -12,3 +12,12 @@ mov	%i4, %i5
 	mov	%i5, %i25
 	xor	%i25, %i4, %i5
 ```
+
+次の機能を実装してください。
+1. loopを検出する(CFG上でループになっており、startの入次数が2のものに限る)
+2. loop中killされずずっと生存している変数の集合Sを取得する
+
+Reordering priority sort: 0 (disabled)
+
+
+関数がある時、引数の処理がbeta等で正しくない？関数が残るiter = 1でバグ

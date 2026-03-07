@@ -78,3 +78,124 @@ epilogue:
       mp.reset(x); //r_dest is overwritten
   
   // also need to reset alias_map and cse_map
+
+
+// ----------------------------------------------------------------------
+// Investigation memo (2026-03-08): loop structure + "jump_if" behavior
+// ----------------------------------------------------------------------
+//
+// [A] IR段階ごとのループ表現
+//
+// 1) KNormal
+//    While(cond, body), Break(x) を持つ。
+//    loopInsert により tail-rec を While(Int(1), body) + Break(ret) に変換。
+//
+// 2) Closure
+//    While(Int(1), e) のみ Loop(e) に落とす（closure.ml）。
+//    While が Int(1) 以外だと failwith するため、実運用の Loop は「無限ループ + Break脱出」表現。
+//
+// 3) TKA Asm(IR)
+//    Loop(l_start, l_end, body), Break(x,t,l_end) を持つ（TKA/asm.ml）。
+//    virtual.ml で l_start=loop_start.*, l_end=loop_end.* を発行。
+//
+// 4) 文字列asm
+//    emit.ml で以下を出力:
+//      l_start:
+//        <body>
+//        set_label %i30, l_start
+//        jmp %i0, 0(%i30)        // ループバック
+//      l_end:
+//        <break値を復元/転送>
+//
+//    Break(x,t,l_end) は:
+//      (int)   mov  %i31, x
+//      (float) fmov %f31, x
+//      set_label %i30, l_end
+//      jmp %i0, 0(%i30)
+//
+//    NonTail Loop の終端では l_end で:
+//      dest <- %i31 または %f31
+//    Tail Loop では:
+//      int_return_reg <- %i31, float_return_reg <- %f31
+//
+// [B] "jump_if" の正体（重要）
+//
+// 結論: jump_if という命令は存在しない。
+// これは If* ノードが emit されるときの「条件分岐動作」の総称。
+//
+// 1) 整数条件分岐 (IfEq/IfLE)
+//    emit_cond_jump_op が jeq / jleq / (必要時) jlt を直接出す。
+//    例:
+//      jleq x, y, then_label
+//      <else側(またはbreak側)>
+//      ...
+//      then_label:
+//      <then側>
+//
+// 2) 浮動小数条件分岐 (IfFEq/IfFLE)
+//    いったん比較結果を %i31 に作る（feq/fleq/flt/fneq など）:
+//      feq/fleq/... %i31, ...
+//      jzero %i0, %i31, else_label
+//    規約:
+//      %i31 != 0 -> 真(then)でfall-through
+//      %i31 == 0 -> 偽(else)で分岐
+//    （emit.ml の g'_tail_if / g'_non_tail_if と一致）
+//
+// 3) 無条件分岐
+//    set_label + jmp の形、または最適化後に
+//      jzero %i0, %i0, LABEL
+//    へ畳み込みされる。
+//
+// 4) Backend解析上の扱い
+//    analysis.rs では
+//      jzero: USEはオペランド1のみ
+//      jeq/jlt/jleq: USEはオペランド0,1
+//    CFG後続は「分岐先ラベル + fall-through」の2本。
+//
+// [C] ループの実例（test/minrt.s）
+//
+// 1) 汎用 loop_start.*（Breakで抜ける while(1)）
+//    loop_start.239273:
+//      jleq %i0, %vi192, then.248099
+//      mov %i31, %vi191
+//      set_label %i30, loop_end.239274
+//      jmp %i0, 0(%i30)
+//    then.248099:
+//      ...
+//      // 末尾で loop_start へ戻るコードが続く
+//
+// 2) create_array 専用ループ（emit直後）
+//    ca_loop.248083:
+//      jlt %i0, %i15, ca_cont.248084   // counter>0 なら継続
+//      set_label %i31, ca_done.248085  // 0なら終了へ
+//      jmp %i0, 0(%i31)
+//    ca_cont.248084:
+//      sw ...
+//      subi %i15, %i15, 1
+//      set_label %i31, ca_loop.248083
+//      jmp %i0, 0(%i31)
+//    ca_done.248085:
+//
+// [D] Backend最適化後に見える差分（minrt_colored.s）
+//
+// branch_relax により、遠距離/後方条件分岐は compare + jzero 形に変換される。
+// 例: ca_loop.* が
+//    ceqi  %i31, %i15, 0
+//    jzero %i0, %i31, ca_cont.*
+//    jzero %i0, %i0, ca_done.*
+// の形に変化することがある（意味は元の jlt 版と同等）。
+//
+// [E] loopInvariant実装時の注意
+//
+// 1) "jump_if" を命令名で探してはいけない。
+//    実際は jeq/jleq/jlt または (cmp -> jzero) 連鎖。
+//
+// 2) ループ検出を最終asmだけで行うなら、loop_start/loop_end と
+//    逆辺（backedge）で判定する。条件分岐の命令形は最適化で変わる。
+//
+// 3) IR段階で実装するなら Loop/Break ノードを直接扱うほうが安全。
+//
+// [F] Profiling表示（tester）
+//
+// TopFunctions は inline後に情報量が低下するため、
+// tester/test.py は TopJmpTargets（jmp先ヒット数）を優先表示。
