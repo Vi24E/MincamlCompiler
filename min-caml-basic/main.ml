@@ -3,7 +3,6 @@ let enable_loop_insert = Config.Main.enable_loop_insert
 let debug = Config.Main.inline_debug
 
 let rec iter n e =
-  Debug.print_anormal ("minrt.optimized_" ^ string_of_int n) e;
   Format.eprintf "iteration %d@." n;
   if n = 0 then e else
   let e' = e |> VariableChecker.f
