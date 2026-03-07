@@ -17,7 +17,8 @@ enum {
   OP_NOP = 0x00,
   OP_ADD = 0x41,
   OP_SUB = 0x42,
-  OP_MUL = 0x43,
+  OP_TERN = 0x43,
+  OP_MUL = OP_TERN, // kept for fmul alias encoding
   OP_DIV = 0x44,
   OP_FNEG = 0x45,
   OP_FINV = 0x44,
@@ -33,6 +34,7 @@ enum {
   OP_FABS = 0x4C,
   OP_CEQ = 0x4E,
   OP_SAR = 0x50,
+  OP_FTERN = OP_SAR,
   OP_SLL = 0x53,
   OP_SLR = 0x54,
   OP_LB = 0x5B,
@@ -56,7 +58,8 @@ typedef struct {
   int opcode;
 } OpMap;
 static const OpMap kOps[] = {{"add", OP_ADD},       {"sub", OP_SUB},
-                             {"mul", OP_MUL},       {"div", OP_DIV},
+                             {"fmul", OP_MUL},      {"div", OP_DIV},
+                             {"tern", OP_TERN},     {"ftern", OP_FTERN},
                              {"clt", OP_CLT},       {"and", OP_AND},
                              {"or", OP_OR},         {"xor", OP_XOR},
                              {"cleq", OP_CLEQ},     {"ceq", OP_CEQ},
@@ -78,12 +81,12 @@ typedef struct {
   const char *base;
 } Alias;
 static const Alias kImmAlias[] = {
-    {"addi", "add"},   {"subi", "sub"}, {"muli", "mul"}, {"divi", "div"},
+    {"addi", "add"},   {"subi", "sub"}, {"divi", "div"},
     {"remi", "rem"},   {"andi", "and"}, {"ori", "or"},   {"xori", "xor"},
     {"sari", "sar"},   {"slli", "sll"}, {"slri", "slr"}, {"clti", "clt"},
     {"cleqi", "cleq"}, {"ceqi", "ceq"}, {NULL, NULL}};
 static const Alias kFAlias[] = {
-    {"fadd", "add"}, {"fsub", "sub"}, {"fmul", "mul"}, {NULL, NULL}};
+    {"fadd", "add"}, {"fsub", "sub"}, {NULL, NULL}};
 
 // ===== 便利関数 =====
 static char *trim(char *s) {
@@ -220,6 +223,16 @@ static u32 ENCODE_FMA(int rd, int rs1, int rs2, int rs3) {
   x |= (u32)(rs1 & 0x1F) << 14;
   x |= (u32)(rs2 & 0x1F) << 9;
   x |= (u32)(OP_FMA);
+  return x;
+}
+static u32 ENCODE_TERN(int fmt, int op, int rd, int rs1, int rs2, int rs3) {
+  u32 x = 0;
+  x |= (u32)(fmt & 0x3) << 30;
+  x |= (u32)(rs3 & 0x1F) << 25;
+  x |= (u32)(rd & 0x1F) << 19;
+  x |= (u32)(rs1 & 0x1F) << 14;
+  x |= (u32)(rs2 & 0x1F) << 9;
+  x |= (u32)(op & 0x1FF);
   return x;
 }
 static u32 ENCODE_FLT(int op, int rd, int rs1, int rs2) {
@@ -491,6 +504,9 @@ static void first_pass(FILE *fp, VecLine *lines, VecLabel *labels) {
     // ラベルは二命令分に相当するため加算
     if (!strncmp(s, "set_label", 9))
       pc += 4;
+    // fneq は feq + ceqi に展開されるため 2 命令分。
+    if (!strncasecmp(s, "fneq", 5))
+      pc += 4;
     if (*s)
       pc += 4;
   }
@@ -755,6 +771,23 @@ void second_pass(const VecLine *lines, const VecLabel *labels, VecWord *words,
       vitem_push(listing, pc, w, line);
       continue;
     }
+    if (!strcasecmp(mn, "fneq")) {
+      if (nops != 3) {
+        fprintf(stderr, "[asm] fneq needs 3 operands\n");
+        exit(1);
+      }
+      int rd = parse_reg(ops[0]);
+      int rs1 = parse_reg(ops[1]);
+      int rs2 = parse_reg(ops[2]);
+      u32 w1 = ENCODE_FLT(OP_CEQ, rd, rs1, rs2);
+      u32 w2 = ENCODE_DSI(OP_CEQ, rd, rd, 0, line); // ceqi rd, rd, 0
+      vword_push((VecWord *)words, w1);
+      vitem_push(listing, pc, w1, line);
+      pc += 4;
+      vword_push((VecWord *)words, w2);
+      vitem_push(listing, pc, w2, line);
+      continue;
+    }
     if (!strcasecmp(mn, "frsqrt")) {
       if (nops != 2) {
         fprintf(stderr, "[asm] frsqrt needs 2 operands\n");
@@ -829,6 +862,38 @@ void second_pass(const VecLine *lines, const VecLabel *labels, VecWord *words,
       vitem_push(listing, pc, w, line);
       continue;
     }
+    if (!strcasecmp(mn, "tern")) {
+      if (nops != 4) {
+        fprintf(stderr, "[asm] tern needs 4 operands\n");
+        exit(1);
+      }
+      int rd = parse_reg(ops[0]);
+      int rs1 = parse_reg(ops[1]);
+      int rs2 = parse_reg(ops[2]);
+      int rs3 = parse_reg(ops[3]);
+      u32 w = ENCODE_TERN(0, OP_TERN, rd, rs1, rs2, rs3);
+      vword_push((VecWord *)words, w);
+      vitem_push(listing, pc, w, line);
+      continue;
+    }
+    if (!strcasecmp(mn, "ftern")) {
+      if (nops != 4) {
+        fprintf(stderr, "[asm] %s needs 4 operands\n", mn);
+        exit(1);
+      }
+      int rd = parse_reg(ops[0]);
+      int rs1 = parse_reg(ops[1]);
+      int rs2 = parse_reg(ops[2]);
+      int rs3 = parse_reg(ops[3]);
+      u32 w = ENCODE_TERN(3, OP_FTERN, rd, rs1, rs2, rs3);
+      vword_push((VecWord *)words, w);
+      vitem_push(listing, pc, w, line);
+      continue;
+    }
+    if (!strcasecmp(mn, "mul") || !strcasecmp(mn, "muli")) {
+      fprintf(stderr, "[asm] '%s' is removed in current ISA. Use tern/ftern.\n", mn);
+      exit(1);
+    }
     if (!strcasecmp(mn, "jzero")) {
       if (nops != 3) {
         fprintf(stderr, "[asm] %s needs 3 operands\n", mn);
@@ -881,7 +946,7 @@ void second_pass(const VecLine *lines, const VecLabel *labels, VecWord *words,
 
     // DSS
     if (!strcasecmp(base, "add") || !strcasecmp(base, "sub") ||
-        !strcasecmp(base, "mul") || !strcasecmp(base, "div") ||
+        !strcasecmp(base, "fmul") || !strcasecmp(base, "div") ||
         !strcasecmp(base, "rem") || !strcasecmp(base, "and") ||
         !strcasecmp(base, "or") || !strcasecmp(base, "xor") ||
         !strcasecmp(base, "sar") || !strcasecmp(base, "sll") ||

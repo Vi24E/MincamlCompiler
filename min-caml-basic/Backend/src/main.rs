@@ -1638,7 +1638,7 @@ fn main() {
 
                     let adhoc_opt = adhoc::optimize(stage3_instructions);
                     println!(
-                        "Adhoc trampoline_elim rewrites: {}, branch_relax rewrites: {}, short_jump_fold rewrites: {}, global_access_opt rewrites: {}, zero_base_fold rewrites: {}, word_offset_scale rewrites: {}, val_trace rewrites: {}, alias_use rewrites: {}, dead_def rewrites: {}, redundant_reload rewrites: {}",
+                        "Adhoc trampoline_elim rewrites: {}, branch_relax rewrites: {}, short_jump_fold rewrites: {}, global_access_opt rewrites: {}, zero_base_fold rewrites: {}, word_offset_scale rewrites: {}, val_trace rewrites: {}, reg_cse rewrites: {}, alias_use rewrites: {}, dead_def rewrites: {}, redundant_reload rewrites: {}",
                         adhoc_opt.trampoline_elim_rewrites,
                         adhoc_opt.branch_relax_rewrites,
                         adhoc_opt.short_jump_fold_rewrites,
@@ -1646,6 +1646,7 @@ fn main() {
                         adhoc_opt.zero_base_fold_rewrites,
                         adhoc_opt.word_offset_rewrites,
                         adhoc_opt.val_trace_rewrites,
+                        adhoc_opt.reg_cse_rewrites,
                         adhoc_opt.alias_use_rewrites,
                         adhoc_opt.dead_move_rewrites,
                         adhoc_opt.redundant_reload_rewrites

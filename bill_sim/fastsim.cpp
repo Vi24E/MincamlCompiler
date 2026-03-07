@@ -37,6 +37,7 @@ bool headless = false;
 enum Opcode {
   ADD,
   SUB,
+  TERN,
   MUL,
   DIV,
   REM,
@@ -46,6 +47,7 @@ enum Opcode {
   DIVI,
   REMI,
   SAR,
+  FTERN,
   SARI,
   SLL,
   SLLI,
@@ -359,6 +361,7 @@ void load_binary(const string &filename) {
       inst.rd = (w >> 19) & 0x1F;
       inst.rs1 = (w >> 14) & 0x1F;
       inst.rs2 = (w >> 9) & 0x1F;
+      inst.rs3 = (w >> 25) & 0x1F;
 
       // Immediate Parsing (DSI)
       int imm11_5 = (w >> 25) & 0x7F;
@@ -422,22 +425,21 @@ void load_binary(const string &filename) {
         }
         break;
       case 0x43:
-        if (is_imm) {
-          inst.op = MULI;
-          inst.original_line = "muli " + get_reg_name(inst.rd) + ", " +
-                               get_reg_name(inst.rs1) + ", " +
-                               to_string(inst.imm);
-        } else if (fmt == 3) {
+        if (fmt == 3 && !is_imm) {
           inst.op = FMUL;
           inst.is_float = true;
           inst.original_line = "fmul " + get_freg_name(inst.rd) + ", " +
                                get_freg_name(inst.rs1) + ", " +
                                get_freg_name(inst.rs2);
-        } else {
-          inst.op = MUL;
-          inst.original_line = "mul " + get_reg_name(inst.rd) + ", " +
+        } else if (fmt == 0 && !is_imm) {
+          inst.op = TERN;
+          inst.original_line = "tern " + get_reg_name(inst.rd) + ", " +
                                get_reg_name(inst.rs1) + ", " +
-                               get_reg_name(inst.rs2);
+                               get_reg_name(inst.rs2) + ", " +
+                               get_reg_name(inst.rs3);
+        } else {
+          inst.op = UNKNOWN;
+          inst.original_line = "unknown 67";
         }
         break;
       case 0x44:
@@ -488,7 +490,14 @@ void load_binary(const string &filename) {
 
       // Shifts
       case 0x50:
-        if (is_imm) {
+        if (!is_imm && fmt == 3) {
+          inst.op = FTERN;
+          inst.is_float = true;
+          inst.original_line = "ftern " + get_freg_name(inst.rd) + ", " +
+                               get_freg_name(inst.rs1) + ", " +
+                               get_freg_name(inst.rs2) + ", " +
+                               get_freg_name(inst.rs3);
+        } else if (is_imm) {
           inst.op = SARI;
           inst.original_line = "sari " + get_reg_name(inst.rd) + ", " +
                                get_reg_name(inst.rs1) + ", " +
@@ -785,6 +794,9 @@ void exec_one_step(bool running) {
   case SUB:
     set_x(inst.rd, get_x(inst.rs1) - get_x(inst.rs2));
     break;
+  case TERN:
+    set_x(inst.rd, get_x(inst.rs1) != 0 ? get_x(inst.rs2) : get_x(inst.rs3));
+    break;
   case MUL:
     set_x(inst.rd, get_x(inst.rs1) * get_x(inst.rs2));
     break;
@@ -814,6 +826,9 @@ void exec_one_step(bool running) {
     break;
   case SAR:
     set_x(inst.rd, (int32_t)get_x(inst.rs1) >> (get_x(inst.rs2) & 31));
+    break;
+  case FTERN:
+    set_f(inst.rd, get_f(inst.rs1) != 0.0f ? get_f(inst.rs2) : get_f(inst.rs3));
     break;
   case SARI:
     set_x(inst.rd, (int32_t)get_x(inst.rs1) >> (inst.imm & 31));

@@ -7,17 +7,20 @@ min_caml_start:
 	ori	%i1, %i1, 0
 	movui	%i2, 4096
 	ori	%i2, %i2, 0
+	set_label	%i3, fin
 	subi	%i1, %i1, 496
 	subi	%i1, %i1, 8
 	movui	%i31, 263312
 	ori	%i31, %i31, -37
 	mif	%f31, %i31
 	sf	%f31, 61(%i1)
+	lf	%f31, 61(%i1)
 	sf	%f31, 0(%i0)
 	movui	%i31, 261264
 	ori	%i31, %i31, -37
 	mif	%f31, %i31
 	sf	%f31, 62(%i1)
+	lf	%f31, 62(%i1)
 	sf	%f31, 0(%i1)
 	lf	%f31, 62(%i1)
 	sf	%f31, 1(%i0)
@@ -25,6 +28,7 @@ min_caml_start:
 	ori	%i31, %i31, -37
 	mif	%f31, %i31
 	sf	%f31, 63(%i1)
+	lf	%f31, 63(%i1)
 	sf	%f31, 7(%i1)
 	lf	%f31, 63(%i1)
 	sf	%f31, 2(%i0)
@@ -32,12 +36,12 @@ min_caml_start:
 	ori	%i31, %i31, -37
 	mif	%f31, %i31
 	sf	%f31, 64(%i1)
+	lf	%f31, 64(%i1)
 	sf	%f31, 8(%i1)
 	lf	%f31, 64(%i1)
 	sf	%f31, 3(%i0)
 	sw	%i0, 65(%i1)
-	lw	%i31, 65(%i1)
-	sw	%i31, 4(%i0)
+	sw	%i0, 4(%i0)
 	sw	%i0, 5(%i0)
 	sf	%f0, 6(%i0)
 	mov	%i4, %i2
@@ -78,8 +82,7 @@ ca_cont.248084:
 	jmp	%i0, 0(%i31)
 ca_done.248085:
 	sw	%i4, 66(%i1)
-	lw	%i31, 66(%i1)
-	sw	%i31, 13(%i0)
+	sw	%i4, 13(%i0)
 	sf	%f0, 73(%i0)
 	sf	%f0, 74(%i0)
 	sf	%f0, 75(%i0)
@@ -120,15 +123,12 @@ ca_cont.248087:
 	jmp	%i0, 0(%i31)
 ca_done.248088:
 	sw	%i4, 67(%i1)
-	lw	%i31, 67(%i1)
-	sw	%i31, 46(%i1)
-	lw	%i31, 67(%i1)
-	sw	%i31, 91(%i0)
+	sw	%i4, 46(%i1)
+	sw	%i4, 91(%i0)
 	movi	%i6, 1
 	sw	%i6, 141(%i0)
 	sw	%i0, 142(%i0)
-	lw	%i31, 67(%i1)
-	lw	%i5, 0(%i31)
+	lw	%i5, 0(%i4)
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	addi	%i2, %i2, 4
@@ -138,8 +138,7 @@ ca_done.248088:
 	lf	%f31, 68(%i1)
 	sf	%f31, 145(%i0)
 	sw	%i0, 69(%i1)
-	lw	%i31, 69(%i1)
-	sw	%i31, 146(%i0)
+	sw	%i0, 146(%i0)
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
 	mif	%f1, %i31
@@ -156,16 +155,14 @@ ca_done.248088:
 	lf	%f31, 72(%i1)
 	sf	%f31, 152(%i0)
 	sw	%i0, 73(%i1)
-	lw	%i31, 73(%i1)
-	sw	%i31, 153(%i0)
+	sw	%i0, 153(%i0)
 	movi	%i4, 3
 	sw	%i4, 154(%i0)
 	sf	%f0, 155(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	sw	%i4, 74(%i1)
-	lw	%i31, 74(%i1)
-	sw	%i31, 156(%i0)
+	sw	%i4, 156(%i0)
 	sf	%f0, 159(%i0)
 	sf	%f0, 160(%i0)
 	sf	%f0, 161(%i0)
@@ -230,8 +227,7 @@ ca_done.248088:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	sw	%i4, 85(%i1)
-	lw	%i31, 85(%i1)
-	sw	%i31, 199(%i0)
+	sw	%i4, 199(%i0)
 	sw	%i0, 202(%i0)
 	sf	%f0, 203(%i0)
 	mov	%i4, %i2
@@ -262,10 +258,8 @@ ca_done.248088:
 	sw	%i5, 4(%i2)
 	addi	%i2, %i2, 20
 	sw	%i4, 86(%i1)
-	lw	%i31, 86(%i1)
-	sw	%i31, 57(%i1)
-	lw	%i31, 86(%i1)
-	sw	%i31, 207(%i0)
+	sw	%i4, 57(%i1)
+	sw	%i4, 207(%i0)
 	sw	%i0, 212(%i0)
 	sf	%f0, 213(%i0)
 	mov	%i4, %i2
@@ -291,8 +285,7 @@ ca_cont.248090:
 	jmp	%i0, 0(%i31)
 ca_done.248091:
 	sw	%i4, 87(%i1)
-	lw	%i31, 87(%i1)
-	sw	%i31, 219(%i0)
+	sw	%i4, 219(%i0)
 	sw	%i0, 279(%i0)
 	sf	%f0, 280(%i0)
 	mov	%i4, %i2
@@ -336,17 +329,14 @@ ca_done.248094:
 	mov	%i4, %i5
 	sw	%i5, 467(%i0)
 	sw	%i4, 88(%i1)
-	lw	%i31, 88(%i1)
-	sw	%i31, 468(%i0)
+	sw	%i4, 468(%i0)
 	mov	%i6, %i4
 	sw	%i4, 59(%i1)
 	sw	%i4, 469(%i0)
 	sari	%i31, %i5, 1
 	sw	%i31, 89(%i1)
 	sw	%i31, 60(%i1)
-	lw	%i31, 89(%i1)
 	sw	%i31, 471(%i0)
-	lw	%i31, 89(%i1)
 	movui	%i31, 274432
 	mif	%f3, %i31
 	sf	%f3, 472(%i0)
@@ -355,6 +345,7 @@ ca_done.248094:
 	finv	%f1, %f1
 	fmul	%f31, %f3, %f1
 	sf	%f31, 90(%i1)
+	lf	%f31, 90(%i1)
 	sf	%f31, 20(%i1)
 	lf	%f31, 90(%i1)
 	sf	%f31, 474(%i0)
@@ -421,7 +412,6 @@ ca_done.248094:
 	addi	%i2, %i2, 20
 	sw	%i4, 28(%i1)
 	sw	%i4, 518(%i0)
-	movi	%i5, 5
 	sw	%i5, 523(%i0)
 	sw	%i0, 524(%i0)
 	mov	%i4, %i2
@@ -828,7 +818,6 @@ loop_end.239274:
 	addi	%i2, %i2, 20
 	sw	%i4, 40(%i1)
 	sw	%i4, 715(%i0)
-	movi	%i5, 5
 	sw	%i5, 720(%i0)
 	sw	%i0, 721(%i0)
 	mov	%i4, %i2
@@ -1236,7 +1225,6 @@ loop_end.239296:
 	addi	%i2, %i2, 20
 	sw	%i4, 50(%i1)
 	sw	%i4, 912(%i0)
-	movi	%i5, 5
 	sw	%i5, 917(%i0)
 	sw	%i0, 918(%i0)
 	mov	%i4, %i2
@@ -1593,7 +1581,6 @@ loop_end.239318:
 	mif	%f1, %i4
 	sf	%f1, 1(%i1)
 	sf	%f1, 1066(%i0)
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -1607,7 +1594,6 @@ loop_end.239318:
 	mif	%f1, %i4
 	sf	%f1, 2(%i1)
 	sf	%f1, 1067(%i0)
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -1621,7 +1607,6 @@ loop_end.239318:
 	mif	%f1, %i4
 	sf	%f1, 3(%i1)
 	sf	%f1, 1068(%i0)
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -1643,6 +1628,7 @@ loop_end.239318:
 	sf	%f4, 1071(%i0)
 	lf	%f31, 0(%i1)
 	sf	%f31, 62(%i1)
+	lf	%f31, 62(%i1)
 	fsub	%f6, %f31, %f4
 	sf	%f6, 1072(%i0)
 	lf	%f31, 62(%i1)
@@ -1650,6 +1636,7 @@ loop_end.239318:
 	jzero	%i0, %i31, else.248113
 	lf	%f31, 7(%i1)
 	sf	%f31, 63(%i1)
+	lf	%f31, 63(%i1)
 	fleq	%i31, %f31, %f6
 	jzero	%i0, %i31, else.248115
 	fmul	%f5, %f6, %f6
@@ -1676,6 +1663,7 @@ loop_end.239318:
 else.248115:
 	lf	%f31, 8(%i1)
 	sf	%f31, 64(%i1)
+	lf	%f31, 64(%i1)
 	fleq	%i31, %f6, %f31
 	jzero	%i0, %i31, else.248117
 	lf	%f31, 61(%i1)
@@ -1983,6 +1971,7 @@ cont.248122:
 	sf	%f5, 1077(%i0)
 	lf	%f31, 0(%i1)
 	sf	%f31, 62(%i1)
+	lf	%f31, 62(%i1)
 	fsub	%f8, %f31, %f5
 	sf	%f8, 1078(%i0)
 	lf	%f31, 62(%i1)
@@ -1990,6 +1979,7 @@ cont.248122:
 	jzero	%i0, %i31, else.248129
 	lf	%f31, 7(%i1)
 	sf	%f31, 63(%i1)
+	lf	%f31, 63(%i1)
 	fleq	%i31, %f31, %f8
 	jzero	%i0, %i31, else.248131
 	fmul	%f7, %f8, %f8
@@ -2017,6 +2007,7 @@ cont.248122:
 else.248131:
 	lf	%f31, 8(%i1)
 	sf	%f31, 64(%i1)
+	lf	%f31, 64(%i1)
 	fleq	%i31, %f8, %f31
 	jzero	%i0, %i31, else.248133
 	lf	%f31, 61(%i1)
@@ -2375,7 +2366,6 @@ cont.248138:
 	lb	%i31, 0(%i5)
 	or	%i4, %i31, %i4
 	sw	%i4, 1098(%i0)
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -2397,10 +2387,12 @@ cont.248138:
 	sf	%f3, 1101(%i0)
 	lf	%f31, 0(%i1)
 	sf	%f31, 62(%i1)
+	lf	%f31, 62(%i1)
 	fleq	%i31, %f3, %f31
 	jzero	%i0, %i31, else.248145
 	lf	%f31, 7(%i1)
 	sf	%f31, 63(%i1)
+	lf	%f31, 63(%i1)
 	fleq	%i31, %f31, %f3
 	jzero	%i0, %i31, else.248147
 	fmul	%f5, %f3, %f3
@@ -2427,6 +2419,7 @@ cont.248138:
 else.248147:
 	lf	%f31, 8(%i1)
 	sf	%f31, 64(%i1)
+	lf	%f31, 64(%i1)
 	fleq	%i31, %f3, %f31
 	jzero	%i0, %i31, else.248149
 	lf	%f31, 61(%i1)
@@ -2557,6 +2550,7 @@ cont.248146:
 	sf	%f1, 1102(%i0)
 	fneg	%f31, %f1
 	sf	%f31, 93(%i1)
+	lf	%f31, 93(%i1)
 	sf	%f31, 19(%i1)
 	movui	%i31, 1
 	ori	%i31, %i31, 316
@@ -2585,6 +2579,7 @@ cont.248146:
 	sf	%f4, 1106(%i0)
 	lf	%f31, 0(%i1)
 	sf	%f31, 62(%i1)
+	lf	%f31, 62(%i1)
 	fsub	%f6, %f31, %f3
 	sf	%f6, 1107(%i0)
 	lf	%f31, 62(%i1)
@@ -2592,6 +2587,7 @@ cont.248146:
 	jzero	%i0, %i31, else.248153
 	lf	%f31, 7(%i1)
 	sf	%f31, 63(%i1)
+	lf	%f31, 63(%i1)
 	fleq	%i31, %f31, %f6
 	jzero	%i0, %i31, else.248155
 	fmul	%f5, %f6, %f6
@@ -2618,6 +2614,7 @@ cont.248146:
 else.248155:
 	lf	%f31, 8(%i1)
 	sf	%f31, 64(%i1)
+	lf	%f31, 64(%i1)
 	fleq	%i31, %f6, %f31
 	jzero	%i0, %i31, else.248157
 	lf	%f31, 61(%i1)
@@ -2905,6 +2902,7 @@ cont.248162:
 	sf	%f1, 1109(%i0)
 	fmul	%f31, %f3, %f1
 	sf	%f31, 94(%i1)
+	lf	%f31, 94(%i1)
 	sf	%f31, 21(%i1)
 	movui	%i31, 1
 	ori	%i31, %i31, 344
@@ -3074,6 +3072,7 @@ cont.248170:
 	sf	%f1, 1112(%i0)
 	fmul	%f31, %f3, %f1
 	sf	%f31, 95(%i1)
+	lf	%f31, 95(%i1)
 	sf	%f31, 22(%i1)
 	movui	%i31, 1
 	ori	%i31, %i31, 356
@@ -3127,7 +3126,6 @@ loop_start.239381:
 	lb	%i31, 0(%i5)
 	or	%i4, %i31, %i4
 	mov	%i12, %i4
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -3139,7 +3137,6 @@ loop_start.239381:
 	lb	%i31, 0(%i5)
 	or	%i4, %i31, %i4
 	mov	%i14, %i4
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -3155,7 +3152,6 @@ loop_start.239381:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%i9, %i4
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -3168,7 +3164,6 @@ loop_start.239381:
 	or	%i4, %i31, %i4
 	mif	%f1, %i4
 	sf	%f1, 0(%i9)
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -3181,7 +3176,6 @@ loop_start.239381:
 	or	%i4, %i31, %i4
 	mif	%f1, %i4
 	sf	%f1, 1(%i9)
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -3198,7 +3192,6 @@ loop_start.239381:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%i13, %i4
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -3211,7 +3204,6 @@ loop_start.239381:
 	or	%i4, %i31, %i4
 	mif	%f1, %i4
 	sf	%f1, 0(%i13)
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -3224,7 +3216,6 @@ loop_start.239381:
 	or	%i4, %i31, %i4
 	mif	%f1, %i4
 	sf	%f1, 1(%i13)
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -3237,7 +3228,6 @@ loop_start.239381:
 	or	%i4, %i31, %i4
 	mif	%f1, %i4
 	sf	%f1, 2(%i13)
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -3255,7 +3245,6 @@ loop_start.239381:
 	mov	%i4, %i2
 	addi	%i2, %i2, 8
 	mov	%i18, %i4
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -3268,7 +3257,6 @@ loop_start.239381:
 	or	%i4, %i31, %i4
 	mif	%f1, %i4
 	sf	%f1, 0(%i18)
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -3285,7 +3273,6 @@ loop_start.239381:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%i17, %i4
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -3298,7 +3285,6 @@ loop_start.239381:
 	or	%i4, %i31, %i4
 	mif	%f1, %i4
 	sf	%f1, 0(%i17)
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -3311,7 +3297,6 @@ loop_start.239381:
 	or	%i4, %i31, %i4
 	mif	%f1, %i4
 	sf	%f1, 1(%i17)
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -3347,7 +3332,6 @@ loop_start.239381:
 	mif	%f3, %i31
 	fmul	%f1, %f1, %f3
 	sf	%f1, 0(%i8)
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -3364,7 +3348,6 @@ loop_start.239381:
 	mif	%f3, %i31
 	fmul	%f1, %f1, %f3
 	sf	%f1, 1(%i8)
-	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	slli	%i4, %i4, 8
 	lb	%i31, 0(%i5)
@@ -4538,8 +4521,7 @@ cont.248244:
 	fadd	%f15, %f16, %f14
 	fmul	%f14, %f17, %f15
 	sf	%f14, 0(%i8)
-	movui	%i31, 262144
-	mif	%f14, %i31
+	fmov	%f14, %f17
 	fmul	%f13, %f13, %f11
 	fmul	%f11, %f13, %f9
 	fmul	%f9, %f12, %f7
@@ -4550,8 +4532,7 @@ cont.248244:
 	fadd	%f6, %f6, %f5
 	fmul	%f5, %f14, %f6
 	sf	%f5, 1(%i8)
-	movui	%i31, 262144
-	mif	%f5, %i31
+	fmov	%f5, %f17
 	fmul	%f4, %f13, %f4
 	fmul	%f1, %f9, %f1
 	fadd	%f4, %f4, %f1
@@ -4579,7 +4560,7 @@ then.248178:
 	jzero	%i0, %i0, loop_end.239382
 loop_end.239382:
 	mov	%i0, %i31
-	mov	%i7, %i31
+	mov	%i7, %i0
 	sw	%i31, 1117(%i31)
 	sw	%i31, 1118(%i31)
 	sw	%i31, 1119(%i31)
@@ -4598,8 +4579,7 @@ loop_start.239443:
 	slli	%i4, %i7, 2
 	lw	%i31, 46(%i1)
 	sw	%i31, 67(%i1)
-	lw	%i30, 67(%i1)
-	add	%i31, %i30, %i4
+	add	%i31, %i31, %i4
 	sw	%i6, 0(%i31)
 	addi	%i4, %i7, 1
 	mov	%i7, %i4
@@ -4611,7 +4591,7 @@ then.248254:
 loop_end.239444:
 	mov	%i0, %i31
 	sw	%i31, 1121(%i31)
-	mov	%i4, %i31
+	mov	%i4, %i0
 	set_label	%i31, read_or_network.3895
 	jmp	%i3, 0(%i31)
 	sw	%i30, 96(%i1)
@@ -4621,58 +4601,44 @@ loop_end.239444:
 	sb	%i4, 0(%i5)
 	movi	%i4, 51
 	sw	%i4, 1123(%i0)
-	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%i4, 10
 	sw	%i4, 1124(%i0)
-	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%i4, 48
 	sw	%i4, 1125(%i0)
-	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%i4, 51
 	sw	%i4, 1126(%i0)
-	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%i4, 50
 	sw	%i4, 1127(%i0)
-	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%i4, 32
 	sw	%i4, 1128(%i0)
-	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%i4, 48
 	sw	%i4, 1129(%i0)
-	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%i4, 51
 	sw	%i4, 1130(%i0)
-	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%i4, 50
 	sw	%i4, 1131(%i0)
-	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%i4, 32
 	sw	%i4, 1132(%i0)
-	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%i4, 50
 	sw	%i4, 1133(%i0)
-	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%i4, 53
 	sw	%i4, 1134(%i0)
-	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	sw	%i4, 1135(%i0)
-	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%i4, 10
 	sw	%i4, 1136(%i0)
-	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%i9, 4
 	sw	%i9, 1137(%i0)
@@ -4724,7 +4690,6 @@ ca_done.248264:
 	lw	%i30, 86(%i1)
 	add	%i31, %i30, %i4
 	sw	%i5, 0(%i31)
-	slli	%i4, %i9, 2
 	lw	%i30, 86(%i1)
 	add	%i31, %i30, %i4
 	lw	%i8, 0(%i31)
@@ -4777,9 +4742,9 @@ loop_end.239449:
 	mov	%i0, %i31
 	movi	%i7, 9
 	sw	%i7, 1139(%i31)
-	mov	%i6, %i31
+	mov	%i6, %i0
 	sw	%i31, 1140(%i31)
-	mov	%i5, %i31
+	mov	%i5, %i0
 	sw	%i31, 1141(%i31)
 	sw	%i31, 1142(%i31)
 loop_start.239463:
@@ -4814,7 +4779,7 @@ then.248275:
 	fsub	%f5, %f4, %f1
 	mov	%i11, %i0
 	fmov	%f8, %f0
-	fmov	%f7, %f0
+	fmov	%f7, %f8
 	movi	%i12, 5
 loop_start.239467:
 	jleq	%i12, %i11, then.248278
@@ -4829,11 +4794,9 @@ loop_start.239467:
 	mif	%f6, %i31
 	finv	%f1, %f1
 	fmul	%f6, %f6, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f7, %f6
 	fmul	%f1, %f1, %f7
-	movui	%i31, 260096
 	mif	%f7, %i31
 	fleq	%i31, %f1, %f7
 	jzero	%i0, %i31, else.248280
@@ -5141,11 +5104,9 @@ cont.248285:
 	mif	%f7, %i31
 	finv	%f1, %f1
 	fmul	%f7, %f7, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f8, %f7
 	fmul	%f1, %f1, %f8
-	movui	%i31, 260096
 	mif	%f8, %i31
 	fleq	%i31, %f1, %f8
 	jzero	%i0, %i31, else.248292
@@ -5454,15 +5415,12 @@ then.248278:
 	fadd	%f5, %f5, %f1
 	fmov	%f1, %f5
 	frsqrt	%f1, %f5
-	movui	%i31, 260096
 	mif	%f5, %i31
 	finv	%f1, %f1
 	fmul	%f5, %f5, %f1
 	finv	%f1, %f5
 	fmul	%f8, %f8, %f1
-	finv	%f1, %f5
 	fmul	%f7, %f7, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f5, %f5
 	fmul	%f1, %f1, %f5
@@ -5531,7 +5489,7 @@ loop_end.239468:
 	addi	%i10, %i5, 2
 	mov	%i12, %i0
 	fmov	%f7, %f0
-	fmov	%f6, %f0
+	fmov	%f6, %f7
 	movi	%i13, 5
 loop_start.239499:
 	jleq	%i13, %i12, then.248305
@@ -5546,12 +5504,10 @@ loop_start.239499:
 	mif	%f5, %i31
 	finv	%f1, %f1
 	fmul	%f5, %f5, %f1
-	movui	%i31, 260096
 	mif	%f6, %i31
 	finv	%f1, %f5
 	fmul	%f8, %f6, %f1
-	movui	%i31, 260096
-	mif	%f1, %i31
+	fmov	%f1, %f6
 	fleq	%i31, %f8, %f1
 	jzero	%i0, %i31, else.248307
 	movui	%i31, 784384
@@ -5858,11 +5814,9 @@ cont.248312:
 	mif	%f6, %i31
 	finv	%f1, %f1
 	fmul	%f6, %f6, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f7, %f6
 	fmul	%f1, %f1, %f7
-	movui	%i31, 260096
 	mif	%f7, %i31
 	fleq	%i31, %f1, %f7
 	jzero	%i0, %i31, else.248319
@@ -6171,15 +6125,12 @@ then.248305:
 	fadd	%f4, %f4, %f1
 	fmov	%f1, %f4
 	frsqrt	%f1, %f4
-	movui	%i31, 260096
 	mif	%f4, %i31
 	finv	%f1, %f1
 	fmul	%f4, %f4, %f1
 	finv	%f1, %f4
 	fmul	%f7, %f7, %f1
-	finv	%f1, %f4
 	fmul	%f6, %f6, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f4, %f4
 	fmul	%f1, %f1, %f4
@@ -6279,8 +6230,7 @@ then.248332:
 	slli	%i4, %i11, 2
 	lw	%i31, 57(%i1)
 	sw	%i31, 86(%i1)
-	lw	%i30, 86(%i1)
-	add	%i31, %i30, %i4
+	add	%i31, %i31, %i4
 	lw	%i10, 0(%i31)
 	movi	%i9, 119
 loop_start.239539:
@@ -6383,7 +6333,6 @@ cont.248345:
 	lf	%f5, 2(%i15)
 	fmul	%f4, %f4, %f5
 	fadd	%f5, %f6, %f4
-	movui	%i31, 258048
 	mif	%f4, %i31
 	fmul	%f5, %f5, %f4
 	fsub	%f4, %f7, %f5
@@ -6395,7 +6344,6 @@ cont.248345:
 	lf	%f4, 1(%i15)
 	fmul	%f5, %f5, %f4
 	fadd	%f4, %f6, %f5
-	movui	%i31, 258048
 	mif	%f5, %i31
 	fmul	%f4, %f4, %f5
 	fsub	%f3, %f3, %f4
@@ -6564,8 +6512,10 @@ loop_end.239537:
 	mov	%i0, %i31
 	lf	%f31, 21(%i1)
 	sf	%f31, 94(%i1)
+	lf	%f31, 94(%i1)
 	lf	%f31, 19(%i1)
 	sf	%f31, 93(%i1)
+	lf	%f31, 93(%i1)
 	lf	%f31, 22(%i1)
 	sf	%f31, 95(%i1)
 	lw	%i31, 65(%i1)
@@ -6672,7 +6622,6 @@ cont.248365:
 	lf	%f31, 94(%i1)
 	fmul	%f5, %f31, %f5
 	fadd	%f6, %f6, %f5
-	movui	%i31, 258048
 	mif	%f5, %i31
 	fmul	%f6, %f6, %f5
 	fsub	%f5, %f9, %f6
@@ -6682,7 +6631,6 @@ cont.248365:
 	lf	%f31, 94(%i1)
 	fmul	%f3, %f31, %f3
 	fadd	%f4, %f4, %f3
-	movui	%i31, 258048
 	mif	%f3, %i31
 	fmul	%f4, %f4, %f3
 	fsub	%f3, %f8, %f4
@@ -6730,7 +6678,7 @@ then.248362:
 	finv	%f3, %f4
 	fmul	%f1, %f1, %f3
 	sf	%f1, 0(%i7)
-	finv	%f1, %f4
+	fmov	%f1, %f3
 	fmul	%f3, %f7, %f1
 	fneg	%f1, %f3
 	sf	%f1, 1(%i7)
@@ -6878,13 +6826,16 @@ then.248385:
 	lf	%f3, 2(%i12)
 	lf	%f31, 21(%i1)
 	sf	%f31, 94(%i1)
+	lf	%f31, 94(%i1)
 	fmul	%f2, %f31, %f2
 	lf	%f31, 19(%i1)
 	sf	%f31, 93(%i1)
+	lf	%f31, 93(%i1)
 	fmul	%f1, %f31, %f1
 	fadd	%f2, %f2, %f1
 	lf	%f31, 22(%i1)
 	sf	%f31, 95(%i1)
+	lf	%f31, 95(%i1)
 	fmul	%f1, %f31, %f3
 	fadd	%f5, %f2, %f1
 	movui	%i31, 262144
@@ -6894,14 +6845,12 @@ then.248385:
 	fmul	%f1, %f2, %f5
 	lf	%f31, 94(%i1)
 	fsub	%f4, %f1, %f31
-	movui	%i31, 262144
 	mif	%f2, %i31
 	lf	%f1, 1(%i12)
 	fmul	%f2, %f2, %f1
 	fmul	%f1, %f2, %f5
 	lf	%f31, 93(%i1)
 	fsub	%f3, %f1, %f31
-	movui	%i31, 262144
 	mif	%f2, %i31
 	lf	%f1, 2(%i12)
 	fmul	%f2, %f2, %f1
@@ -7018,7 +6967,6 @@ cont.248398:
 	lf	%f4, 2(%i5)
 	fmul	%f3, %f3, %f4
 	fadd	%f4, %f5, %f3
-	movui	%i31, 258048
 	mif	%f3, %i31
 	fmul	%f4, %f4, %f3
 	fsub	%f3, %f6, %f4
@@ -7030,7 +6978,6 @@ cont.248398:
 	lf	%f3, 1(%i5)
 	fmul	%f4, %f4, %f3
 	fadd	%f3, %f5, %f4
-	movui	%i31, 258048
 	mif	%f4, %i31
 	fmul	%f3, %f3, %f4
 	fsub	%f2, %f2, %f3
@@ -7207,14 +7154,17 @@ then.248383:
 	fsub	%f2, %f2, %f1
 	lf	%f31, 21(%i1)
 	sf	%f31, 94(%i1)
+	lf	%f31, 94(%i1)
 	fneg	%f3, %f31
 	sf	%f3, 4(%i1)
 	lf	%f31, 19(%i1)
 	sf	%f31, 93(%i1)
+	lf	%f31, 93(%i1)
 	fneg	%f3, %f31
 	sf	%f3, 5(%i1)
 	lf	%f31, 22(%i1)
 	sf	%f31, 95(%i1)
+	lf	%f31, 95(%i1)
 	fneg	%f4, %f31
 	addi	%i18, %i16, 1
 	movi	%i4, 3
@@ -7307,7 +7257,7 @@ cont.248421:
 	fmul	%f5, %f5, %f3
 	fneg	%f3, %f5
 	sf	%f1, 0(%i4)
-	mov	%i20, %i0
+	mov	%i20, %i21
 	jeq	%i19, %i0, then.248422
 	lf	%f6, 2(%i17)
 	lf	%f5, 1(%i5)
@@ -7328,7 +7278,6 @@ cont.248421:
 	lf	%f6, 2(%i5)
 	fmul	%f5, %f5, %f6
 	fadd	%f6, %f7, %f5
-	movui	%i31, 258048
 	mif	%f5, %i31
 	fmul	%f6, %f6, %f5
 	fsub	%f5, %f8, %f6
@@ -7340,7 +7289,6 @@ cont.248421:
 	lf	%f5, 1(%i5)
 	fmul	%f6, %f6, %f5
 	fadd	%f5, %f7, %f6
-	movui	%i31, 258048
 	mif	%f6, %i31
 	fmul	%f5, %f5, %f6
 	fsub	%f3, %f3, %f5
@@ -7525,6 +7473,7 @@ ca_done.248435:
 	sf	%f3, 0(%i17)
 	lf	%f31, 19(%i1)
 	sf	%f31, 93(%i1)
+	lf	%f31, 93(%i1)
 	sf	%f31, 1(%i17)
 	sf	%f4, 2(%i17)
 	mov	%i19, %i13
@@ -7594,7 +7543,7 @@ cont.248444:
 	fmul	%f5, %f5, %f4
 	fneg	%f4, %f5
 	sf	%f1, 0(%i4)
-	mov	%i21, %i0
+	mov	%i21, %i22
 	jeq	%i20, %i0, then.248445
 	lf	%f6, 2(%i17)
 	lf	%f5, 1(%i5)
@@ -7615,7 +7564,6 @@ cont.248444:
 	lf	%f6, 2(%i5)
 	fmul	%f5, %f5, %f6
 	fadd	%f6, %f7, %f5
-	movui	%i31, 258048
 	mif	%f5, %i31
 	fmul	%f6, %f6, %f5
 	fsub	%f5, %f8, %f6
@@ -7627,7 +7575,6 @@ cont.248444:
 	lf	%f5, 1(%i5)
 	fmul	%f6, %f6, %f5
 	fadd	%f5, %f7, %f6
-	movui	%i31, 258048
 	mif	%f6, %i31
 	fmul	%f5, %f5, %f6
 	fsub	%f4, %f4, %f5
@@ -7812,6 +7759,7 @@ ca_done.248458:
 	sf	%f3, 1(%i16)
 	lf	%f31, 22(%i1)
 	sf	%f31, 95(%i1)
+	lf	%f31, 95(%i1)
 	sf	%f31, 2(%i16)
 	mov	%i18, %i13
 loop_start.239654:
@@ -7880,7 +7828,7 @@ cont.248467:
 	fmul	%f4, %f4, %f3
 	fneg	%f3, %f4
 	sf	%f1, 0(%i4)
-	mov	%i20, %i0
+	mov	%i20, %i21
 	jeq	%i19, %i0, then.248468
 	lf	%f5, 2(%i16)
 	lf	%f4, 1(%i5)
@@ -7901,7 +7849,6 @@ cont.248467:
 	lf	%f5, 2(%i5)
 	fmul	%f4, %f4, %f5
 	fadd	%f5, %f6, %f4
-	movui	%i31, 258048
 	mif	%f4, %i31
 	fmul	%f5, %f5, %f4
 	fsub	%f4, %f7, %f5
@@ -7913,7 +7860,6 @@ cont.248467:
 	lf	%f4, 1(%i5)
 	fmul	%f5, %f5, %f4
 	fadd	%f4, %f6, %f5
-	movui	%i31, 258048
 	mif	%f5, %i31
 	fmul	%f4, %f4, %f5
 	fsub	%f3, %f3, %f4
@@ -8102,6 +8048,7 @@ cont.248378:
 	sf	%f1, 1155(%i0)
 	lf	%f31, 20(%i1)
 	sf	%f31, 90(%i1)
+	lf	%f31, 90(%i1)
 	fmul	%f2, %f31, %f1
 	sf	%f2, 1156(%i0)
 	lf	%f4, 13(%i1)
@@ -8133,8 +8080,7 @@ cont.248378:
 	movui	%i31, 1
 	ori	%i31, %i31, 560
 	add	%i31, %i0, %i31
-	lw	%i30, 98(%i1)
-	sw	%i30, 0(%i31)
+	sw	%i0, 0(%i31)
 	sw	%i0, 1165(%i0)
 loop_start.239678:
 	lw	%i6, 97(%i1)
@@ -8154,6 +8100,7 @@ then.248480:
 	itof	%f1, %i4
 	lf	%f31, 20(%i1)
 	sf	%f31, 90(%i1)
+	lf	%f31, 90(%i1)
 	fmul	%f4, %f31, %f1
 	lf	%f31, 92(%i1)
 	fmul	%f3, %f4, %f31
@@ -8162,21 +8109,16 @@ then.248480:
 	sf	%f1, 0(%i31)
 	fmul	%f3, %f4, %f0
 	fadd	%f1, %f3, %f9
-	lw	%i31, 85(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f5, 12(%i1)
 	fmul	%f3, %f4, %f5
 	fadd	%f1, %f3, %f2
-	lw	%i31, 85(%i1)
 	sf	%f1, 2(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 85(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 85(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -8187,29 +8129,20 @@ then.248480:
 	finv	%f1, %f1
 	fmul	%f4, %f3, %f1
 	feq	%i5, %f4, %f0
-	movui	%i31, 260096
-	mif	%f3, %i31
 	finv	%f1, %f4
 	fmul	%f4, %f3, %f1
-	movui	%i31, 260096
-	mif	%f3, %i31
 	ceqi	%i5, %i5, 0
 	itof	%f1, %i5
 	ftern	%f4, %f1, %f4, %f3
 	lw	%i31, 85(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 85(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 85(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 85(%i1)
 	sf	%f1, 2(%i31)
 	sf	%f0, 76(%i1)
 	sf	%f0, 77(%i1)
@@ -8222,8 +8155,7 @@ then.248480:
 	sf	%f1, 81(%i1)
 	movui	%i31, 260096
 	mif	%f3, %i31
-	lw	%i31, 97(%i1)
-	slli	%i4, %i31, 2
+	slli	%i4, %i6, 2
 	lw	%i30, 91(%i1)
 	add	%i31, %i30, %i4
 	lw	%i4, 0(%i31)
@@ -8288,9 +8220,7 @@ loop_start.239693:
 	lf	%f8, 2(%i18)
 	lw	%i31, 85(%i1)
 	lf	%f19, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f18, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f20, 2(%i31)
 	fmul	%f4, %f19, %f19
 	fmul	%f21, %f4, %f17
@@ -8410,9 +8340,7 @@ then.248492:
 	lf	%f13, 2(%i5)
 	lw	%i31, 85(%i1)
 	lf	%f5, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f4, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f8, 2(%i31)
 	fmul	%f5, %f5, %f15
 	fmul	%f4, %f4, %f14
@@ -8443,9 +8371,7 @@ then.248490:
 	lf	%f15, 2(%i5)
 	lw	%i31, 85(%i1)
 	lf	%f13, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f5, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f14, 2(%i31)
 	feq	%i5, %f13, %f0
 	jeq	%i5, %i0, then.248506
@@ -8605,9 +8531,7 @@ loop_start.239719:
 	mov	%i15, %i0
 	lw	%i31, 85(%i1)
 	lf	%f6, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f5, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f4, 2(%i31)
 loop_start.239723:
 	slli	%i4, %i15, 2
@@ -9162,9 +9086,7 @@ loop_start.239768:
 	mov	%i15, %i0
 	lw	%i31, 85(%i1)
 	lf	%f6, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f5, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f4, 2(%i31)
 loop_start.239772:
 	slli	%i4, %i15, 2
@@ -9804,19 +9726,15 @@ Lrelax_skip_0:
 then.248680:
 	lw	%i31, 74(%i1)
 	sf	%f15, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f6, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.248681:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f5, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f4, 1(%i31)
 	fmul	%f1, %f4, %f4
 	fadd	%f5, %f5, %f1
-	lw	%i31, 74(%i1)
 	lf	%f4, 2(%i31)
 	fmul	%f1, %f4, %f4
 	fadd	%f4, %f5, %f1
@@ -9848,17 +9766,12 @@ cont.248683:
 	lw	%i31, 74(%i1)
 	lf	%f4, 0(%i31)
 	fmul	%f1, %f4, %f5
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f4, 1(%i31)
 	fmul	%f1, %f4, %f5
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f4, 2(%i31)
 	fmul	%f1, %f4, %f5
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.248677
 then.248678:
@@ -9868,11 +9781,9 @@ then.248678:
 	sf	%f1, 0(%i31)
 	lf	%f4, 1(%i15)
 	fneg	%f1, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f4, 2(%i15)
 	fneg	%f1, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.248679:
 	jzero	%i0, %i0, cont.248677
@@ -9881,9 +9792,7 @@ then.248676:
 	mov	%i18, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i18, 1
 	slli	%i4, %i19, 2
@@ -9948,7 +9857,6 @@ cont.248677:
 	fmov	%f1, %f6
 	frsqrt	%f1, %f6
 	fmov	%f6, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f6, %f6
 	fmul	%f1, %f1, %f6
@@ -10300,7 +10208,6 @@ cont.248702:
 	fsub	%f6, %f1, %f6
 	fmul	%f1, %f6, %f6
 	fsub	%f7, %f7, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f6, %f1, %f13
 	fmul	%f1, %f6, %f6
@@ -10685,8 +10592,7 @@ cont.248716:
 	mif	%f4, %i31
 	fmul	%f1, %f4, %f7
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f6, %i31
+	fmov	%f6, %f4
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f4, %f1, %f7
@@ -10753,7 +10659,6 @@ cont.248689:
 	slli	%i4, %i6, 2
 	add	%i31, %i8, %i4
 	sw	%i5, 0(%i31)
-	slli	%i4, %i6, 2
 	add	%i31, %i7, %i4
 	lw	%i5, 0(%i31)
 	lf	%f31, 70(%i1)
@@ -10776,16 +10681,12 @@ then.248729:
 	slli	%i4, %i6, 2
 	add	%i31, %i9, %i4
 	sw	%i5, 0(%i31)
-	slli	%i4, %i6, 2
 	add	%i31, %i10, %i4
 	lw	%i5, 0(%i31)
 	sf	%f5, 0(%i5)
 	sf	%f4, 1(%i5)
 	lf	%f31, 75(%i1)
 	sf	%f31, 2(%i5)
-	slli	%i4, %i6, 2
-	add	%i31, %i10, %i4
-	lw	%i5, 0(%i31)
 	movui	%i31, 243712
 	mif	%f1, %i31
 	fmul	%f7, %f1, %f8
@@ -10798,16 +10699,13 @@ then.248729:
 	lf	%f6, 2(%i5)
 	fmul	%f1, %f6, %f7
 	sf	%f1, 2(%i5)
-	slli	%i4, %i6, 2
 	add	%i31, %i11, %i4
 	lw	%i5, 0(%i31)
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	sf	%f1, 0(%i5)
-	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
 	sf	%f1, 1(%i5)
-	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
 	sf	%f1, 2(%i5)
 cont.248730:
@@ -10839,7 +10737,6 @@ cont.248730:
 	fadd	%f1, %f7, %f6
 	lw	%i31, 85(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f7, 1(%i31)
 	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
@@ -10847,7 +10744,6 @@ cont.248730:
 	fadd	%f1, %f7, %f6
 	lw	%i31, 85(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f7, 2(%i31)
 	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
@@ -12150,12 +12046,10 @@ loop_end.239876:
 	lf	%f1, 0(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f6, %f1, %f31
-	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
 	lf	%f31, 93(%i1)
 	fmul	%f1, %f1, %f31
 	fadd	%f13, %f6, %f1
-	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
 	lf	%f31, 95(%i1)
 	fmul	%f6, %f1, %f31
@@ -12166,12 +12060,10 @@ loop_end.239876:
 	lf	%f6, 0(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f13, %f6, %f31
-	lw	%i31, 85(%i1)
 	lf	%f6, 1(%i31)
 	lf	%f31, 93(%i1)
 	fmul	%f6, %f6, %f31
 	fadd	%f14, %f13, %f6
-	lw	%i31, 85(%i1)
 	lf	%f6, 2(%i31)
 	lf	%f31, 95(%i1)
 	fmul	%f13, %f6, %f31
@@ -12342,8 +12234,7 @@ loop_start.239991:
 	add	%i31, %i30, %i4
 	lw	%i30, 0(%i31)
 	sw	%i30, 99(%i1)
-	lw	%i31, 99(%i1)
-	lw	%i22, 0(%i31)
+	lw	%i22, 0(%i30)
 	movi	%i31, -1
 	jeq	%i22, %i31, then.248921
 	movi	%i31, 99
@@ -14721,9 +14612,7 @@ loop_end.240096:
 	jzero	%i0, %i31, cont.249256
 	lw	%i31, 74(%i1)
 	lf	%f17, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f16, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f15, 2(%i31)
 	lf	%f1, 0(%i12)
 	lf	%f13, 1(%i12)
@@ -14737,9 +14626,7 @@ loop_end.240096:
 	fmul	%f1, %f13, %f1
 	lw	%i31, 85(%i1)
 	lf	%f18, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f17, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f16, 2(%i31)
 	lf	%f13, 0(%i12)
 	lf	%f14, 1(%i12)
@@ -14835,12 +14722,10 @@ then.248674:
 	lf	%f1, 0(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f3, %f1, %f31
-	lw	%i31, 85(%i1)
 	lf	%f1, 1(%i31)
 	lf	%f31, 93(%i1)
 	fmul	%f1, %f1, %f31
 	fadd	%f4, %f3, %f1
-	lw	%i31, 85(%i1)
 	lf	%f1, 2(%i31)
 	lf	%f31, 95(%i1)
 	fmul	%f3, %f1, %f31
@@ -14894,7 +14779,6 @@ loop_end.239691:
 	sf	%f31, 2(%i5)
 	lw	%i31, 97(%i1)
 	slli	%i4, %i31, 2
-	lw	%i30, 91(%i1)
 	add	%i31, %i30, %i4
 	lw	%i4, 0(%i31)
 	lw	%i6, 6(%i4)
@@ -14937,18 +14821,16 @@ then.249271:
 Lrelax_skip_1:
 	lw	%i4, 0(%i14)
 	fmov	%f8, %f0
-	fmov	%f7, %f0
-	fmov	%f6, %f0
+	fmov	%f7, %f8
+	fmov	%f6, %f8
 	slli	%i4, %i4, 2
 	lw	%i31, 57(%i1)
 	sw	%i31, 86(%i1)
-	lw	%i30, 86(%i1)
-	add	%i31, %i30, %i4
+	add	%i31, %i31, %i4
 	lw	%i8, 0(%i31)
 	slli	%i4, %i9, 2
 	add	%i31, %i15, %i4
 	lw	%i7, 0(%i31)
-	slli	%i4, %i9, 2
 	add	%i31, %i10, %i4
 	lw	%i6, 0(%i31)
 	lf	%f1, 0(%i6)
@@ -16273,19 +16155,15 @@ Lrelax_skip_3:
 then.249451:
 	lw	%i31, 74(%i1)
 	sf	%f17, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f16, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.249452:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -16319,17 +16197,12 @@ cont.249454:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.249448
 then.249449:
@@ -16337,10 +16210,8 @@ then.249449:
 	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
 	fneg	%f1, %f16
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	fneg	%f1, %f15
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.249450:
 	jzero	%i0, %i0, cont.249448
@@ -16349,9 +16220,7 @@ then.249447:
 	mov	%i20, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i20, %i20, 1
 	slli	%i4, %i20, 2
@@ -16413,7 +16282,6 @@ cont.249448:
 	fmov	%f1, %f18
 	frsqrt	%f1, %f18
 	fmov	%f12, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f12, %f12
 	fmul	%f1, %f1, %f12
@@ -16763,7 +16631,6 @@ cont.249473:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -17143,8 +17010,7 @@ cont.249487:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -18456,9 +18322,7 @@ loop_end.240387:
 	jzero	%i0, %i31, cont.249675
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f12, 2(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f1, %f1, %f31
@@ -19682,19 +19546,15 @@ Lrelax_skip_4:
 then.249840:
 	lw	%i31, 74(%i1)
 	sf	%f17, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f16, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.249841:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -19728,17 +19588,12 @@ cont.249843:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.249837
 then.249838:
@@ -19746,10 +19601,8 @@ then.249838:
 	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
 	fneg	%f1, %f16
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	fneg	%f1, %f15
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.249839:
 	jzero	%i0, %i0, cont.249837
@@ -19758,9 +19611,7 @@ then.249836:
 	mov	%i20, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i20, %i20, 1
 	slli	%i4, %i20, 2
@@ -19822,7 +19673,6 @@ cont.249837:
 	fmov	%f1, %f18
 	frsqrt	%f1, %f18
 	fmov	%f12, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f12, %f12
 	fmul	%f1, %f1, %f12
@@ -20172,7 +20022,6 @@ cont.249862:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -20552,8 +20401,7 @@ cont.249876:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -21865,9 +21713,7 @@ loop_end.240643:
 	jzero	%i0, %i31, cont.250064
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f12, 2(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f1, %f1, %f31
@@ -22033,21 +21879,16 @@ then.250070:
 	sf	%f1, 0(%i31)
 	fmul	%f3, %f4, %f0
 	fadd	%f1, %f3, %f9
-	lw	%i31, 85(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f5, 12(%i1)
 	fmul	%f3, %f4, %f5
 	fadd	%f1, %f3, %f2
-	lw	%i31, 85(%i1)
 	sf	%f1, 2(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 85(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 85(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -22058,29 +21899,20 @@ then.250070:
 	finv	%f1, %f1
 	fmul	%f4, %f3, %f1
 	feq	%i5, %f4, %f0
-	movui	%i31, 260096
-	mif	%f3, %i31
 	finv	%f1, %f4
 	fmul	%f4, %f3, %f1
-	movui	%i31, 260096
-	mif	%f3, %i31
 	ceqi	%i5, %i5, 0
 	itof	%f1, %i5
 	ftern	%f4, %f1, %f4, %f3
 	lw	%i31, 85(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 85(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 85(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 85(%i1)
 	sf	%f1, 2(%i31)
 	sf	%f0, 76(%i1)
 	sf	%f0, 77(%i1)
@@ -22093,8 +21925,7 @@ then.250070:
 	sf	%f1, 81(%i1)
 	movui	%i31, 260096
 	mif	%f3, %i31
-	lw	%i31, 108(%i1)
-	slli	%i4, %i31, 2
+	slli	%i4, %i6, 2
 	lw	%i30, 107(%i1)
 	add	%i31, %i30, %i4
 	lw	%i4, 0(%i31)
@@ -22130,9 +21961,7 @@ loop_start.240766:
 	jeq	%i5, %i31, then.250078
 	lw	%i31, 85(%i1)
 	lf	%f13, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f12, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f14, 2(%i31)
 	lf	%f31, 79(%i1)
 	fmov	%f4, %f31
@@ -22476,9 +22305,7 @@ cont.250081:
 	movi	%i14, 1
 	lw	%i31, 85(%i1)
 	lf	%f8, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f5, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f4, 2(%i31)
 loop_start.240792:
 	slli	%i4, %i14, 2
@@ -23037,9 +22864,7 @@ then.250078:
 	movi	%i14, 1
 	lw	%i31, 85(%i1)
 	lf	%f8, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f5, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f4, 2(%i31)
 loop_start.240841:
 	slli	%i4, %i14, 2
@@ -23692,19 +23517,15 @@ Lrelax_skip_7:
 then.250270:
 	lw	%i31, 74(%i1)
 	sf	%f14, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f8, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.250271:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f5, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f4, 1(%i31)
 	fmul	%f1, %f4, %f4
 	fadd	%f5, %f5, %f1
-	lw	%i31, 74(%i1)
 	lf	%f4, 2(%i31)
 	fmul	%f1, %f4, %f4
 	fadd	%f4, %f5, %f1
@@ -23736,17 +23557,12 @@ cont.250273:
 	lw	%i31, 74(%i1)
 	lf	%f4, 0(%i31)
 	fmul	%f1, %f4, %f5
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f4, 1(%i31)
 	fmul	%f1, %f4, %f5
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f4, 2(%i31)
 	fmul	%f1, %f4, %f5
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.250267
 then.250268:
@@ -23756,11 +23572,9 @@ then.250268:
 	sf	%f1, 0(%i31)
 	lf	%f4, 1(%i15)
 	fneg	%f1, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f4, 2(%i15)
 	fneg	%f1, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.250269:
 	jzero	%i0, %i0, cont.250267
@@ -23769,9 +23583,7 @@ then.250266:
 	mov	%i18, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i18, 1
 	slli	%i4, %i19, 2
@@ -23843,7 +23655,6 @@ cont.250267:
 	fmov	%f1, %f8
 	frsqrt	%f1, %f8
 	fmov	%f8, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f8, %f8
 	fmul	%f1, %f1, %f8
@@ -24194,7 +24005,6 @@ cont.250292:
 	fsub	%f8, %f1, %f8
 	fmul	%f1, %f8, %f8
 	fsub	%f11, %f11, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f8, %f1, %f12
 	fmul	%f1, %f8, %f8
@@ -24576,8 +24386,7 @@ cont.250306:
 	mif	%f4, %i31
 	fmul	%f1, %f4, %f11
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f8, %i31
+	fmov	%f8, %f4
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f4, %f1, %f11
@@ -24642,7 +24451,6 @@ cont.250279:
 	slli	%i4, %i6, 2
 	add	%i31, %i8, %i4
 	sw	%i5, 0(%i31)
-	slli	%i4, %i6, 2
 	add	%i31, %i7, %i4
 	lw	%i5, 0(%i31)
 	lf	%f31, 70(%i1)
@@ -24667,16 +24475,12 @@ then.250319:
 	slli	%i4, %i6, 2
 	add	%i31, %i9, %i4
 	sw	%i5, 0(%i31)
-	slli	%i4, %i6, 2
 	add	%i31, %i10, %i4
 	lw	%i5, 0(%i31)
 	lf	%f31, 75(%i1)
 	sf	%f5, 0(%i5)
 	sf	%f4, 1(%i5)
 	sf	%f31, 2(%i5)
-	slli	%i4, %i6, 2
-	add	%i31, %i10, %i4
-	lw	%i5, 0(%i31)
 	movui	%i31, 243712
 	mif	%f1, %i31
 	fmul	%f11, %f1, %f15
@@ -24689,14 +24493,11 @@ then.250319:
 	lf	%f8, 2(%i5)
 	fmul	%f1, %f8, %f11
 	sf	%f1, 2(%i5)
-	slli	%i4, %i6, 2
 	add	%i31, %i11, %i4
 	lw	%i5, 0(%i31)
 	lw	%i31, 74(%i1)
 	lf	%f11, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f8, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
 	sf	%f11, 0(%i5)
 	sf	%f8, 1(%i5)
@@ -24706,15 +24507,11 @@ cont.250320:
 	mif	%f16, %i31
 	lw	%i31, 85(%i1)
 	lf	%f14, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f13, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f12, 2(%i31)
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f8, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f11, 2(%i31)
 	fmul	%f1, %f14, %f1
 	fmul	%f8, %f13, %f8
@@ -24722,29 +24519,21 @@ cont.250320:
 	fmul	%f8, %f12, %f11
 	fadd	%f1, %f1, %f8
 	fmul	%f13, %f16, %f1
-	lw	%i31, 74(%i1)
 	lf	%f8, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f12, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f11, 2(%i31)
 	lw	%i31, 85(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f8, %f13, %f8
 	fadd	%f1, %f1, %f8
-	lw	%i31, 85(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f1, 1(%i31)
 	fmul	%f8, %f13, %f12
 	fadd	%f1, %f1, %f8
-	lw	%i31, 85(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f1, 2(%i31)
 	fmul	%f8, %f13, %f11
 	fadd	%f1, %f1, %f8
-	lw	%i31, 85(%i1)
 	sf	%f1, 2(%i31)
 	lf	%f1, 1(%i14)
 	fmul	%f14, %f7, %f1
@@ -26015,9 +25804,7 @@ loop_end.240949:
 	jzero	%i0, %i31, cont.250496
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f8, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f11, 2(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f1, %f1, %f31
@@ -26031,9 +25818,7 @@ loop_end.240949:
 	fmul	%f1, %f8, %f15
 	lw	%i31, 85(%i1)
 	lf	%f8, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f11, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f12, 2(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f8, %f8, %f31
@@ -26209,8 +25994,7 @@ loop_start.241064:
 	add	%i31, %i30, %i4
 	lw	%i30, 0(%i31)
 	sw	%i30, 110(%i1)
-	lw	%i31, 110(%i1)
-	lw	%i22, 0(%i31)
+	lw	%i22, 0(%i30)
 	movi	%i31, -1
 	jeq	%i22, %i31, then.250511
 	movi	%i31, 99
@@ -28564,12 +28348,10 @@ loop_end.241169:
 	lf	%f8, 0(%i31)
 	lf	%f1, 0(%i12)
 	fmul	%f11, %f8, %f1
-	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
 	lf	%f8, 1(%i12)
 	fmul	%f1, %f1, %f8
 	fadd	%f11, %f11, %f1
-	lw	%i31, 74(%i1)
 	lf	%f8, 2(%i31)
 	lf	%f1, 2(%i12)
 	fmul	%f8, %f8, %f1
@@ -28580,12 +28362,10 @@ loop_end.241169:
 	lf	%f11, 0(%i31)
 	lf	%f8, 0(%i12)
 	fmul	%f12, %f11, %f8
-	lw	%i31, 85(%i1)
 	lf	%f8, 1(%i31)
 	lf	%f11, 1(%i12)
 	fmul	%f8, %f8, %f11
 	fadd	%f12, %f12, %f8
-	lw	%i31, 85(%i1)
 	lf	%f11, 2(%i31)
 	lf	%f8, 2(%i12)
 	fmul	%f11, %f11, %f8
@@ -28674,9 +28454,7 @@ then.250264:
 	jeq	%i6, %i0, then.250854
 	lw	%i31, 85(%i1)
 	lf	%f1, 0(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 85(%i1)
 	lf	%f4, 2(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f1, %f1, %f31
@@ -28733,7 +28511,6 @@ loop_end.240764:
 	sf	%f31, 2(%i5)
 	lw	%i31, 108(%i1)
 	slli	%i4, %i31, 2
-	lw	%i30, 107(%i1)
 	add	%i31, %i30, %i4
 	lw	%i4, 0(%i31)
 	lw	%i6, 6(%i4)
@@ -28776,8 +28553,8 @@ then.250861:
 Lrelax_skip_8:
 	lw	%i4, 0(%i14)
 	fmov	%f8, %f0
-	fmov	%f7, %f0
-	fmov	%f6, %f0
+	fmov	%f7, %f8
+	fmov	%f6, %f8
 	slli	%i4, %i4, 2
 	lw	%i30, 86(%i1)
 	add	%i31, %i30, %i4
@@ -28785,7 +28562,6 @@ Lrelax_skip_8:
 	slli	%i4, %i9, 2
 	add	%i31, %i15, %i4
 	lw	%i7, 0(%i31)
-	slli	%i4, %i9, 2
 	add	%i31, %i10, %i4
 	lw	%i6, 0(%i31)
 	lf	%f4, 0(%i6)
@@ -30099,19 +29875,15 @@ Lrelax_skip_10:
 then.251041:
 	lw	%i31, 74(%i1)
 	sf	%f15, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f5, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.251042:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -30145,17 +29917,12 @@ cont.251044:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.251038
 then.251039:
@@ -30165,11 +29932,9 @@ then.251039:
 	sf	%f1, 0(%i31)
 	lf	%f3, 1(%i17)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f3, 2(%i17)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.251040:
 	jzero	%i0, %i0, cont.251038
@@ -30178,9 +29943,7 @@ then.251037:
 	mov	%i20, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i20, %i20, 1
 	slli	%i4, %i20, 2
@@ -30238,7 +30001,6 @@ cont.251038:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -30590,7 +30352,6 @@ cont.251063:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -30975,8 +30736,7 @@ cont.251077:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -32332,12 +32092,10 @@ loop_end.241460:
 	lf	%f1, 0(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f3, %f1, %f31
-	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
 	lf	%f31, 93(%i1)
 	fmul	%f1, %f1, %f31
 	fadd	%f12, %f3, %f1
-	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
 	lf	%f31, 95(%i1)
 	fmul	%f3, %f1, %f31
@@ -33543,19 +33301,15 @@ Lrelax_skip_11:
 then.251430:
 	lw	%i31, 74(%i1)
 	sf	%f15, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f5, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.251431:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -33589,17 +33343,12 @@ cont.251433:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.251427
 then.251428:
@@ -33609,11 +33358,9 @@ then.251428:
 	sf	%f1, 0(%i31)
 	lf	%f3, 1(%i17)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f3, 2(%i17)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.251429:
 	jzero	%i0, %i0, cont.251427
@@ -33622,9 +33369,7 @@ then.251426:
 	mov	%i20, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i20, %i20, 1
 	slli	%i4, %i20, 2
@@ -33682,7 +33427,6 @@ cont.251427:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -34034,7 +33778,6 @@ cont.251452:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -34419,8 +34162,7 @@ cont.251466:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -35776,12 +35518,10 @@ loop_end.241716:
 	lf	%f1, 0(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f3, %f1, %f31
-	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
 	lf	%f31, 93(%i1)
 	fmul	%f1, %f1, %f31
 	fadd	%f12, %f3, %f1
-	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
 	lf	%f31, 95(%i1)
 	fmul	%f3, %f1, %f31
@@ -35851,22 +35591,18 @@ cont.250068:
 	lw	%i6, 101(%i1)
 	sw	%i31, 101(%i1)
 	sw	%i6, 113(%i1)
-	lw	%i31, 101(%i1)
 	sw	%i6, 101(%i1)
 	lw	%i6, 102(%i1)
 	sw	%i31, 102(%i1)
 	sw	%i6, 114(%i1)
-	lw	%i31, 102(%i1)
 	sw	%i6, 102(%i1)
 	lw	%i6, 103(%i1)
 	sw	%i31, 103(%i1)
 	sw	%i6, 115(%i1)
-	lw	%i31, 103(%i1)
 	sw	%i6, 103(%i1)
 	lw	%i6, 104(%i1)
 	sw	%i31, 104(%i1)
 	sw	%i6, 116(%i1)
-	lw	%i31, 104(%i1)
 	sw	%i6, 104(%i1)
 	mov	%i6, %i31
 loop_start.241822:
@@ -36017,13 +35753,11 @@ cont.251672:
 	lw	%i8, 0(%i31)
 	lw	%i13, 5(%i8)
 	slli	%i8, %i7, 2
-	lw	%i30, 115(%i1)
 	add	%i31, %i30, %i8
 	lw	%i8, 0(%i31)
 	lw	%i12, 5(%i8)
 	addi	%i9, %i7, 1
 	slli	%i8, %i9, 2
-	lw	%i30, 115(%i1)
 	add	%i31, %i30, %i8
 	lw	%i8, 0(%i31)
 	lw	%i11, 5(%i8)
@@ -36041,7 +35775,6 @@ cont.251672:
 	fmov	%f8, %f3
 	fmov	%f7, %f2
 	fmov	%f6, %f1
-	slli	%i8, %i4, 2
 	add	%i31, %i13, %i8
 	lw	%i9, 0(%i31)
 	lf	%f1, 0(%i9)
@@ -36053,7 +35786,6 @@ cont.251672:
 	fmov	%f7, %f1
 	fadd	%f1, %f6, %f3
 	fmov	%f6, %f1
-	slli	%i8, %i4, 2
 	add	%i31, %i12, %i8
 	lw	%i9, 0(%i31)
 	lf	%f1, 0(%i9)
@@ -36065,7 +35797,6 @@ cont.251672:
 	fmov	%f7, %f1
 	fadd	%f1, %f6, %f3
 	fmov	%f6, %f1
-	slli	%i8, %i4, 2
 	add	%i31, %i11, %i8
 	lw	%i9, 0(%i31)
 	lf	%f1, 0(%i9)
@@ -36077,7 +35808,6 @@ cont.251672:
 	fmov	%f7, %f1
 	fadd	%f1, %f6, %f3
 	fmov	%f6, %f1
-	slli	%i8, %i4, 2
 	add	%i31, %i10, %i8
 	lw	%i9, 0(%i31)
 	lf	%f1, 0(%i9)
@@ -36167,11 +35897,9 @@ Lrelax_skip_14:
 	lf	%f1, 2(%i5)
 	fmov	%f6, %f1
 	lw	%i6, 0(%i9)
-	slli	%i4, %i11, 2
 	add	%i31, %i10, %i4
 	lw	%i30, 0(%i31)
 	sw	%i30, 119(%i1)
-	slli	%i4, %i11, 2
 	lw	%i30, 118(%i1)
 	add	%i31, %i30, %i4
 	lw	%i30, 0(%i31)
@@ -36185,15 +35913,11 @@ Lrelax_skip_15:
 	lw	%i13, 0(%i31)
 	lw	%i31, 119(%i1)
 	lf	%f10, 0(%i31)
-	lw	%i31, 119(%i1)
 	lf	%f9, 1(%i31)
-	lw	%i31, 119(%i1)
 	lf	%f2, 2(%i31)
 	lw	%i31, 120(%i1)
 	lf	%f4, 0(%i31)
-	lw	%i31, 120(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 120(%i1)
 	lf	%f1, 2(%i31)
 	sf	%f4, 82(%i1)
 	sf	%f3, 83(%i1)
@@ -37477,19 +37201,15 @@ Lrelax_skip_17:
 then.251864:
 	lw	%i31, 74(%i1)
 	sf	%f17, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f16, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.251865:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -37523,17 +37243,12 @@ cont.251867:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.251861
 then.251862:
@@ -37544,10 +37259,8 @@ then.251862:
 	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
 	fneg	%f1, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.251863:
 	jzero	%i0, %i0, cont.251861
@@ -37556,9 +37269,7 @@ then.251860:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -37616,7 +37327,6 @@ cont.251861:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -37968,7 +37678,6 @@ cont.251886:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -38353,8 +38062,7 @@ cont.251900:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -39708,12 +39416,10 @@ loop_end.242051:
 	lf	%f1, 0(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f3, %f1, %f31
-	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
 	lf	%f31, 93(%i1)
 	fmul	%f1, %f1, %f31
 	fadd	%f12, %f3, %f1
-	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
 	lf	%f31, 95(%i1)
 	fmul	%f3, %f1, %f31
@@ -40902,19 +40608,15 @@ Lrelax_skip_18:
 then.252253:
 	lw	%i31, 74(%i1)
 	sf	%f17, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f16, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.252254:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -40948,17 +40650,12 @@ cont.252256:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.252250
 then.252251:
@@ -40969,10 +40666,8 @@ then.252251:
 	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
 	fneg	%f1, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.252252:
 	jzero	%i0, %i0, cont.252250
@@ -40981,9 +40676,7 @@ then.252249:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -41041,7 +40734,6 @@ cont.252250:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -41393,7 +41085,6 @@ cont.252275:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -41778,8 +41469,7 @@ cont.252289:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -43133,12 +42823,10 @@ loop_end.242307:
 	lf	%f1, 0(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f3, %f1, %f31
-	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
 	lf	%f31, 93(%i1)
 	fmul	%f1, %f1, %f31
 	fadd	%f12, %f3, %f1
-	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
 	lf	%f31, 95(%i1)
 	fmul	%f3, %f1, %f31
@@ -43182,15 +42870,11 @@ Lrelax_skip_19:
 	lw	%i13, 1(%i31)
 	lw	%i31, 119(%i1)
 	lf	%f10, 0(%i31)
-	lw	%i31, 119(%i1)
 	lf	%f9, 1(%i31)
-	lw	%i31, 119(%i1)
 	lf	%f2, 2(%i31)
 	lw	%i31, 120(%i1)
 	lf	%f4, 0(%i31)
-	lw	%i31, 120(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 120(%i1)
 	lf	%f1, 2(%i31)
 	sf	%f4, 82(%i1)
 	sf	%f3, 83(%i1)
@@ -44474,19 +44158,15 @@ Lrelax_skip_21:
 then.252656:
 	lw	%i31, 74(%i1)
 	sf	%f17, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f16, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.252657:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -44520,17 +44200,12 @@ cont.252659:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.252653
 then.252654:
@@ -44541,10 +44216,8 @@ then.252654:
 	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
 	fneg	%f1, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.252655:
 	jzero	%i0, %i0, cont.252653
@@ -44553,9 +44226,7 @@ then.252652:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -44613,7 +44284,6 @@ cont.252653:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -44965,7 +44635,6 @@ cont.252678:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -45350,8 +45019,7 @@ cont.252692:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -46705,12 +46373,10 @@ loop_end.242575:
 	lf	%f1, 0(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f3, %f1, %f31
-	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
 	lf	%f31, 93(%i1)
 	fmul	%f1, %f1, %f31
 	fadd	%f12, %f3, %f1
-	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
 	lf	%f31, 95(%i1)
 	fmul	%f3, %f1, %f31
@@ -47899,19 +47565,15 @@ Lrelax_skip_22:
 then.253045:
 	lw	%i31, 74(%i1)
 	sf	%f17, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f16, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.253046:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -47945,17 +47607,12 @@ cont.253048:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.253042
 then.253043:
@@ -47966,10 +47623,8 @@ then.253043:
 	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
 	fneg	%f1, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.253044:
 	jzero	%i0, %i0, cont.253042
@@ -47978,9 +47633,7 @@ then.253041:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -48038,7 +47691,6 @@ cont.253042:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -48390,7 +48042,6 @@ cont.253067:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -48775,8 +48426,7 @@ cont.253081:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -50130,12 +49780,10 @@ loop_end.242831:
 	lf	%f1, 0(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f3, %f1, %f31
-	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
 	lf	%f31, 93(%i1)
 	fmul	%f1, %f1, %f31
 	fadd	%f12, %f3, %f1
-	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
 	lf	%f31, 95(%i1)
 	fmul	%f3, %f1, %f31
@@ -50179,15 +49827,11 @@ Lrelax_skip_23:
 	lw	%i13, 2(%i31)
 	lw	%i31, 119(%i1)
 	lf	%f10, 0(%i31)
-	lw	%i31, 119(%i1)
 	lf	%f9, 1(%i31)
-	lw	%i31, 119(%i1)
 	lf	%f2, 2(%i31)
 	lw	%i31, 120(%i1)
 	lf	%f4, 0(%i31)
-	lw	%i31, 120(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 120(%i1)
 	lf	%f1, 2(%i31)
 	sf	%f4, 82(%i1)
 	sf	%f3, 83(%i1)
@@ -51471,19 +51115,15 @@ Lrelax_skip_25:
 then.253448:
 	lw	%i31, 74(%i1)
 	sf	%f17, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f16, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.253449:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -51517,17 +51157,12 @@ cont.253451:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.253445
 then.253446:
@@ -51538,10 +51173,8 @@ then.253446:
 	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
 	fneg	%f1, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.253447:
 	jzero	%i0, %i0, cont.253445
@@ -51550,9 +51183,7 @@ then.253444:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -51610,7 +51241,6 @@ cont.253445:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -51962,7 +51592,6 @@ cont.253470:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -52347,8 +51976,7 @@ cont.253484:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -53702,12 +53330,10 @@ loop_end.243099:
 	lf	%f1, 0(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f3, %f1, %f31
-	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
 	lf	%f31, 93(%i1)
 	fmul	%f1, %f1, %f31
 	fadd	%f12, %f3, %f1
-	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
 	lf	%f31, 95(%i1)
 	fmul	%f3, %f1, %f31
@@ -54896,19 +54522,15 @@ Lrelax_skip_26:
 then.253837:
 	lw	%i31, 74(%i1)
 	sf	%f17, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f16, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.253838:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -54942,17 +54564,12 @@ cont.253840:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.253834
 then.253835:
@@ -54963,10 +54580,8 @@ then.253835:
 	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
 	fneg	%f1, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.253836:
 	jzero	%i0, %i0, cont.253834
@@ -54975,9 +54590,7 @@ then.253833:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -55035,7 +54648,6 @@ cont.253834:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -55387,7 +54999,6 @@ cont.253859:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -55772,8 +55383,7 @@ cont.253873:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -57127,12 +56737,10 @@ loop_end.243355:
 	lf	%f1, 0(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f3, %f1, %f31
-	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
 	lf	%f31, 93(%i1)
 	fmul	%f1, %f1, %f31
 	fadd	%f12, %f3, %f1
-	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
 	lf	%f31, 95(%i1)
 	fmul	%f3, %f1, %f31
@@ -57176,15 +56784,11 @@ Lrelax_skip_27:
 	lw	%i13, 3(%i31)
 	lw	%i31, 119(%i1)
 	lf	%f10, 0(%i31)
-	lw	%i31, 119(%i1)
 	lf	%f9, 1(%i31)
-	lw	%i31, 119(%i1)
 	lf	%f2, 2(%i31)
 	lw	%i31, 120(%i1)
 	lf	%f4, 0(%i31)
-	lw	%i31, 120(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 120(%i1)
 	lf	%f1, 2(%i31)
 	sf	%f4, 82(%i1)
 	sf	%f3, 83(%i1)
@@ -58468,19 +58072,15 @@ Lrelax_skip_29:
 then.254240:
 	lw	%i31, 74(%i1)
 	sf	%f17, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f16, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.254241:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -58514,17 +58114,12 @@ cont.254243:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.254237
 then.254238:
@@ -58535,10 +58130,8 @@ then.254238:
 	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
 	fneg	%f1, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.254239:
 	jzero	%i0, %i0, cont.254237
@@ -58547,9 +58140,7 @@ then.254236:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -58607,7 +58198,6 @@ cont.254237:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -58959,7 +58549,6 @@ cont.254262:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -59344,8 +58933,7 @@ cont.254276:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -60699,12 +60287,10 @@ loop_end.243623:
 	lf	%f1, 0(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f3, %f1, %f31
-	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
 	lf	%f31, 93(%i1)
 	fmul	%f1, %f1, %f31
 	fadd	%f12, %f3, %f1
-	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
 	lf	%f31, 95(%i1)
 	fmul	%f3, %f1, %f31
@@ -61893,19 +61479,15 @@ Lrelax_skip_30:
 then.254629:
 	lw	%i31, 74(%i1)
 	sf	%f17, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f16, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.254630:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -61939,17 +61521,12 @@ cont.254632:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.254626
 then.254627:
@@ -61960,10 +61537,8 @@ then.254627:
 	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
 	fneg	%f1, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.254628:
 	jzero	%i0, %i0, cont.254626
@@ -61972,9 +61547,7 @@ then.254625:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -62032,7 +61605,6 @@ cont.254626:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -62384,7 +61956,6 @@ cont.254651:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -62769,8 +62340,7 @@ cont.254665:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -64124,12 +63694,10 @@ loop_end.243879:
 	lf	%f1, 0(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f3, %f1, %f31
-	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
 	lf	%f31, 93(%i1)
 	fmul	%f1, %f1, %f31
 	fadd	%f12, %f3, %f1
-	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
 	lf	%f31, 95(%i1)
 	fmul	%f3, %f1, %f31
@@ -64173,15 +63741,11 @@ Lrelax_skip_31:
 	lw	%i12, 4(%i31)
 	lw	%i31, 119(%i1)
 	lf	%f10, 0(%i31)
-	lw	%i31, 119(%i1)
 	lf	%f9, 1(%i31)
-	lw	%i31, 119(%i1)
 	lf	%f2, 2(%i31)
 	lw	%i31, 120(%i1)
 	lf	%f4, 0(%i31)
-	lw	%i31, 120(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 120(%i1)
 	lf	%f1, 2(%i31)
 	sf	%f4, 82(%i1)
 	sf	%f3, 83(%i1)
@@ -65465,19 +65029,15 @@ Lrelax_skip_33:
 then.255032:
 	lw	%i31, 74(%i1)
 	sf	%f17, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f16, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.255033:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -65511,17 +65071,12 @@ cont.255035:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.255029
 then.255030:
@@ -65532,10 +65087,8 @@ then.255030:
 	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
 	fneg	%f1, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.255031:
 	jzero	%i0, %i0, cont.255029
@@ -65544,9 +65097,7 @@ then.255028:
 	mov	%i18, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i18, %i18, 1
 	slli	%i4, %i18, 2
@@ -65604,7 +65155,6 @@ cont.255029:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -65956,7 +65506,6 @@ cont.255054:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -66341,8 +65890,7 @@ cont.255068:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -67694,12 +67242,10 @@ loop_end.244147:
 	lf	%f1, 0(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f3, %f1, %f31
-	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
 	lf	%f31, 93(%i1)
 	fmul	%f1, %f1, %f31
 	fadd	%f12, %f3, %f1
-	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
 	lf	%f31, 95(%i1)
 	fmul	%f3, %f1, %f31
@@ -68888,19 +68434,15 @@ Lrelax_skip_34:
 then.255421:
 	lw	%i31, 74(%i1)
 	sf	%f17, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f16, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.255422:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -68934,17 +68476,12 @@ cont.255424:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.255418
 then.255419:
@@ -68955,10 +68492,8 @@ then.255419:
 	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
 	fneg	%f1, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.255420:
 	jzero	%i0, %i0, cont.255418
@@ -68967,9 +68502,7 @@ then.255417:
 	mov	%i18, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i18, %i18, 1
 	slli	%i4, %i18, 2
@@ -69027,7 +68560,6 @@ cont.255418:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -69379,7 +68911,6 @@ cont.255443:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -69764,8 +69295,7 @@ cont.255457:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -71117,12 +70647,10 @@ loop_end.244403:
 	lf	%f1, 0(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f3, %f1, %f31
-	lw	%i31, 74(%i1)
 	lf	%f1, 1(%i31)
 	lf	%f31, 93(%i1)
 	fmul	%f1, %f1, %f31
 	fadd	%f12, %f3, %f1
-	lw	%i31, 74(%i1)
 	lf	%f1, 2(%i31)
 	lf	%f31, 95(%i1)
 	fmul	%f3, %f1, %f31
@@ -71243,11 +70771,9 @@ Lrelax_skip_35:
 	fmov	%f7, %f2
 	fmov	%f6, %f1
 	lw	%i6, 0(%i9)
-	slli	%i4, %i11, 2
 	add	%i31, %i10, %i4
 	lw	%i30, 0(%i31)
 	sw	%i30, 123(%i1)
-	slli	%i4, %i11, 2
 	lw	%i30, 122(%i1)
 	add	%i31, %i30, %i4
 	lw	%i30, 0(%i31)
@@ -71261,9 +70787,7 @@ Lrelax_skip_36:
 	lw	%i13, 0(%i31)
 	lw	%i31, 124(%i1)
 	lf	%f3, 0(%i31)
-	lw	%i31, 124(%i1)
 	lf	%f2, 1(%i31)
-	lw	%i31, 124(%i1)
 	lf	%f1, 2(%i31)
 	sf	%f3, 82(%i1)
 	sf	%f2, 83(%i1)
@@ -71362,9 +70886,7 @@ loop_end.244525:
 	movi	%i12, 118
 	lw	%i31, 123(%i1)
 	lf	%f10, 0(%i31)
-	lw	%i31, 123(%i1)
 	lf	%f9, 1(%i31)
-	lw	%i31, 123(%i1)
 	lf	%f2, 2(%i31)
 loop_start.244529:
 	jleq	%i0, %i12, then.255662
@@ -72596,19 +72118,15 @@ Lrelax_skip_38:
 then.255830:
 	lw	%i31, 74(%i1)
 	sf	%f15, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f5, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.255831:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -72642,17 +72160,12 @@ cont.255833:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.255827
 then.255828:
@@ -72662,11 +72175,9 @@ then.255828:
 	sf	%f1, 0(%i31)
 	lf	%f3, 1(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f3, 2(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.255829:
 	jzero	%i0, %i0, cont.255827
@@ -72675,9 +72186,7 @@ then.255826:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -72739,7 +72248,6 @@ cont.255827:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -73090,7 +72598,6 @@ cont.255852:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -73472,8 +72979,7 @@ cont.255866:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -74801,9 +74307,7 @@ loop_end.244687:
 	jzero	%i0, %i31, cont.256054
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f12, 2(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f1, %f1, %f31
@@ -76043,19 +75547,15 @@ Lrelax_skip_39:
 then.256219:
 	lw	%i31, 74(%i1)
 	sf	%f15, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f5, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.256220:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -76089,17 +75589,12 @@ cont.256222:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.256216
 then.256217:
@@ -76109,11 +75604,9 @@ then.256217:
 	sf	%f1, 0(%i31)
 	lf	%f3, 1(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f3, 2(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.256218:
 	jzero	%i0, %i0, cont.256216
@@ -76122,9 +75615,7 @@ then.256215:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -76186,7 +75677,6 @@ cont.256216:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -76537,7 +76027,6 @@ cont.256241:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -76919,8 +76408,7 @@ cont.256255:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -78248,9 +77736,7 @@ loop_end.244943:
 	jzero	%i0, %i31, cont.256443
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f12, 2(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f1, %f1, %f31
@@ -78301,9 +77787,7 @@ Lrelax_skip_40:
 	lw	%i13, 1(%i31)
 	lw	%i31, 124(%i1)
 	lf	%f3, 0(%i31)
-	lw	%i31, 124(%i1)
 	lf	%f2, 1(%i31)
-	lw	%i31, 124(%i1)
 	lf	%f1, 2(%i31)
 	sf	%f3, 82(%i1)
 	sf	%f2, 83(%i1)
@@ -78402,9 +77886,7 @@ loop_end.245049:
 	movi	%i12, 118
 	lw	%i31, 123(%i1)
 	lf	%f10, 0(%i31)
-	lw	%i31, 123(%i1)
 	lf	%f9, 1(%i31)
-	lw	%i31, 123(%i1)
 	lf	%f2, 2(%i31)
 loop_start.245053:
 	jleq	%i0, %i12, then.256454
@@ -79636,19 +79118,15 @@ Lrelax_skip_42:
 then.256622:
 	lw	%i31, 74(%i1)
 	sf	%f15, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f5, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.256623:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -79682,17 +79160,12 @@ cont.256625:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.256619
 then.256620:
@@ -79702,11 +79175,9 @@ then.256620:
 	sf	%f1, 0(%i31)
 	lf	%f3, 1(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f3, 2(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.256621:
 	jzero	%i0, %i0, cont.256619
@@ -79715,9 +79186,7 @@ then.256618:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -79779,7 +79248,6 @@ cont.256619:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -80130,7 +79598,6 @@ cont.256644:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -80512,8 +79979,7 @@ cont.256658:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -81841,9 +81307,7 @@ loop_end.245211:
 	jzero	%i0, %i31, cont.256846
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f12, 2(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f1, %f1, %f31
@@ -83083,19 +82547,15 @@ Lrelax_skip_43:
 then.257011:
 	lw	%i31, 74(%i1)
 	sf	%f15, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f5, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.257012:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -83129,17 +82589,12 @@ cont.257014:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.257008
 then.257009:
@@ -83149,11 +82604,9 @@ then.257009:
 	sf	%f1, 0(%i31)
 	lf	%f3, 1(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f3, 2(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.257010:
 	jzero	%i0, %i0, cont.257008
@@ -83162,9 +82615,7 @@ then.257007:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -83226,7 +82677,6 @@ cont.257008:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -83577,7 +83027,6 @@ cont.257033:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -83959,8 +83408,7 @@ cont.257047:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -85288,9 +84736,7 @@ loop_end.245467:
 	jzero	%i0, %i31, cont.257235
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f12, 2(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f1, %f1, %f31
@@ -85341,9 +84787,7 @@ Lrelax_skip_44:
 	lw	%i13, 2(%i31)
 	lw	%i31, 124(%i1)
 	lf	%f3, 0(%i31)
-	lw	%i31, 124(%i1)
 	lf	%f2, 1(%i31)
-	lw	%i31, 124(%i1)
 	lf	%f1, 2(%i31)
 	sf	%f3, 82(%i1)
 	sf	%f2, 83(%i1)
@@ -85442,9 +84886,7 @@ loop_end.245573:
 	movi	%i12, 118
 	lw	%i31, 123(%i1)
 	lf	%f10, 0(%i31)
-	lw	%i31, 123(%i1)
 	lf	%f9, 1(%i31)
-	lw	%i31, 123(%i1)
 	lf	%f2, 2(%i31)
 loop_start.245577:
 	jleq	%i0, %i12, then.257246
@@ -86676,19 +86118,15 @@ Lrelax_skip_46:
 then.257414:
 	lw	%i31, 74(%i1)
 	sf	%f15, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f5, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.257415:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -86722,17 +86160,12 @@ cont.257417:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.257411
 then.257412:
@@ -86742,11 +86175,9 @@ then.257412:
 	sf	%f1, 0(%i31)
 	lf	%f3, 1(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f3, 2(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.257413:
 	jzero	%i0, %i0, cont.257411
@@ -86755,9 +86186,7 @@ then.257410:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -86819,7 +86248,6 @@ cont.257411:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -87170,7 +86598,6 @@ cont.257436:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -87552,8 +86979,7 @@ cont.257450:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -88881,9 +88307,7 @@ loop_end.245735:
 	jzero	%i0, %i31, cont.257638
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f12, 2(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f1, %f1, %f31
@@ -90123,19 +89547,15 @@ Lrelax_skip_47:
 then.257803:
 	lw	%i31, 74(%i1)
 	sf	%f15, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f5, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.257804:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -90169,17 +89589,12 @@ cont.257806:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.257800
 then.257801:
@@ -90189,11 +89604,9 @@ then.257801:
 	sf	%f1, 0(%i31)
 	lf	%f3, 1(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f3, 2(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.257802:
 	jzero	%i0, %i0, cont.257800
@@ -90202,9 +89615,7 @@ then.257799:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -90266,7 +89677,6 @@ cont.257800:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -90617,7 +90027,6 @@ cont.257825:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -90999,8 +90408,7 @@ cont.257839:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -92328,9 +91736,7 @@ loop_end.245991:
 	jzero	%i0, %i31, cont.258027
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f12, 2(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f1, %f1, %f31
@@ -92381,9 +91787,7 @@ Lrelax_skip_48:
 	lw	%i13, 3(%i31)
 	lw	%i31, 124(%i1)
 	lf	%f3, 0(%i31)
-	lw	%i31, 124(%i1)
 	lf	%f2, 1(%i31)
-	lw	%i31, 124(%i1)
 	lf	%f1, 2(%i31)
 	sf	%f3, 82(%i1)
 	sf	%f2, 83(%i1)
@@ -92482,9 +91886,7 @@ loop_end.246097:
 	movi	%i12, 118
 	lw	%i31, 123(%i1)
 	lf	%f10, 0(%i31)
-	lw	%i31, 123(%i1)
 	lf	%f9, 1(%i31)
-	lw	%i31, 123(%i1)
 	lf	%f2, 2(%i31)
 loop_start.246101:
 	jleq	%i0, %i12, then.258038
@@ -93716,19 +93118,15 @@ Lrelax_skip_50:
 then.258206:
 	lw	%i31, 74(%i1)
 	sf	%f15, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f5, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.258207:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -93762,17 +93160,12 @@ cont.258209:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.258203
 then.258204:
@@ -93782,11 +93175,9 @@ then.258204:
 	sf	%f1, 0(%i31)
 	lf	%f3, 1(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f3, 2(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.258205:
 	jzero	%i0, %i0, cont.258203
@@ -93795,9 +93186,7 @@ then.258202:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -93859,7 +93248,6 @@ cont.258203:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -94210,7 +93598,6 @@ cont.258228:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -94592,8 +93979,7 @@ cont.258242:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -95921,9 +95307,7 @@ loop_end.246259:
 	jzero	%i0, %i31, cont.258430
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f12, 2(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f1, %f1, %f31
@@ -97163,19 +96547,15 @@ Lrelax_skip_51:
 then.258595:
 	lw	%i31, 74(%i1)
 	sf	%f15, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f5, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.258596:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -97209,17 +96589,12 @@ cont.258598:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.258592
 then.258593:
@@ -97229,11 +96604,9 @@ then.258593:
 	sf	%f1, 0(%i31)
 	lf	%f3, 1(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f3, 2(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.258594:
 	jzero	%i0, %i0, cont.258592
@@ -97242,9 +96615,7 @@ then.258591:
 	mov	%i19, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i19, %i19, 1
 	slli	%i4, %i19, 2
@@ -97306,7 +96677,6 @@ cont.258592:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -97657,7 +97027,6 @@ cont.258617:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -98039,8 +97408,7 @@ cont.258631:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -99368,9 +98736,7 @@ loop_end.246515:
 	jzero	%i0, %i31, cont.258819
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f12, 2(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f1, %f1, %f31
@@ -99421,9 +98787,7 @@ Lrelax_skip_52:
 	lw	%i12, 4(%i31)
 	lw	%i31, 124(%i1)
 	lf	%f3, 0(%i31)
-	lw	%i31, 124(%i1)
 	lf	%f2, 1(%i31)
-	lw	%i31, 124(%i1)
 	lf	%f1, 2(%i31)
 	sf	%f3, 82(%i1)
 	sf	%f2, 83(%i1)
@@ -99522,9 +98886,7 @@ loop_end.246621:
 	movi	%i6, 118
 	lw	%i31, 123(%i1)
 	lf	%f10, 0(%i31)
-	lw	%i31, 123(%i1)
 	lf	%f9, 1(%i31)
-	lw	%i31, 123(%i1)
 	lf	%f2, 2(%i31)
 loop_start.246625:
 	jleq	%i0, %i6, then.258830
@@ -100756,19 +100118,15 @@ Lrelax_skip_54:
 then.258998:
 	lw	%i31, 74(%i1)
 	sf	%f15, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f5, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.258999:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -100802,17 +100160,12 @@ cont.259001:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.258995
 then.258996:
@@ -100822,11 +100175,9 @@ then.258996:
 	sf	%f1, 0(%i31)
 	lf	%f3, 1(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f3, 2(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.258997:
 	jzero	%i0, %i0, cont.258995
@@ -100835,9 +100186,7 @@ then.258994:
 	mov	%i18, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i18, %i18, 1
 	slli	%i4, %i18, 2
@@ -100899,7 +100248,6 @@ cont.258995:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -101250,7 +100598,6 @@ cont.259020:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -101632,8 +100979,7 @@ cont.259034:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -102963,9 +102309,7 @@ loop_end.246783:
 	jzero	%i0, %i31, cont.259222
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f12, 2(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f1, %f1, %f31
@@ -104205,19 +103549,15 @@ Lrelax_skip_55:
 then.259387:
 	lw	%i31, 74(%i1)
 	sf	%f15, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f5, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.259388:
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
 	fmul	%f4, %f1, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f4, %f4, %f1
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f3
 	fadd	%f3, %f4, %f1
@@ -104251,17 +103591,12 @@ cont.259390:
 	lw	%i31, 74(%i1)
 	lf	%f3, 0(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 2(%i31)
 	fmul	%f1, %f3, %f4
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.259384
 then.259385:
@@ -104271,11 +103606,9 @@ then.259385:
 	sf	%f1, 0(%i31)
 	lf	%f3, 1(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 1(%i31)
 	lf	%f3, 2(%i15)
 	fneg	%f1, %f3
-	lw	%i31, 74(%i1)
 	sf	%f1, 2(%i31)
 cont.259386:
 	jzero	%i0, %i0, cont.259384
@@ -104284,9 +103617,7 @@ then.259383:
 	mov	%i18, %i31
 	lw	%i31, 74(%i1)
 	sf	%f0, 0(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 1(%i31)
-	lw	%i31, 74(%i1)
 	sf	%f0, 2(%i31)
 	subi	%i18, %i18, 1
 	slli	%i4, %i18, 2
@@ -104348,7 +103679,6 @@ cont.259384:
 	fmov	%f1, %f3
 	frsqrt	%f1, %f3
 	fmov	%f3, %f1
-	movui	%i31, 260096
 	mif	%f1, %i31
 	finv	%f3, %f3
 	fmul	%f1, %f1, %f3
@@ -104699,7 +104029,6 @@ cont.259409:
 	fsub	%f3, %f1, %f3
 	fmul	%f1, %f3, %f3
 	fsub	%f12, %f12, %f1
-	movui	%i31, 258048
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f13
 	fmul	%f1, %f3, %f3
@@ -105081,8 +104410,7 @@ cont.259423:
 	mif	%f3, %i31
 	fmul	%f1, %f3, %f12
 	fmov	%f5, %f1
-	movui	%i31, 276464
-	mif	%f4, %i31
+	fmov	%f4, %f3
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f3, %f1, %f12
@@ -106412,9 +105740,7 @@ loop_end.247039:
 	jzero	%i0, %i31, cont.259611
 	lw	%i31, 74(%i1)
 	lf	%f1, 0(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f3, 1(%i31)
-	lw	%i31, 74(%i1)
 	lf	%f12, 2(%i31)
 	lf	%f31, 94(%i1)
 	fmul	%f1, %f1, %f31

@@ -1,0 +1,378 @@
+TKMEDA (Totemo Kakkoii MEirei Desu Architecture)
+Instruction Set Manual v1.4
+
+Registers
+
+Integer value
+Name
+Binary
+Use
+x0
+00000
+Zero register
+x1
+00001
+Return address
+x2
+00010
+Stack pointer
+x3 - x31
+00001 - 11111
+General use
+
+
+Floating point value (planned)
+
+Name
+Binary
+Use
+f0
+00000
+Zero register
+f1 - f31
+00001 - 11111
+General use
+
+
+Formats of Instruction
+
+Type dss: add, sub, mul, div, rem, sar, sll, slr, and, or, xor, clt, cleq, ceq, fadd, fsub, fmul, fdiv
+operand_type[2] 00000 0 rd[5] rs1[5] rs2[5] opcode[9]
+
+
+Type ?
+itof, ftoi, inv,  
+
+Type dsi: addi, subi, muli, divi, remi, sari, slli, slri, andi, ori, xori, clti, cleqi, ceqi, jeq, lb, lw
+imm[11:5] 1 rd[5] rs1[5] imm[4:0] opcode[9]
+
+Type ssi: sb, sw
+offset[11:5] 1 offset[4:0] rs1[5] rs2[5] opcode[9]
+
+Type ssiw: movi, movui
+
+imm[19:13] 1 rd[5] imm[12:1] 1 imm[0] ? 1101	
+
+
+
+Arithmetic Instructions
+
+add 	
+
+0000000 0 rd[5] rs1[5] rs2[5] 001000001
+add, rd, rs1, rs2	rd <- rs1 + rs2
+
+mov (pseudo instruction)
+
+0000000 0 rd[5] rs1[5] 00000 001000001		
+mov, rd, rs1	rd <- rs1
+
+addi	
+
+imm[11:5] 1 rd[5] rs1[5] imm[4:0] 001000001
+add, rd, rs1, imm	rd <- rs1 + imm	
+
+sub	
+
+0000000 0 rd[5] rs1[5] rs2[5] 001000010
+sub, rd, rs1, rs2	rd <- rs1 - rs2
+
+subi  
+
+imm[11:5] 1 rd[5] rs1[5] imm[4:0] 001000010
+sub, rd, rs1, imm	rd <- rs1 - imm
+
+tern
+
+00 rs3[5] 0 rd[5] rs1[5] rs2[5] 001001001
+tern, rd, r1, r2, r3 	rd <- (r1)? r2:r3
+
+
+movi 
+
+imm[19:13] 1 rd[5] imm[12:1] 1 imm[0] 01101			  
+
+movi, rd, imm   rd<- imm
+
+movui 
+
+imm[19:13] 1 rd[5] imm[12:1] 1 imm[0] 11101			  
+
+movi, rd, imm   rd<- imm << 12
+
+sar
+
+0000000 0 rd[5] rs1[5] rs2[5] 001010000
+sar, rd, rs1, rs2	rd <- rs1 >> rs2 (arithmetic)
+
+sari
+
+0000000 1 rd[5] rs1[5] imm[4:0] 001010000
+sari, rd, rs1, imm	rd <- rs1 >> imm (arithmetic)]
+
+
+sal (pseudo instruction) = sll
+sali (pseudo instruction) = slli
+
+
+Logical Instructions
+
+
+sll
+
+0000000 0 rd[5] rs1[5] rs2[5] 001010011
+sll, rd, rs1, rs2	rd <- rs1 << rs2
+
+slli
+
+0000000 1 rd[5] rs1[5] imm[4:0] 001010011
+slli, rd, rs1, imm	rd <- rs1 << imm
+
+slr
+
+0000000 0 rd[5] rs1[5] rs2[5] 001010100
+slr, rd, rs1, rs2	rd <- rs1 >> rs2
+
+slri
+
+0000000 1 rd[5] rs1[5] imm[4:0] 001010100
+slri, rd, rs1, imm	rd <- rs1 >> imm
+
+and
+
+0000000 0 rd[5] rs1[5] rs2[5] 001000111
+and, rd, rs1, rs2	rd <- rs1 & rs2
+
+andi
+
+imm[11:5] 1 rd[5] rs1[5] imm[4:0] 001000111
+andi, rd, rs1, imm	rd <- rs1 & imm
+
+or
+
+0000000 0 rd[5] rs1[5] rs2[5] 001001000
+or, rd, rs1, rs2	rd <- rs1 | rs2
+
+ori
+
+imm[11:5] 1 rd[5] rs1[5] imm[4:0] 001001000
+ori, rd, rs1, imm	rd <- rs1 | imm
+
+xor
+
+0000000 0 rd[5] rs1[5] rs2[5] 001001111
+or, rd, rs1, rs2	rd <- rs1 ^ rs2
+
+xori
+
+imm[11:5] 1 rd[5] rs1[5] imm[4:0] 001001111
+ori, rd, rs1, imm	rd <- rs1 ^ imm
+
+
+Conditional Instructions
+
+clt
+
+0000000 0 rd[5] rs1[5] rs2[5] 001000110
+clt, rd, rs1, rs2	rd <- (rs1 < rs2)? 1: 0
+
+clti
+
+imm[11:5] 1 rd[5] rs1[5] imm[4:0] 001000110
+clti, rd, rs1, imm	rd <- (rs1 < imm)? 1: 0
+
+cleq
+
+0000000 0 rd[5] rs1[5] rs2[5] 001001010
+cleq, rd, rs1, rs2	rd <- (rs1 <= rs2)? 1: 0
+
+cleqi
+
+imm[11:5] 1 rd[5] rs1[5] imm[4:0] 001001010
+cleqi, rd, rs1, rimm	rd <- (rs1 <= imm)? 1: 0
+
+ceq
+
+0000000 0 rd[5] rs1[5] rs2[5] 001001110
+ceq, rd, rs1, rs2	rd <- (rs1 == rs2)? 1: 0
+
+ceqi
+
+imm[11:5] 1 rd[5] rs1[5] imm[4:0] 001001110
+ceqi, rd, rs1, imm	rd <- (rs1 == imm)? 1: 0
+
+cneq
+
+0000000 0 rd[5] rs1[5] rs2[5] 001010111
+ceq, rd, rs1, rs2	rd <- (rs1 != rs2)? 1: 0
+
+cneqi
+
+imm[11:5] 1 rd[5] rs1[5] imm[4:0] 001010111
+ceqi, rd, rs1, imm	rd <- (rs1 != imm)? 1: 0
+
+
+Floating Point Arithmetic Instructions
+
+fadd
+
+1100000 0 frd[5] frs1[5] frs2[5] 001000001 		
+fadd, frd, frs1, frs2	frd <- frs1 + frs2	
+
+
+fsub
+
+1100000 0 frd[5] frs1[5] frs2[5] 001000010
+fsub, frd, frs1, frs2	frd <- frs1 - frs2
+
+
+fneg
+
+1100000 0 frd[5] irs1[5] 00000 001010000
+fneg, rd, rs1  rd <- -rs1
+
+fmul
+1100000 0 frd[5] frs1[5] frs2[5] 001000011
+fmul, frd, frs1, frs2	frd <- frs1 * frs2
+
+
+fma
+11 rs3[5] 0 rd[5] rs1[5] rs2[5] 0010001001
+fma, rd, rs1, rs2, rs3	rd <- rs1 * rs2 + rs3
+
+finv
+1100000 0 frd[5] frs1[5] 00000 001000100
+finv, frd, frs1	frd <- 1 / frs1
+
+mif (planned NOT to be used in newer versions)
+1000000 0 rd[5] rs1[5] rs2[5] 001011010
+mif rd, rs1	rd <- rs1
+
+mfi (planned NOT to be used in newer versions)
+0100000 0 rd[5] rs1[5] rs2[5] 001011010
+mif rd, rs1	rd <- rs1
+
+fmov
+1100000 0 rd[5] rs1[5] rs2[5] 001011010
+fadd, rd, rs1 rd <- rs1 + %f0
+
+
+
+
+frsqrt
+
+1000000 0 rd[5] rs1[5] 00000 001000111
+rsqrt, rd, rs1		rd <- 1/SQRT(rs1)
+
+fabs
+
+1100000 0 rd[5] rs1[5] 00000 001011000
+fabs, rd, rs1		rd <- FABS(rs1)
+
+ftoi
+
+0100000 0 rd[5] rs1[5] 00000 001010101
+ftoi, rd, rs1		rd <- (int)rs1
+
+itof
+
+1000000 0 rd[5] rs1[5] 00000 001010110
+itof, rd, rs1		rd <- (float)rs1
+
+Floating Point Conditional Instructions
+
+flt
+
+0100000 0 rd[5] rs1[5] rs2[5] 001010001
+flt, rd, rs1, rs2	rd <- (rs1 <. rs2)? 1: 0
+
+feq
+
+0100000 0 rd[5] rs1[5] rs2[5] 001010011
+feq, rd, rs1, rs2	rd <- (rs1 == rs2)? 1: 0
+	
+fneq
+
+0100000 0 rd[5] rs1[5] rs2[5] 001010100
+feq, rd, rs1, rs2	rd <- (rs1 != rs2)? 1: 0
+fleq
+
+0100000 0 rd[5] rs1[5] rs2[5] 001010010
+fleq, rd, rs1, rs2	rd <- (rs1 <= rs2)? 1: 0
+
+ffloor
+1100000 0 rd[5] rs1[5] rs2[5] 001010111
+ffloor, rd, rs1	rd <- floor(rs1)
+
+ftern
+
+11 rs3[5] 0 rd[5] rs1[5] rs2[5] 001011001
+ftern, rd, r1, r2, r3     rd <- (r1 != 0.0f)? r2:r3
+
+
+Jump Instructions
+
+jmp
+
+offset[11:5] 1 rd[5] rs1[5] offset[4:0] 001100000
+jmp, rd, rs1	rd <- pc + 4;  pc <- rs1
+set_label
+movui %i31, %hi(label)
+	ori	%i31, %i31, %lo(label)
+	jmp	%i3, 0(%i31)
+
+jeq
+
+offset[11:5] 0 offset[4:0] rs1[5] rs2[5] 000101001
+jeq, rs1, rs2, offset	if(rs1 == rs2) pc <- pc + (offset << 2)
+
+jlt
+offset[11:5] 0 offset[4:0] rs1[5] rs2[5] 000111001
+jlt, rs1, rs2, offset	if(rs1 < rs2) pc <- pc + (offset << 2)
+
+jleq
+
+offset[11:5] 0 offset[4:0] rs1[5] rs2[5] 000110101
+jleq, rs1, rs2, offset	if(rs1 <= rs2) pc <- pc + (offset << 2)
+
+jzero (pseudo instruction) = jeq, rs1,x0,offset
+
+* Regarding the jump instructions, note that the 2 bit left logical shift is  
+  included considering the alignment.
+  (i.e. so far are all the instructions designed to have exactly 32 bits)
+
+** Note that immediate bits (instr[24]) are 0 for the conditional jump, since they are designed to compare the values from the registers on ALU 
+
+Memory Controlling Instructions
+
+sb (io only)
+
+offset[11:5] 1 offset[4:0] rs1[5] rs2[5] 010011011
+sb, rs2, offset(rs1)		M[offset(rs1)] <- rs2[7:0]
+
+lb (io only)
+
+offset[11:5] 1 rd[5] rs1[5] offset[4:0] 001011011
+lb, rd1, offset(rs1)		rd1 <- M[offset(rs1)][7:0]
+
+sw
+
+offset[11:5] 1 offset[4:0] rs1[5] rs2[5] 110011011
+sw, rs2, offset(rs1)		M[offset(rs1)] <- rs2
+
+sf
+
+offset[11:5] 1 offset[4:0] rs1[5] rs2[5] 110011111
+sf, rs2, offset(rs1)		M[offset(rs1)] <- rs2
+
+
+lw
+
+offset[11:5] 1 rd[5] rs1[5] offset[4:0] 101011011
+lw, rd1, offset(rs1)		rd1 <- M[offset(rs1)]
+
+
+lf
+
+offset[11:5] 1 rd[5] rs1[5] offset[4:0] 101011111
+lf, rd1, offset(rs1)		rd1 <- M[offset(rs1)]

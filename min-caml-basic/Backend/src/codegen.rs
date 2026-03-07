@@ -152,7 +152,16 @@ pub fn emit_assembly(instructions: &[Instruction]) -> String {
         }
     }
 
-    output
+    // Drop placeholder nop-only lines while keeping label lines.
+    let mut filtered = String::with_capacity(output.len());
+    for line in output.lines() {
+        if line.trim() == "nop" {
+            continue;
+        }
+        filtered.push_str(line);
+        filtered.push('\n');
+    }
+    filtered
 }
 
 /// Resolve then emit (legacy single-step API).

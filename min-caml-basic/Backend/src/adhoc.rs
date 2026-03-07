@@ -9,12 +9,35 @@ pub struct OptimizeResult {
     pub zero_base_fold_rewrites: usize,
     pub word_offset_rewrites: usize,
     pub val_trace_rewrites: usize,
+    pub reg_cse_rewrites: usize,
     pub alias_use_rewrites: usize,
     pub dead_move_rewrites: usize,
     pub redundant_reload_rewrites: usize,
     pub trampoline_elim_rewrites: usize,
     pub branch_relax_rewrites: usize,
     pub short_jump_fold_rewrites: usize,
+}
+
+pub struct VirtualOptimizeResult {
+    pub instructions: Vec<Instruction>,
+    pub val_trace_rewrites: usize,
+    pub reg_cse_rewrites: usize,
+    pub alias_use_rewrites: usize,
+    pub dead_move_rewrites: usize,
+}
+
+pub fn optimize_virtual(instructions: Vec<Instruction>) -> VirtualOptimizeResult {
+    let (instructions, val_trace_rewrites) = const_reuse_with_val_trace_opt(instructions);
+    let (instructions, alias_use_rewrites) = normalize_mov_alias_uses_virtual_opt(instructions);
+    let (instructions, reg_cse_rewrites) = register_cse_virtual_opt(instructions);
+    let (instructions, dead_move_rewrites) = eliminate_dead_moves_virtual_opt(instructions);
+    VirtualOptimizeResult {
+        instructions,
+        val_trace_rewrites,
+        reg_cse_rewrites,
+        alias_use_rewrites,
+        dead_move_rewrites,
+    }
 }
 
 pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
@@ -25,14 +48,17 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
     // Pass 2: eliminate any remaining or newly visible trampolines
     let (instructions, trampoline_elim_rewrites_2) = jump_trampoline_elim(instructions);
     let trampoline_elim_rewrites = trampoline_elim_rewrites_1 + trampoline_elim_rewrites_2;
-    // Fold short unconditional jumps: set_label + jmp → jzero %i0, %i0, label
+    // Fold short unconditional jumps: set_label + jmp -> jzero %i0, %i0, label
     let (instructions, short_jump_fold_rewrites) = fold_short_unconditional_jumps_opt(instructions);
     let (instructions, global_access_rewrites) = global_access_opt(instructions);
     let (instructions, zero_base_fold_rewrites) = fold_zero_base_addr_opt(instructions);
     let (instructions, word_offset_rewrites) = scale_word_mem_offset_opt(instructions);
     let (instructions, val_trace_rewrites) = const_reuse_with_val_trace_opt(instructions);
     let (instructions, alias_use_rewrites) = normalize_mov_alias_uses_opt(instructions);
-    let (instructions, dead_move_rewrites) = eliminate_dead_moves_cfg_opt(instructions);
+    let (instructions, dead_move_rewrites_1) = eliminate_dead_moves_cfg_opt(instructions);
+    let (instructions, reg_cse_rewrites) = register_cse_opt(instructions);
+    let (instructions, dead_move_rewrites_2) = eliminate_dead_moves_cfg_opt(instructions);
+    let dead_move_rewrites = dead_move_rewrites_1 + dead_move_rewrites_2;
     let (instructions, redundant_reload_rewrites) = eliminate_redundant_store_load_opt(instructions);
     OptimizeResult {
         instructions,
@@ -40,6 +66,7 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
         zero_base_fold_rewrites,
         word_offset_rewrites,
         val_trace_rewrites,
+        reg_cse_rewrites,
         alias_use_rewrites,
         dead_move_rewrites,
         redundant_reload_rewrites,
@@ -84,6 +111,51 @@ fn is_float_reg(reg: &str) -> bool {
         return false;
     };
     !rest.is_empty() && rest.chars().all(|c| c.is_ascii_digit())
+}
+
+fn is_virtual_int_reg(reg: &str) -> bool {
+    let Some(rest) = reg.strip_prefix("%vi") else {
+        return false;
+    };
+    !rest.is_empty() && rest.chars().all(|c| c.is_ascii_digit())
+}
+
+fn is_virtual_float_reg(reg: &str) -> bool {
+    let Some(rest) = reg.strip_prefix("%vf") else {
+        return false;
+    };
+    !rest.is_empty() && rest.chars().all(|c| c.is_ascii_digit())
+}
+
+fn is_virtual_any_reg(reg: &str) -> bool {
+    is_virtual_int_reg(reg) || is_virtual_float_reg(reg)
+}
+
+fn float_reg_index(reg: &str) -> Option<usize> {
+    let rest = reg.strip_prefix("%f")?;
+    rest.parse::<usize>().ok()
+}
+
+fn is_forbidden_reg(reg: &str) -> bool {
+    matches!(reg, "%i0" | "%i1" | "%i2" | "%i3" | "%f0")
+}
+
+fn is_trackable_int_reg(reg: &str) -> bool {
+    if is_virtual_int_reg(reg) {
+        return true;
+    }
+    int_reg_index(reg).is_some_and(|i| i >= 4)
+}
+
+fn is_trackable_float_reg(reg: &str) -> bool {
+    if is_virtual_float_reg(reg) {
+        return true;
+    }
+    float_reg_index(reg).is_some_and(|i| i >= 1)
+}
+
+fn is_trackable_any_reg(reg: &str) -> bool {
+    is_trackable_int_reg(reg) || is_trackable_float_reg(reg)
 }
 
 fn is_physical_reg(reg: &str) -> bool {
@@ -176,8 +248,443 @@ fn is_side_effecting_or_control_mnemonic(mnemonic: &str) -> bool {
     matches!(
         mnemonic,
         "sw" | "sf" | "sb" | "jzero" | "jeq" | "jlt" | "jleq" | "jmp" | "ret" | "call_dir"
-            | "call_cls"
+            | "call_cls" | "set_label"
     ) || mnemonic.starts_with('.')
+}
+
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
+enum CseExpr {
+    IntConst(String, String),
+    IntUnary(String, String),
+    IntBinary(String, String, String),
+    IntImm(String, String, String),
+    IntLoad(String, i32, String),
+    IntTern(String, String, String),
+    IntFromFloat(String, String),
+
+    FloatUnary(String, String),
+    FloatBinary(String, String, String),
+    FloatTri(String, String, String, String),
+    FloatLoad(i32, String),
+    FloatFromInt(String, String),
+    FloatTern(String, String, String),
+}
+
+fn parse_mem_operand(op: &str) -> Option<(i32, String)> {
+    let start = op.find('(')?;
+    let end = op.find(')')?;
+    if end <= start + 1 {
+        return None;
+    }
+    let off_str = op[..start].trim();
+    let base = op[start + 1..end].trim().to_string();
+    if !is_int_reg(&base) {
+        return None;
+    }
+    let off = if off_str.is_empty() {
+        0
+    } else {
+        off_str.parse::<i32>().ok()?
+    };
+    Some((off, base))
+}
+
+fn is_mem_table_base(base: &str) -> bool {
+    matches!(base, "%i1" | "%i2")
+}
+
+fn normalize_commutative_pair(a: &str, b: &str) -> (String, String) {
+    if a <= b {
+        (a.to_string(), b.to_string())
+    } else {
+        (b.to_string(), a.to_string())
+    }
+}
+
+fn cse_expr_is_float_result(expr: &CseExpr) -> bool {
+    matches!(
+        expr,
+        CseExpr::FloatUnary(_, _)
+            | CseExpr::FloatBinary(_, _, _)
+            | CseExpr::FloatTri(_, _, _, _)
+            | CseExpr::FloatLoad(_, _)
+            | CseExpr::FloatFromInt(_, _)
+            | CseExpr::FloatTern(_, _, _)
+    )
+}
+
+fn cse_expr_is_memory(expr: &CseExpr) -> bool {
+    matches!(
+        expr,
+        CseExpr::IntLoad(_, _, _) | CseExpr::FloatLoad(_, _)
+    )
+}
+
+fn cse_expr_mem_loc(expr: &CseExpr) -> Option<(&str, i32)> {
+    match expr {
+        CseExpr::IntLoad(_, off, base) => Some((base.as_str(), *off)),
+        CseExpr::FloatLoad(off, base) => Some((base.as_str(), *off)),
+        _ => None,
+    }
+}
+
+fn cse_expr_uses_reg(expr: &CseExpr, reg: &str) -> bool {
+    match expr {
+        CseExpr::IntConst(_, _) => false,
+        CseExpr::IntUnary(_, a) => a == reg,
+        CseExpr::IntBinary(_, a, b) => a == reg || b == reg,
+        CseExpr::IntImm(_, a, _) => a == reg,
+        CseExpr::IntLoad(_, _, base) => base == reg,
+        CseExpr::IntTern(c, t, e) => c == reg || t == reg || e == reg,
+        CseExpr::IntFromFloat(_, a) => a == reg,
+
+        CseExpr::FloatUnary(_, a) => a == reg,
+        CseExpr::FloatBinary(_, a, b) => a == reg || b == reg,
+        CseExpr::FloatTri(_, a, b, c) => a == reg || b == reg || c == reg,
+        CseExpr::FloatLoad(_, base) => base == reg,
+        CseExpr::FloatFromInt(_, a) => a == reg,
+        CseExpr::FloatTern(c, t, e) => c == reg || t == reg || e == reg,
+    }
+}
+
+fn build_cse_expr_with_mode(
+    inst: &Instruction,
+    tracked_mem_base: Option<&str>,
+    virtual_only: bool,
+) -> Option<CseExpr> {
+    let m = inst.mnemonic.as_deref()?;
+    let ops = &inst.operands;
+    if ops.is_empty() || !mnemonic_defines_first_operand(m, &ops[0]) {
+        return None;
+    }
+    let int_ok = |r: &str| {
+        if virtual_only {
+            is_trackable_int_reg(r)
+        } else {
+            is_int_reg(r)
+        }
+    };
+    let float_ok = |r: &str| {
+        if virtual_only {
+            is_trackable_float_reg(r)
+        } else {
+            is_float_reg(r)
+        }
+    };
+    match m {
+        "movi" | "movui" if ops.len() == 2 => {
+            Some(CseExpr::IntConst(m.to_string(), ops[1].clone()))
+        }
+        "mov" if ops.len() == 2 && int_ok(&ops[1]) => {
+            Some(CseExpr::IntUnary("mov".to_string(), ops[1].clone()))
+        }
+        "neg" if ops.len() == 2 && int_ok(&ops[1]) => {
+            Some(CseExpr::IntUnary("neg".to_string(), ops[1].clone()))
+        }
+        "add" | "or" | "xor" | "ceq" if ops.len() == 3 && int_ok(&ops[1]) && int_ok(&ops[2]) => {
+            let (a, b) = normalize_commutative_pair(&ops[1], &ops[2]);
+            Some(CseExpr::IntBinary(m.to_string(), a, b))
+        }
+        "sub" | "sll" | "sar" | "cleq" | "clt" if ops.len() == 3 && int_ok(&ops[1]) && int_ok(&ops[2]) => {
+            Some(CseExpr::IntBinary(m.to_string(), ops[1].clone(), ops[2].clone()))
+        }
+        "addi" | "subi" | "slli" | "sari" | "ori" | "xori" | "ceqi" | "cleqi" | "clti"
+            if ops.len() == 3 && int_ok(&ops[1]) =>
+        {
+            Some(CseExpr::IntImm(
+                m.to_string(),
+                ops[1].clone(),
+                ops[2].clone(),
+            ))
+        }
+        "ftoi" if ops.len() == 2 && float_ok(&ops[1]) => {
+            Some(CseExpr::IntFromFloat("ftoi".to_string(), ops[1].clone()))
+        }
+        "tern" if ops.len() == 4 && int_ok(&ops[1]) && int_ok(&ops[2]) && int_ok(&ops[3]) => {
+            Some(CseExpr::IntTern(
+                ops[1].clone(),
+                ops[2].clone(),
+                ops[3].clone(),
+            ))
+        }
+        "lw" | "lb" if ops.len() == 2 => {
+            let (off, base) = parse_mem_operand(&ops[1])?;
+            if !is_mem_table_base(&base) {
+                return None;
+            }
+            if tracked_mem_base.map(|b| b == base).unwrap_or(true) {
+                Some(CseExpr::IntLoad(m.to_string(), off, base))
+            } else {
+                None
+            }
+        }
+
+        "fmov" if ops.len() == 2 && float_ok(&ops[1]) => {
+            Some(CseExpr::FloatUnary("fmov".to_string(), ops[1].clone()))
+        }
+        "fneg" | "finv" | "frsqrt" | "ffloor" if ops.len() == 2 && float_ok(&ops[1]) => {
+            Some(CseExpr::FloatUnary(m.to_string(), ops[1].clone()))
+        }
+        "fadd" | "fmul" | "feq" | "fneq" if ops.len() == 3 && float_ok(&ops[1]) && float_ok(&ops[2]) => {
+            let (a, b) = normalize_commutative_pair(&ops[1], &ops[2]);
+            Some(CseExpr::FloatBinary(m.to_string(), a, b))
+        }
+        "fsub" | "fdiv" | "fleq" | "flt" if ops.len() == 3 && float_ok(&ops[1]) && float_ok(&ops[2]) => {
+            Some(CseExpr::FloatBinary(
+                m.to_string(),
+                ops[1].clone(),
+                ops[2].clone(),
+            ))
+        }
+        "fma" if ops.len() == 4 && float_ok(&ops[1]) && float_ok(&ops[2]) && float_ok(&ops[3]) => {
+            Some(CseExpr::FloatTri(
+                "fma".to_string(),
+                ops[1].clone(),
+                ops[2].clone(),
+                ops[3].clone(),
+            ))
+        }
+        "lf" if ops.len() == 2 => {
+            let (off, base) = parse_mem_operand(&ops[1])?;
+            if !is_mem_table_base(&base) {
+                return None;
+            }
+            if tracked_mem_base.map(|b| b == base).unwrap_or(true) {
+                Some(CseExpr::FloatLoad(off, base))
+            } else {
+                None
+            }
+        }
+        "itof" | "mif" if ops.len() == 2 && int_ok(&ops[1]) => {
+            Some(CseExpr::FloatFromInt(m.to_string(), ops[1].clone()))
+        }
+        "ftern" if ops.len() == 4 && int_ok(&ops[1]) && float_ok(&ops[2]) && float_ok(&ops[3]) => {
+            Some(CseExpr::FloatTern(
+                ops[1].clone(),
+                ops[2].clone(),
+                ops[3].clone(),
+            ))
+        }
+        _ => None,
+    }
+}
+
+fn remove_expr_key(
+    key: &CseExpr,
+    expr_to_reg: &mut HashMap<CseExpr, String>,
+    reg_to_expr: &mut HashMap<String, CseExpr>,
+) {
+    expr_to_reg.remove(key);
+    let stale_regs: Vec<String> = reg_to_expr
+        .iter()
+        .filter_map(|(r, k)| if k == key { Some(r.clone()) } else { None })
+        .collect();
+    for r in stale_regs {
+        reg_to_expr.remove(&r);
+    }
+}
+
+fn clear_memory_exprs(
+    expr_to_reg: &mut HashMap<CseExpr, String>,
+    reg_to_expr: &mut HashMap<String, CseExpr>,
+) {
+    let keys: Vec<CseExpr> = expr_to_reg
+        .keys()
+        .filter(|k| cse_expr_is_memory(k))
+        .cloned()
+        .collect();
+    for k in keys {
+        remove_expr_key(&k, expr_to_reg, reg_to_expr);
+    }
+}
+
+fn invalidate_exprs_on_def(
+    rd: &str,
+    expr_to_reg: &mut HashMap<CseExpr, String>,
+    reg_to_expr: &mut HashMap<String, CseExpr>,
+) {
+    if let Some(k) = reg_to_expr.remove(rd) {
+        if expr_to_reg.get(&k).is_some_and(|r| r == rd) {
+            expr_to_reg.remove(&k);
+        }
+    }
+    let keys: Vec<CseExpr> = expr_to_reg
+        .keys()
+        .filter(|k| cse_expr_uses_reg(k, rd))
+        .cloned()
+        .collect();
+    for k in keys {
+        remove_expr_key(&k, expr_to_reg, reg_to_expr);
+    }
+}
+
+fn define_physical_dest(inst: &Instruction) -> Option<String> {
+    let m = inst.mnemonic.as_deref()?;
+    let rd = inst.operands.first()?.clone();
+    if !mnemonic_defines_first_operand(m, &rd) {
+        return None;
+    }
+    if !is_physical_reg(&rd) {
+        return None;
+    }
+    Some(rd)
+}
+
+fn define_cse_dest(inst: &Instruction, virtual_only: bool) -> Option<String> {
+    let m = inst.mnemonic.as_deref()?;
+    let rd = inst.operands.first()?.clone();
+    if !mnemonic_defines_first_operand(m, &rd) {
+        return None;
+    }
+    if virtual_only {
+        if is_trackable_any_reg(&rd) && !is_forbidden_reg(&rd) {
+            return Some(rd);
+        }
+        return None;
+    }
+    if !is_physical_reg(&rd) {
+        return None;
+    }
+    Some(rd)
+}
+
+fn register_cse_opt_with_mode(instructions: Vec<Instruction>, virtual_only: bool) -> (Vec<Instruction>, usize) {
+    let reset_points = compute_non_fallthrough_entry_points(&instructions);
+    let mut out = Vec::with_capacity(instructions.len());
+    let mut rewrites = 0usize;
+
+    let mut expr_to_reg: HashMap<CseExpr, String> = HashMap::new();
+    let mut reg_to_expr: HashMap<String, CseExpr> = HashMap::new();
+    let mut tracked_mem_base: Option<String> = None;
+
+    for (idx, mut inst) in instructions.into_iter().enumerate() {
+        if inst.label.is_some() || reset_points.get(idx).copied().unwrap_or(false) {
+            expr_to_reg.clear();
+            reg_to_expr.clear();
+            tracked_mem_base = None;
+        }
+
+        if let Some(mnemonic) = inst.mnemonic.as_deref() {
+            // Memory write tracking rule:
+            // - same base+different offset are independent
+            // - write through different base register resets memory environment
+            if (mnemonic == "sw" || mnemonic == "sf" || mnemonic == "sb") && inst.operands.len() == 2 {
+                if let Some((_, base)) = parse_mem_operand(&inst.operands[1]) {
+                    if !is_mem_table_base(&base) {
+                        clear_memory_exprs(&mut expr_to_reg, &mut reg_to_expr);
+                        tracked_mem_base = None;
+                    } else {
+                        match tracked_mem_base.as_deref() {
+                            None => tracked_mem_base = Some(base.clone()),
+                            Some(cur) if cur != base => {
+                                clear_memory_exprs(&mut expr_to_reg, &mut reg_to_expr);
+                                tracked_mem_base = Some(base.clone());
+                            }
+                            _ => {}
+                        }
+                        // Any write can invalidate load expressions.
+                        clear_memory_exprs(&mut expr_to_reg, &mut reg_to_expr);
+                    }
+                } else {
+                    clear_memory_exprs(&mut expr_to_reg, &mut reg_to_expr);
+                    tracked_mem_base = None;
+                }
+            } else if (mnemonic == "lw" || mnemonic == "lf" || mnemonic == "lb")
+                && inst.operands.len() == 2
+            {
+                if let Some((_, base)) = parse_mem_operand(&inst.operands[1]) {
+                    if !is_mem_table_base(&base) {
+                        clear_memory_exprs(&mut expr_to_reg, &mut reg_to_expr);
+                        tracked_mem_base = None;
+                    } else if tracked_mem_base.is_none() {
+                        tracked_mem_base = Some(base);
+                    }
+                }
+            }
+        }
+
+        let cse_dest = define_cse_dest(&inst, virtual_only);
+        let cse_expr = build_cse_expr_with_mode(&inst, tracked_mem_base.as_deref(), virtual_only);
+        let mut drop_inst = false;
+        let mut install_expr: Option<(String, CseExpr)> = None;
+
+        if let (Some(rd), Some(expr)) = (cse_dest.clone(), cse_expr.clone()) {
+            // Self-updating forms (e.g. `addi %rx, %rx, imm`, `lw %rx, off(%rx)`)
+            // read old `rd` and then overwrite `rd`.
+            // Without SSA renaming this key is version-unsafe, so skip CSE.
+            if !cse_expr_uses_reg(&expr, &rd) {
+                if let Some(prev_reg) = expr_to_reg.get(&expr).cloned() {
+                    if prev_reg != rd {
+                        inst.mnemonic = Some(if cse_expr_is_float_result(&expr) {
+                            "fmov".to_string()
+                        } else {
+                            "mov".to_string()
+                        });
+                        inst.operands = vec![rd.clone(), prev_reg];
+                        rewrites += 1;
+                        install_expr = Some((rd, expr));
+                    } else {
+                        if cse_expr_is_memory(&expr) {
+                            // Volatile-like loads are handled in dedicated pass.
+                            install_expr = Some((rd, expr));
+                        } else {
+                            // Exact self-redefinition of already available expression.
+                            // Remove the instruction.
+                            rewrites += 1;
+                            drop_inst = true;
+                        }
+                    }
+                } else {
+                    install_expr = Some((rd, expr));
+                }
+            }
+        }
+
+        if drop_inst {
+            if let Some(lbl) = inst.label.clone() {
+                out.push(Instruction {
+                    label: Some(lbl),
+                    mnemonic: None,
+                    operands: vec![],
+                });
+            }
+            continue;
+        }
+
+        if let Some(rd) = cse_dest {
+            invalidate_exprs_on_def(&rd, &mut expr_to_reg, &mut reg_to_expr);
+            if tracked_mem_base.as_deref().is_some_and(|b| b == rd) {
+                clear_memory_exprs(&mut expr_to_reg, &mut reg_to_expr);
+                tracked_mem_base = None;
+            }
+        }
+        if let Some((rd, expr)) = install_expr {
+            if !expr_to_reg.contains_key(&expr) {
+                expr_to_reg.insert(expr.clone(), rd.clone());
+            }
+            reg_to_expr.insert(rd, expr);
+        }
+
+        if let Some(mnemonic) = inst.mnemonic.as_deref() {
+            if is_trace_barrier(mnemonic) {
+                expr_to_reg.clear();
+                reg_to_expr.clear();
+                tracked_mem_base = None;
+            }
+        }
+
+        out.push(inst);
+    }
+
+    (out, rewrites)
+}
+
+fn register_cse_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    register_cse_opt_with_mode(instructions, false)
+}
+
+fn register_cse_virtual_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    register_cse_opt_with_mode(instructions, true)
 }
 
 fn resolve_alias(alias: &HashMap<String, String>, reg: &str) -> String {
@@ -383,6 +890,151 @@ fn normalize_mov_alias_uses_opt(instructions: Vec<Instruction>) -> (Vec<Instruct
     (out, rewrites)
 }
 
+fn rewrite_use_operand_alias_virtual(op: &str, alias: &HashMap<String, String>) -> Option<String> {
+    if is_trackable_any_reg(op) && !is_forbidden_reg(op) {
+        let mapped = resolve_alias(alias, op);
+        if mapped != op {
+            return Some(mapped);
+        }
+        return None;
+    }
+    let Some(start) = op.find('(') else {
+        return None;
+    };
+    let Some(end_rel) = op[start + 1..].find(')') else {
+        return None;
+    };
+    let end = start + 1 + end_rel;
+    let base = &op[start + 1..end];
+    if !(is_trackable_int_reg(base) && !is_forbidden_reg(base)) {
+        return None;
+    }
+    let mapped_base = resolve_alias(alias, base);
+    if mapped_base == base {
+        return None;
+    }
+    let mut out = String::new();
+    out.push_str(&op[..start + 1]);
+    out.push_str(&mapped_base);
+    out.push_str(&op[end..]);
+    Some(out)
+}
+
+fn normalize_mov_alias_uses_virtual_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    let reset_points = compute_non_fallthrough_entry_points(&instructions);
+    let mut out = Vec::with_capacity(instructions.len());
+    let mut rewrites = 0usize;
+
+    let mut int_alias: HashMap<String, String> = HashMap::new();
+    let mut float_alias: HashMap<String, String> = HashMap::new();
+    let mut int_def_time: HashMap<String, usize> = HashMap::new();
+    let mut float_def_time: HashMap<String, usize> = HashMap::new();
+    let mut tick: usize = 1;
+
+    for (idx, mut inst) in instructions.into_iter().enumerate() {
+        if inst.label.is_some() || reset_points.get(idx).copied().unwrap_or(false) {
+            int_alias.clear();
+            float_alias.clear();
+            int_def_time.clear();
+            float_def_time.clear();
+            tick = 1;
+        }
+
+        if let Some(mnemonic) = inst.mnemonic.as_deref() {
+            let def_first = if inst.operands.is_empty() {
+                false
+            } else {
+                mnemonic_defines_first_operand(mnemonic, &inst.operands[0])
+            };
+            for (op_idx, op) in inst.operands.iter_mut().enumerate() {
+                if op_idx == 0 && def_first {
+                    continue;
+                }
+                let old = op.clone();
+                let rewritten = if is_trackable_int_reg(&old) && !is_forbidden_reg(&old) {
+                    rewrite_use_operand_alias_virtual(&old, &int_alias)
+                } else if is_trackable_float_reg(&old) && !is_forbidden_reg(&old) {
+                    rewrite_use_operand_alias_virtual(&old, &float_alias)
+                } else {
+                    // Memory form like "off(%r)" can still be rewritten.
+                    rewrite_use_operand_alias_virtual(&old, &int_alias)
+                };
+                if let Some(new_op) = rewritten {
+                    if new_op != old {
+                        *op = new_op;
+                        rewrites += 1;
+                    }
+                }
+            }
+
+            let def_reg = if def_first && !inst.operands.is_empty() {
+                Some(inst.operands[0].clone())
+            } else {
+                None
+            };
+            if let Some(rd) = def_reg {
+                if is_trackable_int_reg(&rd) && !is_forbidden_reg(&rd) {
+                    invalidate_aliases(&mut int_alias, &rd);
+                    int_alias.insert(rd.clone(), rd.clone());
+                    int_def_time.insert(rd, tick);
+                } else if is_trackable_float_reg(&rd) && !is_forbidden_reg(&rd) {
+                    invalidate_aliases(&mut float_alias, &rd);
+                    float_alias.insert(rd.clone(), rd.clone());
+                    float_def_time.insert(rd, tick);
+                }
+            }
+
+            if (mnemonic == "mov" || mnemonic == "fmov") && inst.operands.len() == 2 {
+                let rd = inst.operands[0].clone();
+                let rs = inst.operands[1].clone();
+                if mnemonic == "mov"
+                    && is_trackable_int_reg(&rd)
+                    && !is_forbidden_reg(&rd)
+                    && is_trackable_int_reg(&rs)
+                    && !is_forbidden_reg(&rs)
+                {
+                    let src_canon = resolve_alias(&int_alias, &rs);
+                    let src_t = int_def_time.get(&src_canon).copied().unwrap_or(usize::MAX);
+                    let rs_t = int_def_time.get(&rs).copied().unwrap_or(src_t);
+                    let canon = if src_t <= rs_t { src_canon } else { rs };
+                    int_alias.insert(rd.clone(), canon.clone());
+                    if let Some(t) = int_def_time.get(&canon).copied() {
+                        int_def_time.insert(rd, t);
+                    }
+                } else if mnemonic == "fmov"
+                    && is_trackable_float_reg(&rd)
+                    && !is_forbidden_reg(&rd)
+                    && is_trackable_float_reg(&rs)
+                    && !is_forbidden_reg(&rs)
+                {
+                    let src_canon = resolve_alias(&float_alias, &rs);
+                    let src_t = float_def_time.get(&src_canon).copied().unwrap_or(usize::MAX);
+                    let rs_t = float_def_time.get(&rs).copied().unwrap_or(src_t);
+                    let canon = if src_t <= rs_t { src_canon } else { rs };
+                    float_alias.insert(rd.clone(), canon.clone());
+                    if let Some(t) = float_def_time.get(&canon).copied() {
+                        float_def_time.insert(rd, t);
+                    }
+                }
+            }
+
+            if is_trace_barrier(mnemonic) {
+                int_alias.clear();
+                float_alias.clear();
+                int_def_time.clear();
+                float_def_time.clear();
+                tick = 1;
+            } else {
+                tick = tick.saturating_add(1);
+            }
+        }
+
+        out.push(inst);
+    }
+
+    (out, rewrites)
+}
+
 fn remove_indices_preserve_labels(instructions: &[Instruction], remove: &[bool]) -> Vec<Instruction> {
     let mut out = Vec::with_capacity(instructions.len());
     let mut pending_labels: Vec<String> = Vec::new();
@@ -455,7 +1107,9 @@ fn eliminate_dead_moves_cfg_opt(mut instructions: Vec<Instruction>) -> (Vec<Inst
             if !defs.iter().all(|d| is_physical_reg(d)) {
                 continue;
             }
-            if defs.iter().any(|d| d == "%i1" || d == "%i2") {
+            if defs.iter().any(|d| {
+                matches!(d.as_str(), "%i0" | "%i1" | "%i2" | "%i3" | "%f0")
+            }) {
                 continue;
             }
             if defs.iter().any(|d| ai.live_out.contains(d)) {
@@ -482,33 +1136,228 @@ fn eliminate_dead_moves_cfg_opt(mut instructions: Vec<Instruction>) -> (Vec<Inst
     (instructions, total_rewrites)
 }
 
-fn eliminate_redundant_store_load_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
-    let mut out = Vec::with_capacity(instructions.len());
-    let mut rewrites = 0usize;
-    let mut i = 0usize;
-    let n = instructions.len();
+fn eliminate_dead_moves_virtual_opt(mut instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    let mut total_rewrites = 0usize;
+    loop {
+        let analyzed = analysis::analyze(&instructions);
+        let call_arg_live_out_bits = compute_call_arg_live_out_bits(&analyzed);
+        let mut remove = vec![false; instructions.len()];
+        let mut rewrites = 0usize;
 
-    while i < n {
-        if i + 1 < n {
-            let i0 = &instructions[i];
-            let i1 = &instructions[i + 1];
-            let m0 = i0.mnemonic.as_deref().unwrap_or("");
-            let m1 = i1.mnemonic.as_deref().unwrap_or("");
-            if i1.label.is_none()
-                && ((m0 == "sw" && m1 == "lw") || (m0 == "sf" && m1 == "lf"))
-                && i0.operands.len() == 2
-                && i1.operands.len() == 2
-                && i0.operands[0] == i1.operands[0]
-                && i0.operands[1] == i1.operands[1]
-            {
-                out.push(i0.clone());
-                rewrites += 1;
-                i += 2;
+        for (idx, ai) in analyzed.iter().enumerate() {
+            let inst = &ai.instruction;
+            let Some(mnemonic) = inst.mnemonic.as_deref() else {
+                continue;
+            };
+            if is_side_effecting_or_control_mnemonic(mnemonic) {
                 continue;
             }
+            if ai.defs.is_empty() {
+                continue;
+            }
+            if !ai
+                .defs
+                .iter()
+                .all(|d| is_trackable_any_reg(d) && !is_forbidden_reg(d))
+            {
+                continue;
+            }
+            if ai.defs.iter().any(|d| ai.live_out.contains(d)) {
+                continue;
+            }
+            if ai.defs.iter().any(|d| {
+                call_arg_bit(d)
+                    .map(|b| ((call_arg_live_out_bits[idx] >> b) & 1) != 0)
+                    .unwrap_or(false)
+            }) {
+                continue;
+            }
+            remove[idx] = true;
+            rewrites += 1;
         }
-        out.push(instructions[i].clone());
-        i += 1;
+
+        if rewrites == 0 {
+            break;
+        }
+        total_rewrites += rewrites;
+        instructions = remove_indices_preserve_labels(&instructions, &remove);
+    }
+    (instructions, total_rewrites)
+}
+
+fn eliminate_redundant_store_load_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    fn is_disjoint_fixed_base(base: &str) -> bool {
+        matches!(base, "%i0" | "%i1" | "%i2")
+    }
+
+    fn rewrite_uses_with_alias_map(
+        mut inst: Instruction,
+        alias_map: &HashMap<String, String>,
+    ) -> (Instruction, usize) {
+        let Some(mnemonic) = inst.mnemonic.as_deref() else {
+            return (inst, 0);
+        };
+        let def_first = if inst.operands.is_empty() {
+            false
+        } else {
+            mnemonic_defines_first_operand(mnemonic, &inst.operands[0])
+        };
+        let mut rewrites = 0usize;
+        for (idx, op) in inst.operands.iter_mut().enumerate() {
+            if idx == 0 && def_first {
+                continue;
+            }
+            if let Some(new_op) = rewrite_use_operand_alias(op, alias_map) {
+                if new_op != *op {
+                    *op = new_op;
+                    rewrites += 1;
+                }
+            }
+        }
+        (inst, rewrites)
+    }
+
+    fn kill_dest(
+        rd: &str,
+        mem_map: &mut HashMap<String, HashMap<i32, String>>,
+        alias_map: &mut HashMap<String, String>,
+    ) {
+        mem_map.remove(rd);
+        for table in mem_map.values_mut() {
+            table.retain(|_, v| v != rd);
+        }
+        invalidate_aliases(alias_map, rd);
+        alias_map.insert(rd.to_string(), rd.to_string());
+    }
+
+    fn drop_or_nop_placeholder(out: &mut Vec<Instruction>, inst: &Instruction) {
+        if let Some(lbl) = &inst.label {
+            out.push(Instruction {
+                label: Some(lbl.clone()),
+                mnemonic: Some("nop".to_string()),
+                operands: vec![],
+            });
+        }
+    }
+
+    let reset_points = compute_non_fallthrough_entry_points(&instructions);
+    let mut out = Vec::with_capacity(instructions.len());
+    let mut rewrites = 0usize;
+    // mem_map[base][offset] = value register
+    let mut mem_map: HashMap<String, HashMap<i32, String>> = HashMap::new();
+    // alias_map[reg] = equivalent register
+    let mut alias_map: HashMap<String, String> = HashMap::new();
+
+    for (idx, inst0) in instructions.into_iter().enumerate() {
+        if inst0.label.is_some() || reset_points.get(idx).copied().unwrap_or(false) {
+            mem_map.clear();
+            alias_map.clear();
+        }
+
+        let (mut inst, alias_rw) = rewrite_uses_with_alias_map(inst0, &alias_map);
+        rewrites += alias_rw;
+
+        let Some(mnemonic) = inst.mnemonic.as_deref() else {
+            out.push(inst);
+            continue;
+        };
+
+        if is_trace_barrier(mnemonic) {
+            mem_map.clear();
+            alias_map.clear();
+            out.push(inst);
+            continue;
+        }
+
+        match mnemonic {
+            // keep sb/lb untouched except alias rewrite already done for uses
+            "sb" => {
+                out.push(inst);
+                continue;
+            }
+            "lb" => {
+                let rd = inst.operands.first().cloned();
+                out.push(inst);
+                if let Some(rd) = rd {
+                    kill_dest(&rd, &mut mem_map, &mut alias_map);
+                }
+                continue;
+            }
+            "sw" if inst.operands.len() == 2 => {
+                let src = resolve_alias(&alias_map, &inst.operands[0]);
+                inst.operands[0] = src.clone();
+                if let Some((off, base_raw)) = parse_mem_operand(&inst.operands[1]) {
+                    let base = resolve_alias(&alias_map, &base_raw);
+                    if base != base_raw {
+                        inst.operands[1] = format!("{}({})", off, base);
+                    }
+
+                    if let Some(prev) = mem_map.get(&base).and_then(|m| m.get(&off)).cloned() {
+                        if prev == src {
+                            rewrites += 1;
+                            drop_or_nop_placeholder(&mut out, &inst);
+                            continue;
+                        }
+                        mem_map.entry(base).or_default().insert(off, src);
+                        out.push(inst);
+                        continue;
+                    }
+
+                    mem_map.entry(base.clone()).or_default().insert(off, src);
+                    // Store may affect aliasable bases.
+                    // Keep disjoint fixed-base regions (%i0/%i1/%i2) mutually intact.
+                    if is_disjoint_fixed_base(&base) {
+                        mem_map.retain(|k, _| is_disjoint_fixed_base(k) || k == &base);
+                    } else {
+                        mem_map.retain(|k, _| k == &base);
+                    }
+                    out.push(inst);
+                    continue;
+                }
+
+                out.push(inst);
+                continue;
+            }
+            "lw" if inst.operands.len() == 2 => {
+                let rd = inst.operands[0].clone();
+                if let Some((off, base_raw)) = parse_mem_operand(&inst.operands[1]) {
+                    let base = resolve_alias(&alias_map, &base_raw);
+                    if base != base_raw {
+                        inst.operands[1] = format!("{}({})", off, base);
+                    }
+
+                    if let Some(prev) = mem_map.get(&base).and_then(|m| m.get(&off)).cloned() {
+                        let rd_now = resolve_alias(&alias_map, &rd);
+                        if prev == rd_now {
+                            rewrites += 1;
+                            drop_or_nop_placeholder(&mut out, &inst);
+                            continue;
+                        }
+                        kill_dest(&rd, &mut mem_map, &mut alias_map);
+                        alias_map.insert(rd.clone(), resolve_alias(&alias_map, &prev));
+                        rewrites += 1;
+                        drop_or_nop_placeholder(&mut out, &inst);
+                        continue;
+                    }
+
+                    kill_dest(&rd, &mut mem_map, &mut alias_map);
+                    mem_map.entry(base).or_default().insert(off, rd.clone());
+                    out.push(inst);
+                    continue;
+                }
+
+                out.push(inst.clone());
+                kill_dest(&rd, &mut mem_map, &mut alias_map);
+                continue;
+            }
+            _ => {}
+        }
+
+        let def_reg = define_physical_dest(&inst);
+        out.push(inst);
+        if let Some(rd) = def_reg {
+            kill_dest(&rd, &mut mem_map, &mut alias_map);
+        }
     }
 
     (out, rewrites)
