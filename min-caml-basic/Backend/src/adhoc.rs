@@ -30,9 +30,9 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
     let (instructions, global_access_rewrites) = global_access_opt(instructions);
     let (instructions, zero_base_fold_rewrites) = fold_zero_base_addr_opt(instructions);
     let (instructions, word_offset_rewrites) = scale_word_mem_offset_opt(instructions);
-    let (instructions, val_trace_rewrites) = (instructions, 0);
-    let (instructions, alias_use_rewrites) = (instructions, 0);
-    let (instructions, dead_move_rewrites) = (instructions, 0);
+    let (instructions, val_trace_rewrites) = const_reuse_with_val_trace_opt(instructions);
+    let (instructions, alias_use_rewrites) = normalize_mov_alias_uses_opt(instructions);
+    let (instructions, dead_move_rewrites) = eliminate_dead_moves_cfg_opt(instructions);
     let (instructions, redundant_reload_rewrites) = eliminate_redundant_store_load_opt(instructions);
     OptimizeResult {
         instructions,
@@ -47,6 +47,36 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
         branch_relax_rewrites,
         short_jump_fold_rewrites,
     }
+}
+
+fn compute_non_fallthrough_entry_points(instructions: &[Instruction]) -> Vec<bool> {
+    let analyzed = analysis::analyze(instructions);
+    let n = analyzed.len();
+    let mut preds: Vec<Vec<usize>> = vec![Vec::new(); n];
+    for (i, ai) in analyzed.iter().enumerate() {
+        for &s in &ai.succ {
+            if s < n {
+                preds[s].push(i);
+            }
+        }
+    }
+    let mut reset = vec![false; n];
+    for i in 0..n {
+        if i == 0 {
+            reset[i] = true;
+            continue;
+        }
+        let ps = &preds[i];
+        // Entering a point without plain fall-through predecessor means
+        // control may arrive from elsewhere (jump/call target), so alias/const
+        // facts from linear scan are not guaranteed.
+        let has_prev_fallthrough = ps.iter().any(|&p| p + 1 == i);
+        let has_non_fallthrough_pred = ps.iter().any(|&p| p + 1 != i);
+        if !has_prev_fallthrough || has_non_fallthrough_pred {
+            reset[i] = true;
+        }
+    }
+    reset
 }
 
 fn is_float_reg(reg: &str) -> bool {
@@ -257,6 +287,7 @@ fn reset_alias_state(
 }
 
 fn normalize_mov_alias_uses_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    let reset_points = compute_non_fallthrough_entry_points(&instructions);
     let mut out = Vec::with_capacity(instructions.len());
     let mut rewrites = 0usize;
 
@@ -272,8 +303,8 @@ fn normalize_mov_alias_uses_opt(instructions: Vec<Instruction>) -> (Vec<Instruct
     );
     let mut tick: usize = 1;
 
-    for inst in instructions {
-        if inst.label.is_some() {
+    for (idx, inst) in instructions.into_iter().enumerate() {
+        if inst.label.is_some() || reset_points.get(idx).copied().unwrap_or(false) {
             reset_alias_state(
                 &mut int_alias,
                 &mut float_alias,
@@ -764,6 +795,7 @@ fn is_trace_barrier(mnemonic: &str) -> bool {
 }
 
 fn const_reuse_with_val_trace_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    let reset_points = compute_non_fallthrough_entry_points(&instructions);
     let mut out = Vec::with_capacity(instructions.len());
     let mut rewrites = 0usize;
     let mut trace = ValTrace::new();
@@ -771,11 +803,14 @@ fn const_reuse_with_val_trace_opt(instructions: Vec<Instruction>) -> (Vec<Instru
     let n = instructions.len();
 
     while i < n {
-        if instructions[i].label.is_some() {
+        if instructions[i].label.is_some() || reset_points.get(i).copied().unwrap_or(false) {
             trace.clear_for_new_block();
         }
 
-        if i + 2 < n {
+        if i + 2 < n
+            && !reset_points.get(i + 1).copied().unwrap_or(false)
+            && !reset_points.get(i + 2).copied().unwrap_or(false)
+        {
             if let Some(new_inst) =
                 fold_mov_xor_ceqi_pattern(&instructions[i], &instructions[i + 1], &instructions[i + 2])
             {
@@ -787,7 +822,7 @@ fn const_reuse_with_val_trace_opt(instructions: Vec<Instruction>) -> (Vec<Instru
             }
         }
 
-        if i + 1 < n {
+        if i + 1 < n && !reset_points.get(i + 1).copied().unwrap_or(false) {
             if let Some(new_inst) = fold_xor_ceqi_pattern(&instructions[i], &instructions[i + 1]) {
                 trace.observe_instruction(&new_inst);
                 out.push(new_inst);
@@ -797,7 +832,11 @@ fn const_reuse_with_val_trace_opt(instructions: Vec<Instruction>) -> (Vec<Instru
             }
         }
 
-        if i + 3 < n {
+        if i + 3 < n
+            && !reset_points.get(i + 1).copied().unwrap_or(false)
+            && !reset_points.get(i + 2).copied().unwrap_or(false)
+            && !reset_points.get(i + 3).copied().unwrap_or(false)
+        {
             if let Some(new_insts) = fold_bool_to_pm1_pattern(
                 &instructions[i],
                 &instructions[i + 1],
@@ -814,7 +853,7 @@ fn const_reuse_with_val_trace_opt(instructions: Vec<Instruction>) -> (Vec<Instru
             }
         }
 
-        if i + 1 < n {
+        if i + 1 < n && !reset_points.get(i + 1).copied().unwrap_or(false) {
             if let Some(new_inst) = fold_bool_neg_pattern(&instructions[i], &instructions[i + 1], &trace) {
                 trace.observe_instruction(&new_inst);
                 out.push(new_inst);
@@ -824,7 +863,7 @@ fn const_reuse_with_val_trace_opt(instructions: Vec<Instruction>) -> (Vec<Instru
             }
         }
 
-        if i + 1 < n {
+        if i + 1 < n && !reset_points.get(i + 1).copied().unwrap_or(false) {
             if let Some(new_inst) = fold_mov_xor_pattern(&instructions[i], &instructions[i + 1]) {
                 trace.observe_instruction(&new_inst);
                 out.push(new_inst);

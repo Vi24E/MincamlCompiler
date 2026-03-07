@@ -920,3 +920,17 @@ TopFuncs:
     #2 0x0006e424 read_or_network.3895: 3 (6.5%)
 Comment: 
 ================================================
+2026-03-07 10:10:57 | Mode: v2 | Size: 32x32 | Cycles: 231431342 
+Accuracy: 100.00% | MemAccessRate: 26.36% | Compile: 146.667s | Sim: 20.663s
+TopFuncs:
+    #1 0x0006e3d0 read_net_item.3881: 43 (93.5%)
+    #2 0x0006e4a4 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 10:15:04 | Mode: v2 | Size: 32x32 | Cycles: 198319488 
+Accuracy: 100.00% | MemAccessRate: 30.76% | Compile: 152.356s | Sim: 16.893s
+TopFuncs:
+    #1 0x0005df8c read_net_item.3881: 43 (93.5%)
+    #2 0x0005e058 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
