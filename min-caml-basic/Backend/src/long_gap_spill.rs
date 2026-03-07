@@ -107,6 +107,59 @@ fn build_preds(analyzed: &[analysis::AnalyzedInstruction]) -> Vec<Vec<usize>> {
     preds
 }
 
+enum SourceDistanceClass {
+    Near,
+    Far,
+    Unreachable,
+}
+
+fn classify_nearest_source_distance(
+    preds: &[Vec<usize>],
+    use_idx: usize,
+    source_set: &HashSet<usize>,
+    self_idx: usize,
+    threshold_alive: usize,
+    comp_of: &[usize],
+    comp_is_loop: &[bool],
+) -> SourceDistanceClass {
+    if use_idx >= preds.len() {
+        return SourceDistanceClass::Unreachable;
+    }
+    if use_idx < comp_of.len() {
+        let use_cid = comp_of[use_idx];
+        if use_cid < comp_is_loop.len() && comp_is_loop[use_cid] {
+            for &s in source_set {
+                if s != self_idx && s < comp_of.len() && comp_of[s] == use_cid {
+                    return SourceDistanceClass::Near;
+                }
+            }
+        }
+    }
+    let mut visited = vec![false; preds.len()];
+    let mut q: VecDeque<(usize, usize)> = VecDeque::new();
+    for &p in &preds[use_idx] {
+        if p < preds.len() && !visited[p] {
+            visited[p] = true;
+            q.push_back((p, 1));
+        }
+    }
+    while let Some((cur, dist)) = q.pop_front() {
+        if cur != self_idx && source_set.contains(&cur) {
+            if dist >= threshold_alive {
+                return SourceDistanceClass::Far;
+            }
+            return SourceDistanceClass::Near;
+        }
+        for &p in &preds[cur] {
+            if p < preds.len() && !visited[p] {
+                visited[p] = true;
+                q.push_back((p, dist + 1));
+            }
+        }
+    }
+    SourceDistanceClass::Unreachable
+}
+
 fn build_loop_node_mask(analyzed: &[analysis::AnalyzedInstruction]) -> Vec<bool> {
     let n = analyzed.len();
     let mut graph: DiGraph<(), ()> = DiGraph::new();
@@ -143,39 +196,43 @@ fn build_loop_node_mask(analyzed: &[analysis::AnalyzedInstruction]) -> Vec<bool>
     in_loop
 }
 
-fn has_near_source_within_threshold(
-    preds: &[Vec<usize>],
-    use_idx: usize,
-    source_set: &HashSet<usize>,
-    threshold_alive: usize,
-) -> bool {
-    if threshold_alive == 0 || use_idx >= preds.len() {
-        return true;
+fn build_scc_info(analyzed: &[analysis::AnalyzedInstruction]) -> (Vec<usize>, Vec<bool>) {
+    let n = analyzed.len();
+    let mut graph: DiGraph<(), ()> = DiGraph::new();
+    let mut nodes: Vec<NodeIndex> = Vec::with_capacity(n);
+    for _ in 0..n {
+        nodes.push(graph.add_node(()));
     }
-    let mut visited = vec![false; preds.len()];
-    let mut q: VecDeque<(usize, usize)> = VecDeque::new();
-    for &p in &preds[use_idx] {
-        if p < preds.len() && !visited[p] {
-            visited[p] = true;
-            q.push_back((p, 1));
-        }
-    }
-
-    while let Some((cur, dist)) = q.pop_front() {
-        if source_set.contains(&cur) {
-            return true;
-        }
-        if dist >= threshold_alive {
-            continue;
-        }
-        for &p in &preds[cur] {
-            if p < preds.len() && !visited[p] {
-                visited[p] = true;
-                q.push_back((p, dist + 1));
+    let mut self_loop = vec![false; n];
+    for (i, inst) in analyzed.iter().enumerate() {
+        for &to in &inst.succ {
+            if to >= n {
+                continue;
+            }
+            graph.add_edge(nodes[i], nodes[to], ());
+            if to == i {
+                self_loop[i] = true;
             }
         }
     }
-    false
+
+    let comps = kosaraju_scc(&graph);
+    let mut comp_of = vec![0usize; n];
+    let mut comp_is_loop = vec![false; comps.len()];
+    for (cid, comp) in comps.iter().enumerate() {
+        let loop_like = if comp.len() > 1 {
+            true
+        } else if let Some(ni) = comp.first() {
+            self_loop[ni.index()]
+        } else {
+            false
+        };
+        comp_is_loop[cid] = loop_like;
+        for ni in comp {
+            comp_of[ni.index()] = cid;
+        }
+    }
+    (comp_of, comp_is_loop)
 }
 
 fn next_spill_slot_start(func_insts: &[Instruction]) -> i32 {
@@ -223,6 +280,7 @@ fn rewrite_function(
 ) -> Vec<Instruction> {
     let analyzed = analysis::analyze(func_insts);
     let preds = build_preds(&analyzed);
+    let (comp_of, comp_is_loop) = build_scc_info(&analyzed);
     let in_loop = if cfg.exclude_loop_vars {
         Some(build_loop_node_mask(&analyzed))
     } else {
@@ -294,17 +352,27 @@ fn rewrite_function(
         }
 
         let mut long_gap_starts: Vec<usize> = Vec::new();
+        let mut unreachable_found = false;
         for &u in &uses {
-            let mut source_set = all_sources.clone();
-            source_set.remove(&u);
-            if source_set.is_empty() {
-                continue;
+            match classify_nearest_source_distance(
+                &preds,
+                u,
+                &all_sources,
+                u,
+                cfg.threshold_alive,
+                &comp_of,
+                &comp_is_loop,
+            ) {
+                SourceDistanceClass::Near => {}
+                SourceDistanceClass::Far => long_gap_starts.push(u),
+                SourceDistanceClass::Unreachable => {
+                    unreachable_found = true;
+                    break;
+                }
             }
-            let near =
-                has_near_source_within_threshold(&preds, u, &source_set, cfg.threshold_alive);
-            if !near {
-                long_gap_starts.push(u);
-            }
+        }
+        if unreachable_found {
+            continue;
         }
 
         let chunk_count = 1 + long_gap_starts.len();

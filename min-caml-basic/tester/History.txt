@@ -932,5 +932,68 @@ Accuracy: 100.00% | MemAccessRate: 30.76% | Compile: 152.356s | Sim: 16.893s
 TopFuncs:
     #1 0x0005df8c read_net_item.3881: 43 (93.5%)
     #2 0x0005e058 read_or_network.3895: 3 (6.5%)
+Comment: beta + elim on regs
+================================================
+2026-03-07 10:24:39 | Mode: v2 | Size: 32x32 | Cycles: 2137511460 [TIMED OUT after 120s]
+Accuracy: N/A | MemAccessRate: 25.55% | Compile: 145.664s | Sim: 120.010s
+TopFuncs:
+    #1 0x00070dc0 read_net_item.3881: 43 (93.5%)
+    #2 0x00070e8c read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 10:30:05 | Mode: v2 | Size: 32x32 | Cycles: 2170421144 [TIMED OUT after 120s]
+Accuracy: N/A | MemAccessRate: 25.55% | Compile: 157.426s | Sim: 120.012s
+TopFuncs:
+    #1 0x00070dc0 read_net_item.3881: 43 (93.5%)
+    #2 0x00070e8c read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 10:36:56 | Mode: v2 | Size: 32x32 | Cycles: 2110500195 [TIMED OUT after 120s]
+Accuracy: N/A | MemAccessRate: 22.02% | Compile: 151.479s | Sim: 120.010s
+TopFuncs:
+    #1 0x00081280 read_net_item.3881: 43 (93.5%)
+    #2 0x00081354 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 10:40:04 | Mode: v2 | Size: 32x32 | Cycles: 231431342 
+Accuracy: 100.00% | MemAccessRate: 26.36% | Compile: 148.005s | Sim: 20.959s
+TopFuncs:
+    #1 0x0006e3d0 read_net_item.3881: 43 (93.5%)
+    #2 0x0006e4a4 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 10:43:59 | Mode: v2 | Size: 32x32 | Cycles: 198319514 
+Accuracy: 100.00% | MemAccessRate: 30.76% | Compile: 159.180s | Sim: 17.156s
+TopFuncs:
+    #1 0x0005e024 read_net_item.3881: 43 (93.5%)
+    #2 0x0005e0f0 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 10:52:09 | Mode: v2 | Size: 32x32 | Cycles: 198319488 
+Accuracy: 100.00% | MemAccessRate: 30.76% | Compile: 158.968s | Sim: 16.799s
+TopFuncs:
+    #1 0x0005df8c read_net_item.3881: 43 (93.5%)
+    #2 0x0005e058 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 11:01:57 | Mode: v2 | Size: 32x32 | Cycles: 2133367052 [TIMED OUT after 120s]
+Accuracy: N/A | MemAccessRate: 25.55% | Compile: 164.562s | Sim: 120.009s
+TopFuncs:
+    #1 0x00070ea0 read_net_item.3881: 43 (93.5%)
+    #2 0x00070f6c read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 11:06:37 | Mode: v2 | Size: 32x32 | Cycles: 198009282 
+Accuracy: 100.00% | MemAccessRate: 30.80% | Compile: 148.625s | Sim: 16.928s
+TopFuncs:
+    #1 0x0005ddc8 read_net_item.3881: 43 (93.5%)
+    #2 0x0005de94 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 21:31:25 | Mode: v2 | Size: 32x32 | Cycles: 198009282 
+Accuracy: 100.00% | MemAccessRate: 30.80% | Compile: 130.834s | Sim: 16.151s
+TopFuncs:
+    #1 0x0005ddc8 read_net_item.3881: 43 (93.5%)
+    #2 0x0005de94 read_or_network.3895: 3 (6.5%)
 Comment: 
 ================================================
