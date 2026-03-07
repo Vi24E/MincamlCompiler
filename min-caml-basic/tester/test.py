@@ -168,20 +168,20 @@ def convert_minrt_text_input_to_binary(text):
     Convert tokenized text input into raw 32-bit binary.
     Whitespace (space/newline/tab) is only a separator.
     Each numeric token becomes 4 bytes:
-      - int token   -> signed int32 (big-endian)
-      - float token -> IEEE754 float32 (big-endian)
+      - int token   -> signed int32 (little-endian)
+      - float token -> IEEE754 float32 (little-endian)
     """
     out = bytearray()
     tokens = text.split()
     for idx, tok in enumerate(tokens):
         try:
             if any(c in tok for c in ".eE"):
-                out.extend(struct.pack(">f", float(tok)))
+                out.extend(struct.pack("<f", float(tok)))
             else:
                 v = int(tok, 0)
                 if v < -2147483648 or v > 2147483647:
                     raise ValueError("int32 out of range")
-                out.extend(struct.pack(">i", v))
+                out.extend(struct.pack("<i", v))
         except ValueError as e:
             raise ValueError(f"Failed to parse token #{idx + 1} '{tok}': {e}") from e
     return bytes(out)
@@ -215,12 +215,12 @@ def convert_minrt_text_input_to_binary_typed(text):
             v = int(fv)
         if v < -2147483648 or v > 2147483647:
             raise ValueError(f"int32 out of range: {v}")
-        out.extend(struct.pack(">i", v))
+        out.extend(struct.pack("<i", v))
         return v
 
     def read_float_token():
         tok = read_token()
-        out.extend(struct.pack(">f", float(tok)))
+        out.extend(struct.pack("<f", float(tok)))
 
     # read_screen_settings: 5 floats
     for _ in range(5):

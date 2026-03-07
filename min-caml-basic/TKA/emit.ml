@@ -182,7 +182,7 @@ let emit_zero_filled_create_array_const oc ~count ~ret_reg =
 
 let emit_zero_filled_create_array_dynamic oc ~count_reg ~ret_reg =
   let hp = Id.to_string Asm.reg_hp in
-  let i15 = "%i15" in
+  let i15 = "%i29" in
   Printf.fprintf oc "\tmov\t%s, %s\n" i15 count_reg;
   Printf.fprintf oc "\tmov\t%s, %s\n" ret_reg hp;
   Printf.fprintf oc "\tslli\t%s, %s, 2\n" i15 i15;
@@ -193,15 +193,15 @@ let emit_read_u32_to_int oc ~dst_reg =
   let rsw = Id.to_string Asm.reg_sw in
   Printf.fprintf oc "\tmovui\t%s, 0xf0000\n" i5;
   Printf.fprintf oc "\tlb\t%s, 0(%s)\n" dst_reg i5;
-  Printf.fprintf oc "\tslli\t%s, %s, 8\n" dst_reg dst_reg;
   Printf.fprintf oc "\tlb\t%s, 0(%s)\n" rsw i5;
-  Printf.fprintf oc "\tor\t%s, %s, %s\n" dst_reg rsw dst_reg;
-  Printf.fprintf oc "\tslli\t%s, %s, 8\n" dst_reg dst_reg;
+  Printf.fprintf oc "\tslli\t%s, %s, 8\n" rsw rsw;
+  Printf.fprintf oc "\tor\t%s, %s, %s\n" dst_reg dst_reg rsw;
   Printf.fprintf oc "\tlb\t%s, 0(%s)\n" rsw i5;
-  Printf.fprintf oc "\tor\t%s, %s, %s\n" dst_reg rsw dst_reg;
-  Printf.fprintf oc "\tslli\t%s, %s, 8\n" dst_reg dst_reg;
+  Printf.fprintf oc "\tslli\t%s, %s, 16\n" rsw rsw;
+  Printf.fprintf oc "\tor\t%s, %s, %s\n" dst_reg dst_reg rsw;
   Printf.fprintf oc "\tlb\t%s, 0(%s)\n" rsw i5;
-  Printf.fprintf oc "\tor\t%s, %s, %s\n" dst_reg rsw dst_reg
+  Printf.fprintf oc "\tslli\t%s, %s, 24\n" rsw rsw;
+  Printf.fprintf oc "\tor\t%s, %s, %s\n" dst_reg dst_reg rsw
 
 
 (* 関数呼び出しのために引数を並べ替える(register shuffling) (caml2html: emit_shuffle) *)
@@ -1128,7 +1128,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero reg_ra
   | Tail, CallDir(Id.L("min_caml_create_array"), ys, []) ->
       let i2     = Id.to_string Asm.reg_hp in
-      let i15    = "%i15" in
+      let i15    = "%i29" in
       let ret    = Id.to_string (int_return_reg ()) in
       let rz     = Id.to_string reg_zero in
       let rsw    = Id.to_string Asm.reg_sw in
@@ -1194,7 +1194,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
           Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw)
   | Tail, CallDir(Id.L("min_caml_create_float_array"), ys, zs) ->
       let i2     = Id.to_string Asm.reg_hp in
-      let i15    = "%i15" in
+      let i15    = "%i29" in
       let ret    = Id.to_string (int_return_reg ()) in
       let rz     = Id.to_string reg_zero in
       let rsw    = Id.to_string Asm.reg_sw in
@@ -1362,7 +1362,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
         Printf.fprintf oc "\tfmov\t%s, %s\n" a_str fr
   | NonTail(a), CallDir(Id.L("min_caml_create_array"), ys, []) ->
       let i2     = Id.to_string Asm.reg_hp in
-      let i15    = "%i15" in
+      let i15    = "%i29" in
       let ret    = Id.to_string (int_return_reg ()) in
       let rz     = Id.to_string reg_zero in
       let rsw    = Id.to_string Asm.reg_sw in
@@ -1435,7 +1435,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
           move_result ())
   | NonTail(a), CallDir(Id.L("min_caml_create_float_array"), ys, zs) ->
       let i2     = Id.to_string Asm.reg_hp in
-      let i15    = "%i15" in
+      let i15    = "%i29" in
       let ret    = Id.to_string (int_return_reg ()) in
       let rz     = Id.to_string reg_zero in
       let rsw    = Id.to_string Asm.reg_sw in

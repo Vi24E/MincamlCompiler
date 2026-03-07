@@ -1,7 +1,6 @@
 use crate::analysis;
 use crate::input::Instruction;
-use std::collections::HashMap;
-use std::collections::HashSet;
+use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet};
 
 pub struct OptimizeResult {
     pub instructions: Vec<Instruction>,
@@ -16,6 +15,7 @@ pub struct OptimizeResult {
     pub trampoline_elim_rewrites: usize,
     pub branch_relax_rewrites: usize,
     pub short_jump_fold_rewrites: usize,
+    pub loop_invariant_hoist_rewrites: usize,
 }
 
 pub struct VirtualOptimizeResult {
@@ -57,6 +57,7 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
     let (instructions, alias_use_rewrites) = normalize_mov_alias_uses_opt(instructions);
     let (instructions, dead_move_rewrites_1) = eliminate_dead_moves_cfg_opt(instructions);
     let (instructions, reg_cse_rewrites) = register_cse_opt(instructions);
+    let (instructions, loop_invariant_hoist_rewrites) = hoist_loop_invariants_opt(instructions);
     let (instructions, dead_move_rewrites_2) = eliminate_dead_moves_cfg_opt(instructions);
     let dead_move_rewrites = dead_move_rewrites_1 + dead_move_rewrites_2;
     let (instructions, redundant_reload_rewrites) = eliminate_redundant_store_load_opt(instructions);
@@ -73,7 +74,599 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
         trampoline_elim_rewrites,
         branch_relax_rewrites,
         short_jump_fold_rewrites,
+        loop_invariant_hoist_rewrites,
     }
+}
+
+fn loop_invariant_stats_enabled() -> bool {
+    std::env::var("BACKEND_LOOP_INV_STATS")
+        .map(|v| v != "0")
+        .unwrap_or(false)
+}
+
+fn loop_invariant_detail_limit() -> usize {
+    std::env::var("BACKEND_LOOP_INV_DETAIL_LIMIT")
+        .ok()
+        .and_then(|v| v.parse::<usize>().ok())
+        .unwrap_or(8)
+}
+
+fn format_instruction_line(inst: &Instruction) -> String {
+    let mut s = String::new();
+    if let Some(label) = &inst.label {
+        s.push_str(label);
+        s.push(':');
+        if inst.mnemonic.is_some() {
+            s.push(' ');
+        }
+    }
+    if let Some(mnemonic) = &inst.mnemonic {
+        s.push_str(mnemonic);
+        if !inst.operands.is_empty() {
+            s.push(' ');
+            s.push_str(&inst.operands.join(", "));
+        }
+    }
+    if s.is_empty() {
+        "<empty>".to_string()
+    } else {
+        s
+    }
+}
+
+#[derive(Debug, Default, Clone)]
+struct LoopInvariantLoopDetail {
+    header_idx: usize,
+    node_count: usize,
+    s_count: usize,
+    invariant_defs: usize,
+    header_inst: String,
+    s_sample: Vec<String>,
+}
+
+#[derive(Debug, Default, Clone)]
+struct LoopInvariantStats {
+    indeg2_headers: usize,
+    qualified_loops: usize,
+    skipped_no_backedge: usize,
+    skipped_noncanonical_split: usize,
+    total_loop_nodes: usize,
+    loops_with_nonempty_s: usize,
+    total_s_regs: usize,
+    unique_s_regs: BTreeSet<String>,
+    unique_s_virtual_regs: BTreeSet<String>,
+    invariant_reg_occurrences: usize,
+    unique_invariant_def_sites: BTreeSet<usize>,
+    s_regs_without_loop_def: usize,
+    s_regs_multiple_loop_defs: usize,
+    invariant_def_mnemonic_hist: BTreeMap<String, usize>,
+    details: Vec<LoopInvariantLoopDetail>,
+}
+
+fn forward_reachable_from_header(
+    header_idx: usize,
+    analyzed: &[analysis::AnalyzedInstruction],
+) -> HashSet<usize> {
+    let n = analyzed.len();
+    let mut vis: HashSet<usize> = HashSet::new();
+    let mut wl: Vec<usize> = vec![header_idx];
+    while let Some(cur) = wl.pop() {
+        if cur >= n || !vis.insert(cur) {
+            continue;
+        }
+        for &to in &analyzed[cur].succ {
+            if to >= header_idx && to < n && !vis.contains(&to) {
+                wl.push(to);
+            }
+        }
+    }
+    vis
+}
+
+fn reverse_reachable_to_backedge_tail(
+    header_idx: usize,
+    tail_idx: usize,
+    preds: &[Vec<usize>],
+) -> HashSet<usize> {
+    let mut vis: HashSet<usize> = HashSet::new();
+    let mut wl: Vec<usize> = vec![tail_idx];
+    vis.insert(header_idx);
+    while let Some(cur) = wl.pop() {
+        if !vis.insert(cur) {
+            continue;
+        }
+        for &p in &preds[cur] {
+            if p != header_idx && p >= header_idx && !vis.contains(&p) {
+                wl.push(p);
+            }
+        }
+    }
+    vis
+}
+
+fn collect_loop_invariant_stats(
+    instructions: &[Instruction],
+    analyzed: &[analysis::AnalyzedInstruction],
+) -> LoopInvariantStats {
+    let mut stats = LoopInvariantStats::default();
+    let n = analyzed.len();
+    if n == 0 {
+        return stats;
+    }
+
+    let mut preds: Vec<Vec<usize>> = vec![Vec::new(); n];
+    for (idx, ai) in analyzed.iter().enumerate() {
+        for &to in &ai.succ {
+            if to >= n {
+                continue;
+            }
+            preds[to].push(idx);
+        }
+    }
+
+    let mut def_sites: HashMap<String, Vec<usize>> = HashMap::new();
+    for (idx, ai) in analyzed.iter().enumerate() {
+        for d in &ai.defs {
+            def_sites.entry(d.clone()).or_default().push(idx);
+        }
+    }
+
+    for header_idx in 0..n {
+        if preds[header_idx].len() != 2 {
+            continue;
+        }
+        stats.indeg2_headers += 1;
+
+        let mut back_preds: Vec<usize> = Vec::new();
+        let mut preheader_preds: Vec<usize> = Vec::new();
+        for &p in &preds[header_idx] {
+            if p >= header_idx {
+                back_preds.push(p);
+            } else {
+                preheader_preds.push(p);
+            }
+        }
+        if back_preds.is_empty() {
+            stats.skipped_no_backedge += 1;
+            continue;
+        }
+        if back_preds.len() != 1 || preheader_preds.len() != 1 {
+            stats.skipped_noncanonical_split += 1;
+            continue;
+        }
+        let tail_idx = back_preds[0];
+
+        let fwd = forward_reachable_from_header(header_idx, analyzed);
+        let rev = reverse_reachable_to_backedge_tail(header_idx, tail_idx, &preds);
+        let mut loop_nodes: Vec<usize> = fwd.intersection(&rev).copied().collect();
+        loop_nodes.sort_unstable();
+        if loop_nodes.len() <= 1 {
+            continue;
+        }
+        let loop_set: HashSet<usize> = loop_nodes.iter().copied().collect();
+
+        stats.qualified_loops += 1;
+        stats.total_loop_nodes += loop_nodes.len();
+
+        let mut def_count_in_loop: HashMap<String, usize> = HashMap::new();
+        let mut unique_def_idx_in_loop: HashMap<String, usize> = HashMap::new();
+        let mut always_live: Option<BTreeSet<String>> = None;
+        for &idx in &loop_nodes {
+            for d in &analyzed[idx].defs {
+                let cnt = def_count_in_loop.entry(d.clone()).or_insert(0);
+                *cnt += 1;
+                if *cnt == 1 {
+                    unique_def_idx_in_loop.insert(d.clone(), idx);
+                } else {
+                    unique_def_idx_in_loop.remove(d);
+                }
+            }
+            if let Some(cur) = &mut always_live {
+                cur.retain(|r| analyzed[idx].live_in.contains(r));
+            } else {
+                always_live = Some(analyzed[idx].live_in.clone());
+            }
+        }
+
+        // S: loop全域でliveかつ loop内単一定義で、定義式が不変になるものを fixed-point で抽出。
+        let always_live = always_live.unwrap_or_default();
+        let mut candidates: BTreeSet<String> = BTreeSet::new();
+        for r in &always_live {
+            match def_count_in_loop.get(r).copied().unwrap_or(0) {
+                0 => stats.s_regs_without_loop_def += 1,
+                1 => {
+                    candidates.insert(r.clone());
+                }
+                _ => stats.s_regs_multiple_loop_defs += 1,
+            }
+        }
+
+        let mut s_set: BTreeSet<String> = BTreeSet::new();
+        let mut changed = true;
+        while changed {
+            changed = false;
+            for r in &candidates {
+                if s_set.contains(r) {
+                    continue;
+                }
+                let Some(&didx) = unique_def_idx_in_loop.get(r) else {
+                    continue;
+                };
+                let inst = &instructions[didx];
+                let Some(m) = inst.mnemonic.as_deref() else {
+                    continue;
+                };
+                if !is_licm_pure_mnemonic(m) {
+                    continue;
+                }
+                let ai = &analyzed[didx];
+                if ai.defs.len() != 1 || !ai.defs.contains(r) {
+                    continue;
+                }
+
+                // useが loop外定義、または既にSに入った不変値なら可。
+                let uses_ok = ai.uses.iter().all(|u| {
+                    let loop_defs = def_count_in_loop.get(u).copied().unwrap_or(0);
+                    if loop_defs == 0 {
+                        return true;
+                    }
+                    s_set.contains(u)
+                });
+                if uses_ok {
+                    s_set.insert(r.clone());
+                    changed = true;
+                }
+            }
+        }
+
+        if !s_set.is_empty() {
+            stats.loops_with_nonempty_s += 1;
+        }
+        stats.total_s_regs += s_set.len();
+
+        let mut invariant_defs = 0usize;
+        for r in &s_set {
+            stats.unique_s_regs.insert(r.clone());
+            if is_virtual_any_reg(r) {
+                stats.unique_s_virtual_regs.insert(r.clone());
+            }
+            let Some(defs) = def_sites.get(r) else {
+                continue;
+            };
+            let mut defs_in_loop: Vec<usize> = defs
+                .iter()
+                .copied()
+                .filter(|idx| loop_set.contains(idx))
+                .collect();
+            defs_in_loop.sort_unstable();
+            defs_in_loop.dedup();
+            if defs_in_loop.len() == 1 {
+                let didx = defs_in_loop[0];
+                stats.invariant_reg_occurrences += 1;
+                stats.unique_invariant_def_sites.insert(didx);
+                invariant_defs += 1;
+                let mnem = instructions
+                    .get(didx)
+                    .and_then(|i| i.mnemonic.clone())
+                    .unwrap_or_else(|| "<none>".to_string());
+                *stats.invariant_def_mnemonic_hist.entry(mnem).or_insert(0) += 1;
+            } else {
+                // Sには単一定義のみ入る想定だが、安全側で計上しておく。
+                if defs_in_loop.is_empty() {
+                    stats.s_regs_without_loop_def += 1;
+                } else {
+                    stats.s_regs_multiple_loop_defs += 1;
+                }
+            }
+        }
+
+        let mut s_sample: Vec<String> = s_set.iter().cloned().collect();
+        s_sample.sort();
+        if s_sample.len() > 8 {
+            s_sample.truncate(8);
+        }
+        let header_inst = analyzed
+            .get(header_idx)
+            .map(|x| format_instruction_line(&x.instruction))
+            .unwrap_or_else(|| "<unknown>".to_string());
+        stats.details.push(LoopInvariantLoopDetail {
+            header_idx,
+            node_count: loop_nodes.len(),
+            s_count: s_set.len(),
+            invariant_defs,
+            header_inst,
+            s_sample,
+        });
+    }
+
+    stats
+}
+
+pub fn print_loop_invariant_stats(
+    instructions: &[Instruction],
+    analyzed: &[analysis::AnalyzedInstruction],
+) {
+    if !loop_invariant_stats_enabled() {
+        return;
+    }
+    let stats = collect_loop_invariant_stats(instructions, analyzed);
+    println!(
+        "LoopInvariant stats: indeg2_headers={} qualified_loops={} skipped_no_backedge={} skipped_noncanonical_split={} total_loop_nodes={} loops_with_nonempty_S={} total_S_regs={} unique_S_regs={} unique_S_virtual={} invariant_reg_occurrences={} unique_invariant_def_sites={} S_without_loop_def={} S_multi_loop_defs={}",
+        stats.indeg2_headers,
+        stats.qualified_loops,
+        stats.skipped_no_backedge,
+        stats.skipped_noncanonical_split,
+        stats.total_loop_nodes,
+        stats.loops_with_nonempty_s,
+        stats.total_s_regs,
+        stats.unique_s_regs.len(),
+        stats.unique_s_virtual_regs.len(),
+        stats.invariant_reg_occurrences,
+        stats.unique_invariant_def_sites.len(),
+        stats.s_regs_without_loop_def,
+        stats.s_regs_multiple_loop_defs
+    );
+
+    let mut hist: Vec<(String, usize)> = stats.invariant_def_mnemonic_hist.into_iter().collect();
+    hist.sort_by(|a, b| b.1.cmp(&a.1).then_with(|| a.0.cmp(&b.0)));
+    if !hist.is_empty() {
+        println!("  invariant_def_mnemonic_top:");
+        for (mnem, cnt) in hist.into_iter().take(12) {
+            println!("    {}: {}", mnem, cnt);
+        }
+    }
+
+    let limit = loop_invariant_detail_limit();
+    for (i, d) in stats.details.iter().take(limit).enumerate() {
+        println!(
+            "  loop#{} header={} nodes={} S={} inv_defs={} header_inst=\"{}\"",
+            i + 1,
+            d.header_idx,
+            d.node_count,
+            d.s_count,
+            d.invariant_defs,
+            d.header_inst
+        );
+        if !d.s_sample.is_empty() {
+            println!("    S_sample={:?}", d.s_sample);
+        }
+    }
+}
+
+fn loop_invariant_hoist_enabled() -> bool {
+    std::env::var("BACKEND_LOOP_INV_HOIST")
+        .map(|v| v != "0")
+        .unwrap_or(true)
+}
+
+fn is_licm_pure_mnemonic(m: &str) -> bool {
+    matches!(
+        m,
+        "mov"
+            | "fmov"
+            | "neg"
+            | "fneg"
+            | "finv"
+            | "frsqrt"
+            | "ffloor"
+            | "add"
+            | "sub"
+            | "sll"
+            | "sar"
+            | "or"
+            | "xor"
+            | "ceq"
+            | "cleq"
+            | "clt"
+            | "feq"
+            | "fneq"
+            | "fleq"
+            | "flt"
+            | "fadd"
+            | "fsub"
+            | "fmul"
+            | "fdiv"
+            | "fma"
+            | "addi"
+            | "subi"
+            | "slli"
+            | "sari"
+            | "ori"
+            | "xori"
+            | "ceqi"
+            | "cleqi"
+            | "clti"
+            | "movi"
+            | "movui"
+            | "mif"
+            | "ftoi"
+            | "itof"
+            | "tern"
+            | "ftern"
+    )
+}
+
+#[derive(Debug, Clone)]
+struct LoopForHoist {
+    header_idx: usize,
+    nodes: Vec<usize>,
+}
+
+fn detect_loops_for_hoist(analyzed: &[analysis::AnalyzedInstruction]) -> Vec<LoopForHoist> {
+    let n = analyzed.len();
+    let mut preds: Vec<Vec<usize>> = vec![Vec::new(); n];
+    for (idx, ai) in analyzed.iter().enumerate() {
+        for &to in &ai.succ {
+            if to < n {
+                preds[to].push(idx);
+            }
+        }
+    }
+
+    let mut loops = Vec::new();
+    for header_idx in 0..n {
+        if preds[header_idx].len() != 2 {
+            continue;
+        }
+        let mut back_preds: Vec<usize> = Vec::new();
+        let mut preheader_preds: Vec<usize> = Vec::new();
+        for &p in &preds[header_idx] {
+            if p >= header_idx {
+                back_preds.push(p);
+            } else {
+                preheader_preds.push(p);
+            }
+        }
+        if back_preds.len() != 1 || preheader_preds.len() != 1 {
+            continue;
+        }
+        let pre = preheader_preds[0];
+        // Hoist先を header 直前へ置くため、entry edge は fall-through のみ扱う。
+        if pre + 1 != header_idx {
+            continue;
+        }
+        let tail_idx = back_preds[0];
+        let fwd = forward_reachable_from_header(header_idx, analyzed);
+        let rev = reverse_reachable_to_backedge_tail(header_idx, tail_idx, &preds);
+        let mut loop_nodes: Vec<usize> = fwd.intersection(&rev).copied().collect();
+        loop_nodes.sort_unstable();
+        if loop_nodes.len() <= 1 {
+            continue;
+        }
+        loops.push(LoopForHoist {
+            header_idx,
+            nodes: loop_nodes,
+        });
+    }
+    loops
+}
+
+fn hoist_loop_invariants_opt(mut instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    if !loop_invariant_hoist_enabled() {
+        return (instructions, 0);
+    }
+    let analyzed = analysis::analyze(&instructions);
+    let loops = detect_loops_for_hoist(&analyzed);
+    if loops.is_empty() {
+        return (instructions, 0);
+    }
+
+    let mut membership_count: HashMap<usize, usize> = HashMap::new();
+    for lp in &loops {
+        for &idx in &lp.nodes {
+            *membership_count.entry(idx).or_insert(0) += 1;
+        }
+    }
+
+    let mut insertion_map: BTreeMap<usize, Vec<Instruction>> = BTreeMap::new();
+    let mut moved_global: HashSet<usize> = HashSet::new();
+    let mut rewrites = 0usize;
+
+    // 高いheaderから処理して、複数loopでの競合を減らす。
+    let mut loops_sorted = loops;
+    loops_sorted.sort_by(|a, b| b.header_idx.cmp(&a.header_idx));
+
+    for lp in loops_sorted {
+        let loop_set: HashSet<usize> = lp.nodes.iter().copied().collect();
+        let mut def_count_in_loop: HashMap<String, usize> = HashMap::new();
+        for &idx in &lp.nodes {
+            for d in &analyzed[idx].defs {
+                *def_count_in_loop.entry(d.clone()).or_insert(0) += 1;
+            }
+        }
+
+        // 初期不変集合: headerでlive-in かつ loop内で定義されないもの。
+        let mut invariant_regs: HashSet<String> = analyzed[lp.header_idx]
+            .live_in
+            .iter()
+            .filter(|r| def_count_in_loop.get(*r).copied().unwrap_or(0) == 0)
+            .cloned()
+            .collect();
+        invariant_regs.insert("%i0".to_string());
+        invariant_regs.insert("%f0".to_string());
+
+        let mut selected: Vec<usize> = Vec::new();
+        let mut selected_set: HashSet<usize> = HashSet::new();
+        let mut changed = true;
+        while changed {
+            changed = false;
+            for &idx in &lp.nodes {
+                if idx == lp.header_idx
+                    || selected_set.contains(&idx)
+                    || moved_global.contains(&idx)
+                    || membership_count.get(&idx).copied().unwrap_or(0) > 1
+                {
+                    continue;
+                }
+                let inst = &instructions[idx];
+                if inst.label.is_some() {
+                    continue;
+                }
+                let Some(m) = inst.mnemonic.as_deref() else {
+                    continue;
+                };
+                if !is_licm_pure_mnemonic(m) {
+                    continue;
+                }
+                let ai = &analyzed[idx];
+                if ai.defs.len() != 1 {
+                    continue;
+                }
+                let rd = ai.defs.iter().next().unwrap();
+                if matches!(
+                    rd.as_str(),
+                    "%i0" | "%i1" | "%i2" | "%i3" | "%i30" | "%i31" | "%f0" | "%f30" | "%f31"
+                ) {
+                    continue;
+                }
+                if def_count_in_loop.get(rd).copied().unwrap_or(0) != 1 {
+                    continue;
+                }
+                let uses_ok = ai.uses.iter().all(|u| {
+                    invariant_regs.contains(u)
+                        || def_count_in_loop.get(u).copied().unwrap_or(0) == 0
+                });
+                if !uses_ok {
+                    continue;
+                }
+                selected_set.insert(idx);
+                selected.push(idx);
+                invariant_regs.insert(rd.clone());
+                changed = true;
+            }
+        }
+
+        if selected.is_empty() {
+            continue;
+        }
+        selected.sort_unstable();
+        let mut hoisted = Vec::new();
+        for idx in selected {
+            if !loop_set.contains(&idx) || !moved_global.insert(idx) {
+                continue;
+            }
+            hoisted.push(instructions[idx].clone());
+            instructions[idx].mnemonic = Some("nop".to_string());
+            instructions[idx].operands.clear();
+            rewrites += 1;
+        }
+        if !hoisted.is_empty() {
+            insertion_map.entry(lp.header_idx).or_default().extend(hoisted);
+        }
+    }
+
+    if rewrites == 0 {
+        return (instructions, 0);
+    }
+
+    let mut out = Vec::with_capacity(instructions.len() + rewrites);
+    for (idx, inst) in instructions.into_iter().enumerate() {
+        if let Some(hoisted) = insertion_map.get(&idx) {
+            out.extend(hoisted.iter().cloned());
+        }
+        out.push(inst);
+    }
+    (out, rewrites)
 }
 
 fn compute_non_fallthrough_entry_points(instructions: &[Instruction]) -> Vec<bool> {
