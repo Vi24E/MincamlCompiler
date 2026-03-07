@@ -97,6 +97,8 @@ pub fn perform_spilling(
             }
             continue;
         }
+        let (int_use_counts, float_use_counts) =
+            collect_physical_use_counts(&instructions, range.clone());
 
         let starts_with_func_entry =
             instructions[range.start].mnemonic.as_deref() == Some(".func_entry");
@@ -155,6 +157,7 @@ pub fn perform_spilling(
                     spill_map,
                     false,
                     &used_int_regs,
+                    &int_use_counts,
                     &inst.operands,
                     &def_indices,
                     &use_indices,
@@ -165,6 +168,7 @@ pub fn perform_spilling(
                     spill_map,
                     false,
                     &used_int_regs,
+                    &int_use_counts,
                     &inst.operands,
                     &def_indices,
                     &use_indices,
@@ -176,6 +180,7 @@ pub fn perform_spilling(
                     spill_map,
                     true,
                     &used_float_regs,
+                    &float_use_counts,
                     &inst.operands,
                     &def_indices,
                     &use_indices,
@@ -186,6 +191,7 @@ pub fn perform_spilling(
                     spill_map,
                     true,
                     &used_float_regs,
+                    &float_use_counts,
                     &inst.operands,
                     &def_indices,
                     &use_indices,
@@ -262,6 +268,7 @@ fn build_class_plan(
     spill_map: &HashMap<String, i32>,
     is_float: bool,
     used_regs: &HashSet<String>,
+    use_counts: &HashMap<String, usize>,
     operands: &[String],
     def_indices: &[usize],
     use_indices: &[usize],
@@ -275,6 +282,7 @@ fn build_class_plan(
         spill_map,
         is_float,
         &mut used,
+        use_counts,
         operands,
         def_indices,
         use_indices,
@@ -286,6 +294,7 @@ fn build_control_transfer_class_plan(
     spill_map: &HashMap<String, i32>,
     is_float: bool,
     used_regs: &HashSet<String>,
+    use_counts: &HashMap<String, usize>,
     operands: &[String],
     def_indices: &[usize],
     use_indices: &[usize],
@@ -302,7 +311,7 @@ fn build_control_transfer_class_plan(
             .copied()
             .unwrap_or_else(|| panic!("missing spill slot for {}", var))
             * 4;
-        let reg = choose_victim(is_float, &used)
+        let reg = choose_victim(is_float, &used, use_counts)
             .unwrap_or_else(|| panic!("no victim register available for {}", var));
         used.insert(reg.clone());
         plan.map.insert(var.clone(), reg.clone());
@@ -338,6 +347,7 @@ fn build_class_plan_rec(
     spill_map: &HashMap<String, i32>,
     is_float: bool,
     used_regs: &mut HashSet<String>,
+    use_counts: &HashMap<String, usize>,
     operands: &[String],
     def_indices: &[usize],
     use_indices: &[usize],
@@ -399,11 +409,11 @@ fn build_class_plan_rec(
 
             // %i31/%f31 is already used by the instruction.
             // Use slow-style swap to preserve victim's live value.
-            let swap_scratch = choose_victim(is_float, used_regs)
+            let swap_scratch = choose_victim(is_float, used_regs, use_counts)
                 .unwrap_or_else(|| panic!("no swap scratch available for {}", var));
             let mut used2 = used_regs.clone();
             used2.insert(swap_scratch.clone());
-            let victim = choose_victim(is_float, &used2)
+            let victim = choose_victim(is_float, &used2, use_counts)
                 .unwrap_or_else(|| panic!("no victim register available for {}", var));
 
             plan.map.insert(var.clone(), victim.clone());
@@ -472,14 +482,14 @@ fn build_class_plan_rec(
 
     let default_scratch = if is_float { "%f31" } else { "%i31" };
     let scratch = if used_regs.contains(default_scratch) {
-        choose_victim(is_float, used_regs)
+        choose_victim(is_float, used_regs, use_counts)
             .unwrap_or_else(|| panic!("no scratch register available for {}", slow_var))
     } else {
         default_scratch.to_string()
     };
     used_regs.insert(scratch.clone());
 
-    let victim = choose_victim(is_float, used_regs)
+    let victim = choose_victim(is_float, used_regs, use_counts)
         .unwrap_or_else(|| panic!("no victim register available for {}", slow_var));
     used_regs.insert(victim.clone());
 
@@ -494,6 +504,7 @@ fn build_class_plan_rec(
         spill_map,
         is_float,
         used_regs,
+        use_counts,
         operands,
         def_indices,
         use_indices,
@@ -598,22 +609,58 @@ fn collect_used_regs(
     used
 }
 
-fn choose_victim(is_float: bool, used_regs: &HashSet<String>) -> Option<String> {
-    if is_float {
-        for r in FLOAT_VICTIMS {
-            if !used_regs.contains(r) {
-                return Some(r.to_string());
+fn collect_physical_use_counts(
+    instructions: &[Instruction],
+    range: std::ops::Range<usize>,
+) -> (HashMap<String, usize>, HashMap<String, usize>) {
+    let mut int_use_counts: HashMap<String, usize> = HashMap::new();
+    let mut float_use_counts: HashMap<String, usize> = HashMap::new();
+
+    for i in range {
+        let inst = &instructions[i];
+        let mnem = inst.mnemonic.as_deref().unwrap_or("");
+        let (_, use_indices) = get_def_use_indices(mnem, &inst.operands);
+        for idx in use_indices {
+            if let Some(op) = inst.operands.get(idx) {
+                for reg in extract_regs_from_op(op) {
+                    if reg.starts_with("%i") {
+                        *int_use_counts.entry(reg).or_insert(0) += 1;
+                    } else if reg.starts_with("%f") {
+                        *float_use_counts.entry(reg).or_insert(0) += 1;
+                    }
+                }
             }
         }
-        None
-    } else {
-        for r in INT_VICTIMS {
-            if !used_regs.contains(r) {
-                return Some(r.to_string());
-            }
-        }
-        None
     }
+
+    (int_use_counts, float_use_counts)
+}
+
+fn choose_victim(
+    is_float: bool,
+    used_regs: &HashSet<String>,
+    use_counts: &HashMap<String, usize>,
+) -> Option<String> {
+    let candidates: &[&str] = if is_float {
+        &FLOAT_VICTIMS
+    } else {
+        &INT_VICTIMS
+    };
+
+    let mut best_reg: Option<&str> = None;
+    let mut best_count: usize = usize::MAX;
+    for r in candidates {
+        if used_regs.contains(*r) {
+            continue;
+        }
+        let cnt = *use_counts.get(*r).unwrap_or(&0);
+        if best_reg.is_none() || cnt < best_count {
+            best_reg = Some(*r);
+            best_count = cnt;
+        }
+    }
+
+    best_reg.map(|r| r.to_string())
 }
 
 fn need_load_store(
@@ -897,6 +944,25 @@ fn get_def_use_indices(mnemonic: &str, operands: &[String]) -> (Vec<usize>, Vec<
             if n > 2 {
                 expect_direct_reg_operand(operands, mnemonic, 2);
                 uses.push(2);
+            }
+        }
+        // 4-operand float fused multiply-add: dst, src1, src2, src3
+        "fma" => {
+            if n > 0 {
+                expect_direct_reg_operand(operands, mnemonic, 0);
+                defs.push(0);
+            }
+            if n > 1 {
+                expect_direct_reg_operand(operands, mnemonic, 1);
+                uses.push(1);
+            }
+            if n > 2 {
+                expect_direct_reg_operand(operands, mnemonic, 2);
+                uses.push(2);
+            }
+            if n > 3 {
+                expect_direct_reg_operand(operands, mnemonic, 3);
+                uses.push(3);
             }
         }
         // Ternary select: dst, cond, then, else

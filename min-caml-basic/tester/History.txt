@@ -824,3 +824,99 @@ TopFuncs:
     #2 0x0006e3c0 read_or_network.3895: 3 (6.5%)
 Comment: 
 ================================================
+2026-03-07 03:18:29 | Mode: v2 | Size: 32x32 | Cycles: 231232605 
+Accuracy: 100.00% | MemAccessRate: 26.38% | Compile: 135.608s | Sim: 21.072s
+TopFuncs:
+    #1 0x0006e2e8 read_net_item.3881: 43 (93.5%)
+    #2 0x0006e3c0 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 03:41:31 | Mode: v2 | Size: 32x32 | Cycles: 231511674 
+Accuracy: 100.00% | MemAccessRate: 26.35% | Compile: 132.563s | Sim: 20.690s
+TopFuncs:
+    #1 0x0006ea50 read_net_item.3881: 43 (93.5%)
+    #2 0x0006eb34 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 04:12:04 | Mode: v2 | Size: 32x32 | Cycles: 231232605 
+Accuracy: 100.00% | MemAccessRate: 26.38% | Compile: 119.911s | Sim: 20.270s
+TopFuncs:
+    #1 0x0006e2e8 read_net_item.3881: 43 (93.5%)
+    #2 0x0006e3c0 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 06:15:13 | Mode: v2 | Size: 32x32 | Cycles: 231494685 
+Accuracy: 100.00% | MemAccessRate: 26.47% | Compile: 235.869s | Sim: 20.961s
+TopFuncs:
+    #1 0x0006d918 read_net_item.3881: 43 (93.5%)
+    #2 0x0006d9f0 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 07:06:23 | Mode: v2 | Size: 32x32 | Cycles: 225776387 
+Accuracy: 100.00% | MemAccessRate: 27.40% | Compile: 482.240s | Sim: 19.657s
+TopFuncs:
+    #1 0x00069a18 read_net_item.3881: 43 (93.5%)
+    #2 0x00069af0 read_or_network.3895: 3 (6.5%)
+Comment: with peephole
+================================================
+2026-03-07 07:32:09 | Mode: v2 | Size: 32x32 | Cycles: 231493634 
+Accuracy: 100.00% | MemAccessRate: 26.47% | Compile: 245.110s | Sim: 20.477s
+TopFuncs:
+    #1 0x0006d848 read_net_item.3881: 43 (93.5%)
+    #2 0x0006d920 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 07:42:38 | Mode: v2 | Size: 32x32 | Cycles: 119953 
+Accuracy: 0.00% | MemAccessRate: 6.96% | Compile: 250.713s | Sim: 0.063s
+TopFuncs:
+    #1 0x0005d4a0 read_net_item.3881: 4 (100.0%)
+Comment: 
+================================================
+2026-03-07 07:49:20 | Mode: v2 | Size: 32x32 | Cycles: 161112 
+Accuracy: 0.00% | MemAccessRate: 5.44% | Compile: 146.922s | Sim: 0.081s
+TopFuncs:
+    #1 0x0007e288 read_net_item.3881: 4 (100.0%)
+Comment: 
+================================================
+2026-03-07 08:26:29 | Mode: v2 | Size: 32x32 | Cycles: 2101623214 [TIMED OUT after 120s]
+Accuracy: N/A | MemAccessRate: 30.27% | Compile: 150.051s | Sim: 120.014s
+TopFuncs:
+    #1 0x00070d94 read_net_item.3881: 12 (92.3%)
+    #2 0x00070e5c read_or_network.3895: 1 (7.7%)
+Comment: 
+================================================
+2026-03-07 08:41:53 | Mode: v2 | Size: 32x32 | Cycles: 2168043764 [TIMED OUT after 120s]
+Accuracy: N/A | MemAccessRate: 25.55% | Compile: 147.235s | Sim: 120.010s
+TopFuncs:
+    #1 0x00070dc0 read_net_item.3881: 43 (93.5%)
+    #2 0x00070e8c read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 09:43:10 | Mode: v2 | Size: 32x32 | Cycles: 2083084463 [TIMED OUT after 120s]
+Accuracy: N/A | MemAccessRate: 22.10% | Compile: 136.346s | Sim: 120.010s
+TopFuncs:
+    #1 0x00081258 read_net_item.3881: 43 (93.5%)
+    #2 0x00081330 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 09:50:59 | Mode: v2 | Size: 32x32 | Cycles: 2070496941 [TIMED OUT after 120s]
+Accuracy: N/A | MemAccessRate: 22.10% | Compile: 142.198s | Sim: 120.010s
+TopFuncs:
+    #1 0x00081258 read_net_item.3881: 43 (93.5%)
+    #2 0x00081330 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 09:55:06 | Mode: v2 | Size: 32x32 | Cycles: 231416021 
+Accuracy: 100.00% | MemAccessRate: 26.36% | Compile: 150.370s | Sim: 20.818s
+TopFuncs:
+    #1 0x0006e34c read_net_item.3881: 43 (93.5%)
+    #2 0x0006e424 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================
+2026-03-07 10:01:40 | Mode: v2 | Size: 32x32 | Cycles: 231416021 
+Accuracy: 100.00% | MemAccessRate: 26.36% | Compile: 144.180s | Sim: 22.955s
+TopFuncs:
+    #1 0x0006e34c read_net_item.3881: 43 (93.5%)
+    #2 0x0006e424 read_or_network.3895: 3 (6.5%)
+Comment: 
+================================================

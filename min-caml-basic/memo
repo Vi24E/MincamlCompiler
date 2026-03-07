@@ -8,52 +8,7 @@
 -- 以上に従ってコストを最小化する。これはそれぞれの変数についてdp[index][state] := min_costで、計算できる。(ただし変数がuseされているにも拘らず、state=liveoutの時はコストinfとする。)
 
 ```
-	ceqi	%i31, %i4, 0
-	ceqi	%i31, %i31, 0
-	jzero	%i0, %i31, skip
-	set_label	%i31, else
-	jmp	%i0, 0(%i31)
-skip:
-	...
-	set_label	%i31, cont
-	jmp	%i0, 0(%i31)
-else:
-	...
-cont:
-	...
-``` if文
-
+mov	%i4, %i5
+	mov	%i5, %i25
+	xor	%i25, %i4, %i5
 ```
-	ceqi	%i31, %i4, 0
-	jzero	%i0, %i31, else
-skip:
-	...
-	set_label	%i31, cont
-	jmp	%i0, 0(%i31)
-else:
-	...
-cont:
-	...
-``` done!
-
-```
-	sub	%i4, %i0, %i4
-	addi	%i4, %i4, 1
-``` 明らかに畳み込める
-
-```
-	ceqi	%i4, %i10, 0
-	slli	%i4, %i4, 1
-	sub	%i4, %i0, %i4
-	addi	%i4, %i4, 1
-```
-
-```
-	movi	%i4, 1
-	slli	%i4, %i4, 2
-	add	%i31, %i16, %i4
-	lf	%f2, 0(%i31)
-```オフセットで簡略化可能 done!
-
-lf	%f2, 4(%i16)
-

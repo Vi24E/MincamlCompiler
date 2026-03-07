@@ -1,6 +1,5 @@
 use crate::analysis;
 use crate::input::Instruction;
-use std::time::{SystemTime, UNIX_EPOCH};
 use std::collections::BTreeSet;
 
 pub struct ReorderResult {
@@ -8,6 +7,29 @@ pub struct ReorderResult {
     pub seed: u64,
     pub windows: usize,
     pub swaps: usize,
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct ReorderCostConfig {
+    pub def_cost: i32,
+    pub load_cost: i32,
+    pub raw_cost: i32,
+    pub war_cost: i32,
+    pub waw_cost: i32,
+    pub live_end_bonus: i32,
+}
+
+impl Default for ReorderCostConfig {
+    fn default() -> Self {
+        Self {
+            def_cost: 2,
+            load_cost: 5,
+            raw_cost: 3,
+            war_cost: 3,
+            waw_cost: 3,
+            live_end_bonus: 1,
+        }
+    }
 }
 
 struct XorShift64 {
@@ -44,10 +66,7 @@ impl XorShift64 {
 }
 
 fn default_seed() -> u64 {
-    let now = SystemTime::now()
-        .duration_since(UNIX_EPOCH)
-        .unwrap_or_default();
-    (now.as_nanos() as u64) ^ 0xa5a5_5a5a_c3c3_3c3c
+    0x53a9_7f01_d221_4c3b
 }
 
 fn is_control_or_barrier_mnemonic(m: &str) -> bool {
@@ -56,9 +75,7 @@ fn is_control_or_barrier_mnemonic(m: &str) -> bool {
     }
     matches!(
         m,
-        "lw" | "lf"
-            | "lb"
-            | "sw"
+        "sw"
             | "sf"
             | "sb"
             | "jmp"
@@ -74,7 +91,12 @@ fn is_control_or_barrier_mnemonic(m: &str) -> bool {
 fn is_pure_mnemonic(m: &str) -> bool {
     matches!(
         m,
-        "add"
+        "lw"
+            | "lf"
+            | "lb"
+            |
+            // Integer / compare
+            "add"
             | "sub"
             | "sll"
             | "sar"
@@ -94,6 +116,7 @@ fn is_pure_mnemonic(m: &str) -> bool {
             | "fadd"
             | "fsub"
             | "fmul"
+            | "fma"
             | "fdiv"
             | "feq"
             | "fneq"
@@ -159,34 +182,88 @@ fn instruction_priority(inst: &Instruction, live_out: &BTreeSet<String>) -> u8 {
     2
 }
 
-fn has_dependency(
+#[derive(Clone, Copy, Debug, Default)]
+struct DepKind {
+    raw: bool,
+    war: bool,
+    waw: bool,
+    barrier: bool,
+}
+
+impl DepKind {
+    fn has_any(self) -> bool {
+        self.raw || self.war || self.waw || self.barrier
+    }
+}
+
+fn dependency_kind(
     left_inst: &Instruction,
     left_def: &BTreeSet<String>,
     left_use: &BTreeSet<String>,
     right_inst: &Instruction,
     right_def: &BTreeSet<String>,
     right_use: &BTreeSet<String>,
-) -> bool {
+) -> DepKind {
+    let mut kind = DepKind::default();
     // Safety: keep relative order around calls.
     if is_call(left_inst) || is_call(right_inst) {
-        return true;
+        kind.barrier = true;
+        return kind;
     }
     // RAW
     if !left_def.is_disjoint(right_use) {
-        return true;
+        kind.raw = true;
     }
     // WAR
     if !right_def.is_disjoint(left_use) {
-        return true;
+        kind.war = true;
     }
     // WAW
     if !left_def.is_disjoint(right_def) {
-        return true;
+        kind.waw = true;
     }
-    false
+    kind
 }
 
-pub fn reorder(instructions: Vec<Instruction>, seed: Option<u64>) -> ReorderResult {
+#[derive(Clone)]
+struct WindowNode {
+    inst: Instruction,
+    priority: u8,
+    defs: BTreeSet<String>,
+    uses: BTreeSet<String>,
+    base_cost: i32,
+    boosted_cost: i32,
+    last_touch_turn: usize,
+}
+
+fn current_cost(node: &WindowNode, turn: usize) -> i32 {
+    let dt = (turn.saturating_sub(node.last_touch_turn)) as i32;
+    (node.boosted_cost - dt).max(node.base_cost)
+}
+
+fn raise_cost_to(node: &mut WindowNode, turn: usize, floor: i32) {
+    let cur = current_cost(node, turn);
+    node.last_touch_turn = turn;
+    node.boosted_cost = cur.max(floor);
+}
+
+fn apply_edge_cost(node: &mut WindowNode, turn: usize, kind: DepKind, cfg: ReorderCostConfig) {
+    if kind.raw {
+        raise_cost_to(node, turn, node.base_cost + cfg.raw_cost);
+    }
+    if kind.war {
+        raise_cost_to(node, turn, node.base_cost + cfg.war_cost);
+    }
+    if kind.waw {
+        raise_cost_to(node, turn, node.base_cost + cfg.waw_cost);
+    }
+}
+
+pub fn reorder_with_config(
+    instructions: Vec<Instruction>,
+    seed: Option<u64>,
+    cfg: ReorderCostConfig,
+) -> ReorderResult {
     let chosen_seed = seed.unwrap_or_else(default_seed);
     let mut rng = XorShift64::new(chosen_seed);
     let analyzed = analysis::analyze(&instructions);
@@ -214,72 +291,117 @@ pub fn reorder(instructions: Vec<Instruction>, seed: Option<u64>) -> ReorderResu
         }
 
         windows += 1;
-        let mut window: Vec<(Instruction, u8, BTreeSet<String>, BTreeSet<String>)> =
-            Vec::with_capacity(len);
+        let mut window: Vec<WindowNode> = Vec::with_capacity(len);
         for idx in start..i {
             let (defs, uses) = analysis::collect_def_use(&instructions[idx]);
             let p = analyzed
                 .get(idx)
                 .map(|x| instruction_priority(&instructions[idx], &x.live_out))
                 .unwrap_or(2);
-            window.push((instructions[idx].clone(), p, defs, uses));
+            let mut base_cost = if defs.is_empty() { 0 } else { cfg.def_cost };
+            if p == 1 {
+                base_cost -= cfg.live_end_bonus;
+            }
+            window.push(WindowNode {
+                inst: instructions[idx].clone(),
+                priority: p,
+                defs,
+                uses,
+                base_cost,
+                boosted_cost: base_cost,
+                last_touch_turn: 0,
+            });
         }
 
         // Build dependence DAG (u -> v if u must appear before v).
-        let mut adj: Vec<Vec<usize>> = vec![Vec::new(); len];
+        let mut adj: Vec<Vec<(usize, DepKind)>> = vec![Vec::new(); len];
         let mut indeg: Vec<usize> = vec![0; len];
         for u in 0..len {
             for v in (u + 1)..len {
-                if has_dependency(
-                    &window[u].0,
-                    &window[u].2,
-                    &window[u].3,
-                    &window[v].0,
-                    &window[v].2,
-                    &window[v].3,
-                ) {
-                    adj[u].push(v);
+                let dep = dependency_kind(
+                    &window[u].inst,
+                    &window[u].defs,
+                    &window[u].uses,
+                    &window[v].inst,
+                    &window[v].defs,
+                    &window[v].uses,
+                );
+                if dep.has_any() {
+                    adj[u].push((v, dep));
                     indeg[v] += 1;
                 }
             }
         }
 
-        // Priority-aware topological sort:
-        // choose minimum priority first; random tie-break.
+        // Cost-aware topological sort:
+        // choose minimum current cost first; random tie-break.
         let mut ready: Vec<usize> = indeg
             .iter()
             .enumerate()
             .filter_map(|(idx, d)| if *d == 0 { Some(idx) } else { None })
             .collect();
         let mut order: Vec<usize> = Vec::with_capacity(len);
+        let mut turn: usize = 0;
         while !ready.is_empty() {
-            let mut min_p = u8::MAX;
+            let mut min_cost = i32::MAX;
             for &n in &ready {
-                min_p = min_p.min(window[n].1);
+                min_cost = min_cost.min(current_cost(&window[n], turn));
             }
-            let same_p: Vec<usize> = ready
+            let same_cost: Vec<usize> = ready
                 .iter()
                 .enumerate()
-                .filter_map(|(ri, &n)| if window[n].1 == min_p { Some(ri) } else { None })
+                .filter_map(|(ri, &n)| {
+                    if current_cost(&window[n], turn) == min_cost {
+                        Some(ri)
+                    } else {
+                        None
+                    }
+                })
                 .collect();
-            let chosen_pos_in_ready = if same_p.len() == 1 {
-                same_p[0]
+            // Secondary key: old priority to preserve previous intent, then random.
+            let min_priority = same_cost
+                .iter()
+                .map(|&ri| window[ready[ri]].priority)
+                .min()
+                .unwrap_or(2);
+            let same_cost_same_priority: Vec<usize> = same_cost
+                .into_iter()
+                .filter(|&ri| window[ready[ri]].priority == min_priority)
+                .collect();
+            let chosen_pos_in_ready = if same_cost_same_priority.len() == 1 {
+                same_cost_same_priority[0]
             } else {
-                same_p[rng.gen_range(same_p.len())]
+                same_cost_same_priority[rng.gen_range(same_cost_same_priority.len())]
             };
             let chosen = ready.swap_remove(chosen_pos_in_ready);
             order.push(chosen);
-            for &to in &adj[chosen] {
+
+            let is_lw = matches!(window[chosen].inst.mnemonic.as_deref(), Some("lw"));
+            let loaded_reg = if is_lw && window[chosen].defs.len() == 1 {
+                window[chosen].defs.iter().next().cloned()
+            } else {
+                None
+            };
+
+            for &(to, dep) in &adj[chosen] {
                 indeg[to] -= 1;
                 if indeg[to] == 0 {
                     ready.push(to);
                 }
+                apply_edge_cost(&mut window[to], turn, dep, cfg);
+                if let Some(rx) = loaded_reg.as_ref() {
+                    if dep.raw && window[to].uses.contains(rx) {
+                        let floor = window[to].base_cost + cfg.load_cost;
+                        raise_cost_to(&mut window[to], turn, floor);
+                    }
+                }
             }
+            turn += 1;
         }
 
         if order.len() != len {
-            for (inst, _, _, _) in window {
-                out.push(inst);
+            for node in window {
+                out.push(node.inst);
             }
             continue;
         }
@@ -288,7 +410,7 @@ pub fn reorder(instructions: Vec<Instruction>, seed: Option<u64>) -> ReorderResu
             if idx_in_window != pos {
                 swaps += 1;
             }
-            out.push(window[idx_in_window].0.clone());
+            out.push(window[idx_in_window].inst.clone());
         }
     }
 

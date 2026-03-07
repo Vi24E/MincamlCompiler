@@ -1,3 +1,4 @@
+use crate::analysis;
 use crate::input::Instruction;
 use std::collections::HashMap;
 use std::collections::HashSet;
@@ -8,6 +9,9 @@ pub struct OptimizeResult {
     pub zero_base_fold_rewrites: usize,
     pub word_offset_rewrites: usize,
     pub val_trace_rewrites: usize,
+    pub alias_use_rewrites: usize,
+    pub dead_move_rewrites: usize,
+    pub redundant_reload_rewrites: usize,
     pub trampoline_elim_rewrites: usize,
     pub branch_relax_rewrites: usize,
     pub short_jump_fold_rewrites: usize,
@@ -26,17 +30,457 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
     let (instructions, global_access_rewrites) = global_access_opt(instructions);
     let (instructions, zero_base_fold_rewrites) = fold_zero_base_addr_opt(instructions);
     let (instructions, word_offset_rewrites) = scale_word_mem_offset_opt(instructions);
-    let (instructions, val_trace_rewrites) = const_reuse_with_val_trace_opt(instructions);
+    let (instructions, val_trace_rewrites) = (instructions, 0);
+    let (instructions, alias_use_rewrites) = (instructions, 0);
+    let (instructions, dead_move_rewrites) = (instructions, 0);
+    let (instructions, redundant_reload_rewrites) = eliminate_redundant_store_load_opt(instructions);
     OptimizeResult {
         instructions,
         global_access_rewrites,
         zero_base_fold_rewrites,
         word_offset_rewrites,
         val_trace_rewrites,
+        alias_use_rewrites,
+        dead_move_rewrites,
+        redundant_reload_rewrites,
         trampoline_elim_rewrites,
         branch_relax_rewrites,
         short_jump_fold_rewrites,
     }
+}
+
+fn is_float_reg(reg: &str) -> bool {
+    let Some(rest) = reg.strip_prefix("%f") else {
+        return false;
+    };
+    !rest.is_empty() && rest.chars().all(|c| c.is_ascii_digit())
+}
+
+fn is_physical_reg(reg: &str) -> bool {
+    is_int_reg(reg) || is_float_reg(reg)
+}
+
+fn parse_phys_reg_index(reg: &str, prefix: &str) -> Option<usize> {
+    let rest = reg.strip_prefix(prefix)?;
+    if rest.is_empty() || !rest.chars().all(|c| c.is_ascii_digit()) {
+        return None;
+    }
+    rest.parse::<usize>().ok()
+}
+
+fn call_arg_bit(reg: &str) -> Option<u32> {
+    if let Some(i) = parse_phys_reg_index(reg, "%i") {
+        if (4..=15).contains(&i) {
+            return Some((i - 4) as u32); // 0..11
+        }
+    }
+    if let Some(i) = parse_phys_reg_index(reg, "%f") {
+        if (1..=15).contains(&i) {
+            return Some((12 + (i - 1)) as u32); // 12..26
+        }
+    }
+    None
+}
+
+fn inst_is_call_like(inst: &Instruction) -> bool {
+    match inst.mnemonic.as_deref() {
+        Some("call_dir") | Some("call_cls") => true,
+        Some("jmp") => inst
+            .operands
+            .first()
+            .map(|r| r == "%i3")
+            .unwrap_or(false),
+        _ => false,
+    }
+}
+
+fn compute_call_arg_live_out_bits(analyzed: &[analysis::AnalyzedInstruction]) -> Vec<u64> {
+    let n = analyzed.len();
+    let mut live_in = vec![0u64; n];
+    let mut live_out = vec![0u64; n];
+
+    // defs limited to call-arg regs only.
+    let mut def_bits = vec![0u64; n];
+    for (i, ai) in analyzed.iter().enumerate() {
+        let mut bits = 0u64;
+        for d in &ai.defs {
+            if let Some(b) = call_arg_bit(d) {
+                bits |= 1u64 << b;
+            }
+        }
+        def_bits[i] = bits;
+    }
+
+    // use set: at each call-like instruction, all call-arg regs are used.
+    const CALL_ARG_ALL_BITS: u64 = (1u64 << 27) - 1;
+    let mut use_bits = vec![0u64; n];
+    for (i, ai) in analyzed.iter().enumerate() {
+        if inst_is_call_like(&ai.instruction) {
+            use_bits[i] = CALL_ARG_ALL_BITS;
+        }
+    }
+
+    let mut changed = true;
+    while changed {
+        changed = false;
+        for i in (0..n).rev() {
+            let mut out = 0u64;
+            for &s in &analyzed[i].succ {
+                if s < n {
+                    out |= live_in[s];
+                }
+            }
+            let new_in = use_bits[i] | (out & !def_bits[i]);
+            if out != live_out[i] || new_in != live_in[i] {
+                live_out[i] = out;
+                live_in[i] = new_in;
+                changed = true;
+            }
+        }
+    }
+
+    live_out
+}
+
+fn is_side_effecting_or_control_mnemonic(mnemonic: &str) -> bool {
+    matches!(
+        mnemonic,
+        "sw" | "sf" | "sb" | "jzero" | "jeq" | "jlt" | "jleq" | "jmp" | "ret" | "call_dir"
+            | "call_cls"
+    ) || mnemonic.starts_with('.')
+}
+
+fn resolve_alias(alias: &HashMap<String, String>, reg: &str) -> String {
+    let mut cur = reg.to_string();
+    for _ in 0..64 {
+        let Some(next) = alias.get(&cur) else {
+            break;
+        };
+        if next == &cur {
+            break;
+        }
+        cur = next.clone();
+    }
+    cur
+}
+
+fn invalidate_aliases(alias: &mut HashMap<String, String>, reg: &str) {
+    alias.remove(reg);
+    let mut to_reset: Vec<String> = Vec::new();
+    for (k, v) in alias.iter() {
+        if v == reg {
+            to_reset.push(k.clone());
+        }
+    }
+    for k in to_reset {
+        alias.insert(k.clone(), k);
+    }
+}
+
+fn rewrite_use_operand_alias(op: &str, alias: &HashMap<String, String>) -> Option<String> {
+    if is_physical_reg(op) {
+        let mapped = resolve_alias(alias, op);
+        if mapped != op {
+            return Some(mapped);
+        }
+        return None;
+    }
+
+    let Some(start) = op.find('(') else {
+        return None;
+    };
+    let Some(end_rel) = op[start + 1..].find(')') else {
+        return None;
+    };
+    let end = start + 1 + end_rel;
+    let base = &op[start + 1..end];
+    if !is_physical_reg(base) {
+        return None;
+    }
+    let mapped_base = resolve_alias(alias, base);
+    if mapped_base == base {
+        return None;
+    }
+    let mut out = String::new();
+    out.push_str(&op[..start + 1]);
+    out.push_str(&mapped_base);
+    out.push_str(&op[end..]);
+    Some(out)
+}
+
+fn rewrite_uses_with_alias(mut inst: Instruction, int_alias: &HashMap<String, String>, float_alias: &HashMap<String, String>) -> (Instruction, usize) {
+    let Some(mnemonic) = inst.mnemonic.as_deref() else {
+        return (inst, 0);
+    };
+    let def_first = if inst.operands.is_empty() {
+        false
+    } else {
+        mnemonic_defines_first_operand(mnemonic, &inst.operands[0])
+    };
+    let mut rewrites = 0usize;
+    for (idx, op) in inst.operands.iter_mut().enumerate() {
+        if idx == 0 && def_first {
+            continue;
+        }
+        let old = op.clone();
+        let rewritten = if is_int_reg(&old) || old.contains("%i") {
+            rewrite_use_operand_alias(&old, int_alias)
+        } else if is_float_reg(&old) || old.contains("%f") {
+            rewrite_use_operand_alias(&old, float_alias)
+        } else {
+            None
+        };
+        if let Some(new_op) = rewritten {
+            if new_op != old {
+                *op = new_op;
+                rewrites += 1;
+            }
+        }
+    }
+    (inst, rewrites)
+}
+
+fn reset_alias_state(
+    int_alias: &mut HashMap<String, String>,
+    float_alias: &mut HashMap<String, String>,
+    int_def_time: &mut HashMap<String, usize>,
+    float_def_time: &mut HashMap<String, usize>,
+) {
+    int_alias.clear();
+    float_alias.clear();
+    int_def_time.clear();
+    float_def_time.clear();
+    int_alias.insert("%i0".to_string(), "%i0".to_string());
+    float_alias.insert("%f0".to_string(), "%f0".to_string());
+    int_def_time.insert("%i0".to_string(), 0);
+    float_def_time.insert("%f0".to_string(), 0);
+}
+
+fn normalize_mov_alias_uses_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    let mut out = Vec::with_capacity(instructions.len());
+    let mut rewrites = 0usize;
+
+    let mut int_alias: HashMap<String, String> = HashMap::new();
+    let mut float_alias: HashMap<String, String> = HashMap::new();
+    let mut int_def_time: HashMap<String, usize> = HashMap::new();
+    let mut float_def_time: HashMap<String, usize> = HashMap::new();
+    reset_alias_state(
+        &mut int_alias,
+        &mut float_alias,
+        &mut int_def_time,
+        &mut float_def_time,
+    );
+    let mut tick: usize = 1;
+
+    for inst in instructions {
+        if inst.label.is_some() {
+            reset_alias_state(
+                &mut int_alias,
+                &mut float_alias,
+                &mut int_def_time,
+                &mut float_def_time,
+            );
+            tick = 1;
+        }
+
+        let (inst, r) = rewrite_uses_with_alias(inst, &int_alias, &float_alias);
+        rewrites += r;
+
+        if let Some(mnemonic) = inst.mnemonic.as_deref() {
+            let def_first = if inst.operands.is_empty() {
+                false
+            } else {
+                mnemonic_defines_first_operand(mnemonic, &inst.operands[0])
+            };
+
+            let def_reg = if def_first && !inst.operands.is_empty() {
+                Some(inst.operands[0].clone())
+            } else {
+                None
+            };
+            if let Some(rd) = def_reg {
+                if is_int_reg(&rd) {
+                    invalidate_aliases(&mut int_alias, &rd);
+                    int_alias.insert(rd.clone(), rd.clone());
+                    int_def_time.insert(rd.clone(), tick);
+                } else if is_float_reg(&rd) {
+                    invalidate_aliases(&mut float_alias, &rd);
+                    float_alias.insert(rd.clone(), rd.clone());
+                    float_def_time.insert(rd.clone(), tick);
+                }
+            }
+
+            if (mnemonic == "mov" || mnemonic == "fmov") && inst.operands.len() == 2 {
+                let rd = inst.operands[0].clone();
+                let rs = inst.operands[1].clone();
+                if mnemonic == "mov" && is_int_reg(&rd) && is_int_reg(&rs) {
+                    let src_canon = resolve_alias(&int_alias, &rs);
+                    let src_t = int_def_time.get(&src_canon).copied().unwrap_or(usize::MAX);
+                    let rs_t = int_def_time.get(&rs).copied().unwrap_or(src_t);
+                    let canon = if src_t <= rs_t { src_canon } else { rs };
+                    int_alias.insert(rd.clone(), canon.clone());
+                    if let Some(t) = int_def_time.get(&canon).copied() {
+                        int_def_time.insert(rd, t);
+                    }
+                } else if mnemonic == "fmov" && is_float_reg(&rd) && is_float_reg(&rs) {
+                    let src_canon = resolve_alias(&float_alias, &rs);
+                    let src_t = float_def_time.get(&src_canon).copied().unwrap_or(usize::MAX);
+                    let rs_t = float_def_time.get(&rs).copied().unwrap_or(src_t);
+                    let canon = if src_t <= rs_t { src_canon } else { rs };
+                    float_alias.insert(rd.clone(), canon.clone());
+                    if let Some(t) = float_def_time.get(&canon).copied() {
+                        float_def_time.insert(rd, t);
+                    }
+                }
+            }
+
+            if is_trace_barrier(mnemonic) {
+                reset_alias_state(
+                    &mut int_alias,
+                    &mut float_alias,
+                    &mut int_def_time,
+                    &mut float_def_time,
+                );
+                tick = 1;
+            } else {
+                tick = tick.saturating_add(1);
+            }
+        }
+        out.push(inst);
+    }
+
+    (out, rewrites)
+}
+
+fn remove_indices_preserve_labels(instructions: &[Instruction], remove: &[bool]) -> Vec<Instruction> {
+    let mut out = Vec::with_capacity(instructions.len());
+    let mut pending_labels: Vec<String> = Vec::new();
+
+    for (idx, inst) in instructions.iter().enumerate() {
+        if remove[idx] {
+            if let Some(lbl) = inst.label.as_ref() {
+                pending_labels.push(lbl.clone());
+            }
+            continue;
+        }
+
+        let mut cur = inst.clone();
+        if !pending_labels.is_empty() {
+            if cur.label.is_none() {
+                let keep_idx = pending_labels.len() - 1;
+                for lbl in pending_labels.iter().take(keep_idx) {
+                    out.push(Instruction {
+                        label: Some(lbl.clone()),
+                        mnemonic: None,
+                        operands: vec![],
+                    });
+                }
+                cur.label = Some(pending_labels[keep_idx].clone());
+            } else {
+                for lbl in &pending_labels {
+                    out.push(Instruction {
+                        label: Some(lbl.clone()),
+                        mnemonic: None,
+                        operands: vec![],
+                    });
+                }
+            }
+            pending_labels.clear();
+        }
+        out.push(cur);
+    }
+
+    for lbl in pending_labels {
+        out.push(Instruction {
+            label: Some(lbl),
+            mnemonic: None,
+            operands: vec![],
+        });
+    }
+
+    out
+}
+
+fn eliminate_dead_moves_cfg_opt(mut instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    let mut total_rewrites = 0usize;
+    loop {
+        let analyzed = analysis::analyze(&instructions);
+        let call_arg_live_out_bits = compute_call_arg_live_out_bits(&analyzed);
+        let mut remove = vec![false; instructions.len()];
+        let mut rewrites = 0usize;
+
+        for (idx, ai) in analyzed.iter().enumerate() {
+            let inst = &ai.instruction;
+            let Some(mnemonic) = inst.mnemonic.as_deref() else {
+                continue;
+            };
+            if is_side_effecting_or_control_mnemonic(mnemonic) {
+                continue;
+            }
+            let defs = &ai.defs;
+            if defs.is_empty() {
+                continue;
+            }
+            if !defs.iter().all(|d| is_physical_reg(d)) {
+                continue;
+            }
+            if defs.iter().any(|d| d == "%i1" || d == "%i2") {
+                continue;
+            }
+            if defs.iter().any(|d| ai.live_out.contains(d)) {
+                continue;
+            }
+            if defs.iter().any(|d| {
+                call_arg_bit(d)
+                    .map(|b| ((call_arg_live_out_bits[idx] >> b) & 1) != 0)
+                    .unwrap_or(false)
+            }) {
+                continue;
+            }
+            remove[idx] = true;
+            rewrites += 1;
+        }
+
+        if rewrites == 0 {
+            break;
+        }
+        total_rewrites += rewrites;
+        instructions = remove_indices_preserve_labels(&instructions, &remove);
+    }
+
+    (instructions, total_rewrites)
+}
+
+fn eliminate_redundant_store_load_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    let mut out = Vec::with_capacity(instructions.len());
+    let mut rewrites = 0usize;
+    let mut i = 0usize;
+    let n = instructions.len();
+
+    while i < n {
+        if i + 1 < n {
+            let i0 = &instructions[i];
+            let i1 = &instructions[i + 1];
+            let m0 = i0.mnemonic.as_deref().unwrap_or("");
+            let m1 = i1.mnemonic.as_deref().unwrap_or("");
+            if i1.label.is_none()
+                && ((m0 == "sw" && m1 == "lw") || (m0 == "sf" && m1 == "lf"))
+                && i0.operands.len() == 2
+                && i1.operands.len() == 2
+                && i0.operands[0] == i1.operands[0]
+                && i0.operands[1] == i1.operands[1]
+            {
+                out.push(i0.clone());
+                rewrites += 1;
+                i += 2;
+                continue;
+            }
+        }
+        out.push(instructions[i].clone());
+        i += 1;
+    }
+
+    (out, rewrites)
 }
 
 #[derive(Debug, Default, Clone)]

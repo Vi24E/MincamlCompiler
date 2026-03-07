@@ -131,6 +131,21 @@ fn get_def_use(inst: &Instruction) -> (BTreeSet<String>, BTreeSet<String>) {
                     uses.insert(expect_direct_reg(op2, mnemonic, 2));
                 }
             }
+            // 4-operand fused multiply-add: dest, src1, src2, src3
+            "fma" => {
+                if let Some(op0) = args.get(0) {
+                    defs.insert(expect_direct_reg(op0, mnemonic, 0));
+                }
+                if let Some(op1) = args.get(1) {
+                    uses.insert(expect_direct_reg(op1, mnemonic, 1));
+                }
+                if let Some(op2) = args.get(2) {
+                    uses.insert(expect_direct_reg(op2, mnemonic, 2));
+                }
+                if let Some(op3) = args.get(3) {
+                    uses.insert(expect_direct_reg(op3, mnemonic, 3));
+                }
+            }
             // Ternary select: dest, cond, then, else
             "tern" | "ftern" => {
                 if let Some(op0) = args.get(0) {

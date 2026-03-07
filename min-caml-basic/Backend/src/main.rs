@@ -14,7 +14,10 @@ use std::process;
 mod spilling;
 
 mod finalize;
+mod long_gap_spill;
 mod reordering;
+mod regalloc2_compare;
+mod petgraph_alloc;
 
 use std::collections::BTreeMap;
 use std::collections::BTreeSet;
@@ -574,10 +577,10 @@ fn mnemonic_defines_first_operand(mnemonic: &str, rd: &str) -> bool {
     match mnemonic {
         "add" | "sub" | "sll" | "sar" | "xor" | "ceq" | "cleq" | "clt" | "feq" | "fneq"
         | "fleq" | "flt"
-        | "fadd" | "fsub" | "fmul" | "fdiv" | "addi" | "subi" | "slli" | "sari" | "ori"
+        | "fadd" | "fsub" | "fmul" | "fma" | "fdiv" | "addi" | "subi" | "slli" | "sari" | "ori"
         | "xori" | "ceqi" | "cleqi" | "clti" | "mov" | "neg" | "fmov" | "fneg" | "finv"
         | "frsqrt" | "ffloor" | "ftoi" | "itof" | "movi" | "movui" | "mif" | "lw" | "lf" | "lb"
-        | "set_label" => true,
+        | "set_label" | "tern" | "ftern" => true,
         "jmp" => rd != "%i0",
         _ => false,
     }
@@ -689,6 +692,20 @@ fn env_enabled(name: &str, default: bool) -> bool {
         }
         Err(_) => default,
     }
+}
+
+fn env_i32(name: &str, default: i32) -> i32 {
+    env::var(name)
+        .ok()
+        .and_then(|v| v.trim().parse::<i32>().ok())
+        .unwrap_or(default)
+}
+
+fn env_usize(name: &str, default: usize) -> usize {
+    env::var(name)
+        .ok()
+        .and_then(|v| v.trim().parse::<usize>().ok())
+        .unwrap_or(default)
 }
 
 fn is_virtual_int_reg(reg: &str) -> bool {
@@ -1282,6 +1299,18 @@ fn main() {
             let reorder_seed = env::var("BACKEND_REORDER_SEED")
                 .ok()
                 .and_then(|v| v.parse::<u64>().ok());
+            let reorder_cost_default = reordering::ReorderCostConfig::default();
+            let reorder_cost_cfg = reordering::ReorderCostConfig {
+                def_cost: env_i32("BACKEND_REORDER_DEF_COST", reorder_cost_default.def_cost),
+                load_cost: env_i32("BACKEND_REORDER_LOAD_COST", reorder_cost_default.load_cost),
+                raw_cost: env_i32("BACKEND_REORDER_RAW_COST", reorder_cost_default.raw_cost),
+                war_cost: env_i32("BACKEND_REORDER_WAR_COST", reorder_cost_default.war_cost),
+                waw_cost: env_i32("BACKEND_REORDER_WAW_COST", reorder_cost_default.waw_cost),
+                live_end_bonus: env_i32(
+                    "BACKEND_REORDER_LIVE_END_BONUS",
+                    reorder_cost_default.live_end_bonus,
+                ),
+            };
             let verbose_stats = env_enabled("BACKEND_VERBOSE_STATS", false);
             let function_color_report = env_enabled("BACKEND_FUNC_COLOR_REPORT", false);
             let function_color_filter = env::var("BACKEND_FUNC_COLOR_FILTER").ok();
@@ -1289,8 +1318,28 @@ fn main() {
                 .ok()
                 .and_then(|v| v.parse::<usize>().ok())
                 .unwrap_or(usize::MAX);
+            let long_gap_threshold_alive = env_usize(
+                "BACKEND_LONG_GAP_THRESHOLD_ALIVE",
+                long_gap_spill::THRESHOLD_ALIVE_DEFAULT,
+            );
+            let long_gap_exclude_loop_vars =
+                env_enabled("BACKEND_LONG_GAP_EXCLUDE_LOOP_VARS", false);
+            let long_gap_retry_on_spill =
+                env_enabled("BACKEND_LONG_GAP_RETRY_ON_SPILL", false);
+            let mut long_gap_chunk_max = env_usize(
+                "BACKEND_LONG_GAP_CHUNK_MAX_INIT",
+                long_gap_spill::CHUNK_MAX_INIT_DEFAULT,
+            )
+            .max(2);
+            let long_gap_chunk_max_limit = env_usize(
+                "BACKEND_LONG_GAP_CHUNK_MAX_LIMIT",
+                long_gap_spill::CHUNK_MAX_LIMIT_DEFAULT,
+            )
+            .max(long_gap_chunk_max);
+            let allocator_kind =
+                env::var("BACKEND_ALLOCATOR").unwrap_or_else(|_| "chaitin".to_string());
             println!(
-                "Peephole config: stage1={} stage2={} stage3={} preference={} reorder={} rules={}/{}/{} verbose_stats={} func_color_report={}",
+                "Peephole config: stage1={} stage2={} stage3={} preference={} reorder={} rules={}/{}/{} verbose_stats={} func_color_report={} allocator={}",
                 enable_stage1,
                 enable_stage2,
                 enable_stage3,
@@ -1300,7 +1349,8 @@ fn main() {
                 rules_path_stage2,
                 rules_path_stage3,
                 verbose_stats,
-                function_color_report
+                function_color_report,
+                allocator_kind
             );
 
             if enable_stage1 {
@@ -1320,15 +1370,54 @@ fn main() {
                 println!("Peephole stage1 (frontend-like regs) rewrites: 0 (disabled)");
             }
             if enable_reorder {
-                let reordered =
-                    reordering::reorder(program::flatten(&current_program), reorder_seed);
+                let reordered = reordering::reorder_with_config(
+                    program::flatten(&current_program),
+                    reorder_seed,
+                    reorder_cost_cfg,
+                );
                 println!(
-                    "Reordering priority sort: windows={} swaps={} seed={}",
-                    reordered.windows, reordered.swaps, reordered.seed
+                    "Reordering priority sort: windows={} swaps={} seed={} cost(def/load/raw/war/waw/live_end_bonus)={}/{}/{}/{}/{}/{}",
+                    reordered.windows,
+                    reordered.swaps,
+                    reordered.seed,
+                    reorder_cost_cfg.def_cost,
+                    reorder_cost_cfg.load_cost,
+                    reorder_cost_cfg.raw_cost,
+                    reorder_cost_cfg.war_cost,
+                    reorder_cost_cfg.waw_cost,
+                    reorder_cost_cfg.live_end_bonus
                 );
                 current_program = program::from_instructions(reordered.instructions);
             } else {
                 println!("Reordering priority sort: 0 (disabled)");
+            }
+            let pre_long_gap_program = current_program.clone();
+            {
+                let cfg = long_gap_spill::LongGapSpillConfig {
+                    threshold_alive: long_gap_threshold_alive,
+                    chunk_max: long_gap_chunk_max,
+                    exclude_loop_vars: long_gap_exclude_loop_vars,
+                };
+                let split = long_gap_spill::apply_with_config(
+                    program::flatten(&current_program),
+                    cfg,
+                );
+                println!(
+                    "LongGap spill split: funcs={} vregs={} candidates={} applied={} loads={} stores={} skipped_loop_vars={} threshold_alive={} chunk_max={} exclude_loop_vars={} retry_on_spill={} chunk_max_limit={}",
+                    split.stats.functions,
+                    split.stats.virtual_regs_seen,
+                    split.stats.candidates,
+                    split.stats.applied,
+                    split.stats.inserted_loads,
+                    split.stats.inserted_stores,
+                    split.stats.skipped_loop_vars,
+                    cfg.threshold_alive,
+                    cfg.chunk_max,
+                    cfg.exclude_loop_vars,
+                    long_gap_retry_on_spill,
+                    long_gap_chunk_max_limit
+                );
+                current_program = program::from_instructions(split.instructions);
             }
             let mut iteration = 0;
             const MAX_ITERATIONS: usize = 20;
@@ -1376,7 +1465,7 @@ fn main() {
                     process::exit(0);
                 }
                 let t_pref = std::time::Instant::now();
-                let preferences =
+                let mut preferences =
                     build_preference_map(&work_program, &work_instructions, &analyzed);
                 println!("Preference time: {:.3}s", t_pref.elapsed().as_secs_f64());
 
@@ -1397,11 +1486,54 @@ fn main() {
                 println!("Coloring (K={})...", k);
                 let t_color = std::time::Instant::now();
                 let mut coloring = coloring::Coloring::new(k, graph);
-                if enable_preference {
-                    coloring.set_preferences(preferences);
+                if allocator_kind == "regalloc2" {
+                    match regalloc2_compare::seed_color_hints(&analyzed) {
+                        Ok(hints) => {
+                            for (v, c) in hints {
+                                let e = preferences.entry(v).or_default();
+                                e.color_penalty.insert(c, -10_000);
+                            }
+                        }
+                        Err(e) => {
+                            println!("regalloc2 seed hint failed ({}), continue without seed", e);
+                        }
+                    }
                 }
-                let allocation = coloring.color();
+                let allocation = if allocator_kind == "petgraph" {
+                    petgraph_alloc::allocate(coloring.graph(), &preferences, k)
+                } else {
+                    if enable_preference || allocator_kind == "regalloc2" {
+                        coloring.set_preferences(preferences);
+                    }
+                    coloring.color()
+                };
                 println!("Coloring time: {:.3}s", t_color.elapsed().as_secs_f64());
+                if iteration == 1 {
+                    let current_spills = allocation.values().filter(|r| r.is_err()).count();
+                    let t_cmp = std::time::Instant::now();
+                    match regalloc2_compare::compare_spills(&analyzed) {
+                        Ok(c) => {
+                            println!(
+                                "Spill compare (iter=1): current={} regalloc2={} (int={}, float={}) vregs={} spillslots={} time={:.3}s",
+                                current_spills,
+                                c.spilled_vregs,
+                                c.spilled_int_vregs,
+                                c.spilled_float_vregs,
+                                c.total_vregs,
+                                c.spillslots,
+                                t_cmp.elapsed().as_secs_f64()
+                            );
+                        }
+                        Err(e) => {
+                            println!(
+                                "Spill compare (iter=1): current={} regalloc2=ERROR({}) time={:.3}s",
+                                current_spills,
+                                e,
+                                t_cmp.elapsed().as_secs_f64()
+                            );
+                        }
+                    }
+                }
                 if verbose_stats {
                     let alloc_stats = collect_allocation_stats(&allocation);
                     print_allocation_stats(&alloc_stats);
@@ -1506,14 +1638,17 @@ fn main() {
 
                     let adhoc_opt = adhoc::optimize(stage3_instructions);
                     println!(
-                        "Adhoc trampoline_elim rewrites: {}, branch_relax rewrites: {}, short_jump_fold rewrites: {}, global_access_opt rewrites: {}, zero_base_fold rewrites: {}, word_offset_scale rewrites: {}, val_trace rewrites: {}",
+                        "Adhoc trampoline_elim rewrites: {}, branch_relax rewrites: {}, short_jump_fold rewrites: {}, global_access_opt rewrites: {}, zero_base_fold rewrites: {}, word_offset_scale rewrites: {}, val_trace rewrites: {}, alias_use rewrites: {}, dead_def rewrites: {}, redundant_reload rewrites: {}",
                         adhoc_opt.trampoline_elim_rewrites,
                         adhoc_opt.branch_relax_rewrites,
                         adhoc_opt.short_jump_fold_rewrites,
                         adhoc_opt.global_access_rewrites,
                         adhoc_opt.zero_base_fold_rewrites,
                         adhoc_opt.word_offset_rewrites,
-                        adhoc_opt.val_trace_rewrites
+                        adhoc_opt.val_trace_rewrites,
+                        adhoc_opt.alias_use_rewrites,
+                        adhoc_opt.dead_move_rewrites,
+                        adhoc_opt.redundant_reload_rewrites
                     );
 
                     // Generate Code
@@ -1524,6 +1659,48 @@ fn main() {
                     break;
                 } else {
                     println!("Spill required this iteration: {}", spilled_vars.len());
+
+                    if long_gap_retry_on_spill
+                        && iteration == 1
+                        && long_gap_chunk_max < long_gap_chunk_max_limit
+                    {
+                        let next_chunk_max = long_gap_chunk_max
+                            .saturating_mul(2)
+                            .min(long_gap_chunk_max_limit);
+                        if next_chunk_max > long_gap_chunk_max {
+                            long_gap_chunk_max = next_chunk_max;
+                            println!(
+                                "LongGap retry: spill detected, retry with chunk_max={}",
+                                long_gap_chunk_max
+                            );
+                            current_program = pre_long_gap_program.clone();
+                            let cfg = long_gap_spill::LongGapSpillConfig {
+                                threshold_alive: long_gap_threshold_alive,
+                                chunk_max: long_gap_chunk_max,
+                                exclude_loop_vars: long_gap_exclude_loop_vars,
+                            };
+                            let split = long_gap_spill::apply_with_config(
+                                program::flatten(&current_program),
+                                cfg,
+                            );
+                            println!(
+                                "LongGap spill split(retry): funcs={} vregs={} candidates={} applied={} loads={} stores={} skipped_loop_vars={} threshold_alive={} chunk_max={} exclude_loop_vars={}",
+                                split.stats.functions,
+                                split.stats.virtual_regs_seen,
+                                split.stats.candidates,
+                                split.stats.applied,
+                                split.stats.inserted_loads,
+                                split.stats.inserted_stores,
+                                split.stats.skipped_loop_vars,
+                                cfg.threshold_alive,
+                                cfg.chunk_max,
+                                cfg.exclude_loop_vars
+                            );
+                            current_program = program::from_instructions(split.instructions);
+                            iteration = 0;
+                            continue;
+                        }
+                    }
 
                     if iteration >= MAX_ITERATIONS {
                         eprintln!("Error: Exceeded max iterations for spilling.");

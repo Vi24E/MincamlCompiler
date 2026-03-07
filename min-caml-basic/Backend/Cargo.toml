@@ -6,3 +6,7 @@ edition = "2021"
 [[bin]]
 name = "backend"
 path = "src/main.rs"
+
+[dependencies]
+petgraph = "0.8.3"
+regalloc2 = "0.13.2"
