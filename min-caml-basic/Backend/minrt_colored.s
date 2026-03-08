@@ -104,10 +104,9 @@ min_caml_start:
 	sw	%i0, 15(%i0)
 	sw	%i0, 16(%i0)
 	sf	%f0, 17(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 0
-	mov	%i5, %i4
-	sw	%i4, 18(%i0)
+	sw	%i5, 18(%i0)
 	movi	%i6, 60
 	sw	%i6, 18(%i0)
 	sw	%i0, 19(%i0)
@@ -165,11 +164,11 @@ ca_done.247125:
 	sw	%i4, 99(%i0)
 	movi	%i5, -1
 	sw	%i5, 100(%i0)
-	mov	%i4, %i2
-	sw	%i5, 0(%i2)
+	mov	%i31, %i5
+	mov	%i5, %i2
+	sw	%i31, 0(%i2)
 	addi	%i2, %i2, 4
-	sw	%i4, 101(%i0)
-	mov	%i5, %i4
+	sw	%i5, 101(%i0)
 	mov	%i29, %i6
 	mov	%i4, %i2
 ca_loop.247126:
@@ -219,10 +218,10 @@ ca_done.247128:
 	movi	%i4, 3
 	sw	%i4, 165(%i0)
 	sf	%f0, 166(%i0)
-	mov	%i4, %i2
+	mov	%i31, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 114(%i1)
-	sw	%i4, 167(%i0)
+	sw	%i31, 114(%i1)
+	sw	%i31, 167(%i0)
 	sf	%f0, 170(%i0)
 	sf	%f0, 171(%i0)
 	sf	%f0, 172(%i0)
@@ -284,51 +283,46 @@ ca_done.247128:
 	sf	%f0, 205(%i0)
 	sf	%f0, 206(%i0)
 	sf	%f0, 207(%i0)
-	movi	%i4, 3
 	sw	%i4, 208(%i0)
 	sf	%f0, 209(%i0)
-	mov	%i4, %i2
+	mov	%i31, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 125(%i1)
-	sw	%i4, 210(%i0)
+	sw	%i31, 125(%i1)
+	sw	%i31, 210(%i0)
 	sw	%i0, 213(%i0)
 	sf	%f0, 214(%i0)
-	mov	%i4, %i2
+	mov	%i6, %i2
 	addi	%i2, %i2, 0
-	mov	%i6, %i4
-	sw	%i4, 215(%i0)
+	sw	%i6, 215(%i0)
 	sw	%i0, 215(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 0
-	mov	%i5, %i4
-	sw	%i4, 216(%i0)
+	sw	%i5, 216(%i0)
 	sw	%i0, 216(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 8
 	sw	%i5, 1(%i4)
 	sw	%i6, 0(%i4)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 0
-	mov	%i5, %i4
-	sw	%i4, 217(%i0)
+	sw	%i5, 217(%i0)
 	movi	%i4, 5
 	sw	%i4, 217(%i0)
-	mov	%i4, %i2
+	mov	%i31, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
 	sw	%i5, 2(%i2)
 	sw	%i5, 3(%i2)
 	sw	%i5, 4(%i2)
 	addi	%i2, %i2, 20
-	sw	%i4, 126(%i1)
-	sw	%i4, 70(%i1)
-	sw	%i4, 218(%i0)
+	sw	%i31, 126(%i1)
+	sw	%i31, 70(%i1)
+	sw	%i31, 218(%i0)
 	sw	%i0, 223(%i0)
 	sf	%f0, 224(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 0
-	mov	%i5, %i4
-	sw	%i4, 225(%i0)
+	sw	%i5, 225(%i0)
 	sf	%f0, 225(%i0)
 	sf	%f0, 226(%i0)
 	sf	%f0, 227(%i0)
@@ -352,15 +346,13 @@ ca_done.247131:
 	sw	%i4, 230(%i0)
 	sw	%i0, 290(%i0)
 	sf	%f0, 291(%i0)
-	mov	%i4, %i2
+	mov	%i7, %i2
 	addi	%i2, %i2, 0
-	mov	%i7, %i4
-	sw	%i4, 292(%i0)
+	sw	%i7, 292(%i0)
 	sw	%i0, 292(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 0
-	mov	%i5, %i4
-	sw	%i4, 293(%i0)
+	sw	%i5, 293(%i0)
 	movi	%i6, 180
 	sw	%i6, 293(%i0)
 	sw	%i0, 294(%i0)
@@ -417,17 +409,15 @@ ca_done.247134:
 	movi	%i4, 3
 	sw	%i4, 487(%i0)
 	sf	%f0, 488(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 21(%i1)
-	sw	%i4, 489(%i0)
-	movi	%i4, 3
+	sw	%i5, 21(%i1)
+	sw	%i5, 489(%i0)
 	sw	%i4, 492(%i0)
 	sf	%f0, 493(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
-	sw	%i4, 494(%i0)
+	sw	%i5, 494(%i0)
 	movi	%i4, 5
 	sw	%i4, 497(%i0)
 	mov	%i4, %i2
@@ -471,23 +461,23 @@ ca_done.247134:
 	movi	%i5, 5
 	sw	%i5, 527(%i0)
 	sw	%i0, 528(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i4, 23(%i1)
-	sw	%i4, 529(%i0)
+	sw	%i5, 23(%i1)
+	sw	%i5, 529(%i0)
+	movi	%i5, 5
 	sw	%i5, 534(%i0)
 	sw	%i0, 535(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i4, 24(%i1)
-	sw	%i4, 536(%i0)
+	sw	%i5, 24(%i1)
+	sw	%i5, 536(%i0)
 	movi	%i4, 3
 	sw	%i4, 541(%i0)
 	sf	%f0, 542(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
-	sw	%i4, 543(%i0)
+	sw	%i5, 543(%i0)
 	movi	%i4, 5
 	sw	%i4, 546(%i0)
 	mov	%i4, %i2
@@ -531,10 +521,9 @@ ca_done.247134:
 	movi	%i4, 3
 	sw	%i4, 576(%i0)
 	sf	%f0, 577(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
-	sw	%i4, 578(%i0)
+	sw	%i5, 578(%i0)
 	movi	%i4, 5
 	sw	%i4, 581(%i0)
 	mov	%i4, %i2
@@ -578,17 +567,16 @@ ca_done.247134:
 	movi	%i5, 1
 	sw	%i5, 611(%i0)
 	sw	%i0, 612(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 4
-	sw	%i4, 28(%i1)
-	sw	%i4, 613(%i0)
+	sw	%i5, 28(%i1)
+	sw	%i5, 613(%i0)
 	movi	%i4, 3
 	sw	%i4, 614(%i0)
 	sf	%f0, 615(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
-	sw	%i4, 616(%i0)
+	sw	%i5, 616(%i0)
 	movi	%i4, 5
 	sw	%i4, 619(%i0)
 	mov	%i4, %i2
@@ -645,9 +633,8 @@ ca_done.247134:
 	sw	%i5, 1(%i4)
 	lw	%i5, 21(%i1)
 	sw	%i5, 0(%i4)
+	lw	%i29, 20(%i1)
 	mov	%i5, %i4
-	lw	%i4, 20(%i1)
-	mov	%i29, %i4
 	mov	%i4, %i2
 ca_loop.247135:
 	jlt	%i0, %i29, ca_cont.247136
@@ -669,12 +656,11 @@ ca_done.247137:
 	sw	%i7, 131(%i1)
 	jzero	%i0, %i0, cont.247139
 then.247138:
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 32(%i1)
-	mov	%i4, %i2
+	sw	%i5, 32(%i1)
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -696,15 +682,14 @@ then.247138:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	sw	%i4, 4(%i5)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i4, 37(%i1)
-	mov	%i4, %i2
+	sw	%i5, 37(%i1)
+	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i4, 38(%i1)
-	mov	%i4, %i2
+	sw	%i5, 38(%i1)
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -726,9 +711,8 @@ then.247138:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	sw	%i4, 4(%i5)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -750,12 +734,11 @@ then.247138:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	sw	%i4, 4(%i5)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 4
-	sw	%i4, 42(%i1)
-	mov	%i4, %i2
+	sw	%i5, 42(%i1)
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -795,27 +778,21 @@ then.247138:
 	sw	%i5, 0(%i4)
 	lw	%i7, 31(%i1)
 	sw	%i4, 30(%i7)
-	subi	%i4, %i6, 1
-	mov	%i6, %i4
+	subi	%i6, %i6, 1
 loop_start.239546:
 	jleq	%i0, %i6, then.247141
 	mov	%i31, %i7
 	jzero	%i0, %i0, loop_end.239547
 then.247141:
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 3
+	mov	%i12, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i12, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 3
+	mov	%i5, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i5, %i4
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 5
 	mov	%i4, %i2
 ca_loop.247143:
 	jlt	%i0, %i29, ca_cont.247144
@@ -828,46 +805,39 @@ ca_cont.247144:
 	jmp	%i0, 0(%i31)
 ca_done.247145:
 	mov	%i11, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 1(%i11)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 2(%i11)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 3(%i11)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 4(%i11)
-	movi	%i5, 5
-	mov	%i4, %i2
-	slli	%i29, %i5, 2
-	add	%i2, %i2, %i29
-	mov	%i10, %i4
-	mov	%i4, %i2
-	add	%i2, %i2, %i29
-	mov	%i9, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 5
+	mov	%i10, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i5, %i4
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 5
+	mov	%i9, %i2
+	slli	%i29, %i29, 2
+	add	%i2, %i2, %i29
+	movi	%i29, 3
+	mov	%i5, %i2
+	slli	%i29, %i29, 2
+	add	%i2, %i2, %i29
+	movi	%i29, 5
 	mov	%i4, %i2
 ca_loop.247146:
 	jlt	%i0, %i29, ca_cont.247147
@@ -880,38 +850,31 @@ ca_cont.247147:
 	jmp	%i0, 0(%i31)
 ca_done.247148:
 	mov	%i8, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 1(%i8)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 2(%i8)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 3(%i8)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 4(%i8)
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 3
+	mov	%i5, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i5, %i4
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 5
 	mov	%i4, %i2
 ca_loop.247149:
 	jlt	%i0, %i29, ca_cont.247150
@@ -924,43 +887,35 @@ ca_cont.247150:
 	jmp	%i0, 0(%i31)
 ca_done.247151:
 	mov	%i7, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 1(%i7)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 2(%i7)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 3(%i7)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 4(%i7)
-	movi	%i5, 1
-	mov	%i4, %i2
-	slli	%i29, %i5, 2
-	add	%i2, %i2, %i29
-	mov	%i13, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 1
+	mov	%i13, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i5, %i4
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 3
+	mov	%i5, %i2
+	slli	%i29, %i29, 2
+	add	%i2, %i2, %i29
+	movi	%i29, 5
 	mov	%i4, %i2
 ca_loop.247152:
 	jlt	%i0, %i29, ca_cont.247153
@@ -973,26 +928,22 @@ ca_cont.247153:
 	jmp	%i0, 0(%i31)
 ca_done.247154:
 	mov	%i5, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 1(%i5)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 2(%i5)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 3(%i5)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
@@ -1012,8 +963,7 @@ ca_done.247154:
 	lw	%i7, 31(%i1)
 	add	%i31, %i7, %i4
 	sw	%i5, 0(%i31)
-	subi	%i4, %i6, 1
-	mov	%i6, %i4
+	subi	%i6, %i6, 1
 	set_label	%i30, loop_start.239546
 	jmp	%i0, 0(%i30)
 loop_end.239547:
@@ -1026,17 +976,15 @@ cont.247139:
 	movi	%i4, 3
 	sw	%i4, 684(%i0)
 	sf	%f0, 685(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 44(%i1)
-	sw	%i4, 686(%i0)
-	movi	%i4, 3
+	sw	%i5, 44(%i1)
+	sw	%i5, 686(%i0)
 	sw	%i4, 689(%i0)
 	sf	%f0, 690(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
-	sw	%i4, 691(%i0)
+	sw	%i5, 691(%i0)
 	movi	%i4, 5
 	sw	%i4, 694(%i0)
 	mov	%i4, %i2
@@ -1080,23 +1028,23 @@ cont.247139:
 	movi	%i5, 5
 	sw	%i5, 724(%i0)
 	sw	%i0, 725(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i4, 46(%i1)
-	sw	%i4, 726(%i0)
+	sw	%i5, 46(%i1)
+	sw	%i5, 726(%i0)
+	movi	%i5, 5
 	sw	%i5, 731(%i0)
 	sw	%i0, 732(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i4, 47(%i1)
-	sw	%i4, 733(%i0)
+	sw	%i5, 47(%i1)
+	sw	%i5, 733(%i0)
 	movi	%i4, 3
 	sw	%i4, 738(%i0)
 	sf	%f0, 739(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
-	sw	%i4, 740(%i0)
+	sw	%i5, 740(%i0)
 	movi	%i4, 5
 	sw	%i4, 743(%i0)
 	mov	%i4, %i2
@@ -1140,10 +1088,9 @@ cont.247139:
 	movi	%i4, 3
 	sw	%i4, 773(%i0)
 	sf	%f0, 774(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
-	sw	%i4, 775(%i0)
+	sw	%i5, 775(%i0)
 	movi	%i4, 5
 	sw	%i4, 778(%i0)
 	mov	%i4, %i2
@@ -1187,17 +1134,16 @@ cont.247139:
 	movi	%i5, 1
 	sw	%i5, 808(%i0)
 	sw	%i0, 809(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 4
-	sw	%i4, 51(%i1)
-	sw	%i4, 810(%i0)
+	sw	%i5, 51(%i1)
+	sw	%i5, 810(%i0)
 	movi	%i4, 3
 	sw	%i4, 811(%i0)
 	sf	%f0, 812(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
-	sw	%i4, 813(%i0)
+	sw	%i5, 813(%i0)
 	movi	%i4, 5
 	sw	%i4, 816(%i0)
 	mov	%i4, %i2
@@ -1254,9 +1200,8 @@ cont.247139:
 	sw	%i5, 1(%i4)
 	lw	%i5, 44(%i1)
 	sw	%i5, 0(%i4)
+	lw	%i29, 43(%i1)
 	mov	%i5, %i4
-	lw	%i4, 43(%i1)
-	mov	%i29, %i4
 	mov	%i4, %i2
 ca_loop.247155:
 	jlt	%i0, %i29, ca_cont.247156
@@ -1278,12 +1223,11 @@ ca_done.247157:
 	sw	%i7, 132(%i1)
 	jzero	%i0, %i0, cont.247159
 then.247158:
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 53(%i1)
-	mov	%i4, %i2
+	sw	%i5, 53(%i1)
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -1305,15 +1249,14 @@ then.247158:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	sw	%i4, 4(%i5)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i4, 55(%i1)
-	mov	%i4, %i2
+	sw	%i5, 55(%i1)
+	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i4, 56(%i1)
-	mov	%i4, %i2
+	sw	%i5, 56(%i1)
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -1335,9 +1278,8 @@ then.247158:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	sw	%i4, 4(%i5)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -1359,12 +1301,11 @@ then.247158:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	sw	%i4, 4(%i5)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 4
-	sw	%i4, 59(%i1)
-	mov	%i4, %i2
+	sw	%i5, 59(%i1)
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -1404,27 +1345,21 @@ then.247158:
 	sw	%i5, 0(%i4)
 	lw	%i7, 52(%i1)
 	sw	%i4, 30(%i7)
-	subi	%i4, %i6, 1
-	mov	%i6, %i4
+	subi	%i6, %i6, 1
 loop_start.239578:
 	jleq	%i0, %i6, then.247161
 	mov	%i31, %i7
 	jzero	%i0, %i0, loop_end.239579
 then.247161:
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 3
+	mov	%i12, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i12, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 3
+	mov	%i5, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i5, %i4
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 5
 	mov	%i4, %i2
 ca_loop.247163:
 	jlt	%i0, %i29, ca_cont.247164
@@ -1437,46 +1372,39 @@ ca_cont.247164:
 	jmp	%i0, 0(%i31)
 ca_done.247165:
 	mov	%i11, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 1(%i11)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 2(%i11)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 3(%i11)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 4(%i11)
-	movi	%i5, 5
-	mov	%i4, %i2
-	slli	%i29, %i5, 2
-	add	%i2, %i2, %i29
-	mov	%i10, %i4
-	mov	%i4, %i2
-	add	%i2, %i2, %i29
-	mov	%i9, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 5
+	mov	%i10, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i5, %i4
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 5
+	mov	%i9, %i2
+	slli	%i29, %i29, 2
+	add	%i2, %i2, %i29
+	movi	%i29, 3
+	mov	%i5, %i2
+	slli	%i29, %i29, 2
+	add	%i2, %i2, %i29
+	movi	%i29, 5
 	mov	%i4, %i2
 ca_loop.247166:
 	jlt	%i0, %i29, ca_cont.247167
@@ -1489,38 +1417,31 @@ ca_cont.247167:
 	jmp	%i0, 0(%i31)
 ca_done.247168:
 	mov	%i8, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 1(%i8)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 2(%i8)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 3(%i8)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 4(%i8)
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 3
+	mov	%i5, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i5, %i4
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 5
 	mov	%i4, %i2
 ca_loop.247169:
 	jlt	%i0, %i29, ca_cont.247170
@@ -1533,43 +1454,35 @@ ca_cont.247170:
 	jmp	%i0, 0(%i31)
 ca_done.247171:
 	mov	%i7, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 1(%i7)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 2(%i7)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 3(%i7)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 4(%i7)
-	movi	%i5, 1
-	mov	%i4, %i2
-	slli	%i29, %i5, 2
-	add	%i2, %i2, %i29
-	mov	%i13, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 1
+	mov	%i13, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i5, %i4
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 3
+	mov	%i5, %i2
+	slli	%i29, %i29, 2
+	add	%i2, %i2, %i29
+	movi	%i29, 5
 	mov	%i4, %i2
 ca_loop.247172:
 	jlt	%i0, %i29, ca_cont.247173
@@ -1582,26 +1495,22 @@ ca_cont.247173:
 	jmp	%i0, 0(%i31)
 ca_done.247174:
 	mov	%i5, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 1(%i5)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 2(%i5)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 3(%i5)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
@@ -1621,8 +1530,7 @@ ca_done.247174:
 	lw	%i7, 52(%i1)
 	add	%i31, %i7, %i4
 	sw	%i5, 0(%i31)
-	subi	%i4, %i6, 1
-	mov	%i6, %i4
+	subi	%i6, %i6, 1
 	set_label	%i30, loop_start.239578
 	jmp	%i0, 0(%i30)
 loop_end.239579:
@@ -1635,17 +1543,15 @@ cont.247159:
 	movi	%i4, 3
 	sw	%i4, 881(%i0)
 	sf	%f0, 882(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 61(%i1)
-	sw	%i4, 883(%i0)
-	movi	%i4, 3
+	sw	%i5, 61(%i1)
+	sw	%i5, 883(%i0)
 	sw	%i4, 886(%i0)
 	sf	%f0, 887(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
-	sw	%i4, 888(%i0)
+	sw	%i5, 888(%i0)
 	movi	%i4, 5
 	sw	%i4, 891(%i0)
 	mov	%i4, %i2
@@ -1689,23 +1595,23 @@ cont.247159:
 	movi	%i5, 5
 	sw	%i5, 921(%i0)
 	sw	%i0, 922(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i4, 63(%i1)
-	sw	%i4, 923(%i0)
+	sw	%i5, 63(%i1)
+	sw	%i5, 923(%i0)
+	movi	%i5, 5
 	sw	%i5, 928(%i0)
 	sw	%i0, 929(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i4, 64(%i1)
-	sw	%i4, 930(%i0)
+	sw	%i5, 64(%i1)
+	sw	%i5, 930(%i0)
 	movi	%i4, 3
 	sw	%i4, 935(%i0)
 	sf	%f0, 936(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
-	sw	%i4, 937(%i0)
+	sw	%i5, 937(%i0)
 	movi	%i4, 5
 	sw	%i4, 940(%i0)
 	mov	%i4, %i2
@@ -1749,10 +1655,9 @@ cont.247159:
 	movi	%i4, 3
 	sw	%i4, 970(%i0)
 	sf	%f0, 971(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
-	sw	%i4, 972(%i0)
+	sw	%i5, 972(%i0)
 	movi	%i4, 5
 	sw	%i4, 975(%i0)
 	mov	%i4, %i2
@@ -1796,17 +1701,16 @@ cont.247159:
 	movi	%i5, 1
 	sw	%i5, 1005(%i0)
 	sw	%i0, 1006(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 4
-	sw	%i4, 67(%i1)
-	sw	%i4, 1007(%i0)
+	sw	%i5, 67(%i1)
+	sw	%i5, 1007(%i0)
 	movi	%i4, 3
 	sw	%i4, 1008(%i0)
 	sf	%f0, 1009(%i0)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
-	sw	%i4, 1010(%i0)
+	sw	%i5, 1010(%i0)
 	movi	%i4, 5
 	sw	%i4, 1013(%i0)
 	mov	%i4, %i2
@@ -1863,9 +1767,8 @@ cont.247159:
 	sw	%i5, 1(%i4)
 	lw	%i5, 61(%i1)
 	sw	%i5, 0(%i4)
+	lw	%i29, 60(%i1)
 	mov	%i5, %i4
-	lw	%i4, 60(%i1)
-	mov	%i29, %i4
 	mov	%i4, %i2
 ca_loop.247175:
 	jlt	%i0, %i29, ca_cont.247176
@@ -1887,12 +1790,11 @@ ca_done.247177:
 	sw	%i7, 133(%i1)
 	jzero	%i0, %i0, cont.247179
 then.247178:
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 69(%i1)
-	mov	%i4, %i2
+	sw	%i5, 69(%i1)
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -1914,15 +1816,14 @@ then.247178:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	sw	%i4, 4(%i5)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i4, 72(%i1)
-	mov	%i4, %i2
+	sw	%i5, 72(%i1)
+	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i4, 73(%i1)
-	mov	%i4, %i2
+	sw	%i5, 73(%i1)
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -1944,9 +1845,8 @@ then.247178:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	sw	%i4, 4(%i5)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -1968,12 +1868,11 @@ then.247178:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	sw	%i4, 4(%i5)
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 4
-	sw	%i4, 77(%i1)
-	mov	%i4, %i2
+	sw	%i5, 77(%i1)
+	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	mov	%i5, %i4
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -2013,27 +1912,21 @@ then.247178:
 	sw	%i5, 0(%i4)
 	lw	%i7, 68(%i1)
 	sw	%i4, 30(%i7)
-	subi	%i4, %i6, 1
-	mov	%i6, %i4
+	subi	%i6, %i6, 1
 loop_start.239610:
 	jleq	%i0, %i6, then.247181
 	mov	%i31, %i7
 	jzero	%i0, %i0, loop_end.239611
 then.247181:
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 3
+	mov	%i12, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i12, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 3
+	mov	%i5, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i5, %i4
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 5
 	mov	%i4, %i2
 ca_loop.247183:
 	jlt	%i0, %i29, ca_cont.247184
@@ -2046,46 +1939,39 @@ ca_cont.247184:
 	jmp	%i0, 0(%i31)
 ca_done.247185:
 	mov	%i11, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 1(%i11)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 2(%i11)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 3(%i11)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 4(%i11)
-	movi	%i5, 5
-	mov	%i4, %i2
-	slli	%i29, %i5, 2
-	add	%i2, %i2, %i29
-	mov	%i10, %i4
-	mov	%i4, %i2
-	add	%i2, %i2, %i29
-	mov	%i9, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 5
+	mov	%i10, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i5, %i4
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 5
+	mov	%i9, %i2
+	slli	%i29, %i29, 2
+	add	%i2, %i2, %i29
+	movi	%i29, 3
+	mov	%i5, %i2
+	slli	%i29, %i29, 2
+	add	%i2, %i2, %i29
+	movi	%i29, 5
 	mov	%i4, %i2
 ca_loop.247186:
 	jlt	%i0, %i29, ca_cont.247187
@@ -2098,38 +1984,31 @@ ca_cont.247187:
 	jmp	%i0, 0(%i31)
 ca_done.247188:
 	mov	%i8, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 1(%i8)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 2(%i8)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 3(%i8)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 4(%i8)
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 3
+	mov	%i5, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i5, %i4
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 5
 	mov	%i4, %i2
 ca_loop.247189:
 	jlt	%i0, %i29, ca_cont.247190
@@ -2142,43 +2021,35 @@ ca_cont.247190:
 	jmp	%i0, 0(%i31)
 ca_done.247191:
 	mov	%i7, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 1(%i7)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 2(%i7)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 3(%i7)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 4(%i7)
-	movi	%i5, 1
-	mov	%i4, %i2
-	slli	%i29, %i5, 2
-	add	%i2, %i2, %i29
-	mov	%i13, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 1
+	mov	%i13, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i5, %i4
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 3
+	mov	%i5, %i2
+	slli	%i29, %i29, 2
+	add	%i2, %i2, %i29
+	movi	%i29, 5
 	mov	%i4, %i2
 ca_loop.247192:
 	jlt	%i0, %i29, ca_cont.247193
@@ -2191,26 +2062,22 @@ ca_cont.247193:
 	jmp	%i0, 0(%i31)
 ca_done.247194:
 	mov	%i5, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 1(%i5)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 2(%i5)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
 	sw	%i4, 3(%i5)
-	movi	%i4, 3
-	mov	%i29, %i4
+	movi	%i29, 3
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
@@ -2230,8 +2097,7 @@ ca_done.247194:
 	lw	%i7, 68(%i1)
 	add	%i31, %i7, %i4
 	sw	%i5, 0(%i31)
-	subi	%i4, %i6, 1
-	mov	%i6, %i4
+	subi	%i6, %i6, 1
 	set_label	%i30, loop_start.239610
 	jmp	%i0, 0(%i30)
 loop_end.239611:
@@ -2249,9 +2115,9 @@ cont.247179:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	mif	%f1, %i4
-	sf	%f1, 1(%i1)
-	sf	%f1, 1077(%i0)
+	mif	%f3, %i4
+	sf	%f3, 1(%i1)
+	sf	%f3, 1077(%i0)
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -2262,9 +2128,9 @@ cont.247179:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	mif	%f1, %i4
-	sf	%f1, 2(%i1)
-	sf	%f1, 1078(%i0)
+	mif	%f3, %i4
+	sf	%f3, 2(%i1)
+	sf	%f3, 1078(%i0)
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -2275,9 +2141,9 @@ cont.247179:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	mif	%f1, %i4
-	sf	%f1, 3(%i1)
-	sf	%f1, 1079(%i0)
+	mif	%f3, %i4
+	sf	%f3, 3(%i1)
+	sf	%f3, 1079(%i0)
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -2288,9 +2154,8 @@ cont.247179:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	mif	%f1, %i4
-	fmov	%f3, %f1
-	sf	%f1, 1080(%i0)
+	mif	%f3, %i4
+	sf	%f3, 1080(%i0)
 	movui	%i31, 248047
 	ori	%i31, %i31, -1483
 	mif	%f1, %i31
@@ -2523,9 +2388,8 @@ cont.247204:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	mif	%f1, %i4
-	fmov	%f5, %f1
-	sf	%f1, 1086(%i0)
+	mif	%f5, %i4
+	sf	%f5, 1086(%i0)
 	movui	%i31, 248047
 	ori	%i31, %i31, -1483
 	mif	%f1, %i31
@@ -2829,9 +2693,8 @@ cont.247220:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	mif	%f1, %i4
-	fmov	%f3, %f1
-	sf	%f1, 1110(%i0)
+	mif	%f3, %i4
+	sf	%f3, 1110(%i0)
 	movui	%i31, 248047
 	ori	%i31, %i31, -1483
 	mif	%f1, %i31
@@ -2963,9 +2826,8 @@ cont.247228:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	mif	%f1, %i4
-	fmov	%f4, %f1
-	sf	%f1, 1115(%i0)
+	mif	%f4, %i4
+	sf	%f4, 1115(%i0)
 	movui	%i31, 248047
 	ori	%i31, %i31, -1483
 	mif	%f1, %i31
@@ -3345,10 +3207,10 @@ Lrelax_skip_0:
 	or	%i4, %i4, %i31
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
-	or	%i4, %i4, %i31
-	sw	%i4, 80(%i1)
+	or	%i5, %i4, %i31
+	sw	%i5, 80(%i1)
 	movi	%i31, -1
-	jeq	%i4, %i31, then.247261
+	jeq	%i5, %i31, then.247261
 	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
@@ -3359,8 +3221,8 @@ Lrelax_skip_0:
 	or	%i4, %i4, %i31
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
-	or	%i4, %i4, %i31
-	sw	%i4, 81(%i1)
+	or	%i13, %i4, %i31
+	sw	%i13, 81(%i1)
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -3370,8 +3232,9 @@ Lrelax_skip_0:
 	or	%i4, %i4, %i31
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
-	or	%i4, %i4, %i31
-	sw	%i4, 82(%i1)
+	or	%i5, %i4, %i31
+	sw	%i5, 82(%i1)
+	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -3381,12 +3244,11 @@ Lrelax_skip_0:
 	or	%i4, %i4, %i31
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
-	or	%i4, %i4, %i31
-	sw	%i4, 83(%i1)
-	mov	%i4, %i2
+	or	%i9, %i4, %i31
+	sw	%i9, 83(%i1)
+	mov	%i10, %i2
 	addi	%i2, %i2, 12
-	mov	%i10, %i4
-	sw	%i4, 84(%i1)
+	sw	%i10, 84(%i1)
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -3423,10 +3285,9 @@ Lrelax_skip_0:
 	or	%i4, %i4, %i31
 	mif	%f1, %i4
 	sf	%f1, 2(%i10)
-	mov	%i4, %i2
+	mov	%i10, %i2
 	addi	%i2, %i2, 12
-	mov	%i10, %i4
-	sw	%i4, 85(%i1)
+	sw	%i10, 85(%i1)
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -3473,14 +3334,12 @@ Lrelax_skip_0:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	mif	%f1, %i4
-	fmov	%f3, %f1
-	flt	%i12, %f1, %f0
+	mif	%f3, %i4
+	flt	%i12, %f3, %f0
 	sw	%i12, 86(%i1)
-	mov	%i4, %i2
+	mov	%i11, %i2
 	addi	%i2, %i2, 8
-	mov	%i11, %i4
-	sw	%i4, 87(%i1)
+	sw	%i11, 87(%i1)
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -3505,9 +3364,8 @@ Lrelax_skip_0:
 	or	%i4, %i4, %i31
 	mif	%f1, %i4
 	sf	%f1, 1(%i11)
-	mov	%i4, %i2
+	mov	%i11, %i2
 	addi	%i2, %i2, 12
-	mov	%i11, %i4
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -3544,11 +3402,9 @@ Lrelax_skip_0:
 	or	%i4, %i4, %i31
 	mif	%f1, %i4
 	sf	%f1, 2(%i11)
-	mov	%i4, %i2
+	mov	%i8, %i2
 	addi	%i2, %i2, 12
-	mov	%i8, %i4
-	sw	%i4, 88(%i1)
-	lw	%i9, 83(%i1)
+	sw	%i8, 88(%i1)
 	jeq	%i9, %i0, cont.247263
 	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
@@ -3561,8 +3417,7 @@ Lrelax_skip_0:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	mif	%f1, %i4
-	fmov	%f3, %f1
+	mif	%f3, %i4
 	movui	%i31, 248047
 	ori	%i31, %i31, -1483
 	mif	%f1, %i31
@@ -3578,8 +3433,7 @@ Lrelax_skip_0:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	mif	%f1, %i4
-	fmov	%f3, %f1
+	mif	%f3, %i4
 	movui	%i31, 248047
 	ori	%i31, %i31, -1483
 	mif	%f1, %i31
@@ -3595,8 +3449,7 @@ Lrelax_skip_0:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	mif	%f1, %i4
-	fmov	%f3, %f1
+	mif	%f3, %i4
 	movui	%i31, 248047
 	ori	%i31, %i31, -1483
 	mif	%f1, %i31
@@ -3609,9 +3462,8 @@ cont.247263:
 	lw	%i12, 86(%i1)
 	tern	%i10, %i4, %i5, %i12
 	fmov	%f1, %f0
-	mov	%i4, %i2
+	mov	%i5, %i2
 	addi	%i2, %i2, 16
-	mov	%i5, %i4
 	mov	%i4, %i2
 	addi	%i2, %i2, 48
 	sw	%i5, 10(%i4)
@@ -3697,8 +3549,7 @@ then.247273:
 	slli	%i4, %i4, 1
 	sub	%i4, %i0, %i4
 	addi	%i4, %i4, 1
-	itof	%f1, %i4
-	fmov	%f3, %f1
+	itof	%f3, %i4
 cont.247274:
 	fmul	%f1, %f4, %f4
 	finv	%f1, %f1
@@ -3720,8 +3571,7 @@ then.247277:
 	slli	%i4, %i4, 1
 	sub	%i4, %i0, %i4
 	addi	%i4, %i4, 1
-	itof	%f1, %i4
-	fmov	%f3, %f1
+	itof	%f3, %i4
 cont.247278:
 	fmul	%f1, %f4, %f4
 	finv	%f1, %f1
@@ -3743,8 +3593,7 @@ then.247281:
 	slli	%i4, %i4, 1
 	sub	%i4, %i0, %i4
 	addi	%i4, %i4, 1
-	itof	%f1, %i4
-	fmov	%f3, %f1
+	itof	%f3, %i4
 cont.247282:
 	fmul	%f1, %f4, %f4
 	finv	%f1, %f1
@@ -4480,8 +4329,7 @@ then.247261:
 	mov	%i5, %i0
 cont.247262:
 	jeq	%i5, %i0, then.247332
-	addi	%i4, %i7, 1
-	mov	%i7, %i4
+	addi	%i7, %i7, 1
 loop_start.239732:
 	jleq	%i6, %i7, then.247335
 	movui	%i5, 0xf0000
@@ -4494,10 +4342,9 @@ loop_start.239732:
 	or	%i4, %i4, %i31
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
-	or	%i4, %i4, %i31
-	mov	%i15, %i4
+	or	%i15, %i4, %i31
 	movi	%i31, -1
-	jeq	%i4, %i31, then.247337
+	jeq	%i15, %i31, then.247337
 	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
@@ -4508,8 +4355,7 @@ loop_start.239732:
 	or	%i4, %i4, %i31
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
-	or	%i4, %i4, %i31
-	mov	%i12, %i4
+	or	%i12, %i4, %i31
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -4519,8 +4365,7 @@ loop_start.239732:
 	or	%i4, %i4, %i31
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
-	or	%i4, %i4, %i31
-	mov	%i14, %i4
+	or	%i14, %i4, %i31
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -4530,14 +4375,11 @@ loop_start.239732:
 	or	%i4, %i4, %i31
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
-	or	%i4, %i4, %i31
-	mov	%i10, %i4
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	or	%i10, %i4, %i31
+	movi	%i29, 3
+	mov	%i9, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i9, %i4
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -4574,12 +4416,10 @@ loop_start.239732:
 	or	%i4, %i4, %i31
 	mif	%f1, %i4
 	sf	%f1, 2(%i9)
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 3
+	mov	%i13, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i13, %i4
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -4626,15 +4466,12 @@ loop_start.239732:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	mif	%f1, %i4
-	fmov	%f3, %f1
-	flt	%i11, %f1, %f0
-	movi	%i4, 2
-	mov	%i29, %i4
-	mov	%i4, %i2
+	mif	%f3, %i4
+	flt	%i11, %f3, %f0
+	movi	%i29, 2
+	mov	%i18, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i18, %i4
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -4659,12 +4496,10 @@ loop_start.239732:
 	or	%i4, %i4, %i31
 	mif	%f1, %i4
 	sf	%f1, 1(%i18)
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 3
+	mov	%i17, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i17, %i4
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -4701,12 +4536,10 @@ loop_start.239732:
 	or	%i4, %i4, %i31
 	mif	%f1, %i4
 	sf	%f1, 2(%i17)
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 3
+	mov	%i8, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i8, %i4
 	jeq	%i10, %i0, cont.247339
 	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
@@ -4719,8 +4552,7 @@ loop_start.239732:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	mif	%f1, %i4
-	fmov	%f3, %f1
+	mif	%f3, %i4
 	movui	%i31, 248047
 	ori	%i31, %i31, -1483
 	mif	%f1, %i31
@@ -4736,8 +4568,7 @@ loop_start.239732:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	mif	%f1, %i4
-	fmov	%f3, %f1
+	mif	%f3, %i4
 	movui	%i31, 248047
 	ori	%i31, %i31, -1483
 	mif	%f1, %i31
@@ -4753,8 +4584,7 @@ loop_start.239732:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	mif	%f1, %i4
-	fmov	%f3, %f1
+	mif	%f3, %i4
 	movui	%i31, 248047
 	ori	%i31, %i31, -1483
 	mif	%f1, %i31
@@ -4764,13 +4594,11 @@ cont.247339:
 	movi	%i5, 1
 	ceqi	%i4, %i12, 2
 	tern	%i16, %i4, %i5, %i11
-	movi	%i4, 4
+	movi	%i29, 4
 	fmov	%f1, %f0
-	mov	%i29, %i4
-	mov	%i4, %i2
+	mov	%i5, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i5, %i4
 	mov	%i4, %i2
 	addi	%i2, %i2, 48
 	sw	%i5, 10(%i4)
@@ -4850,8 +4678,7 @@ then.247349:
 	slli	%i4, %i4, 1
 	sub	%i4, %i0, %i4
 	addi	%i4, %i4, 1
-	itof	%f1, %i4
-	fmov	%f3, %f1
+	itof	%f3, %i4
 cont.247350:
 	fmul	%f1, %f4, %f4
 	finv	%f1, %f1
@@ -4873,8 +4700,7 @@ then.247353:
 	slli	%i4, %i4, 1
 	sub	%i4, %i0, %i4
 	addi	%i4, %i4, 1
-	itof	%f1, %i4
-	fmov	%f3, %f1
+	itof	%f3, %i4
 cont.247354:
 	fmul	%f1, %f4, %f4
 	finv	%f1, %f1
@@ -4896,8 +4722,7 @@ then.247357:
 	slli	%i4, %i4, 1
 	sub	%i4, %i0, %i4
 	addi	%i4, %i4, 1
-	itof	%f1, %i4
-	fmov	%f3, %f1
+	itof	%f3, %i4
 cont.247358:
 	fmul	%f1, %f4, %f4
 	finv	%f1, %f1
@@ -5629,8 +5454,7 @@ then.247337:
 	mov	%i5, %i0
 cont.247338:
 	jeq	%i5, %i0, then.247408
-	addi	%i4, %i7, 1
-	mov	%i7, %i4
+	addi	%i7, %i7, 1
 	set_label	%i31, loop_start.239732
 	jmp	%i0, 0(%i31)
 then.247408:
@@ -5665,8 +5489,7 @@ cont.247260:
 	lw	%i31, 50(%i1)
 	sw	%i31, 107(%i1)
 	sw	%i5, 0(%i31)
-	addi	%i4, %i6, 1
-	mov	%i6, %i4
+	addi	%i6, %i6, 1
 loop_start.239795:
 	mov	%i4, %i0
 	subi	%i1, %i1, 8
@@ -5683,8 +5506,7 @@ loop_start.239795:
 	lw	%i30, 107(%i1)
 	add	%i31, %i30, %i4
 	sw	%i5, 0(%i31)
-	addi	%i4, %i6, 1
-	mov	%i6, %i4
+	addi	%i6, %i6, 1
 	set_label	%i31, loop_start.239795
 	jmp	%i0, 0(%i31)
 then.247413:
@@ -5753,12 +5575,10 @@ loop_start.239801:
 	jzero	%i0, %i0, loop_end.239802
 then.247416:
 	movi	%i8, 120
-	mov	%i4, %i2
+	mov	%i7, %i2
 	addi	%i2, %i2, 12
-	mov	%i7, %i4
-	lw	%i31, 105(%i1)
+	lw	%i29, 105(%i1)
 	mov	%i5, %i7
-	mov	%i29, %i31
 	mov	%i4, %i2
 ca_loop.247418:
 	jlt	%i0, %i29, ca_cont.247419
@@ -5800,12 +5620,10 @@ ca_done.247423:
 	jleq	%i0, %i8, then.247424
 	jzero	%i0, %i0, cont.247425
 then.247424:
-	mov	%i4, %i2
+	mov	%i7, %i2
 	addi	%i2, %i2, 12
-	mov	%i7, %i4
-	lw	%i31, 105(%i1)
+	lw	%i29, 105(%i1)
 	mov	%i5, %i7
-	mov	%i29, %i31
 	mov	%i4, %i2
 ca_loop.247426:
 	jlt	%i0, %i29, ca_cont.247427
@@ -5823,21 +5641,17 @@ ca_done.247428:
 	sw	%i5, 1(%i4)
 	sw	%i7, 0(%i4)
 	sw	%i4, 118(%i9)
-	subi	%i4, %i8, 1
-	mov	%i8, %i4
+	subi	%i8, %i8, 1
 loop_start.239811:
 	jleq	%i0, %i8, then.247430
 	jzero	%i0, %i0, loop_end.239812
 then.247430:
-	movi	%i4, 3
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 3
+	mov	%i7, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i7, %i4
-	lw	%i31, 105(%i1)
+	lw	%i29, 105(%i1)
 	mov	%i5, %i7
-	mov	%i29, %i31
 	mov	%i4, %i2
 ca_loop.247432:
 	jlt	%i0, %i29, ca_cont.247433
@@ -5858,14 +5672,12 @@ ca_done.247434:
 	slli	%i4, %i8, 2
 	add	%i31, %i9, %i4
 	sw	%i5, 0(%i31)
-	subi	%i4, %i8, 1
-	mov	%i8, %i4
+	subi	%i8, %i8, 1
 	set_label	%i30, loop_start.239811
 	jmp	%i0, 0(%i30)
 loop_end.239812:
 cont.247425:
-	subi	%i4, %i6, 1
-	mov	%i6, %i4
+	subi	%i6, %i6, 1
 	set_label	%i30, loop_start.239801
 	jmp	%i0, 0(%i30)
 loop_end.239802:
@@ -6244,9 +6056,8 @@ cont.247452:
 	fsub	%f1, %f9, %f1
 	frsqrt	%f1, %f1
 	fmul	%f1, %f10, %f1
-	fmul	%f1, %f1, %f8
+	fmul	%f8, %f1, %f8
 	fmov	%f9, %f7
-	fmov	%f8, %f1
 loop_start.239840:
 	jleq	%i10, %i13, then.247460
 	fmul	%f7, %f8, %f8
@@ -6583,9 +6394,8 @@ cont.247471:
 	fsub	%f1, %f9, %f1
 	frsqrt	%f1, %f1
 	fmul	%f1, %f10, %f1
-	fmul	%f1, %f1, %f8
+	fmul	%f8, %f1, %f8
 	fmov	%f9, %f7
-	fmov	%f8, %f1
 	set_label	%i31, loop_start.239840
 	jmp	%i0, 0(%i31)
 then.247460:
@@ -7073,9 +6883,8 @@ cont.247489:
 	fsub	%f1, %f8, %f1
 	frsqrt	%f1, %f1
 	fmul	%f1, %f9, %f1
-	fmul	%f1, %f1, %f7
+	fmul	%f7, %f1, %f7
 	fmov	%f8, %f5
-	fmov	%f7, %f1
 loop_start.239900:
 	jleq	%i11, %i14, then.247497
 	fmul	%f5, %f7, %f7
@@ -7412,9 +7221,8 @@ cont.247508:
 	fsub	%f1, %f8, %f1
 	frsqrt	%f1, %f1
 	fmul	%f1, %f9, %f1
-	fmul	%f1, %f1, %f7
+	fmul	%f7, %f1, %f7
 	fmov	%f8, %f5
-	fmov	%f7, %f1
 	set_label	%i31, loop_start.239900
 	jmp	%i0, 0(%i31)
 then.247497:
@@ -7563,9 +7371,8 @@ cont.247479:
 	movi	%i4, 5
 	subi	%i8, %i9, 5
 	cleq	%i4, %i4, %i9
-	tern	%i4, %i4, %i8, %i9
+	tern	%i9, %i4, %i8, %i9
 	mov	%i8, %i10
-	mov	%i9, %i4
 	set_label	%i30, loop_start.239822
 	jmp	%i0, 0(%i30)
 loop_end.239823:
@@ -7575,9 +7382,8 @@ loop_end.239823:
 	subi	%i6, %i7, 5
 	cleq	%i4, %i4, %i7
 	tern	%i6, %i4, %i6, %i7
-	addi	%i4, %i5, 4
+	addi	%i5, %i5, 4
 	mov	%i7, %i8
-	mov	%i5, %i4
 	set_label	%i30, loop_start.239820
 	jmp	%i31, 0(%i30)
 loop_end.239821:
@@ -7603,10 +7409,9 @@ then.247519:
 	lw	%i4, 0(%i31)
 	lw	%i9, 1(%i4)
 	lw	%i8, 0(%i4)
-	lw	%i31, 105(%i1)
-	subi	%i4, %i31, 1
-	mov	%i11, %i4
-	jleq	%i0, %i4, then.247521
+	lw	%i4, 105(%i1)
+	subi	%i11, %i4, 1
+	jleq	%i0, %i11, then.247521
 	jzero	%i0, %i0, cont.247522
 then.247521:
 	slli	%i4, %i11, 2
@@ -7622,9 +7427,8 @@ then.247521:
 	jeq	%i4, %i31, then.247523
 	movi	%i31, 2
 	jeq	%i4, %i31, then.247525
-	mov	%i4, %i2
+	mov	%i13, %i2
 	addi	%i2, %i2, 20
-	mov	%i13, %i4
 	lf	%f12, 0(%i8)
 	lf	%f11, 1(%i8)
 	lf	%f10, 2(%i8)
@@ -7724,9 +7528,8 @@ cont.247531:
 	sw	%i13, 0(%i31)
 	jzero	%i0, %i0, cont.247524
 then.247525:
-	mov	%i4, %i2
+	mov	%i13, %i2
 	addi	%i2, %i2, 16
-	mov	%i13, %i4
 	lf	%f3, 0(%i8)
 	lf	%f1, 0(%i12)
 	fmul	%f4, %f3, %f1
@@ -7769,9 +7572,8 @@ cont.247533:
 	sw	%i13, 0(%i31)
 	jzero	%i0, %i0, cont.247524
 then.247523:
-	mov	%i4, %i2
+	mov	%i13, %i2
 	addi	%i2, %i2, 24
-	mov	%i13, %i4
 	lf	%f3, 0(%i8)
 	feq	%i5, %f3, %f0
 	jeq	%i5, %i0, then.247534
@@ -7842,8 +7644,7 @@ cont.247539:
 	add	%i31, %i9, %i4
 	sw	%i13, 0(%i31)
 cont.247524:
-	subi	%i4, %i11, 1
-	mov	%i11, %i4
+	subi	%i11, %i11, 1
 loop_start.239970:
 	jleq	%i0, %i11, then.247541
 	jzero	%i0, %i0, loop_end.239971
@@ -7861,12 +7662,10 @@ then.247541:
 	jeq	%i4, %i31, then.247543
 	movi	%i31, 2
 	jeq	%i4, %i31, then.247545
-	movi	%i4, 5
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 5
+	mov	%i13, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i13, %i4
 	lf	%f12, 0(%i8)
 	lf	%f11, 1(%i8)
 	lf	%f10, 2(%i8)
@@ -7966,12 +7765,10 @@ cont.247551:
 	sw	%i13, 0(%i31)
 	jzero	%i0, %i0, cont.247544
 then.247545:
-	movi	%i4, 4
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 4
+	mov	%i13, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i13, %i4
 	lf	%f3, 0(%i8)
 	lf	%f1, 0(%i12)
 	fmul	%f4, %f3, %f1
@@ -8014,12 +7811,10 @@ cont.247553:
 	sw	%i13, 0(%i31)
 	jzero	%i0, %i0, cont.247544
 then.247543:
-	movi	%i4, 6
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 6
+	mov	%i13, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i13, %i4
 	lf	%f3, 0(%i8)
 	feq	%i5, %f3, %f0
 	jeq	%i5, %i0, then.247554
@@ -8090,27 +7885,24 @@ cont.247559:
 	add	%i31, %i9, %i4
 	sw	%i13, 0(%i31)
 cont.247544:
-	subi	%i4, %i11, 1
-	mov	%i11, %i4
+	subi	%i11, %i11, 1
 	set_label	%i30, loop_start.239970
 	jmp	%i0, 0(%i30)
 loop_end.239971:
 cont.247522:
-	subi	%i4, %i10, 1
-	mov	%i10, %i4
+	subi	%i10, %i10, 1
 	set_label	%i30, loop_start.239952
 	jmp	%i0, 0(%i30)
 loop_end.239953:
-	subi	%i4, %i7, 1
-	mov	%i7, %i4
+	subi	%i7, %i7, 1
 	set_label	%i30, loop_start.239949
 	jmp	%i31, 0(%i30)
 loop_end.239950:
 	lf	%f31, 17(%i1)
 	sf	%f31, 136(%i1)
-	lw	%i31, 105(%i1)
-	sw	%i31, 1156(%i0)
-	subi	%i12, %i31, 1
+	lw	%i4, 105(%i1)
+	sw	%i4, 1156(%i0)
+	subi	%i12, %i4, 1
 	sw	%i12, 27(%i1)
 	sw	%i12, 1158(%i0)
 	mov	%i6, %i12
@@ -8138,9 +7930,8 @@ then.247560:
 	lf	%f4, 0(%i9)
 	lf	%f3, 1(%i9)
 	lf	%f5, 2(%i9)
-	mov	%i4, %i2
+	mov	%i7, %i2
 	addi	%i2, %i2, 20
-	mov	%i7, %i4
 	lf	%f31, 17(%i1)
 	sf	%f31, 136(%i1)
 	lf	%f31, 136(%i1)
@@ -8249,9 +8040,8 @@ then.247564:
 	lf	%f8, 0(%i8)
 	lf	%f7, 1(%i8)
 	lf	%f5, 2(%i8)
-	mov	%i4, %i2
+	mov	%i7, %i2
 	addi	%i2, %i2, 16
-	mov	%i7, %i4
 	lf	%f31, 136(%i1)
 	fmul	%f3, %f31, %f8
 	lf	%f31, 135(%i1)
@@ -8293,9 +8083,8 @@ then.247562:
 	lf	%f7, 0(%i8)
 	lf	%f5, 1(%i8)
 	lf	%f4, 2(%i8)
-	mov	%i4, %i2
+	mov	%i8, %i2
 	addi	%i2, %i2, 24
-	mov	%i8, %i4
 	lf	%f31, 136(%i1)
 	feq	%i5, %f31, %f0
 	jeq	%i5, %i0, then.247573
@@ -8365,8 +8154,7 @@ cont.247578:
 	add	%i31, %i31, %i4
 	sw	%i8, 0(%i31)
 cont.247563:
-	subi	%i4, %i6, 1
-	mov	%i6, %i4
+	subi	%i6, %i6, 1
 loop_start.240009:
 	jleq	%i0, %i6, then.247580
 	jzero	%i0, %i0, loop_end.240010
@@ -8390,12 +8178,10 @@ then.247580:
 	lf	%f4, 0(%i9)
 	lf	%f3, 1(%i9)
 	lf	%f5, 2(%i9)
-	movi	%i4, 5
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 5
+	mov	%i7, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i7, %i4
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f31, %f31
 	fmul	%f7, %f1, %f10
@@ -8501,12 +8287,10 @@ then.247584:
 	lf	%f8, 0(%i8)
 	lf	%f7, 1(%i8)
 	lf	%f5, 2(%i8)
-	movi	%i4, 4
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 4
+	mov	%i7, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i7, %i4
 	lf	%f31, 136(%i1)
 	fmul	%f3, %f31, %f8
 	lf	%f31, 135(%i1)
@@ -8547,12 +8331,10 @@ then.247582:
 	lf	%f7, 0(%i8)
 	lf	%f5, 1(%i8)
 	lf	%f4, 2(%i8)
-	movi	%i4, 6
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 6
+	mov	%i8, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i8, %i4
 	lf	%f31, 136(%i1)
 	feq	%i5, %f31, %f0
 	jeq	%i5, %i0, then.247593
@@ -8621,8 +8403,7 @@ cont.247598:
 	add	%i31, %i30, %i4
 	sw	%i8, 0(%i31)
 cont.247583:
-	subi	%i4, %i6, 1
-	mov	%i6, %i4
+	subi	%i6, %i6, 1
 	set_label	%i30, loop_start.240009
 	jmp	%i0, 0(%i30)
 loop_end.240010:
@@ -8701,12 +8482,10 @@ then.247607:
 	fmul	%f1, %f1, %f5
 	lf	%f31, 137(%i1)
 	fsub	%f2, %f1, %f31
-	mov	%i4, %i2
+	mov	%i16, %i2
 	addi	%i2, %i2, 12
-	mov	%i16, %i4
-	lw	%i31, 105(%i1)
+	lw	%i29, 105(%i1)
 	mov	%i5, %i16
-	mov	%i29, %i31
 	mov	%i4, %i2
 ca_loop.247609:
 	jlt	%i0, %i29, ca_cont.247610
@@ -8843,9 +8622,8 @@ cont.247622:
 	sw	%i4, 0(%i31)
 	jzero	%i0, %i0, cont.247615
 then.247616:
-	mov	%i4, %i2
+	mov	%i19, %i2
 	addi	%i2, %i2, 16
-	mov	%i19, %i4
 	lf	%f2, 0(%i16)
 	lf	%f1, 0(%i18)
 	fmul	%f3, %f2, %f1
@@ -8888,9 +8666,8 @@ cont.247624:
 	sw	%i19, 0(%i31)
 	jzero	%i0, %i0, cont.247615
 then.247614:
-	mov	%i4, %i2
+	mov	%i19, %i2
 	addi	%i2, %i2, 24
-	mov	%i19, %i4
 	lf	%f2, 0(%i16)
 	feq	%i5, %f2, %f0
 	jeq	%i5, %i0, then.247625
@@ -8962,8 +8739,7 @@ cont.247630:
 	add	%i31, %i15, %i4
 	sw	%i19, 0(%i31)
 cont.247615:
-	subi	%i4, %i17, 1
-	mov	%i17, %i4
+	subi	%i17, %i17, 1
 loop_start.240044:
 	jleq	%i0, %i17, then.247632
 	jzero	%i0, %i0, loop_end.240045
@@ -8981,8 +8757,7 @@ then.247632:
 	jeq	%i4, %i31, then.247634
 	movi	%i31, 2
 	jeq	%i4, %i31, then.247636
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 5
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
@@ -9085,12 +8860,10 @@ cont.247642:
 	sw	%i4, 0(%i31)
 	jzero	%i0, %i0, cont.247635
 then.247636:
-	movi	%i4, 4
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 4
+	mov	%i19, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i19, %i4
 	lf	%f2, 0(%i16)
 	lf	%f1, 0(%i18)
 	fmul	%f3, %f2, %f1
@@ -9133,12 +8906,10 @@ cont.247644:
 	sw	%i19, 0(%i31)
 	jzero	%i0, %i0, cont.247635
 then.247634:
-	movi	%i4, 6
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 6
+	mov	%i19, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i19, %i4
 	lf	%f2, 0(%i16)
 	feq	%i5, %f2, %f0
 	jeq	%i5, %i0, then.247645
@@ -9209,8 +8980,7 @@ cont.247650:
 	add	%i31, %i15, %i4
 	sw	%i19, 0(%i31)
 cont.247635:
-	subi	%i4, %i17, 1
-	mov	%i17, %i4
+	subi	%i17, %i17, 1
 	set_label	%i30, loop_start.240044
 	jmp	%i0, 0(%i30)
 loop_end.240045:
@@ -9225,8 +8995,7 @@ cont.247613:
 	sw	%i5, 0(%i4)
 	lw	%i15, 78(%i1)
 	sw	%i4, 0(%i15)
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.247608:
 	ceqi	%i4, %i10, 2
 	tern	%i13, %i4, %i5, %i13
@@ -9248,12 +9017,10 @@ then.247605:
 	lf	%f31, 137(%i1)
 	fneg	%f4, %f31
 	addi	%i17, %i14, 1
-	mov	%i4, %i2
+	mov	%i16, %i2
 	addi	%i2, %i2, 12
-	mov	%i16, %i4
-	lw	%i31, 105(%i1)
+	lw	%i29, 105(%i1)
 	mov	%i5, %i16
-	mov	%i29, %i31
 	mov	%i4, %i2
 ca_loop.247651:
 	jlt	%i0, %i29, ca_cont.247652
@@ -9390,9 +9157,8 @@ cont.247664:
 	sw	%i4, 0(%i31)
 	jzero	%i0, %i0, cont.247657
 then.247658:
-	mov	%i4, %i2
+	mov	%i19, %i2
 	addi	%i2, %i2, 16
-	mov	%i19, %i4
 	lf	%f3, 0(%i16)
 	lf	%f1, 0(%i20)
 	fmul	%f5, %f3, %f1
@@ -9435,9 +9201,8 @@ cont.247666:
 	sw	%i19, 0(%i31)
 	jzero	%i0, %i0, cont.247657
 then.247656:
-	mov	%i4, %i2
+	mov	%i19, %i2
 	addi	%i2, %i2, 24
-	mov	%i19, %i4
 	lf	%f3, 0(%i16)
 	feq	%i5, %f3, %f0
 	jeq	%i5, %i0, then.247667
@@ -9509,8 +9274,7 @@ cont.247672:
 	add	%i31, %i15, %i4
 	sw	%i19, 0(%i31)
 cont.247657:
-	subi	%i4, %i18, 1
-	mov	%i18, %i4
+	subi	%i18, %i18, 1
 loop_start.240084:
 	jleq	%i0, %i18, then.247674
 	jzero	%i0, %i0, loop_end.240085
@@ -9528,8 +9292,7 @@ then.247674:
 	jeq	%i4, %i31, then.247676
 	movi	%i31, 2
 	jeq	%i4, %i31, then.247678
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 5
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
@@ -9632,12 +9395,10 @@ cont.247684:
 	sw	%i4, 0(%i31)
 	jzero	%i0, %i0, cont.247677
 then.247678:
-	movi	%i4, 4
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 4
+	mov	%i19, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i19, %i4
 	lf	%f3, 0(%i16)
 	lf	%f1, 0(%i20)
 	fmul	%f5, %f3, %f1
@@ -9680,12 +9441,10 @@ cont.247686:
 	sw	%i19, 0(%i31)
 	jzero	%i0, %i0, cont.247677
 then.247676:
-	movi	%i4, 6
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 6
+	mov	%i19, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i19, %i4
 	lf	%f3, 0(%i16)
 	feq	%i5, %f3, %f0
 	jeq	%i5, %i0, then.247687
@@ -9756,8 +9515,7 @@ cont.247692:
 	add	%i31, %i15, %i4
 	sw	%i19, 0(%i31)
 cont.247677:
-	subi	%i4, %i18, 1
-	mov	%i18, %i4
+	subi	%i18, %i18, 1
 	set_label	%i30, loop_start.240084
 	jmp	%i0, 0(%i30)
 loop_end.240085:
@@ -9771,12 +9529,10 @@ cont.247655:
 	lw	%i15, 78(%i1)
 	sw	%i4, 0(%i15)
 	addi	%i18, %i14, 2
-	mov	%i4, %i2
+	mov	%i17, %i2
 	addi	%i2, %i2, 12
-	mov	%i17, %i4
-	lw	%i31, 105(%i1)
+	lw	%i29, 105(%i1)
 	mov	%i5, %i17
-	mov	%i29, %i31
 	mov	%i4, %i2
 ca_loop.247693:
 	jlt	%i0, %i29, ca_cont.247694
@@ -9914,9 +9670,8 @@ cont.247706:
 	sw	%i4, 0(%i31)
 	jzero	%i0, %i0, cont.247699
 then.247700:
-	mov	%i4, %i2
+	mov	%i20, %i2
 	addi	%i2, %i2, 16
-	mov	%i20, %i4
 	lf	%f4, 0(%i17)
 	lf	%f1, 0(%i21)
 	fmul	%f5, %f4, %f1
@@ -9959,9 +9714,8 @@ cont.247708:
 	sw	%i20, 0(%i31)
 	jzero	%i0, %i0, cont.247699
 then.247698:
-	mov	%i4, %i2
+	mov	%i20, %i2
 	addi	%i2, %i2, 24
-	mov	%i20, %i4
 	lf	%f4, 0(%i17)
 	feq	%i5, %f4, %f0
 	jeq	%i5, %i0, then.247709
@@ -10033,8 +9787,7 @@ cont.247714:
 	add	%i31, %i16, %i4
 	sw	%i20, 0(%i31)
 cont.247699:
-	subi	%i4, %i19, 1
-	mov	%i19, %i4
+	subi	%i19, %i19, 1
 loop_start.240123:
 	jleq	%i0, %i19, then.247716
 	jzero	%i0, %i0, loop_end.240124
@@ -10052,8 +9805,7 @@ then.247716:
 	jeq	%i4, %i31, then.247718
 	movi	%i31, 2
 	jeq	%i4, %i31, then.247720
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 5
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
@@ -10156,12 +9908,10 @@ cont.247726:
 	sw	%i4, 0(%i31)
 	jzero	%i0, %i0, cont.247719
 then.247720:
-	movi	%i4, 4
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 4
+	mov	%i20, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i20, %i4
 	lf	%f4, 0(%i17)
 	lf	%f1, 0(%i21)
 	fmul	%f5, %f4, %f1
@@ -10204,12 +9954,10 @@ cont.247728:
 	sw	%i20, 0(%i31)
 	jzero	%i0, %i0, cont.247719
 then.247718:
-	movi	%i4, 6
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 6
+	mov	%i20, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i20, %i4
 	lf	%f4, 0(%i17)
 	feq	%i5, %f4, %f0
 	jeq	%i5, %i0, then.247729
@@ -10280,8 +10028,7 @@ cont.247734:
 	add	%i31, %i16, %i4
 	sw	%i20, 0(%i31)
 cont.247719:
-	subi	%i4, %i19, 1
-	mov	%i19, %i4
+	subi	%i19, %i19, 1
 	set_label	%i30, loop_start.240123
 	jmp	%i0, 0(%i30)
 loop_end.240124:
@@ -10294,12 +10041,10 @@ cont.247697:
 	sw	%i18, 0(%i4)
 	sw	%i4, 1(%i15)
 	addi	%i17, %i14, 3
-	mov	%i4, %i2
+	mov	%i16, %i2
 	addi	%i2, %i2, 12
-	mov	%i16, %i4
-	lw	%i31, 105(%i1)
+	lw	%i29, 105(%i1)
 	mov	%i5, %i16
-	mov	%i29, %i31
 	mov	%i4, %i2
 ca_loop.247735:
 	jlt	%i0, %i29, ca_cont.247736
@@ -10437,9 +10182,8 @@ cont.247748:
 	sw	%i4, 0(%i31)
 	jzero	%i0, %i0, cont.247741
 then.247742:
-	mov	%i4, %i2
+	mov	%i19, %i2
 	addi	%i2, %i2, 16
-	mov	%i19, %i4
 	lf	%f3, 0(%i16)
 	lf	%f1, 0(%i20)
 	fmul	%f4, %f3, %f1
@@ -10482,9 +10226,8 @@ cont.247750:
 	sw	%i19, 0(%i31)
 	jzero	%i0, %i0, cont.247741
 then.247740:
-	mov	%i4, %i2
+	mov	%i19, %i2
 	addi	%i2, %i2, 24
-	mov	%i19, %i4
 	lf	%f3, 0(%i16)
 	feq	%i5, %f3, %f0
 	jeq	%i5, %i0, then.247751
@@ -10556,8 +10299,7 @@ cont.247756:
 	add	%i31, %i14, %i4
 	sw	%i19, 0(%i31)
 cont.247741:
-	subi	%i4, %i18, 1
-	mov	%i18, %i4
+	subi	%i18, %i18, 1
 loop_start.240162:
 	jleq	%i0, %i18, then.247758
 	jzero	%i0, %i0, loop_end.240163
@@ -10575,8 +10317,7 @@ then.247758:
 	jeq	%i4, %i31, then.247760
 	movi	%i31, 2
 	jeq	%i4, %i31, then.247762
-	movi	%i4, 5
-	mov	%i29, %i4
+	movi	%i29, 5
 	mov	%i4, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
@@ -10679,12 +10420,10 @@ cont.247768:
 	sw	%i4, 0(%i31)
 	jzero	%i0, %i0, cont.247761
 then.247762:
-	movi	%i4, 4
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 4
+	mov	%i19, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i19, %i4
 	lf	%f3, 0(%i16)
 	lf	%f1, 0(%i20)
 	fmul	%f4, %f3, %f1
@@ -10727,12 +10466,10 @@ cont.247770:
 	sw	%i19, 0(%i31)
 	jzero	%i0, %i0, cont.247761
 then.247760:
-	movi	%i4, 6
-	mov	%i29, %i4
-	mov	%i4, %i2
+	movi	%i29, 6
+	mov	%i19, %i2
 	slli	%i29, %i29, 2
 	add	%i2, %i2, %i29
-	mov	%i19, %i4
 	lf	%f3, 0(%i16)
 	feq	%i5, %f3, %f0
 	jeq	%i5, %i0, then.247771
@@ -10803,8 +10540,7 @@ cont.247776:
 	add	%i31, %i14, %i4
 	sw	%i19, 0(%i31)
 cont.247761:
-	subi	%i4, %i18, 1
-	mov	%i18, %i4
+	subi	%i18, %i18, 1
 	set_label	%i30, loop_start.240162
 	jmp	%i0, 0(%i30)
 loop_end.240163:
@@ -10816,8 +10552,7 @@ cont.247739:
 	sw	%i16, 1(%i4)
 	sw	%i17, 0(%i4)
 	sw	%i4, 2(%i15)
-	movi	%i4, 3
-	mov	%i14, %i4
+	movi	%i14, 3
 cont.247606:
 	ceqi	%i4, %i10, 1
 	tern	%i5, %i4, %i14, %i13
@@ -10942,14 +10677,14 @@ then.247778:
 	sf	%f0, 116(%i1)
 	sf	%f0, 117(%i1)
 	sf	%f0, 118(%i1)
-	lf	%f3, 14(%i1)
-	sf	%f3, 119(%i1)
-	lf	%f3, 15(%i1)
-	sf	%f3, 120(%i1)
-	lf	%f1, 16(%i1)
-	sf	%f1, 121(%i1)
+	lf	%f31, 14(%i1)
+	sf	%f31, 119(%i1)
+	lf	%f31, 15(%i1)
+	sf	%f31, 120(%i1)
+	lf	%f31, 16(%i1)
+	sf	%f31, 121(%i1)
 	movui	%i31, 260096
-	mif	%f3, %i31
+	mif	%f10, %i31
 	slli	%i4, %i6, 2
 	lw	%i30, 132(%i1)
 	add	%i31, %i30, %i4
@@ -10960,7 +10695,6 @@ then.247778:
 	lw	%i11, 2(%i4)
 	lw	%i10, 1(%i4)
 	mov	%i9, %i0
-	fmov	%f10, %f3
 	fmov	%f9, %f0
 loop_start.240198:
 	movi	%i31, 4
@@ -10970,8 +10704,7 @@ loop_start.240198:
 then.247781:
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i7, %i0
 loop_start.240201:
 	slli	%i4, %i7, 2
@@ -10993,15 +10726,15 @@ loop_start.240201:
 	lw	%i5, 4(%i4)
 	lw	%i16, 3(%i4)
 	lw	%i15, 1(%i4)
-	lf	%f31, 119(%i1)
+	lf	%f3, 119(%i1)
 	lf	%f1, 0(%i17)
-	fsub	%f12, %f31, %f1
-	lf	%f31, 120(%i1)
+	fsub	%f12, %f3, %f1
+	lf	%f3, 120(%i1)
 	lf	%f1, 1(%i17)
-	fsub	%f11, %f31, %f1
-	lf	%f31, 121(%i1)
+	fsub	%f11, %f3, %f1
+	lf	%f3, 121(%i1)
 	lf	%f1, 2(%i17)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f3, %f1
 	movi	%i31, 1
 	jeq	%i15, %i31, then.247788
 	movi	%i31, 2
@@ -11114,8 +10847,8 @@ cont.247799:
 	ftern	%f1, %f1, %f11, %f12
 	fsub	%f4, %f1, %f4
 	finv	%f1, %f3
-	fmul	%f1, %f4, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.247789
 then.247800:
@@ -11143,8 +10876,8 @@ then.247790:
 	fadd	%f1, %f3, %f1
 	fneg	%f3, %f1
 	finv	%f1, %f4
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.247789
 then.247802:
@@ -11278,8 +11011,8 @@ cont.247819:
 cont.247811:
 cont.247789:
 	jeq	%i5, %i0, cont.247787
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.247787
 	movi	%i15, 1
 loop_start.240220:
@@ -11313,15 +11046,15 @@ loop_start.240224:
 	lw	%i20, 4(%i4)
 	lw	%i19, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 119(%i1)
+	lf	%f12, 119(%i1)
 	lf	%f1, 0(%i22)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 120(%i1)
+	fsub	%f15, %f12, %f1
+	lf	%f12, 120(%i1)
 	lf	%f1, 1(%i22)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 121(%i1)
+	fsub	%f14, %f12, %f1
+	lf	%f12, 121(%i1)
 	lf	%f1, 2(%i22)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f12, %f1
 	movi	%i31, 1
 	jeq	%i4, %i31, then.247836
 	movi	%i31, 2
@@ -11443,8 +11176,8 @@ cont.247847:
 	ftern	%f1, %f1, %f14, %f15
 	fsub	%f13, %f1, %f13
 	finv	%f1, %f12
-	fmul	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.247837
 then.247848:
@@ -11471,8 +11204,8 @@ then.247838:
 	fadd	%f1, %f12, %f1
 	fneg	%f12, %f1
 	finv	%f1, %f13
-	fmul	%f1, %f12, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f12, %f1
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.247837
 then.247850:
@@ -11496,15 +11229,13 @@ then.247852:
 	fmul	%f13, %f12, %f1
 	fmul	%f1, %f13, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f12, %f1
+	fabs	%f12, %f1
 	lf	%f1, 1(%i20)
 	flt	%i5, %f12, %f1
 	jeq	%i5, %i0, then.247854
 	fmul	%f1, %f13, %f3
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f12, %f1
+	fabs	%f12, %f1
 	lf	%f1, 2(%i20)
 	flt	%i5, %f12, %f1
 	jeq	%i5, %i0, then.247856
@@ -11539,15 +11270,13 @@ then.247860:
 	fmul	%f13, %f12, %f1
 	fmul	%f1, %f13, %f3
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f12, %f1
+	fabs	%f12, %f1
 	lf	%f1, 2(%i20)
 	flt	%i5, %f12, %f1
 	jeq	%i5, %i0, then.247862
 	fmul	%f1, %f13, %f11
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f12, %f1
+	fabs	%f12, %f1
 	lf	%f1, 0(%i20)
 	flt	%i5, %f12, %f1
 	jeq	%i5, %i0, then.247864
@@ -11582,15 +11311,13 @@ then.247868:
 	fmul	%f13, %f12, %f1
 	fmul	%f1, %f13, %f11
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f12, %f1
+	fabs	%f12, %f1
 	lf	%f1, 0(%i20)
 	flt	%i5, %f12, %f1
 	jeq	%i5, %i0, then.247870
 	fmul	%f1, %f13, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f12, %f1
+	fabs	%f12, %f1
 	lf	%f1, 1(%i20)
 	flt	%i5, %f12, %f1
 	jeq	%i5, %i0, then.247872
@@ -11614,9 +11341,8 @@ cont.247867:
 cont.247859:
 cont.247837:
 	jeq	%i18, %i0, then.247876
-	lf	%f31, 108(%i1)
-	fmov	%f12, %f31
-	flt	%i5, %f0, %f31
+	lf	%f12, 108(%i1)
+	flt	%i5, %f0, %f12
 	jeq	%i5, %i0, cont.247878
 	flt	%i5, %f12, %f5
 	jeq	%i5, %i0, cont.247879
@@ -11625,14 +11351,14 @@ cont.247837:
 	mif	%f1, %i31
 	fadd	%f15, %f12, %f1
 	fmul	%f12, %f11, %f15
-	lf	%f31, 119(%i1)
-	fadd	%f14, %f12, %f31
+	lf	%f1, 119(%i1)
+	fadd	%f14, %f12, %f1
 	fmul	%f12, %f4, %f15
-	lf	%f31, 120(%i1)
-	fadd	%f13, %f12, %f31
+	lf	%f1, 120(%i1)
+	fadd	%f13, %f12, %f1
 	fmul	%f12, %f3, %f15
-	lf	%f31, 121(%i1)
-	fadd	%f12, %f12, %f31
+	lf	%f1, 121(%i1)
+	fadd	%f12, %f12, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i8)
 	movi	%i31, -1
@@ -11707,18 +11433,15 @@ then.247884:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.247883
 then.247882:
-	fabs	%f1, %f17
-	fmov	%f17, %f1
+	fabs	%f17, %f17
 	lf	%f1, 0(%i4)
 	flt	%i21, %f17, %f1
 	jeq	%i21, %i0, then.247888
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 1(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.247890
-	fabs	%f1, %f19
-	fmov	%f16, %f1
+	fabs	%f16, %f19
 	lf	%f1, 2(%i4)
 	flt	%i20, %f16, %f1
 	jzero	%i0, %i0, cont.247889
@@ -11738,8 +11461,7 @@ cont.247883:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.247881
 then.247894:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.240245:
 	slli	%i4, %i19, 2
 	add	%i31, %i8, %i4
@@ -11816,18 +11538,15 @@ then.247901:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.247900
 then.247899:
-	fabs	%f1, %f17
-	fmov	%f17, %f1
+	fabs	%f17, %f17
 	lf	%f1, 0(%i4)
 	flt	%i21, %f17, %f1
 	jeq	%i21, %i0, then.247905
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 1(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.247907
-	fabs	%f1, %f19
-	fmov	%f16, %f1
+	fabs	%f16, %f19
 	lf	%f1, 2(%i4)
 	flt	%i20, %f16, %f1
 	jzero	%i0, %i0, cont.247906
@@ -11847,20 +11566,17 @@ cont.247900:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.240246
 then.247911:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.240245
 	jmp	%i0, 0(%i31)
 then.247897:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240246
 loop_end.240246:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.247881
 then.247880:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.247881:
 	jeq	%i5, %i0, cont.247913
 	fmov	%f5, %f15
@@ -11872,8 +11588,7 @@ cont.247881:
 cont.247913:
 cont.247879:
 cont.247878:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.240224
 	jmp	%i0, 0(%i31)
 then.247876:
@@ -11883,13 +11598,11 @@ then.247876:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.240225
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.240224
 	jmp	%i0, 0(%i31)
 loop_end.240225:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.240220
 	jmp	%i0, 0(%i31)
 then.247786:
@@ -11925,15 +11638,15 @@ loop_start.240266:
 	lw	%i20, 4(%i4)
 	lw	%i19, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 119(%i1)
+	lf	%f12, 119(%i1)
 	lf	%f1, 0(%i22)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 120(%i1)
+	fsub	%f15, %f12, %f1
+	lf	%f12, 120(%i1)
 	lf	%f1, 1(%i22)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 121(%i1)
+	fsub	%f14, %f12, %f1
+	lf	%f12, 121(%i1)
 	lf	%f1, 2(%i22)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f12, %f1
 	movi	%i31, 1
 	jeq	%i4, %i31, then.247922
 	movi	%i31, 2
@@ -12055,8 +11768,8 @@ cont.247933:
 	ftern	%f1, %f1, %f14, %f15
 	fsub	%f13, %f1, %f13
 	finv	%f1, %f12
-	fmul	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.247923
 then.247934:
@@ -12083,8 +11796,8 @@ then.247924:
 	fadd	%f1, %f12, %f1
 	fneg	%f12, %f1
 	finv	%f1, %f13
-	fmul	%f1, %f12, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f12, %f1
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.247923
 then.247936:
@@ -12108,15 +11821,13 @@ then.247938:
 	fmul	%f13, %f12, %f1
 	fmul	%f1, %f13, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f12, %f1
+	fabs	%f12, %f1
 	lf	%f1, 1(%i20)
 	flt	%i5, %f12, %f1
 	jeq	%i5, %i0, then.247940
 	fmul	%f1, %f13, %f3
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f12, %f1
+	fabs	%f12, %f1
 	lf	%f1, 2(%i20)
 	flt	%i5, %f12, %f1
 	jeq	%i5, %i0, then.247942
@@ -12151,15 +11862,13 @@ then.247946:
 	fmul	%f13, %f12, %f1
 	fmul	%f1, %f13, %f3
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f12, %f1
+	fabs	%f12, %f1
 	lf	%f1, 2(%i20)
 	flt	%i5, %f12, %f1
 	jeq	%i5, %i0, then.247948
 	fmul	%f1, %f13, %f11
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f12, %f1
+	fabs	%f12, %f1
 	lf	%f1, 0(%i20)
 	flt	%i5, %f12, %f1
 	jeq	%i5, %i0, then.247950
@@ -12194,15 +11903,13 @@ then.247954:
 	fmul	%f13, %f12, %f1
 	fmul	%f1, %f13, %f11
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f12, %f1
+	fabs	%f12, %f1
 	lf	%f1, 0(%i20)
 	flt	%i5, %f12, %f1
 	jeq	%i5, %i0, then.247956
 	fmul	%f1, %f13, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f12, %f1
+	fabs	%f12, %f1
 	lf	%f1, 1(%i20)
 	flt	%i5, %f12, %f1
 	jeq	%i5, %i0, then.247958
@@ -12226,9 +11933,8 @@ cont.247953:
 cont.247945:
 cont.247923:
 	jeq	%i18, %i0, then.247962
-	lf	%f31, 108(%i1)
-	fmov	%f12, %f31
-	flt	%i5, %f0, %f31
+	lf	%f12, 108(%i1)
+	flt	%i5, %f0, %f12
 	jeq	%i5, %i0, cont.247964
 	flt	%i5, %f12, %f5
 	jeq	%i5, %i0, cont.247965
@@ -12237,14 +11943,14 @@ cont.247923:
 	mif	%f1, %i31
 	fadd	%f15, %f12, %f1
 	fmul	%f12, %f11, %f15
-	lf	%f31, 119(%i1)
-	fadd	%f14, %f12, %f31
+	lf	%f1, 119(%i1)
+	fadd	%f14, %f12, %f1
 	fmul	%f12, %f4, %f15
-	lf	%f31, 120(%i1)
-	fadd	%f13, %f12, %f31
+	lf	%f1, 120(%i1)
+	fadd	%f13, %f12, %f1
 	fmul	%f12, %f3, %f15
-	lf	%f31, 121(%i1)
-	fadd	%f12, %f12, %f31
+	lf	%f1, 121(%i1)
+	fadd	%f12, %f12, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i8)
 	movi	%i31, -1
@@ -12319,18 +12025,15 @@ then.247970:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.247969
 then.247968:
-	fabs	%f1, %f17
-	fmov	%f17, %f1
+	fabs	%f17, %f17
 	lf	%f1, 0(%i4)
 	flt	%i21, %f17, %f1
 	jeq	%i21, %i0, then.247974
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 1(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.247976
-	fabs	%f1, %f19
-	fmov	%f16, %f1
+	fabs	%f16, %f19
 	lf	%f1, 2(%i4)
 	flt	%i20, %f16, %f1
 	jzero	%i0, %i0, cont.247975
@@ -12350,8 +12053,7 @@ cont.247969:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.247967
 then.247980:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.240287:
 	slli	%i4, %i19, 2
 	add	%i31, %i8, %i4
@@ -12428,18 +12130,15 @@ then.247987:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.247986
 then.247985:
-	fabs	%f1, %f17
-	fmov	%f17, %f1
+	fabs	%f17, %f17
 	lf	%f1, 0(%i4)
 	flt	%i21, %f17, %f1
 	jeq	%i21, %i0, then.247991
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 1(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.247993
-	fabs	%f1, %f19
-	fmov	%f16, %f1
+	fabs	%f16, %f19
 	lf	%f1, 2(%i4)
 	flt	%i20, %f16, %f1
 	jzero	%i0, %i0, cont.247992
@@ -12459,20 +12158,17 @@ cont.247986:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.240288
 then.247997:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.240287
 	jmp	%i0, 0(%i31)
 then.247983:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240288
 loop_end.240288:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.247967
 then.247966:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.247967:
 	jeq	%i5, %i0, cont.247999
 	fmov	%f5, %f15
@@ -12484,8 +12180,7 @@ cont.247967:
 cont.247999:
 cont.247965:
 cont.247964:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.240266
 	jmp	%i0, 0(%i31)
 then.247962:
@@ -12495,19 +12190,16 @@ then.247962:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.240267
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.240266
 	jmp	%i0, 0(%i31)
 loop_end.240267:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.240262
 	jmp	%i0, 0(%i31)
 loop_end.240263:
 cont.247787:
-	addi	%i4, %i7, 1
-	mov	%i7, %i4
+	addi	%i7, %i7, 1
 	set_label	%i31, loop_start.240201
 	jmp	%i0, 0(%i31)
 loop_end.240202:
@@ -12530,9 +12222,8 @@ cont.248003:
 	set_label	%i31, then.248004
 	jmp	%i0, 0(%i31)
 Lrelax_skip_2:
-	lw	%i31, 113(%i1)
-	mov	%i5, %i31
-	slli	%i4, %i31, 2
+	lw	%i5, 113(%i1)
+	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i16, 0(%i31)
@@ -12552,15 +12243,15 @@ Lrelax_skip_2:
 	jeq	%i19, %i31, then.248006
 	movi	%i31, 2
 	jeq	%i19, %i31, then.248008
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i6)
-	fsub	%f4, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f4, %f3, %f1
+	lf	%f3, 111(%i1)
 	lf	%f1, 1(%i6)
-	fsub	%f3, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f3, %f3, %f1
+	lf	%f11, 112(%i1)
 	lf	%f1, 2(%i6)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f11, %f1
 	lf	%f1, 0(%i15)
 	fmul	%f15, %f4, %f1
 	lf	%f1, 1(%i15)
@@ -12662,8 +12353,7 @@ then.248008:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.248007
 then.248006:
-	lw	%i31, 109(%i1)
-	mov	%i18, %i31
+	lw	%i18, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -12697,12 +12387,10 @@ cont.248007:
 	sf	%f31, 120(%i1)
 	lf	%f31, 112(%i1)
 	sf	%f31, 121(%i1)
-	lf	%f1, 0(%i17)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i17)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i17)
-	sf	%f1, 115(%i1)
+	lf	%f4, 0(%i17)
+	lf	%f3, 1(%i17)
+	lf	%f31, 2(%i17)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i16, %i31, then.248018
 	movi	%i31, 2
@@ -12711,16 +12399,16 @@ cont.248007:
 	jeq	%i16, %i31, then.248022
 	ceqi	%i31, %i16, 4
 	jzero	%i0, %i31, cont.248024
-	lf	%f31, 110(%i1)
+	lf	%f11, 110(%i1)
 	lf	%f1, 0(%i6)
-	fsub	%f12, %f31, %f1
+	fsub	%f12, %f11, %f1
 	lf	%f11, 0(%i15)
 	frsqrt	%f1, %f11
 	fmul	%f1, %f1, %f11
 	fmul	%f15, %f12, %f1
-	lf	%f31, 112(%i1)
+	lf	%f11, 112(%i1)
 	lf	%f1, 2(%i6)
-	fsub	%f12, %f31, %f1
+	fsub	%f12, %f11, %f1
 	lf	%f11, 2(%i15)
 	frsqrt	%f1, %f11
 	fmul	%f1, %f1, %f11
@@ -12728,8 +12416,7 @@ cont.248007:
 	fmul	%f11, %f15, %f15
 	fmul	%f1, %f14, %f14
 	fadd	%f12, %f11, %f1
-	fabs	%f1, %f15
-	fmov	%f11, %f1
+	fabs	%f11, %f15
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -12741,8 +12428,7 @@ cont.248007:
 then.248025:
 	finv	%f1, %f15
 	fmul	%f1, %f14, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f14
@@ -12800,15 +12486,14 @@ then.248025:
 cont.248026:
 	ffloor	%f1, %f11
 	fsub	%f11, %f11, %f1
-	lf	%f31, 111(%i1)
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i6)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f14, %f1
 	lf	%f14, 1(%i15)
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f12
-	fmov	%f14, %f1
+	fabs	%f14, %f12
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -12820,8 +12505,7 @@ cont.248026:
 then.248027:
 	finv	%f1, %f12
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -12902,17 +12586,17 @@ cont.248028:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f11, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f11, %f1
+	sf	%f31, 115(%i1)
 cont.248024:
 	jzero	%i0, %i0, cont.248019
 then.248022:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i6)
-	fsub	%f11, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f11, %f3, %f1
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i6)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f3, %f1
 	fmul	%f3, %f11, %f11
 	fmul	%f1, %f1, %f1
 	fadd	%f3, %f3, %f1
@@ -13037,21 +12721,20 @@ cont.248030:
 	fmul	%f11, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f11, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f11, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f11, %f1, %f11
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f11, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f11, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.248019
 then.248020:
-	lf	%f31, 111(%i1)
+	lf	%f3, 111(%i1)
 	movui	%i31, 256000
 	mif	%f1, %i31
-	fmul	%f4, %f31, %f1
+	fmul	%f4, %f3, %f1
 	lf	%f31, 91(%i1)
 	fleq	%i31, %f4, %f31
 	jzero	%i0, %i31, else.248037
@@ -13159,25 +12842,22 @@ cont.248038:
 	fmul	%f11, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f11
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f11
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f11
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.248019
 then.248018:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i6)
-	fsub	%f11, %f31, %f1
+	fsub	%f11, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f11, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -13185,15 +12865,14 @@ then.248018:
 	movui	%i31, 266752
 	mif	%f1, %i31
 	flt	%i15, %f3, %f1
-	lf	%f31, 112(%i1)
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i6)
-	fsub	%f11, %f31, %f1
+	fsub	%f11, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f11, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -13221,19 +12900,19 @@ cont.248046:
 	fmov	%f3, %f1
 cont.248019:
 	slli	%i5, %i5, 2
-	lw	%i31, 109(%i1)
-	add	%i5, %i5, %i31
+	lw	%i4, 109(%i1)
+	add	%i5, %i5, %i4
 	slli	%i4, %i9, 2
 	add	%i31, %i11, %i4
 	sw	%i5, 0(%i31)
 	add	%i31, %i10, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	sf	%f31, 0(%i5)
-	lf	%f31, 111(%i1)
-	sf	%f31, 1(%i5)
-	lf	%f31, 112(%i1)
-	sf	%f31, 2(%i5)
+	lf	%f1, 110(%i1)
+	sf	%f1, 0(%i5)
+	lf	%f1, 111(%i1)
+	sf	%f1, 1(%i5)
+	lf	%f1, 112(%i1)
+	sf	%f1, 2(%i5)
 	lf	%f11, 0(%i8)
 	movui	%i31, 258048
 	mif	%f1, %i31
@@ -13252,8 +12931,8 @@ then.248051:
 	lw	%i5, 0(%i31)
 	sf	%f4, 0(%i5)
 	sf	%f3, 1(%i5)
-	lf	%f31, 115(%i1)
-	sf	%f31, 2(%i5)
+	lf	%f1, 115(%i1)
+	sf	%f1, 2(%i5)
 	movui	%i31, 243712
 	mif	%f1, %i31
 	fmul	%f11, %f1, %f13
@@ -13331,11 +13010,9 @@ loop_start.240355:
 	jeq	%i19, %i31, then.248054
 	movi	%i31, 99
 	jeq	%i19, %i31, then.248056
-	lf	%f31, 110(%i1)
-	fmov	%f15, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 112(%i1)
+	lf	%f15, 110(%i1)
+	lf	%f14, 111(%i1)
+	lf	%f11, 112(%i1)
 	slli	%i4, %i19, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -13351,7 +13028,7 @@ loop_start.240355:
 	lf	%f1, 1(%i18)
 	fsub	%f15, %f14, %f1
 	lf	%f1, 2(%i18)
-	fsub	%f18, %f31, %f1
+	fsub	%f18, %f11, %f1
 	slli	%i5, %i19, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i5
@@ -13418,16 +13095,16 @@ cont.248065:
 	fmul	%f1, %f1, %f14
 	fadd	%f11, %f11, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f11, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f11, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.248069
 then.248068:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f11, %f11, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f11, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f11, %f1
+	sf	%f31, 108(%i1)
 cont.248069:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.248059
@@ -13445,8 +13122,8 @@ then.248060:
 	fadd	%f11, %f11, %f1
 	lf	%f1, 3(%i5)
 	fmul	%f1, %f1, %f18
-	fadd	%f1, %f11, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f11, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.248059
 then.248070:
@@ -13460,16 +13137,14 @@ then.248058:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f14, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 1(%i4)
 	flt	%i17, %f11, %f1
 	jeq	%i17, %i0, then.248072
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f14, %f31
 	fadd	%f1, %f1, %f18
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 2(%i4)
 	flt	%i17, %f11, %f1
 	jeq	%i17, %i0, then.248074
@@ -13495,16 +13170,14 @@ then.248076:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f14, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 0(%i4)
 	flt	%i17, %f11, %f1
 	jeq	%i17, %i0, then.248078
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f14, %f31
 	fadd	%f1, %f1, %f18
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 2(%i4)
 	flt	%i17, %f11, %f1
 	jeq	%i17, %i0, then.248080
@@ -13530,16 +13203,14 @@ then.248082:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f14, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 0(%i4)
 	flt	%i17, %f11, %f1
 	jeq	%i17, %i0, then.248084
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f14, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 1(%i4)
 	flt	%i16, %f11, %f1
 	jeq	%i16, %i0, then.248086
@@ -13564,11 +13235,11 @@ cont.248083:
 cont.248077:
 cont.248059:
 	jeq	%i5, %i0, then.248090
-	lf	%f31, 108(%i1)
+	lf	%f11, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f11, %f1
 	jeq	%i5, %i0, then.248092
 	movi	%i16, 1
 loop_start.240367:
@@ -13591,11 +13262,9 @@ loop_start.240371:
 	slli	%i4, %i18, 2
 	add	%i31, %i17, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f15, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 112(%i1)
+	lf	%f15, 110(%i1)
+	lf	%f14, 111(%i1)
+	lf	%f11, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -13611,7 +13280,7 @@ loop_start.240371:
 	lf	%f1, 1(%i24)
 	fsub	%f14, %f14, %f1
 	lf	%f1, 2(%i24)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f11, %f1
 	slli	%i19, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i19
@@ -13678,16 +13347,16 @@ cont.248107:
 	fmul	%f1, %f1, %f14
 	fadd	%f11, %f11, %f1
 	lf	%f1, 4(%i19)
-	fmul	%f1, %f11, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f11, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.248111
 then.248110:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f11, %f11, %f1
 	lf	%f1, 4(%i19)
-	fmul	%f1, %f11, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f11, %f1
+	sf	%f31, 108(%i1)
 cont.248111:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.248101
@@ -13705,8 +13374,8 @@ then.248102:
 	fadd	%f11, %f11, %f1
 	lf	%f1, 3(%i19)
 	fmul	%f1, %f1, %f16
-	fadd	%f1, %f11, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f11, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.248101
 then.248112:
@@ -13720,16 +13389,14 @@ then.248100:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f17, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 1(%i4)
 	flt	%i21, %f11, %f1
 	jeq	%i21, %i0, then.248114
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f17, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 2(%i4)
 	flt	%i21, %f11, %f1
 	jeq	%i21, %i0, then.248116
@@ -13755,16 +13422,14 @@ then.248118:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f17, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 0(%i4)
 	flt	%i21, %f11, %f1
 	jeq	%i21, %i0, then.248120
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f17, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 2(%i4)
 	flt	%i21, %f11, %f1
 	jeq	%i21, %i0, then.248122
@@ -13790,16 +13455,14 @@ then.248124:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 0(%i4)
 	flt	%i21, %f11, %f1
 	jeq	%i21, %i0, then.248126
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 1(%i4)
 	flt	%i20, %f11, %f1
 	jeq	%i20, %i0, then.248128
@@ -13823,8 +13486,7 @@ cont.248131:
 cont.248125:
 cont.248119:
 cont.248101:
-	lf	%f31, 108(%i1)
-	fmov	%f11, %f31
+	lf	%f11, 108(%i1)
 	jeq	%i19, %i0, then.248132
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -13841,16 +13503,16 @@ cont.248133:
 	fadd	%f16, %f11, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f11, %f31, %f16
-	lf	%f31, 110(%i1)
-	fadd	%f15, %f11, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f15, %f11, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f11, %f31, %f16
-	lf	%f31, 111(%i1)
-	fadd	%f14, %f11, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f14, %f11, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f11, %f31, %f16
-	lf	%f31, 112(%i1)
-	fadd	%f11, %f11, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f11, %f11, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i17)
 	movi	%i31, -1
@@ -13925,18 +13587,15 @@ then.248140:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.248139
 then.248138:
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i4)
 	flt	%i21, %f18, %f1
 	jeq	%i21, %i0, then.248144
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 1(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.248146
-	fabs	%f1, %f17
-	fmov	%f16, %f1
+	fabs	%f16, %f17
 	lf	%f1, 2(%i4)
 	flt	%i20, %f16, %f1
 	jzero	%i0, %i0, cont.248145
@@ -13956,8 +13615,7 @@ cont.248139:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.248137
 then.248150:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.240386:
 	slli	%i4, %i19, 2
 	add	%i31, %i17, %i4
@@ -14034,18 +13692,15 @@ then.248157:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.248156
 then.248155:
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i4)
 	flt	%i21, %f18, %f1
 	jeq	%i21, %i0, then.248161
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 1(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.248163
-	fabs	%f1, %f17
-	fmov	%f16, %f1
+	fabs	%f16, %f17
 	lf	%f1, 2(%i4)
 	flt	%i20, %f16, %f1
 	jzero	%i0, %i0, cont.248162
@@ -14065,28 +13720,23 @@ cont.248156:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.240387
 then.248167:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.240386
 	jmp	%i0, 0(%i31)
 then.248153:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240387
 loop_end.240387:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.248137
 then.248136:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.248137:
 	jeq	%i5, %i0, then.248169
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240372
 then.248169:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.240371
 	jmp	%i0, 0(%i31)
 then.248134:
@@ -14096,8 +13746,7 @@ then.248134:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.248171
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.240371
 	jmp	%i0, 0(%i31)
 then.248171:
@@ -14108,12 +13757,10 @@ then.248098:
 	jzero	%i0, %i0, loop_end.240372
 loop_end.240372:
 	jeq	%i31, %i0, then.248173
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240368
 then.248173:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.240367
 	jmp	%i0, 0(%i31)
 then.248095:
@@ -14153,11 +13800,9 @@ loop_start.240401:
 	slli	%i4, %i18, 2
 	add	%i31, %i17, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f15, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 112(%i1)
+	lf	%f15, 110(%i1)
+	lf	%f14, 111(%i1)
+	lf	%f11, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -14173,7 +13818,7 @@ loop_start.240401:
 	lf	%f1, 1(%i24)
 	fsub	%f14, %f14, %f1
 	lf	%f1, 2(%i24)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f11, %f1
 	slli	%i19, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i19
@@ -14240,16 +13885,16 @@ cont.248190:
 	fmul	%f1, %f1, %f14
 	fadd	%f11, %f11, %f1
 	lf	%f1, 4(%i19)
-	fmul	%f1, %f11, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f11, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.248194
 then.248193:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f11, %f11, %f1
 	lf	%f1, 4(%i19)
-	fmul	%f1, %f11, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f11, %f1
+	sf	%f31, 108(%i1)
 cont.248194:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.248184
@@ -14267,8 +13912,8 @@ then.248185:
 	fadd	%f11, %f11, %f1
 	lf	%f1, 3(%i19)
 	fmul	%f1, %f1, %f16
-	fadd	%f1, %f11, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f11, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.248184
 then.248195:
@@ -14282,16 +13927,14 @@ then.248183:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f17, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 1(%i4)
 	flt	%i21, %f11, %f1
 	jeq	%i21, %i0, then.248197
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f17, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 2(%i4)
 	flt	%i21, %f11, %f1
 	jeq	%i21, %i0, then.248199
@@ -14317,16 +13960,14 @@ then.248201:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f17, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 0(%i4)
 	flt	%i21, %f11, %f1
 	jeq	%i21, %i0, then.248203
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f17, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 2(%i4)
 	flt	%i21, %f11, %f1
 	jeq	%i21, %i0, then.248205
@@ -14352,16 +13993,14 @@ then.248207:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 0(%i4)
 	flt	%i21, %f11, %f1
 	jeq	%i21, %i0, then.248209
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	lf	%f1, 1(%i4)
 	flt	%i20, %f11, %f1
 	jeq	%i20, %i0, then.248211
@@ -14385,8 +14024,7 @@ cont.248214:
 cont.248208:
 cont.248202:
 cont.248184:
-	lf	%f31, 108(%i1)
-	fmov	%f11, %f31
+	lf	%f11, 108(%i1)
 	jeq	%i19, %i0, then.248215
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -14403,16 +14041,16 @@ cont.248216:
 	fadd	%f16, %f11, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f11, %f31, %f16
-	lf	%f31, 110(%i1)
-	fadd	%f15, %f11, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f15, %f11, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f11, %f31, %f16
-	lf	%f31, 111(%i1)
-	fadd	%f14, %f11, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f14, %f11, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f11, %f31, %f16
-	lf	%f31, 112(%i1)
-	fadd	%f11, %f11, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f11, %f11, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i17)
 	movi	%i31, -1
@@ -14487,18 +14125,15 @@ then.248223:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.248222
 then.248221:
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i4)
 	flt	%i21, %f18, %f1
 	jeq	%i21, %i0, then.248227
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 1(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.248229
-	fabs	%f1, %f17
-	fmov	%f16, %f1
+	fabs	%f16, %f17
 	lf	%f1, 2(%i4)
 	flt	%i20, %f16, %f1
 	jzero	%i0, %i0, cont.248228
@@ -14518,8 +14153,7 @@ cont.248222:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.248220
 then.248233:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.240416:
 	slli	%i4, %i19, 2
 	add	%i31, %i17, %i4
@@ -14596,18 +14230,15 @@ then.248240:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.248239
 then.248238:
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i4)
 	flt	%i21, %f18, %f1
 	jeq	%i21, %i0, then.248244
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 1(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.248246
-	fabs	%f1, %f17
-	fmov	%f16, %f1
+	fabs	%f16, %f17
 	lf	%f1, 2(%i4)
 	flt	%i20, %f16, %f1
 	jzero	%i0, %i0, cont.248245
@@ -14627,28 +14258,23 @@ cont.248239:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.240417
 then.248250:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.240416
 	jmp	%i0, 0(%i31)
 then.248236:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240417
 loop_end.240417:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.248220
 then.248219:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.248220:
 	jeq	%i5, %i0, then.248252
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240402
 then.248252:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.240401
 	jmp	%i0, 0(%i31)
 then.248217:
@@ -14658,8 +14284,7 @@ then.248217:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.248254
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.240401
 	jmp	%i0, 0(%i31)
 then.248254:
@@ -14670,12 +14295,10 @@ then.248181:
 	jzero	%i0, %i0, loop_end.240402
 loop_end.240402:
 	jeq	%i31, %i0, then.248256
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240398
 then.248256:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.240397
 	jmp	%i0, 0(%i31)
 then.248178:
@@ -14683,17 +14306,14 @@ then.248178:
 	jzero	%i0, %i0, loop_end.240398
 loop_end.240398:
 	jeq	%i31, %i0, then.248258
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240356
 then.248258:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.240355
 	jmp	%i0, 0(%i31)
 then.248175:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.240355
 	jmp	%i0, 0(%i31)
 then.248054:
@@ -14731,49 +14351,45 @@ loop_end.240356:
 	fneg	%f16, %f11
 	flt	%i5, %f0, %f1
 	jeq	%i5, %i0, cont.248261
-	lf	%f31, 115(%i1)
-	fmov	%f15, %f31
-	lf	%f31, 116(%i1)
+	lf	%f15, 115(%i1)
+	lf	%f14, 116(%i1)
 	fmul	%f11, %f1, %f4
-	fadd	%f11, %f31, %f11
-	sf	%f11, 116(%i1)
-	lf	%f31, 117(%i1)
+	fadd	%f31, %f14, %f11
+	sf	%f31, 116(%i1)
+	lf	%f14, 117(%i1)
 	fmul	%f11, %f1, %f3
-	fadd	%f11, %f31, %f11
-	sf	%f11, 117(%i1)
-	lf	%f31, 118(%i1)
+	fadd	%f31, %f14, %f11
+	sf	%f31, 117(%i1)
+	lf	%f11, 118(%i1)
 	fmul	%f1, %f1, %f15
-	fadd	%f1, %f31, %f1
-	sf	%f1, 118(%i1)
+	fadd	%f31, %f11, %f1
+	sf	%f31, 118(%i1)
 cont.248261:
 	flt	%i5, %f0, %f16
 	jeq	%i5, %i0, cont.248262
 	fmul	%f1, %f16, %f16
 	fmul	%f1, %f1, %f1
 	fmul	%f11, %f1, %f12
-	lf	%f31, 116(%i1)
-	fadd	%f1, %f31, %f11
-	sf	%f1, 116(%i1)
-	lf	%f31, 117(%i1)
-	fadd	%f1, %f31, %f11
-	sf	%f1, 117(%i1)
-	lf	%f31, 118(%i1)
-	fadd	%f1, %f31, %f11
-	sf	%f1, 118(%i1)
+	lf	%f1, 116(%i1)
+	fadd	%f31, %f1, %f11
+	sf	%f31, 116(%i1)
+	lf	%f1, 117(%i1)
+	fadd	%f31, %f1, %f11
+	sf	%f31, 117(%i1)
+	lf	%f1, 118(%i1)
+	fadd	%f31, %f1, %f11
+	sf	%f31, 118(%i1)
 cont.248262:
 cont.248260:
 	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f11, %f31
-	lf	%f31, 112(%i1)
-	sf	%f14, 122(%i1)
+	lf	%f11, 111(%i1)
+	lf	%f1, 112(%i1)
+	sf	%f31, 122(%i1)
 	sf	%f11, 123(%i1)
-	sf	%f31, 124(%i1)
-	lw	%i31, 105(%i1)
-	subi	%i4, %i31, 1
-	mov	%i5, %i4
-	jleq	%i0, %i4, then.248263
+	sf	%f1, 124(%i1)
+	lw	%i4, 105(%i1)
+	subi	%i5, %i4, 1
+	jleq	%i0, %i5, then.248263
 	jzero	%i0, %i0, cont.248264
 then.248263:
 	slli	%i4, %i5, 2
@@ -14786,17 +14402,17 @@ then.248263:
 	lw	%i16, 4(%i4)
 	lw	%i15, 3(%i4)
 	lw	%i6, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f11, 110(%i1)
 	lf	%f1, 0(%i17)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f11, %f1
 	sf	%f1, 0(%i19)
-	lf	%f31, 111(%i1)
+	lf	%f11, 111(%i1)
 	lf	%f1, 1(%i17)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f11, %f1
 	sf	%f1, 1(%i19)
-	lf	%f31, 112(%i1)
+	lf	%f11, 112(%i1)
 	lf	%f1, 2(%i17)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f11, %f1
 	sf	%f1, 2(%i19)
 	movi	%i31, 2
 	jeq	%i6, %i31, then.248265
@@ -14856,8 +14472,7 @@ then.248265:
 	fadd	%f1, %f11, %f1
 	sf	%f1, 3(%i19)
 cont.248266:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 loop_start.240440:
 	jleq	%i0, %i5, then.248271
 	jzero	%i0, %i0, loop_end.240441
@@ -14872,17 +14487,17 @@ then.248271:
 	lw	%i16, 4(%i4)
 	lw	%i15, 3(%i4)
 	lw	%i6, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f11, 110(%i1)
 	lf	%f1, 0(%i17)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f11, %f1
 	sf	%f1, 0(%i19)
-	lf	%f31, 111(%i1)
+	lf	%f11, 111(%i1)
 	lf	%f1, 1(%i17)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f11, %f1
 	sf	%f1, 1(%i19)
-	lf	%f31, 112(%i1)
+	lf	%f11, 112(%i1)
 	lf	%f1, 2(%i17)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f11, %f1
 	sf	%f1, 2(%i19)
 	movi	%i31, 2
 	jeq	%i6, %i31, then.248273
@@ -14942,15 +14557,13 @@ then.248273:
 	fadd	%f1, %f11, %f1
 	sf	%f1, 3(%i19)
 cont.248274:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 	set_label	%i30, loop_start.240440
 	jmp	%i0, 0(%i30)
 loop_end.240441:
 cont.248264:
 	lw	%i4, 39(%i1)
-	subi	%i4, %i4, 1
-	mov	%i6, %i4
+	subi	%i6, %i4, 1
 loop_start.240446:
 	jleq	%i0, %i6, then.248279
 	set_label	%i30, loop_end.240447
@@ -14966,8 +14579,7 @@ then.248279:
 	lw	%i17, 0(%i4)
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i16, %i0
 loop_start.240450:
 	slli	%i4, %i16, 2
@@ -15026,16 +14638,16 @@ then.248290:
 	fmul	%f1, %f1, %f14
 	fadd	%f14, %f15, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.248295
 then.248294:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f14, %f15, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 cont.248295:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.248287
@@ -15048,8 +14660,8 @@ then.248288:
 	jeq	%i20, %i0, then.248296
 	lf	%f14, 0(%i4)
 	lf	%f1, 3(%i19)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.248287
 then.248296:
@@ -15062,15 +14674,13 @@ then.248286:
 	fmul	%f21, %f20, %f1
 	fmul	%f1, %f21, %f17
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i5)
 	flt	%i20, %f20, %f1
 	jeq	%i20, %i0, then.248298
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i5)
 	flt	%i20, %f20, %f1
 	jeq	%i20, %i0, then.248300
@@ -15095,15 +14705,13 @@ then.248302:
 	fmul	%f21, %f20, %f1
 	fmul	%f1, %f21, %f18
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i5)
 	flt	%i20, %f20, %f1
 	jeq	%i20, %i0, then.248304
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i5)
 	flt	%i20, %f19, %f1
 	jeq	%i20, %i0, then.248306
@@ -15128,15 +14736,13 @@ then.248308:
 	fmul	%f19, %f15, %f1
 	fmul	%f1, %f19, %f18
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	lf	%f1, 0(%i5)
 	flt	%i20, %f15, %f1
 	jeq	%i20, %i0, then.248310
 	fmul	%f1, %f19, %f17
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i5)
 	flt	%i19, %f14, %f1
 	jeq	%i19, %i0, then.248312
@@ -15161,8 +14767,8 @@ cont.248309:
 cont.248303:
 cont.248287:
 	jeq	%i5, %i0, cont.248285
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f14, 108(%i1)
+	flt	%i5, %f14, %f5
 	jeq	%i5, %i0, cont.248285
 	movi	%i24, 1
 	lf	%f20, 0(%i15)
@@ -15229,16 +14835,16 @@ then.248328:
 	fmul	%f1, %f1, %f14
 	fadd	%f14, %f16, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.248333
 then.248332:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f14, %f16, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 cont.248333:
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.248325
@@ -15251,8 +14857,8 @@ then.248326:
 	jeq	%i20, %i0, then.248334
 	lf	%f14, 0(%i4)
 	lf	%f1, 3(%i19)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.248325
 then.248334:
@@ -15265,15 +14871,13 @@ then.248324:
 	fmul	%f21, %f17, %f1
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248336
 	fmul	%f1, %f21, %f18
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248338
@@ -15298,15 +14902,13 @@ then.248340:
 	fmul	%f21, %f17, %f1
 	fmul	%f1, %f21, %f20
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248342
 	fmul	%f1, %f21, %f18
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248344
@@ -15331,15 +14933,13 @@ then.248346:
 	fmul	%f17, %f15, %f1
 	fmul	%f1, %f17, %f20
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	lf	%f1, 0(%i20)
 	flt	%i19, %f15, %f1
 	jeq	%i19, %i0, then.248348
 	fmul	%f1, %f17, %f19
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i20)
 	flt	%i19, %f14, %f1
 	jeq	%i19, %i0, then.248350
@@ -15364,9 +14964,8 @@ cont.248347:
 cont.248341:
 cont.248325:
 	jeq	%i20, %i0, then.248354
-	lf	%f31, 108(%i1)
-	fmov	%f14, %f31
-	flt	%i5, %f0, %f31
+	lf	%f14, 108(%i1)
+	flt	%i5, %f0, %f14
 	jeq	%i5, %i0, cont.248356
 	flt	%i5, %f14, %f5
 	jeq	%i5, %i0, cont.248357
@@ -15375,14 +14974,14 @@ cont.248325:
 	mif	%f1, %i31
 	fadd	%f17, %f14, %f1
 	fmul	%f14, %f20, %f17
-	lf	%f31, 122(%i1)
-	fadd	%f16, %f14, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f16, %f14, %f1
 	fmul	%f14, %f19, %f17
-	lf	%f31, 123(%i1)
-	fadd	%f15, %f14, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f15, %f14, %f1
 	fmul	%f14, %f18, %f17
-	lf	%f31, 124(%i1)
-	fadd	%f14, %f14, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f14, %f14, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i23)
 	movi	%i31, -1
@@ -15485,8 +15084,7 @@ cont.248361:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.248359
 then.248372:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.240478:
 	slli	%i4, %i19, 2
 	add	%i31, %i23, %i4
@@ -15591,20 +15189,17 @@ cont.248378:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.240479
 then.248389:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.240478
 	jmp	%i0, 0(%i31)
 then.248375:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240479
 loop_end.240479:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.248359
 then.248358:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.248359:
 	jeq	%i5, %i0, cont.248391
 	fmov	%f5, %f17
@@ -15616,8 +15211,7 @@ cont.248359:
 cont.248391:
 cont.248357:
 cont.248356:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.240465
 	jmp	%i0, 0(%i31)
 then.248354:
@@ -15627,13 +15221,11 @@ then.248354:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.240466
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.240465
 	jmp	%i0, 0(%i31)
 loop_end.240466:
-	addi	%i4, %i24, 1
-	mov	%i24, %i4
+	addi	%i24, %i24, 1
 	set_label	%i31, loop_start.240461
 	jmp	%i0, 0(%i31)
 then.248284:
@@ -15702,16 +15294,16 @@ then.248404:
 	fmul	%f1, %f1, %f14
 	fadd	%f14, %f16, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.248409
 then.248408:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f14, %f16, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 cont.248409:
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.248401
@@ -15724,8 +15316,8 @@ then.248402:
 	jeq	%i20, %i0, then.248410
 	lf	%f14, 0(%i4)
 	lf	%f1, 3(%i19)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.248401
 then.248410:
@@ -15738,15 +15330,13 @@ then.248400:
 	fmul	%f21, %f17, %f1
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248412
 	fmul	%f1, %f21, %f18
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248414
@@ -15771,15 +15361,13 @@ then.248416:
 	fmul	%f21, %f17, %f1
 	fmul	%f1, %f21, %f20
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248418
 	fmul	%f1, %f21, %f18
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248420
@@ -15804,15 +15392,13 @@ then.248422:
 	fmul	%f17, %f15, %f1
 	fmul	%f1, %f17, %f20
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	lf	%f1, 0(%i20)
 	flt	%i19, %f15, %f1
 	jeq	%i19, %i0, then.248424
 	fmul	%f1, %f17, %f19
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i20)
 	flt	%i19, %f14, %f1
 	jeq	%i19, %i0, then.248426
@@ -15837,9 +15423,8 @@ cont.248423:
 cont.248417:
 cont.248401:
 	jeq	%i20, %i0, then.248430
-	lf	%f31, 108(%i1)
-	fmov	%f14, %f31
-	flt	%i5, %f0, %f31
+	lf	%f14, 108(%i1)
+	flt	%i5, %f0, %f14
 	jeq	%i5, %i0, cont.248432
 	flt	%i5, %f14, %f5
 	jeq	%i5, %i0, cont.248433
@@ -15848,14 +15433,14 @@ cont.248401:
 	mif	%f1, %i31
 	fadd	%f17, %f14, %f1
 	fmul	%f14, %f20, %f17
-	lf	%f31, 122(%i1)
-	fadd	%f16, %f14, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f16, %f14, %f1
 	fmul	%f14, %f19, %f17
-	lf	%f31, 123(%i1)
-	fadd	%f15, %f14, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f15, %f14, %f1
 	fmul	%f14, %f18, %f17
-	lf	%f31, 124(%i1)
-	fadd	%f14, %f14, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f14, %f14, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i23)
 	movi	%i31, -1
@@ -15958,8 +15543,7 @@ cont.248437:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.248435
 then.248448:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.240512:
 	slli	%i4, %i19, 2
 	add	%i31, %i23, %i4
@@ -16064,20 +15648,17 @@ cont.248454:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.240513
 then.248465:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.240512
 	jmp	%i0, 0(%i31)
 then.248451:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240513
 loop_end.240513:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.248435
 then.248434:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.248435:
 	jeq	%i5, %i0, cont.248467
 	fmov	%f5, %f17
@@ -16089,8 +15670,7 @@ cont.248435:
 cont.248467:
 cont.248433:
 cont.248432:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.240499
 	jmp	%i0, 0(%i31)
 then.248430:
@@ -16100,19 +15680,16 @@ then.248430:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.240500
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.240499
 	jmp	%i0, 0(%i31)
 loop_end.240500:
-	addi	%i4, %i24, 1
-	mov	%i24, %i4
+	addi	%i24, %i24, 1
 	set_label	%i31, loop_start.240495
 	jmp	%i0, 0(%i31)
 loop_end.240496:
 cont.248285:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.240450
 	jmp	%i0, 0(%i31)
 loop_end.240451:
@@ -16130,10 +15707,10 @@ then.248470:
 	mov	%i5, %i0
 cont.248471:
 	jeq	%i5, %i0, cont.248472
-	lw	%i31, 113(%i1)
-	slli	%i5, %i31, 2
-	lw	%i31, 109(%i1)
-	add	%i4, %i5, %i31
+	lw	%i4, 113(%i1)
+	slli	%i5, %i4, 2
+	lw	%i4, 109(%i1)
+	add	%i4, %i5, %i4
 	ceq	%i31, %i4, %i17
 	jzero	%i0, %i31, cont.248473
 	mov	%i17, %i0
@@ -16157,15 +15734,15 @@ loop_start.240530:
 	lw	%i21, 4(%i4)
 	lw	%i18, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f14, 110(%i1)
 	lf	%f1, 0(%i20)
-	fsub	%f16, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f16, %f14, %f1
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i20)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f15, %f14, %f1
+	lf	%f14, 112(%i1)
 	lf	%f1, 2(%i20)
-	fsub	%f14, %f31, %f1
+	fsub	%f14, %f14, %f1
 	slli	%i19, %i23, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i19
@@ -16232,15 +15809,15 @@ cont.248486:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f18, %f1
-	fmul	%f1, %f1, %f17
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f17
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.248490
 then.248489:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f18, %f1
-	fmul	%f1, %f1, %f17
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f17
+	sf	%f31, 108(%i1)
 cont.248490:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.248480
@@ -16258,8 +15835,8 @@ then.248481:
 	fmul	%f1, %f18, %f15
 	fadd	%f15, %f16, %f1
 	fmul	%f1, %f17, %f14
-	fadd	%f1, %f15, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f15, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.248480
 then.248491:
@@ -16365,11 +15942,11 @@ cont.248504:
 cont.248498:
 cont.248480:
 	jeq	%i5, %i0, then.248511
-	lf	%f31, 108(%i1)
+	lf	%f14, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f14, %f1
 	jeq	%i5, %i0, then.248513
 	movi	%i20, 1
 loop_start.240542:
@@ -16402,15 +15979,15 @@ loop_start.240546:
 	lw	%i23, 4(%i4)
 	lw	%i24, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f14, 110(%i1)
 	lf	%f1, 0(%i26)
-	fsub	%f17, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f17, %f14, %f1
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i26)
-	fsub	%f16, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f16, %f14, %f1
+	lf	%f14, 112(%i1)
 	lf	%f1, 2(%i26)
-	fsub	%f18, %f31, %f1
+	fsub	%f18, %f14, %f1
 	slli	%i25, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i25
@@ -16477,15 +16054,15 @@ cont.248528:
 	frsqrt	%f1, %f16
 	fmul	%f1, %f1, %f16
 	fadd	%f1, %f15, %f1
-	fmul	%f1, %f1, %f14
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f14
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.248532
 then.248531:
 	frsqrt	%f1, %f16
 	fmul	%f1, %f1, %f16
 	fsub	%f1, %f15, %f1
-	fmul	%f1, %f1, %f14
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f14
+	sf	%f31, 108(%i1)
 cont.248532:
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.248522
@@ -16503,8 +16080,8 @@ then.248523:
 	fmul	%f1, %f19, %f16
 	fadd	%f14, %f14, %f1
 	fmul	%f1, %f15, %f18
-	fadd	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.248522
 then.248533:
@@ -16522,16 +16099,14 @@ then.248521:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f20, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i23)
 	flt	%i21, %f23, %f1
 	jeq	%i21, %i0, then.248535
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f20, %f31
 	fadd	%f1, %f1, %f18
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i23)
 	flt	%i21, %f23, %f1
 	jeq	%i21, %i0, then.248537
@@ -16554,16 +16129,14 @@ then.248539:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i23)
 	flt	%i21, %f20, %f1
 	jeq	%i21, %i0, then.248541
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f18
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i21, %f20, %f1
 	jeq	%i21, %i0, then.248543
@@ -16586,16 +16159,14 @@ then.248545:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f18, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	lf	%f1, 0(%i23)
 	flt	%i21, %f15, %f1
 	jeq	%i21, %i0, then.248547
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f18, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	lf	%f1, 1(%i23)
 	flt	%i21, %f15, %f1
 	jeq	%i21, %i0, then.248549
@@ -16618,8 +16189,7 @@ cont.248552:
 cont.248546:
 cont.248540:
 cont.248522:
-	lf	%f31, 108(%i1)
-	fmov	%f14, %f31
+	lf	%f14, 108(%i1)
 	jeq	%i21, %i0, then.248553
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -16636,16 +16206,16 @@ cont.248554:
 	fadd	%f17, %f14, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f14, %f31, %f17
-	lf	%f31, 110(%i1)
-	fadd	%f16, %f14, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f16, %f14, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f14, %f31, %f17
-	lf	%f31, 111(%i1)
-	fadd	%f15, %f14, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f15, %f14, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f14, %f31, %f17
-	lf	%f31, 112(%i1)
-	fadd	%f14, %f14, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f14, %f14, %f1
 	mov	%i21, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -16720,18 +16290,15 @@ then.248561:
 	ceq	%i5, %i5, %i22
 	jzero	%i0, %i0, cont.248560
 then.248559:
-	fabs	%f1, %f18
-	fmov	%f18, %f1
+	fabs	%f18, %f18
 	lf	%f1, 0(%i4)
 	flt	%i23, %f18, %f1
 	jeq	%i23, %i0, then.248565
-	fabs	%f1, %f17
-	fmov	%f17, %f1
+	fabs	%f17, %f17
 	lf	%f1, 1(%i4)
 	flt	%i23, %f17, %f1
 	jeq	%i23, %i0, then.248567
-	fabs	%f1, %f20
-	fmov	%f17, %f1
+	fabs	%f17, %f20
 	lf	%f1, 2(%i4)
 	flt	%i22, %f17, %f1
 	jzero	%i0, %i0, cont.248566
@@ -16751,8 +16318,7 @@ cont.248560:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.248558
 then.248571:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 loop_start.240561:
 	slli	%i4, %i21, 2
 	add	%i31, %i19, %i4
@@ -16829,18 +16395,15 @@ then.248578:
 	ceq	%i5, %i5, %i22
 	jzero	%i0, %i0, cont.248577
 then.248576:
-	fabs	%f1, %f18
-	fmov	%f18, %f1
+	fabs	%f18, %f18
 	lf	%f1, 0(%i4)
 	flt	%i23, %f18, %f1
 	jeq	%i23, %i0, then.248582
-	fabs	%f1, %f17
-	fmov	%f17, %f1
+	fabs	%f17, %f17
 	lf	%f1, 1(%i4)
 	flt	%i23, %f17, %f1
 	jeq	%i23, %i0, then.248584
-	fabs	%f1, %f20
-	fmov	%f17, %f1
+	fabs	%f17, %f20
 	lf	%f1, 2(%i4)
 	flt	%i22, %f17, %f1
 	jzero	%i0, %i0, cont.248583
@@ -16860,28 +16423,23 @@ cont.248577:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.240562
 then.248588:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.240561
 	jmp	%i0, 0(%i31)
 then.248574:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240562
 loop_end.240562:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.248558
 then.248557:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.248558:
 	jeq	%i5, %i0, then.248590
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240547
 then.248590:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.240546
 	jmp	%i0, 0(%i31)
 then.248555:
@@ -16891,8 +16449,7 @@ then.248555:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.248592
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.240546
 	jmp	%i0, 0(%i31)
 then.248592:
@@ -16903,12 +16460,10 @@ then.248519:
 	jzero	%i0, %i0, loop_end.240547
 loop_end.240547:
 	jeq	%i31, %i0, then.248594
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240543
 then.248594:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.240542
 	jmp	%i0, 0(%i31)
 then.248516:
@@ -16958,15 +16513,15 @@ loop_start.240576:
 	lw	%i23, 4(%i4)
 	lw	%i24, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f14, 110(%i1)
 	lf	%f1, 0(%i26)
-	fsub	%f17, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f17, %f14, %f1
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i26)
-	fsub	%f16, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f16, %f14, %f1
+	lf	%f14, 112(%i1)
 	lf	%f1, 2(%i26)
-	fsub	%f18, %f31, %f1
+	fsub	%f18, %f14, %f1
 	slli	%i25, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i25
@@ -17033,15 +16588,15 @@ cont.248611:
 	frsqrt	%f1, %f16
 	fmul	%f1, %f1, %f16
 	fadd	%f1, %f15, %f1
-	fmul	%f1, %f1, %f14
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f14
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.248615
 then.248614:
 	frsqrt	%f1, %f16
 	fmul	%f1, %f1, %f16
 	fsub	%f1, %f15, %f1
-	fmul	%f1, %f1, %f14
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f14
+	sf	%f31, 108(%i1)
 cont.248615:
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.248605
@@ -17059,8 +16614,8 @@ then.248606:
 	fmul	%f1, %f19, %f16
 	fadd	%f14, %f14, %f1
 	fmul	%f1, %f15, %f18
-	fadd	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.248605
 then.248616:
@@ -17078,16 +16633,14 @@ then.248604:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f20, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i23)
 	flt	%i21, %f23, %f1
 	jeq	%i21, %i0, then.248618
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f20, %f31
 	fadd	%f1, %f1, %f18
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i23)
 	flt	%i21, %f23, %f1
 	jeq	%i21, %i0, then.248620
@@ -17110,16 +16663,14 @@ then.248622:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i23)
 	flt	%i21, %f20, %f1
 	jeq	%i21, %i0, then.248624
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f18
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i21, %f20, %f1
 	jeq	%i21, %i0, then.248626
@@ -17142,16 +16693,14 @@ then.248628:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f18, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	lf	%f1, 0(%i23)
 	flt	%i21, %f15, %f1
 	jeq	%i21, %i0, then.248630
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f18, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	lf	%f1, 1(%i23)
 	flt	%i21, %f15, %f1
 	jeq	%i21, %i0, then.248632
@@ -17174,8 +16723,7 @@ cont.248635:
 cont.248629:
 cont.248623:
 cont.248605:
-	lf	%f31, 108(%i1)
-	fmov	%f14, %f31
+	lf	%f14, 108(%i1)
 	jeq	%i21, %i0, then.248636
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -17192,16 +16740,16 @@ cont.248637:
 	fadd	%f17, %f14, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f14, %f31, %f17
-	lf	%f31, 110(%i1)
-	fadd	%f16, %f14, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f16, %f14, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f14, %f31, %f17
-	lf	%f31, 111(%i1)
-	fadd	%f15, %f14, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f15, %f14, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f14, %f31, %f17
-	lf	%f31, 112(%i1)
-	fadd	%f14, %f14, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f14, %f14, %f1
 	mov	%i21, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -17276,18 +16824,15 @@ then.248644:
 	ceq	%i5, %i5, %i22
 	jzero	%i0, %i0, cont.248643
 then.248642:
-	fabs	%f1, %f18
-	fmov	%f18, %f1
+	fabs	%f18, %f18
 	lf	%f1, 0(%i4)
 	flt	%i23, %f18, %f1
 	jeq	%i23, %i0, then.248648
-	fabs	%f1, %f17
-	fmov	%f17, %f1
+	fabs	%f17, %f17
 	lf	%f1, 1(%i4)
 	flt	%i23, %f17, %f1
 	jeq	%i23, %i0, then.248650
-	fabs	%f1, %f20
-	fmov	%f17, %f1
+	fabs	%f17, %f20
 	lf	%f1, 2(%i4)
 	flt	%i22, %f17, %f1
 	jzero	%i0, %i0, cont.248649
@@ -17307,8 +16852,7 @@ cont.248643:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.248641
 then.248654:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 loop_start.240591:
 	slli	%i4, %i21, 2
 	add	%i31, %i19, %i4
@@ -17385,18 +16929,15 @@ then.248661:
 	ceq	%i5, %i5, %i22
 	jzero	%i0, %i0, cont.248660
 then.248659:
-	fabs	%f1, %f18
-	fmov	%f18, %f1
+	fabs	%f18, %f18
 	lf	%f1, 0(%i4)
 	flt	%i23, %f18, %f1
 	jeq	%i23, %i0, then.248665
-	fabs	%f1, %f17
-	fmov	%f17, %f1
+	fabs	%f17, %f17
 	lf	%f1, 1(%i4)
 	flt	%i23, %f17, %f1
 	jeq	%i23, %i0, then.248667
-	fabs	%f1, %f20
-	fmov	%f17, %f1
+	fabs	%f17, %f20
 	lf	%f1, 2(%i4)
 	flt	%i22, %f17, %f1
 	jzero	%i0, %i0, cont.248666
@@ -17416,28 +16957,23 @@ cont.248660:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.240592
 then.248671:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.240591
 	jmp	%i0, 0(%i31)
 then.248657:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240592
 loop_end.240592:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.248641
 then.248640:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.248641:
 	jeq	%i5, %i0, then.248673
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240577
 then.248673:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.240576
 	jmp	%i0, 0(%i31)
 then.248638:
@@ -17447,8 +16983,7 @@ then.248638:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.248675
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.240576
 	jmp	%i0, 0(%i31)
 then.248675:
@@ -17459,12 +16994,10 @@ then.248602:
 	jzero	%i0, %i0, loop_end.240577
 loop_end.240577:
 	jeq	%i31, %i0, then.248677
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240573
 then.248677:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.240572
 	jmp	%i0, 0(%i31)
 then.248599:
@@ -17472,17 +17005,14 @@ then.248599:
 	jzero	%i0, %i0, loop_end.240573
 loop_end.240573:
 	jeq	%i31, %i0, then.248679
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240531
 then.248679:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.240530
 	jmp	%i0, 0(%i31)
 then.248596:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.240530
 	jmp	%i0, 0(%i31)
 then.248475:
@@ -17520,41 +17050,39 @@ loop_end.240531:
 	fmul	%f15, %f11, %f14
 	flt	%i5, %f0, %f1
 	jeq	%i5, %i0, cont.248682
-	lf	%f31, 116(%i1)
+	lf	%f14, 116(%i1)
 	fmul	%f11, %f1, %f4
-	fadd	%f11, %f31, %f11
-	sf	%f11, 116(%i1)
-	lf	%f31, 117(%i1)
+	fadd	%f31, %f14, %f11
+	sf	%f31, 116(%i1)
+	lf	%f14, 117(%i1)
 	fmul	%f11, %f1, %f3
-	fadd	%f11, %f31, %f11
-	sf	%f11, 117(%i1)
-	lf	%f31, 118(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f1, %f31
-	fadd	%f1, %f14, %f1
-	sf	%f1, 118(%i1)
+	fadd	%f31, %f14, %f11
+	sf	%f31, 117(%i1)
+	lf	%f14, 118(%i1)
+	lf	%f11, 115(%i1)
+	fmul	%f1, %f1, %f11
+	fadd	%f31, %f14, %f1
+	sf	%f31, 118(%i1)
 cont.248682:
 	flt	%i5, %f0, %f15
 	jeq	%i5, %i0, cont.248683
 	fmul	%f1, %f15, %f15
 	fmul	%f1, %f1, %f1
 	fmul	%f11, %f1, %f12
-	lf	%f31, 116(%i1)
-	fadd	%f1, %f31, %f11
-	sf	%f1, 116(%i1)
-	lf	%f31, 117(%i1)
-	fadd	%f1, %f31, %f11
-	sf	%f1, 117(%i1)
-	lf	%f31, 118(%i1)
-	fadd	%f1, %f31, %f11
-	sf	%f1, 118(%i1)
+	lf	%f1, 116(%i1)
+	fadd	%f31, %f1, %f11
+	sf	%f31, 116(%i1)
+	lf	%f1, 117(%i1)
+	fadd	%f31, %f1, %f11
+	sf	%f31, 117(%i1)
+	lf	%f1, 118(%i1)
+	fadd	%f31, %f1, %f11
+	sf	%f31, 118(%i1)
 cont.248683:
 cont.248681:
 cont.248473:
 cont.248472:
-	subi	%i4, %i6, 1
-	mov	%i6, %i4
+	subi	%i6, %i6, 1
 	set_label	%i30, loop_start.240446
 	jmp	%i0, 0(%i30)
 loop_end.240447:
@@ -17579,12 +17107,9 @@ then.248687:
 	mif	%f3, %i31
 	lf	%f1, 0(%i8)
 	fsub	%f1, %f3, %f1
-	fmul	%f3, %f10, %f1
-	addi	%i4, %i9, 1
-	fadd	%f1, %f9, %f5
-	mov	%i9, %i4
-	fmov	%f10, %f3
-	fmov	%f9, %f1
+	fmul	%f10, %f10, %f1
+	addi	%i9, %i9, 1
+	fadd	%f9, %f9, %f5
 	set_label	%i31, loop_start.240198
 	jmp	%i0, 0(%i31)
 then.248004:
@@ -17613,15 +17138,15 @@ then.248004:
 	fmul	%f3, %f1, %f10
 	lf	%f1, 18(%i1)
 	fmul	%f3, %f3, %f1
-	lf	%f31, 116(%i1)
-	fadd	%f1, %f31, %f3
-	sf	%f1, 116(%i1)
-	lf	%f31, 117(%i1)
-	fadd	%f1, %f31, %f3
-	sf	%f1, 117(%i1)
-	lf	%f31, 118(%i1)
-	fadd	%f1, %f31, %f3
-	sf	%f1, 118(%i1)
+	lf	%f1, 116(%i1)
+	fadd	%f31, %f1, %f3
+	sf	%f31, 116(%i1)
+	lf	%f1, 117(%i1)
+	fadd	%f31, %f1, %f3
+	sf	%f31, 117(%i1)
+	lf	%f1, 118(%i1)
+	fadd	%f31, %f1, %f3
+	sf	%f31, 118(%i1)
 	jzero	%i0, %i0, loop_end.240199
 loop_end.240199:
 	lw	%i31, 139(%i1)
@@ -17630,21 +17155,19 @@ loop_end.240199:
 	add	%i31, %i30, %i4
 	lw	%i4, 0(%i31)
 	lw	%i5, 0(%i4)
-	lf	%f31, 116(%i1)
-	fmov	%f4, %f31
-	lf	%f31, 117(%i1)
-	fmov	%f3, %f31
-	lf	%f31, 118(%i1)
+	lf	%f4, 116(%i1)
+	lf	%f3, 117(%i1)
+	lf	%f1, 118(%i1)
 	sf	%f4, 0(%i5)
 	sf	%f3, 1(%i5)
-	sf	%f31, 2(%i5)
+	sf	%f1, 2(%i5)
 	lw	%i31, 139(%i1)
 	slli	%i4, %i31, 2
 	add	%i31, %i30, %i4
 	lw	%i4, 0(%i31)
 	lw	%i6, 6(%i4)
-	lw	%i31, 140(%i1)
-	sw	%i31, 0(%i6)
+	lw	%i5, 140(%i1)
+	sw	%i5, 0(%i6)
 	lw	%i31, 139(%i1)
 	slli	%i4, %i31, 2
 	lw	%i30, 132(%i1)
@@ -17692,16 +17215,15 @@ Lrelax_skip_3:
 	lw	%i7, 0(%i31)
 	add	%i31, %i10, %i4
 	lw	%i5, 0(%i31)
-	lf	%f1, 0(%i5)
-	sf	%f1, 122(%i1)
-	lf	%f1, 1(%i5)
-	sf	%f1, 123(%i1)
-	lf	%f1, 2(%i5)
-	sf	%f1, 124(%i1)
-	lw	%i31, 105(%i1)
-	subi	%i4, %i31, 1
-	mov	%i6, %i4
-	jleq	%i0, %i4, then.248699
+	lf	%f31, 0(%i5)
+	sf	%f31, 122(%i1)
+	lf	%f31, 1(%i5)
+	sf	%f31, 123(%i1)
+	lf	%f31, 2(%i5)
+	sf	%f31, 124(%i1)
+	lw	%i4, 105(%i1)
+	subi	%i6, %i4, 1
+	jleq	%i0, %i6, then.248699
 	jzero	%i0, %i0, cont.248700
 then.248699:
 	slli	%i4, %i6, 2
@@ -17784,8 +17306,7 @@ then.248701:
 	fadd	%f1, %f3, %f1
 	sf	%f1, 3(%i16)
 cont.248702:
-	subi	%i4, %i6, 1
-	mov	%i6, %i4
+	subi	%i6, %i6, 1
 loop_start.240637:
 	jleq	%i0, %i6, then.248707
 	jzero	%i0, %i0, loop_end.240638
@@ -17870,8 +17391,7 @@ then.248709:
 	fadd	%f1, %f3, %f1
 	sf	%f1, 3(%i16)
 cont.248710:
-	subi	%i4, %i6, 1
-	mov	%i6, %i4
+	subi	%i6, %i6, 1
 	set_label	%i30, loop_start.240637
 	jmp	%i0, 0(%i30)
 loop_end.240638:
@@ -17922,8 +17442,7 @@ Lrelax_skip_4:
 	lf	%f3, 2(%i16)
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i17, %i0
 loop_start.240649:
 	slli	%i4, %i17, 2
@@ -17978,16 +17497,16 @@ then.248728:
 	fmul	%f1, %f1, %f14
 	fadd	%f14, %f15, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.248733
 then.248732:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f14, %f15, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 cont.248733:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.248725
@@ -18000,8 +17519,8 @@ then.248726:
 	jeq	%i20, %i0, then.248734
 	lf	%f14, 0(%i4)
 	lf	%f1, 3(%i19)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.248725
 then.248734:
@@ -18014,15 +17533,13 @@ then.248724:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i5)
 	flt	%i20, %f17, %f1
 	jeq	%i20, %i0, then.248736
 	fmul	%f1, %f18, %f3
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i5)
 	flt	%i20, %f17, %f1
 	jeq	%i20, %i0, then.248738
@@ -18047,15 +17564,13 @@ then.248740:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f13
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i5)
 	flt	%i20, %f17, %f1
 	jeq	%i20, %i0, then.248742
 	fmul	%f1, %f18, %f3
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i5)
 	flt	%i20, %f17, %f1
 	jeq	%i20, %i0, then.248744
@@ -18080,15 +17595,13 @@ then.248746:
 	fmul	%f17, %f15, %f1
 	fmul	%f1, %f17, %f13
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	lf	%f1, 0(%i5)
 	flt	%i20, %f15, %f1
 	jeq	%i20, %i0, then.248748
 	fmul	%f1, %f17, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i5)
 	flt	%i19, %f14, %f1
 	jeq	%i19, %i0, then.248750
@@ -18113,8 +17626,8 @@ cont.248747:
 cont.248741:
 cont.248725:
 	jeq	%i5, %i0, cont.248723
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f14, 108(%i1)
+	flt	%i5, %f14, %f5
 	jeq	%i5, %i0, cont.248723
 	movi	%i24, 1
 loop_start.240660:
@@ -18177,16 +17690,16 @@ then.248766:
 	fmul	%f1, %f1, %f14
 	fadd	%f14, %f15, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.248771
 then.248770:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f14, %f15, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 cont.248771:
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.248763
@@ -18199,8 +17712,8 @@ then.248764:
 	jeq	%i20, %i0, then.248772
 	lf	%f14, 0(%i4)
 	lf	%f1, 3(%i19)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.248763
 then.248772:
@@ -18213,15 +17726,13 @@ then.248762:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248774
 	fmul	%f1, %f18, %f3
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248776
@@ -18246,15 +17757,13 @@ then.248778:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f13
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248780
 	fmul	%f1, %f18, %f3
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248782
@@ -18279,15 +17788,13 @@ then.248784:
 	fmul	%f17, %f15, %f1
 	fmul	%f1, %f17, %f13
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	lf	%f1, 0(%i20)
 	flt	%i19, %f15, %f1
 	jeq	%i19, %i0, then.248786
 	fmul	%f1, %f17, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i20)
 	flt	%i19, %f14, %f1
 	jeq	%i19, %i0, then.248788
@@ -18312,9 +17819,8 @@ cont.248785:
 cont.248779:
 cont.248763:
 	jeq	%i20, %i0, then.248792
-	lf	%f31, 108(%i1)
-	fmov	%f14, %f31
-	flt	%i5, %f0, %f31
+	lf	%f14, 108(%i1)
+	flt	%i5, %f0, %f14
 	jeq	%i5, %i0, cont.248794
 	flt	%i5, %f14, %f5
 	jeq	%i5, %i0, cont.248795
@@ -18323,14 +17829,14 @@ cont.248763:
 	mif	%f1, %i31
 	fadd	%f17, %f14, %f1
 	fmul	%f14, %f13, %f17
-	lf	%f31, 122(%i1)
-	fadd	%f16, %f14, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f16, %f14, %f1
 	fmul	%f14, %f4, %f17
-	lf	%f31, 123(%i1)
-	fadd	%f15, %f14, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f15, %f14, %f1
 	fmul	%f14, %f3, %f17
-	lf	%f31, 124(%i1)
-	fadd	%f14, %f14, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f14, %f14, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i23)
 	movi	%i31, -1
@@ -18405,18 +17911,15 @@ then.248800:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.248799
 then.248798:
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i27)
 	flt	%i25, %f20, %f1
 	jeq	%i25, %i0, then.248804
-	fabs	%f1, %f18
-	fmov	%f18, %f1
+	fabs	%f18, %f18
 	lf	%f1, 1(%i27)
 	flt	%i25, %f18, %f1
 	jeq	%i25, %i0, then.248806
-	fabs	%f1, %f19
-	fmov	%f18, %f1
+	fabs	%f18, %f19
 	lf	%f1, 2(%i27)
 	flt	%i25, %f18, %f1
 	jzero	%i0, %i0, cont.248805
@@ -18436,8 +17939,7 @@ cont.248799:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.248797
 then.248810:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.240677:
 	slli	%i4, %i19, 2
 	add	%i31, %i23, %i4
@@ -18514,18 +18016,15 @@ then.248817:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.248816
 then.248815:
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i27)
 	flt	%i25, %f20, %f1
 	jeq	%i25, %i0, then.248821
-	fabs	%f1, %f18
-	fmov	%f18, %f1
+	fabs	%f18, %f18
 	lf	%f1, 1(%i27)
 	flt	%i25, %f18, %f1
 	jeq	%i25, %i0, then.248823
-	fabs	%f1, %f19
-	fmov	%f18, %f1
+	fabs	%f18, %f19
 	lf	%f1, 2(%i27)
 	flt	%i25, %f18, %f1
 	jzero	%i0, %i0, cont.248822
@@ -18545,20 +18044,17 @@ cont.248816:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.240678
 then.248827:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.240677
 	jmp	%i0, 0(%i31)
 then.248813:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240678
 loop_end.240678:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.248797
 then.248796:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.248797:
 	jeq	%i5, %i0, cont.248829
 	fmov	%f5, %f17
@@ -18570,8 +18066,7 @@ cont.248797:
 cont.248829:
 cont.248795:
 cont.248794:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.240664
 	jmp	%i0, 0(%i31)
 then.248792:
@@ -18581,13 +18076,11 @@ then.248792:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.240665
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.240664
 	jmp	%i0, 0(%i31)
 loop_end.240665:
-	addi	%i4, %i24, 1
-	mov	%i24, %i4
+	addi	%i24, %i24, 1
 	set_label	%i31, loop_start.240660
 	jmp	%i0, 0(%i31)
 then.248722:
@@ -18652,16 +18145,16 @@ then.248842:
 	fmul	%f1, %f1, %f14
 	fadd	%f14, %f15, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.248847
 then.248846:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f14, %f15, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 cont.248847:
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.248839
@@ -18674,8 +18167,8 @@ then.248840:
 	jeq	%i20, %i0, then.248848
 	lf	%f14, 0(%i4)
 	lf	%f1, 3(%i19)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.248839
 then.248848:
@@ -18688,15 +18181,13 @@ then.248838:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248850
 	fmul	%f1, %f18, %f3
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248852
@@ -18721,15 +18212,13 @@ then.248854:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f13
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248856
 	fmul	%f1, %f18, %f3
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.248858
@@ -18754,15 +18243,13 @@ then.248860:
 	fmul	%f17, %f15, %f1
 	fmul	%f1, %f17, %f13
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	lf	%f1, 0(%i20)
 	flt	%i19, %f15, %f1
 	jeq	%i19, %i0, then.248862
 	fmul	%f1, %f17, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i20)
 	flt	%i19, %f14, %f1
 	jeq	%i19, %i0, then.248864
@@ -18787,9 +18274,8 @@ cont.248861:
 cont.248855:
 cont.248839:
 	jeq	%i20, %i0, then.248868
-	lf	%f31, 108(%i1)
-	fmov	%f14, %f31
-	flt	%i5, %f0, %f31
+	lf	%f14, 108(%i1)
+	flt	%i5, %f0, %f14
 	jeq	%i5, %i0, cont.248870
 	flt	%i5, %f14, %f5
 	jeq	%i5, %i0, cont.248871
@@ -18798,14 +18284,14 @@ cont.248839:
 	mif	%f1, %i31
 	fadd	%f17, %f14, %f1
 	fmul	%f14, %f13, %f17
-	lf	%f31, 122(%i1)
-	fadd	%f16, %f14, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f16, %f14, %f1
 	fmul	%f14, %f4, %f17
-	lf	%f31, 123(%i1)
-	fadd	%f15, %f14, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f15, %f14, %f1
 	fmul	%f14, %f3, %f17
-	lf	%f31, 124(%i1)
-	fadd	%f14, %f14, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f14, %f14, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i23)
 	movi	%i31, -1
@@ -18880,18 +18366,15 @@ then.248876:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.248875
 then.248874:
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i27)
 	flt	%i25, %f20, %f1
 	jeq	%i25, %i0, then.248880
-	fabs	%f1, %f18
-	fmov	%f18, %f1
+	fabs	%f18, %f18
 	lf	%f1, 1(%i27)
 	flt	%i25, %f18, %f1
 	jeq	%i25, %i0, then.248882
-	fabs	%f1, %f19
-	fmov	%f18, %f1
+	fabs	%f18, %f19
 	lf	%f1, 2(%i27)
 	flt	%i25, %f18, %f1
 	jzero	%i0, %i0, cont.248881
@@ -18911,8 +18394,7 @@ cont.248875:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.248873
 then.248886:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.240711:
 	slli	%i4, %i19, 2
 	add	%i31, %i23, %i4
@@ -18989,18 +18471,15 @@ then.248893:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.248892
 then.248891:
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i27)
 	flt	%i25, %f20, %f1
 	jeq	%i25, %i0, then.248897
-	fabs	%f1, %f18
-	fmov	%f18, %f1
+	fabs	%f18, %f18
 	lf	%f1, 1(%i27)
 	flt	%i25, %f18, %f1
 	jeq	%i25, %i0, then.248899
-	fabs	%f1, %f19
-	fmov	%f18, %f1
+	fabs	%f18, %f19
 	lf	%f1, 2(%i27)
 	flt	%i25, %f18, %f1
 	jzero	%i0, %i0, cont.248898
@@ -19020,20 +18499,17 @@ cont.248892:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.240712
 then.248903:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.240711
 	jmp	%i0, 0(%i31)
 then.248889:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240712
 loop_end.240712:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.248873
 then.248872:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.248873:
 	jeq	%i5, %i0, cont.248905
 	fmov	%f5, %f17
@@ -19045,8 +18521,7 @@ cont.248873:
 cont.248905:
 cont.248871:
 cont.248870:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.240698
 	jmp	%i0, 0(%i31)
 then.248868:
@@ -19056,19 +18531,16 @@ then.248868:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.240699
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.240698
 	jmp	%i0, 0(%i31)
 loop_end.240699:
-	addi	%i4, %i24, 1
-	mov	%i24, %i4
+	addi	%i24, %i24, 1
 	set_label	%i31, loop_start.240694
 	jmp	%i0, 0(%i31)
 loop_end.240695:
 cont.248723:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.240649
 	jmp	%i0, 0(%i31)
 loop_end.240650:
@@ -19091,8 +18563,8 @@ cont.248909:
 	set_label	%i31, cont.248718
 	jmp	%i0, 0(%i31)
 Lrelax_skip_5:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i5, 0(%i31)
@@ -19118,12 +18590,12 @@ Lrelax_skip_5:
 	jeq	%i21, %i31, then.248911
 	movi	%i31, 2
 	jeq	%i21, %i31, then.248913
-	lf	%f31, 110(%i1)
-	fsub	%f5, %f31, %f5
-	lf	%f31, 111(%i1)
-	fsub	%f3, %f31, %f3
-	lf	%f31, 112(%i1)
-	fsub	%f19, %f31, %f15
+	lf	%f1, 110(%i1)
+	fsub	%f5, %f1, %f5
+	lf	%f1, 111(%i1)
+	fsub	%f3, %f1, %f3
+	lf	%f1, 112(%i1)
+	fsub	%f19, %f1, %f15
 	fmul	%f18, %f5, %f18
 	fmul	%f17, %f3, %f17
 	fmul	%f1, %f19, %f16
@@ -19213,8 +18685,7 @@ then.248913:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.248912
 then.248911:
-	lw	%i31, 109(%i1)
-	mov	%i20, %i31
+	lw	%i20, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -19249,14 +18720,11 @@ cont.248912:
 	lf	%f13, 2(%i18)
 	lf	%f4, 0(%i17)
 	lf	%f3, 1(%i17)
-	lf	%f17, 2(%i17)
-	lf	%f31, 110(%i1)
-	fmov	%f1, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f15, %f31
-	lf	%f31, 112(%i1)
-	fmov	%f5, %f31
-	sf	%f17, 115(%i1)
+	lf	%f31, 2(%i17)
+	lf	%f1, 110(%i1)
+	lf	%f15, 111(%i1)
+	lf	%f5, 112(%i1)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i5, %i31, then.248923
 	movi	%i31, 2
@@ -19276,8 +18744,7 @@ cont.248912:
 	fmul	%f5, %f18, %f18
 	fmul	%f1, %f17, %f17
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f18
-	fmov	%f5, %f1
+	fabs	%f5, %f18
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -19289,8 +18756,7 @@ cont.248912:
 then.248930:
 	finv	%f1, %f18
 	fmul	%f1, %f17, %f1
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i16, %f1, %f17
@@ -19352,8 +18818,7 @@ cont.248931:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -19365,8 +18830,7 @@ cont.248931:
 then.248932:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i16, %f1, %f14
@@ -19447,8 +18911,8 @@ cont.248933:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.248929:
 	jzero	%i0, %i0, cont.248924
 then.248927:
@@ -19578,15 +19042,14 @@ cont.248935:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.248924
 then.248925:
 	movui	%i31, 256000
@@ -19699,14 +19162,12 @@ cont.248943:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.248924
 then.248923:
 	fsub	%f14, %f1, %f18
@@ -19714,8 +19175,7 @@ then.248923:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f14, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -19728,8 +19188,7 @@ then.248923:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -19777,15 +19236,15 @@ loop_start.240769:
 	lw	%i4, 4(%i18)
 	lw	%i20, 3(%i18)
 	lw	%i18, 1(%i18)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i22)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i22)
-	fsub	%f13, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f13, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i22)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f5, %f1
 	slli	%i21, %i23, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i21
@@ -19852,15 +19311,15 @@ cont.248968:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fadd	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.248972
 then.248971:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fsub	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 cont.248972:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.248962
@@ -19878,8 +19337,8 @@ then.248963:
 	fmul	%f1, %f16, %f13
 	fadd	%f13, %f14, %f1
 	fmul	%f1, %f15, %f5
-	fadd	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.248962
 then.248973:
@@ -19897,16 +19356,14 @@ then.248961:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f20, %f1
 	jeq	%i18, %i0, then.248975
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f5
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f20, %f1
 	jeq	%i18, %i0, then.248977
@@ -19929,16 +19386,14 @@ then.248979:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f18, %f1
 	jeq	%i18, %i0, then.248981
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f5
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f18, %f1
 	jeq	%i18, %i0, then.248983
@@ -19961,16 +19416,14 @@ then.248985:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.248987
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.248989
@@ -19994,11 +19447,11 @@ cont.248986:
 cont.248980:
 cont.248962:
 	jeq	%i5, %i0, then.248993
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.248995
 	movi	%i20, 1
 loop_start.240781:
@@ -20031,15 +19484,15 @@ loop_start.240785:
 	lw	%i24, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i26)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i26)
-	fsub	%f13, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f13, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i26)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f5, %f1
 	slli	%i23, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i23
@@ -20106,15 +19559,15 @@ cont.249010:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fadd	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.249014
 then.249013:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fsub	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 cont.249014:
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.249004
@@ -20132,8 +19585,8 @@ then.249005:
 	fmul	%f1, %f16, %f13
 	fadd	%f13, %f14, %f1
 	fmul	%f1, %f15, %f5
-	fadd	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.249004
 then.249015:
@@ -20238,8 +19691,7 @@ cont.249034:
 cont.249028:
 cont.249022:
 cont.249004:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i21, %i0, then.249035
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -20256,16 +19708,16 @@ cont.249036:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i21, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -20362,8 +19814,7 @@ cont.249042:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.249040
 then.249053:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 loop_start.240800:
 	slli	%i4, %i21, 2
 	add	%i31, %i19, %i4
@@ -20462,28 +19913,23 @@ cont.249059:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.240801
 then.249070:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.240800
 	jmp	%i0, 0(%i31)
 then.249056:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240801
 loop_end.240801:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.249040
 then.249039:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.249040:
 	jeq	%i5, %i0, then.249072
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240786
 then.249072:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.240785
 	jmp	%i0, 0(%i31)
 then.249037:
@@ -20493,8 +19939,7 @@ then.249037:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.249074
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.240785
 	jmp	%i0, 0(%i31)
 then.249074:
@@ -20505,12 +19950,10 @@ then.249001:
 	jzero	%i0, %i0, loop_end.240786
 loop_end.240786:
 	jeq	%i31, %i0, then.249076
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240782
 then.249076:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.240781
 	jmp	%i0, 0(%i31)
 then.248998:
@@ -20560,15 +20003,15 @@ loop_start.240815:
 	lw	%i24, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i26)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i26)
-	fsub	%f13, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f13, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i26)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f5, %f1
 	slli	%i23, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i23
@@ -20635,15 +20078,15 @@ cont.249093:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fadd	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.249097
 then.249096:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fsub	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 cont.249097:
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.249087
@@ -20661,8 +20104,8 @@ then.249088:
 	fmul	%f1, %f16, %f13
 	fadd	%f13, %f14, %f1
 	fmul	%f1, %f15, %f5
-	fadd	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.249087
 then.249098:
@@ -20767,8 +20210,7 @@ cont.249117:
 cont.249111:
 cont.249105:
 cont.249087:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i21, %i0, then.249118
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -20785,16 +20227,16 @@ cont.249119:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i21, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -20891,8 +20333,7 @@ cont.249125:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.249123
 then.249136:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 loop_start.240830:
 	slli	%i4, %i21, 2
 	add	%i31, %i19, %i4
@@ -20991,28 +20432,23 @@ cont.249142:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.240831
 then.249153:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.240830
 	jmp	%i0, 0(%i31)
 then.249139:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240831
 loop_end.240831:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.249123
 then.249122:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.249123:
 	jeq	%i5, %i0, then.249155
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240816
 then.249155:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.240815
 	jmp	%i0, 0(%i31)
 then.249120:
@@ -21022,8 +20458,7 @@ then.249120:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.249157
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.240815
 	jmp	%i0, 0(%i31)
 then.249157:
@@ -21034,12 +20469,10 @@ then.249084:
 	jzero	%i0, %i0, loop_end.240816
 loop_end.240816:
 	jeq	%i31, %i0, then.249159
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240812
 then.249159:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.240811
 	jmp	%i0, 0(%i31)
 then.249081:
@@ -21047,17 +20480,14 @@ then.249081:
 	jzero	%i0, %i0, loop_end.240812
 loop_end.240812:
 	jeq	%i31, %i0, then.249161
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240770
 then.249161:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.240769
 	jmp	%i0, 0(%i31)
 then.249078:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.240769
 	jmp	%i0, 0(%i31)
 then.248957:
@@ -21086,16 +20516,14 @@ loop_end.240770:
 	fmul	%f5, %f12, %f1
 	lf	%f1, 0(%i6)
 	fmul	%f12, %f5, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fmov	%f1, %f4
+	lf	%f4, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	fmul	%f1, %f12, %f4
+	fadd	%f9, %f9, %f1
 cont.249163:
 	set_label	%i31, cont.248718
 	jmp	%i0, 0(%i31)
@@ -21115,8 +20543,7 @@ then.248717:
 	lf	%f3, 2(%i16)
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i17, %i0
 loop_start.240850:
 	slli	%i4, %i17, 2
@@ -21171,16 +20598,16 @@ then.249173:
 	fmul	%f1, %f1, %f14
 	fadd	%f14, %f15, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.249178
 then.249177:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f14, %f15, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 cont.249178:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.249170
@@ -21193,8 +20620,8 @@ then.249171:
 	jeq	%i20, %i0, then.249179
 	lf	%f14, 0(%i4)
 	lf	%f1, 3(%i19)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.249170
 then.249179:
@@ -21207,15 +20634,13 @@ then.249169:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i5)
 	flt	%i20, %f17, %f1
 	jeq	%i20, %i0, then.249181
 	fmul	%f1, %f18, %f3
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i5)
 	flt	%i20, %f17, %f1
 	jeq	%i20, %i0, then.249183
@@ -21240,15 +20665,13 @@ then.249185:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f13
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i5)
 	flt	%i20, %f17, %f1
 	jeq	%i20, %i0, then.249187
 	fmul	%f1, %f18, %f3
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i5)
 	flt	%i20, %f17, %f1
 	jeq	%i20, %i0, then.249189
@@ -21273,15 +20696,13 @@ then.249191:
 	fmul	%f17, %f15, %f1
 	fmul	%f1, %f17, %f13
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	lf	%f1, 0(%i5)
 	flt	%i20, %f15, %f1
 	jeq	%i20, %i0, then.249193
 	fmul	%f1, %f17, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i5)
 	flt	%i19, %f14, %f1
 	jeq	%i19, %i0, then.249195
@@ -21306,8 +20727,8 @@ cont.249192:
 cont.249186:
 cont.249170:
 	jeq	%i5, %i0, cont.249168
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f14, 108(%i1)
+	flt	%i5, %f14, %f5
 	jeq	%i5, %i0, cont.249168
 	movi	%i24, 1
 loop_start.240861:
@@ -21370,16 +20791,16 @@ then.249211:
 	fmul	%f1, %f1, %f14
 	fadd	%f14, %f15, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.249216
 then.249215:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f14, %f15, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 cont.249216:
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.249208
@@ -21392,8 +20813,8 @@ then.249209:
 	jeq	%i20, %i0, then.249217
 	lf	%f14, 0(%i4)
 	lf	%f1, 3(%i19)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.249208
 then.249217:
@@ -21406,15 +20827,13 @@ then.249207:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.249219
 	fmul	%f1, %f18, %f3
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.249221
@@ -21439,15 +20858,13 @@ then.249223:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f13
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.249225
 	fmul	%f1, %f18, %f3
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.249227
@@ -21472,15 +20889,13 @@ then.249229:
 	fmul	%f17, %f15, %f1
 	fmul	%f1, %f17, %f13
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	lf	%f1, 0(%i20)
 	flt	%i19, %f15, %f1
 	jeq	%i19, %i0, then.249231
 	fmul	%f1, %f17, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i20)
 	flt	%i19, %f14, %f1
 	jeq	%i19, %i0, then.249233
@@ -21505,9 +20920,8 @@ cont.249230:
 cont.249224:
 cont.249208:
 	jeq	%i20, %i0, then.249237
-	lf	%f31, 108(%i1)
-	fmov	%f14, %f31
-	flt	%i5, %f0, %f31
+	lf	%f14, 108(%i1)
+	flt	%i5, %f0, %f14
 	jeq	%i5, %i0, cont.249239
 	flt	%i5, %f14, %f5
 	jeq	%i5, %i0, cont.249240
@@ -21516,14 +20930,14 @@ cont.249208:
 	mif	%f1, %i31
 	fadd	%f17, %f14, %f1
 	fmul	%f14, %f13, %f17
-	lf	%f31, 122(%i1)
-	fadd	%f16, %f14, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f16, %f14, %f1
 	fmul	%f14, %f4, %f17
-	lf	%f31, 123(%i1)
-	fadd	%f15, %f14, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f15, %f14, %f1
 	fmul	%f14, %f3, %f17
-	lf	%f31, 124(%i1)
-	fadd	%f14, %f14, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f14, %f14, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i23)
 	movi	%i31, -1
@@ -21598,18 +21012,15 @@ then.249245:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.249244
 then.249243:
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i27)
 	flt	%i25, %f20, %f1
 	jeq	%i25, %i0, then.249249
-	fabs	%f1, %f18
-	fmov	%f18, %f1
+	fabs	%f18, %f18
 	lf	%f1, 1(%i27)
 	flt	%i25, %f18, %f1
 	jeq	%i25, %i0, then.249251
-	fabs	%f1, %f19
-	fmov	%f18, %f1
+	fabs	%f18, %f19
 	lf	%f1, 2(%i27)
 	flt	%i25, %f18, %f1
 	jzero	%i0, %i0, cont.249250
@@ -21629,8 +21040,7 @@ cont.249244:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.249242
 then.249255:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.240878:
 	slli	%i4, %i19, 2
 	add	%i31, %i23, %i4
@@ -21707,18 +21117,15 @@ then.249262:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.249261
 then.249260:
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i27)
 	flt	%i25, %f20, %f1
 	jeq	%i25, %i0, then.249266
-	fabs	%f1, %f18
-	fmov	%f18, %f1
+	fabs	%f18, %f18
 	lf	%f1, 1(%i27)
 	flt	%i25, %f18, %f1
 	jeq	%i25, %i0, then.249268
-	fabs	%f1, %f19
-	fmov	%f18, %f1
+	fabs	%f18, %f19
 	lf	%f1, 2(%i27)
 	flt	%i25, %f18, %f1
 	jzero	%i0, %i0, cont.249267
@@ -21738,20 +21145,17 @@ cont.249261:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.240879
 then.249272:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.240878
 	jmp	%i0, 0(%i31)
 then.249258:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240879
 loop_end.240879:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.249242
 then.249241:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.249242:
 	jeq	%i5, %i0, cont.249274
 	fmov	%f5, %f17
@@ -21763,8 +21167,7 @@ cont.249242:
 cont.249274:
 cont.249240:
 cont.249239:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.240865
 	jmp	%i0, 0(%i31)
 then.249237:
@@ -21774,13 +21177,11 @@ then.249237:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.240866
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.240865
 	jmp	%i0, 0(%i31)
 loop_end.240866:
-	addi	%i4, %i24, 1
-	mov	%i24, %i4
+	addi	%i24, %i24, 1
 	set_label	%i31, loop_start.240861
 	jmp	%i0, 0(%i31)
 then.249167:
@@ -21845,16 +21246,16 @@ then.249287:
 	fmul	%f1, %f1, %f14
 	fadd	%f14, %f15, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.249292
 then.249291:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f14, %f15, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 cont.249292:
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.249284
@@ -21867,8 +21268,8 @@ then.249285:
 	jeq	%i20, %i0, then.249293
 	lf	%f14, 0(%i4)
 	lf	%f1, 3(%i19)
-	fmul	%f1, %f14, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f14, %f1
+	sf	%f31, 108(%i1)
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.249284
 then.249293:
@@ -21881,15 +21282,13 @@ then.249283:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.249295
 	fmul	%f1, %f18, %f3
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.249297
@@ -21914,15 +21313,13 @@ then.249299:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f13
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.249301
 	fmul	%f1, %f18, %f3
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i20)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.249303
@@ -21947,15 +21344,13 @@ then.249305:
 	fmul	%f17, %f15, %f1
 	fmul	%f1, %f17, %f13
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	lf	%f1, 0(%i20)
 	flt	%i19, %f15, %f1
 	jeq	%i19, %i0, then.249307
 	fmul	%f1, %f17, %f4
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i20)
 	flt	%i19, %f14, %f1
 	jeq	%i19, %i0, then.249309
@@ -21980,9 +21375,8 @@ cont.249306:
 cont.249300:
 cont.249284:
 	jeq	%i20, %i0, then.249313
-	lf	%f31, 108(%i1)
-	fmov	%f14, %f31
-	flt	%i5, %f0, %f31
+	lf	%f14, 108(%i1)
+	flt	%i5, %f0, %f14
 	jeq	%i5, %i0, cont.249315
 	flt	%i5, %f14, %f5
 	jeq	%i5, %i0, cont.249316
@@ -21991,14 +21385,14 @@ cont.249284:
 	mif	%f1, %i31
 	fadd	%f17, %f14, %f1
 	fmul	%f14, %f13, %f17
-	lf	%f31, 122(%i1)
-	fadd	%f16, %f14, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f16, %f14, %f1
 	fmul	%f14, %f4, %f17
-	lf	%f31, 123(%i1)
-	fadd	%f15, %f14, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f15, %f14, %f1
 	fmul	%f14, %f3, %f17
-	lf	%f31, 124(%i1)
-	fadd	%f14, %f14, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f14, %f14, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i23)
 	movi	%i31, -1
@@ -22073,18 +21467,15 @@ then.249321:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.249320
 then.249319:
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i27)
 	flt	%i25, %f20, %f1
 	jeq	%i25, %i0, then.249325
-	fabs	%f1, %f18
-	fmov	%f18, %f1
+	fabs	%f18, %f18
 	lf	%f1, 1(%i27)
 	flt	%i25, %f18, %f1
 	jeq	%i25, %i0, then.249327
-	fabs	%f1, %f19
-	fmov	%f18, %f1
+	fabs	%f18, %f19
 	lf	%f1, 2(%i27)
 	flt	%i25, %f18, %f1
 	jzero	%i0, %i0, cont.249326
@@ -22104,8 +21495,7 @@ cont.249320:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.249318
 then.249331:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.240912:
 	slli	%i4, %i19, 2
 	add	%i31, %i23, %i4
@@ -22182,18 +21572,15 @@ then.249338:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.249337
 then.249336:
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i27)
 	flt	%i25, %f20, %f1
 	jeq	%i25, %i0, then.249342
-	fabs	%f1, %f18
-	fmov	%f18, %f1
+	fabs	%f18, %f18
 	lf	%f1, 1(%i27)
 	flt	%i25, %f18, %f1
 	jeq	%i25, %i0, then.249344
-	fabs	%f1, %f19
-	fmov	%f18, %f1
+	fabs	%f18, %f19
 	lf	%f1, 2(%i27)
 	flt	%i25, %f18, %f1
 	jzero	%i0, %i0, cont.249343
@@ -22213,20 +21600,17 @@ cont.249337:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.240913
 then.249348:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.240912
 	jmp	%i0, 0(%i31)
 then.249334:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240913
 loop_end.240913:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.249318
 then.249317:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.249318:
 	jeq	%i5, %i0, cont.249350
 	fmov	%f5, %f17
@@ -22238,8 +21622,7 @@ cont.249318:
 cont.249350:
 cont.249316:
 cont.249315:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.240899
 	jmp	%i0, 0(%i31)
 then.249313:
@@ -22249,19 +21632,16 @@ then.249313:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.240900
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.240899
 	jmp	%i0, 0(%i31)
 loop_end.240900:
-	addi	%i4, %i24, 1
-	mov	%i24, %i4
+	addi	%i24, %i24, 1
 	set_label	%i31, loop_start.240895
 	jmp	%i0, 0(%i31)
 loop_end.240896:
 cont.249168:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.240850
 	jmp	%i0, 0(%i31)
 loop_end.240851:
@@ -22284,8 +21664,8 @@ cont.249354:
 	set_label	%i31, cont.249355
 	jmp	%i0, 0(%i31)
 Lrelax_skip_6:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i5, 0(%i31)
@@ -22311,12 +21691,12 @@ Lrelax_skip_6:
 	jeq	%i21, %i31, then.249356
 	movi	%i31, 2
 	jeq	%i21, %i31, then.249358
-	lf	%f31, 110(%i1)
-	fsub	%f5, %f31, %f5
-	lf	%f31, 111(%i1)
-	fsub	%f3, %f31, %f3
-	lf	%f31, 112(%i1)
-	fsub	%f19, %f31, %f15
+	lf	%f1, 110(%i1)
+	fsub	%f5, %f1, %f5
+	lf	%f1, 111(%i1)
+	fsub	%f3, %f1, %f3
+	lf	%f1, 112(%i1)
+	fsub	%f19, %f1, %f15
 	fmul	%f18, %f5, %f18
 	fmul	%f17, %f3, %f17
 	fmul	%f1, %f19, %f16
@@ -22406,8 +21786,7 @@ then.249358:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.249357
 then.249356:
-	lw	%i31, 109(%i1)
-	mov	%i20, %i31
+	lw	%i20, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -22442,14 +21821,11 @@ cont.249357:
 	lf	%f13, 2(%i18)
 	lf	%f4, 0(%i17)
 	lf	%f3, 1(%i17)
-	lf	%f17, 2(%i17)
-	lf	%f31, 110(%i1)
-	fmov	%f1, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f15, %f31
-	lf	%f31, 112(%i1)
-	fmov	%f5, %f31
-	sf	%f17, 115(%i1)
+	lf	%f31, 2(%i17)
+	lf	%f1, 110(%i1)
+	lf	%f15, 111(%i1)
+	lf	%f5, 112(%i1)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i5, %i31, then.249368
 	movi	%i31, 2
@@ -22469,8 +21845,7 @@ cont.249357:
 	fmul	%f5, %f18, %f18
 	fmul	%f1, %f17, %f17
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f18
-	fmov	%f5, %f1
+	fabs	%f5, %f18
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -22482,8 +21857,7 @@ cont.249357:
 then.249375:
 	finv	%f1, %f18
 	fmul	%f1, %f17, %f1
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i16, %f1, %f17
@@ -22545,8 +21919,7 @@ cont.249376:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -22558,8 +21931,7 @@ cont.249376:
 then.249377:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i16, %f1, %f14
@@ -22640,8 +22012,8 @@ cont.249378:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.249374:
 	jzero	%i0, %i0, cont.249369
 then.249372:
@@ -22771,15 +22143,14 @@ cont.249380:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.249369
 then.249370:
 	movui	%i31, 256000
@@ -22892,14 +22263,12 @@ cont.249388:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.249369
 then.249368:
 	fsub	%f14, %f1, %f18
@@ -22907,8 +22276,7 @@ then.249368:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f14, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -22921,8 +22289,7 @@ then.249368:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -22970,15 +22337,15 @@ loop_start.240970:
 	lw	%i4, 4(%i18)
 	lw	%i20, 3(%i18)
 	lw	%i18, 1(%i18)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i22)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i22)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i22)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i21, %i23, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i21
@@ -23045,15 +22412,15 @@ cont.249413:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.249417
 then.249416:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.249417:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.249407
@@ -23071,8 +22438,8 @@ then.249408:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.249407
 then.249418:
@@ -23090,16 +22457,14 @@ then.249406:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f20, %f1
 	jeq	%i18, %i0, then.249420
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f20, %f1
 	jeq	%i18, %i0, then.249422
@@ -23122,16 +22487,14 @@ then.249424:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f18, %f1
 	jeq	%i18, %i0, then.249426
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f18, %f1
 	jeq	%i18, %i0, then.249428
@@ -23154,16 +22517,14 @@ then.249430:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f13, %f1
 	jeq	%i18, %i0, then.249432
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f13, %f1
 	jeq	%i5, %i0, then.249434
@@ -23187,11 +22548,11 @@ cont.249431:
 cont.249425:
 cont.249407:
 	jeq	%i5, %i0, then.249438
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.249440
 	movi	%i20, 1
 loop_start.240982:
@@ -23224,15 +22585,15 @@ loop_start.240986:
 	lw	%i24, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i26)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i26)
-	fsub	%f13, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f13, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i26)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f5, %f1
 	slli	%i23, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i23
@@ -23299,15 +22660,15 @@ cont.249455:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fadd	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.249459
 then.249458:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fsub	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 cont.249459:
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.249449
@@ -23325,8 +22686,8 @@ then.249450:
 	fmul	%f1, %f16, %f13
 	fadd	%f13, %f14, %f1
 	fmul	%f1, %f15, %f5
-	fadd	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.249449
 then.249460:
@@ -23431,8 +22792,7 @@ cont.249479:
 cont.249473:
 cont.249467:
 cont.249449:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i21, %i0, then.249480
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -23449,16 +22809,16 @@ cont.249481:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i21, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -23555,8 +22915,7 @@ cont.249487:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.249485
 then.249498:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 loop_start.241001:
 	slli	%i4, %i21, 2
 	add	%i31, %i19, %i4
@@ -23655,28 +23014,23 @@ cont.249504:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241002
 then.249515:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.241001
 	jmp	%i0, 0(%i31)
 then.249501:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241002
 loop_end.241002:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.249485
 then.249484:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.249485:
 	jeq	%i5, %i0, then.249517
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240987
 then.249517:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.240986
 	jmp	%i0, 0(%i31)
 then.249482:
@@ -23686,8 +23040,7 @@ then.249482:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.249519
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.240986
 	jmp	%i0, 0(%i31)
 then.249519:
@@ -23698,12 +23051,10 @@ then.249446:
 	jzero	%i0, %i0, loop_end.240987
 loop_end.240987:
 	jeq	%i31, %i0, then.249521
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240983
 then.249521:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.240982
 	jmp	%i0, 0(%i31)
 then.249443:
@@ -23753,15 +23104,15 @@ loop_start.241016:
 	lw	%i24, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i26)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i26)
-	fsub	%f13, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f13, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i26)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f5, %f1
 	slli	%i23, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i23
@@ -23828,15 +23179,15 @@ cont.249538:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fadd	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.249542
 then.249541:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fsub	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 cont.249542:
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.249532
@@ -23854,8 +23205,8 @@ then.249533:
 	fmul	%f1, %f16, %f13
 	fadd	%f13, %f14, %f1
 	fmul	%f1, %f15, %f5
-	fadd	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.249532
 then.249543:
@@ -23960,8 +23311,7 @@ cont.249562:
 cont.249556:
 cont.249550:
 cont.249532:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i21, %i0, then.249563
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -23978,16 +23328,16 @@ cont.249564:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i21, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -24084,8 +23434,7 @@ cont.249570:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.249568
 then.249581:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 loop_start.241031:
 	slli	%i4, %i21, 2
 	add	%i31, %i19, %i4
@@ -24184,28 +23533,23 @@ cont.249587:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241032
 then.249598:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.241031
 	jmp	%i0, 0(%i31)
 then.249584:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241032
 loop_end.241032:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.249568
 then.249567:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.249568:
 	jeq	%i5, %i0, then.249600
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241017
 then.249600:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241016
 	jmp	%i0, 0(%i31)
 then.249565:
@@ -24215,8 +23559,7 @@ then.249565:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.249602
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241016
 	jmp	%i0, 0(%i31)
 then.249602:
@@ -24227,12 +23570,10 @@ then.249529:
 	jzero	%i0, %i0, loop_end.241017
 loop_end.241017:
 	jeq	%i31, %i0, then.249604
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241013
 then.249604:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.241012
 	jmp	%i0, 0(%i31)
 then.249526:
@@ -24240,17 +23581,14 @@ then.249526:
 	jzero	%i0, %i0, loop_end.241013
 loop_end.241013:
 	jeq	%i31, %i0, then.249606
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.240971
 then.249606:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.240970
 	jmp	%i0, 0(%i31)
 then.249523:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.240970
 	jmp	%i0, 0(%i31)
 then.249402:
@@ -24279,22 +23617,20 @@ loop_end.240971:
 	fmul	%f5, %f12, %f1
 	lf	%f1, 0(%i6)
 	fmul	%f12, %f5, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fmov	%f1, %f4
+	lf	%f4, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	fmul	%f1, %f12, %f4
+	fadd	%f9, %f9, %f1
 cont.249608:
 cont.249355:
 cont.248718:
 	lw	%i31, 142(%i1)
-	subi	%i4, %i31, 2
-	sw	%i4, 142(%i1)
+	subi	%i31, %i31, 2
+	sw	%i31, 142(%i1)
 	set_label	%i30, loop_start.240643
 	jmp	%i0, 0(%i30)
 loop_end.240644:
@@ -24305,20 +23641,19 @@ loop_end.240644:
 	sf	%f10, 1(%i5)
 	sf	%f9, 2(%i5)
 cont.248698:
-	addi	%i4, %i9, 1
-	mov	%i9, %i4
+	addi	%i9, %i9, 1
 	set_label	%i30, loop_start.240622
 	jmp	%i0, 0(%i30)
 loop_end.240623:
 	lw	%i31, 139(%i1)
-	subi	%i7, %i31, 1
-	lw	%i31, 140(%i1)
-	addi	%i6, %i31, 1
+	subi	%i31, %i31, 1
+	lw	%i4, 140(%i1)
+	addi	%i6, %i4, 1
 	movi	%i4, 5
 	subi	%i5, %i6, 5
 	cleq	%i4, %i4, %i6
 	tern	%i4, %i4, %i5, %i6
-	sw	%i7, 139(%i1)
+	sw	%i31, 139(%i1)
 	sw	%i4, 140(%i1)
 	set_label	%i30, loop_start.240187
 	jmp	%i0, 0(%i30)
@@ -24330,13 +23665,13 @@ loop_end.240188:
 	lw	%i30, 143(%i1)
 	sw	%i30, 0(%i31)
 	mov	%i31, %i6
-	lw	%i6, 131(%i1)
-	sw	%i31, 131(%i1)
-	sw	%i6, 144(%i1)
+	lw	%i30, 131(%i1)
 	sw	%i6, 131(%i1)
-	sw	%i31, 145(%i1)
-	lw	%i30, 132(%i1)
-	sw	%i30, 145(%i1)
+	sw	%i30, 144(%i1)
+	sw	%i30, 131(%i1)
+	sw	%i6, 145(%i1)
+	lw	%i6, 132(%i1)
+	sw	%i6, 145(%i1)
 	sw	%i31, 146(%i1)
 	lw	%i30, 133(%i1)
 	sw	%i30, 146(%i1)
@@ -24371,13 +23706,11 @@ Lrelax_skip_7:
 Lrelax_skip_8:
 	lw	%i31, 143(%i1)
 	addi	%i4, %i31, 1
-	mov	%i31, %i6
-	lw	%i6, 146(%i1)
-	sw	%i31, 146(%i1)
-	sw	%i6, 149(%i1)
+	lw	%i30, 146(%i1)
 	sw	%i6, 146(%i1)
-	lw	%i31, 147(%i1)
-	mov	%i5, %i31
+	sw	%i30, 149(%i1)
+	sw	%i30, 146(%i1)
+	lw	%i5, 147(%i1)
 	lw	%i31, 129(%i1)
 	sub	%i4, %i4, %i31
 	itof	%f1, %i4
@@ -24456,14 +23789,14 @@ then.249614:
 	sf	%f0, 116(%i1)
 	sf	%f0, 117(%i1)
 	sf	%f0, 118(%i1)
-	lf	%f3, 14(%i1)
-	sf	%f3, 119(%i1)
-	lf	%f3, 15(%i1)
-	sf	%f3, 120(%i1)
-	lf	%f1, 16(%i1)
-	sf	%f1, 121(%i1)
+	lf	%f31, 14(%i1)
+	sf	%f31, 119(%i1)
+	lf	%f31, 15(%i1)
+	sf	%f31, 120(%i1)
+	lf	%f31, 16(%i1)
+	sf	%f31, 121(%i1)
 	movui	%i31, 260096
-	mif	%f3, %i31
+	mif	%f16, %i31
 	slli	%i4, %i6, 2
 	lw	%i30, 149(%i1)
 	add	%i31, %i30, %i4
@@ -24474,7 +23807,6 @@ then.249614:
 	lw	%i11, 2(%i4)
 	lw	%i10, 1(%i4)
 	mov	%i9, %i0
-	fmov	%f16, %f3
 	fmov	%f15, %f0
 loop_start.241066:
 	movi	%i31, 4
@@ -24484,8 +23816,7 @@ loop_start.241066:
 then.249617:
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i7, %i0
 loop_start.241069:
 	slli	%i4, %i7, 2
@@ -24501,11 +23832,9 @@ loop_start.241069:
 	lf	%f12, 0(%i31)
 	lf	%f4, 1(%i31)
 	lf	%f13, 2(%i31)
-	lf	%f31, 119(%i1)
-	fmov	%f10, %f31
-	lf	%f31, 120(%i1)
-	fmov	%f9, %f31
-	lf	%f31, 121(%i1)
+	lf	%f10, 119(%i1)
+	lf	%f9, 120(%i1)
+	lf	%f3, 121(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -24521,7 +23850,7 @@ loop_start.241069:
 	lf	%f1, 1(%i16)
 	fsub	%f9, %f9, %f1
 	lf	%f1, 2(%i16)
-	fsub	%f11, %f31, %f1
+	fsub	%f11, %f3, %f1
 	movi	%i31, 1
 	jeq	%i17, %i31, then.249624
 	movi	%i31, 2
@@ -24643,8 +23972,8 @@ cont.249635:
 	ftern	%f1, %f1, %f9, %f10
 	fsub	%f4, %f1, %f4
 	finv	%f1, %f3
-	fmul	%f1, %f4, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.249625
 then.249636:
@@ -24671,8 +24000,8 @@ then.249626:
 	fadd	%f1, %f3, %f1
 	fneg	%f3, %f1
 	finv	%f1, %f12
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.249625
 then.249638:
@@ -24696,15 +24025,13 @@ then.249640:
 	fmul	%f14, %f3, %f1
 	fmul	%f1, %f14, %f4
 	fadd	%f1, %f1, %f9
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i8)
 	flt	%i5, %f3, %f1
 	jeq	%i5, %i0, then.249642
 	fmul	%f1, %f14, %f13
 	fadd	%f1, %f1, %f11
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 2(%i8)
 	flt	%i5, %f3, %f1
 	jeq	%i5, %i0, then.249644
@@ -24739,15 +24066,13 @@ then.249648:
 	fmul	%f14, %f3, %f1
 	fmul	%f1, %f14, %f13
 	fadd	%f1, %f1, %f11
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 2(%i8)
 	flt	%i5, %f3, %f1
 	jeq	%i5, %i0, then.249650
 	fmul	%f1, %f14, %f12
 	fadd	%f1, %f1, %f10
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 0(%i8)
 	flt	%i5, %f3, %f1
 	jeq	%i5, %i0, then.249652
@@ -24782,15 +24107,13 @@ then.249656:
 	fmul	%f11, %f3, %f1
 	fmul	%f1, %f11, %f12
 	fadd	%f1, %f1, %f10
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 0(%i8)
 	flt	%i5, %f3, %f1
 	jeq	%i5, %i0, then.249658
 	fmul	%f1, %f11, %f4
 	fadd	%f1, %f1, %f9
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i8)
 	flt	%i5, %f3, %f1
 	jeq	%i5, %i0, then.249660
@@ -24814,8 +24137,8 @@ cont.249655:
 cont.249647:
 cont.249625:
 	jeq	%i5, %i0, cont.249623
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.249623
 	movi	%i15, 1
 	lw	%i31, 125(%i1)
@@ -24839,11 +24162,9 @@ loop_start.241092:
 	lw	%i16, 0(%i31)
 	movi	%i31, -1
 	jeq	%i16, %i31, loop_end.241093
-	lf	%f31, 119(%i1)
-	fmov	%f12, %f31
-	lf	%f31, 120(%i1)
-	fmov	%f11, %f31
-	lf	%f31, 121(%i1)
+	lf	%f12, 119(%i1)
+	lf	%f11, 120(%i1)
+	lf	%f10, 121(%i1)
 	slli	%i4, %i16, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -24859,7 +24180,7 @@ loop_start.241092:
 	lf	%f1, 1(%i22)
 	fsub	%f12, %f11, %f1
 	lf	%f1, 2(%i22)
-	fsub	%f14, %f31, %f1
+	fsub	%f14, %f10, %f1
 	movi	%i31, 1
 	jeq	%i4, %i31, then.249672
 	movi	%i31, 2
@@ -24981,8 +24302,8 @@ cont.249683:
 	ftern	%f1, %f1, %f12, %f13
 	fsub	%f11, %f1, %f11
 	finv	%f1, %f10
-	fmul	%f1, %f11, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f11, %f1
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.249673
 then.249684:
@@ -25009,8 +24330,8 @@ then.249674:
 	fadd	%f1, %f10, %f1
 	fneg	%f10, %f1
 	finv	%f1, %f17
-	fmul	%f1, %f10, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f10, %f1
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.249673
 then.249686:
@@ -25034,15 +24355,13 @@ then.249688:
 	fmul	%f11, %f10, %f1
 	fmul	%f1, %f11, %f4
 	fadd	%f1, %f1, %f12
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 1(%i20)
 	flt	%i5, %f10, %f1
 	jeq	%i5, %i0, then.249690
 	fmul	%f1, %f11, %f3
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 2(%i20)
 	flt	%i5, %f10, %f1
 	jeq	%i5, %i0, then.249692
@@ -25077,15 +24396,13 @@ then.249696:
 	fmul	%f11, %f10, %f1
 	fmul	%f1, %f11, %f3
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 2(%i20)
 	flt	%i5, %f10, %f1
 	jeq	%i5, %i0, then.249698
 	fmul	%f1, %f11, %f9
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 0(%i20)
 	flt	%i5, %f10, %f1
 	jeq	%i5, %i0, then.249700
@@ -25120,15 +24437,13 @@ then.249704:
 	fmul	%f11, %f10, %f1
 	fmul	%f1, %f11, %f9
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 0(%i20)
 	flt	%i5, %f10, %f1
 	jeq	%i5, %i0, then.249706
 	fmul	%f1, %f11, %f4
 	fadd	%f1, %f1, %f12
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 1(%i20)
 	flt	%i5, %f10, %f1
 	jeq	%i5, %i0, then.249708
@@ -25152,9 +24467,8 @@ cont.249703:
 cont.249695:
 cont.249673:
 	jeq	%i18, %i0, then.249712
-	lf	%f31, 108(%i1)
-	fmov	%f10, %f31
-	flt	%i5, %f0, %f31
+	lf	%f10, 108(%i1)
+	flt	%i5, %f0, %f10
 	jeq	%i5, %i0, cont.249714
 	flt	%i5, %f10, %f5
 	jeq	%i5, %i0, cont.249715
@@ -25163,14 +24477,14 @@ cont.249673:
 	mif	%f1, %i31
 	fadd	%f13, %f10, %f1
 	fmul	%f10, %f9, %f13
-	lf	%f31, 119(%i1)
-	fadd	%f12, %f10, %f31
+	lf	%f1, 119(%i1)
+	fadd	%f12, %f10, %f1
 	fmul	%f10, %f4, %f13
-	lf	%f31, 120(%i1)
-	fadd	%f11, %f10, %f31
+	lf	%f1, 120(%i1)
+	fadd	%f11, %f10, %f1
 	fmul	%f10, %f3, %f13
-	lf	%f31, 121(%i1)
-	fadd	%f10, %f10, %f31
+	lf	%f1, 121(%i1)
+	fadd	%f10, %f10, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i8)
 	movi	%i31, -1
@@ -25273,8 +24587,7 @@ cont.249719:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.249717
 then.249730:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.241113:
 	slli	%i4, %i19, 2
 	add	%i31, %i8, %i4
@@ -25379,20 +24692,17 @@ cont.249736:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241114
 then.249747:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.241113
 	jmp	%i0, 0(%i31)
 then.249733:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241114
 loop_end.241114:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.249717
 then.249716:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.249717:
 	jeq	%i5, %i0, cont.249749
 	fmov	%f5, %f13
@@ -25404,8 +24714,7 @@ cont.249717:
 cont.249749:
 cont.249715:
 cont.249714:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.241092
 	jmp	%i0, 0(%i31)
 then.249712:
@@ -25415,13 +24724,11 @@ then.249712:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.241093
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.241092
 	jmp	%i0, 0(%i31)
 loop_end.241093:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.241088
 	jmp	%i0, 0(%i31)
 then.249622:
@@ -25447,11 +24754,9 @@ loop_start.241134:
 	lw	%i16, 0(%i31)
 	movi	%i31, -1
 	jeq	%i16, %i31, loop_end.241135
-	lf	%f31, 119(%i1)
-	fmov	%f12, %f31
-	lf	%f31, 120(%i1)
-	fmov	%f11, %f31
-	lf	%f31, 121(%i1)
+	lf	%f12, 119(%i1)
+	lf	%f11, 120(%i1)
+	lf	%f10, 121(%i1)
 	slli	%i4, %i16, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -25467,7 +24772,7 @@ loop_start.241134:
 	lf	%f1, 1(%i22)
 	fsub	%f12, %f11, %f1
 	lf	%f1, 2(%i22)
-	fsub	%f14, %f31, %f1
+	fsub	%f14, %f10, %f1
 	movi	%i31, 1
 	jeq	%i4, %i31, then.249758
 	movi	%i31, 2
@@ -25589,8 +24894,8 @@ cont.249769:
 	ftern	%f1, %f1, %f12, %f13
 	fsub	%f11, %f1, %f11
 	finv	%f1, %f10
-	fmul	%f1, %f11, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f11, %f1
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.249759
 then.249770:
@@ -25617,8 +24922,8 @@ then.249760:
 	fadd	%f1, %f10, %f1
 	fneg	%f10, %f1
 	finv	%f1, %f17
-	fmul	%f1, %f10, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f10, %f1
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.249759
 then.249772:
@@ -25642,15 +24947,13 @@ then.249774:
 	fmul	%f11, %f10, %f1
 	fmul	%f1, %f11, %f4
 	fadd	%f1, %f1, %f12
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 1(%i20)
 	flt	%i5, %f10, %f1
 	jeq	%i5, %i0, then.249776
 	fmul	%f1, %f11, %f3
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 2(%i20)
 	flt	%i5, %f10, %f1
 	jeq	%i5, %i0, then.249778
@@ -25685,15 +24988,13 @@ then.249782:
 	fmul	%f11, %f10, %f1
 	fmul	%f1, %f11, %f3
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 2(%i20)
 	flt	%i5, %f10, %f1
 	jeq	%i5, %i0, then.249784
 	fmul	%f1, %f11, %f9
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 0(%i20)
 	flt	%i5, %f10, %f1
 	jeq	%i5, %i0, then.249786
@@ -25728,15 +25029,13 @@ then.249790:
 	fmul	%f11, %f10, %f1
 	fmul	%f1, %f11, %f9
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 0(%i20)
 	flt	%i5, %f10, %f1
 	jeq	%i5, %i0, then.249792
 	fmul	%f1, %f11, %f4
 	fadd	%f1, %f1, %f12
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 1(%i20)
 	flt	%i5, %f10, %f1
 	jeq	%i5, %i0, then.249794
@@ -25760,9 +25059,8 @@ cont.249789:
 cont.249781:
 cont.249759:
 	jeq	%i18, %i0, then.249798
-	lf	%f31, 108(%i1)
-	fmov	%f10, %f31
-	flt	%i5, %f0, %f31
+	lf	%f10, 108(%i1)
+	flt	%i5, %f0, %f10
 	jeq	%i5, %i0, cont.249800
 	flt	%i5, %f10, %f5
 	jeq	%i5, %i0, cont.249801
@@ -25771,14 +25069,14 @@ cont.249759:
 	mif	%f1, %i31
 	fadd	%f13, %f10, %f1
 	fmul	%f10, %f9, %f13
-	lf	%f31, 119(%i1)
-	fadd	%f12, %f10, %f31
+	lf	%f1, 119(%i1)
+	fadd	%f12, %f10, %f1
 	fmul	%f10, %f4, %f13
-	lf	%f31, 120(%i1)
-	fadd	%f11, %f10, %f31
+	lf	%f1, 120(%i1)
+	fadd	%f11, %f10, %f1
 	fmul	%f10, %f3, %f13
-	lf	%f31, 121(%i1)
-	fadd	%f10, %f10, %f31
+	lf	%f1, 121(%i1)
+	fadd	%f10, %f10, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i8)
 	movi	%i31, -1
@@ -25881,8 +25179,7 @@ cont.249805:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.249803
 then.249816:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.241155:
 	slli	%i4, %i19, 2
 	add	%i31, %i8, %i4
@@ -25987,20 +25284,17 @@ cont.249822:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241156
 then.249833:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.241155
 	jmp	%i0, 0(%i31)
 then.249819:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241156
 loop_end.241156:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.249803
 then.249802:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.249803:
 	jeq	%i5, %i0, cont.249835
 	fmov	%f5, %f13
@@ -26012,8 +25306,7 @@ cont.249803:
 cont.249835:
 cont.249801:
 cont.249800:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.241134
 	jmp	%i0, 0(%i31)
 then.249798:
@@ -26023,19 +25316,16 @@ then.249798:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.241135
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.241134
 	jmp	%i0, 0(%i31)
 loop_end.241135:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.241130
 	jmp	%i0, 0(%i31)
 loop_end.241131:
 cont.249623:
-	addi	%i4, %i7, 1
-	mov	%i7, %i4
+	addi	%i7, %i7, 1
 	set_label	%i31, loop_start.241069
 	jmp	%i0, 0(%i31)
 loop_end.241070:
@@ -26058,9 +25348,8 @@ cont.249839:
 	set_label	%i31, then.249840
 	jmp	%i0, 0(%i31)
 Lrelax_skip_9:
-	lw	%i31, 113(%i1)
-	mov	%i5, %i31
-	slli	%i4, %i31, 2
+	lw	%i5, 113(%i1)
+	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i16, 0(%i31)
@@ -26080,15 +25369,15 @@ Lrelax_skip_9:
 	jeq	%i19, %i31, then.249842
 	movi	%i31, 2
 	jeq	%i19, %i31, then.249844
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i6)
-	fsub	%f4, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f4, %f3, %f1
+	lf	%f3, 111(%i1)
 	lf	%f1, 1(%i6)
-	fsub	%f3, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f3, %f3, %f1
+	lf	%f9, 112(%i1)
 	lf	%f1, 2(%i6)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f9, %f1
 	lf	%f1, 0(%i15)
 	fmul	%f12, %f4, %f1
 	lf	%f1, 1(%i15)
@@ -26190,8 +25479,7 @@ then.249844:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.249843
 then.249842:
-	lw	%i31, 109(%i1)
-	mov	%i18, %i31
+	lw	%i18, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -26220,25 +25508,18 @@ cont.249853:
 	sf	%f1, 0(%i31)
 cont.249843:
 	lf	%f31, 110(%i1)
-	fmov	%f4, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f3, %f31
-	lf	%f31, 112(%i1)
-	sf	%f4, 119(%i1)
+	lf	%f3, 111(%i1)
+	lf	%f1, 112(%i1)
+	sf	%f31, 119(%i1)
 	sf	%f3, 120(%i1)
-	sf	%f31, 121(%i1)
-	lf	%f31, 110(%i1)
-	fmov	%f10, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f11, %f31
-	lf	%f31, 112(%i1)
-	fmov	%f9, %f31
-	lf	%f1, 0(%i17)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i17)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i17)
-	sf	%f1, 115(%i1)
+	sf	%f1, 121(%i1)
+	lf	%f10, 110(%i1)
+	lf	%f11, 111(%i1)
+	lf	%f9, 112(%i1)
+	lf	%f4, 0(%i17)
+	lf	%f3, 1(%i17)
+	lf	%f31, 2(%i17)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i16, %i31, then.249854
 	movi	%i31, 2
@@ -26262,8 +25543,7 @@ cont.249843:
 	fmul	%f9, %f13, %f13
 	fmul	%f1, %f12, %f12
 	fadd	%f10, %f9, %f1
-	fabs	%f1, %f13
-	fmov	%f9, %f1
+	fabs	%f9, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -26275,8 +25555,7 @@ cont.249843:
 then.249861:
 	finv	%f1, %f13
 	fmul	%f1, %f12, %f1
-	fabs	%f1, %f1
-	fmov	%f12, %f1
+	fabs	%f12, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f12
@@ -26340,8 +25619,7 @@ cont.249862:
 	frsqrt	%f1, %f11
 	fmul	%f1, %f1, %f11
 	fmul	%f12, %f12, %f1
-	fabs	%f1, %f10
-	fmov	%f11, %f1
+	fabs	%f11, %f10
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -26353,8 +25631,7 @@ cont.249862:
 then.249863:
 	finv	%f1, %f10
 	fmul	%f1, %f12, %f1
-	fabs	%f1, %f1
-	fmov	%f11, %f1
+	fabs	%f11, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f11
@@ -26435,8 +25712,8 @@ cont.249864:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f9, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f9, %f1
+	sf	%f31, 115(%i1)
 cont.249860:
 	jzero	%i0, %i0, cont.249855
 then.249858:
@@ -26568,15 +25845,14 @@ cont.249866:
 	fmul	%f9, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f9, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f9, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f9, %f1, %f9
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f9, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f9, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.249855
 then.249856:
 	movui	%i31, 256000
@@ -26689,14 +25965,12 @@ cont.249874:
 	fmul	%f9, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f9
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f9
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f9
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.249855
 then.249854:
 	lf	%f1, 0(%i6)
@@ -26705,8 +25979,7 @@ then.249854:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f10, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -26720,8 +25993,7 @@ then.249854:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f9, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -26749,21 +26021,19 @@ cont.249882:
 	fmov	%f3, %f1
 cont.249855:
 	slli	%i5, %i5, 2
-	lw	%i31, 109(%i1)
-	add	%i5, %i5, %i31
+	lw	%i4, 109(%i1)
+	add	%i5, %i5, %i4
 	slli	%i4, %i9, 2
 	add	%i31, %i11, %i4
 	sw	%i5, 0(%i31)
 	add	%i31, %i10, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f10, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f9, %f31
-	lf	%f31, 112(%i1)
+	lf	%f10, 110(%i1)
+	lf	%f9, 111(%i1)
+	lf	%f1, 112(%i1)
 	sf	%f10, 0(%i5)
 	sf	%f9, 1(%i5)
-	sf	%f31, 2(%i5)
+	sf	%f1, 2(%i5)
 	lf	%f9, 0(%i8)
 	movui	%i31, 258048
 	mif	%f1, %i31
@@ -26780,10 +26050,10 @@ then.249887:
 	sw	%i5, 0(%i31)
 	add	%i31, %i13, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 115(%i1)
+	lf	%f1, 115(%i1)
 	sf	%f4, 0(%i5)
 	sf	%f3, 1(%i5)
-	sf	%f31, 2(%i5)
+	sf	%f1, 2(%i5)
 	movui	%i31, 243712
 	mif	%f1, %i31
 	fmul	%f9, %f1, %f14
@@ -26861,15 +26131,15 @@ loop_start.241223:
 	lw	%i19, 4(%i16)
 	lw	%i4, 3(%i16)
 	lw	%i18, 1(%i16)
-	lf	%f31, 110(%i1)
+	lf	%f9, 110(%i1)
 	lf	%f1, 0(%i17)
-	fsub	%f11, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f11, %f9, %f1
+	lf	%f9, 111(%i1)
 	lf	%f1, 1(%i17)
-	fsub	%f10, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f10, %f9, %f1
+	lf	%f9, 112(%i1)
 	lf	%f1, 2(%i17)
-	fsub	%f9, %f31, %f1
+	fsub	%f9, %f9, %f1
 	slli	%i16, %i21, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i16
@@ -26936,15 +26206,15 @@ cont.249901:
 	frsqrt	%f1, %f9
 	fmul	%f1, %f1, %f9
 	fadd	%f1, %f17, %f1
-	fmul	%f1, %f1, %f12
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f12
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.249905
 then.249904:
 	frsqrt	%f1, %f9
 	fmul	%f1, %f1, %f9
 	fsub	%f1, %f17, %f1
-	fmul	%f1, %f1, %f12
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f12
+	sf	%f31, 108(%i1)
 cont.249905:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.249895
@@ -26962,8 +26232,8 @@ then.249896:
 	fmul	%f1, %f17, %f10
 	fadd	%f10, %f11, %f1
 	fmul	%f1, %f12, %f9
-	fadd	%f1, %f10, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f10, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.249895
 then.249906:
@@ -27069,11 +26339,11 @@ cont.249919:
 cont.249913:
 cont.249895:
 	jeq	%i5, %i0, then.249926
-	lf	%f31, 108(%i1)
+	lf	%f9, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f9, %f1
 	jeq	%i5, %i0, then.249928
 	movi	%i16, 1
 loop_start.241235:
@@ -27106,15 +26376,15 @@ loop_start.241239:
 	lw	%i4, 4(%i20)
 	lw	%i22, 3(%i20)
 	lw	%i20, 1(%i20)
-	lf	%f31, 110(%i1)
+	lf	%f9, 110(%i1)
 	lf	%f1, 0(%i24)
-	fsub	%f12, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f12, %f9, %f1
+	lf	%f9, 111(%i1)
 	lf	%f1, 1(%i24)
-	fsub	%f11, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f11, %f9, %f1
+	lf	%f9, 112(%i1)
 	lf	%f1, 2(%i24)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f9, %f1
 	slli	%i23, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i23
@@ -27181,15 +26451,15 @@ cont.249943:
 	frsqrt	%f1, %f11
 	fmul	%f1, %f1, %f11
 	fadd	%f1, %f10, %f1
-	fmul	%f1, %f1, %f9
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f9
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.249947
 then.249946:
 	frsqrt	%f1, %f11
 	fmul	%f1, %f1, %f11
 	fsub	%f1, %f10, %f1
-	fmul	%f1, %f1, %f9
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f9
+	sf	%f31, 108(%i1)
 cont.249947:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.249937
@@ -27207,8 +26477,8 @@ then.249938:
 	fmul	%f1, %f18, %f11
 	fadd	%f9, %f9, %f1
 	fmul	%f1, %f10, %f17
-	fadd	%f1, %f9, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f9, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.249937
 then.249948:
@@ -27226,16 +26496,14 @@ then.249936:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f22, %f31
 	fadd	%f1, %f1, %f11
-	fabs	%f1, %f1
-	fmov	%f21, %f1
+	fabs	%f21, %f1
 	lf	%f1, 1(%i4)
 	flt	%i20, %f21, %f1
 	jeq	%i20, %i0, then.249950
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f22, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f21, %f1
+	fabs	%f21, %f1
 	lf	%f1, 2(%i4)
 	flt	%i20, %f21, %f1
 	jeq	%i20, %i0, then.249952
@@ -27258,16 +26526,14 @@ then.249954:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f20, %f31
 	fadd	%f1, %f1, %f12
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 0(%i4)
 	flt	%i20, %f19, %f1
 	jeq	%i20, %i0, then.249956
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f20, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i20, %f19, %f1
 	jeq	%i20, %i0, then.249958
@@ -27290,16 +26556,14 @@ then.249960:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f17, %f31
 	fadd	%f1, %f1, %f12
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 0(%i4)
 	flt	%i20, %f10, %f1
 	jeq	%i20, %i0, then.249962
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f17, %f31
 	fadd	%f1, %f1, %f11
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 1(%i4)
 	flt	%i19, %f10, %f1
 	jeq	%i19, %i0, then.249964
@@ -27322,8 +26586,7 @@ cont.249967:
 cont.249961:
 cont.249955:
 cont.249937:
-	lf	%f31, 108(%i1)
-	fmov	%f9, %f31
+	lf	%f9, 108(%i1)
 	jeq	%i19, %i0, then.249968
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -27340,16 +26603,16 @@ cont.249969:
 	fadd	%f12, %f9, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f9, %f31, %f12
-	lf	%f31, 110(%i1)
-	fadd	%f11, %f9, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f11, %f9, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f9, %f31, %f12
-	lf	%f31, 111(%i1)
-	fadd	%f10, %f9, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f10, %f9, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f9, %f31, %f12
-	lf	%f31, 112(%i1)
-	fadd	%f9, %f9, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f9, %f9, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i17)
 	movi	%i31, -1
@@ -27424,18 +26687,15 @@ then.249976:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.249975
 then.249974:
-	fabs	%f1, %f17
-	fmov	%f17, %f1
+	fabs	%f17, %f17
 	lf	%f1, 0(%i4)
 	flt	%i21, %f17, %f1
 	jeq	%i21, %i0, then.249980
-	fabs	%f1, %f12
-	fmov	%f12, %f1
+	fabs	%f12, %f12
 	lf	%f1, 1(%i4)
 	flt	%i21, %f12, %f1
 	jeq	%i21, %i0, then.249982
-	fabs	%f1, %f19
-	fmov	%f12, %f1
+	fabs	%f12, %f19
 	lf	%f1, 2(%i4)
 	flt	%i20, %f12, %f1
 	jzero	%i0, %i0, cont.249981
@@ -27455,8 +26715,7 @@ cont.249975:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.249973
 then.249986:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.241254:
 	slli	%i4, %i19, 2
 	add	%i31, %i17, %i4
@@ -27533,18 +26792,15 @@ then.249993:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.249992
 then.249991:
-	fabs	%f1, %f17
-	fmov	%f17, %f1
+	fabs	%f17, %f17
 	lf	%f1, 0(%i4)
 	flt	%i21, %f17, %f1
 	jeq	%i21, %i0, then.249997
-	fabs	%f1, %f12
-	fmov	%f12, %f1
+	fabs	%f12, %f12
 	lf	%f1, 1(%i4)
 	flt	%i21, %f12, %f1
 	jeq	%i21, %i0, then.249999
-	fabs	%f1, %f19
-	fmov	%f12, %f1
+	fabs	%f12, %f19
 	lf	%f1, 2(%i4)
 	flt	%i20, %f12, %f1
 	jzero	%i0, %i0, cont.249998
@@ -27564,28 +26820,23 @@ cont.249992:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241255
 then.250003:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.241254
 	jmp	%i0, 0(%i31)
 then.249989:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241255
 loop_end.241255:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.249973
 then.249972:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.249973:
 	jeq	%i5, %i0, then.250005
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241240
 then.250005:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241239
 	jmp	%i0, 0(%i31)
 then.249970:
@@ -27595,8 +26846,7 @@ then.249970:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.250007
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241239
 	jmp	%i0, 0(%i31)
 then.250007:
@@ -27607,12 +26857,10 @@ then.249934:
 	jzero	%i0, %i0, loop_end.241240
 loop_end.241240:
 	jeq	%i31, %i0, then.250009
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241236
 then.250009:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.241235
 	jmp	%i0, 0(%i31)
 then.249931:
@@ -27662,15 +26910,15 @@ loop_start.241269:
 	lw	%i4, 4(%i20)
 	lw	%i22, 3(%i20)
 	lw	%i20, 1(%i20)
-	lf	%f31, 110(%i1)
+	lf	%f9, 110(%i1)
 	lf	%f1, 0(%i24)
-	fsub	%f12, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f12, %f9, %f1
+	lf	%f9, 111(%i1)
 	lf	%f1, 1(%i24)
-	fsub	%f11, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f11, %f9, %f1
+	lf	%f9, 112(%i1)
 	lf	%f1, 2(%i24)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f9, %f1
 	slli	%i23, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i23
@@ -27737,15 +26985,15 @@ cont.250026:
 	frsqrt	%f1, %f11
 	fmul	%f1, %f1, %f11
 	fadd	%f1, %f10, %f1
-	fmul	%f1, %f1, %f9
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f9
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.250030
 then.250029:
 	frsqrt	%f1, %f11
 	fmul	%f1, %f1, %f11
 	fsub	%f1, %f10, %f1
-	fmul	%f1, %f1, %f9
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f9
+	sf	%f31, 108(%i1)
 cont.250030:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.250020
@@ -27763,8 +27011,8 @@ then.250021:
 	fmul	%f1, %f18, %f11
 	fadd	%f9, %f9, %f1
 	fmul	%f1, %f10, %f17
-	fadd	%f1, %f9, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f9, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.250020
 then.250031:
@@ -27782,16 +27030,14 @@ then.250019:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f22, %f31
 	fadd	%f1, %f1, %f11
-	fabs	%f1, %f1
-	fmov	%f21, %f1
+	fabs	%f21, %f1
 	lf	%f1, 1(%i4)
 	flt	%i20, %f21, %f1
 	jeq	%i20, %i0, then.250033
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f22, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f21, %f1
+	fabs	%f21, %f1
 	lf	%f1, 2(%i4)
 	flt	%i20, %f21, %f1
 	jeq	%i20, %i0, then.250035
@@ -27814,16 +27060,14 @@ then.250037:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f20, %f31
 	fadd	%f1, %f1, %f12
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 0(%i4)
 	flt	%i20, %f19, %f1
 	jeq	%i20, %i0, then.250039
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f20, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i20, %f19, %f1
 	jeq	%i20, %i0, then.250041
@@ -27846,16 +27090,14 @@ then.250043:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f17, %f31
 	fadd	%f1, %f1, %f12
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 0(%i4)
 	flt	%i20, %f10, %f1
 	jeq	%i20, %i0, then.250045
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f17, %f31
 	fadd	%f1, %f1, %f11
-	fabs	%f1, %f1
-	fmov	%f10, %f1
+	fabs	%f10, %f1
 	lf	%f1, 1(%i4)
 	flt	%i19, %f10, %f1
 	jeq	%i19, %i0, then.250047
@@ -27878,8 +27120,7 @@ cont.250050:
 cont.250044:
 cont.250038:
 cont.250020:
-	lf	%f31, 108(%i1)
-	fmov	%f9, %f31
+	lf	%f9, 108(%i1)
 	jeq	%i19, %i0, then.250051
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -27896,16 +27137,16 @@ cont.250052:
 	fadd	%f12, %f9, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f9, %f31, %f12
-	lf	%f31, 110(%i1)
-	fadd	%f11, %f9, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f11, %f9, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f9, %f31, %f12
-	lf	%f31, 111(%i1)
-	fadd	%f10, %f9, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f10, %f9, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f9, %f31, %f12
-	lf	%f31, 112(%i1)
-	fadd	%f9, %f9, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f9, %f9, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i17)
 	movi	%i31, -1
@@ -27980,18 +27221,15 @@ then.250059:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.250058
 then.250057:
-	fabs	%f1, %f17
-	fmov	%f17, %f1
+	fabs	%f17, %f17
 	lf	%f1, 0(%i4)
 	flt	%i21, %f17, %f1
 	jeq	%i21, %i0, then.250063
-	fabs	%f1, %f12
-	fmov	%f12, %f1
+	fabs	%f12, %f12
 	lf	%f1, 1(%i4)
 	flt	%i21, %f12, %f1
 	jeq	%i21, %i0, then.250065
-	fabs	%f1, %f19
-	fmov	%f12, %f1
+	fabs	%f12, %f19
 	lf	%f1, 2(%i4)
 	flt	%i20, %f12, %f1
 	jzero	%i0, %i0, cont.250064
@@ -28011,8 +27249,7 @@ cont.250058:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.250056
 then.250069:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.241284:
 	slli	%i4, %i19, 2
 	add	%i31, %i17, %i4
@@ -28089,18 +27326,15 @@ then.250076:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.250075
 then.250074:
-	fabs	%f1, %f17
-	fmov	%f17, %f1
+	fabs	%f17, %f17
 	lf	%f1, 0(%i4)
 	flt	%i21, %f17, %f1
 	jeq	%i21, %i0, then.250080
-	fabs	%f1, %f12
-	fmov	%f12, %f1
+	fabs	%f12, %f12
 	lf	%f1, 1(%i4)
 	flt	%i21, %f12, %f1
 	jeq	%i21, %i0, then.250082
-	fabs	%f1, %f19
-	fmov	%f12, %f1
+	fabs	%f12, %f19
 	lf	%f1, 2(%i4)
 	flt	%i20, %f12, %f1
 	jzero	%i0, %i0, cont.250081
@@ -28120,28 +27354,23 @@ cont.250075:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241285
 then.250086:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.241284
 	jmp	%i0, 0(%i31)
 then.250072:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241285
 loop_end.241285:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.250056
 then.250055:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.250056:
 	jeq	%i5, %i0, then.250088
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241270
 then.250088:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241269
 	jmp	%i0, 0(%i31)
 then.250053:
@@ -28151,8 +27380,7 @@ then.250053:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.250090
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241269
 	jmp	%i0, 0(%i31)
 then.250090:
@@ -28163,12 +27391,10 @@ then.250017:
 	jzero	%i0, %i0, loop_end.241270
 loop_end.241270:
 	jeq	%i31, %i0, then.250092
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241266
 then.250092:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.241265
 	jmp	%i0, 0(%i31)
 then.250014:
@@ -28176,17 +27402,14 @@ then.250014:
 	jzero	%i0, %i0, loop_end.241266
 loop_end.241266:
 	jeq	%i31, %i0, then.250094
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241224
 then.250094:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.241223
 	jmp	%i0, 0(%i31)
 then.250011:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.241223
 	jmp	%i0, 0(%i31)
 then.249890:
@@ -28224,35 +27447,34 @@ loop_end.241224:
 	fneg	%f11, %f9
 	flt	%i5, %f0, %f1
 	jeq	%i5, %i0, cont.250097
-	lf	%f31, 116(%i1)
+	lf	%f10, 116(%i1)
 	fmul	%f9, %f1, %f4
-	fadd	%f9, %f31, %f9
-	sf	%f9, 116(%i1)
-	lf	%f31, 117(%i1)
+	fadd	%f31, %f10, %f9
+	sf	%f31, 116(%i1)
+	lf	%f10, 117(%i1)
 	fmul	%f9, %f1, %f3
-	fadd	%f9, %f31, %f9
-	sf	%f9, 117(%i1)
-	lf	%f31, 118(%i1)
-	fmov	%f10, %f31
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f1, %f31
-	fadd	%f1, %f10, %f1
-	sf	%f1, 118(%i1)
+	fadd	%f31, %f10, %f9
+	sf	%f31, 117(%i1)
+	lf	%f10, 118(%i1)
+	lf	%f9, 115(%i1)
+	fmul	%f1, %f1, %f9
+	fadd	%f31, %f10, %f1
+	sf	%f31, 118(%i1)
 cont.250097:
 	flt	%i5, %f0, %f11
 	jeq	%i5, %i0, cont.250098
 	fmul	%f1, %f11, %f11
 	fmul	%f1, %f1, %f1
 	fmul	%f9, %f1, %f13
-	lf	%f31, 116(%i1)
-	fadd	%f1, %f31, %f9
-	sf	%f1, 116(%i1)
-	lf	%f31, 117(%i1)
-	fadd	%f1, %f31, %f9
-	sf	%f1, 117(%i1)
-	lf	%f31, 118(%i1)
-	fadd	%f1, %f31, %f9
-	sf	%f1, 118(%i1)
+	lf	%f1, 116(%i1)
+	fadd	%f31, %f1, %f9
+	sf	%f31, 116(%i1)
+	lf	%f1, 117(%i1)
+	fadd	%f31, %f1, %f9
+	sf	%f31, 117(%i1)
+	lf	%f1, 118(%i1)
+	fadd	%f31, %f1, %f9
+	sf	%f31, 118(%i1)
 cont.250098:
 cont.250096:
 	lf	%f31, 110(%i1)
@@ -28261,10 +27483,9 @@ cont.250096:
 	sf	%f31, 123(%i1)
 	lf	%f31, 112(%i1)
 	sf	%f31, 124(%i1)
-	lw	%i31, 105(%i1)
-	subi	%i4, %i31, 1
-	mov	%i5, %i4
-	jleq	%i0, %i4, then.250099
+	lw	%i4, 105(%i1)
+	subi	%i5, %i4, 1
+	jleq	%i0, %i5, then.250099
 	jzero	%i0, %i0, cont.250100
 then.250099:
 	slli	%i4, %i5, 2
@@ -28277,17 +27498,17 @@ then.250099:
 	lw	%i16, 4(%i4)
 	lw	%i15, 3(%i4)
 	lw	%i6, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f9, 110(%i1)
 	lf	%f1, 0(%i17)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f9, %f1
 	sf	%f1, 0(%i19)
-	lf	%f31, 111(%i1)
+	lf	%f9, 111(%i1)
 	lf	%f1, 1(%i17)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f9, %f1
 	sf	%f1, 1(%i19)
-	lf	%f31, 112(%i1)
+	lf	%f9, 112(%i1)
 	lf	%f1, 2(%i17)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f9, %f1
 	sf	%f1, 2(%i19)
 	movi	%i31, 2
 	jeq	%i6, %i31, then.250101
@@ -28347,8 +27568,7 @@ then.250101:
 	fadd	%f1, %f9, %f1
 	sf	%f1, 3(%i19)
 cont.250102:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 loop_start.241308:
 	jleq	%i0, %i5, then.250107
 	jzero	%i0, %i0, loop_end.241309
@@ -28363,17 +27583,17 @@ then.250107:
 	lw	%i16, 4(%i4)
 	lw	%i15, 3(%i4)
 	lw	%i6, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f9, 110(%i1)
 	lf	%f1, 0(%i17)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f9, %f1
 	sf	%f1, 0(%i19)
-	lf	%f31, 111(%i1)
+	lf	%f9, 111(%i1)
 	lf	%f1, 1(%i17)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f9, %f1
 	sf	%f1, 1(%i19)
-	lf	%f31, 112(%i1)
+	lf	%f9, 112(%i1)
 	lf	%f1, 2(%i17)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f9, %f1
 	sf	%f1, 2(%i19)
 	movi	%i31, 2
 	jeq	%i6, %i31, then.250109
@@ -28433,15 +27653,13 @@ then.250109:
 	fadd	%f1, %f9, %f1
 	sf	%f1, 3(%i19)
 cont.250110:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 	set_label	%i30, loop_start.241308
 	jmp	%i0, 0(%i30)
 loop_end.241309:
 cont.250100:
 	lw	%i4, 39(%i1)
-	subi	%i4, %i4, 1
-	mov	%i6, %i4
+	subi	%i6, %i4, 1
 loop_start.241314:
 	jleq	%i0, %i6, then.250115
 	set_label	%i30, loop_end.241315
@@ -28457,8 +27675,7 @@ then.250115:
 	lw	%i17, 0(%i4)
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i16, %i0
 	lf	%f11, 0(%i15)
 	lf	%f10, 1(%i15)
@@ -28517,15 +27734,15 @@ then.250126:
 	frsqrt	%f1, %f18
 	fmul	%f1, %f1, %f18
 	fadd	%f1, %f19, %f1
-	fmul	%f1, %f1, %f17
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f17
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.250131
 then.250130:
 	frsqrt	%f1, %f18
 	fmul	%f1, %f1, %f18
 	fsub	%f1, %f19, %f1
-	fmul	%f1, %f1, %f17
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f17
+	sf	%f31, 108(%i1)
 cont.250131:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.250123
@@ -28537,8 +27754,8 @@ then.250124:
 	lf	%f17, 3(%i21)
 	flt	%i5, %f18, %f0
 	jeq	%i5, %i0, then.250132
-	fmul	%f1, %f18, %f17
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f18, %f17
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.250123
 then.250132:
@@ -28555,15 +27772,13 @@ then.250122:
 	fmul	%f23, %f1, %f25
 	fmul	%f1, %f23, %f10
 	fadd	%f1, %f1, %f19
-	fabs	%f1, %f1
-	fmov	%f26, %f1
+	fabs	%f26, %f1
 	lf	%f1, 1(%i4)
 	flt	%i19, %f26, %f1
 	jeq	%i19, %i0, then.250134
 	fmul	%f1, %f23, %f9
 	fadd	%f1, %f1, %f18
-	fabs	%f1, %f1
-	fmov	%f26, %f1
+	fabs	%f26, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f26, %f1
 	jeq	%i19, %i0, then.250136
@@ -28585,15 +27800,13 @@ then.250138:
 	fmul	%f23, %f1, %f22
 	fmul	%f1, %f23, %f11
 	fadd	%f1, %f1, %f20
-	fabs	%f1, %f1
-	fmov	%f24, %f1
+	fabs	%f24, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f24, %f1
 	jeq	%i19, %i0, then.250140
 	fmul	%f1, %f23, %f9
 	fadd	%f1, %f1, %f18
-	fabs	%f1, %f1
-	fmov	%f24, %f1
+	fabs	%f24, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f24, %f1
 	jeq	%i19, %i0, then.250142
@@ -28615,15 +27828,13 @@ then.250144:
 	fmul	%f21, %f1, %f17
 	fmul	%f1, %f21, %f11
 	fadd	%f1, %f1, %f20
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f18, %f1
 	jeq	%i19, %i0, then.250146
 	fmul	%f1, %f21, %f10
 	fadd	%f1, %f1, %f19
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f18, %f1
 	jeq	%i5, %i0, then.250148
@@ -28647,8 +27858,8 @@ cont.250145:
 cont.250139:
 cont.250123:
 	jeq	%i5, %i0, cont.250121
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f17, 108(%i1)
+	flt	%i5, %f17, %f5
 	jeq	%i5, %i0, cont.250121
 	movi	%i24, 1
 loop_start.241329:
@@ -28712,15 +27923,15 @@ then.250164:
 	frsqrt	%f1, %f17
 	fmul	%f1, %f1, %f17
 	fadd	%f1, %f18, %f1
-	fmul	%f1, %f1, %f20
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f20
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.250169
 then.250168:
 	frsqrt	%f1, %f17
 	fmul	%f1, %f1, %f17
 	fsub	%f1, %f18, %f1
-	fmul	%f1, %f1, %f20
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f20
+	sf	%f31, 108(%i1)
 cont.250169:
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.250161
@@ -28732,8 +27943,8 @@ then.250162:
 	lf	%f17, 3(%i5)
 	flt	%i5, %f18, %f0
 	jeq	%i5, %i0, then.250170
-	fmul	%f1, %f18, %f17
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f18, %f17
+	sf	%f31, 108(%i1)
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.250161
 then.250170:
@@ -28833,9 +28044,8 @@ cont.250183:
 cont.250177:
 cont.250161:
 	jeq	%i20, %i0, then.250190
-	lf	%f31, 108(%i1)
-	fmov	%f17, %f31
-	flt	%i5, %f0, %f31
+	lf	%f17, 108(%i1)
+	flt	%i5, %f0, %f17
 	jeq	%i5, %i0, cont.250192
 	flt	%i5, %f17, %f5
 	jeq	%i5, %i0, cont.250193
@@ -28844,14 +28054,14 @@ cont.250161:
 	mif	%f1, %i31
 	fadd	%f20, %f17, %f1
 	fmul	%f17, %f11, %f20
-	lf	%f31, 122(%i1)
-	fadd	%f19, %f17, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f19, %f17, %f1
 	fmul	%f17, %f10, %f20
-	lf	%f31, 123(%i1)
-	fadd	%f18, %f17, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f18, %f17, %f1
 	fmul	%f17, %f9, %f20
-	lf	%f31, 124(%i1)
-	fadd	%f17, %f17, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f17, %f17, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i23)
 	movi	%i31, -1
@@ -28948,8 +28158,7 @@ cont.250197:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.250195
 then.250208:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.241346:
 	slli	%i4, %i19, 2
 	add	%i31, %i23, %i4
@@ -29048,20 +28257,17 @@ cont.250214:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241347
 then.250225:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.241346
 	jmp	%i0, 0(%i31)
 then.250211:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241347
 loop_end.241347:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.250195
 then.250194:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.250195:
 	jeq	%i5, %i0, cont.250227
 	fmov	%f5, %f20
@@ -29073,8 +28279,7 @@ cont.250195:
 cont.250227:
 cont.250193:
 cont.250192:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.241333
 	jmp	%i0, 0(%i31)
 then.250190:
@@ -29084,13 +28289,11 @@ then.250190:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.241334
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.241333
 	jmp	%i0, 0(%i31)
 loop_end.241334:
-	addi	%i4, %i24, 1
-	mov	%i24, %i4
+	addi	%i24, %i24, 1
 	set_label	%i31, loop_start.241329
 	jmp	%i0, 0(%i31)
 then.250120:
@@ -29156,15 +28359,15 @@ then.250240:
 	frsqrt	%f1, %f17
 	fmul	%f1, %f1, %f17
 	fadd	%f1, %f18, %f1
-	fmul	%f1, %f1, %f20
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f20
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.250245
 then.250244:
 	frsqrt	%f1, %f17
 	fmul	%f1, %f1, %f17
 	fsub	%f1, %f18, %f1
-	fmul	%f1, %f1, %f20
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f20
+	sf	%f31, 108(%i1)
 cont.250245:
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.250237
@@ -29176,8 +28379,8 @@ then.250238:
 	lf	%f17, 3(%i5)
 	flt	%i5, %f18, %f0
 	jeq	%i5, %i0, then.250246
-	fmul	%f1, %f18, %f17
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f18, %f17
+	sf	%f31, 108(%i1)
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.250237
 then.250246:
@@ -29277,9 +28480,8 @@ cont.250259:
 cont.250253:
 cont.250237:
 	jeq	%i20, %i0, then.250266
-	lf	%f31, 108(%i1)
-	fmov	%f17, %f31
-	flt	%i5, %f0, %f31
+	lf	%f17, 108(%i1)
+	flt	%i5, %f0, %f17
 	jeq	%i5, %i0, cont.250268
 	flt	%i5, %f17, %f5
 	jeq	%i5, %i0, cont.250269
@@ -29288,14 +28490,14 @@ cont.250237:
 	mif	%f1, %i31
 	fadd	%f20, %f17, %f1
 	fmul	%f17, %f11, %f20
-	lf	%f31, 122(%i1)
-	fadd	%f19, %f17, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f19, %f17, %f1
 	fmul	%f17, %f10, %f20
-	lf	%f31, 123(%i1)
-	fadd	%f18, %f17, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f18, %f17, %f1
 	fmul	%f17, %f9, %f20
-	lf	%f31, 124(%i1)
-	fadd	%f17, %f17, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f17, %f17, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i23)
 	movi	%i31, -1
@@ -29392,8 +28594,7 @@ cont.250273:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.250271
 then.250284:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.241380:
 	slli	%i4, %i19, 2
 	add	%i31, %i23, %i4
@@ -29492,20 +28693,17 @@ cont.250290:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241381
 then.250301:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.241380
 	jmp	%i0, 0(%i31)
 then.250287:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241381
 loop_end.241381:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.250271
 then.250270:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.250271:
 	jeq	%i5, %i0, cont.250303
 	fmov	%f5, %f20
@@ -29517,8 +28715,7 @@ cont.250271:
 cont.250303:
 cont.250269:
 cont.250268:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.241367
 	jmp	%i0, 0(%i31)
 then.250266:
@@ -29528,19 +28725,16 @@ then.250266:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.241368
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.241367
 	jmp	%i0, 0(%i31)
 loop_end.241368:
-	addi	%i4, %i24, 1
-	mov	%i24, %i4
+	addi	%i24, %i24, 1
 	set_label	%i31, loop_start.241363
 	jmp	%i0, 0(%i31)
 loop_end.241364:
 cont.250121:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.241318
 	jmp	%i0, 0(%i31)
 loop_end.241319:
@@ -29558,10 +28752,10 @@ then.250306:
 	mov	%i5, %i0
 cont.250307:
 	jeq	%i5, %i0, cont.250308
-	lw	%i31, 113(%i1)
-	slli	%i5, %i31, 2
-	lw	%i31, 109(%i1)
-	add	%i4, %i5, %i31
+	lw	%i4, 113(%i1)
+	slli	%i5, %i4, 2
+	lw	%i4, 109(%i1)
+	add	%i4, %i5, %i4
 	ceq	%i31, %i4, %i17
 	jzero	%i0, %i31, cont.250309
 	mov	%i17, %i0
@@ -29575,11 +28769,9 @@ loop_start.241398:
 	jeq	%i23, %i31, then.250311
 	movi	%i31, 99
 	jeq	%i23, %i31, then.250313
-	lf	%f31, 110(%i1)
-	fmov	%f11, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f10, %f31
-	lf	%f31, 112(%i1)
+	lf	%f11, 110(%i1)
+	lf	%f10, 111(%i1)
+	lf	%f9, 112(%i1)
 	slli	%i4, %i23, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -29595,7 +28787,7 @@ loop_start.241398:
 	lf	%f1, 1(%i22)
 	fsub	%f10, %f10, %f1
 	lf	%f1, 2(%i22)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f9, %f1
 	slli	%i5, %i23, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i5
@@ -29662,16 +28854,16 @@ cont.250322:
 	fmul	%f1, %f1, %f10
 	fadd	%f9, %f9, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f9, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f9, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.250326
 then.250325:
 	frsqrt	%f1, %f10
 	fmul	%f1, %f1, %f10
 	fsub	%f9, %f9, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f9, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f9, %f1
+	sf	%f31, 108(%i1)
 cont.250326:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.250316
@@ -29689,8 +28881,8 @@ then.250317:
 	fadd	%f9, %f9, %f1
 	lf	%f1, 3(%i5)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f9, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f9, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.250316
 then.250327:
@@ -29704,16 +28896,14 @@ then.250315:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f18, %f31
 	fadd	%f1, %f1, %f10
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 1(%i4)
 	flt	%i19, %f9, %f1
 	jeq	%i19, %i0, then.250329
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f18, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f9, %f1
 	jeq	%i19, %i0, then.250331
@@ -29739,16 +28929,14 @@ then.250333:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f18, %f31
 	fadd	%f1, %f1, %f11
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f9, %f1
 	jeq	%i19, %i0, then.250335
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f18, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f9, %f1
 	jeq	%i19, %i0, then.250337
@@ -29774,16 +28962,14 @@ then.250339:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f17, %f31
 	fadd	%f1, %f1, %f11
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f9, %f1
 	jeq	%i19, %i0, then.250341
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f17, %f31
 	fadd	%f1, %f1, %f10
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f9, %f1
 	jeq	%i18, %i0, then.250343
@@ -29808,11 +28994,11 @@ cont.250340:
 cont.250334:
 cont.250316:
 	jeq	%i5, %i0, then.250347
-	lf	%f31, 108(%i1)
+	lf	%f9, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f9, %f1
 	jeq	%i5, %i0, then.250349
 	movi	%i20, 1
 loop_start.241410:
@@ -29835,11 +29021,9 @@ loop_start.241414:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f11, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f10, %f31
-	lf	%f31, 112(%i1)
+	lf	%f11, 110(%i1)
+	lf	%f10, 111(%i1)
+	lf	%f9, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -29855,7 +29039,7 @@ loop_start.241414:
 	lf	%f1, 1(%i26)
 	fsub	%f11, %f10, %f1
 	lf	%f1, 2(%i26)
-	fsub	%f19, %f31, %f1
+	fsub	%f19, %f9, %f1
 	slli	%i21, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i21
@@ -29922,16 +29106,16 @@ cont.250364:
 	fmul	%f1, %f1, %f10
 	fadd	%f9, %f9, %f1
 	lf	%f1, 4(%i21)
-	fmul	%f1, %f9, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f9, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.250368
 then.250367:
 	frsqrt	%f1, %f10
 	fmul	%f1, %f1, %f10
 	fsub	%f9, %f9, %f1
 	lf	%f1, 4(%i21)
-	fmul	%f1, %f9, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f9, %f1
+	sf	%f31, 108(%i1)
 cont.250368:
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.250358
@@ -29949,8 +29133,8 @@ then.250359:
 	fadd	%f9, %f9, %f1
 	lf	%f1, 3(%i21)
 	fmul	%f1, %f1, %f19
-	fadd	%f1, %f9, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f9, %f1
+	sf	%f31, 108(%i1)
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.250358
 then.250369:
@@ -29964,16 +29148,14 @@ then.250357:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f10, %f31
 	fadd	%f1, %f1, %f11
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 1(%i25)
 	flt	%i22, %f9, %f1
 	jeq	%i22, %i0, then.250371
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f10, %f31
 	fadd	%f1, %f1, %f19
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 2(%i25)
 	flt	%i22, %f9, %f1
 	jeq	%i22, %i0, then.250373
@@ -29999,16 +29181,14 @@ then.250375:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f10, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 0(%i25)
 	flt	%i22, %f9, %f1
 	jeq	%i22, %i0, then.250377
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f10, %f31
 	fadd	%f1, %f1, %f19
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 2(%i25)
 	flt	%i22, %f9, %f1
 	jeq	%i22, %i0, then.250379
@@ -30034,16 +29214,14 @@ then.250381:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f10, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 0(%i25)
 	flt	%i22, %f9, %f1
 	jeq	%i22, %i0, then.250383
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f10, %f31
 	fadd	%f1, %f1, %f11
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 1(%i25)
 	flt	%i22, %f9, %f1
 	jeq	%i22, %i0, then.250385
@@ -30067,8 +29245,7 @@ cont.250388:
 cont.250382:
 cont.250376:
 cont.250358:
-	lf	%f31, 108(%i1)
-	fmov	%f9, %f31
+	lf	%f9, 108(%i1)
 	jeq	%i21, %i0, then.250389
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -30085,16 +29262,16 @@ cont.250390:
 	fadd	%f17, %f9, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f9, %f31, %f17
-	lf	%f31, 110(%i1)
-	fadd	%f11, %f9, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f11, %f9, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f9, %f31, %f17
-	lf	%f31, 111(%i1)
-	fadd	%f10, %f9, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f10, %f9, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f9, %f31, %f17
-	lf	%f31, 112(%i1)
-	fadd	%f9, %f9, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f9, %f9, %f1
 	mov	%i21, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -30197,8 +29374,7 @@ cont.250396:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.250394
 then.250407:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 loop_start.241429:
 	slli	%i4, %i21, 2
 	add	%i31, %i19, %i4
@@ -30303,28 +29479,23 @@ cont.250413:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241430
 then.250424:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.241429
 	jmp	%i0, 0(%i31)
 then.250410:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241430
 loop_end.241430:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.250394
 then.250393:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.250394:
 	jeq	%i5, %i0, then.250426
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241415
 then.250426:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241414
 	jmp	%i0, 0(%i31)
 then.250391:
@@ -30334,8 +29505,7 @@ then.250391:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.250428
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241414
 	jmp	%i0, 0(%i31)
 then.250428:
@@ -30346,12 +29516,10 @@ then.250355:
 	jzero	%i0, %i0, loop_end.241415
 loop_end.241415:
 	jeq	%i31, %i0, then.250430
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241411
 then.250430:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.241410
 	jmp	%i0, 0(%i31)
 then.250352:
@@ -30391,11 +29559,9 @@ loop_start.241444:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f11, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f10, %f31
-	lf	%f31, 112(%i1)
+	lf	%f11, 110(%i1)
+	lf	%f10, 111(%i1)
+	lf	%f9, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -30411,7 +29577,7 @@ loop_start.241444:
 	lf	%f1, 1(%i26)
 	fsub	%f11, %f10, %f1
 	lf	%f1, 2(%i26)
-	fsub	%f19, %f31, %f1
+	fsub	%f19, %f9, %f1
 	slli	%i21, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i21
@@ -30478,16 +29644,16 @@ cont.250447:
 	fmul	%f1, %f1, %f10
 	fadd	%f9, %f9, %f1
 	lf	%f1, 4(%i21)
-	fmul	%f1, %f9, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f9, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.250451
 then.250450:
 	frsqrt	%f1, %f10
 	fmul	%f1, %f1, %f10
 	fsub	%f9, %f9, %f1
 	lf	%f1, 4(%i21)
-	fmul	%f1, %f9, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f9, %f1
+	sf	%f31, 108(%i1)
 cont.250451:
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.250441
@@ -30505,8 +29671,8 @@ then.250442:
 	fadd	%f9, %f9, %f1
 	lf	%f1, 3(%i21)
 	fmul	%f1, %f1, %f19
-	fadd	%f1, %f9, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f9, %f1
+	sf	%f31, 108(%i1)
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.250441
 then.250452:
@@ -30520,16 +29686,14 @@ then.250440:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f10, %f31
 	fadd	%f1, %f1, %f11
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 1(%i25)
 	flt	%i22, %f9, %f1
 	jeq	%i22, %i0, then.250454
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f10, %f31
 	fadd	%f1, %f1, %f19
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 2(%i25)
 	flt	%i22, %f9, %f1
 	jeq	%i22, %i0, then.250456
@@ -30555,16 +29719,14 @@ then.250458:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f10, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 0(%i25)
 	flt	%i22, %f9, %f1
 	jeq	%i22, %i0, then.250460
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f10, %f31
 	fadd	%f1, %f1, %f19
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 2(%i25)
 	flt	%i22, %f9, %f1
 	jeq	%i22, %i0, then.250462
@@ -30590,16 +29752,14 @@ then.250464:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f10, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 0(%i25)
 	flt	%i22, %f9, %f1
 	jeq	%i22, %i0, then.250466
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f10, %f31
 	fadd	%f1, %f1, %f11
-	fabs	%f1, %f1
-	fmov	%f9, %f1
+	fabs	%f9, %f1
 	lf	%f1, 1(%i25)
 	flt	%i22, %f9, %f1
 	jeq	%i22, %i0, then.250468
@@ -30623,8 +29783,7 @@ cont.250471:
 cont.250465:
 cont.250459:
 cont.250441:
-	lf	%f31, 108(%i1)
-	fmov	%f9, %f31
+	lf	%f9, 108(%i1)
 	jeq	%i21, %i0, then.250472
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -30641,16 +29800,16 @@ cont.250473:
 	fadd	%f17, %f9, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f9, %f31, %f17
-	lf	%f31, 110(%i1)
-	fadd	%f11, %f9, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f11, %f9, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f9, %f31, %f17
-	lf	%f31, 111(%i1)
-	fadd	%f10, %f9, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f10, %f9, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f9, %f31, %f17
-	lf	%f31, 112(%i1)
-	fadd	%f9, %f9, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f9, %f9, %f1
 	mov	%i21, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -30753,8 +29912,7 @@ cont.250479:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.250477
 then.250490:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 loop_start.241459:
 	slli	%i4, %i21, 2
 	add	%i31, %i19, %i4
@@ -30859,28 +30017,23 @@ cont.250496:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241460
 then.250507:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.241459
 	jmp	%i0, 0(%i31)
 then.250493:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241460
 loop_end.241460:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.250477
 then.250476:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.250477:
 	jeq	%i5, %i0, then.250509
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241445
 then.250509:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241444
 	jmp	%i0, 0(%i31)
 then.250474:
@@ -30890,8 +30043,7 @@ then.250474:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.250511
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241444
 	jmp	%i0, 0(%i31)
 then.250511:
@@ -30902,12 +30054,10 @@ then.250438:
 	jzero	%i0, %i0, loop_end.241445
 loop_end.241445:
 	jeq	%i31, %i0, then.250513
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241441
 then.250513:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.241440
 	jmp	%i0, 0(%i31)
 then.250435:
@@ -30915,17 +30065,14 @@ then.250435:
 	jzero	%i0, %i0, loop_end.241441
 loop_end.241441:
 	jeq	%i31, %i0, then.250515
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241399
 then.250515:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.241398
 	jmp	%i0, 0(%i31)
 then.250432:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.241398
 	jmp	%i0, 0(%i31)
 then.250311:
@@ -30963,41 +30110,39 @@ loop_end.241399:
 	fmul	%f12, %f12, %f9
 	flt	%i5, %f0, %f1
 	jeq	%i5, %i0, cont.250518
-	lf	%f31, 115(%i1)
-	fmov	%f11, %f31
-	lf	%f31, 116(%i1)
+	lf	%f11, 115(%i1)
+	lf	%f10, 116(%i1)
 	fmul	%f9, %f1, %f4
-	fadd	%f9, %f31, %f9
-	sf	%f9, 116(%i1)
-	lf	%f31, 117(%i1)
+	fadd	%f31, %f10, %f9
+	sf	%f31, 116(%i1)
+	lf	%f10, 117(%i1)
 	fmul	%f9, %f1, %f3
-	fadd	%f9, %f31, %f9
-	sf	%f9, 117(%i1)
-	lf	%f31, 118(%i1)
+	fadd	%f31, %f10, %f9
+	sf	%f31, 117(%i1)
+	lf	%f9, 118(%i1)
 	fmul	%f1, %f1, %f11
-	fadd	%f1, %f31, %f1
-	sf	%f1, 118(%i1)
+	fadd	%f31, %f9, %f1
+	sf	%f31, 118(%i1)
 cont.250518:
 	flt	%i5, %f0, %f12
 	jeq	%i5, %i0, cont.250519
 	fmul	%f1, %f12, %f12
 	fmul	%f1, %f1, %f1
 	fmul	%f9, %f1, %f13
-	lf	%f31, 116(%i1)
-	fadd	%f1, %f31, %f9
-	sf	%f1, 116(%i1)
-	lf	%f31, 117(%i1)
-	fadd	%f1, %f31, %f9
-	sf	%f1, 117(%i1)
-	lf	%f31, 118(%i1)
-	fadd	%f1, %f31, %f9
-	sf	%f1, 118(%i1)
+	lf	%f1, 116(%i1)
+	fadd	%f31, %f1, %f9
+	sf	%f31, 116(%i1)
+	lf	%f1, 117(%i1)
+	fadd	%f31, %f1, %f9
+	sf	%f31, 117(%i1)
+	lf	%f1, 118(%i1)
+	fadd	%f31, %f1, %f9
+	sf	%f31, 118(%i1)
 cont.250519:
 cont.250517:
 cont.250309:
 cont.250308:
-	subi	%i4, %i6, 1
-	mov	%i6, %i4
+	subi	%i6, %i6, 1
 	set_label	%i30, loop_start.241314
 	jmp	%i0, 0(%i30)
 loop_end.241315:
@@ -31022,12 +30167,9 @@ then.250523:
 	mif	%f3, %i31
 	lf	%f1, 0(%i8)
 	fsub	%f1, %f3, %f1
-	fmul	%f3, %f16, %f1
-	addi	%i4, %i9, 1
-	fadd	%f1, %f15, %f5
-	mov	%i9, %i4
-	fmov	%f16, %f3
-	fmov	%f15, %f1
+	fmul	%f16, %f16, %f1
+	addi	%i9, %i9, 1
+	fadd	%f15, %f15, %f5
 	set_label	%i31, loop_start.241066
 	jmp	%i0, 0(%i31)
 then.249840:
@@ -31056,15 +30198,15 @@ then.249840:
 	fmul	%f3, %f1, %f16
 	lf	%f1, 18(%i1)
 	fmul	%f3, %f3, %f1
-	lf	%f31, 116(%i1)
-	fadd	%f1, %f31, %f3
-	sf	%f1, 116(%i1)
-	lf	%f31, 117(%i1)
-	fadd	%f1, %f31, %f3
-	sf	%f1, 117(%i1)
-	lf	%f31, 118(%i1)
-	fadd	%f1, %f31, %f3
-	sf	%f1, 118(%i1)
+	lf	%f1, 116(%i1)
+	fadd	%f31, %f1, %f3
+	sf	%f31, 116(%i1)
+	lf	%f1, 117(%i1)
+	fadd	%f31, %f1, %f3
+	sf	%f31, 117(%i1)
+	lf	%f1, 118(%i1)
+	fadd	%f31, %f1, %f3
+	sf	%f31, 118(%i1)
 	jzero	%i0, %i0, loop_end.241067
 loop_end.241067:
 	lw	%i31, 150(%i1)
@@ -31073,19 +30215,19 @@ loop_end.241067:
 	add	%i31, %i30, %i4
 	lw	%i4, 0(%i31)
 	lw	%i5, 0(%i4)
-	lf	%f31, 116(%i1)
-	sf	%f31, 0(%i5)
-	lf	%f31, 117(%i1)
-	sf	%f31, 1(%i5)
-	lf	%f31, 118(%i1)
-	sf	%f31, 2(%i5)
+	lf	%f1, 116(%i1)
+	sf	%f1, 0(%i5)
+	lf	%f1, 117(%i1)
+	sf	%f1, 1(%i5)
+	lf	%f1, 118(%i1)
+	sf	%f1, 2(%i5)
 	lw	%i31, 150(%i1)
 	slli	%i4, %i31, 2
 	add	%i31, %i30, %i4
 	lw	%i4, 0(%i31)
 	lw	%i6, 6(%i4)
-	lw	%i31, 151(%i1)
-	sw	%i31, 0(%i6)
+	lw	%i5, 151(%i1)
+	sw	%i5, 0(%i6)
 	lw	%i31, 150(%i1)
 	slli	%i4, %i31, 2
 	lw	%i30, 149(%i1)
@@ -31132,19 +30274,18 @@ Lrelax_skip_10:
 	lw	%i7, 0(%i31)
 	add	%i31, %i10, %i4
 	lw	%i6, 0(%i31)
-	lf	%f4, 0(%i6)
+	lf	%f31, 0(%i6)
 	lf	%f3, 1(%i6)
 	lf	%f1, 2(%i6)
-	sf	%f4, 122(%i1)
+	sf	%f31, 122(%i1)
 	sf	%f3, 123(%i1)
 	sf	%f1, 124(%i1)
-	lw	%i31, 105(%i1)
-	subi	%i4, %i31, 1
-	mov	%i5, %i4
+	lw	%i4, 105(%i1)
+	subi	%i5, %i4, 1
 	lf	%f4, 0(%i6)
 	lf	%f3, 1(%i6)
 	lf	%f1, 2(%i6)
-	jleq	%i0, %i4, then.250535
+	jleq	%i0, %i5, then.250535
 	jzero	%i0, %i0, cont.250536
 then.250535:
 	slli	%i4, %i5, 2
@@ -31224,8 +30365,7 @@ then.250537:
 	fadd	%f5, %f12, %f5
 	sf	%f5, 3(%i20)
 cont.250538:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 loop_start.241505:
 	jleq	%i0, %i5, then.250543
 	jzero	%i0, %i0, loop_end.241506
@@ -31307,8 +30447,7 @@ then.250545:
 	fadd	%f5, %f12, %f5
 	sf	%f5, 3(%i20)
 cont.250546:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 	set_label	%i30, loop_start.241505
 	jmp	%i0, 0(%i30)
 loop_end.241506:
@@ -31356,8 +30495,7 @@ Lrelax_skip_11:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i17, %i0
 loop_start.241517:
 	slli	%i4, %i17, 2
@@ -31412,15 +30550,15 @@ then.250564:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.250569
 then.250568:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.250569:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.250561
@@ -31432,8 +30570,8 @@ then.250562:
 	lf	%f3, 3(%i22)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.250570
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.250561
 then.250570:
@@ -31536,8 +30674,8 @@ cont.250583:
 cont.250577:
 cont.250561:
 	jeq	%i5, %i0, cont.250559
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.250559
 	movi	%i24, 1
 loop_start.241528:
@@ -31600,15 +30738,15 @@ then.250602:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.250607
 then.250606:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.250607:
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.250599
@@ -31620,8 +30758,8 @@ then.250600:
 	lf	%f3, 3(%i19)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.250608
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.250599
 then.250608:
@@ -31641,15 +30779,13 @@ then.250598:
 	fmul	%f20, %f1, %f22
 	fmul	%f1, %f20, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i4)
 	flt	%i19, %f23, %f1
 	jeq	%i19, %i0, then.250610
 	fmul	%f1, %f20, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f23, %f1
 	jeq	%i19, %i0, then.250612
@@ -31671,15 +30807,13 @@ then.250614:
 	fmul	%f21, %f1, %f18
 	fmul	%f1, %f21, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f20, %f1
 	jeq	%i19, %i0, then.250616
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f19, %f1
 	jeq	%i19, %i0, then.250618
@@ -31701,15 +30835,13 @@ then.250620:
 	fmul	%f17, %f1, %f3
 	fmul	%f1, %f17, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f4, %f1
 	jeq	%i19, %i0, then.250622
 	fmul	%f1, %f17, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f4, %f1
 	jeq	%i5, %i0, then.250624
@@ -31733,9 +30865,8 @@ cont.250621:
 cont.250615:
 cont.250599:
 	jeq	%i20, %i0, then.250628
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.250630
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.250631
@@ -31745,16 +30876,16 @@ cont.250599:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i23)
 	movi	%i31, -1
@@ -31829,18 +30960,15 @@ then.250636:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.250635
 then.250634:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i27)
 	flt	%i25, %f16, %f1
 	jeq	%i25, %i0, then.250640
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i27)
 	flt	%i25, %f15, %f1
 	jeq	%i25, %i0, then.250642
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i27)
 	flt	%i25, %f15, %f1
 	jzero	%i0, %i0, cont.250641
@@ -31860,8 +30988,7 @@ cont.250635:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.250633
 then.250646:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.241545:
 	slli	%i4, %i19, 2
 	add	%i31, %i23, %i4
@@ -31938,18 +31065,15 @@ then.250653:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.250652
 then.250651:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i27)
 	flt	%i25, %f16, %f1
 	jeq	%i25, %i0, then.250657
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i27)
 	flt	%i25, %f15, %f1
 	jeq	%i25, %i0, then.250659
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i27)
 	flt	%i25, %f15, %f1
 	jzero	%i0, %i0, cont.250658
@@ -31969,20 +31093,17 @@ cont.250652:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241546
 then.250663:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.241545
 	jmp	%i0, 0(%i31)
 then.250649:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241546
 loop_end.241546:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.250633
 then.250632:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.250633:
 	jeq	%i5, %i0, cont.250665
 	fmov	%f5, %f14
@@ -31994,8 +31115,7 @@ cont.250633:
 cont.250665:
 cont.250631:
 cont.250630:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.241532
 	jmp	%i0, 0(%i31)
 then.250628:
@@ -32005,13 +31125,11 @@ then.250628:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.241533
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.241532
 	jmp	%i0, 0(%i31)
 loop_end.241533:
-	addi	%i4, %i24, 1
-	mov	%i24, %i4
+	addi	%i24, %i24, 1
 	set_label	%i31, loop_start.241528
 	jmp	%i0, 0(%i31)
 then.250558:
@@ -32076,15 +31194,15 @@ then.250678:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.250683
 then.250682:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.250683:
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.250675
@@ -32096,8 +31214,8 @@ then.250676:
 	lf	%f3, 3(%i19)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.250684
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.250675
 then.250684:
@@ -32117,15 +31235,13 @@ then.250674:
 	fmul	%f20, %f1, %f22
 	fmul	%f1, %f20, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i4)
 	flt	%i19, %f23, %f1
 	jeq	%i19, %i0, then.250686
 	fmul	%f1, %f20, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f23, %f1
 	jeq	%i19, %i0, then.250688
@@ -32147,15 +31263,13 @@ then.250690:
 	fmul	%f21, %f1, %f18
 	fmul	%f1, %f21, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f20, %f1
 	jeq	%i19, %i0, then.250692
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f19, %f1
 	jeq	%i19, %i0, then.250694
@@ -32177,15 +31291,13 @@ then.250696:
 	fmul	%f17, %f1, %f3
 	fmul	%f1, %f17, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f4, %f1
 	jeq	%i19, %i0, then.250698
 	fmul	%f1, %f17, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f4, %f1
 	jeq	%i5, %i0, then.250700
@@ -32209,9 +31321,8 @@ cont.250697:
 cont.250691:
 cont.250675:
 	jeq	%i20, %i0, then.250704
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.250706
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.250707
@@ -32221,16 +31332,16 @@ cont.250675:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i23)
 	movi	%i31, -1
@@ -32305,18 +31416,15 @@ then.250712:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.250711
 then.250710:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i27)
 	flt	%i25, %f16, %f1
 	jeq	%i25, %i0, then.250716
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i27)
 	flt	%i25, %f15, %f1
 	jeq	%i25, %i0, then.250718
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i27)
 	flt	%i25, %f15, %f1
 	jzero	%i0, %i0, cont.250717
@@ -32336,8 +31444,7 @@ cont.250711:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.250709
 then.250722:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.241579:
 	slli	%i4, %i19, 2
 	add	%i31, %i23, %i4
@@ -32414,18 +31521,15 @@ then.250729:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.250728
 then.250727:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i27)
 	flt	%i25, %f16, %f1
 	jeq	%i25, %i0, then.250733
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i27)
 	flt	%i25, %f15, %f1
 	jeq	%i25, %i0, then.250735
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i27)
 	flt	%i25, %f15, %f1
 	jzero	%i0, %i0, cont.250734
@@ -32445,20 +31549,17 @@ cont.250728:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241580
 then.250739:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.241579
 	jmp	%i0, 0(%i31)
 then.250725:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241580
 loop_end.241580:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.250709
 then.250708:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.250709:
 	jeq	%i5, %i0, cont.250741
 	fmov	%f5, %f14
@@ -32470,8 +31571,7 @@ cont.250709:
 cont.250741:
 cont.250707:
 cont.250706:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.241566
 	jmp	%i0, 0(%i31)
 then.250704:
@@ -32481,19 +31581,16 @@ then.250704:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.241567
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.241566
 	jmp	%i0, 0(%i31)
 loop_end.241567:
-	addi	%i4, %i24, 1
-	mov	%i24, %i4
+	addi	%i24, %i24, 1
 	set_label	%i31, loop_start.241562
 	jmp	%i0, 0(%i31)
 loop_end.241563:
 cont.250559:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.241517
 	jmp	%i0, 0(%i31)
 loop_end.241518:
@@ -32516,8 +31613,8 @@ cont.250745:
 	set_label	%i31, cont.250554
 	jmp	%i0, 0(%i31)
 Lrelax_skip_12:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i18, 0(%i31)
@@ -32534,15 +31631,15 @@ Lrelax_skip_12:
 	jeq	%i20, %i31, then.250747
 	movi	%i31, 2
 	jeq	%i20, %i31, then.250749
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f4, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f4, %f3, %f1
+	lf	%f3, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f3, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f3, %f3, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	lf	%f1, 0(%i17)
 	fmul	%f15, %f4, %f1
 	lf	%f1, 1(%i17)
@@ -32644,8 +31741,7 @@ then.250749:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.250748
 then.250747:
-	lw	%i31, 109(%i1)
-	mov	%i20, %i31
+	lw	%i20, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -32672,12 +31768,10 @@ cont.250758:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.250748:
-	lf	%f1, 0(%i19)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i19)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i19)
-	sf	%f1, 115(%i1)
+	lf	%f4, 0(%i19)
+	lf	%f3, 1(%i19)
+	lf	%f31, 2(%i19)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i18, %i31, then.250759
 	movi	%i31, 2
@@ -32686,16 +31780,16 @@ cont.250748:
 	jeq	%i18, %i31, then.250763
 	ceqi	%i31, %i18, 4
 	jzero	%i0, %i31, cont.250765
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 0(%i17)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fmul	%f15, %f13, %f1
-	lf	%f31, 112(%i1)
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 2(%i17)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
@@ -32703,8 +31797,7 @@ cont.250748:
 	fmul	%f5, %f15, %f15
 	fmul	%f1, %f14, %f14
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f15
-	fmov	%f5, %f1
+	fabs	%f5, %f15
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -32716,8 +31809,7 @@ cont.250748:
 then.250766:
 	finv	%f1, %f15
 	fmul	%f1, %f14, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i18, %f1, %f14
@@ -32775,15 +31867,14 @@ then.250766:
 cont.250767:
 	ffloor	%f1, %f5
 	fsub	%f5, %f5, %f1
-	lf	%f31, 111(%i1)
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f14, %f1
 	lf	%f14, 1(%i17)
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -32795,8 +31886,7 @@ cont.250767:
 then.250768:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i16, %f1, %f14
@@ -32877,17 +31967,17 @@ cont.250769:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.250765:
 	jzero	%i0, %i0, cont.250760
 then.250763:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f5, %f3, %f1
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f3, %f1
 	fmul	%f3, %f5, %f5
 	fmul	%f1, %f1, %f1
 	fadd	%f3, %f3, %f1
@@ -33012,21 +32102,20 @@ cont.250771:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.250760
 then.250761:
-	lf	%f31, 111(%i1)
+	lf	%f3, 111(%i1)
 	movui	%i31, 256000
 	mif	%f1, %i31
-	fmul	%f4, %f31, %f1
+	fmul	%f4, %f3, %f1
 	lf	%f31, 91(%i1)
 	fleq	%i31, %f4, %f31
 	jzero	%i0, %i31, else.250778
@@ -33134,25 +32223,22 @@ cont.250779:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.250760
 then.250759:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -33160,15 +32246,14 @@ then.250759:
 	movui	%i31, 266752
 	mif	%f1, %i31
 	flt	%i16, %f3, %f1
-	lf	%f31, 112(%i1)
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -33206,11 +32291,9 @@ loop_start.241637:
 	jeq	%i23, %i31, then.250793
 	movi	%i31, 99
 	jeq	%i23, %i31, then.250795
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i23, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -33226,7 +32309,7 @@ loop_start.241637:
 	lf	%f1, 1(%i22)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i22)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i5, %i23, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i5
@@ -33293,16 +32376,16 @@ cont.250804:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.250808
 then.250807:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.250808:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.250798
@@ -33320,8 +32403,8 @@ then.250799:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i5)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.250798
 then.250809:
@@ -33335,16 +32418,14 @@ then.250797:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i19, %f5, %f1
 	jeq	%i19, %i0, then.250811
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f5, %f1
 	jeq	%i19, %i0, then.250813
@@ -33370,16 +32451,14 @@ then.250815:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f5, %f1
 	jeq	%i19, %i0, then.250817
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f5, %f1
 	jeq	%i19, %i0, then.250819
@@ -33405,16 +32484,14 @@ then.250821:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f5, %f1
 	jeq	%i19, %i0, then.250823
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.250825
@@ -33439,11 +32516,11 @@ cont.250822:
 cont.250816:
 cont.250798:
 	jeq	%i5, %i0, then.250829
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.250831
 	movi	%i20, 1
 loop_start.241649:
@@ -33466,11 +32543,9 @@ loop_start.241653:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -33486,7 +32561,7 @@ loop_start.241653:
 	lf	%f1, 1(%i26)
 	fsub	%f13, %f13, %f1
 	lf	%f1, 2(%i26)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f5, %f1
 	slli	%i21, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i21
@@ -33553,16 +32628,16 @@ cont.250846:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i21)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.250850
 then.250849:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i21)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.250850:
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.250840
@@ -33580,8 +32655,8 @@ then.250841:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i21)
 	fmul	%f1, %f1, %f15
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.250840
 then.250851:
@@ -33595,16 +32670,14 @@ then.250839:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.250853
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.250855
@@ -33630,16 +32703,14 @@ then.250857:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.250859
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.250861
@@ -33665,16 +32736,14 @@ then.250863:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.250865
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.250867
@@ -33698,8 +32767,7 @@ cont.250870:
 cont.250864:
 cont.250858:
 cont.250840:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i21, %i0, then.250871
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -33716,16 +32784,16 @@ cont.250872:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i21, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -33800,18 +32868,15 @@ then.250879:
 	ceq	%i5, %i5, %i22
 	jzero	%i0, %i0, cont.250878
 then.250877:
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i4)
 	flt	%i23, %f17, %f1
 	jeq	%i23, %i0, then.250883
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i23, %f15, %f1
 	jeq	%i23, %i0, then.250885
-	fabs	%f1, %f16
-	fmov	%f15, %f1
+	fabs	%f15, %f16
 	lf	%f1, 2(%i4)
 	flt	%i22, %f15, %f1
 	jzero	%i0, %i0, cont.250884
@@ -33831,8 +32896,7 @@ cont.250878:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.250876
 then.250889:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 loop_start.241668:
 	slli	%i4, %i21, 2
 	add	%i31, %i19, %i4
@@ -33909,18 +32973,15 @@ then.250896:
 	ceq	%i5, %i5, %i22
 	jzero	%i0, %i0, cont.250895
 then.250894:
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i4)
 	flt	%i23, %f17, %f1
 	jeq	%i23, %i0, then.250900
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i23, %f15, %f1
 	jeq	%i23, %i0, then.250902
-	fabs	%f1, %f16
-	fmov	%f15, %f1
+	fabs	%f15, %f16
 	lf	%f1, 2(%i4)
 	flt	%i22, %f15, %f1
 	jzero	%i0, %i0, cont.250901
@@ -33940,28 +33001,23 @@ cont.250895:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241669
 then.250906:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.241668
 	jmp	%i0, 0(%i31)
 then.250892:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241669
 loop_end.241669:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.250876
 then.250875:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.250876:
 	jeq	%i5, %i0, then.250908
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241654
 then.250908:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241653
 	jmp	%i0, 0(%i31)
 then.250873:
@@ -33971,8 +33027,7 @@ then.250873:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.250910
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241653
 	jmp	%i0, 0(%i31)
 then.250910:
@@ -33983,12 +33038,10 @@ then.250837:
 	jzero	%i0, %i0, loop_end.241654
 loop_end.241654:
 	jeq	%i31, %i0, then.250912
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241650
 then.250912:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.241649
 	jmp	%i0, 0(%i31)
 then.250834:
@@ -34028,11 +33081,9 @@ loop_start.241683:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -34048,7 +33099,7 @@ loop_start.241683:
 	lf	%f1, 1(%i26)
 	fsub	%f13, %f13, %f1
 	lf	%f1, 2(%i26)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f5, %f1
 	slli	%i21, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i21
@@ -34115,16 +33166,16 @@ cont.250929:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i21)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.250933
 then.250932:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i21)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.250933:
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.250923
@@ -34142,8 +33193,8 @@ then.250924:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i21)
 	fmul	%f1, %f1, %f15
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.250923
 then.250934:
@@ -34157,16 +33208,14 @@ then.250922:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.250936
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.250938
@@ -34192,16 +33241,14 @@ then.250940:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.250942
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.250944
@@ -34227,16 +33274,14 @@ then.250946:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.250948
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.250950
@@ -34260,8 +33305,7 @@ cont.250953:
 cont.250947:
 cont.250941:
 cont.250923:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i21, %i0, then.250954
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -34278,16 +33322,16 @@ cont.250955:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i21, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -34362,18 +33406,15 @@ then.250962:
 	ceq	%i5, %i5, %i22
 	jzero	%i0, %i0, cont.250961
 then.250960:
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i4)
 	flt	%i23, %f17, %f1
 	jeq	%i23, %i0, then.250966
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i23, %f15, %f1
 	jeq	%i23, %i0, then.250968
-	fabs	%f1, %f16
-	fmov	%f15, %f1
+	fabs	%f15, %f16
 	lf	%f1, 2(%i4)
 	flt	%i22, %f15, %f1
 	jzero	%i0, %i0, cont.250967
@@ -34393,8 +33434,7 @@ cont.250961:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.250959
 then.250972:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 loop_start.241698:
 	slli	%i4, %i21, 2
 	add	%i31, %i19, %i4
@@ -34471,18 +33511,15 @@ then.250979:
 	ceq	%i5, %i5, %i22
 	jzero	%i0, %i0, cont.250978
 then.250977:
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i4)
 	flt	%i23, %f17, %f1
 	jeq	%i23, %i0, then.250983
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i23, %f15, %f1
 	jeq	%i23, %i0, then.250985
-	fabs	%f1, %f16
-	fmov	%f15, %f1
+	fabs	%f15, %f16
 	lf	%f1, 2(%i4)
 	flt	%i22, %f15, %f1
 	jzero	%i0, %i0, cont.250984
@@ -34502,28 +33539,23 @@ cont.250978:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241699
 then.250989:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.241698
 	jmp	%i0, 0(%i31)
 then.250975:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241699
 loop_end.241699:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.250959
 then.250958:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.250959:
 	jeq	%i5, %i0, then.250991
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241684
 then.250991:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241683
 	jmp	%i0, 0(%i31)
 then.250956:
@@ -34533,8 +33565,7 @@ then.250956:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.250993
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241683
 	jmp	%i0, 0(%i31)
 then.250993:
@@ -34545,12 +33576,10 @@ then.250920:
 	jzero	%i0, %i0, loop_end.241684
 loop_end.241684:
 	jeq	%i31, %i0, then.250995
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241680
 then.250995:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.241679
 	jmp	%i0, 0(%i31)
 then.250917:
@@ -34558,17 +33587,14 @@ then.250917:
 	jzero	%i0, %i0, loop_end.241680
 loop_end.241680:
 	jeq	%i31, %i0, then.250997
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241638
 then.250997:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.241637
 	jmp	%i0, 0(%i31)
 then.250914:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.241637
 	jmp	%i0, 0(%i31)
 then.250793:
@@ -34598,15 +33624,12 @@ loop_end.241638:
 	lf	%f1, 0(%i6)
 	fmul	%f12, %f5, %f1
 	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	lf	%f1, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f9, %f9, %f1
 cont.250999:
 	set_label	%i31, cont.250554
 	jmp	%i0, 0(%i31)
@@ -34623,8 +33646,7 @@ then.250553:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i17, %i0
 loop_start.241718:
 	slli	%i4, %i17, 2
@@ -34679,15 +33701,15 @@ then.251009:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.251014
 then.251013:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.251014:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.251006
@@ -34699,8 +33721,8 @@ then.251007:
 	lf	%f3, 3(%i22)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.251015
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.251006
 then.251015:
@@ -34803,8 +33825,8 @@ cont.251028:
 cont.251022:
 cont.251006:
 	jeq	%i5, %i0, cont.251004
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.251004
 	movi	%i24, 1
 loop_start.241729:
@@ -34867,15 +33889,15 @@ then.251047:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.251052
 then.251051:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.251052:
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.251044
@@ -34887,8 +33909,8 @@ then.251045:
 	lf	%f3, 3(%i19)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.251053
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.251044
 then.251053:
@@ -34908,15 +33930,13 @@ then.251043:
 	fmul	%f20, %f1, %f22
 	fmul	%f1, %f20, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i4)
 	flt	%i19, %f23, %f1
 	jeq	%i19, %i0, then.251055
 	fmul	%f1, %f20, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f23, %f1
 	jeq	%i19, %i0, then.251057
@@ -34938,15 +33958,13 @@ then.251059:
 	fmul	%f21, %f1, %f18
 	fmul	%f1, %f21, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f20, %f1
 	jeq	%i19, %i0, then.251061
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f19, %f1
 	jeq	%i19, %i0, then.251063
@@ -34968,15 +33986,13 @@ then.251065:
 	fmul	%f17, %f1, %f3
 	fmul	%f1, %f17, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f4, %f1
 	jeq	%i19, %i0, then.251067
 	fmul	%f1, %f17, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f4, %f1
 	jeq	%i5, %i0, then.251069
@@ -35000,9 +34016,8 @@ cont.251066:
 cont.251060:
 cont.251044:
 	jeq	%i20, %i0, then.251073
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.251075
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.251076
@@ -35012,16 +34027,16 @@ cont.251044:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i23)
 	movi	%i31, -1
@@ -35096,18 +34111,15 @@ then.251081:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.251080
 then.251079:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i27)
 	flt	%i25, %f16, %f1
 	jeq	%i25, %i0, then.251085
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i27)
 	flt	%i25, %f15, %f1
 	jeq	%i25, %i0, then.251087
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i27)
 	flt	%i25, %f15, %f1
 	jzero	%i0, %i0, cont.251086
@@ -35127,8 +34139,7 @@ cont.251080:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.251078
 then.251091:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.241746:
 	slli	%i4, %i19, 2
 	add	%i31, %i23, %i4
@@ -35205,18 +34216,15 @@ then.251098:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.251097
 then.251096:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i27)
 	flt	%i25, %f16, %f1
 	jeq	%i25, %i0, then.251102
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i27)
 	flt	%i25, %f15, %f1
 	jeq	%i25, %i0, then.251104
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i27)
 	flt	%i25, %f15, %f1
 	jzero	%i0, %i0, cont.251103
@@ -35236,20 +34244,17 @@ cont.251097:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241747
 then.251108:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.241746
 	jmp	%i0, 0(%i31)
 then.251094:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241747
 loop_end.241747:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.251078
 then.251077:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.251078:
 	jeq	%i5, %i0, cont.251110
 	fmov	%f5, %f14
@@ -35261,8 +34266,7 @@ cont.251078:
 cont.251110:
 cont.251076:
 cont.251075:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.241733
 	jmp	%i0, 0(%i31)
 then.251073:
@@ -35272,13 +34276,11 @@ then.251073:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.241734
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.241733
 	jmp	%i0, 0(%i31)
 loop_end.241734:
-	addi	%i4, %i24, 1
-	mov	%i24, %i4
+	addi	%i24, %i24, 1
 	set_label	%i31, loop_start.241729
 	jmp	%i0, 0(%i31)
 then.251003:
@@ -35343,15 +34345,15 @@ then.251123:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.251128
 then.251127:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.251128:
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.251120
@@ -35363,8 +34365,8 @@ then.251121:
 	lf	%f3, 3(%i19)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.251129
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i20, 1
 	jzero	%i0, %i0, cont.251120
 then.251129:
@@ -35384,15 +34386,13 @@ then.251119:
 	fmul	%f20, %f1, %f22
 	fmul	%f1, %f20, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i4)
 	flt	%i19, %f23, %f1
 	jeq	%i19, %i0, then.251131
 	fmul	%f1, %f20, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f23, %f1
 	jeq	%i19, %i0, then.251133
@@ -35414,15 +34414,13 @@ then.251135:
 	fmul	%f21, %f1, %f18
 	fmul	%f1, %f21, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f20, %f1
 	jeq	%i19, %i0, then.251137
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f19, %f1
 	jeq	%i19, %i0, then.251139
@@ -35444,15 +34442,13 @@ then.251141:
 	fmul	%f17, %f1, %f3
 	fmul	%f1, %f17, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f4, %f1
 	jeq	%i19, %i0, then.251143
 	fmul	%f1, %f17, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f4, %f1
 	jeq	%i5, %i0, then.251145
@@ -35476,9 +34472,8 @@ cont.251142:
 cont.251136:
 cont.251120:
 	jeq	%i20, %i0, then.251149
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.251151
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.251152
@@ -35488,16 +34483,16 @@ cont.251120:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i23)
 	movi	%i31, -1
@@ -35572,18 +34567,15 @@ then.251157:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.251156
 then.251155:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i27)
 	flt	%i25, %f16, %f1
 	jeq	%i25, %i0, then.251161
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i27)
 	flt	%i25, %f15, %f1
 	jeq	%i25, %i0, then.251163
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i27)
 	flt	%i25, %f15, %f1
 	jzero	%i0, %i0, cont.251162
@@ -35603,8 +34595,7 @@ cont.251156:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.251154
 then.251167:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.241780:
 	slli	%i4, %i19, 2
 	add	%i31, %i23, %i4
@@ -35681,18 +34672,15 @@ then.251174:
 	ceq	%i5, %i5, %i25
 	jzero	%i0, %i0, cont.251173
 then.251172:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i27)
 	flt	%i25, %f16, %f1
 	jeq	%i25, %i0, then.251178
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i27)
 	flt	%i25, %f15, %f1
 	jeq	%i25, %i0, then.251180
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i27)
 	flt	%i25, %f15, %f1
 	jzero	%i0, %i0, cont.251179
@@ -35712,20 +34700,17 @@ cont.251173:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241781
 then.251184:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.241780
 	jmp	%i0, 0(%i31)
 then.251170:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241781
 loop_end.241781:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.251154
 then.251153:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.251154:
 	jeq	%i5, %i0, cont.251186
 	fmov	%f5, %f14
@@ -35737,8 +34722,7 @@ cont.251154:
 cont.251186:
 cont.251152:
 cont.251151:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.241767
 	jmp	%i0, 0(%i31)
 then.251149:
@@ -35748,19 +34732,16 @@ then.251149:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.241768
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.241767
 	jmp	%i0, 0(%i31)
 loop_end.241768:
-	addi	%i4, %i24, 1
-	mov	%i24, %i4
+	addi	%i24, %i24, 1
 	set_label	%i31, loop_start.241763
 	jmp	%i0, 0(%i31)
 loop_end.241764:
 cont.251004:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.241718
 	jmp	%i0, 0(%i31)
 loop_end.241719:
@@ -35783,8 +34764,8 @@ cont.251190:
 	set_label	%i31, cont.251191
 	jmp	%i0, 0(%i31)
 Lrelax_skip_13:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i18, 0(%i31)
@@ -35801,15 +34782,15 @@ Lrelax_skip_13:
 	jeq	%i20, %i31, then.251192
 	movi	%i31, 2
 	jeq	%i20, %i31, then.251194
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f4, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f4, %f3, %f1
+	lf	%f3, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f3, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f3, %f3, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	lf	%f1, 0(%i17)
 	fmul	%f15, %f4, %f1
 	lf	%f1, 1(%i17)
@@ -35911,8 +34892,7 @@ then.251194:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.251193
 then.251192:
-	lw	%i31, 109(%i1)
-	mov	%i20, %i31
+	lw	%i20, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -35939,12 +34919,10 @@ cont.251203:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.251193:
-	lf	%f1, 0(%i19)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i19)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i19)
-	sf	%f1, 115(%i1)
+	lf	%f4, 0(%i19)
+	lf	%f3, 1(%i19)
+	lf	%f31, 2(%i19)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i18, %i31, then.251204
 	movi	%i31, 2
@@ -35953,16 +34931,16 @@ cont.251193:
 	jeq	%i18, %i31, then.251208
 	ceqi	%i31, %i18, 4
 	jzero	%i0, %i31, cont.251210
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 0(%i17)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fmul	%f15, %f13, %f1
-	lf	%f31, 112(%i1)
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 2(%i17)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
@@ -35970,8 +34948,7 @@ cont.251193:
 	fmul	%f5, %f15, %f15
 	fmul	%f1, %f14, %f14
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f15
-	fmov	%f5, %f1
+	fabs	%f5, %f15
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -35983,8 +34960,7 @@ cont.251193:
 then.251211:
 	finv	%f1, %f15
 	fmul	%f1, %f14, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i18, %f1, %f14
@@ -36042,15 +35018,14 @@ then.251211:
 cont.251212:
 	ffloor	%f1, %f5
 	fsub	%f5, %f5, %f1
-	lf	%f31, 111(%i1)
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f14, %f1
 	lf	%f14, 1(%i17)
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -36062,8 +35037,7 @@ cont.251212:
 then.251213:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i16, %f1, %f14
@@ -36144,17 +35118,17 @@ cont.251214:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.251210:
 	jzero	%i0, %i0, cont.251205
 then.251208:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f5, %f3, %f1
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f3, %f1
 	fmul	%f3, %f5, %f5
 	fmul	%f1, %f1, %f1
 	fadd	%f3, %f3, %f1
@@ -36279,21 +35253,20 @@ cont.251216:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.251205
 then.251206:
-	lf	%f31, 111(%i1)
+	lf	%f3, 111(%i1)
 	movui	%i31, 256000
 	mif	%f1, %i31
-	fmul	%f4, %f31, %f1
+	fmul	%f4, %f3, %f1
 	lf	%f31, 91(%i1)
 	fleq	%i31, %f4, %f31
 	jzero	%i0, %i31, else.251223
@@ -36401,25 +35374,22 @@ cont.251224:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.251205
 then.251204:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -36427,15 +35397,14 @@ then.251204:
 	movui	%i31, 266752
 	mif	%f1, %i31
 	flt	%i16, %f3, %f1
-	lf	%f31, 112(%i1)
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -36473,11 +35442,9 @@ loop_start.241838:
 	jeq	%i23, %i31, then.251238
 	movi	%i31, 99
 	jeq	%i23, %i31, then.251240
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i23, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -36493,7 +35460,7 @@ loop_start.241838:
 	lf	%f1, 1(%i22)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i22)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i5, %i23, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i5
@@ -36560,16 +35527,16 @@ cont.251249:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.251253
 then.251252:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.251253:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.251243
@@ -36587,8 +35554,8 @@ then.251244:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i5)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.251243
 then.251254:
@@ -36602,16 +35569,14 @@ then.251242:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i19, %f5, %f1
 	jeq	%i19, %i0, then.251256
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f5, %f1
 	jeq	%i19, %i0, then.251258
@@ -36637,16 +35602,14 @@ then.251260:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f5, %f1
 	jeq	%i19, %i0, then.251262
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i19, %f5, %f1
 	jeq	%i19, %i0, then.251264
@@ -36672,16 +35635,14 @@ then.251266:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i19, %f5, %f1
 	jeq	%i19, %i0, then.251268
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.251270
@@ -36706,11 +35667,11 @@ cont.251267:
 cont.251261:
 cont.251243:
 	jeq	%i5, %i0, then.251274
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.251276
 	movi	%i20, 1
 loop_start.241850:
@@ -36733,11 +35694,9 @@ loop_start.241854:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -36753,7 +35712,7 @@ loop_start.241854:
 	lf	%f1, 1(%i26)
 	fsub	%f13, %f13, %f1
 	lf	%f1, 2(%i26)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f5, %f1
 	slli	%i21, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i21
@@ -36820,16 +35779,16 @@ cont.251291:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i21)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.251295
 then.251294:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i21)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.251295:
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.251285
@@ -36847,8 +35806,8 @@ then.251286:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i21)
 	fmul	%f1, %f1, %f15
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.251285
 then.251296:
@@ -36862,16 +35821,14 @@ then.251284:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.251298
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.251300
@@ -36897,16 +35854,14 @@ then.251302:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.251304
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.251306
@@ -36932,16 +35887,14 @@ then.251308:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.251310
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.251312
@@ -36965,8 +35918,7 @@ cont.251315:
 cont.251309:
 cont.251303:
 cont.251285:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i21, %i0, then.251316
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -36983,16 +35935,16 @@ cont.251317:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i21, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -37067,18 +36019,15 @@ then.251324:
 	ceq	%i5, %i5, %i22
 	jzero	%i0, %i0, cont.251323
 then.251322:
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i4)
 	flt	%i23, %f17, %f1
 	jeq	%i23, %i0, then.251328
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i23, %f15, %f1
 	jeq	%i23, %i0, then.251330
-	fabs	%f1, %f16
-	fmov	%f15, %f1
+	fabs	%f15, %f16
 	lf	%f1, 2(%i4)
 	flt	%i22, %f15, %f1
 	jzero	%i0, %i0, cont.251329
@@ -37098,8 +36047,7 @@ cont.251323:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.251321
 then.251334:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 loop_start.241869:
 	slli	%i4, %i21, 2
 	add	%i31, %i19, %i4
@@ -37176,18 +36124,15 @@ then.251341:
 	ceq	%i5, %i5, %i22
 	jzero	%i0, %i0, cont.251340
 then.251339:
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i4)
 	flt	%i23, %f17, %f1
 	jeq	%i23, %i0, then.251345
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i23, %f15, %f1
 	jeq	%i23, %i0, then.251347
-	fabs	%f1, %f16
-	fmov	%f15, %f1
+	fabs	%f15, %f16
 	lf	%f1, 2(%i4)
 	flt	%i22, %f15, %f1
 	jzero	%i0, %i0, cont.251346
@@ -37207,28 +36152,23 @@ cont.251340:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241870
 then.251351:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.241869
 	jmp	%i0, 0(%i31)
 then.251337:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241870
 loop_end.241870:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.251321
 then.251320:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.251321:
 	jeq	%i5, %i0, then.251353
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241855
 then.251353:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241854
 	jmp	%i0, 0(%i31)
 then.251318:
@@ -37238,8 +36178,7 @@ then.251318:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.251355
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241854
 	jmp	%i0, 0(%i31)
 then.251355:
@@ -37250,12 +36189,10 @@ then.251282:
 	jzero	%i0, %i0, loop_end.241855
 loop_end.241855:
 	jeq	%i31, %i0, then.251357
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241851
 then.251357:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.241850
 	jmp	%i0, 0(%i31)
 then.251279:
@@ -37295,11 +36232,9 @@ loop_start.241884:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -37315,7 +36250,7 @@ loop_start.241884:
 	lf	%f1, 1(%i26)
 	fsub	%f13, %f13, %f1
 	lf	%f1, 2(%i26)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f5, %f1
 	slli	%i21, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i21
@@ -37382,16 +36317,16 @@ cont.251374:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i21)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.251378
 then.251377:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i21)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.251378:
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.251368
@@ -37409,8 +36344,8 @@ then.251369:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i21)
 	fmul	%f1, %f1, %f15
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i21, 1
 	jzero	%i0, %i0, cont.251368
 then.251379:
@@ -37424,16 +36359,14 @@ then.251367:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.251381
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.251383
@@ -37459,16 +36392,14 @@ then.251385:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.251387
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.251389
@@ -37494,16 +36425,14 @@ then.251391:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.251393
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i25)
 	flt	%i22, %f5, %f1
 	jeq	%i22, %i0, then.251395
@@ -37527,8 +36456,7 @@ cont.251398:
 cont.251392:
 cont.251386:
 cont.251368:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i21, %i0, then.251399
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -37545,16 +36473,16 @@ cont.251400:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i21, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -37629,18 +36557,15 @@ then.251407:
 	ceq	%i5, %i5, %i22
 	jzero	%i0, %i0, cont.251406
 then.251405:
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i4)
 	flt	%i23, %f17, %f1
 	jeq	%i23, %i0, then.251411
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i23, %f15, %f1
 	jeq	%i23, %i0, then.251413
-	fabs	%f1, %f16
-	fmov	%f15, %f1
+	fabs	%f15, %f16
 	lf	%f1, 2(%i4)
 	flt	%i22, %f15, %f1
 	jzero	%i0, %i0, cont.251412
@@ -37660,8 +36585,7 @@ cont.251406:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.251404
 then.251417:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 loop_start.241899:
 	slli	%i4, %i21, 2
 	add	%i31, %i19, %i4
@@ -37738,18 +36662,15 @@ then.251424:
 	ceq	%i5, %i5, %i22
 	jzero	%i0, %i0, cont.251423
 then.251422:
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i4)
 	flt	%i23, %f17, %f1
 	jeq	%i23, %i0, then.251428
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i23, %f15, %f1
 	jeq	%i23, %i0, then.251430
-	fabs	%f1, %f16
-	fmov	%f15, %f1
+	fabs	%f15, %f16
 	lf	%f1, 2(%i4)
 	flt	%i22, %f15, %f1
 	jzero	%i0, %i0, cont.251429
@@ -37769,28 +36690,23 @@ cont.251423:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.241900
 then.251434:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.241899
 	jmp	%i0, 0(%i31)
 then.251420:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241900
 loop_end.241900:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.251404
 then.251403:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.251404:
 	jeq	%i5, %i0, then.251436
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241885
 then.251436:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241884
 	jmp	%i0, 0(%i31)
 then.251401:
@@ -37800,8 +36716,7 @@ then.251401:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.251438
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.241884
 	jmp	%i0, 0(%i31)
 then.251438:
@@ -37812,12 +36727,10 @@ then.251365:
 	jzero	%i0, %i0, loop_end.241885
 loop_end.241885:
 	jeq	%i31, %i0, then.251440
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241881
 then.251440:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.241880
 	jmp	%i0, 0(%i31)
 then.251362:
@@ -37825,17 +36738,14 @@ then.251362:
 	jzero	%i0, %i0, loop_end.241881
 loop_end.241881:
 	jeq	%i31, %i0, then.251442
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.241839
 then.251442:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.241838
 	jmp	%i0, 0(%i31)
 then.251359:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.241838
 	jmp	%i0, 0(%i31)
 then.251238:
@@ -37865,21 +36775,18 @@ loop_end.241839:
 	lf	%f1, 0(%i6)
 	fmul	%f12, %f5, %f1
 	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	lf	%f1, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f9, %f9, %f1
 cont.251444:
 cont.251191:
 cont.250554:
 	lw	%i31, 153(%i1)
-	subi	%i4, %i31, 2
-	sw	%i4, 153(%i1)
+	subi	%i31, %i31, 2
+	sw	%i31, 153(%i1)
 	set_label	%i30, loop_start.241511
 	jmp	%i0, 0(%i30)
 loop_end.241512:
@@ -37890,43 +36797,41 @@ loop_end.241512:
 	sf	%f10, 1(%i5)
 	sf	%f9, 2(%i5)
 cont.250534:
-	addi	%i4, %i9, 1
-	mov	%i9, %i4
+	addi	%i9, %i9, 1
 	set_label	%i30, loop_start.241490
 	jmp	%i0, 0(%i30)
 loop_end.241491:
 	lw	%i31, 150(%i1)
-	subi	%i7, %i31, 1
-	lw	%i31, 151(%i1)
-	addi	%i6, %i31, 1
+	subi	%i31, %i31, 1
+	lw	%i4, 151(%i1)
+	addi	%i6, %i4, 1
 	movi	%i4, 5
 	subi	%i5, %i6, 5
 	cleq	%i4, %i4, %i6
 	tern	%i4, %i4, %i5, %i6
-	sw	%i7, 150(%i1)
+	sw	%i31, 150(%i1)
 	sw	%i4, 151(%i1)
 	set_label	%i30, loop_start.241055
 	jmp	%i0, 0(%i30)
 loop_end.241056:
 cont.249612:
 	sw	%i0, 154(%i1)
-	mov	%i31, %i6
-	lw	%i6, 143(%i1)
-	sw	%i31, 143(%i1)
-	sw	%i6, 155(%i1)
+	lw	%i30, 143(%i1)
 	sw	%i6, 143(%i1)
-	lw	%i6, 144(%i1)
-	sw	%i31, 144(%i1)
-	sw	%i6, 156(%i1)
+	sw	%i30, 155(%i1)
+	sw	%i30, 143(%i1)
+	lw	%i30, 144(%i1)
 	sw	%i6, 144(%i1)
-	lw	%i6, 145(%i1)
-	sw	%i31, 145(%i1)
-	sw	%i6, 157(%i1)
+	sw	%i30, 156(%i1)
+	sw	%i30, 144(%i1)
+	lw	%i30, 145(%i1)
 	sw	%i6, 145(%i1)
-	lw	%i6, 146(%i1)
-	sw	%i31, 146(%i1)
-	sw	%i6, 158(%i1)
+	sw	%i30, 157(%i1)
+	sw	%i30, 145(%i1)
+	lw	%i30, 146(%i1)
 	sw	%i6, 146(%i1)
+	sw	%i30, 158(%i1)
+	sw	%i30, 146(%i1)
 loop_start.241921:
 	lw	%i6, 154(%i1)
 	lw	%i7, 128(%i1)
@@ -37941,14 +36846,13 @@ Lrelax_skip_14:
 	add	%i31, %i30, %i4
 	lw	%i4, 0(%i31)
 	lw	%i5, 0(%i4)
-	lf	%f3, 0(%i5)
+	lf	%f31, 0(%i5)
 	lf	%f2, 1(%i5)
 	lf	%f1, 2(%i5)
-	sf	%f3, 116(%i1)
+	sf	%f31, 116(%i1)
 	sf	%f2, 117(%i1)
 	sf	%f1, 118(%i1)
-	lw	%i31, 154(%i1)
-	mov	%i7, %i31
+	lw	%i7, 154(%i1)
 	lw	%i31, 155(%i1)
 	addi	%i5, %i31, 1
 	lw	%i4, 89(%i1)
@@ -37974,10 +36878,9 @@ cont.251449:
 	set_label	%i31, then.251454
 	jmp	%i0, 0(%i31)
 Lrelax_skip_15:
-	lw	%i31, 154(%i1)
-	mov	%i7, %i31
+	lw	%i7, 154(%i1)
 	mov	%i4, %i0
-	slli	%i5, %i31, 2
+	slli	%i5, %i7, 2
 	lw	%i30, 157(%i1)
 	add	%i31, %i30, %i5
 	lw	%i5, 0(%i31)
@@ -38087,56 +36990,41 @@ cont.251462:
 	slli	%i8, %i4, 2
 	add	%i31, %i9, %i8
 	lw	%i9, 0(%i31)
-	lf	%f3, 0(%i9)
-	lf	%f2, 1(%i9)
-	lf	%f1, 2(%i9)
-	fmov	%f11, %f3
-	fmov	%f10, %f2
-	fmov	%f9, %f1
+	lf	%f1, 0(%i9)
+	lf	%f10, 1(%i9)
+	lf	%f9, 2(%i9)
 	add	%i31, %i13, %i8
 	lw	%i9, 0(%i31)
 	lf	%f4, 0(%i9)
 	lf	%f3, 1(%i9)
 	lf	%f2, 2(%i9)
-	fadd	%f1, %f11, %f4
-	fmov	%f11, %f1
-	fadd	%f1, %f10, %f3
-	fmov	%f10, %f1
-	fadd	%f1, %f9, %f2
-	fmov	%f9, %f1
+	fadd	%f11, %f1, %f4
+	fadd	%f10, %f10, %f3
+	fadd	%f9, %f9, %f2
 	add	%i31, %i12, %i8
 	lw	%i9, 0(%i31)
 	lf	%f4, 0(%i9)
 	lf	%f3, 1(%i9)
 	lf	%f2, 2(%i9)
-	fadd	%f1, %f11, %f4
-	fmov	%f11, %f1
-	fadd	%f1, %f10, %f3
-	fmov	%f10, %f1
-	fadd	%f1, %f9, %f2
-	fmov	%f9, %f1
+	fadd	%f11, %f11, %f4
+	fadd	%f10, %f10, %f3
+	fadd	%f9, %f9, %f2
 	add	%i31, %i11, %i8
 	lw	%i9, 0(%i31)
 	lf	%f4, 0(%i9)
 	lf	%f3, 1(%i9)
 	lf	%f2, 2(%i9)
-	fadd	%f1, %f11, %f4
-	fmov	%f11, %f1
-	fadd	%f1, %f10, %f3
-	fmov	%f10, %f1
-	fadd	%f1, %f9, %f2
-	fmov	%f9, %f1
+	fadd	%f11, %f11, %f4
+	fadd	%f10, %f10, %f3
+	fadd	%f9, %f9, %f2
 	add	%i31, %i10, %i8
 	lw	%i9, 0(%i31)
 	lf	%f4, 0(%i9)
 	lf	%f3, 1(%i9)
 	lf	%f2, 2(%i9)
-	fadd	%f1, %f11, %f4
-	fmov	%f11, %f1
-	fadd	%f1, %f10, %f3
-	fmov	%f10, %f1
-	fadd	%f1, %f9, %f2
-	fmov	%f9, %f1
+	fadd	%f11, %f11, %f4
+	fadd	%f4, %f10, %f3
+	fadd	%f3, %f9, %f2
 	slli	%i8, %i7, 2
 	lw	%i30, 157(%i1)
 	add	%i31, %i30, %i8
@@ -38148,18 +37036,18 @@ cont.251462:
 	lf	%f8, 0(%i9)
 	lf	%f7, 1(%i9)
 	lf	%f5, 2(%i9)
-	lf	%f31, 116(%i1)
+	lf	%f2, 116(%i1)
 	fmul	%f1, %f8, %f11
-	fadd	%f1, %f31, %f1
-	sf	%f1, 116(%i1)
-	lf	%f31, 117(%i1)
-	fmul	%f1, %f7, %f10
-	fadd	%f1, %f31, %f1
-	sf	%f1, 117(%i1)
-	lf	%f31, 118(%i1)
-	fmul	%f1, %f5, %f9
-	fadd	%f1, %f31, %f1
-	sf	%f1, 118(%i1)
+	fadd	%f31, %f2, %f1
+	sf	%f31, 116(%i1)
+	lf	%f2, 117(%i1)
+	fmul	%f1, %f7, %f4
+	fadd	%f31, %f2, %f1
+	sf	%f31, 117(%i1)
+	lf	%f2, 118(%i1)
+	fmul	%f1, %f5, %f3
+	fadd	%f31, %f2, %f1
+	sf	%f31, 118(%i1)
 cont.251469:
 	addi	%i4, %i4, 1
 	set_label	%i31, loop_start.241928
@@ -38204,12 +37092,9 @@ Lrelax_skip_16:
 	slli	%i4, %i11, 2
 	add	%i31, %i8, %i4
 	lw	%i5, 0(%i31)
-	lf	%f1, 0(%i5)
-	fmov	%f11, %f1
-	lf	%f1, 1(%i5)
-	fmov	%f10, %f1
-	lf	%f1, 2(%i5)
-	fmov	%f9, %f1
+	lf	%f11, 0(%i5)
+	lf	%f10, 1(%i5)
+	lf	%f9, 2(%i5)
 	lw	%i6, 0(%i9)
 	add	%i31, %i10, %i4
 	lw	%i30, 0(%i31)
@@ -38236,10 +37121,9 @@ Lrelax_skip_17:
 	sf	%f4, 122(%i1)
 	sf	%f3, 123(%i1)
 	sf	%f1, 124(%i1)
-	lw	%i31, 105(%i1)
-	subi	%i4, %i31, 1
-	mov	%i5, %i4
-	jleq	%i0, %i4, then.251477
+	lw	%i4, 105(%i1)
+	subi	%i5, %i4, 1
+	jleq	%i0, %i5, then.251477
 	jzero	%i0, %i0, cont.251478
 then.251477:
 	slli	%i4, %i5, 2
@@ -38319,8 +37203,7 @@ then.251479:
 	fadd	%f5, %f12, %f5
 	sf	%f5, 3(%i18)
 cont.251480:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 loop_start.241989:
 	jleq	%i0, %i5, then.251485
 	jzero	%i0, %i0, loop_end.241990
@@ -38402,8 +37285,7 @@ then.251487:
 	fadd	%f5, %f12, %f5
 	sf	%f5, 3(%i18)
 cont.251488:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 	set_label	%i30, loop_start.241989
 	jmp	%i0, 0(%i30)
 loop_end.241990:
@@ -38444,8 +37326,7 @@ Lrelax_skip_18:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.242001:
 	slli	%i4, %i15, 2
@@ -38500,15 +37381,15 @@ then.251506:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.251511
 then.251510:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.251511:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.251503
@@ -38520,8 +37401,8 @@ then.251504:
 	lf	%f3, 3(%i20)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.251512
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.251503
 then.251512:
@@ -38541,15 +37422,13 @@ then.251502:
 	fmul	%f20, %f1, %f22
 	fmul	%f1, %f20, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.251514
 	fmul	%f1, %f20, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.251516
@@ -38571,15 +37450,13 @@ then.251518:
 	fmul	%f21, %f1, %f18
 	fmul	%f1, %f21, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f20, %f1
 	jeq	%i18, %i0, then.251520
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f19, %f1
 	jeq	%i18, %i0, then.251522
@@ -38601,15 +37478,13 @@ then.251524:
 	fmul	%f17, %f1, %f3
 	fmul	%f1, %f17, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.251526
 	fmul	%f1, %f17, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f4, %f1
 	jeq	%i5, %i0, then.251528
@@ -38633,8 +37508,8 @@ cont.251525:
 cont.251519:
 cont.251503:
 	jeq	%i5, %i0, cont.251501
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.251501
 	movi	%i23, 1
 loop_start.242012:
@@ -38697,15 +37572,15 @@ then.251544:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.251549
 then.251548:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.251549:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.251541
@@ -38717,8 +37592,8 @@ then.251542:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.251550
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.251541
 then.251550:
@@ -38821,9 +37696,8 @@ cont.251563:
 cont.251557:
 cont.251541:
 	jeq	%i19, %i0, then.251570
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.251572
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.251573
@@ -38833,16 +37707,16 @@ cont.251541:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -38940,8 +37814,7 @@ cont.251577:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.251575
 then.251588:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.242029:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -39041,20 +37914,17 @@ cont.251594:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242030
 then.251605:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242029
 	jmp	%i0, 0(%i31)
 then.251591:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242030
 loop_end.242030:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.251575
 then.251574:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.251575:
 	jeq	%i5, %i0, cont.251607
 	fmov	%f5, %f14
@@ -39066,8 +37936,7 @@ cont.251575:
 cont.251607:
 cont.251573:
 cont.251572:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242016
 	jmp	%i0, 0(%i31)
 then.251570:
@@ -39077,13 +37946,11 @@ then.251570:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.242017
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242016
 	jmp	%i0, 0(%i31)
 loop_end.242017:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.242012
 	jmp	%i0, 0(%i31)
 then.251500:
@@ -39148,15 +38015,15 @@ then.251620:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.251625
 then.251624:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.251625:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.251617
@@ -39168,8 +38035,8 @@ then.251618:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.251626
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.251617
 then.251626:
@@ -39272,9 +38139,8 @@ cont.251639:
 cont.251633:
 cont.251617:
 	jeq	%i19, %i0, then.251646
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.251648
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.251649
@@ -39284,16 +38150,16 @@ cont.251617:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -39391,8 +38257,7 @@ cont.251653:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.251651
 then.251664:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.242063:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -39492,20 +38357,17 @@ cont.251670:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242064
 then.251681:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242063
 	jmp	%i0, 0(%i31)
 then.251667:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242064
 loop_end.242064:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.251651
 then.251650:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.251651:
 	jeq	%i5, %i0, cont.251683
 	fmov	%f5, %f14
@@ -39517,8 +38379,7 @@ cont.251651:
 cont.251683:
 cont.251649:
 cont.251648:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242050
 	jmp	%i0, 0(%i31)
 then.251646:
@@ -39528,19 +38389,16 @@ then.251646:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.242051
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242050
 	jmp	%i0, 0(%i31)
 loop_end.242051:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.242046
 	jmp	%i0, 0(%i31)
 loop_end.242047:
 cont.251501:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.242001
 	jmp	%i0, 0(%i31)
 loop_end.242002:
@@ -39563,8 +38421,8 @@ cont.251687:
 	set_label	%i31, cont.251496
 	jmp	%i0, 0(%i31)
 Lrelax_skip_19:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -39590,12 +38448,12 @@ Lrelax_skip_19:
 	lf	%f4, 0(%i21)
 	lf	%f13, 1(%i21)
 	lf	%f14, 2(%i21)
-	lf	%f31, 110(%i1)
-	fsub	%f5, %f31, %f5
-	lf	%f31, 111(%i1)
-	fsub	%f3, %f31, %f3
-	lf	%f31, 112(%i1)
-	fsub	%f19, %f31, %f15
+	lf	%f1, 110(%i1)
+	fsub	%f5, %f1, %f5
+	lf	%f1, 111(%i1)
+	fsub	%f3, %f1, %f3
+	lf	%f1, 112(%i1)
+	fsub	%f19, %f1, %f15
 	fmul	%f18, %f5, %f18
 	fmul	%f17, %f3, %f17
 	fmul	%f1, %f19, %f16
@@ -39688,8 +38546,7 @@ then.251691:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.251690
 then.251689:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -39716,12 +38573,10 @@ cont.251700:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.251690:
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.251701
 	movi	%i31, 2
@@ -39730,16 +38585,16 @@ cont.251690:
 	jeq	%i17, %i31, then.251705
 	ceqi	%i31, %i17, 4
 	jzero	%i0, %i31, cont.251707
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 0(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fmul	%f15, %f13, %f1
-	lf	%f31, 112(%i1)
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 2(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
@@ -39747,8 +38602,7 @@ cont.251690:
 	fmul	%f5, %f15, %f15
 	fmul	%f1, %f14, %f14
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f15
-	fmov	%f5, %f1
+	fabs	%f5, %f15
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -39760,8 +38614,7 @@ cont.251690:
 then.251708:
 	finv	%f1, %f15
 	fmul	%f1, %f14, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f14
@@ -39819,15 +38672,14 @@ then.251708:
 cont.251709:
 	ffloor	%f1, %f5
 	fsub	%f5, %f5, %f1
-	lf	%f31, 111(%i1)
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f14, %f1
 	lf	%f14, 1(%i15)
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -39839,8 +38691,7 @@ cont.251709:
 then.251710:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -39921,17 +38772,17 @@ cont.251711:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.251707:
 	jzero	%i0, %i0, cont.251702
 then.251705:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f5, %f3, %f1
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f3, %f1
 	fmul	%f3, %f5, %f5
 	fmul	%f1, %f1, %f1
 	fadd	%f3, %f3, %f1
@@ -40056,21 +38907,20 @@ cont.251713:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.251702
 then.251703:
-	lf	%f31, 111(%i1)
+	lf	%f3, 111(%i1)
 	movui	%i31, 256000
 	mif	%f1, %i31
-	fmul	%f4, %f31, %f1
+	fmul	%f4, %f3, %f1
 	lf	%f31, 91(%i1)
 	fleq	%i31, %f4, %f31
 	jzero	%i0, %i31, else.251720
@@ -40178,25 +39028,22 @@ cont.251721:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.251702
 then.251701:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -40204,15 +39051,14 @@ then.251701:
 	movui	%i31, 266752
 	mif	%f1, %i31
 	flt	%i15, %f3, %f1
-	lf	%f31, 112(%i1)
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -40250,11 +39096,9 @@ loop_start.242121:
 	jeq	%i22, %i31, then.251735
 	movi	%i31, 99
 	jeq	%i22, %i31, then.251737
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i22, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -40270,7 +39114,7 @@ loop_start.242121:
 	lf	%f1, 1(%i21)
 	fsub	%f13, %f13, %f1
 	lf	%f1, 2(%i21)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f5, %f1
 	slli	%i5, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i5
@@ -40337,16 +39181,16 @@ cont.251746:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.251750
 then.251749:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.251750:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.251740
@@ -40364,8 +39208,8 @@ then.251741:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i5)
 	fmul	%f1, %f1, %f15
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.251740
 then.251751:
@@ -40379,16 +39223,14 @@ then.251739:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.251753
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.251755
@@ -40414,16 +39256,14 @@ then.251757:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.251759
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.251761
@@ -40449,16 +39289,14 @@ then.251763:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.251765
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.251767
@@ -40483,11 +39321,11 @@ cont.251764:
 cont.251758:
 cont.251740:
 	jeq	%i5, %i0, then.251771
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.251773
 	movi	%i20, 1
 loop_start.242133:
@@ -40510,11 +39348,9 @@ loop_start.242137:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -40530,7 +39366,7 @@ loop_start.242137:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -40597,16 +39433,16 @@ cont.251788:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.251792
 then.251791:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.251792:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.251782
@@ -40624,8 +39460,8 @@ then.251783:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.251782
 then.251793:
@@ -40639,16 +39475,14 @@ then.251781:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.251795
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.251797
@@ -40674,16 +39508,14 @@ then.251799:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.251801
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.251803
@@ -40709,16 +39541,14 @@ then.251805:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.251807
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.251809
@@ -40742,8 +39572,7 @@ cont.251812:
 cont.251806:
 cont.251800:
 cont.251782:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.251813
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -40760,16 +39589,16 @@ cont.251814:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -40872,8 +39701,7 @@ cont.251820:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.251818
 then.251831:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.242152:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -40978,28 +39806,23 @@ cont.251837:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242153
 then.251848:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.242152
 	jmp	%i0, 0(%i31)
 then.251834:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242153
 loop_end.242153:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.251818
 then.251817:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.251818:
 	jeq	%i5, %i0, then.251850
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242138
 then.251850:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242137
 	jmp	%i0, 0(%i31)
 then.251815:
@@ -41009,8 +39832,7 @@ then.251815:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.251852
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242137
 	jmp	%i0, 0(%i31)
 then.251852:
@@ -41021,12 +39843,10 @@ then.251779:
 	jzero	%i0, %i0, loop_end.242138
 loop_end.242138:
 	jeq	%i31, %i0, then.251854
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242134
 then.251854:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.242133
 	jmp	%i0, 0(%i31)
 then.251776:
@@ -41066,11 +39886,9 @@ loop_start.242167:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -41086,7 +39904,7 @@ loop_start.242167:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -41153,16 +39971,16 @@ cont.251871:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.251875
 then.251874:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.251875:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.251865
@@ -41180,8 +39998,8 @@ then.251866:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.251865
 then.251876:
@@ -41195,16 +40013,14 @@ then.251864:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.251878
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.251880
@@ -41230,16 +40046,14 @@ then.251882:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.251884
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.251886
@@ -41265,16 +40079,14 @@ then.251888:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.251890
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.251892
@@ -41298,8 +40110,7 @@ cont.251895:
 cont.251889:
 cont.251883:
 cont.251865:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.251896
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -41316,16 +40127,16 @@ cont.251897:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -41428,8 +40239,7 @@ cont.251903:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.251901
 then.251914:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.242182:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -41534,28 +40344,23 @@ cont.251920:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242183
 then.251931:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.242182
 	jmp	%i0, 0(%i31)
 then.251917:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242183
 loop_end.242183:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.251901
 then.251900:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.251901:
 	jeq	%i5, %i0, then.251933
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242168
 then.251933:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242167
 	jmp	%i0, 0(%i31)
 then.251898:
@@ -41565,8 +40370,7 @@ then.251898:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.251935
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242167
 	jmp	%i0, 0(%i31)
 then.251935:
@@ -41577,12 +40381,10 @@ then.251862:
 	jzero	%i0, %i0, loop_end.242168
 loop_end.242168:
 	jeq	%i31, %i0, then.251937
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242164
 then.251937:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.242163
 	jmp	%i0, 0(%i31)
 then.251859:
@@ -41590,17 +40392,14 @@ then.251859:
 	jzero	%i0, %i0, loop_end.242164
 loop_end.242164:
 	jeq	%i31, %i0, then.251939
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242122
 then.251939:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.242121
 	jmp	%i0, 0(%i31)
 then.251856:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.242121
 	jmp	%i0, 0(%i31)
 then.251735:
@@ -41630,15 +40429,12 @@ loop_end.242122:
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
 	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	lf	%f1, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f9, %f9, %f1
 cont.251941:
 	set_label	%i31, cont.251496
 	jmp	%i0, 0(%i31)
@@ -41654,8 +40450,7 @@ then.251495:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.242202:
 	slli	%i4, %i15, 2
@@ -41710,15 +40505,15 @@ then.251951:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.251956
 then.251955:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.251956:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.251948
@@ -41730,8 +40525,8 @@ then.251949:
 	lf	%f3, 3(%i20)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.251957
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.251948
 then.251957:
@@ -41751,15 +40546,13 @@ then.251947:
 	fmul	%f20, %f1, %f22
 	fmul	%f1, %f20, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.251959
 	fmul	%f1, %f20, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.251961
@@ -41781,15 +40574,13 @@ then.251963:
 	fmul	%f21, %f1, %f18
 	fmul	%f1, %f21, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f20, %f1
 	jeq	%i18, %i0, then.251965
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f19, %f1
 	jeq	%i18, %i0, then.251967
@@ -41811,15 +40602,13 @@ then.251969:
 	fmul	%f17, %f1, %f3
 	fmul	%f1, %f17, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.251971
 	fmul	%f1, %f17, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f4, %f1
 	jeq	%i5, %i0, then.251973
@@ -41843,8 +40632,8 @@ cont.251970:
 cont.251964:
 cont.251948:
 	jeq	%i5, %i0, cont.251946
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.251946
 	movi	%i23, 1
 loop_start.242213:
@@ -41907,15 +40696,15 @@ then.251989:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.251994
 then.251993:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.251994:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.251986
@@ -41927,8 +40716,8 @@ then.251987:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.251995
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.251986
 then.251995:
@@ -42031,9 +40820,8 @@ cont.252008:
 cont.252002:
 cont.251986:
 	jeq	%i19, %i0, then.252015
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.252017
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.252018
@@ -42043,16 +40831,16 @@ cont.251986:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -42150,8 +40938,7 @@ cont.252022:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.252020
 then.252033:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.242230:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -42251,20 +41038,17 @@ cont.252039:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242231
 then.252050:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242230
 	jmp	%i0, 0(%i31)
 then.252036:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242231
 loop_end.242231:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.252020
 then.252019:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.252020:
 	jeq	%i5, %i0, cont.252052
 	fmov	%f5, %f14
@@ -42276,8 +41060,7 @@ cont.252020:
 cont.252052:
 cont.252018:
 cont.252017:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242217
 	jmp	%i0, 0(%i31)
 then.252015:
@@ -42287,13 +41070,11 @@ then.252015:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.242218
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242217
 	jmp	%i0, 0(%i31)
 loop_end.242218:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.242213
 	jmp	%i0, 0(%i31)
 then.251945:
@@ -42358,15 +41139,15 @@ then.252065:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.252070
 then.252069:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.252070:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.252062
@@ -42378,8 +41159,8 @@ then.252063:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.252071
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.252062
 then.252071:
@@ -42482,9 +41263,8 @@ cont.252084:
 cont.252078:
 cont.252062:
 	jeq	%i19, %i0, then.252091
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.252093
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.252094
@@ -42494,16 +41274,16 @@ cont.252062:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -42601,8 +41381,7 @@ cont.252098:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.252096
 then.252109:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.242264:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -42702,20 +41481,17 @@ cont.252115:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242265
 then.252126:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242264
 	jmp	%i0, 0(%i31)
 then.252112:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242265
 loop_end.242265:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.252096
 then.252095:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.252096:
 	jeq	%i5, %i0, cont.252128
 	fmov	%f5, %f14
@@ -42727,8 +41503,7 @@ cont.252096:
 cont.252128:
 cont.252094:
 cont.252093:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242251
 	jmp	%i0, 0(%i31)
 then.252091:
@@ -42738,19 +41513,16 @@ then.252091:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.242252
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242251
 	jmp	%i0, 0(%i31)
 loop_end.242252:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.242247
 	jmp	%i0, 0(%i31)
 loop_end.242248:
 cont.251946:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.242202
 	jmp	%i0, 0(%i31)
 loop_end.242203:
@@ -42773,8 +41545,8 @@ cont.252132:
 	set_label	%i31, cont.252133
 	jmp	%i0, 0(%i31)
 Lrelax_skip_20:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -42800,12 +41572,12 @@ Lrelax_skip_20:
 	lf	%f4, 0(%i21)
 	lf	%f13, 1(%i21)
 	lf	%f14, 2(%i21)
-	lf	%f31, 110(%i1)
-	fsub	%f5, %f31, %f5
-	lf	%f31, 111(%i1)
-	fsub	%f3, %f31, %f3
-	lf	%f31, 112(%i1)
-	fsub	%f19, %f31, %f15
+	lf	%f1, 110(%i1)
+	fsub	%f5, %f1, %f5
+	lf	%f1, 111(%i1)
+	fsub	%f3, %f1, %f3
+	lf	%f1, 112(%i1)
+	fsub	%f19, %f1, %f15
 	fmul	%f18, %f5, %f18
 	fmul	%f17, %f3, %f17
 	fmul	%f1, %f19, %f16
@@ -42898,8 +41670,7 @@ then.252136:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.252135
 then.252134:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -42926,12 +41697,10 @@ cont.252145:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.252135:
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.252146
 	movi	%i31, 2
@@ -42940,16 +41709,16 @@ cont.252135:
 	jeq	%i17, %i31, then.252150
 	ceqi	%i31, %i17, 4
 	jzero	%i0, %i31, cont.252152
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 0(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fmul	%f15, %f13, %f1
-	lf	%f31, 112(%i1)
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 2(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
@@ -42957,8 +41726,7 @@ cont.252135:
 	fmul	%f5, %f15, %f15
 	fmul	%f1, %f14, %f14
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f15
-	fmov	%f5, %f1
+	fabs	%f5, %f15
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -42970,8 +41738,7 @@ cont.252135:
 then.252153:
 	finv	%f1, %f15
 	fmul	%f1, %f14, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f14
@@ -43029,15 +41796,14 @@ then.252153:
 cont.252154:
 	ffloor	%f1, %f5
 	fsub	%f5, %f5, %f1
-	lf	%f31, 111(%i1)
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f14, %f1
 	lf	%f14, 1(%i15)
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -43049,8 +41815,7 @@ cont.252154:
 then.252155:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -43131,17 +41896,17 @@ cont.252156:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.252152:
 	jzero	%i0, %i0, cont.252147
 then.252150:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f5, %f3, %f1
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f3, %f1
 	fmul	%f3, %f5, %f5
 	fmul	%f1, %f1, %f1
 	fadd	%f3, %f3, %f1
@@ -43266,21 +42031,20 @@ cont.252158:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.252147
 then.252148:
-	lf	%f31, 111(%i1)
+	lf	%f3, 111(%i1)
 	movui	%i31, 256000
 	mif	%f1, %i31
-	fmul	%f4, %f31, %f1
+	fmul	%f4, %f3, %f1
 	lf	%f31, 91(%i1)
 	fleq	%i31, %f4, %f31
 	jzero	%i0, %i31, else.252165
@@ -43388,25 +42152,22 @@ cont.252166:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.252147
 then.252146:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -43414,15 +42175,14 @@ then.252146:
 	movui	%i31, 266752
 	mif	%f1, %i31
 	flt	%i15, %f3, %f1
-	lf	%f31, 112(%i1)
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -43460,11 +42220,9 @@ loop_start.242322:
 	jeq	%i22, %i31, then.252180
 	movi	%i31, 99
 	jeq	%i22, %i31, then.252182
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i22, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -43480,7 +42238,7 @@ loop_start.242322:
 	lf	%f1, 1(%i21)
 	fsub	%f13, %f13, %f1
 	lf	%f1, 2(%i21)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f5, %f1
 	slli	%i5, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i5
@@ -43547,16 +42305,16 @@ cont.252191:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.252195
 then.252194:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.252195:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.252185
@@ -43574,8 +42332,8 @@ then.252186:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i5)
 	fmul	%f1, %f1, %f15
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.252185
 then.252196:
@@ -43589,16 +42347,14 @@ then.252184:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.252198
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.252200
@@ -43624,16 +42380,14 @@ then.252202:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.252204
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.252206
@@ -43659,16 +42413,14 @@ then.252208:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.252210
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.252212
@@ -43693,11 +42445,11 @@ cont.252209:
 cont.252203:
 cont.252185:
 	jeq	%i5, %i0, then.252216
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.252218
 	movi	%i20, 1
 loop_start.242334:
@@ -43720,11 +42472,9 @@ loop_start.242338:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -43740,7 +42490,7 @@ loop_start.242338:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -43807,16 +42557,16 @@ cont.252233:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.252237
 then.252236:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.252237:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.252227
@@ -43834,8 +42584,8 @@ then.252228:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.252227
 then.252238:
@@ -43849,16 +42599,14 @@ then.252226:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252240
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252242
@@ -43884,16 +42632,14 @@ then.252244:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252246
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252248
@@ -43919,16 +42665,14 @@ then.252250:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252252
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252254
@@ -43952,8 +42696,7 @@ cont.252257:
 cont.252251:
 cont.252245:
 cont.252227:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.252258
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -43970,16 +42713,16 @@ cont.252259:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -44082,8 +42825,7 @@ cont.252265:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.252263
 then.252276:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.242353:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -44188,28 +42930,23 @@ cont.252282:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242354
 then.252293:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.242353
 	jmp	%i0, 0(%i31)
 then.252279:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242354
 loop_end.242354:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.252263
 then.252262:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.252263:
 	jeq	%i5, %i0, then.252295
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242339
 then.252295:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242338
 	jmp	%i0, 0(%i31)
 then.252260:
@@ -44219,8 +42956,7 @@ then.252260:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.252297
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242338
 	jmp	%i0, 0(%i31)
 then.252297:
@@ -44231,12 +42967,10 @@ then.252224:
 	jzero	%i0, %i0, loop_end.242339
 loop_end.242339:
 	jeq	%i31, %i0, then.252299
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242335
 then.252299:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.242334
 	jmp	%i0, 0(%i31)
 then.252221:
@@ -44276,11 +43010,9 @@ loop_start.242368:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -44296,7 +43028,7 @@ loop_start.242368:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -44363,16 +43095,16 @@ cont.252316:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.252320
 then.252319:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.252320:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.252310
@@ -44390,8 +43122,8 @@ then.252311:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.252310
 then.252321:
@@ -44405,16 +43137,14 @@ then.252309:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252323
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252325
@@ -44440,16 +43170,14 @@ then.252327:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252329
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252331
@@ -44475,16 +43203,14 @@ then.252333:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252335
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252337
@@ -44508,8 +43234,7 @@ cont.252340:
 cont.252334:
 cont.252328:
 cont.252310:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.252341
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -44526,16 +43251,16 @@ cont.252342:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -44638,8 +43363,7 @@ cont.252348:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.252346
 then.252359:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.242383:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -44744,28 +43468,23 @@ cont.252365:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242384
 then.252376:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.242383
 	jmp	%i0, 0(%i31)
 then.252362:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242384
 loop_end.242384:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.252346
 then.252345:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.252346:
 	jeq	%i5, %i0, then.252378
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242369
 then.252378:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242368
 	jmp	%i0, 0(%i31)
 then.252343:
@@ -44775,8 +43494,7 @@ then.252343:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.252380
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242368
 	jmp	%i0, 0(%i31)
 then.252380:
@@ -44787,12 +43505,10 @@ then.252307:
 	jzero	%i0, %i0, loop_end.242369
 loop_end.242369:
 	jeq	%i31, %i0, then.252382
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242365
 then.252382:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.242364
 	jmp	%i0, 0(%i31)
 then.252304:
@@ -44800,17 +43516,14 @@ then.252304:
 	jzero	%i0, %i0, loop_end.242365
 loop_end.242365:
 	jeq	%i31, %i0, then.252384
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242323
 then.252384:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.242322
 	jmp	%i0, 0(%i31)
 then.252301:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.242322
 	jmp	%i0, 0(%i31)
 then.252180:
@@ -44840,20 +43553,16 @@ loop_end.242323:
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
 	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	lf	%f1, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f9, %f9, %f1
 cont.252386:
 cont.252133:
 cont.251496:
-	subi	%i4, %i12, 2
-	mov	%i12, %i4
+	subi	%i12, %i12, 2
 	set_label	%i30, loop_start.241995
 	jmp	%i0, 0(%i30)
 loop_end.241996:
@@ -44877,10 +43586,9 @@ Lrelax_skip_21:
 	sf	%f4, 122(%i1)
 	sf	%f3, 123(%i1)
 	sf	%f1, 124(%i1)
-	lw	%i31, 105(%i1)
-	subi	%i4, %i31, 1
-	mov	%i5, %i4
-	jleq	%i0, %i4, then.252388
+	lw	%i4, 105(%i1)
+	subi	%i5, %i4, 1
+	jleq	%i0, %i5, then.252388
 	jzero	%i0, %i0, cont.252389
 then.252388:
 	slli	%i4, %i5, 2
@@ -44960,8 +43668,7 @@ then.252390:
 	fadd	%f5, %f12, %f5
 	sf	%f5, 3(%i18)
 cont.252391:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 loop_start.242406:
 	jleq	%i0, %i5, then.252396
 	jzero	%i0, %i0, loop_end.242407
@@ -45043,8 +43750,7 @@ then.252398:
 	fadd	%f5, %f12, %f5
 	sf	%f5, 3(%i18)
 cont.252399:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 	set_label	%i30, loop_start.242406
 	jmp	%i0, 0(%i30)
 loop_end.242407:
@@ -45085,8 +43791,7 @@ Lrelax_skip_22:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.242418:
 	slli	%i4, %i15, 2
@@ -45141,15 +43846,15 @@ then.252417:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.252422
 then.252421:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.252422:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.252414
@@ -45161,8 +43866,8 @@ then.252415:
 	lf	%f3, 3(%i20)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.252423
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.252414
 then.252423:
@@ -45182,15 +43887,13 @@ then.252413:
 	fmul	%f20, %f1, %f22
 	fmul	%f1, %f20, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.252425
 	fmul	%f1, %f20, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.252427
@@ -45212,15 +43915,13 @@ then.252429:
 	fmul	%f21, %f1, %f18
 	fmul	%f1, %f21, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f20, %f1
 	jeq	%i18, %i0, then.252431
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f19, %f1
 	jeq	%i18, %i0, then.252433
@@ -45242,15 +43943,13 @@ then.252435:
 	fmul	%f17, %f1, %f3
 	fmul	%f1, %f17, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.252437
 	fmul	%f1, %f17, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f4, %f1
 	jeq	%i5, %i0, then.252439
@@ -45274,8 +43973,8 @@ cont.252436:
 cont.252430:
 cont.252414:
 	jeq	%i5, %i0, cont.252412
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.252412
 	movi	%i23, 1
 loop_start.242429:
@@ -45338,15 +44037,15 @@ then.252455:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.252460
 then.252459:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.252460:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.252452
@@ -45358,8 +44057,8 @@ then.252453:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.252461
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.252452
 then.252461:
@@ -45462,9 +44161,8 @@ cont.252474:
 cont.252468:
 cont.252452:
 	jeq	%i19, %i0, then.252481
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.252483
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.252484
@@ -45474,16 +44172,16 @@ cont.252452:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -45581,8 +44279,7 @@ cont.252488:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.252486
 then.252499:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.242446:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -45682,20 +44379,17 @@ cont.252505:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242447
 then.252516:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242446
 	jmp	%i0, 0(%i31)
 then.252502:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242447
 loop_end.242447:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.252486
 then.252485:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.252486:
 	jeq	%i5, %i0, cont.252518
 	fmov	%f5, %f14
@@ -45707,8 +44401,7 @@ cont.252486:
 cont.252518:
 cont.252484:
 cont.252483:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242433
 	jmp	%i0, 0(%i31)
 then.252481:
@@ -45718,13 +44411,11 @@ then.252481:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.242434
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242433
 	jmp	%i0, 0(%i31)
 loop_end.242434:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.242429
 	jmp	%i0, 0(%i31)
 then.252411:
@@ -45789,15 +44480,15 @@ then.252531:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.252536
 then.252535:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.252536:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.252528
@@ -45809,8 +44500,8 @@ then.252529:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.252537
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.252528
 then.252537:
@@ -45913,9 +44604,8 @@ cont.252550:
 cont.252544:
 cont.252528:
 	jeq	%i19, %i0, then.252557
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.252559
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.252560
@@ -45925,16 +44615,16 @@ cont.252528:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -46032,8 +44722,7 @@ cont.252564:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.252562
 then.252575:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.242480:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -46133,20 +44822,17 @@ cont.252581:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242481
 then.252592:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242480
 	jmp	%i0, 0(%i31)
 then.252578:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242481
 loop_end.242481:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.252562
 then.252561:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.252562:
 	jeq	%i5, %i0, cont.252594
 	fmov	%f5, %f14
@@ -46158,8 +44844,7 @@ cont.252562:
 cont.252594:
 cont.252560:
 cont.252559:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242467
 	jmp	%i0, 0(%i31)
 then.252557:
@@ -46169,19 +44854,16 @@ then.252557:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.242468
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242467
 	jmp	%i0, 0(%i31)
 loop_end.242468:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.242463
 	jmp	%i0, 0(%i31)
 loop_end.242464:
 cont.252412:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.242418
 	jmp	%i0, 0(%i31)
 loop_end.242419:
@@ -46204,8 +44886,8 @@ cont.252598:
 	set_label	%i31, cont.252407
 	jmp	%i0, 0(%i31)
 Lrelax_skip_23:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -46231,12 +44913,12 @@ Lrelax_skip_23:
 	lf	%f4, 0(%i21)
 	lf	%f13, 1(%i21)
 	lf	%f14, 2(%i21)
-	lf	%f31, 110(%i1)
-	fsub	%f5, %f31, %f5
-	lf	%f31, 111(%i1)
-	fsub	%f3, %f31, %f3
-	lf	%f31, 112(%i1)
-	fsub	%f19, %f31, %f15
+	lf	%f1, 110(%i1)
+	fsub	%f5, %f1, %f5
+	lf	%f1, 111(%i1)
+	fsub	%f3, %f1, %f3
+	lf	%f1, 112(%i1)
+	fsub	%f19, %f1, %f15
 	fmul	%f18, %f5, %f18
 	fmul	%f17, %f3, %f17
 	fmul	%f1, %f19, %f16
@@ -46329,8 +45011,7 @@ then.252602:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.252601
 then.252600:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -46357,12 +45038,10 @@ cont.252611:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.252601:
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.252612
 	movi	%i31, 2
@@ -46371,16 +45050,16 @@ cont.252601:
 	jeq	%i17, %i31, then.252616
 	ceqi	%i31, %i17, 4
 	jzero	%i0, %i31, cont.252618
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 0(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fmul	%f15, %f13, %f1
-	lf	%f31, 112(%i1)
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 2(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
@@ -46388,8 +45067,7 @@ cont.252601:
 	fmul	%f5, %f15, %f15
 	fmul	%f1, %f14, %f14
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f15
-	fmov	%f5, %f1
+	fabs	%f5, %f15
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -46401,8 +45079,7 @@ cont.252601:
 then.252619:
 	finv	%f1, %f15
 	fmul	%f1, %f14, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f14
@@ -46460,15 +45137,14 @@ then.252619:
 cont.252620:
 	ffloor	%f1, %f5
 	fsub	%f5, %f5, %f1
-	lf	%f31, 111(%i1)
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f14, %f1
 	lf	%f14, 1(%i15)
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -46480,8 +45156,7 @@ cont.252620:
 then.252621:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -46562,17 +45237,17 @@ cont.252622:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.252618:
 	jzero	%i0, %i0, cont.252613
 then.252616:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f5, %f3, %f1
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f3, %f1
 	fmul	%f3, %f5, %f5
 	fmul	%f1, %f1, %f1
 	fadd	%f3, %f3, %f1
@@ -46697,21 +45372,20 @@ cont.252624:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.252613
 then.252614:
-	lf	%f31, 111(%i1)
+	lf	%f3, 111(%i1)
 	movui	%i31, 256000
 	mif	%f1, %i31
-	fmul	%f4, %f31, %f1
+	fmul	%f4, %f3, %f1
 	lf	%f31, 91(%i1)
 	fleq	%i31, %f4, %f31
 	jzero	%i0, %i31, else.252631
@@ -46819,25 +45493,22 @@ cont.252632:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.252613
 then.252612:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -46845,15 +45516,14 @@ then.252612:
 	movui	%i31, 266752
 	mif	%f1, %i31
 	flt	%i15, %f3, %f1
-	lf	%f31, 112(%i1)
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -46891,11 +45561,9 @@ loop_start.242538:
 	jeq	%i22, %i31, then.252646
 	movi	%i31, 99
 	jeq	%i22, %i31, then.252648
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i22, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -46911,7 +45579,7 @@ loop_start.242538:
 	lf	%f1, 1(%i21)
 	fsub	%f13, %f13, %f1
 	lf	%f1, 2(%i21)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f5, %f1
 	slli	%i5, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i5
@@ -46978,16 +45646,16 @@ cont.252657:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.252661
 then.252660:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.252661:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.252651
@@ -47005,8 +45673,8 @@ then.252652:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i5)
 	fmul	%f1, %f1, %f15
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.252651
 then.252662:
@@ -47020,16 +45688,14 @@ then.252650:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.252664
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.252666
@@ -47055,16 +45721,14 @@ then.252668:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.252670
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.252672
@@ -47090,16 +45754,14 @@ then.252674:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.252676
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.252678
@@ -47124,11 +45786,11 @@ cont.252675:
 cont.252669:
 cont.252651:
 	jeq	%i5, %i0, then.252682
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.252684
 	movi	%i20, 1
 loop_start.242550:
@@ -47151,11 +45813,9 @@ loop_start.242554:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -47171,7 +45831,7 @@ loop_start.242554:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -47238,16 +45898,16 @@ cont.252699:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.252703
 then.252702:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.252703:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.252693
@@ -47265,8 +45925,8 @@ then.252694:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.252693
 then.252704:
@@ -47280,16 +45940,14 @@ then.252692:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252706
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252708
@@ -47315,16 +45973,14 @@ then.252710:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252712
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252714
@@ -47350,16 +46006,14 @@ then.252716:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252718
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252720
@@ -47383,8 +46037,7 @@ cont.252723:
 cont.252717:
 cont.252711:
 cont.252693:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.252724
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -47401,16 +46054,16 @@ cont.252725:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -47513,8 +46166,7 @@ cont.252731:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.252729
 then.252742:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.242569:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -47619,28 +46271,23 @@ cont.252748:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242570
 then.252759:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.242569
 	jmp	%i0, 0(%i31)
 then.252745:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242570
 loop_end.242570:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.252729
 then.252728:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.252729:
 	jeq	%i5, %i0, then.252761
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242555
 then.252761:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242554
 	jmp	%i0, 0(%i31)
 then.252726:
@@ -47650,8 +46297,7 @@ then.252726:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.252763
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242554
 	jmp	%i0, 0(%i31)
 then.252763:
@@ -47662,12 +46308,10 @@ then.252690:
 	jzero	%i0, %i0, loop_end.242555
 loop_end.242555:
 	jeq	%i31, %i0, then.252765
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242551
 then.252765:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.242550
 	jmp	%i0, 0(%i31)
 then.252687:
@@ -47707,11 +46351,9 @@ loop_start.242584:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -47727,7 +46369,7 @@ loop_start.242584:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -47794,16 +46436,16 @@ cont.252782:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.252786
 then.252785:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.252786:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.252776
@@ -47821,8 +46463,8 @@ then.252777:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.252776
 then.252787:
@@ -47836,16 +46478,14 @@ then.252775:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252789
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252791
@@ -47871,16 +46511,14 @@ then.252793:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252795
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252797
@@ -47906,16 +46544,14 @@ then.252799:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252801
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.252803
@@ -47939,8 +46575,7 @@ cont.252806:
 cont.252800:
 cont.252794:
 cont.252776:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.252807
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -47957,16 +46592,16 @@ cont.252808:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -48069,8 +46704,7 @@ cont.252814:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.252812
 then.252825:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.242599:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -48175,28 +46809,23 @@ cont.252831:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242600
 then.252842:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.242599
 	jmp	%i0, 0(%i31)
 then.252828:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242600
 loop_end.242600:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.252812
 then.252811:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.252812:
 	jeq	%i5, %i0, then.252844
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242585
 then.252844:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242584
 	jmp	%i0, 0(%i31)
 then.252809:
@@ -48206,8 +46835,7 @@ then.252809:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.252846
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242584
 	jmp	%i0, 0(%i31)
 then.252846:
@@ -48218,12 +46846,10 @@ then.252773:
 	jzero	%i0, %i0, loop_end.242585
 loop_end.242585:
 	jeq	%i31, %i0, then.252848
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242581
 then.252848:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.242580
 	jmp	%i0, 0(%i31)
 then.252770:
@@ -48231,17 +46857,14 @@ then.252770:
 	jzero	%i0, %i0, loop_end.242581
 loop_end.242581:
 	jeq	%i31, %i0, then.252850
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242539
 then.252850:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.242538
 	jmp	%i0, 0(%i31)
 then.252767:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.242538
 	jmp	%i0, 0(%i31)
 then.252646:
@@ -48271,15 +46894,12 @@ loop_end.242539:
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
 	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	lf	%f1, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f9, %f9, %f1
 cont.252852:
 	set_label	%i31, cont.252407
 	jmp	%i0, 0(%i31)
@@ -48295,8 +46915,7 @@ then.252406:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.242619:
 	slli	%i4, %i15, 2
@@ -48351,15 +46970,15 @@ then.252862:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.252867
 then.252866:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.252867:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.252859
@@ -48371,8 +46990,8 @@ then.252860:
 	lf	%f3, 3(%i20)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.252868
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.252859
 then.252868:
@@ -48392,15 +47011,13 @@ then.252858:
 	fmul	%f20, %f1, %f22
 	fmul	%f1, %f20, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.252870
 	fmul	%f1, %f20, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.252872
@@ -48422,15 +47039,13 @@ then.252874:
 	fmul	%f21, %f1, %f18
 	fmul	%f1, %f21, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f20, %f1
 	jeq	%i18, %i0, then.252876
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f19, %f1
 	jeq	%i18, %i0, then.252878
@@ -48452,15 +47067,13 @@ then.252880:
 	fmul	%f17, %f1, %f3
 	fmul	%f1, %f17, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.252882
 	fmul	%f1, %f17, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f4, %f1
 	jeq	%i5, %i0, then.252884
@@ -48484,8 +47097,8 @@ cont.252881:
 cont.252875:
 cont.252859:
 	jeq	%i5, %i0, cont.252857
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.252857
 	movi	%i23, 1
 loop_start.242630:
@@ -48548,15 +47161,15 @@ then.252900:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.252905
 then.252904:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.252905:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.252897
@@ -48568,8 +47181,8 @@ then.252898:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.252906
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.252897
 then.252906:
@@ -48672,9 +47285,8 @@ cont.252919:
 cont.252913:
 cont.252897:
 	jeq	%i19, %i0, then.252926
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.252928
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.252929
@@ -48684,16 +47296,16 @@ cont.252897:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -48791,8 +47403,7 @@ cont.252933:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.252931
 then.252944:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.242647:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -48892,20 +47503,17 @@ cont.252950:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242648
 then.252961:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242647
 	jmp	%i0, 0(%i31)
 then.252947:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242648
 loop_end.242648:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.252931
 then.252930:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.252931:
 	jeq	%i5, %i0, cont.252963
 	fmov	%f5, %f14
@@ -48917,8 +47525,7 @@ cont.252931:
 cont.252963:
 cont.252929:
 cont.252928:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242634
 	jmp	%i0, 0(%i31)
 then.252926:
@@ -48928,13 +47535,11 @@ then.252926:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.242635
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242634
 	jmp	%i0, 0(%i31)
 loop_end.242635:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.242630
 	jmp	%i0, 0(%i31)
 then.252856:
@@ -48999,15 +47604,15 @@ then.252976:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.252981
 then.252980:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.252981:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.252973
@@ -49019,8 +47624,8 @@ then.252974:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.252982
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.252973
 then.252982:
@@ -49123,9 +47728,8 @@ cont.252995:
 cont.252989:
 cont.252973:
 	jeq	%i19, %i0, then.253002
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.253004
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.253005
@@ -49135,16 +47739,16 @@ cont.252973:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -49242,8 +47846,7 @@ cont.253009:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.253007
 then.253020:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.242681:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -49343,20 +47946,17 @@ cont.253026:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242682
 then.253037:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242681
 	jmp	%i0, 0(%i31)
 then.253023:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242682
 loop_end.242682:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.253007
 then.253006:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.253007:
 	jeq	%i5, %i0, cont.253039
 	fmov	%f5, %f14
@@ -49368,8 +47968,7 @@ cont.253007:
 cont.253039:
 cont.253005:
 cont.253004:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242668
 	jmp	%i0, 0(%i31)
 then.253002:
@@ -49379,19 +47978,16 @@ then.253002:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.242669
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242668
 	jmp	%i0, 0(%i31)
 loop_end.242669:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.242664
 	jmp	%i0, 0(%i31)
 loop_end.242665:
 cont.252857:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.242619
 	jmp	%i0, 0(%i31)
 loop_end.242620:
@@ -49414,8 +48010,8 @@ cont.253043:
 	set_label	%i31, cont.253044
 	jmp	%i0, 0(%i31)
 Lrelax_skip_24:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -49441,12 +48037,12 @@ Lrelax_skip_24:
 	lf	%f4, 0(%i21)
 	lf	%f13, 1(%i21)
 	lf	%f14, 2(%i21)
-	lf	%f31, 110(%i1)
-	fsub	%f5, %f31, %f5
-	lf	%f31, 111(%i1)
-	fsub	%f3, %f31, %f3
-	lf	%f31, 112(%i1)
-	fsub	%f19, %f31, %f15
+	lf	%f1, 110(%i1)
+	fsub	%f5, %f1, %f5
+	lf	%f1, 111(%i1)
+	fsub	%f3, %f1, %f3
+	lf	%f1, 112(%i1)
+	fsub	%f19, %f1, %f15
 	fmul	%f18, %f5, %f18
 	fmul	%f17, %f3, %f17
 	fmul	%f1, %f19, %f16
@@ -49539,8 +48135,7 @@ then.253047:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.253046
 then.253045:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -49567,12 +48162,10 @@ cont.253056:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.253046:
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.253057
 	movi	%i31, 2
@@ -49581,16 +48174,16 @@ cont.253046:
 	jeq	%i17, %i31, then.253061
 	ceqi	%i31, %i17, 4
 	jzero	%i0, %i31, cont.253063
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 0(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fmul	%f15, %f13, %f1
-	lf	%f31, 112(%i1)
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 2(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
@@ -49598,8 +48191,7 @@ cont.253046:
 	fmul	%f5, %f15, %f15
 	fmul	%f1, %f14, %f14
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f15
-	fmov	%f5, %f1
+	fabs	%f5, %f15
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -49611,8 +48203,7 @@ cont.253046:
 then.253064:
 	finv	%f1, %f15
 	fmul	%f1, %f14, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f14
@@ -49670,15 +48261,14 @@ then.253064:
 cont.253065:
 	ffloor	%f1, %f5
 	fsub	%f5, %f5, %f1
-	lf	%f31, 111(%i1)
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f14, %f1
 	lf	%f14, 1(%i15)
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -49690,8 +48280,7 @@ cont.253065:
 then.253066:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -49772,17 +48361,17 @@ cont.253067:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.253063:
 	jzero	%i0, %i0, cont.253058
 then.253061:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f5, %f3, %f1
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f3, %f1
 	fmul	%f3, %f5, %f5
 	fmul	%f1, %f1, %f1
 	fadd	%f3, %f3, %f1
@@ -49907,21 +48496,20 @@ cont.253069:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.253058
 then.253059:
-	lf	%f31, 111(%i1)
+	lf	%f3, 111(%i1)
 	movui	%i31, 256000
 	mif	%f1, %i31
-	fmul	%f4, %f31, %f1
+	fmul	%f4, %f3, %f1
 	lf	%f31, 91(%i1)
 	fleq	%i31, %f4, %f31
 	jzero	%i0, %i31, else.253076
@@ -50029,25 +48617,22 @@ cont.253077:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.253058
 then.253057:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -50055,15 +48640,14 @@ then.253057:
 	movui	%i31, 266752
 	mif	%f1, %i31
 	flt	%i15, %f3, %f1
-	lf	%f31, 112(%i1)
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -50101,11 +48685,9 @@ loop_start.242739:
 	jeq	%i22, %i31, then.253091
 	movi	%i31, 99
 	jeq	%i22, %i31, then.253093
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i22, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -50121,7 +48703,7 @@ loop_start.242739:
 	lf	%f1, 1(%i21)
 	fsub	%f13, %f13, %f1
 	lf	%f1, 2(%i21)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f5, %f1
 	slli	%i5, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i5
@@ -50188,16 +48770,16 @@ cont.253102:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.253106
 then.253105:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.253106:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.253096
@@ -50215,8 +48797,8 @@ then.253097:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i5)
 	fmul	%f1, %f1, %f15
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.253096
 then.253107:
@@ -50230,16 +48812,14 @@ then.253095:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.253109
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.253111
@@ -50265,16 +48845,14 @@ then.253113:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.253115
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.253117
@@ -50300,16 +48878,14 @@ then.253119:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.253121
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.253123
@@ -50334,11 +48910,11 @@ cont.253120:
 cont.253114:
 cont.253096:
 	jeq	%i5, %i0, then.253127
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.253129
 	movi	%i20, 1
 loop_start.242751:
@@ -50361,11 +48937,9 @@ loop_start.242755:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -50381,7 +48955,7 @@ loop_start.242755:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -50448,16 +49022,16 @@ cont.253144:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.253148
 then.253147:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.253148:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.253138
@@ -50475,8 +49049,8 @@ then.253139:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.253138
 then.253149:
@@ -50490,16 +49064,14 @@ then.253137:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253151
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253153
@@ -50525,16 +49097,14 @@ then.253155:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253157
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253159
@@ -50560,16 +49130,14 @@ then.253161:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253163
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253165
@@ -50593,8 +49161,7 @@ cont.253168:
 cont.253162:
 cont.253156:
 cont.253138:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.253169
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -50611,16 +49178,16 @@ cont.253170:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -50723,8 +49290,7 @@ cont.253176:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.253174
 then.253187:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.242770:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -50829,28 +49395,23 @@ cont.253193:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242771
 then.253204:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.242770
 	jmp	%i0, 0(%i31)
 then.253190:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242771
 loop_end.242771:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.253174
 then.253173:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.253174:
 	jeq	%i5, %i0, then.253206
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242756
 then.253206:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242755
 	jmp	%i0, 0(%i31)
 then.253171:
@@ -50860,8 +49421,7 @@ then.253171:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.253208
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242755
 	jmp	%i0, 0(%i31)
 then.253208:
@@ -50872,12 +49432,10 @@ then.253135:
 	jzero	%i0, %i0, loop_end.242756
 loop_end.242756:
 	jeq	%i31, %i0, then.253210
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242752
 then.253210:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.242751
 	jmp	%i0, 0(%i31)
 then.253132:
@@ -50917,11 +49475,9 @@ loop_start.242785:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -50937,7 +49493,7 @@ loop_start.242785:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -51004,16 +49560,16 @@ cont.253227:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.253231
 then.253230:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.253231:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.253221
@@ -51031,8 +49587,8 @@ then.253222:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.253221
 then.253232:
@@ -51046,16 +49602,14 @@ then.253220:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253234
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253236
@@ -51081,16 +49635,14 @@ then.253238:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253240
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253242
@@ -51116,16 +49668,14 @@ then.253244:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253246
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253248
@@ -51149,8 +49699,7 @@ cont.253251:
 cont.253245:
 cont.253239:
 cont.253221:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.253252
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -51167,16 +49716,16 @@ cont.253253:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -51279,8 +49828,7 @@ cont.253259:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.253257
 then.253270:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.242800:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -51385,28 +49933,23 @@ cont.253276:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242801
 then.253287:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.242800
 	jmp	%i0, 0(%i31)
 then.253273:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242801
 loop_end.242801:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.253257
 then.253256:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.253257:
 	jeq	%i5, %i0, then.253289
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242786
 then.253289:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242785
 	jmp	%i0, 0(%i31)
 then.253254:
@@ -51416,8 +49959,7 @@ then.253254:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.253291
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242785
 	jmp	%i0, 0(%i31)
 then.253291:
@@ -51428,12 +49970,10 @@ then.253218:
 	jzero	%i0, %i0, loop_end.242786
 loop_end.242786:
 	jeq	%i31, %i0, then.253293
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242782
 then.253293:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.242781
 	jmp	%i0, 0(%i31)
 then.253215:
@@ -51441,17 +49981,14 @@ then.253215:
 	jzero	%i0, %i0, loop_end.242782
 loop_end.242782:
 	jeq	%i31, %i0, then.253295
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242740
 then.253295:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.242739
 	jmp	%i0, 0(%i31)
 then.253212:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.242739
 	jmp	%i0, 0(%i31)
 then.253091:
@@ -51481,20 +50018,16 @@ loop_end.242740:
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
 	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	lf	%f1, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f9, %f9, %f1
 cont.253297:
 cont.253044:
 cont.252407:
-	subi	%i4, %i12, 2
-	mov	%i12, %i4
+	subi	%i12, %i12, 2
 	set_label	%i30, loop_start.242412
 	jmp	%i0, 0(%i30)
 loop_end.242413:
@@ -51518,10 +50051,9 @@ Lrelax_skip_25:
 	sf	%f4, 122(%i1)
 	sf	%f3, 123(%i1)
 	sf	%f1, 124(%i1)
-	lw	%i31, 105(%i1)
-	subi	%i4, %i31, 1
-	mov	%i5, %i4
-	jleq	%i0, %i4, then.253299
+	lw	%i4, 105(%i1)
+	subi	%i5, %i4, 1
+	jleq	%i0, %i5, then.253299
 	jzero	%i0, %i0, cont.253300
 then.253299:
 	slli	%i4, %i5, 2
@@ -51601,8 +50133,7 @@ then.253301:
 	fadd	%f5, %f12, %f5
 	sf	%f5, 3(%i18)
 cont.253302:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 loop_start.242823:
 	jleq	%i0, %i5, then.253307
 	jzero	%i0, %i0, loop_end.242824
@@ -51684,8 +50215,7 @@ then.253309:
 	fadd	%f5, %f12, %f5
 	sf	%f5, 3(%i18)
 cont.253310:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 	set_label	%i30, loop_start.242823
 	jmp	%i0, 0(%i30)
 loop_end.242824:
@@ -51726,8 +50256,7 @@ Lrelax_skip_26:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.242835:
 	slli	%i4, %i15, 2
@@ -51782,15 +50311,15 @@ then.253328:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.253333
 then.253332:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.253333:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.253325
@@ -51802,8 +50331,8 @@ then.253326:
 	lf	%f3, 3(%i20)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.253334
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.253325
 then.253334:
@@ -51823,15 +50352,13 @@ then.253324:
 	fmul	%f20, %f1, %f22
 	fmul	%f1, %f20, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.253336
 	fmul	%f1, %f20, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.253338
@@ -51853,15 +50380,13 @@ then.253340:
 	fmul	%f21, %f1, %f18
 	fmul	%f1, %f21, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f20, %f1
 	jeq	%i18, %i0, then.253342
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f19, %f1
 	jeq	%i18, %i0, then.253344
@@ -51883,15 +50408,13 @@ then.253346:
 	fmul	%f17, %f1, %f3
 	fmul	%f1, %f17, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.253348
 	fmul	%f1, %f17, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f4, %f1
 	jeq	%i5, %i0, then.253350
@@ -51915,8 +50438,8 @@ cont.253347:
 cont.253341:
 cont.253325:
 	jeq	%i5, %i0, cont.253323
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.253323
 	movi	%i23, 1
 loop_start.242846:
@@ -51979,15 +50502,15 @@ then.253366:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.253371
 then.253370:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.253371:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.253363
@@ -51999,8 +50522,8 @@ then.253364:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.253372
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.253363
 then.253372:
@@ -52103,9 +50626,8 @@ cont.253385:
 cont.253379:
 cont.253363:
 	jeq	%i19, %i0, then.253392
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.253394
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.253395
@@ -52115,16 +50637,16 @@ cont.253363:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -52222,8 +50744,7 @@ cont.253399:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.253397
 then.253410:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.242863:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -52323,20 +50844,17 @@ cont.253416:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242864
 then.253427:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242863
 	jmp	%i0, 0(%i31)
 then.253413:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242864
 loop_end.242864:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.253397
 then.253396:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.253397:
 	jeq	%i5, %i0, cont.253429
 	fmov	%f5, %f14
@@ -52348,8 +50866,7 @@ cont.253397:
 cont.253429:
 cont.253395:
 cont.253394:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242850
 	jmp	%i0, 0(%i31)
 then.253392:
@@ -52359,13 +50876,11 @@ then.253392:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.242851
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242850
 	jmp	%i0, 0(%i31)
 loop_end.242851:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.242846
 	jmp	%i0, 0(%i31)
 then.253322:
@@ -52430,15 +50945,15 @@ then.253442:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.253447
 then.253446:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.253447:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.253439
@@ -52450,8 +50965,8 @@ then.253440:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.253448
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.253439
 then.253448:
@@ -52554,9 +51069,8 @@ cont.253461:
 cont.253455:
 cont.253439:
 	jeq	%i19, %i0, then.253468
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.253470
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.253471
@@ -52566,16 +51080,16 @@ cont.253439:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -52673,8 +51187,7 @@ cont.253475:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.253473
 then.253486:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.242897:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -52774,20 +51287,17 @@ cont.253492:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242898
 then.253503:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242897
 	jmp	%i0, 0(%i31)
 then.253489:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242898
 loop_end.242898:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.253473
 then.253472:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.253473:
 	jeq	%i5, %i0, cont.253505
 	fmov	%f5, %f14
@@ -52799,8 +51309,7 @@ cont.253473:
 cont.253505:
 cont.253471:
 cont.253470:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242884
 	jmp	%i0, 0(%i31)
 then.253468:
@@ -52810,19 +51319,16 @@ then.253468:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.242885
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.242884
 	jmp	%i0, 0(%i31)
 loop_end.242885:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.242880
 	jmp	%i0, 0(%i31)
 loop_end.242881:
 cont.253323:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.242835
 	jmp	%i0, 0(%i31)
 loop_end.242836:
@@ -52845,8 +51351,8 @@ cont.253509:
 	set_label	%i31, cont.253318
 	jmp	%i0, 0(%i31)
 Lrelax_skip_27:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -52872,12 +51378,12 @@ Lrelax_skip_27:
 	lf	%f4, 0(%i21)
 	lf	%f13, 1(%i21)
 	lf	%f14, 2(%i21)
-	lf	%f31, 110(%i1)
-	fsub	%f5, %f31, %f5
-	lf	%f31, 111(%i1)
-	fsub	%f3, %f31, %f3
-	lf	%f31, 112(%i1)
-	fsub	%f19, %f31, %f15
+	lf	%f1, 110(%i1)
+	fsub	%f5, %f1, %f5
+	lf	%f1, 111(%i1)
+	fsub	%f3, %f1, %f3
+	lf	%f1, 112(%i1)
+	fsub	%f19, %f1, %f15
 	fmul	%f18, %f5, %f18
 	fmul	%f17, %f3, %f17
 	fmul	%f1, %f19, %f16
@@ -52970,8 +51476,7 @@ then.253513:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.253512
 then.253511:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -52998,12 +51503,10 @@ cont.253522:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.253512:
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.253523
 	movi	%i31, 2
@@ -53012,16 +51515,16 @@ cont.253512:
 	jeq	%i17, %i31, then.253527
 	ceqi	%i31, %i17, 4
 	jzero	%i0, %i31, cont.253529
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 0(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fmul	%f15, %f13, %f1
-	lf	%f31, 112(%i1)
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 2(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
@@ -53029,8 +51532,7 @@ cont.253512:
 	fmul	%f5, %f15, %f15
 	fmul	%f1, %f14, %f14
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f15
-	fmov	%f5, %f1
+	fabs	%f5, %f15
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -53042,8 +51544,7 @@ cont.253512:
 then.253530:
 	finv	%f1, %f15
 	fmul	%f1, %f14, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f14
@@ -53101,15 +51602,14 @@ then.253530:
 cont.253531:
 	ffloor	%f1, %f5
 	fsub	%f5, %f5, %f1
-	lf	%f31, 111(%i1)
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f14, %f1
 	lf	%f14, 1(%i15)
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -53121,8 +51621,7 @@ cont.253531:
 then.253532:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -53203,17 +51702,17 @@ cont.253533:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.253529:
 	jzero	%i0, %i0, cont.253524
 then.253527:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f5, %f3, %f1
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f3, %f1
 	fmul	%f3, %f5, %f5
 	fmul	%f1, %f1, %f1
 	fadd	%f3, %f3, %f1
@@ -53338,21 +51837,20 @@ cont.253535:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.253524
 then.253525:
-	lf	%f31, 111(%i1)
+	lf	%f3, 111(%i1)
 	movui	%i31, 256000
 	mif	%f1, %i31
-	fmul	%f4, %f31, %f1
+	fmul	%f4, %f3, %f1
 	lf	%f31, 91(%i1)
 	fleq	%i31, %f4, %f31
 	jzero	%i0, %i31, else.253542
@@ -53460,25 +51958,22 @@ cont.253543:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.253524
 then.253523:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -53486,15 +51981,14 @@ then.253523:
 	movui	%i31, 266752
 	mif	%f1, %i31
 	flt	%i15, %f3, %f1
-	lf	%f31, 112(%i1)
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -53532,11 +52026,9 @@ loop_start.242955:
 	jeq	%i22, %i31, then.253557
 	movi	%i31, 99
 	jeq	%i22, %i31, then.253559
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i22, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -53552,7 +52044,7 @@ loop_start.242955:
 	lf	%f1, 1(%i21)
 	fsub	%f13, %f13, %f1
 	lf	%f1, 2(%i21)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f5, %f1
 	slli	%i5, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i5
@@ -53619,16 +52111,16 @@ cont.253568:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.253572
 then.253571:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.253572:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.253562
@@ -53646,8 +52138,8 @@ then.253563:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i5)
 	fmul	%f1, %f1, %f15
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.253562
 then.253573:
@@ -53661,16 +52153,14 @@ then.253561:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.253575
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.253577
@@ -53696,16 +52186,14 @@ then.253579:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.253581
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.253583
@@ -53731,16 +52219,14 @@ then.253585:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.253587
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.253589
@@ -53765,11 +52251,11 @@ cont.253586:
 cont.253580:
 cont.253562:
 	jeq	%i5, %i0, then.253593
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.253595
 	movi	%i20, 1
 loop_start.242967:
@@ -53792,11 +52278,9 @@ loop_start.242971:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -53812,7 +52296,7 @@ loop_start.242971:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -53879,16 +52363,16 @@ cont.253610:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.253614
 then.253613:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.253614:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.253604
@@ -53906,8 +52390,8 @@ then.253605:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.253604
 then.253615:
@@ -53921,16 +52405,14 @@ then.253603:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253617
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253619
@@ -53956,16 +52438,14 @@ then.253621:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253623
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253625
@@ -53991,16 +52471,14 @@ then.253627:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253629
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253631
@@ -54024,8 +52502,7 @@ cont.253634:
 cont.253628:
 cont.253622:
 cont.253604:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.253635
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -54042,16 +52519,16 @@ cont.253636:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -54154,8 +52631,7 @@ cont.253642:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.253640
 then.253653:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.242986:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -54260,28 +52736,23 @@ cont.253659:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.242987
 then.253670:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.242986
 	jmp	%i0, 0(%i31)
 then.253656:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242987
 loop_end.242987:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.253640
 then.253639:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.253640:
 	jeq	%i5, %i0, then.253672
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242972
 then.253672:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242971
 	jmp	%i0, 0(%i31)
 then.253637:
@@ -54291,8 +52762,7 @@ then.253637:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.253674
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.242971
 	jmp	%i0, 0(%i31)
 then.253674:
@@ -54303,12 +52773,10 @@ then.253601:
 	jzero	%i0, %i0, loop_end.242972
 loop_end.242972:
 	jeq	%i31, %i0, then.253676
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242968
 then.253676:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.242967
 	jmp	%i0, 0(%i31)
 then.253598:
@@ -54348,11 +52816,9 @@ loop_start.243001:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -54368,7 +52834,7 @@ loop_start.243001:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -54435,16 +52901,16 @@ cont.253693:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.253697
 then.253696:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.253697:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.253687
@@ -54462,8 +52928,8 @@ then.253688:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.253687
 then.253698:
@@ -54477,16 +52943,14 @@ then.253686:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253700
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253702
@@ -54512,16 +52976,14 @@ then.253704:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253706
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253708
@@ -54547,16 +53009,14 @@ then.253710:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253712
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.253714
@@ -54580,8 +53040,7 @@ cont.253717:
 cont.253711:
 cont.253705:
 cont.253687:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.253718
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -54598,16 +53057,16 @@ cont.253719:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -54710,8 +53169,7 @@ cont.253725:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.253723
 then.253736:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.243016:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -54816,28 +53274,23 @@ cont.253742:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243017
 then.253753:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.243016
 	jmp	%i0, 0(%i31)
 then.253739:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243017
 loop_end.243017:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.253723
 then.253722:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.253723:
 	jeq	%i5, %i0, then.253755
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243002
 then.253755:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243001
 	jmp	%i0, 0(%i31)
 then.253720:
@@ -54847,8 +53300,7 @@ then.253720:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.253757
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243001
 	jmp	%i0, 0(%i31)
 then.253757:
@@ -54859,12 +53311,10 @@ then.253684:
 	jzero	%i0, %i0, loop_end.243002
 loop_end.243002:
 	jeq	%i31, %i0, then.253759
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242998
 then.253759:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.242997
 	jmp	%i0, 0(%i31)
 then.253681:
@@ -54872,17 +53322,14 @@ then.253681:
 	jzero	%i0, %i0, loop_end.242998
 loop_end.242998:
 	jeq	%i31, %i0, then.253761
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.242956
 then.253761:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.242955
 	jmp	%i0, 0(%i31)
 then.253678:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.242955
 	jmp	%i0, 0(%i31)
 then.253557:
@@ -54912,15 +53359,12 @@ loop_end.242956:
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
 	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	lf	%f1, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f9, %f9, %f1
 cont.253763:
 	set_label	%i31, cont.253318
 	jmp	%i0, 0(%i31)
@@ -54936,8 +53380,7 @@ then.253317:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.243036:
 	slli	%i4, %i15, 2
@@ -54992,15 +53435,15 @@ then.253773:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.253778
 then.253777:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.253778:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.253770
@@ -55012,8 +53455,8 @@ then.253771:
 	lf	%f3, 3(%i20)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.253779
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.253770
 then.253779:
@@ -55033,15 +53476,13 @@ then.253769:
 	fmul	%f20, %f1, %f22
 	fmul	%f1, %f20, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.253781
 	fmul	%f1, %f20, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.253783
@@ -55063,15 +53504,13 @@ then.253785:
 	fmul	%f21, %f1, %f18
 	fmul	%f1, %f21, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f20, %f1
 	jeq	%i18, %i0, then.253787
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f19, %f1
 	jeq	%i18, %i0, then.253789
@@ -55093,15 +53532,13 @@ then.253791:
 	fmul	%f17, %f1, %f3
 	fmul	%f1, %f17, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.253793
 	fmul	%f1, %f17, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f4, %f1
 	jeq	%i5, %i0, then.253795
@@ -55125,8 +53562,8 @@ cont.253792:
 cont.253786:
 cont.253770:
 	jeq	%i5, %i0, cont.253768
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.253768
 	movi	%i23, 1
 loop_start.243047:
@@ -55189,15 +53626,15 @@ then.253811:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.253816
 then.253815:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.253816:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.253808
@@ -55209,8 +53646,8 @@ then.253809:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.253817
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.253808
 then.253817:
@@ -55313,9 +53750,8 @@ cont.253830:
 cont.253824:
 cont.253808:
 	jeq	%i19, %i0, then.253837
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.253839
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.253840
@@ -55325,16 +53761,16 @@ cont.253808:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -55432,8 +53868,7 @@ cont.253844:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.253842
 then.253855:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.243064:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -55533,20 +53968,17 @@ cont.253861:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243065
 then.253872:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243064
 	jmp	%i0, 0(%i31)
 then.253858:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243065
 loop_end.243065:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.253842
 then.253841:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.253842:
 	jeq	%i5, %i0, cont.253874
 	fmov	%f5, %f14
@@ -55558,8 +53990,7 @@ cont.253842:
 cont.253874:
 cont.253840:
 cont.253839:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.243051
 	jmp	%i0, 0(%i31)
 then.253837:
@@ -55569,13 +54000,11 @@ then.253837:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.243052
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.243051
 	jmp	%i0, 0(%i31)
 loop_end.243052:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.243047
 	jmp	%i0, 0(%i31)
 then.253767:
@@ -55640,15 +54069,15 @@ then.253887:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.253892
 then.253891:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.253892:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.253884
@@ -55660,8 +54089,8 @@ then.253885:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.253893
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.253884
 then.253893:
@@ -55764,9 +54193,8 @@ cont.253906:
 cont.253900:
 cont.253884:
 	jeq	%i19, %i0, then.253913
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.253915
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.253916
@@ -55776,16 +54204,16 @@ cont.253884:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -55883,8 +54311,7 @@ cont.253920:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.253918
 then.253931:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.243098:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -55984,20 +54411,17 @@ cont.253937:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243099
 then.253948:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243098
 	jmp	%i0, 0(%i31)
 then.253934:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243099
 loop_end.243099:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.253918
 then.253917:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.253918:
 	jeq	%i5, %i0, cont.253950
 	fmov	%f5, %f14
@@ -56009,8 +54433,7 @@ cont.253918:
 cont.253950:
 cont.253916:
 cont.253915:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.243085
 	jmp	%i0, 0(%i31)
 then.253913:
@@ -56020,19 +54443,16 @@ then.253913:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.243086
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.243085
 	jmp	%i0, 0(%i31)
 loop_end.243086:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.243081
 	jmp	%i0, 0(%i31)
 loop_end.243082:
 cont.253768:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.243036
 	jmp	%i0, 0(%i31)
 loop_end.243037:
@@ -56055,8 +54475,8 @@ cont.253954:
 	set_label	%i31, cont.253955
 	jmp	%i0, 0(%i31)
 Lrelax_skip_28:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -56082,12 +54502,12 @@ Lrelax_skip_28:
 	lf	%f4, 0(%i21)
 	lf	%f13, 1(%i21)
 	lf	%f14, 2(%i21)
-	lf	%f31, 110(%i1)
-	fsub	%f5, %f31, %f5
-	lf	%f31, 111(%i1)
-	fsub	%f3, %f31, %f3
-	lf	%f31, 112(%i1)
-	fsub	%f19, %f31, %f15
+	lf	%f1, 110(%i1)
+	fsub	%f5, %f1, %f5
+	lf	%f1, 111(%i1)
+	fsub	%f3, %f1, %f3
+	lf	%f1, 112(%i1)
+	fsub	%f19, %f1, %f15
 	fmul	%f18, %f5, %f18
 	fmul	%f17, %f3, %f17
 	fmul	%f1, %f19, %f16
@@ -56180,8 +54600,7 @@ then.253958:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.253957
 then.253956:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -56208,12 +54627,10 @@ cont.253967:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.253957:
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.253968
 	movi	%i31, 2
@@ -56222,16 +54639,16 @@ cont.253957:
 	jeq	%i17, %i31, then.253972
 	ceqi	%i31, %i17, 4
 	jzero	%i0, %i31, cont.253974
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 0(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fmul	%f15, %f13, %f1
-	lf	%f31, 112(%i1)
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 2(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
@@ -56239,8 +54656,7 @@ cont.253957:
 	fmul	%f5, %f15, %f15
 	fmul	%f1, %f14, %f14
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f15
-	fmov	%f5, %f1
+	fabs	%f5, %f15
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -56252,8 +54668,7 @@ cont.253957:
 then.253975:
 	finv	%f1, %f15
 	fmul	%f1, %f14, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f14
@@ -56311,15 +54726,14 @@ then.253975:
 cont.253976:
 	ffloor	%f1, %f5
 	fsub	%f5, %f5, %f1
-	lf	%f31, 111(%i1)
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f14, %f1
 	lf	%f14, 1(%i15)
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -56331,8 +54745,7 @@ cont.253976:
 then.253977:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -56413,17 +54826,17 @@ cont.253978:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.253974:
 	jzero	%i0, %i0, cont.253969
 then.253972:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f5, %f3, %f1
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f3, %f1
 	fmul	%f3, %f5, %f5
 	fmul	%f1, %f1, %f1
 	fadd	%f3, %f3, %f1
@@ -56548,21 +54961,20 @@ cont.253980:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.253969
 then.253970:
-	lf	%f31, 111(%i1)
+	lf	%f3, 111(%i1)
 	movui	%i31, 256000
 	mif	%f1, %i31
-	fmul	%f4, %f31, %f1
+	fmul	%f4, %f3, %f1
 	lf	%f31, 91(%i1)
 	fleq	%i31, %f4, %f31
 	jzero	%i0, %i31, else.253987
@@ -56670,25 +55082,22 @@ cont.253988:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.253969
 then.253968:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -56696,15 +55105,14 @@ then.253968:
 	movui	%i31, 266752
 	mif	%f1, %i31
 	flt	%i15, %f3, %f1
-	lf	%f31, 112(%i1)
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -56742,11 +55150,9 @@ loop_start.243156:
 	jeq	%i22, %i31, then.254002
 	movi	%i31, 99
 	jeq	%i22, %i31, then.254004
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i22, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -56762,7 +55168,7 @@ loop_start.243156:
 	lf	%f1, 1(%i21)
 	fsub	%f13, %f13, %f1
 	lf	%f1, 2(%i21)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f5, %f1
 	slli	%i5, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i5
@@ -56829,16 +55235,16 @@ cont.254013:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.254017
 then.254016:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.254017:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.254007
@@ -56856,8 +55262,8 @@ then.254008:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i5)
 	fmul	%f1, %f1, %f15
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.254007
 then.254018:
@@ -56871,16 +55277,14 @@ then.254006:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.254020
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.254022
@@ -56906,16 +55310,14 @@ then.254024:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.254026
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.254028
@@ -56941,16 +55343,14 @@ then.254030:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.254032
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.254034
@@ -56975,11 +55375,11 @@ cont.254031:
 cont.254025:
 cont.254007:
 	jeq	%i5, %i0, then.254038
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.254040
 	movi	%i20, 1
 loop_start.243168:
@@ -57002,11 +55402,9 @@ loop_start.243172:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -57022,7 +55420,7 @@ loop_start.243172:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -57089,16 +55487,16 @@ cont.254055:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.254059
 then.254058:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.254059:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.254049
@@ -57116,8 +55514,8 @@ then.254050:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.254049
 then.254060:
@@ -57131,16 +55529,14 @@ then.254048:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254062
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254064
@@ -57166,16 +55562,14 @@ then.254066:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254068
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254070
@@ -57201,16 +55595,14 @@ then.254072:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254074
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254076
@@ -57234,8 +55626,7 @@ cont.254079:
 cont.254073:
 cont.254067:
 cont.254049:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.254080
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -57252,16 +55643,16 @@ cont.254081:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -57364,8 +55755,7 @@ cont.254087:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.254085
 then.254098:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.243187:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -57470,28 +55860,23 @@ cont.254104:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243188
 then.254115:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.243187
 	jmp	%i0, 0(%i31)
 then.254101:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243188
 loop_end.243188:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.254085
 then.254084:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.254085:
 	jeq	%i5, %i0, then.254117
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243173
 then.254117:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243172
 	jmp	%i0, 0(%i31)
 then.254082:
@@ -57501,8 +55886,7 @@ then.254082:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.254119
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243172
 	jmp	%i0, 0(%i31)
 then.254119:
@@ -57513,12 +55897,10 @@ then.254046:
 	jzero	%i0, %i0, loop_end.243173
 loop_end.243173:
 	jeq	%i31, %i0, then.254121
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243169
 then.254121:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.243168
 	jmp	%i0, 0(%i31)
 then.254043:
@@ -57558,11 +55940,9 @@ loop_start.243202:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -57578,7 +55958,7 @@ loop_start.243202:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -57645,16 +56025,16 @@ cont.254138:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.254142
 then.254141:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.254142:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.254132
@@ -57672,8 +56052,8 @@ then.254133:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.254132
 then.254143:
@@ -57687,16 +56067,14 @@ then.254131:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254145
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254147
@@ -57722,16 +56100,14 @@ then.254149:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254151
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254153
@@ -57757,16 +56133,14 @@ then.254155:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254157
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254159
@@ -57790,8 +56164,7 @@ cont.254162:
 cont.254156:
 cont.254150:
 cont.254132:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.254163
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -57808,16 +56181,16 @@ cont.254164:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -57920,8 +56293,7 @@ cont.254170:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.254168
 then.254181:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.243217:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -58026,28 +56398,23 @@ cont.254187:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243218
 then.254198:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.243217
 	jmp	%i0, 0(%i31)
 then.254184:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243218
 loop_end.243218:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.254168
 then.254167:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.254168:
 	jeq	%i5, %i0, then.254200
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243203
 then.254200:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243202
 	jmp	%i0, 0(%i31)
 then.254165:
@@ -58057,8 +56424,7 @@ then.254165:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.254202
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243202
 	jmp	%i0, 0(%i31)
 then.254202:
@@ -58069,12 +56435,10 @@ then.254129:
 	jzero	%i0, %i0, loop_end.243203
 loop_end.243203:
 	jeq	%i31, %i0, then.254204
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243199
 then.254204:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.243198
 	jmp	%i0, 0(%i31)
 then.254126:
@@ -58082,17 +56446,14 @@ then.254126:
 	jzero	%i0, %i0, loop_end.243199
 loop_end.243199:
 	jeq	%i31, %i0, then.254206
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243157
 then.254206:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.243156
 	jmp	%i0, 0(%i31)
 then.254123:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.243156
 	jmp	%i0, 0(%i31)
 then.254002:
@@ -58122,20 +56483,16 @@ loop_end.243157:
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
 	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	lf	%f1, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f9, %f9, %f1
 cont.254208:
 cont.253955:
 cont.253318:
-	subi	%i4, %i12, 2
-	mov	%i12, %i4
+	subi	%i12, %i12, 2
 	set_label	%i30, loop_start.242829
 	jmp	%i0, 0(%i30)
 loop_end.242830:
@@ -58159,10 +56516,9 @@ Lrelax_skip_29:
 	sf	%f4, 122(%i1)
 	sf	%f3, 123(%i1)
 	sf	%f1, 124(%i1)
-	lw	%i31, 105(%i1)
-	subi	%i4, %i31, 1
-	mov	%i5, %i4
-	jleq	%i0, %i4, then.254210
+	lw	%i4, 105(%i1)
+	subi	%i5, %i4, 1
+	jleq	%i0, %i5, then.254210
 	jzero	%i0, %i0, cont.254211
 then.254210:
 	slli	%i4, %i5, 2
@@ -58242,8 +56598,7 @@ then.254212:
 	fadd	%f5, %f12, %f5
 	sf	%f5, 3(%i18)
 cont.254213:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 loop_start.243240:
 	jleq	%i0, %i5, then.254218
 	jzero	%i0, %i0, loop_end.243241
@@ -58325,8 +56680,7 @@ then.254220:
 	fadd	%f5, %f12, %f5
 	sf	%f5, 3(%i18)
 cont.254221:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 	set_label	%i30, loop_start.243240
 	jmp	%i0, 0(%i30)
 loop_end.243241:
@@ -58367,8 +56721,7 @@ Lrelax_skip_30:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.243252:
 	slli	%i4, %i15, 2
@@ -58423,15 +56776,15 @@ then.254239:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.254244
 then.254243:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.254244:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.254236
@@ -58443,8 +56796,8 @@ then.254237:
 	lf	%f3, 3(%i20)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.254245
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.254236
 then.254245:
@@ -58464,15 +56817,13 @@ then.254235:
 	fmul	%f20, %f1, %f22
 	fmul	%f1, %f20, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.254247
 	fmul	%f1, %f20, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.254249
@@ -58494,15 +56845,13 @@ then.254251:
 	fmul	%f21, %f1, %f18
 	fmul	%f1, %f21, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f20, %f1
 	jeq	%i18, %i0, then.254253
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f19, %f1
 	jeq	%i18, %i0, then.254255
@@ -58524,15 +56873,13 @@ then.254257:
 	fmul	%f17, %f1, %f3
 	fmul	%f1, %f17, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.254259
 	fmul	%f1, %f17, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f4, %f1
 	jeq	%i5, %i0, then.254261
@@ -58556,8 +56903,8 @@ cont.254258:
 cont.254252:
 cont.254236:
 	jeq	%i5, %i0, cont.254234
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.254234
 	movi	%i23, 1
 loop_start.243263:
@@ -58620,15 +56967,15 @@ then.254277:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.254282
 then.254281:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.254282:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.254274
@@ -58640,8 +56987,8 @@ then.254275:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.254283
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.254274
 then.254283:
@@ -58744,9 +57091,8 @@ cont.254296:
 cont.254290:
 cont.254274:
 	jeq	%i19, %i0, then.254303
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.254305
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.254306
@@ -58756,16 +57102,16 @@ cont.254274:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -58863,8 +57209,7 @@ cont.254310:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.254308
 then.254321:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.243280:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -58964,20 +57309,17 @@ cont.254327:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243281
 then.254338:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243280
 	jmp	%i0, 0(%i31)
 then.254324:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243281
 loop_end.243281:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.254308
 then.254307:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.254308:
 	jeq	%i5, %i0, cont.254340
 	fmov	%f5, %f14
@@ -58989,8 +57331,7 @@ cont.254308:
 cont.254340:
 cont.254306:
 cont.254305:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.243267
 	jmp	%i0, 0(%i31)
 then.254303:
@@ -59000,13 +57341,11 @@ then.254303:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.243268
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.243267
 	jmp	%i0, 0(%i31)
 loop_end.243268:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.243263
 	jmp	%i0, 0(%i31)
 then.254233:
@@ -59071,15 +57410,15 @@ then.254353:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.254358
 then.254357:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.254358:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.254350
@@ -59091,8 +57430,8 @@ then.254351:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.254359
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.254350
 then.254359:
@@ -59195,9 +57534,8 @@ cont.254372:
 cont.254366:
 cont.254350:
 	jeq	%i19, %i0, then.254379
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.254381
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.254382
@@ -59207,16 +57545,16 @@ cont.254350:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -59314,8 +57652,7 @@ cont.254386:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.254384
 then.254397:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.243314:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -59415,20 +57752,17 @@ cont.254403:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243315
 then.254414:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243314
 	jmp	%i0, 0(%i31)
 then.254400:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243315
 loop_end.243315:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.254384
 then.254383:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.254384:
 	jeq	%i5, %i0, cont.254416
 	fmov	%f5, %f14
@@ -59440,8 +57774,7 @@ cont.254384:
 cont.254416:
 cont.254382:
 cont.254381:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.243301
 	jmp	%i0, 0(%i31)
 then.254379:
@@ -59451,19 +57784,16 @@ then.254379:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.243302
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.243301
 	jmp	%i0, 0(%i31)
 loop_end.243302:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.243297
 	jmp	%i0, 0(%i31)
 loop_end.243298:
 cont.254234:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.243252
 	jmp	%i0, 0(%i31)
 loop_end.243253:
@@ -59486,8 +57816,8 @@ cont.254420:
 	set_label	%i31, cont.254229
 	jmp	%i0, 0(%i31)
 Lrelax_skip_31:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -59513,12 +57843,12 @@ Lrelax_skip_31:
 	lf	%f4, 0(%i21)
 	lf	%f13, 1(%i21)
 	lf	%f14, 2(%i21)
-	lf	%f31, 110(%i1)
-	fsub	%f5, %f31, %f5
-	lf	%f31, 111(%i1)
-	fsub	%f3, %f31, %f3
-	lf	%f31, 112(%i1)
-	fsub	%f19, %f31, %f15
+	lf	%f1, 110(%i1)
+	fsub	%f5, %f1, %f5
+	lf	%f1, 111(%i1)
+	fsub	%f3, %f1, %f3
+	lf	%f1, 112(%i1)
+	fsub	%f19, %f1, %f15
 	fmul	%f18, %f5, %f18
 	fmul	%f17, %f3, %f17
 	fmul	%f1, %f19, %f16
@@ -59611,8 +57941,7 @@ then.254424:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.254423
 then.254422:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -59639,12 +57968,10 @@ cont.254433:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.254423:
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.254434
 	movi	%i31, 2
@@ -59653,16 +57980,16 @@ cont.254423:
 	jeq	%i17, %i31, then.254438
 	ceqi	%i31, %i17, 4
 	jzero	%i0, %i31, cont.254440
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 0(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fmul	%f15, %f13, %f1
-	lf	%f31, 112(%i1)
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 2(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
@@ -59670,8 +57997,7 @@ cont.254423:
 	fmul	%f5, %f15, %f15
 	fmul	%f1, %f14, %f14
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f15
-	fmov	%f5, %f1
+	fabs	%f5, %f15
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -59683,8 +58009,7 @@ cont.254423:
 then.254441:
 	finv	%f1, %f15
 	fmul	%f1, %f14, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f14
@@ -59742,15 +58067,14 @@ then.254441:
 cont.254442:
 	ffloor	%f1, %f5
 	fsub	%f5, %f5, %f1
-	lf	%f31, 111(%i1)
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f14, %f1
 	lf	%f14, 1(%i15)
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -59762,8 +58086,7 @@ cont.254442:
 then.254443:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -59844,17 +58167,17 @@ cont.254444:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.254440:
 	jzero	%i0, %i0, cont.254435
 then.254438:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f5, %f3, %f1
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f3, %f1
 	fmul	%f3, %f5, %f5
 	fmul	%f1, %f1, %f1
 	fadd	%f3, %f3, %f1
@@ -59979,21 +58302,20 @@ cont.254446:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.254435
 then.254436:
-	lf	%f31, 111(%i1)
+	lf	%f3, 111(%i1)
 	movui	%i31, 256000
 	mif	%f1, %i31
-	fmul	%f4, %f31, %f1
+	fmul	%f4, %f3, %f1
 	lf	%f31, 91(%i1)
 	fleq	%i31, %f4, %f31
 	jzero	%i0, %i31, else.254453
@@ -60101,25 +58423,22 @@ cont.254454:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.254435
 then.254434:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -60127,15 +58446,14 @@ then.254434:
 	movui	%i31, 266752
 	mif	%f1, %i31
 	flt	%i15, %f3, %f1
-	lf	%f31, 112(%i1)
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -60173,11 +58491,9 @@ loop_start.243372:
 	jeq	%i22, %i31, then.254468
 	movi	%i31, 99
 	jeq	%i22, %i31, then.254470
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i22, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -60193,7 +58509,7 @@ loop_start.243372:
 	lf	%f1, 1(%i21)
 	fsub	%f13, %f13, %f1
 	lf	%f1, 2(%i21)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f5, %f1
 	slli	%i5, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i5
@@ -60260,16 +58576,16 @@ cont.254479:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.254483
 then.254482:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.254483:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.254473
@@ -60287,8 +58603,8 @@ then.254474:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i5)
 	fmul	%f1, %f1, %f15
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.254473
 then.254484:
@@ -60302,16 +58618,14 @@ then.254472:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.254486
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.254488
@@ -60337,16 +58651,14 @@ then.254490:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.254492
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.254494
@@ -60372,16 +58684,14 @@ then.254496:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.254498
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.254500
@@ -60406,11 +58716,11 @@ cont.254497:
 cont.254491:
 cont.254473:
 	jeq	%i5, %i0, then.254504
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.254506
 	movi	%i20, 1
 loop_start.243384:
@@ -60433,11 +58743,9 @@ loop_start.243388:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -60453,7 +58761,7 @@ loop_start.243388:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -60520,16 +58828,16 @@ cont.254521:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.254525
 then.254524:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.254525:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.254515
@@ -60547,8 +58855,8 @@ then.254516:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.254515
 then.254526:
@@ -60562,16 +58870,14 @@ then.254514:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254528
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254530
@@ -60597,16 +58903,14 @@ then.254532:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254534
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254536
@@ -60632,16 +58936,14 @@ then.254538:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254540
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254542
@@ -60665,8 +58967,7 @@ cont.254545:
 cont.254539:
 cont.254533:
 cont.254515:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.254546
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -60683,16 +58984,16 @@ cont.254547:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -60795,8 +59096,7 @@ cont.254553:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.254551
 then.254564:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.243403:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -60901,28 +59201,23 @@ cont.254570:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243404
 then.254581:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.243403
 	jmp	%i0, 0(%i31)
 then.254567:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243404
 loop_end.243404:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.254551
 then.254550:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.254551:
 	jeq	%i5, %i0, then.254583
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243389
 then.254583:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243388
 	jmp	%i0, 0(%i31)
 then.254548:
@@ -60932,8 +59227,7 @@ then.254548:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.254585
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243388
 	jmp	%i0, 0(%i31)
 then.254585:
@@ -60944,12 +59238,10 @@ then.254512:
 	jzero	%i0, %i0, loop_end.243389
 loop_end.243389:
 	jeq	%i31, %i0, then.254587
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243385
 then.254587:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.243384
 	jmp	%i0, 0(%i31)
 then.254509:
@@ -60989,11 +59281,9 @@ loop_start.243418:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -61009,7 +59299,7 @@ loop_start.243418:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -61076,16 +59366,16 @@ cont.254604:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.254608
 then.254607:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.254608:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.254598
@@ -61103,8 +59393,8 @@ then.254599:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.254598
 then.254609:
@@ -61118,16 +59408,14 @@ then.254597:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254611
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254613
@@ -61153,16 +59441,14 @@ then.254615:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254617
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254619
@@ -61188,16 +59474,14 @@ then.254621:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254623
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254625
@@ -61221,8 +59505,7 @@ cont.254628:
 cont.254622:
 cont.254616:
 cont.254598:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.254629
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -61239,16 +59522,16 @@ cont.254630:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -61351,8 +59634,7 @@ cont.254636:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.254634
 then.254647:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.243433:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -61457,28 +59739,23 @@ cont.254653:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243434
 then.254664:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.243433
 	jmp	%i0, 0(%i31)
 then.254650:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243434
 loop_end.243434:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.254634
 then.254633:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.254634:
 	jeq	%i5, %i0, then.254666
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243419
 then.254666:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243418
 	jmp	%i0, 0(%i31)
 then.254631:
@@ -61488,8 +59765,7 @@ then.254631:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.254668
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243418
 	jmp	%i0, 0(%i31)
 then.254668:
@@ -61500,12 +59776,10 @@ then.254595:
 	jzero	%i0, %i0, loop_end.243419
 loop_end.243419:
 	jeq	%i31, %i0, then.254670
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243415
 then.254670:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.243414
 	jmp	%i0, 0(%i31)
 then.254592:
@@ -61513,17 +59787,14 @@ then.254592:
 	jzero	%i0, %i0, loop_end.243415
 loop_end.243415:
 	jeq	%i31, %i0, then.254672
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243373
 then.254672:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.243372
 	jmp	%i0, 0(%i31)
 then.254589:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.243372
 	jmp	%i0, 0(%i31)
 then.254468:
@@ -61553,15 +59824,12 @@ loop_end.243373:
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
 	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	lf	%f1, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f9, %f9, %f1
 cont.254674:
 	set_label	%i31, cont.254229
 	jmp	%i0, 0(%i31)
@@ -61577,8 +59845,7 @@ then.254228:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.243453:
 	slli	%i4, %i15, 2
@@ -61633,15 +59900,15 @@ then.254684:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.254689
 then.254688:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.254689:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.254681
@@ -61653,8 +59920,8 @@ then.254682:
 	lf	%f3, 3(%i20)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.254690
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.254681
 then.254690:
@@ -61674,15 +59941,13 @@ then.254680:
 	fmul	%f20, %f1, %f22
 	fmul	%f1, %f20, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.254692
 	fmul	%f1, %f20, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f23, %f1
 	jeq	%i18, %i0, then.254694
@@ -61704,15 +59969,13 @@ then.254696:
 	fmul	%f21, %f1, %f18
 	fmul	%f1, %f21, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f20, %f1
 	jeq	%i18, %i0, then.254698
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f19, %f1
 	jeq	%i18, %i0, then.254700
@@ -61734,15 +59997,13 @@ then.254702:
 	fmul	%f17, %f1, %f3
 	fmul	%f1, %f17, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.254704
 	fmul	%f1, %f17, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f4, %f1
 	jeq	%i5, %i0, then.254706
@@ -61766,8 +60027,8 @@ cont.254703:
 cont.254697:
 cont.254681:
 	jeq	%i5, %i0, cont.254679
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.254679
 	movi	%i23, 1
 loop_start.243464:
@@ -61830,15 +60091,15 @@ then.254722:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.254727
 then.254726:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.254727:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.254719
@@ -61850,8 +60111,8 @@ then.254720:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.254728
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.254719
 then.254728:
@@ -61954,9 +60215,8 @@ cont.254741:
 cont.254735:
 cont.254719:
 	jeq	%i19, %i0, then.254748
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.254750
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.254751
@@ -61966,16 +60226,16 @@ cont.254719:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -62073,8 +60333,7 @@ cont.254755:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.254753
 then.254766:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.243481:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -62174,20 +60433,17 @@ cont.254772:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243482
 then.254783:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243481
 	jmp	%i0, 0(%i31)
 then.254769:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243482
 loop_end.243482:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.254753
 then.254752:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.254753:
 	jeq	%i5, %i0, cont.254785
 	fmov	%f5, %f14
@@ -62199,8 +60455,7 @@ cont.254753:
 cont.254785:
 cont.254751:
 cont.254750:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.243468
 	jmp	%i0, 0(%i31)
 then.254748:
@@ -62210,13 +60465,11 @@ then.254748:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.243469
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.243468
 	jmp	%i0, 0(%i31)
 loop_end.243469:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.243464
 	jmp	%i0, 0(%i31)
 then.254678:
@@ -62281,15 +60534,15 @@ then.254798:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.254803
 then.254802:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.254803:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.254795
@@ -62301,8 +60554,8 @@ then.254796:
 	lf	%f3, 3(%i18)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.254804
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.254795
 then.254804:
@@ -62405,9 +60658,8 @@ cont.254817:
 cont.254811:
 cont.254795:
 	jeq	%i19, %i0, then.254824
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.254826
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.254827
@@ -62417,16 +60669,16 @@ cont.254795:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -62524,8 +60776,7 @@ cont.254831:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.254829
 then.254842:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.243515:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -62625,20 +60876,17 @@ cont.254848:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243516
 then.254859:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243515
 	jmp	%i0, 0(%i31)
 then.254845:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243516
 loop_end.243516:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.254829
 then.254828:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.254829:
 	jeq	%i5, %i0, cont.254861
 	fmov	%f5, %f14
@@ -62650,8 +60898,7 @@ cont.254829:
 cont.254861:
 cont.254827:
 cont.254826:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.243502
 	jmp	%i0, 0(%i31)
 then.254824:
@@ -62661,19 +60908,16 @@ then.254824:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.243503
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.243502
 	jmp	%i0, 0(%i31)
 loop_end.243503:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.243498
 	jmp	%i0, 0(%i31)
 loop_end.243499:
 cont.254679:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.243453
 	jmp	%i0, 0(%i31)
 loop_end.243454:
@@ -62696,8 +60940,8 @@ cont.254865:
 	set_label	%i31, cont.254866
 	jmp	%i0, 0(%i31)
 Lrelax_skip_32:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -62723,12 +60967,12 @@ Lrelax_skip_32:
 	lf	%f4, 0(%i21)
 	lf	%f13, 1(%i21)
 	lf	%f14, 2(%i21)
-	lf	%f31, 110(%i1)
-	fsub	%f5, %f31, %f5
-	lf	%f31, 111(%i1)
-	fsub	%f3, %f31, %f3
-	lf	%f31, 112(%i1)
-	fsub	%f19, %f31, %f15
+	lf	%f1, 110(%i1)
+	fsub	%f5, %f1, %f5
+	lf	%f1, 111(%i1)
+	fsub	%f3, %f1, %f3
+	lf	%f1, 112(%i1)
+	fsub	%f19, %f1, %f15
 	fmul	%f18, %f5, %f18
 	fmul	%f17, %f3, %f17
 	fmul	%f1, %f19, %f16
@@ -62821,8 +61065,7 @@ then.254869:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.254868
 then.254867:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -62849,12 +61092,10 @@ cont.254878:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.254868:
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.254879
 	movi	%i31, 2
@@ -62863,16 +61104,16 @@ cont.254868:
 	jeq	%i17, %i31, then.254883
 	ceqi	%i31, %i17, 4
 	jzero	%i0, %i31, cont.254885
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 0(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fmul	%f15, %f13, %f1
-	lf	%f31, 112(%i1)
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 2(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
@@ -62880,8 +61121,7 @@ cont.254868:
 	fmul	%f5, %f15, %f15
 	fmul	%f1, %f14, %f14
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f15
-	fmov	%f5, %f1
+	fabs	%f5, %f15
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -62893,8 +61133,7 @@ cont.254868:
 then.254886:
 	finv	%f1, %f15
 	fmul	%f1, %f14, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f14
@@ -62952,15 +61191,14 @@ then.254886:
 cont.254887:
 	ffloor	%f1, %f5
 	fsub	%f5, %f5, %f1
-	lf	%f31, 111(%i1)
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f14, %f1
 	lf	%f14, 1(%i15)
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -62972,8 +61210,7 @@ cont.254887:
 then.254888:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -63054,17 +61291,17 @@ cont.254889:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.254885:
 	jzero	%i0, %i0, cont.254880
 then.254883:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f5, %f3, %f1
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f3, %f1
 	fmul	%f3, %f5, %f5
 	fmul	%f1, %f1, %f1
 	fadd	%f3, %f3, %f1
@@ -63189,21 +61426,20 @@ cont.254891:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.254880
 then.254881:
-	lf	%f31, 111(%i1)
+	lf	%f3, 111(%i1)
 	movui	%i31, 256000
 	mif	%f1, %i31
-	fmul	%f4, %f31, %f1
+	fmul	%f4, %f3, %f1
 	lf	%f31, 91(%i1)
 	fleq	%i31, %f4, %f31
 	jzero	%i0, %i31, else.254898
@@ -63311,25 +61547,22 @@ cont.254899:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.254880
 then.254879:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -63337,15 +61570,14 @@ then.254879:
 	movui	%i31, 266752
 	mif	%f1, %i31
 	flt	%i15, %f3, %f1
-	lf	%f31, 112(%i1)
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -63383,11 +61615,9 @@ loop_start.243573:
 	jeq	%i22, %i31, then.254913
 	movi	%i31, 99
 	jeq	%i22, %i31, then.254915
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i22, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -63403,7 +61633,7 @@ loop_start.243573:
 	lf	%f1, 1(%i21)
 	fsub	%f13, %f13, %f1
 	lf	%f1, 2(%i21)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f5, %f1
 	slli	%i5, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i5
@@ -63470,16 +61700,16 @@ cont.254924:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.254928
 then.254927:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.254928:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.254918
@@ -63497,8 +61727,8 @@ then.254919:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i5)
 	fmul	%f1, %f1, %f15
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.254918
 then.254929:
@@ -63512,16 +61742,14 @@ then.254917:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.254931
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.254933
@@ -63547,16 +61775,14 @@ then.254935:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.254937
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.254939
@@ -63582,16 +61808,14 @@ then.254941:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i18, %f5, %f1
 	jeq	%i18, %i0, then.254943
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.254945
@@ -63616,11 +61840,11 @@ cont.254942:
 cont.254936:
 cont.254918:
 	jeq	%i5, %i0, then.254949
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.254951
 	movi	%i20, 1
 loop_start.243585:
@@ -63643,11 +61867,9 @@ loop_start.243589:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -63663,7 +61885,7 @@ loop_start.243589:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -63730,16 +61952,16 @@ cont.254966:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.254970
 then.254969:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.254970:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.254960
@@ -63757,8 +61979,8 @@ then.254961:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.254960
 then.254971:
@@ -63772,16 +61994,14 @@ then.254959:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254973
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254975
@@ -63807,16 +62027,14 @@ then.254977:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254979
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254981
@@ -63842,16 +62060,14 @@ then.254983:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254985
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.254987
@@ -63875,8 +62091,7 @@ cont.254990:
 cont.254984:
 cont.254978:
 cont.254960:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.254991
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -63893,16 +62108,16 @@ cont.254992:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -64005,8 +62220,7 @@ cont.254998:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.254996
 then.255009:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.243604:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -64111,28 +62325,23 @@ cont.255015:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243605
 then.255026:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.243604
 	jmp	%i0, 0(%i31)
 then.255012:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243605
 loop_end.243605:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.254996
 then.254995:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.254996:
 	jeq	%i5, %i0, then.255028
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243590
 then.255028:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243589
 	jmp	%i0, 0(%i31)
 then.254993:
@@ -64142,8 +62351,7 @@ then.254993:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.255030
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243589
 	jmp	%i0, 0(%i31)
 then.255030:
@@ -64154,12 +62362,10 @@ then.254957:
 	jzero	%i0, %i0, loop_end.243590
 loop_end.243590:
 	jeq	%i31, %i0, then.255032
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243586
 then.255032:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.243585
 	jmp	%i0, 0(%i31)
 then.254954:
@@ -64199,11 +62405,9 @@ loop_start.243619:
 	slli	%i4, %i18, 2
 	add	%i31, %i19, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -64219,7 +62423,7 @@ loop_start.243619:
 	lf	%f1, 1(%i25)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i25)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i17, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -64286,16 +62490,16 @@ cont.255049:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.255053
 then.255052:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i17)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.255053:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.255043
@@ -64313,8 +62517,8 @@ then.255044:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i17)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.255043
 then.255054:
@@ -64328,16 +62532,14 @@ then.255042:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.255056
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.255058
@@ -64363,16 +62565,14 @@ then.255060:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.255062
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.255064
@@ -64398,16 +62598,14 @@ then.255066:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.255068
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i24)
 	flt	%i21, %f5, %f1
 	jeq	%i21, %i0, then.255070
@@ -64431,8 +62629,7 @@ cont.255073:
 cont.255067:
 cont.255061:
 cont.255043:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.255074
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -64449,16 +62646,16 @@ cont.255075:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -64561,8 +62758,7 @@ cont.255081:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.255079
 then.255092:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.243634:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -64667,28 +62863,23 @@ cont.255098:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243635
 then.255109:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.243634
 	jmp	%i0, 0(%i31)
 then.255095:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243635
 loop_end.243635:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.255079
 then.255078:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.255079:
 	jeq	%i5, %i0, then.255111
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243620
 then.255111:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243619
 	jmp	%i0, 0(%i31)
 then.255076:
@@ -64698,8 +62889,7 @@ then.255076:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.255113
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243619
 	jmp	%i0, 0(%i31)
 then.255113:
@@ -64710,12 +62900,10 @@ then.255040:
 	jzero	%i0, %i0, loop_end.243620
 loop_end.243620:
 	jeq	%i31, %i0, then.255115
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243616
 then.255115:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.243615
 	jmp	%i0, 0(%i31)
 then.255037:
@@ -64723,17 +62911,14 @@ then.255037:
 	jzero	%i0, %i0, loop_end.243616
 loop_end.243616:
 	jeq	%i31, %i0, then.255117
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243574
 then.255117:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.243573
 	jmp	%i0, 0(%i31)
 then.255034:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.243573
 	jmp	%i0, 0(%i31)
 then.254913:
@@ -64763,20 +62948,16 @@ loop_end.243574:
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
 	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	lf	%f1, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f9, %f9, %f1
 cont.255119:
 cont.254866:
 cont.254229:
-	subi	%i4, %i12, 2
-	mov	%i12, %i4
+	subi	%i12, %i12, 2
 	set_label	%i30, loop_start.243246
 	jmp	%i0, 0(%i30)
 loop_end.243247:
@@ -64800,10 +62981,9 @@ Lrelax_skip_33:
 	sf	%f4, 122(%i1)
 	sf	%f3, 123(%i1)
 	sf	%f1, 124(%i1)
-	lw	%i31, 105(%i1)
-	subi	%i4, %i31, 1
-	mov	%i5, %i4
-	jleq	%i0, %i4, then.255121
+	lw	%i4, 105(%i1)
+	subi	%i5, %i4, 1
+	jleq	%i0, %i5, then.255121
 	jzero	%i0, %i0, cont.255122
 then.255121:
 	slli	%i4, %i5, 2
@@ -64883,8 +63063,7 @@ then.255123:
 	fadd	%f5, %f12, %f5
 	sf	%f5, 3(%i17)
 cont.255124:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 loop_start.243657:
 	jleq	%i0, %i5, then.255129
 	jzero	%i0, %i0, loop_end.243658
@@ -64966,8 +63145,7 @@ then.255131:
 	fadd	%f5, %f12, %f5
 	sf	%f5, 3(%i17)
 cont.255132:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 	set_label	%i30, loop_start.243657
 	jmp	%i0, 0(%i30)
 loop_end.243658:
@@ -65008,8 +63186,7 @@ Lrelax_skip_34:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.243669:
 	slli	%i4, %i15, 2
@@ -65064,15 +63241,15 @@ then.255150:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.255155
 then.255154:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.255155:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.255147
@@ -65084,8 +63261,8 @@ then.255148:
 	lf	%f3, 3(%i19)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.255156
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.255147
 then.255156:
@@ -65105,15 +63282,13 @@ then.255146:
 	fmul	%f20, %f1, %f22
 	fmul	%f1, %f20, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i4)
 	flt	%i17, %f23, %f1
 	jeq	%i17, %i0, then.255158
 	fmul	%f1, %f20, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i4)
 	flt	%i17, %f23, %f1
 	jeq	%i17, %i0, then.255160
@@ -65135,15 +63310,13 @@ then.255162:
 	fmul	%f21, %f1, %f18
 	fmul	%f1, %f21, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i4)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.255164
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i17, %f19, %f1
 	jeq	%i17, %i0, then.255166
@@ -65165,15 +63338,13 @@ then.255168:
 	fmul	%f17, %f1, %f3
 	fmul	%f1, %f17, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i4)
 	flt	%i17, %f4, %f1
 	jeq	%i17, %i0, then.255170
 	fmul	%f1, %f17, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f4, %f1
 	jeq	%i5, %i0, then.255172
@@ -65197,8 +63368,8 @@ cont.255169:
 cont.255163:
 cont.255147:
 	jeq	%i5, %i0, cont.255145
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.255145
 	movi	%i22, 1
 loop_start.243680:
@@ -65261,15 +63432,15 @@ then.255188:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.255193
 then.255192:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.255193:
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.255185
@@ -65281,8 +63452,8 @@ then.255186:
 	lf	%f3, 3(%i17)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.255194
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.255185
 then.255194:
@@ -65385,9 +63556,8 @@ cont.255207:
 cont.255201:
 cont.255185:
 	jeq	%i18, %i0, then.255214
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.255216
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.255217
@@ -65397,16 +63567,16 @@ cont.255185:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i21)
 	movi	%i31, -1
@@ -65503,8 +63673,7 @@ cont.255221:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.255219
 then.255232:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.243697:
 	slli	%i4, %i17, 2
 	add	%i31, %i21, %i4
@@ -65603,20 +63772,17 @@ cont.255238:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243698
 then.255249:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.243697
 	jmp	%i0, 0(%i31)
 then.255235:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243698
 loop_end.243698:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.255219
 then.255218:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.255219:
 	jeq	%i5, %i0, cont.255251
 	fmov	%f5, %f14
@@ -65628,8 +63794,7 @@ cont.255219:
 cont.255251:
 cont.255217:
 cont.255216:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.243684
 	jmp	%i0, 0(%i31)
 then.255214:
@@ -65639,13 +63804,11 @@ then.255214:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.243685
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.243684
 	jmp	%i0, 0(%i31)
 loop_end.243685:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.243680
 	jmp	%i0, 0(%i31)
 then.255144:
@@ -65710,15 +63873,15 @@ then.255264:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.255269
 then.255268:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.255269:
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.255261
@@ -65730,8 +63893,8 @@ then.255262:
 	lf	%f3, 3(%i17)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.255270
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.255261
 then.255270:
@@ -65834,9 +63997,8 @@ cont.255283:
 cont.255277:
 cont.255261:
 	jeq	%i18, %i0, then.255290
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.255292
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.255293
@@ -65846,16 +64008,16 @@ cont.255261:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i21)
 	movi	%i31, -1
@@ -65952,8 +64114,7 @@ cont.255297:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.255295
 then.255308:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.243731:
 	slli	%i4, %i17, 2
 	add	%i31, %i21, %i4
@@ -66052,20 +64213,17 @@ cont.255314:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243732
 then.255325:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.243731
 	jmp	%i0, 0(%i31)
 then.255311:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243732
 loop_end.243732:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.255295
 then.255294:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.255295:
 	jeq	%i5, %i0, cont.255327
 	fmov	%f5, %f14
@@ -66077,8 +64235,7 @@ cont.255295:
 cont.255327:
 cont.255293:
 cont.255292:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.243718
 	jmp	%i0, 0(%i31)
 then.255290:
@@ -66088,19 +64245,16 @@ then.255290:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.243719
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.243718
 	jmp	%i0, 0(%i31)
 loop_end.243719:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.243714
 	jmp	%i0, 0(%i31)
 loop_end.243715:
 cont.255145:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.243669
 	jmp	%i0, 0(%i31)
 loop_end.243670:
@@ -66123,8 +64277,8 @@ cont.255331:
 	set_label	%i31, cont.255140
 	jmp	%i0, 0(%i31)
 Lrelax_skip_35:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i16, 0(%i31)
@@ -66150,12 +64304,12 @@ Lrelax_skip_35:
 	lf	%f4, 0(%i20)
 	lf	%f13, 1(%i20)
 	lf	%f14, 2(%i20)
-	lf	%f31, 110(%i1)
-	fsub	%f5, %f31, %f5
-	lf	%f31, 111(%i1)
-	fsub	%f3, %f31, %f3
-	lf	%f31, 112(%i1)
-	fsub	%f19, %f31, %f15
+	lf	%f1, 110(%i1)
+	fsub	%f5, %f1, %f5
+	lf	%f1, 111(%i1)
+	fsub	%f3, %f1, %f3
+	lf	%f1, 112(%i1)
+	fsub	%f19, %f1, %f15
 	fmul	%f18, %f5, %f18
 	fmul	%f17, %f3, %f17
 	fmul	%f1, %f19, %f16
@@ -66248,8 +64402,7 @@ then.255335:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.255334
 then.255333:
-	lw	%i31, 109(%i1)
-	mov	%i18, %i31
+	lw	%i18, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -66276,12 +64429,10 @@ cont.255344:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.255334:
-	lf	%f1, 0(%i17)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i17)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i17)
-	sf	%f1, 115(%i1)
+	lf	%f4, 0(%i17)
+	lf	%f3, 1(%i17)
+	lf	%f31, 2(%i17)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i16, %i31, then.255345
 	movi	%i31, 2
@@ -66290,16 +64441,16 @@ cont.255334:
 	jeq	%i16, %i31, then.255349
 	ceqi	%i31, %i16, 4
 	jzero	%i0, %i31, cont.255351
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 0(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fmul	%f15, %f13, %f1
-	lf	%f31, 112(%i1)
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 2(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
@@ -66307,8 +64458,7 @@ cont.255334:
 	fmul	%f5, %f15, %f15
 	fmul	%f1, %f14, %f14
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f15
-	fmov	%f5, %f1
+	fabs	%f5, %f15
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -66320,8 +64470,7 @@ cont.255334:
 then.255352:
 	finv	%f1, %f15
 	fmul	%f1, %f14, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i16, %f1, %f14
@@ -66379,15 +64528,14 @@ then.255352:
 cont.255353:
 	ffloor	%f1, %f5
 	fsub	%f5, %f5, %f1
-	lf	%f31, 111(%i1)
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f14, %f1
 	lf	%f14, 1(%i15)
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -66399,8 +64547,7 @@ cont.255353:
 then.255354:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i14, %f1, %f14
@@ -66481,17 +64628,17 @@ cont.255355:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.255351:
 	jzero	%i0, %i0, cont.255346
 then.255349:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f5, %f3, %f1
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f3, %f1
 	fmul	%f3, %f5, %f5
 	fmul	%f1, %f1, %f1
 	fadd	%f3, %f3, %f1
@@ -66616,21 +64763,20 @@ cont.255357:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.255346
 then.255347:
-	lf	%f31, 111(%i1)
+	lf	%f3, 111(%i1)
 	movui	%i31, 256000
 	mif	%f1, %i31
-	fmul	%f4, %f31, %f1
+	fmul	%f4, %f3, %f1
 	lf	%f31, 91(%i1)
 	fleq	%i31, %f4, %f31
 	jzero	%i0, %i31, else.255364
@@ -66738,25 +64884,22 @@ cont.255365:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.255346
 then.255345:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -66764,15 +64907,14 @@ then.255345:
 	movui	%i31, 266752
 	mif	%f1, %i31
 	flt	%i14, %f3, %f1
-	lf	%f31, 112(%i1)
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -66810,11 +64952,9 @@ loop_start.243789:
 	jeq	%i21, %i31, then.255379
 	movi	%i31, 99
 	jeq	%i21, %i31, then.255381
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i21, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -66830,7 +64970,7 @@ loop_start.243789:
 	lf	%f1, 1(%i20)
 	fsub	%f13, %f13, %f1
 	lf	%f1, 2(%i20)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f5, %f1
 	slli	%i5, %i21, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i5
@@ -66897,16 +65037,16 @@ cont.255390:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.255394
 then.255393:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.255394:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.255384
@@ -66924,8 +65064,8 @@ then.255385:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i5)
 	fmul	%f1, %f1, %f15
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.255384
 then.255395:
@@ -66939,16 +65079,14 @@ then.255383:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.255397
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.255399
@@ -66974,16 +65112,14 @@ then.255401:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.255403
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.255405
@@ -67009,16 +65145,14 @@ then.255407:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.255409
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i16, %f5, %f1
 	jeq	%i16, %i0, then.255411
@@ -67043,11 +65177,11 @@ cont.255408:
 cont.255402:
 cont.255384:
 	jeq	%i5, %i0, then.255415
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.255417
 	movi	%i18, 1
 loop_start.243801:
@@ -67070,11 +65204,9 @@ loop_start.243805:
 	slli	%i4, %i16, 2
 	add	%i31, %i17, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -67090,7 +65222,7 @@ loop_start.243805:
 	lf	%f1, 1(%i24)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i24)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i19, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i19
@@ -67157,16 +65289,16 @@ cont.255432:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i19)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.255436
 then.255435:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i19)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.255436:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.255426
@@ -67184,8 +65316,8 @@ then.255427:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i19)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.255426
 then.255437:
@@ -67199,16 +65331,14 @@ then.255425:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255439
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255441
@@ -67234,16 +65364,14 @@ then.255443:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255445
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255447
@@ -67269,16 +65397,14 @@ then.255449:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255451
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255453
@@ -67302,8 +65428,7 @@ cont.255456:
 cont.255450:
 cont.255444:
 cont.255426:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i19, %i0, then.255457
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -67320,16 +65445,16 @@ cont.255458:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i17)
 	movi	%i31, -1
@@ -67432,8 +65557,7 @@ cont.255464:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.255462
 then.255475:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.243820:
 	slli	%i4, %i19, 2
 	add	%i31, %i17, %i4
@@ -67538,28 +65662,23 @@ cont.255481:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243821
 then.255492:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.243820
 	jmp	%i0, 0(%i31)
 then.255478:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243821
 loop_end.243821:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.255462
 then.255461:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.255462:
 	jeq	%i5, %i0, then.255494
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243806
 then.255494:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.243805
 	jmp	%i0, 0(%i31)
 then.255459:
@@ -67569,8 +65688,7 @@ then.255459:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.255496
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.243805
 	jmp	%i0, 0(%i31)
 then.255496:
@@ -67581,12 +65699,10 @@ then.255423:
 	jzero	%i0, %i0, loop_end.243806
 loop_end.243806:
 	jeq	%i31, %i0, then.255498
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243802
 then.255498:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243801
 	jmp	%i0, 0(%i31)
 then.255420:
@@ -67626,11 +65742,9 @@ loop_start.243835:
 	slli	%i4, %i16, 2
 	add	%i31, %i17, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -67646,7 +65760,7 @@ loop_start.243835:
 	lf	%f1, 1(%i24)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i24)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i19, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i19
@@ -67713,16 +65827,16 @@ cont.255515:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i19)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.255519
 then.255518:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i19)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.255519:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.255509
@@ -67740,8 +65854,8 @@ then.255510:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i19)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.255509
 then.255520:
@@ -67755,16 +65869,14 @@ then.255508:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255522
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255524
@@ -67790,16 +65902,14 @@ then.255526:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255528
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255530
@@ -67825,16 +65935,14 @@ then.255532:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255534
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255536
@@ -67858,8 +65966,7 @@ cont.255539:
 cont.255533:
 cont.255527:
 cont.255509:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i19, %i0, then.255540
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -67876,16 +65983,16 @@ cont.255541:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i17)
 	movi	%i31, -1
@@ -67988,8 +66095,7 @@ cont.255547:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.255545
 then.255558:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.243850:
 	slli	%i4, %i19, 2
 	add	%i31, %i17, %i4
@@ -68094,28 +66200,23 @@ cont.255564:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243851
 then.255575:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.243850
 	jmp	%i0, 0(%i31)
 then.255561:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243851
 loop_end.243851:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.255545
 then.255544:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.255545:
 	jeq	%i5, %i0, then.255577
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243836
 then.255577:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.243835
 	jmp	%i0, 0(%i31)
 then.255542:
@@ -68125,8 +66226,7 @@ then.255542:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.255579
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.243835
 	jmp	%i0, 0(%i31)
 then.255579:
@@ -68137,12 +66237,10 @@ then.255506:
 	jzero	%i0, %i0, loop_end.243836
 loop_end.243836:
 	jeq	%i31, %i0, then.255581
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243832
 then.255581:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.243831
 	jmp	%i0, 0(%i31)
 then.255503:
@@ -68150,17 +66248,14 @@ then.255503:
 	jzero	%i0, %i0, loop_end.243832
 loop_end.243832:
 	jeq	%i31, %i0, then.255583
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243790
 then.255583:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.243789
 	jmp	%i0, 0(%i31)
 then.255500:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.243789
 	jmp	%i0, 0(%i31)
 then.255379:
@@ -68190,15 +66285,12 @@ loop_end.243790:
 	lf	%f1, 0(%i13)
 	fmul	%f12, %f5, %f1
 	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	lf	%f1, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f9, %f9, %f1
 cont.255585:
 	set_label	%i31, cont.255140
 	jmp	%i0, 0(%i31)
@@ -68214,8 +66306,7 @@ then.255139:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.243870:
 	slli	%i4, %i15, 2
@@ -68270,15 +66361,15 @@ then.255595:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.255600
 then.255599:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.255600:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.255592
@@ -68290,8 +66381,8 @@ then.255593:
 	lf	%f3, 3(%i19)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.255601
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.255592
 then.255601:
@@ -68311,15 +66402,13 @@ then.255591:
 	fmul	%f20, %f1, %f22
 	fmul	%f1, %f20, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 1(%i4)
 	flt	%i17, %f23, %f1
 	jeq	%i17, %i0, then.255603
 	fmul	%f1, %f20, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f23, %f1
+	fabs	%f23, %f1
 	lf	%f1, 2(%i4)
 	flt	%i17, %f23, %f1
 	jeq	%i17, %i0, then.255605
@@ -68341,15 +66430,13 @@ then.255607:
 	fmul	%f21, %f1, %f18
 	fmul	%f1, %f21, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 0(%i4)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.255609
 	fmul	%f1, %f21, %f19
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f19, %f1
+	fabs	%f19, %f1
 	lf	%f1, 2(%i4)
 	flt	%i17, %f19, %f1
 	jeq	%i17, %i0, then.255611
@@ -68371,15 +66458,13 @@ then.255613:
 	fmul	%f17, %f1, %f3
 	fmul	%f1, %f17, %f16
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i4)
 	flt	%i17, %f4, %f1
 	jeq	%i17, %i0, then.255615
 	fmul	%f1, %f17, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 1(%i4)
 	flt	%i5, %f4, %f1
 	jeq	%i5, %i0, then.255617
@@ -68403,8 +66488,8 @@ cont.255614:
 cont.255608:
 cont.255592:
 	jeq	%i5, %i0, cont.255590
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.255590
 	movi	%i22, 1
 loop_start.243881:
@@ -68467,15 +66552,15 @@ then.255633:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.255638
 then.255637:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.255638:
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.255630
@@ -68487,8 +66572,8 @@ then.255631:
 	lf	%f3, 3(%i17)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.255639
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.255630
 then.255639:
@@ -68591,9 +66676,8 @@ cont.255652:
 cont.255646:
 cont.255630:
 	jeq	%i18, %i0, then.255659
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.255661
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.255662
@@ -68603,16 +66687,16 @@ cont.255630:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i21)
 	movi	%i31, -1
@@ -68709,8 +66793,7 @@ cont.255666:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.255664
 then.255677:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.243898:
 	slli	%i4, %i17, 2
 	add	%i31, %i21, %i4
@@ -68809,20 +66892,17 @@ cont.255683:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243899
 then.255694:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.243898
 	jmp	%i0, 0(%i31)
 then.255680:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243899
 loop_end.243899:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.255664
 then.255663:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.255664:
 	jeq	%i5, %i0, cont.255696
 	fmov	%f5, %f14
@@ -68834,8 +66914,7 @@ cont.255664:
 cont.255696:
 cont.255662:
 cont.255661:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.243885
 	jmp	%i0, 0(%i31)
 then.255659:
@@ -68845,13 +66924,11 @@ then.255659:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.243886
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.243885
 	jmp	%i0, 0(%i31)
 loop_end.243886:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.243881
 	jmp	%i0, 0(%i31)
 then.255589:
@@ -68916,15 +66993,15 @@ then.255709:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.255714
 then.255713:
 	frsqrt	%f1, %f4
 	fmul	%f1, %f1, %f4
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f3
+	sf	%f31, 108(%i1)
 cont.255714:
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.255706
@@ -68936,8 +67013,8 @@ then.255707:
 	lf	%f3, 3(%i17)
 	flt	%i5, %f4, %f0
 	jeq	%i5, %i0, then.255715
-	fmul	%f1, %f4, %f3
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f4, %f3
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.255706
 then.255715:
@@ -69040,9 +67117,8 @@ cont.255728:
 cont.255722:
 cont.255706:
 	jeq	%i18, %i0, then.255735
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.255737
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.255738
@@ -69052,16 +67128,16 @@ cont.255706:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i21)
 	movi	%i31, -1
@@ -69158,8 +67234,7 @@ cont.255742:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.255740
 then.255753:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.243932:
 	slli	%i4, %i17, 2
 	add	%i31, %i21, %i4
@@ -69258,20 +67333,17 @@ cont.255759:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.243933
 then.255770:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.243932
 	jmp	%i0, 0(%i31)
 then.255756:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243933
 loop_end.243933:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.255740
 then.255739:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.255740:
 	jeq	%i5, %i0, cont.255772
 	fmov	%f5, %f14
@@ -69283,8 +67355,7 @@ cont.255740:
 cont.255772:
 cont.255738:
 cont.255737:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.243919
 	jmp	%i0, 0(%i31)
 then.255735:
@@ -69294,19 +67365,16 @@ then.255735:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.243920
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.243919
 	jmp	%i0, 0(%i31)
 loop_end.243920:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.243915
 	jmp	%i0, 0(%i31)
 loop_end.243916:
 cont.255590:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.243870
 	jmp	%i0, 0(%i31)
 loop_end.243871:
@@ -69329,8 +67397,8 @@ cont.255776:
 	set_label	%i31, cont.255777
 	jmp	%i0, 0(%i31)
 Lrelax_skip_36:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i16, 0(%i31)
@@ -69356,12 +67424,12 @@ Lrelax_skip_36:
 	lf	%f4, 0(%i20)
 	lf	%f13, 1(%i20)
 	lf	%f14, 2(%i20)
-	lf	%f31, 110(%i1)
-	fsub	%f5, %f31, %f5
-	lf	%f31, 111(%i1)
-	fsub	%f3, %f31, %f3
-	lf	%f31, 112(%i1)
-	fsub	%f19, %f31, %f15
+	lf	%f1, 110(%i1)
+	fsub	%f5, %f1, %f5
+	lf	%f1, 111(%i1)
+	fsub	%f3, %f1, %f3
+	lf	%f1, 112(%i1)
+	fsub	%f19, %f1, %f15
 	fmul	%f18, %f5, %f18
 	fmul	%f17, %f3, %f17
 	fmul	%f1, %f19, %f16
@@ -69454,8 +67522,7 @@ then.255780:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.255779
 then.255778:
-	lw	%i31, 109(%i1)
-	mov	%i18, %i31
+	lw	%i18, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -69482,12 +67549,10 @@ cont.255789:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.255779:
-	lf	%f1, 0(%i17)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i17)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i17)
-	sf	%f1, 115(%i1)
+	lf	%f4, 0(%i17)
+	lf	%f3, 1(%i17)
+	lf	%f31, 2(%i17)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i16, %i31, then.255790
 	movi	%i31, 2
@@ -69496,16 +67561,16 @@ cont.255779:
 	jeq	%i16, %i31, then.255794
 	ceqi	%i31, %i16, 4
 	jzero	%i0, %i31, cont.255796
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 0(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fmul	%f15, %f13, %f1
-	lf	%f31, 112(%i1)
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f13, %f31, %f1
+	fsub	%f13, %f5, %f1
 	lf	%f5, 2(%i15)
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
@@ -69513,8 +67578,7 @@ cont.255779:
 	fmul	%f5, %f15, %f15
 	fmul	%f1, %f14, %f14
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f15
-	fmov	%f5, %f1
+	fabs	%f5, %f15
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -69526,8 +67590,7 @@ cont.255779:
 then.255797:
 	finv	%f1, %f15
 	fmul	%f1, %f14, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i16, %f1, %f14
@@ -69585,15 +67648,14 @@ then.255797:
 cont.255798:
 	ffloor	%f1, %f5
 	fsub	%f5, %f5, %f1
-	lf	%f31, 111(%i1)
+	lf	%f14, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f14, %f1
 	lf	%f14, 1(%i15)
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -69605,8 +67667,7 @@ cont.255798:
 then.255799:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i14, %f1, %f14
@@ -69687,17 +67748,17 @@ cont.255800:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.255796:
 	jzero	%i0, %i0, cont.255791
 then.255794:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f5, %f3, %f1
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f1, %f31, %f1
+	fsub	%f1, %f3, %f1
 	fmul	%f3, %f5, %f5
 	fmul	%f1, %f1, %f1
 	fadd	%f3, %f3, %f1
@@ -69822,21 +67883,20 @@ cont.255802:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.255791
 then.255792:
-	lf	%f31, 111(%i1)
+	lf	%f3, 111(%i1)
 	movui	%i31, 256000
 	mif	%f1, %i31
-	fmul	%f4, %f31, %f1
+	fmul	%f4, %f3, %f1
 	lf	%f31, 91(%i1)
 	fleq	%i31, %f4, %f31
 	jzero	%i0, %i31, else.255809
@@ -69944,25 +68004,22 @@ cont.255810:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.255791
 then.255790:
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -69970,15 +68027,14 @@ then.255790:
 	movui	%i31, 266752
 	mif	%f1, %i31
 	flt	%i14, %f3, %f1
-	lf	%f31, 112(%i1)
+	lf	%f3, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f3, %f1
 	movui	%i31, 251084
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -70016,11 +68072,9 @@ loop_start.243990:
 	jeq	%i21, %i31, then.255824
 	movi	%i31, 99
 	jeq	%i21, %i31, then.255826
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i21, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -70036,7 +68090,7 @@ loop_start.243990:
 	lf	%f1, 1(%i20)
 	fsub	%f13, %f13, %f1
 	lf	%f1, 2(%i20)
-	fsub	%f15, %f31, %f1
+	fsub	%f15, %f5, %f1
 	slli	%i5, %i21, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i5
@@ -70103,16 +68157,16 @@ cont.255835:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.255839
 then.255838:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i5)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.255839:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.255829
@@ -70130,8 +68184,8 @@ then.255830:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i5)
 	fmul	%f1, %f1, %f15
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.255829
 then.255840:
@@ -70145,16 +68199,14 @@ then.255828:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.255842
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.255844
@@ -70180,16 +68232,14 @@ then.255846:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.255848
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.255850
@@ -70215,16 +68265,14 @@ then.255852:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i4)
 	flt	%i17, %f5, %f1
 	jeq	%i17, %i0, then.255854
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f15, %f31
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i4)
 	flt	%i16, %f5, %f1
 	jeq	%i16, %i0, then.255856
@@ -70249,11 +68297,11 @@ cont.255853:
 cont.255847:
 cont.255829:
 	jeq	%i5, %i0, then.255860
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.255862
 	movi	%i18, 1
 loop_start.244002:
@@ -70276,11 +68324,9 @@ loop_start.244006:
 	slli	%i4, %i16, 2
 	add	%i31, %i17, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -70296,7 +68342,7 @@ loop_start.244006:
 	lf	%f1, 1(%i24)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i24)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i19, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i19
@@ -70363,16 +68409,16 @@ cont.255877:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i19)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.255881
 then.255880:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i19)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.255881:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.255871
@@ -70390,8 +68436,8 @@ then.255872:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i19)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.255871
 then.255882:
@@ -70405,16 +68451,14 @@ then.255870:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255884
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255886
@@ -70440,16 +68484,14 @@ then.255888:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255890
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255892
@@ -70475,16 +68517,14 @@ then.255894:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255896
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255898
@@ -70508,8 +68548,7 @@ cont.255901:
 cont.255895:
 cont.255889:
 cont.255871:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i19, %i0, then.255902
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -70526,16 +68565,16 @@ cont.255903:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i17)
 	movi	%i31, -1
@@ -70638,8 +68677,7 @@ cont.255909:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.255907
 then.255920:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.244021:
 	slli	%i4, %i19, 2
 	add	%i31, %i17, %i4
@@ -70744,28 +68782,23 @@ cont.255926:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244022
 then.255937:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.244021
 	jmp	%i0, 0(%i31)
 then.255923:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244022
 loop_end.244022:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.255907
 then.255906:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.255907:
 	jeq	%i5, %i0, then.255939
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244007
 then.255939:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.244006
 	jmp	%i0, 0(%i31)
 then.255904:
@@ -70775,8 +68808,7 @@ then.255904:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.255941
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.244006
 	jmp	%i0, 0(%i31)
 then.255941:
@@ -70787,12 +68819,10 @@ then.255868:
 	jzero	%i0, %i0, loop_end.244007
 loop_end.244007:
 	jeq	%i31, %i0, then.255943
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244003
 then.255943:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244002
 	jmp	%i0, 0(%i31)
 then.255865:
@@ -70832,11 +68862,9 @@ loop_start.244036:
 	slli	%i4, %i16, 2
 	add	%i31, %i17, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 110(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 112(%i1)
+	lf	%f14, 110(%i1)
+	lf	%f13, 111(%i1)
+	lf	%f5, 112(%i1)
 	slli	%i4, %i5, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
@@ -70852,7 +68880,7 @@ loop_start.244036:
 	lf	%f1, 1(%i24)
 	fsub	%f14, %f13, %f1
 	lf	%f1, 2(%i24)
-	fsub	%f17, %f31, %f1
+	fsub	%f17, %f5, %f1
 	slli	%i19, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i19
@@ -70919,16 +68947,16 @@ cont.255960:
 	fmul	%f1, %f1, %f13
 	fadd	%f5, %f5, %f1
 	lf	%f1, 4(%i19)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.255964
 then.255963:
 	frsqrt	%f1, %f13
 	fmul	%f1, %f1, %f13
 	fsub	%f5, %f5, %f1
 	lf	%f1, 4(%i19)
-	fmul	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 cont.255964:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.255954
@@ -70946,8 +68974,8 @@ then.255955:
 	fadd	%f5, %f5, %f1
 	lf	%f1, 3(%i19)
 	fmul	%f1, %f1, %f17
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.255954
 then.255965:
@@ -70961,16 +68989,14 @@ then.255953:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255967
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255969
@@ -70996,16 +69022,14 @@ then.255971:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255973
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f17
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 2(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255975
@@ -71031,16 +69055,14 @@ then.255977:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 0(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255979
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f13, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f5, %f1
+	fabs	%f5, %f1
 	lf	%f1, 1(%i23)
 	flt	%i20, %f5, %f1
 	jeq	%i20, %i0, then.255981
@@ -71064,8 +69086,7 @@ cont.255984:
 cont.255978:
 cont.255972:
 cont.255954:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i19, %i0, then.255985
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -71082,16 +69103,16 @@ cont.255986:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i17)
 	movi	%i31, -1
@@ -71194,8 +69215,7 @@ cont.255992:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.255990
 then.256003:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.244051:
 	slli	%i4, %i19, 2
 	add	%i31, %i17, %i4
@@ -71300,28 +69320,23 @@ cont.256009:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244052
 then.256020:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.244051
 	jmp	%i0, 0(%i31)
 then.256006:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244052
 loop_end.244052:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.255990
 then.255989:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.255990:
 	jeq	%i5, %i0, then.256022
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244037
 then.256022:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.244036
 	jmp	%i0, 0(%i31)
 then.255987:
@@ -71331,8 +69346,7 @@ then.255987:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.256024
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.244036
 	jmp	%i0, 0(%i31)
 then.256024:
@@ -71343,12 +69357,10 @@ then.255951:
 	jzero	%i0, %i0, loop_end.244037
 loop_end.244037:
 	jeq	%i31, %i0, then.256026
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244033
 then.256026:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244032
 	jmp	%i0, 0(%i31)
 then.255948:
@@ -71356,17 +69368,14 @@ then.255948:
 	jzero	%i0, %i0, loop_end.244033
 loop_end.244033:
 	jeq	%i31, %i0, then.256028
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.243991
 then.256028:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.243990
 	jmp	%i0, 0(%i31)
 then.255945:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.243990
 	jmp	%i0, 0(%i31)
 then.255824:
@@ -71396,20 +69405,16 @@ loop_end.243991:
 	lf	%f1, 0(%i13)
 	fmul	%f12, %f5, %f1
 	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	lf	%f1, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f9, %f9, %f1
 cont.256030:
 cont.255777:
 cont.255140:
-	subi	%i4, %i6, 2
-	mov	%i6, %i4
+	subi	%i6, %i6, 2
 	set_label	%i30, loop_start.243663
 	jmp	%i0, 0(%i30)
 loop_end.243664:
@@ -71417,24 +69422,23 @@ cont.255120:
 	slli	%i4, %i11, 2
 	add	%i31, %i7, %i4
 	lw	%i5, 0(%i31)
-	lf	%f31, 116(%i1)
+	lf	%f3, 116(%i1)
 	lf	%f2, 0(%i5)
 	fmul	%f1, %f2, %f11
-	fadd	%f1, %f31, %f1
-	sf	%f1, 116(%i1)
-	lf	%f31, 117(%i1)
+	fadd	%f31, %f3, %f1
+	sf	%f31, 116(%i1)
+	lf	%f3, 117(%i1)
 	lf	%f2, 1(%i5)
 	fmul	%f1, %f2, %f10
-	fadd	%f1, %f31, %f1
-	sf	%f1, 117(%i1)
-	lf	%f31, 118(%i1)
+	fadd	%f31, %f3, %f1
+	sf	%f31, 117(%i1)
+	lf	%f3, 118(%i1)
 	lf	%f2, 2(%i5)
 	fmul	%f1, %f2, %f9
-	fadd	%f1, %f31, %f1
-	sf	%f1, 118(%i1)
+	fadd	%f31, %f3, %f1
+	sf	%f31, 118(%i1)
 cont.251475:
-	addi	%i4, %i11, 1
-	mov	%i11, %i4
+	addi	%i11, %i11, 1
 	set_label	%i30, loop_start.241974
 	jmp	%i0, 0(%i30)
 then.251454:
@@ -71478,12 +69482,9 @@ Lrelax_skip_37:
 	slli	%i4, %i11, 2
 	add	%i31, %i8, %i4
 	lw	%i5, 0(%i31)
-	lf	%f3, 0(%i5)
-	lf	%f2, 1(%i5)
-	lf	%f1, 2(%i5)
-	fmov	%f11, %f3
-	fmov	%f10, %f2
-	fmov	%f9, %f1
+	lf	%f11, 0(%i5)
+	lf	%f10, 1(%i5)
+	lf	%f9, 2(%i5)
 	lw	%i6, 0(%i9)
 	add	%i31, %i10, %i4
 	lw	%i30, 0(%i31)
@@ -71506,10 +69507,9 @@ Lrelax_skip_38:
 	sf	%f3, 122(%i1)
 	sf	%f2, 123(%i1)
 	sf	%f1, 124(%i1)
-	lw	%i31, 105(%i1)
-	subi	%i4, %i31, 1
-	mov	%i5, %i4
-	jleq	%i0, %i4, then.256038
+	lw	%i4, 105(%i1)
+	subi	%i5, %i4, 1
+	jleq	%i0, %i5, then.256038
 	jzero	%i0, %i0, cont.256039
 then.256038:
 	slli	%i4, %i5, 2
@@ -71588,8 +69588,7 @@ then.256040:
 	fadd	%f4, %f5, %f4
 	sf	%f4, 3(%i18)
 cont.256041:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 loop_start.244090:
 	jleq	%i0, %i5, then.256046
 	jzero	%i0, %i0, loop_end.244091
@@ -71670,8 +69669,7 @@ then.256048:
 	fadd	%f4, %f5, %f4
 	sf	%f4, 3(%i18)
 cont.256049:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 	set_label	%i30, loop_start.244090
 	jmp	%i0, 0(%i30)
 loop_end.244091:
@@ -71716,8 +69714,7 @@ Lrelax_skip_39:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.244102:
 	slli	%i4, %i15, 2
@@ -71775,16 +69772,16 @@ then.256067:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.256072
 then.256071:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.256072:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.256064
@@ -71797,8 +69794,8 @@ then.256065:
 	jeq	%i19, %i0, then.256073
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.256064
 then.256073:
@@ -71811,15 +69808,13 @@ then.256063:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.256075
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.256077
@@ -71844,15 +69839,13 @@ then.256079:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.256081
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f16, %f1
+	fabs	%f16, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f16, %f1
 	jeq	%i19, %i0, then.256083
@@ -71877,15 +69870,13 @@ then.256085:
 	fmul	%f16, %f4, %f1
 	fmul	%f1, %f16, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f4, %f1
 	jeq	%i19, %i0, then.256087
 	fmul	%f1, %f16, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i5)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.256089
@@ -71910,8 +69901,8 @@ cont.256086:
 cont.256080:
 cont.256064:
 	jeq	%i5, %i0, cont.256062
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.256062
 	movi	%i23, 1
 loop_start.244113:
@@ -71974,16 +69965,16 @@ then.256105:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.256110
 then.256109:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.256110:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.256102
@@ -71996,8 +69987,8 @@ then.256103:
 	jeq	%i19, %i0, then.256111
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.256102
 then.256111:
@@ -72011,16 +70002,14 @@ then.256101:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256113
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256115
@@ -72046,16 +70035,14 @@ then.256117:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256119
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256121
@@ -72081,16 +70068,14 @@ then.256123:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.256125
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.256127
@@ -72115,9 +70100,8 @@ cont.256124:
 cont.256118:
 cont.256102:
 	jeq	%i19, %i0, then.256131
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.256133
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.256134
@@ -72127,16 +70111,16 @@ cont.256102:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -72240,8 +70224,7 @@ cont.256138:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.256136
 then.256149:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.244130:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -72347,20 +70330,17 @@ cont.256155:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244131
 then.256166:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244130
 	jmp	%i0, 0(%i31)
 then.256152:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244131
 loop_end.244131:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.256136
 then.256135:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.256136:
 	jeq	%i5, %i0, cont.256168
 	fmov	%f5, %f14
@@ -72372,8 +70352,7 @@ cont.256136:
 cont.256168:
 cont.256134:
 cont.256133:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244117
 	jmp	%i0, 0(%i31)
 then.256131:
@@ -72383,13 +70362,11 @@ then.256131:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.244118
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244117
 	jmp	%i0, 0(%i31)
 loop_end.244118:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.244113
 	jmp	%i0, 0(%i31)
 then.256061:
@@ -72454,16 +70431,16 @@ then.256181:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.256186
 then.256185:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.256186:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.256178
@@ -72476,8 +70453,8 @@ then.256179:
 	jeq	%i19, %i0, then.256187
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.256178
 then.256187:
@@ -72491,16 +70468,14 @@ then.256177:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256189
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256191
@@ -72526,16 +70501,14 @@ then.256193:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256195
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256197
@@ -72561,16 +70534,14 @@ then.256199:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.256201
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.256203
@@ -72595,9 +70566,8 @@ cont.256200:
 cont.256194:
 cont.256178:
 	jeq	%i19, %i0, then.256207
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.256209
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.256210
@@ -72607,16 +70577,16 @@ cont.256178:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -72720,8 +70690,7 @@ cont.256214:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.256212
 then.256225:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.244164:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -72827,20 +70796,17 @@ cont.256231:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244165
 then.256242:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244164
 	jmp	%i0, 0(%i31)
 then.256228:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244165
 loop_end.244165:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.256212
 then.256211:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.256212:
 	jeq	%i5, %i0, cont.256244
 	fmov	%f5, %f14
@@ -72852,8 +70818,7 @@ cont.256212:
 cont.256244:
 cont.256210:
 cont.256209:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244151
 	jmp	%i0, 0(%i31)
 then.256207:
@@ -72863,19 +70828,16 @@ then.256207:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.244152
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244151
 	jmp	%i0, 0(%i31)
 loop_end.244152:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.244147
 	jmp	%i0, 0(%i31)
 loop_end.244148:
 cont.256062:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.244102
 	jmp	%i0, 0(%i31)
 loop_end.244103:
@@ -72898,8 +70860,8 @@ cont.256248:
 	set_label	%i31, cont.256057
 	jmp	%i0, 0(%i31)
 Lrelax_skip_40:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -72916,15 +70878,15 @@ Lrelax_skip_40:
 	jeq	%i20, %i31, then.256250
 	movi	%i31, 2
 	jeq	%i20, %i31, then.256252
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i15)
-	fsub	%f4, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f4, %f3, %f1
+	lf	%f3, 111(%i1)
 	lf	%f1, 1(%i15)
-	fsub	%f3, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f3, %f3, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i15)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	lf	%f1, 0(%i5)
 	fmul	%f15, %f4, %f1
 	lf	%f1, 1(%i5)
@@ -73026,8 +70988,7 @@ then.256252:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.256251
 then.256250:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -73054,18 +71015,13 @@ cont.256261:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.256251:
-	lf	%f31, 110(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 112(%i1)
-	fmov	%f5, %f31
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f13, 110(%i1)
+	lf	%f14, 111(%i1)
+	lf	%f5, 112(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.256262
 	movi	%i31, 2
@@ -73089,8 +71045,7 @@ cont.256251:
 	fmul	%f5, %f16, %f16
 	fmul	%f1, %f15, %f15
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f16
-	fmov	%f5, %f1
+	fabs	%f5, %f16
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -73102,8 +71057,7 @@ cont.256251:
 then.256269:
 	finv	%f1, %f16
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f15
@@ -73167,8 +71121,7 @@ cont.256270:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -73180,8 +71133,7 @@ cont.256270:
 then.256271:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -73262,8 +71214,8 @@ cont.256272:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.256268:
 	jzero	%i0, %i0, cont.256263
 then.256266:
@@ -73395,15 +71347,14 @@ cont.256274:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.256263
 then.256264:
 	movui	%i31, 256000
@@ -73516,14 +71467,12 @@ cont.256282:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.256263
 then.256262:
 	lf	%f1, 0(%i15)
@@ -73532,8 +71481,7 @@ then.256262:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f13, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -73547,8 +71495,7 @@ then.256262:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -73596,15 +71543,15 @@ loop_start.244222:
 	lw	%i20, 4(%i4)
 	lw	%i17, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i19)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i19)
-	fsub	%f13, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f13, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i19)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f5, %f1
 	slli	%i18, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i18
@@ -73671,15 +71618,15 @@ cont.256307:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fadd	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.256311
 then.256310:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fsub	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 cont.256311:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.256301
@@ -73697,8 +71644,8 @@ then.256302:
 	fmul	%f1, %f16, %f13
 	fadd	%f13, %f14, %f1
 	fmul	%f1, %f15, %f5
-	fadd	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.256301
 then.256312:
@@ -73804,11 +71751,11 @@ cont.256325:
 cont.256319:
 cont.256301:
 	jeq	%i5, %i0, then.256332
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.256334
 	movi	%i20, 1
 loop_start.244234:
@@ -73841,15 +71788,15 @@ loop_start.244238:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -73916,15 +71863,15 @@ cont.256349:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.256353
 then.256352:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.256353:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.256343
@@ -73942,8 +71889,8 @@ then.256344:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.256343
 then.256354:
@@ -73961,16 +71908,14 @@ then.256342:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.256356
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.256358
@@ -73993,16 +71938,14 @@ then.256360:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.256362
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.256364
@@ -74025,16 +71968,14 @@ then.256366:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.256368
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.256370
@@ -74057,8 +71998,7 @@ cont.256373:
 cont.256367:
 cont.256361:
 cont.256343:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.256374
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -74075,16 +72015,16 @@ cont.256375:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -74159,18 +72099,15 @@ then.256382:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.256381
 then.256380:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.256386
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.256388
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.256387
@@ -74190,8 +72127,7 @@ cont.256381:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.256379
 then.256392:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.244253:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -74268,18 +72204,15 @@ then.256399:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.256398
 then.256397:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.256403
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.256405
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.256404
@@ -74299,28 +72232,23 @@ cont.256398:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244254
 then.256409:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.244253
 	jmp	%i0, 0(%i31)
 then.256395:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244254
 loop_end.244254:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.256379
 then.256378:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.256379:
 	jeq	%i5, %i0, then.256411
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244239
 then.256411:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244238
 	jmp	%i0, 0(%i31)
 then.256376:
@@ -74330,8 +72258,7 @@ then.256376:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.256413
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244238
 	jmp	%i0, 0(%i31)
 then.256413:
@@ -74342,12 +72269,10 @@ then.256340:
 	jzero	%i0, %i0, loop_end.244239
 loop_end.244239:
 	jeq	%i31, %i0, then.256415
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244235
 then.256415:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.244234
 	jmp	%i0, 0(%i31)
 then.256337:
@@ -74397,15 +72322,15 @@ loop_start.244268:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -74472,15 +72397,15 @@ cont.256432:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.256436
 then.256435:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.256436:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.256426
@@ -74498,8 +72423,8 @@ then.256427:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.256426
 then.256437:
@@ -74517,16 +72442,14 @@ then.256425:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.256439
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.256441
@@ -74549,16 +72472,14 @@ then.256443:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.256445
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.256447
@@ -74581,16 +72502,14 @@ then.256449:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.256451
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.256453
@@ -74613,8 +72532,7 @@ cont.256456:
 cont.256450:
 cont.256444:
 cont.256426:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.256457
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -74631,16 +72549,16 @@ cont.256458:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -74715,18 +72633,15 @@ then.256465:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.256464
 then.256463:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.256469
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.256471
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.256470
@@ -74746,8 +72661,7 @@ cont.256464:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.256462
 then.256475:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.244283:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -74824,18 +72738,15 @@ then.256482:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.256481
 then.256480:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.256486
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.256488
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.256487
@@ -74855,28 +72766,23 @@ cont.256481:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244284
 then.256492:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.244283
 	jmp	%i0, 0(%i31)
 then.256478:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244284
 loop_end.244284:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.256462
 then.256461:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.256462:
 	jeq	%i5, %i0, then.256494
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244269
 then.256494:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244268
 	jmp	%i0, 0(%i31)
 then.256459:
@@ -74886,8 +72792,7 @@ then.256459:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.256496
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244268
 	jmp	%i0, 0(%i31)
 then.256496:
@@ -74898,12 +72803,10 @@ then.256423:
 	jzero	%i0, %i0, loop_end.244269
 loop_end.244269:
 	jeq	%i31, %i0, then.256498
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244265
 then.256498:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.244264
 	jmp	%i0, 0(%i31)
 then.256420:
@@ -74911,17 +72814,14 @@ then.256420:
 	jzero	%i0, %i0, loop_end.244265
 loop_end.244265:
 	jeq	%i31, %i0, then.256500
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244223
 then.256500:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.244222
 	jmp	%i0, 0(%i31)
 then.256417:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.244222
 	jmp	%i0, 0(%i31)
 then.256296:
@@ -74950,16 +72850,14 @@ loop_end.244223:
 	fmul	%f5, %f12, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fmov	%f1, %f4
+	lf	%f4, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	fmul	%f1, %f12, %f4
+	fadd	%f9, %f9, %f1
 cont.256502:
 	set_label	%i31, cont.256057
 	jmp	%i0, 0(%i31)
@@ -74975,8 +72873,7 @@ then.256056:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.244303:
 	slli	%i4, %i15, 2
@@ -75034,16 +72931,16 @@ then.256512:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.256517
 then.256516:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.256517:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.256509
@@ -75056,8 +72953,8 @@ then.256510:
 	jeq	%i19, %i0, then.256518
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.256509
 then.256518:
@@ -75070,15 +72967,13 @@ then.256508:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.256520
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.256522
@@ -75103,15 +72998,13 @@ then.256524:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.256526
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f16, %f1
+	fabs	%f16, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f16, %f1
 	jeq	%i19, %i0, then.256528
@@ -75136,15 +73029,13 @@ then.256530:
 	fmul	%f16, %f4, %f1
 	fmul	%f1, %f16, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f4, %f1
 	jeq	%i19, %i0, then.256532
 	fmul	%f1, %f16, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i5)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.256534
@@ -75169,8 +73060,8 @@ cont.256531:
 cont.256525:
 cont.256509:
 	jeq	%i5, %i0, cont.256507
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.256507
 	movi	%i23, 1
 loop_start.244314:
@@ -75233,16 +73124,16 @@ then.256550:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.256555
 then.256554:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.256555:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.256547
@@ -75255,8 +73146,8 @@ then.256548:
 	jeq	%i19, %i0, then.256556
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.256547
 then.256556:
@@ -75270,16 +73161,14 @@ then.256546:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256558
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256560
@@ -75305,16 +73194,14 @@ then.256562:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256564
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256566
@@ -75340,16 +73227,14 @@ then.256568:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.256570
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.256572
@@ -75374,9 +73259,8 @@ cont.256569:
 cont.256563:
 cont.256547:
 	jeq	%i19, %i0, then.256576
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.256578
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.256579
@@ -75386,16 +73270,16 @@ cont.256547:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -75499,8 +73383,7 @@ cont.256583:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.256581
 then.256594:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.244331:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -75606,20 +73489,17 @@ cont.256600:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244332
 then.256611:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244331
 	jmp	%i0, 0(%i31)
 then.256597:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244332
 loop_end.244332:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.256581
 then.256580:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.256581:
 	jeq	%i5, %i0, cont.256613
 	fmov	%f5, %f14
@@ -75631,8 +73511,7 @@ cont.256581:
 cont.256613:
 cont.256579:
 cont.256578:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244318
 	jmp	%i0, 0(%i31)
 then.256576:
@@ -75642,13 +73521,11 @@ then.256576:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.244319
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244318
 	jmp	%i0, 0(%i31)
 loop_end.244319:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.244314
 	jmp	%i0, 0(%i31)
 then.256506:
@@ -75713,16 +73590,16 @@ then.256626:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.256631
 then.256630:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.256631:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.256623
@@ -75735,8 +73612,8 @@ then.256624:
 	jeq	%i19, %i0, then.256632
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.256623
 then.256632:
@@ -75750,16 +73627,14 @@ then.256622:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256634
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256636
@@ -75785,16 +73660,14 @@ then.256638:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256640
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.256642
@@ -75820,16 +73693,14 @@ then.256644:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.256646
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.256648
@@ -75854,9 +73725,8 @@ cont.256645:
 cont.256639:
 cont.256623:
 	jeq	%i19, %i0, then.256652
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.256654
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.256655
@@ -75866,16 +73736,16 @@ cont.256623:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -75979,8 +73849,7 @@ cont.256659:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.256657
 then.256670:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.244365:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -76086,20 +73955,17 @@ cont.256676:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244366
 then.256687:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244365
 	jmp	%i0, 0(%i31)
 then.256673:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244366
 loop_end.244366:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.256657
 then.256656:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.256657:
 	jeq	%i5, %i0, cont.256689
 	fmov	%f5, %f14
@@ -76111,8 +73977,7 @@ cont.256657:
 cont.256689:
 cont.256655:
 cont.256654:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244352
 	jmp	%i0, 0(%i31)
 then.256652:
@@ -76122,19 +73987,16 @@ then.256652:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.244353
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244352
 	jmp	%i0, 0(%i31)
 loop_end.244353:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.244348
 	jmp	%i0, 0(%i31)
 loop_end.244349:
 cont.256507:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.244303
 	jmp	%i0, 0(%i31)
 loop_end.244304:
@@ -76157,8 +74019,8 @@ cont.256693:
 	set_label	%i31, cont.256694
 	jmp	%i0, 0(%i31)
 Lrelax_skip_41:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -76175,15 +74037,15 @@ Lrelax_skip_41:
 	jeq	%i20, %i31, then.256695
 	movi	%i31, 2
 	jeq	%i20, %i31, then.256697
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i15)
-	fsub	%f4, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f4, %f3, %f1
+	lf	%f3, 111(%i1)
 	lf	%f1, 1(%i15)
-	fsub	%f3, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f3, %f3, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i15)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	lf	%f1, 0(%i5)
 	fmul	%f15, %f4, %f1
 	lf	%f1, 1(%i5)
@@ -76285,8 +74147,7 @@ then.256697:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.256696
 then.256695:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -76313,18 +74174,13 @@ cont.256706:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.256696:
-	lf	%f31, 110(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 112(%i1)
-	fmov	%f5, %f31
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f13, 110(%i1)
+	lf	%f14, 111(%i1)
+	lf	%f5, 112(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.256707
 	movi	%i31, 2
@@ -76348,8 +74204,7 @@ cont.256696:
 	fmul	%f5, %f16, %f16
 	fmul	%f1, %f15, %f15
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f16
-	fmov	%f5, %f1
+	fabs	%f5, %f16
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -76361,8 +74216,7 @@ cont.256696:
 then.256714:
 	finv	%f1, %f16
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f15
@@ -76426,8 +74280,7 @@ cont.256715:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -76439,8 +74292,7 @@ cont.256715:
 then.256716:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -76521,8 +74373,8 @@ cont.256717:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.256713:
 	jzero	%i0, %i0, cont.256708
 then.256711:
@@ -76654,15 +74506,14 @@ cont.256719:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.256708
 then.256709:
 	movui	%i31, 256000
@@ -76775,14 +74626,12 @@ cont.256727:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.256708
 then.256707:
 	lf	%f1, 0(%i15)
@@ -76791,8 +74640,7 @@ then.256707:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f13, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -76806,8 +74654,7 @@ then.256707:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -76855,15 +74702,15 @@ loop_start.244423:
 	lw	%i20, 4(%i4)
 	lw	%i17, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i19)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i19)
-	fsub	%f13, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f13, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i19)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f5, %f1
 	slli	%i18, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i18
@@ -76930,15 +74777,15 @@ cont.256752:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fadd	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.256756
 then.256755:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fsub	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 cont.256756:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.256746
@@ -76956,8 +74803,8 @@ then.256747:
 	fmul	%f1, %f16, %f13
 	fadd	%f13, %f14, %f1
 	fmul	%f1, %f15, %f5
-	fadd	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.256746
 then.256757:
@@ -77063,11 +74910,11 @@ cont.256770:
 cont.256764:
 cont.256746:
 	jeq	%i5, %i0, then.256777
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.256779
 	movi	%i20, 1
 loop_start.244435:
@@ -77100,15 +74947,15 @@ loop_start.244439:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -77175,15 +75022,15 @@ cont.256794:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.256798
 then.256797:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.256798:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.256788
@@ -77201,8 +75048,8 @@ then.256789:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.256788
 then.256799:
@@ -77220,16 +75067,14 @@ then.256787:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.256801
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.256803
@@ -77252,16 +75097,14 @@ then.256805:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.256807
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.256809
@@ -77284,16 +75127,14 @@ then.256811:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.256813
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.256815
@@ -77316,8 +75157,7 @@ cont.256818:
 cont.256812:
 cont.256806:
 cont.256788:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.256819
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -77334,16 +75174,16 @@ cont.256820:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -77418,18 +75258,15 @@ then.256827:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.256826
 then.256825:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.256831
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.256833
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.256832
@@ -77449,8 +75286,7 @@ cont.256826:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.256824
 then.256837:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.244454:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -77527,18 +75363,15 @@ then.256844:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.256843
 then.256842:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.256848
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.256850
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.256849
@@ -77558,28 +75391,23 @@ cont.256843:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244455
 then.256854:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.244454
 	jmp	%i0, 0(%i31)
 then.256840:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244455
 loop_end.244455:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.256824
 then.256823:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.256824:
 	jeq	%i5, %i0, then.256856
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244440
 then.256856:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244439
 	jmp	%i0, 0(%i31)
 then.256821:
@@ -77589,8 +75417,7 @@ then.256821:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.256858
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244439
 	jmp	%i0, 0(%i31)
 then.256858:
@@ -77601,12 +75428,10 @@ then.256785:
 	jzero	%i0, %i0, loop_end.244440
 loop_end.244440:
 	jeq	%i31, %i0, then.256860
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244436
 then.256860:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.244435
 	jmp	%i0, 0(%i31)
 then.256782:
@@ -77656,15 +75481,15 @@ loop_start.244469:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -77731,15 +75556,15 @@ cont.256877:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.256881
 then.256880:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.256881:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.256871
@@ -77757,8 +75582,8 @@ then.256872:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.256871
 then.256882:
@@ -77776,16 +75601,14 @@ then.256870:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.256884
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.256886
@@ -77808,16 +75631,14 @@ then.256888:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.256890
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.256892
@@ -77840,16 +75661,14 @@ then.256894:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.256896
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.256898
@@ -77872,8 +75691,7 @@ cont.256901:
 cont.256895:
 cont.256889:
 cont.256871:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.256902
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -77890,16 +75708,16 @@ cont.256903:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -77974,18 +75792,15 @@ then.256910:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.256909
 then.256908:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.256914
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.256916
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.256915
@@ -78005,8 +75820,7 @@ cont.256909:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.256907
 then.256920:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.244484:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -78083,18 +75897,15 @@ then.256927:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.256926
 then.256925:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.256931
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.256933
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.256932
@@ -78114,28 +75925,23 @@ cont.256926:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244485
 then.256937:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.244484
 	jmp	%i0, 0(%i31)
 then.256923:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244485
 loop_end.244485:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.256907
 then.256906:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.256907:
 	jeq	%i5, %i0, then.256939
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244470
 then.256939:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244469
 	jmp	%i0, 0(%i31)
 then.256904:
@@ -78145,8 +75951,7 @@ then.256904:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.256941
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244469
 	jmp	%i0, 0(%i31)
 then.256941:
@@ -78157,12 +75962,10 @@ then.256868:
 	jzero	%i0, %i0, loop_end.244470
 loop_end.244470:
 	jeq	%i31, %i0, then.256943
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244466
 then.256943:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.244465
 	jmp	%i0, 0(%i31)
 then.256865:
@@ -78170,17 +75973,14 @@ then.256865:
 	jzero	%i0, %i0, loop_end.244466
 loop_end.244466:
 	jeq	%i31, %i0, then.256945
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244424
 then.256945:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.244423
 	jmp	%i0, 0(%i31)
 then.256862:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.244423
 	jmp	%i0, 0(%i31)
 then.256741:
@@ -78209,21 +76009,18 @@ loop_end.244424:
 	fmul	%f5, %f12, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fmov	%f1, %f4
+	lf	%f4, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	fmul	%f1, %f12, %f4
+	fadd	%f9, %f9, %f1
 cont.256947:
 cont.256694:
 cont.256057:
-	subi	%i4, %i12, 2
-	mov	%i12, %i4
+	subi	%i12, %i12, 2
 	set_label	%i30, loop_start.244096
 	jmp	%i0, 0(%i30)
 loop_end.244097:
@@ -78243,10 +76040,9 @@ Lrelax_skip_42:
 	sf	%f3, 122(%i1)
 	sf	%f2, 123(%i1)
 	sf	%f1, 124(%i1)
-	lw	%i31, 105(%i1)
-	subi	%i4, %i31, 1
-	mov	%i5, %i4
-	jleq	%i0, %i4, then.256949
+	lw	%i4, 105(%i1)
+	subi	%i5, %i4, 1
+	jleq	%i0, %i5, then.256949
 	jzero	%i0, %i0, cont.256950
 then.256949:
 	slli	%i4, %i5, 2
@@ -78325,8 +76121,7 @@ then.256951:
 	fadd	%f4, %f5, %f4
 	sf	%f4, 3(%i18)
 cont.256952:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 loop_start.244507:
 	jleq	%i0, %i5, then.256957
 	jzero	%i0, %i0, loop_end.244508
@@ -78407,8 +76202,7 @@ then.256959:
 	fadd	%f4, %f5, %f4
 	sf	%f4, 3(%i18)
 cont.256960:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 	set_label	%i30, loop_start.244507
 	jmp	%i0, 0(%i30)
 loop_end.244508:
@@ -78453,8 +76247,7 @@ Lrelax_skip_43:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.244519:
 	slli	%i4, %i15, 2
@@ -78512,16 +76305,16 @@ then.256978:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.256983
 then.256982:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.256983:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.256975
@@ -78534,8 +76327,8 @@ then.256976:
 	jeq	%i19, %i0, then.256984
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.256975
 then.256984:
@@ -78548,15 +76341,13 @@ then.256974:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.256986
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.256988
@@ -78581,15 +76372,13 @@ then.256990:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.256992
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f16, %f1
+	fabs	%f16, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f16, %f1
 	jeq	%i19, %i0, then.256994
@@ -78614,15 +76403,13 @@ then.256996:
 	fmul	%f16, %f4, %f1
 	fmul	%f1, %f16, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f4, %f1
 	jeq	%i19, %i0, then.256998
 	fmul	%f1, %f16, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i5)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.257000
@@ -78647,8 +76434,8 @@ cont.256997:
 cont.256991:
 cont.256975:
 	jeq	%i5, %i0, cont.256973
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.256973
 	movi	%i23, 1
 loop_start.244530:
@@ -78711,16 +76498,16 @@ then.257016:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.257021
 then.257020:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.257021:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.257013
@@ -78733,8 +76520,8 @@ then.257014:
 	jeq	%i19, %i0, then.257022
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.257013
 then.257022:
@@ -78748,16 +76535,14 @@ then.257012:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257024
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257026
@@ -78783,16 +76568,14 @@ then.257028:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257030
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257032
@@ -78818,16 +76601,14 @@ then.257034:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.257036
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.257038
@@ -78852,9 +76633,8 @@ cont.257035:
 cont.257029:
 cont.257013:
 	jeq	%i19, %i0, then.257042
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.257044
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.257045
@@ -78864,16 +76644,16 @@ cont.257013:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -78977,8 +76757,7 @@ cont.257049:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.257047
 then.257060:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.244547:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -79084,20 +76863,17 @@ cont.257066:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244548
 then.257077:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244547
 	jmp	%i0, 0(%i31)
 then.257063:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244548
 loop_end.244548:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.257047
 then.257046:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.257047:
 	jeq	%i5, %i0, cont.257079
 	fmov	%f5, %f14
@@ -79109,8 +76885,7 @@ cont.257047:
 cont.257079:
 cont.257045:
 cont.257044:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244534
 	jmp	%i0, 0(%i31)
 then.257042:
@@ -79120,13 +76895,11 @@ then.257042:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.244535
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244534
 	jmp	%i0, 0(%i31)
 loop_end.244535:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.244530
 	jmp	%i0, 0(%i31)
 then.256972:
@@ -79191,16 +76964,16 @@ then.257092:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.257097
 then.257096:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.257097:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.257089
@@ -79213,8 +76986,8 @@ then.257090:
 	jeq	%i19, %i0, then.257098
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.257089
 then.257098:
@@ -79228,16 +77001,14 @@ then.257088:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257100
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257102
@@ -79263,16 +77034,14 @@ then.257104:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257106
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257108
@@ -79298,16 +77067,14 @@ then.257110:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.257112
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.257114
@@ -79332,9 +77099,8 @@ cont.257111:
 cont.257105:
 cont.257089:
 	jeq	%i19, %i0, then.257118
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.257120
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.257121
@@ -79344,16 +77110,16 @@ cont.257089:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -79457,8 +77223,7 @@ cont.257125:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.257123
 then.257136:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.244581:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -79564,20 +77329,17 @@ cont.257142:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244582
 then.257153:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244581
 	jmp	%i0, 0(%i31)
 then.257139:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244582
 loop_end.244582:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.257123
 then.257122:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.257123:
 	jeq	%i5, %i0, cont.257155
 	fmov	%f5, %f14
@@ -79589,8 +77351,7 @@ cont.257123:
 cont.257155:
 cont.257121:
 cont.257120:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244568
 	jmp	%i0, 0(%i31)
 then.257118:
@@ -79600,19 +77361,16 @@ then.257118:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.244569
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244568
 	jmp	%i0, 0(%i31)
 loop_end.244569:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.244564
 	jmp	%i0, 0(%i31)
 loop_end.244565:
 cont.256973:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.244519
 	jmp	%i0, 0(%i31)
 loop_end.244520:
@@ -79635,8 +77393,8 @@ cont.257159:
 	set_label	%i31, cont.256968
 	jmp	%i0, 0(%i31)
 Lrelax_skip_44:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -79653,15 +77411,15 @@ Lrelax_skip_44:
 	jeq	%i20, %i31, then.257161
 	movi	%i31, 2
 	jeq	%i20, %i31, then.257163
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i15)
-	fsub	%f4, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f4, %f3, %f1
+	lf	%f3, 111(%i1)
 	lf	%f1, 1(%i15)
-	fsub	%f3, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f3, %f3, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i15)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	lf	%f1, 0(%i5)
 	fmul	%f15, %f4, %f1
 	lf	%f1, 1(%i5)
@@ -79763,8 +77521,7 @@ then.257163:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.257162
 then.257161:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -79791,18 +77548,13 @@ cont.257172:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.257162:
-	lf	%f31, 110(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 112(%i1)
-	fmov	%f5, %f31
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f13, 110(%i1)
+	lf	%f14, 111(%i1)
+	lf	%f5, 112(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.257173
 	movi	%i31, 2
@@ -79826,8 +77578,7 @@ cont.257162:
 	fmul	%f5, %f16, %f16
 	fmul	%f1, %f15, %f15
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f16
-	fmov	%f5, %f1
+	fabs	%f5, %f16
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -79839,8 +77590,7 @@ cont.257162:
 then.257180:
 	finv	%f1, %f16
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f15
@@ -79904,8 +77654,7 @@ cont.257181:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -79917,8 +77666,7 @@ cont.257181:
 then.257182:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -79999,8 +77747,8 @@ cont.257183:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.257179:
 	jzero	%i0, %i0, cont.257174
 then.257177:
@@ -80132,15 +77880,14 @@ cont.257185:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.257174
 then.257175:
 	movui	%i31, 256000
@@ -80253,14 +78000,12 @@ cont.257193:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.257174
 then.257173:
 	lf	%f1, 0(%i15)
@@ -80269,8 +78014,7 @@ then.257173:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f13, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -80284,8 +78028,7 @@ then.257173:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -80333,15 +78076,15 @@ loop_start.244639:
 	lw	%i20, 4(%i4)
 	lw	%i17, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i19)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i19)
-	fsub	%f13, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f13, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i19)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f5, %f1
 	slli	%i18, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i18
@@ -80408,15 +78151,15 @@ cont.257218:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fadd	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.257222
 then.257221:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fsub	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 cont.257222:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.257212
@@ -80434,8 +78177,8 @@ then.257213:
 	fmul	%f1, %f16, %f13
 	fadd	%f13, %f14, %f1
 	fmul	%f1, %f15, %f5
-	fadd	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.257212
 then.257223:
@@ -80541,11 +78284,11 @@ cont.257236:
 cont.257230:
 cont.257212:
 	jeq	%i5, %i0, then.257243
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.257245
 	movi	%i20, 1
 loop_start.244651:
@@ -80578,15 +78321,15 @@ loop_start.244655:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -80653,15 +78396,15 @@ cont.257260:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.257264
 then.257263:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.257264:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.257254
@@ -80679,8 +78422,8 @@ then.257255:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.257254
 then.257265:
@@ -80698,16 +78441,14 @@ then.257253:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.257267
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.257269
@@ -80730,16 +78471,14 @@ then.257271:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.257273
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.257275
@@ -80762,16 +78501,14 @@ then.257277:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.257279
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.257281
@@ -80794,8 +78531,7 @@ cont.257284:
 cont.257278:
 cont.257272:
 cont.257254:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.257285
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -80812,16 +78548,16 @@ cont.257286:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -80896,18 +78632,15 @@ then.257293:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.257292
 then.257291:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.257297
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.257299
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.257298
@@ -80927,8 +78660,7 @@ cont.257292:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.257290
 then.257303:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.244670:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -81005,18 +78737,15 @@ then.257310:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.257309
 then.257308:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.257314
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.257316
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.257315
@@ -81036,28 +78765,23 @@ cont.257309:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244671
 then.257320:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.244670
 	jmp	%i0, 0(%i31)
 then.257306:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244671
 loop_end.244671:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.257290
 then.257289:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.257290:
 	jeq	%i5, %i0, then.257322
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244656
 then.257322:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244655
 	jmp	%i0, 0(%i31)
 then.257287:
@@ -81067,8 +78791,7 @@ then.257287:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.257324
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244655
 	jmp	%i0, 0(%i31)
 then.257324:
@@ -81079,12 +78802,10 @@ then.257251:
 	jzero	%i0, %i0, loop_end.244656
 loop_end.244656:
 	jeq	%i31, %i0, then.257326
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244652
 then.257326:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.244651
 	jmp	%i0, 0(%i31)
 then.257248:
@@ -81134,15 +78855,15 @@ loop_start.244685:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -81209,15 +78930,15 @@ cont.257343:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.257347
 then.257346:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.257347:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.257337
@@ -81235,8 +78956,8 @@ then.257338:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.257337
 then.257348:
@@ -81254,16 +78975,14 @@ then.257336:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.257350
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.257352
@@ -81286,16 +79005,14 @@ then.257354:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.257356
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.257358
@@ -81318,16 +79035,14 @@ then.257360:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.257362
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.257364
@@ -81350,8 +79065,7 @@ cont.257367:
 cont.257361:
 cont.257355:
 cont.257337:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.257368
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -81368,16 +79082,16 @@ cont.257369:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -81452,18 +79166,15 @@ then.257376:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.257375
 then.257374:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.257380
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.257382
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.257381
@@ -81483,8 +79194,7 @@ cont.257375:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.257373
 then.257386:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.244700:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -81561,18 +79271,15 @@ then.257393:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.257392
 then.257391:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.257397
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.257399
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.257398
@@ -81592,28 +79299,23 @@ cont.257392:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244701
 then.257403:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.244700
 	jmp	%i0, 0(%i31)
 then.257389:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244701
 loop_end.244701:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.257373
 then.257372:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.257373:
 	jeq	%i5, %i0, then.257405
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244686
 then.257405:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244685
 	jmp	%i0, 0(%i31)
 then.257370:
@@ -81623,8 +79325,7 @@ then.257370:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.257407
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244685
 	jmp	%i0, 0(%i31)
 then.257407:
@@ -81635,12 +79336,10 @@ then.257334:
 	jzero	%i0, %i0, loop_end.244686
 loop_end.244686:
 	jeq	%i31, %i0, then.257409
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244682
 then.257409:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.244681
 	jmp	%i0, 0(%i31)
 then.257331:
@@ -81648,17 +79347,14 @@ then.257331:
 	jzero	%i0, %i0, loop_end.244682
 loop_end.244682:
 	jeq	%i31, %i0, then.257411
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244640
 then.257411:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.244639
 	jmp	%i0, 0(%i31)
 then.257328:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.244639
 	jmp	%i0, 0(%i31)
 then.257207:
@@ -81687,16 +79383,14 @@ loop_end.244640:
 	fmul	%f5, %f12, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fmov	%f1, %f4
+	lf	%f4, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	fmul	%f1, %f12, %f4
+	fadd	%f9, %f9, %f1
 cont.257413:
 	set_label	%i31, cont.256968
 	jmp	%i0, 0(%i31)
@@ -81712,8 +79406,7 @@ then.256967:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.244720:
 	slli	%i4, %i15, 2
@@ -81771,16 +79464,16 @@ then.257423:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.257428
 then.257427:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.257428:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.257420
@@ -81793,8 +79486,8 @@ then.257421:
 	jeq	%i19, %i0, then.257429
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.257420
 then.257429:
@@ -81807,15 +79500,13 @@ then.257419:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.257431
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.257433
@@ -81840,15 +79531,13 @@ then.257435:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.257437
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f16, %f1
+	fabs	%f16, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f16, %f1
 	jeq	%i19, %i0, then.257439
@@ -81873,15 +79562,13 @@ then.257441:
 	fmul	%f16, %f4, %f1
 	fmul	%f1, %f16, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f4, %f1
 	jeq	%i19, %i0, then.257443
 	fmul	%f1, %f16, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i5)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.257445
@@ -81906,8 +79593,8 @@ cont.257442:
 cont.257436:
 cont.257420:
 	jeq	%i5, %i0, cont.257418
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.257418
 	movi	%i23, 1
 loop_start.244731:
@@ -81970,16 +79657,16 @@ then.257461:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.257466
 then.257465:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.257466:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.257458
@@ -81992,8 +79679,8 @@ then.257459:
 	jeq	%i19, %i0, then.257467
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.257458
 then.257467:
@@ -82007,16 +79694,14 @@ then.257457:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257469
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257471
@@ -82042,16 +79727,14 @@ then.257473:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257475
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257477
@@ -82077,16 +79760,14 @@ then.257479:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.257481
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.257483
@@ -82111,9 +79792,8 @@ cont.257480:
 cont.257474:
 cont.257458:
 	jeq	%i19, %i0, then.257487
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.257489
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.257490
@@ -82123,16 +79803,16 @@ cont.257458:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -82236,8 +79916,7 @@ cont.257494:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.257492
 then.257505:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.244748:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -82343,20 +80022,17 @@ cont.257511:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244749
 then.257522:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244748
 	jmp	%i0, 0(%i31)
 then.257508:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244749
 loop_end.244749:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.257492
 then.257491:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.257492:
 	jeq	%i5, %i0, cont.257524
 	fmov	%f5, %f14
@@ -82368,8 +80044,7 @@ cont.257492:
 cont.257524:
 cont.257490:
 cont.257489:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244735
 	jmp	%i0, 0(%i31)
 then.257487:
@@ -82379,13 +80054,11 @@ then.257487:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.244736
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244735
 	jmp	%i0, 0(%i31)
 loop_end.244736:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.244731
 	jmp	%i0, 0(%i31)
 then.257417:
@@ -82450,16 +80123,16 @@ then.257537:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.257542
 then.257541:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.257542:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.257534
@@ -82472,8 +80145,8 @@ then.257535:
 	jeq	%i19, %i0, then.257543
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.257534
 then.257543:
@@ -82487,16 +80160,14 @@ then.257533:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257545
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257547
@@ -82522,16 +80193,14 @@ then.257549:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257551
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257553
@@ -82557,16 +80226,14 @@ then.257555:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.257557
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.257559
@@ -82591,9 +80258,8 @@ cont.257556:
 cont.257550:
 cont.257534:
 	jeq	%i19, %i0, then.257563
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.257565
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.257566
@@ -82603,16 +80269,16 @@ cont.257534:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -82716,8 +80382,7 @@ cont.257570:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.257568
 then.257581:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.244782:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -82823,20 +80488,17 @@ cont.257587:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244783
 then.257598:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244782
 	jmp	%i0, 0(%i31)
 then.257584:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244783
 loop_end.244783:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.257568
 then.257567:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.257568:
 	jeq	%i5, %i0, cont.257600
 	fmov	%f5, %f14
@@ -82848,8 +80510,7 @@ cont.257568:
 cont.257600:
 cont.257566:
 cont.257565:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244769
 	jmp	%i0, 0(%i31)
 then.257563:
@@ -82859,19 +80520,16 @@ then.257563:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.244770
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244769
 	jmp	%i0, 0(%i31)
 loop_end.244770:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.244765
 	jmp	%i0, 0(%i31)
 loop_end.244766:
 cont.257418:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.244720
 	jmp	%i0, 0(%i31)
 loop_end.244721:
@@ -82894,8 +80552,8 @@ cont.257604:
 	set_label	%i31, cont.257605
 	jmp	%i0, 0(%i31)
 Lrelax_skip_45:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -82912,15 +80570,15 @@ Lrelax_skip_45:
 	jeq	%i20, %i31, then.257606
 	movi	%i31, 2
 	jeq	%i20, %i31, then.257608
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i15)
-	fsub	%f4, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f4, %f3, %f1
+	lf	%f3, 111(%i1)
 	lf	%f1, 1(%i15)
-	fsub	%f3, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f3, %f3, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i15)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	lf	%f1, 0(%i5)
 	fmul	%f15, %f4, %f1
 	lf	%f1, 1(%i5)
@@ -83022,8 +80680,7 @@ then.257608:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.257607
 then.257606:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -83050,18 +80707,13 @@ cont.257617:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.257607:
-	lf	%f31, 110(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 112(%i1)
-	fmov	%f5, %f31
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f13, 110(%i1)
+	lf	%f14, 111(%i1)
+	lf	%f5, 112(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.257618
 	movi	%i31, 2
@@ -83085,8 +80737,7 @@ cont.257607:
 	fmul	%f5, %f16, %f16
 	fmul	%f1, %f15, %f15
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f16
-	fmov	%f5, %f1
+	fabs	%f5, %f16
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -83098,8 +80749,7 @@ cont.257607:
 then.257625:
 	finv	%f1, %f16
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f15
@@ -83163,8 +80813,7 @@ cont.257626:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -83176,8 +80825,7 @@ cont.257626:
 then.257627:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -83258,8 +80906,8 @@ cont.257628:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.257624:
 	jzero	%i0, %i0, cont.257619
 then.257622:
@@ -83391,15 +81039,14 @@ cont.257630:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.257619
 then.257620:
 	movui	%i31, 256000
@@ -83512,14 +81159,12 @@ cont.257638:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.257619
 then.257618:
 	lf	%f1, 0(%i15)
@@ -83528,8 +81173,7 @@ then.257618:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f13, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -83543,8 +81187,7 @@ then.257618:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -83592,15 +81235,15 @@ loop_start.244840:
 	lw	%i20, 4(%i4)
 	lw	%i17, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i19)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i19)
-	fsub	%f13, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f13, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i19)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f5, %f1
 	slli	%i18, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i18
@@ -83667,15 +81310,15 @@ cont.257663:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fadd	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.257667
 then.257666:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fsub	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 cont.257667:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.257657
@@ -83693,8 +81336,8 @@ then.257658:
 	fmul	%f1, %f16, %f13
 	fadd	%f13, %f14, %f1
 	fmul	%f1, %f15, %f5
-	fadd	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.257657
 then.257668:
@@ -83800,11 +81443,11 @@ cont.257681:
 cont.257675:
 cont.257657:
 	jeq	%i5, %i0, then.257688
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.257690
 	movi	%i20, 1
 loop_start.244852:
@@ -83837,15 +81480,15 @@ loop_start.244856:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -83912,15 +81555,15 @@ cont.257705:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.257709
 then.257708:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.257709:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.257699
@@ -83938,8 +81581,8 @@ then.257700:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.257699
 then.257710:
@@ -83957,16 +81600,14 @@ then.257698:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.257712
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.257714
@@ -83989,16 +81630,14 @@ then.257716:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.257718
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.257720
@@ -84021,16 +81660,14 @@ then.257722:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.257724
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.257726
@@ -84053,8 +81690,7 @@ cont.257729:
 cont.257723:
 cont.257717:
 cont.257699:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.257730
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -84071,16 +81707,16 @@ cont.257731:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -84155,18 +81791,15 @@ then.257738:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.257737
 then.257736:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.257742
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.257744
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.257743
@@ -84186,8 +81819,7 @@ cont.257737:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.257735
 then.257748:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.244871:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -84264,18 +81896,15 @@ then.257755:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.257754
 then.257753:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.257759
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.257761
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.257760
@@ -84295,28 +81924,23 @@ cont.257754:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244872
 then.257765:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.244871
 	jmp	%i0, 0(%i31)
 then.257751:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244872
 loop_end.244872:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.257735
 then.257734:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.257735:
 	jeq	%i5, %i0, then.257767
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244857
 then.257767:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244856
 	jmp	%i0, 0(%i31)
 then.257732:
@@ -84326,8 +81950,7 @@ then.257732:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.257769
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244856
 	jmp	%i0, 0(%i31)
 then.257769:
@@ -84338,12 +81961,10 @@ then.257696:
 	jzero	%i0, %i0, loop_end.244857
 loop_end.244857:
 	jeq	%i31, %i0, then.257771
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244853
 then.257771:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.244852
 	jmp	%i0, 0(%i31)
 then.257693:
@@ -84393,15 +82014,15 @@ loop_start.244886:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -84468,15 +82089,15 @@ cont.257788:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.257792
 then.257791:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.257792:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.257782
@@ -84494,8 +82115,8 @@ then.257783:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.257782
 then.257793:
@@ -84513,16 +82134,14 @@ then.257781:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.257795
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.257797
@@ -84545,16 +82164,14 @@ then.257799:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.257801
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.257803
@@ -84577,16 +82194,14 @@ then.257805:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.257807
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.257809
@@ -84609,8 +82224,7 @@ cont.257812:
 cont.257806:
 cont.257800:
 cont.257782:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.257813
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -84627,16 +82241,16 @@ cont.257814:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -84711,18 +82325,15 @@ then.257821:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.257820
 then.257819:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.257825
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.257827
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.257826
@@ -84742,8 +82353,7 @@ cont.257820:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.257818
 then.257831:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.244901:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -84820,18 +82430,15 @@ then.257838:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.257837
 then.257836:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.257842
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.257844
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.257843
@@ -84851,28 +82458,23 @@ cont.257837:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244902
 then.257848:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.244901
 	jmp	%i0, 0(%i31)
 then.257834:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244902
 loop_end.244902:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.257818
 then.257817:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.257818:
 	jeq	%i5, %i0, then.257850
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244887
 then.257850:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244886
 	jmp	%i0, 0(%i31)
 then.257815:
@@ -84882,8 +82484,7 @@ then.257815:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.257852
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244886
 	jmp	%i0, 0(%i31)
 then.257852:
@@ -84894,12 +82495,10 @@ then.257779:
 	jzero	%i0, %i0, loop_end.244887
 loop_end.244887:
 	jeq	%i31, %i0, then.257854
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244883
 then.257854:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.244882
 	jmp	%i0, 0(%i31)
 then.257776:
@@ -84907,17 +82506,14 @@ then.257776:
 	jzero	%i0, %i0, loop_end.244883
 loop_end.244883:
 	jeq	%i31, %i0, then.257856
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244841
 then.257856:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.244840
 	jmp	%i0, 0(%i31)
 then.257773:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.244840
 	jmp	%i0, 0(%i31)
 then.257652:
@@ -84946,21 +82542,18 @@ loop_end.244841:
 	fmul	%f5, %f12, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fmov	%f1, %f4
+	lf	%f4, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	fmul	%f1, %f12, %f4
+	fadd	%f9, %f9, %f1
 cont.257858:
 cont.257605:
 cont.256968:
-	subi	%i4, %i12, 2
-	mov	%i12, %i4
+	subi	%i12, %i12, 2
 	set_label	%i30, loop_start.244513
 	jmp	%i0, 0(%i30)
 loop_end.244514:
@@ -84980,10 +82573,9 @@ Lrelax_skip_46:
 	sf	%f3, 122(%i1)
 	sf	%f2, 123(%i1)
 	sf	%f1, 124(%i1)
-	lw	%i31, 105(%i1)
-	subi	%i4, %i31, 1
-	mov	%i5, %i4
-	jleq	%i0, %i4, then.257860
+	lw	%i4, 105(%i1)
+	subi	%i5, %i4, 1
+	jleq	%i0, %i5, then.257860
 	jzero	%i0, %i0, cont.257861
 then.257860:
 	slli	%i4, %i5, 2
@@ -85062,8 +82654,7 @@ then.257862:
 	fadd	%f4, %f5, %f4
 	sf	%f4, 3(%i18)
 cont.257863:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 loop_start.244924:
 	jleq	%i0, %i5, then.257868
 	jzero	%i0, %i0, loop_end.244925
@@ -85144,8 +82735,7 @@ then.257870:
 	fadd	%f4, %f5, %f4
 	sf	%f4, 3(%i18)
 cont.257871:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 	set_label	%i30, loop_start.244924
 	jmp	%i0, 0(%i30)
 loop_end.244925:
@@ -85190,8 +82780,7 @@ Lrelax_skip_47:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.244936:
 	slli	%i4, %i15, 2
@@ -85249,16 +82838,16 @@ then.257889:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.257894
 then.257893:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.257894:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.257886
@@ -85271,8 +82860,8 @@ then.257887:
 	jeq	%i19, %i0, then.257895
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.257886
 then.257895:
@@ -85285,15 +82874,13 @@ then.257885:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.257897
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.257899
@@ -85318,15 +82905,13 @@ then.257901:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.257903
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f16, %f1
+	fabs	%f16, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f16, %f1
 	jeq	%i19, %i0, then.257905
@@ -85351,15 +82936,13 @@ then.257907:
 	fmul	%f16, %f4, %f1
 	fmul	%f1, %f16, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f4, %f1
 	jeq	%i19, %i0, then.257909
 	fmul	%f1, %f16, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i5)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.257911
@@ -85384,8 +82967,8 @@ cont.257908:
 cont.257902:
 cont.257886:
 	jeq	%i5, %i0, cont.257884
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.257884
 	movi	%i23, 1
 loop_start.244947:
@@ -85448,16 +83031,16 @@ then.257927:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.257932
 then.257931:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.257932:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.257924
@@ -85470,8 +83053,8 @@ then.257925:
 	jeq	%i19, %i0, then.257933
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.257924
 then.257933:
@@ -85485,16 +83068,14 @@ then.257923:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257935
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257937
@@ -85520,16 +83101,14 @@ then.257939:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257941
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.257943
@@ -85555,16 +83134,14 @@ then.257945:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.257947
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.257949
@@ -85589,9 +83166,8 @@ cont.257946:
 cont.257940:
 cont.257924:
 	jeq	%i19, %i0, then.257953
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.257955
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.257956
@@ -85601,16 +83177,16 @@ cont.257924:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -85714,8 +83290,7 @@ cont.257960:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.257958
 then.257971:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.244964:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -85821,20 +83396,17 @@ cont.257977:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244965
 then.257988:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244964
 	jmp	%i0, 0(%i31)
 then.257974:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244965
 loop_end.244965:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.257958
 then.257957:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.257958:
 	jeq	%i5, %i0, cont.257990
 	fmov	%f5, %f14
@@ -85846,8 +83418,7 @@ cont.257958:
 cont.257990:
 cont.257956:
 cont.257955:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244951
 	jmp	%i0, 0(%i31)
 then.257953:
@@ -85857,13 +83428,11 @@ then.257953:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.244952
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244951
 	jmp	%i0, 0(%i31)
 loop_end.244952:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.244947
 	jmp	%i0, 0(%i31)
 then.257883:
@@ -85928,16 +83497,16 @@ then.258003:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.258008
 then.258007:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.258008:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.258000
@@ -85950,8 +83519,8 @@ then.258001:
 	jeq	%i19, %i0, then.258009
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.258000
 then.258009:
@@ -85965,16 +83534,14 @@ then.257999:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258011
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258013
@@ -86000,16 +83567,14 @@ then.258015:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258017
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258019
@@ -86035,16 +83600,14 @@ then.258021:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.258023
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.258025
@@ -86069,9 +83632,8 @@ cont.258022:
 cont.258016:
 cont.258000:
 	jeq	%i19, %i0, then.258029
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.258031
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.258032
@@ -86081,16 +83643,16 @@ cont.258000:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -86194,8 +83756,7 @@ cont.258036:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.258034
 then.258047:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.244998:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -86301,20 +83862,17 @@ cont.258053:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.244999
 then.258064:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.244998
 	jmp	%i0, 0(%i31)
 then.258050:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.244999
 loop_end.244999:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.258034
 then.258033:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.258034:
 	jeq	%i5, %i0, cont.258066
 	fmov	%f5, %f14
@@ -86326,8 +83884,7 @@ cont.258034:
 cont.258066:
 cont.258032:
 cont.258031:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244985
 	jmp	%i0, 0(%i31)
 then.258029:
@@ -86337,19 +83894,16 @@ then.258029:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.244986
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.244985
 	jmp	%i0, 0(%i31)
 loop_end.244986:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.244981
 	jmp	%i0, 0(%i31)
 loop_end.244982:
 cont.257884:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.244936
 	jmp	%i0, 0(%i31)
 loop_end.244937:
@@ -86372,8 +83926,8 @@ cont.258070:
 	set_label	%i31, cont.257879
 	jmp	%i0, 0(%i31)
 Lrelax_skip_48:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -86390,15 +83944,15 @@ Lrelax_skip_48:
 	jeq	%i20, %i31, then.258072
 	movi	%i31, 2
 	jeq	%i20, %i31, then.258074
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i15)
-	fsub	%f4, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f4, %f3, %f1
+	lf	%f3, 111(%i1)
 	lf	%f1, 1(%i15)
-	fsub	%f3, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f3, %f3, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i15)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	lf	%f1, 0(%i5)
 	fmul	%f15, %f4, %f1
 	lf	%f1, 1(%i5)
@@ -86500,8 +84054,7 @@ then.258074:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.258073
 then.258072:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -86528,18 +84081,13 @@ cont.258083:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.258073:
-	lf	%f31, 110(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 112(%i1)
-	fmov	%f5, %f31
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f13, 110(%i1)
+	lf	%f14, 111(%i1)
+	lf	%f5, 112(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.258084
 	movi	%i31, 2
@@ -86563,8 +84111,7 @@ cont.258073:
 	fmul	%f5, %f16, %f16
 	fmul	%f1, %f15, %f15
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f16
-	fmov	%f5, %f1
+	fabs	%f5, %f16
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -86576,8 +84123,7 @@ cont.258073:
 then.258091:
 	finv	%f1, %f16
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f15
@@ -86641,8 +84187,7 @@ cont.258092:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -86654,8 +84199,7 @@ cont.258092:
 then.258093:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -86736,8 +84280,8 @@ cont.258094:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.258090:
 	jzero	%i0, %i0, cont.258085
 then.258088:
@@ -86869,15 +84413,14 @@ cont.258096:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.258085
 then.258086:
 	movui	%i31, 256000
@@ -86990,14 +84533,12 @@ cont.258104:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.258085
 then.258084:
 	lf	%f1, 0(%i15)
@@ -87006,8 +84547,7 @@ then.258084:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f13, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -87021,8 +84561,7 @@ then.258084:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -87070,15 +84609,15 @@ loop_start.245056:
 	lw	%i20, 4(%i4)
 	lw	%i17, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i19)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i19)
-	fsub	%f13, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f13, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i19)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f5, %f1
 	slli	%i18, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i18
@@ -87145,15 +84684,15 @@ cont.258129:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fadd	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.258133
 then.258132:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fsub	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 cont.258133:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.258123
@@ -87171,8 +84710,8 @@ then.258124:
 	fmul	%f1, %f16, %f13
 	fadd	%f13, %f14, %f1
 	fmul	%f1, %f15, %f5
-	fadd	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.258123
 then.258134:
@@ -87278,11 +84817,11 @@ cont.258147:
 cont.258141:
 cont.258123:
 	jeq	%i5, %i0, then.258154
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.258156
 	movi	%i20, 1
 loop_start.245068:
@@ -87315,15 +84854,15 @@ loop_start.245072:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -87390,15 +84929,15 @@ cont.258171:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.258175
 then.258174:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.258175:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.258165
@@ -87416,8 +84955,8 @@ then.258166:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.258165
 then.258176:
@@ -87435,16 +84974,14 @@ then.258164:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.258178
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.258180
@@ -87467,16 +85004,14 @@ then.258182:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.258184
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.258186
@@ -87499,16 +85034,14 @@ then.258188:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.258190
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.258192
@@ -87531,8 +85064,7 @@ cont.258195:
 cont.258189:
 cont.258183:
 cont.258165:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.258196
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -87549,16 +85081,16 @@ cont.258197:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -87633,18 +85165,15 @@ then.258204:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.258203
 then.258202:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.258208
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.258210
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.258209
@@ -87664,8 +85193,7 @@ cont.258203:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.258201
 then.258214:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.245087:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -87742,18 +85270,15 @@ then.258221:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.258220
 then.258219:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.258225
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.258227
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.258226
@@ -87773,28 +85298,23 @@ cont.258220:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245088
 then.258231:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.245087
 	jmp	%i0, 0(%i31)
 then.258217:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245088
 loop_end.245088:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.258201
 then.258200:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.258201:
 	jeq	%i5, %i0, then.258233
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245073
 then.258233:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245072
 	jmp	%i0, 0(%i31)
 then.258198:
@@ -87804,8 +85324,7 @@ then.258198:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.258235
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245072
 	jmp	%i0, 0(%i31)
 then.258235:
@@ -87816,12 +85335,10 @@ then.258162:
 	jzero	%i0, %i0, loop_end.245073
 loop_end.245073:
 	jeq	%i31, %i0, then.258237
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245069
 then.258237:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.245068
 	jmp	%i0, 0(%i31)
 then.258159:
@@ -87871,15 +85388,15 @@ loop_start.245102:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -87946,15 +85463,15 @@ cont.258254:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.258258
 then.258257:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.258258:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.258248
@@ -87972,8 +85489,8 @@ then.258249:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.258248
 then.258259:
@@ -87991,16 +85508,14 @@ then.258247:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.258261
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.258263
@@ -88023,16 +85538,14 @@ then.258265:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.258267
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.258269
@@ -88055,16 +85568,14 @@ then.258271:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.258273
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.258275
@@ -88087,8 +85598,7 @@ cont.258278:
 cont.258272:
 cont.258266:
 cont.258248:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.258279
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -88105,16 +85615,16 @@ cont.258280:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -88189,18 +85699,15 @@ then.258287:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.258286
 then.258285:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.258291
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.258293
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.258292
@@ -88220,8 +85727,7 @@ cont.258286:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.258284
 then.258297:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.245117:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -88298,18 +85804,15 @@ then.258304:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.258303
 then.258302:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.258308
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.258310
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.258309
@@ -88329,28 +85832,23 @@ cont.258303:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245118
 then.258314:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.245117
 	jmp	%i0, 0(%i31)
 then.258300:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245118
 loop_end.245118:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.258284
 then.258283:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.258284:
 	jeq	%i5, %i0, then.258316
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245103
 then.258316:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245102
 	jmp	%i0, 0(%i31)
 then.258281:
@@ -88360,8 +85858,7 @@ then.258281:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.258318
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245102
 	jmp	%i0, 0(%i31)
 then.258318:
@@ -88372,12 +85869,10 @@ then.258245:
 	jzero	%i0, %i0, loop_end.245103
 loop_end.245103:
 	jeq	%i31, %i0, then.258320
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245099
 then.258320:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.245098
 	jmp	%i0, 0(%i31)
 then.258242:
@@ -88385,17 +85880,14 @@ then.258242:
 	jzero	%i0, %i0, loop_end.245099
 loop_end.245099:
 	jeq	%i31, %i0, then.258322
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245057
 then.258322:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.245056
 	jmp	%i0, 0(%i31)
 then.258239:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.245056
 	jmp	%i0, 0(%i31)
 then.258118:
@@ -88424,16 +85916,14 @@ loop_end.245057:
 	fmul	%f5, %f12, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fmov	%f1, %f4
+	lf	%f4, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	fmul	%f1, %f12, %f4
+	fadd	%f9, %f9, %f1
 cont.258324:
 	set_label	%i31, cont.257879
 	jmp	%i0, 0(%i31)
@@ -88449,8 +85939,7 @@ then.257878:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.245137:
 	slli	%i4, %i15, 2
@@ -88508,16 +85997,16 @@ then.258334:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.258339
 then.258338:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.258339:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.258331
@@ -88530,8 +86019,8 @@ then.258332:
 	jeq	%i19, %i0, then.258340
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.258331
 then.258340:
@@ -88544,15 +86033,13 @@ then.258330:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.258342
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.258344
@@ -88577,15 +86064,13 @@ then.258346:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.258348
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f16, %f1
+	fabs	%f16, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f16, %f1
 	jeq	%i19, %i0, then.258350
@@ -88610,15 +86095,13 @@ then.258352:
 	fmul	%f16, %f4, %f1
 	fmul	%f1, %f16, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f4, %f1
 	jeq	%i19, %i0, then.258354
 	fmul	%f1, %f16, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i5)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.258356
@@ -88643,8 +86126,8 @@ cont.258353:
 cont.258347:
 cont.258331:
 	jeq	%i5, %i0, cont.258329
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.258329
 	movi	%i23, 1
 loop_start.245148:
@@ -88707,16 +86190,16 @@ then.258372:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.258377
 then.258376:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.258377:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.258369
@@ -88729,8 +86212,8 @@ then.258370:
 	jeq	%i19, %i0, then.258378
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.258369
 then.258378:
@@ -88744,16 +86227,14 @@ then.258368:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258380
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258382
@@ -88779,16 +86260,14 @@ then.258384:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258386
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258388
@@ -88814,16 +86293,14 @@ then.258390:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.258392
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.258394
@@ -88848,9 +86325,8 @@ cont.258391:
 cont.258385:
 cont.258369:
 	jeq	%i19, %i0, then.258398
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.258400
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.258401
@@ -88860,16 +86336,16 @@ cont.258369:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -88973,8 +86449,7 @@ cont.258405:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.258403
 then.258416:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.245165:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -89080,20 +86555,17 @@ cont.258422:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245166
 then.258433:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245165
 	jmp	%i0, 0(%i31)
 then.258419:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245166
 loop_end.245166:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.258403
 then.258402:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.258403:
 	jeq	%i5, %i0, cont.258435
 	fmov	%f5, %f14
@@ -89105,8 +86577,7 @@ cont.258403:
 cont.258435:
 cont.258401:
 cont.258400:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.245152
 	jmp	%i0, 0(%i31)
 then.258398:
@@ -89116,13 +86587,11 @@ then.258398:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.245153
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.245152
 	jmp	%i0, 0(%i31)
 loop_end.245153:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.245148
 	jmp	%i0, 0(%i31)
 then.258328:
@@ -89187,16 +86656,16 @@ then.258448:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.258453
 then.258452:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.258453:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.258445
@@ -89209,8 +86678,8 @@ then.258446:
 	jeq	%i19, %i0, then.258454
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.258445
 then.258454:
@@ -89224,16 +86693,14 @@ then.258444:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258456
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258458
@@ -89259,16 +86726,14 @@ then.258460:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258462
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258464
@@ -89294,16 +86759,14 @@ then.258466:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.258468
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.258470
@@ -89328,9 +86791,8 @@ cont.258467:
 cont.258461:
 cont.258445:
 	jeq	%i19, %i0, then.258474
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.258476
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.258477
@@ -89340,16 +86802,16 @@ cont.258445:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -89453,8 +86915,7 @@ cont.258481:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.258479
 then.258492:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.245199:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -89560,20 +87021,17 @@ cont.258498:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245200
 then.258509:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245199
 	jmp	%i0, 0(%i31)
 then.258495:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245200
 loop_end.245200:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.258479
 then.258478:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.258479:
 	jeq	%i5, %i0, cont.258511
 	fmov	%f5, %f14
@@ -89585,8 +87043,7 @@ cont.258479:
 cont.258511:
 cont.258477:
 cont.258476:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.245186
 	jmp	%i0, 0(%i31)
 then.258474:
@@ -89596,19 +87053,16 @@ then.258474:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.245187
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.245186
 	jmp	%i0, 0(%i31)
 loop_end.245187:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.245182
 	jmp	%i0, 0(%i31)
 loop_end.245183:
 cont.258329:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.245137
 	jmp	%i0, 0(%i31)
 loop_end.245138:
@@ -89631,8 +87085,8 @@ cont.258515:
 	set_label	%i31, cont.258516
 	jmp	%i0, 0(%i31)
 Lrelax_skip_49:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -89649,15 +87103,15 @@ Lrelax_skip_49:
 	jeq	%i20, %i31, then.258517
 	movi	%i31, 2
 	jeq	%i20, %i31, then.258519
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i15)
-	fsub	%f4, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f4, %f3, %f1
+	lf	%f3, 111(%i1)
 	lf	%f1, 1(%i15)
-	fsub	%f3, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f3, %f3, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i15)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	lf	%f1, 0(%i5)
 	fmul	%f15, %f4, %f1
 	lf	%f1, 1(%i5)
@@ -89759,8 +87213,7 @@ then.258519:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.258518
 then.258517:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -89787,18 +87240,13 @@ cont.258528:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.258518:
-	lf	%f31, 110(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 112(%i1)
-	fmov	%f5, %f31
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f13, 110(%i1)
+	lf	%f14, 111(%i1)
+	lf	%f5, 112(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.258529
 	movi	%i31, 2
@@ -89822,8 +87270,7 @@ cont.258518:
 	fmul	%f5, %f16, %f16
 	fmul	%f1, %f15, %f15
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f16
-	fmov	%f5, %f1
+	fabs	%f5, %f16
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -89835,8 +87282,7 @@ cont.258518:
 then.258536:
 	finv	%f1, %f16
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f15
@@ -89900,8 +87346,7 @@ cont.258537:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -89913,8 +87358,7 @@ cont.258537:
 then.258538:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -89995,8 +87439,8 @@ cont.258539:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.258535:
 	jzero	%i0, %i0, cont.258530
 then.258533:
@@ -90128,15 +87572,14 @@ cont.258541:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.258530
 then.258531:
 	movui	%i31, 256000
@@ -90249,14 +87692,12 @@ cont.258549:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.258530
 then.258529:
 	lf	%f1, 0(%i15)
@@ -90265,8 +87706,7 @@ then.258529:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f13, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -90280,8 +87720,7 @@ then.258529:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -90329,15 +87768,15 @@ loop_start.245257:
 	lw	%i20, 4(%i4)
 	lw	%i17, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i19)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i19)
-	fsub	%f13, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f13, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i19)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f5, %f1
 	slli	%i18, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i18
@@ -90404,15 +87843,15 @@ cont.258574:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fadd	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.258578
 then.258577:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fsub	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 cont.258578:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.258568
@@ -90430,8 +87869,8 @@ then.258569:
 	fmul	%f1, %f16, %f13
 	fadd	%f13, %f14, %f1
 	fmul	%f1, %f15, %f5
-	fadd	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.258568
 then.258579:
@@ -90537,11 +87976,11 @@ cont.258592:
 cont.258586:
 cont.258568:
 	jeq	%i5, %i0, then.258599
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.258601
 	movi	%i20, 1
 loop_start.245269:
@@ -90574,15 +88013,15 @@ loop_start.245273:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -90649,15 +88088,15 @@ cont.258616:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.258620
 then.258619:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.258620:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.258610
@@ -90675,8 +88114,8 @@ then.258611:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.258610
 then.258621:
@@ -90694,16 +88133,14 @@ then.258609:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.258623
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.258625
@@ -90726,16 +88163,14 @@ then.258627:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.258629
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.258631
@@ -90758,16 +88193,14 @@ then.258633:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.258635
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.258637
@@ -90790,8 +88223,7 @@ cont.258640:
 cont.258634:
 cont.258628:
 cont.258610:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.258641
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -90808,16 +88240,16 @@ cont.258642:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -90892,18 +88324,15 @@ then.258649:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.258648
 then.258647:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.258653
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.258655
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.258654
@@ -90923,8 +88352,7 @@ cont.258648:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.258646
 then.258659:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.245288:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -91001,18 +88429,15 @@ then.258666:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.258665
 then.258664:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.258670
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.258672
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.258671
@@ -91032,28 +88457,23 @@ cont.258665:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245289
 then.258676:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.245288
 	jmp	%i0, 0(%i31)
 then.258662:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245289
 loop_end.245289:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.258646
 then.258645:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.258646:
 	jeq	%i5, %i0, then.258678
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245274
 then.258678:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245273
 	jmp	%i0, 0(%i31)
 then.258643:
@@ -91063,8 +88483,7 @@ then.258643:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.258680
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245273
 	jmp	%i0, 0(%i31)
 then.258680:
@@ -91075,12 +88494,10 @@ then.258607:
 	jzero	%i0, %i0, loop_end.245274
 loop_end.245274:
 	jeq	%i31, %i0, then.258682
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245270
 then.258682:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.245269
 	jmp	%i0, 0(%i31)
 then.258604:
@@ -91130,15 +88547,15 @@ loop_start.245303:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -91205,15 +88622,15 @@ cont.258699:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.258703
 then.258702:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.258703:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.258693
@@ -91231,8 +88648,8 @@ then.258694:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.258693
 then.258704:
@@ -91250,16 +88667,14 @@ then.258692:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.258706
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.258708
@@ -91282,16 +88697,14 @@ then.258710:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.258712
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.258714
@@ -91314,16 +88727,14 @@ then.258716:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.258718
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.258720
@@ -91346,8 +88757,7 @@ cont.258723:
 cont.258717:
 cont.258711:
 cont.258693:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.258724
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -91364,16 +88774,16 @@ cont.258725:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -91448,18 +88858,15 @@ then.258732:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.258731
 then.258730:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.258736
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.258738
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.258737
@@ -91479,8 +88886,7 @@ cont.258731:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.258729
 then.258742:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.245318:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -91557,18 +88963,15 @@ then.258749:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.258748
 then.258747:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.258753
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.258755
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.258754
@@ -91588,28 +88991,23 @@ cont.258748:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245319
 then.258759:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.245318
 	jmp	%i0, 0(%i31)
 then.258745:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245319
 loop_end.245319:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.258729
 then.258728:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.258729:
 	jeq	%i5, %i0, then.258761
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245304
 then.258761:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245303
 	jmp	%i0, 0(%i31)
 then.258726:
@@ -91619,8 +89017,7 @@ then.258726:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.258763
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245303
 	jmp	%i0, 0(%i31)
 then.258763:
@@ -91631,12 +89028,10 @@ then.258690:
 	jzero	%i0, %i0, loop_end.245304
 loop_end.245304:
 	jeq	%i31, %i0, then.258765
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245300
 then.258765:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.245299
 	jmp	%i0, 0(%i31)
 then.258687:
@@ -91644,17 +89039,14 @@ then.258687:
 	jzero	%i0, %i0, loop_end.245300
 loop_end.245300:
 	jeq	%i31, %i0, then.258767
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245258
 then.258767:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.245257
 	jmp	%i0, 0(%i31)
 then.258684:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.245257
 	jmp	%i0, 0(%i31)
 then.258563:
@@ -91683,21 +89075,18 @@ loop_end.245258:
 	fmul	%f5, %f12, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fmov	%f1, %f4
+	lf	%f4, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	fmul	%f1, %f12, %f4
+	fadd	%f9, %f9, %f1
 cont.258769:
 cont.258516:
 cont.257879:
-	subi	%i4, %i12, 2
-	mov	%i12, %i4
+	subi	%i12, %i12, 2
 	set_label	%i30, loop_start.244930
 	jmp	%i0, 0(%i30)
 loop_end.244931:
@@ -91717,10 +89106,9 @@ Lrelax_skip_50:
 	sf	%f3, 122(%i1)
 	sf	%f2, 123(%i1)
 	sf	%f1, 124(%i1)
-	lw	%i31, 105(%i1)
-	subi	%i4, %i31, 1
-	mov	%i5, %i4
-	jleq	%i0, %i4, then.258771
+	lw	%i4, 105(%i1)
+	subi	%i5, %i4, 1
+	jleq	%i0, %i5, then.258771
 	jzero	%i0, %i0, cont.258772
 then.258771:
 	slli	%i4, %i5, 2
@@ -91799,8 +89187,7 @@ then.258773:
 	fadd	%f4, %f5, %f4
 	sf	%f4, 3(%i18)
 cont.258774:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 loop_start.245341:
 	jleq	%i0, %i5, then.258779
 	jzero	%i0, %i0, loop_end.245342
@@ -91881,8 +89268,7 @@ then.258781:
 	fadd	%f4, %f5, %f4
 	sf	%f4, 3(%i18)
 cont.258782:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 	set_label	%i30, loop_start.245341
 	jmp	%i0, 0(%i30)
 loop_end.245342:
@@ -91927,8 +89313,7 @@ Lrelax_skip_51:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.245353:
 	slli	%i4, %i15, 2
@@ -91986,16 +89371,16 @@ then.258800:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.258805
 then.258804:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.258805:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.258797
@@ -92008,8 +89393,8 @@ then.258798:
 	jeq	%i19, %i0, then.258806
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.258797
 then.258806:
@@ -92022,15 +89407,13 @@ then.258796:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.258808
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.258810
@@ -92055,15 +89438,13 @@ then.258812:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.258814
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f16, %f1
+	fabs	%f16, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f16, %f1
 	jeq	%i19, %i0, then.258816
@@ -92088,15 +89469,13 @@ then.258818:
 	fmul	%f16, %f4, %f1
 	fmul	%f1, %f16, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f4, %f1
 	jeq	%i19, %i0, then.258820
 	fmul	%f1, %f16, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i5)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.258822
@@ -92121,8 +89500,8 @@ cont.258819:
 cont.258813:
 cont.258797:
 	jeq	%i5, %i0, cont.258795
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.258795
 	movi	%i23, 1
 loop_start.245364:
@@ -92185,16 +89564,16 @@ then.258838:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.258843
 then.258842:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.258843:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.258835
@@ -92207,8 +89586,8 @@ then.258836:
 	jeq	%i19, %i0, then.258844
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.258835
 then.258844:
@@ -92222,16 +89601,14 @@ then.258834:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258846
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258848
@@ -92257,16 +89634,14 @@ then.258850:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258852
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258854
@@ -92292,16 +89667,14 @@ then.258856:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.258858
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.258860
@@ -92326,9 +89699,8 @@ cont.258857:
 cont.258851:
 cont.258835:
 	jeq	%i19, %i0, then.258864
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.258866
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.258867
@@ -92338,16 +89710,16 @@ cont.258835:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -92451,8 +89823,7 @@ cont.258871:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.258869
 then.258882:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.245381:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -92558,20 +89929,17 @@ cont.258888:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245382
 then.258899:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245381
 	jmp	%i0, 0(%i31)
 then.258885:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245382
 loop_end.245382:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.258869
 then.258868:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.258869:
 	jeq	%i5, %i0, cont.258901
 	fmov	%f5, %f14
@@ -92583,8 +89951,7 @@ cont.258869:
 cont.258901:
 cont.258867:
 cont.258866:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.245368
 	jmp	%i0, 0(%i31)
 then.258864:
@@ -92594,13 +89961,11 @@ then.258864:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.245369
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.245368
 	jmp	%i0, 0(%i31)
 loop_end.245369:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.245364
 	jmp	%i0, 0(%i31)
 then.258794:
@@ -92665,16 +90030,16 @@ then.258914:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.258919
 then.258918:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.258919:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.258911
@@ -92687,8 +90052,8 @@ then.258912:
 	jeq	%i19, %i0, then.258920
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.258911
 then.258920:
@@ -92702,16 +90067,14 @@ then.258910:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258922
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258924
@@ -92737,16 +90100,14 @@ then.258926:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258928
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.258930
@@ -92772,16 +90133,14 @@ then.258932:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.258934
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.258936
@@ -92806,9 +90165,8 @@ cont.258933:
 cont.258927:
 cont.258911:
 	jeq	%i19, %i0, then.258940
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.258942
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.258943
@@ -92818,16 +90176,16 @@ cont.258911:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -92931,8 +90289,7 @@ cont.258947:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.258945
 then.258958:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.245415:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -93038,20 +90395,17 @@ cont.258964:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245416
 then.258975:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245415
 	jmp	%i0, 0(%i31)
 then.258961:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245416
 loop_end.245416:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.258945
 then.258944:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.258945:
 	jeq	%i5, %i0, cont.258977
 	fmov	%f5, %f14
@@ -93063,8 +90417,7 @@ cont.258945:
 cont.258977:
 cont.258943:
 cont.258942:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.245402
 	jmp	%i0, 0(%i31)
 then.258940:
@@ -93074,19 +90427,16 @@ then.258940:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.245403
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.245402
 	jmp	%i0, 0(%i31)
 loop_end.245403:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.245398
 	jmp	%i0, 0(%i31)
 loop_end.245399:
 cont.258795:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.245353
 	jmp	%i0, 0(%i31)
 loop_end.245354:
@@ -93109,8 +90459,8 @@ cont.258981:
 	set_label	%i31, cont.258790
 	jmp	%i0, 0(%i31)
 Lrelax_skip_52:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -93127,15 +90477,15 @@ Lrelax_skip_52:
 	jeq	%i20, %i31, then.258983
 	movi	%i31, 2
 	jeq	%i20, %i31, then.258985
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i15)
-	fsub	%f4, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f4, %f3, %f1
+	lf	%f3, 111(%i1)
 	lf	%f1, 1(%i15)
-	fsub	%f3, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f3, %f3, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i15)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	lf	%f1, 0(%i5)
 	fmul	%f15, %f4, %f1
 	lf	%f1, 1(%i5)
@@ -93237,8 +90587,7 @@ then.258985:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.258984
 then.258983:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -93265,18 +90614,13 @@ cont.258994:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.258984:
-	lf	%f31, 110(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 112(%i1)
-	fmov	%f5, %f31
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f13, 110(%i1)
+	lf	%f14, 111(%i1)
+	lf	%f5, 112(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.258995
 	movi	%i31, 2
@@ -93300,8 +90644,7 @@ cont.258984:
 	fmul	%f5, %f16, %f16
 	fmul	%f1, %f15, %f15
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f16
-	fmov	%f5, %f1
+	fabs	%f5, %f16
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -93313,8 +90656,7 @@ cont.258984:
 then.259002:
 	finv	%f1, %f16
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f15
@@ -93378,8 +90720,7 @@ cont.259003:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -93391,8 +90732,7 @@ cont.259003:
 then.259004:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -93473,8 +90813,8 @@ cont.259005:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.259001:
 	jzero	%i0, %i0, cont.258996
 then.258999:
@@ -93606,15 +90946,14 @@ cont.259007:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.258996
 then.258997:
 	movui	%i31, 256000
@@ -93727,14 +91066,12 @@ cont.259015:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.258996
 then.258995:
 	lf	%f1, 0(%i15)
@@ -93743,8 +91080,7 @@ then.258995:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f13, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -93758,8 +91094,7 @@ then.258995:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -93807,15 +91142,15 @@ loop_start.245473:
 	lw	%i20, 4(%i4)
 	lw	%i17, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i19)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i19)
-	fsub	%f13, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f13, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i19)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f5, %f1
 	slli	%i18, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i18
@@ -93882,15 +91217,15 @@ cont.259040:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fadd	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.259044
 then.259043:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fsub	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 cont.259044:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.259034
@@ -93908,8 +91243,8 @@ then.259035:
 	fmul	%f1, %f16, %f13
 	fadd	%f13, %f14, %f1
 	fmul	%f1, %f15, %f5
-	fadd	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.259034
 then.259045:
@@ -94015,11 +91350,11 @@ cont.259058:
 cont.259052:
 cont.259034:
 	jeq	%i5, %i0, then.259065
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.259067
 	movi	%i20, 1
 loop_start.245485:
@@ -94052,15 +91387,15 @@ loop_start.245489:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -94127,15 +91462,15 @@ cont.259082:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.259086
 then.259085:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.259086:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.259076
@@ -94153,8 +91488,8 @@ then.259077:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.259076
 then.259087:
@@ -94172,16 +91507,14 @@ then.259075:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.259089
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.259091
@@ -94204,16 +91537,14 @@ then.259093:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.259095
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.259097
@@ -94236,16 +91567,14 @@ then.259099:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.259101
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.259103
@@ -94268,8 +91597,7 @@ cont.259106:
 cont.259100:
 cont.259094:
 cont.259076:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.259107
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -94286,16 +91614,16 @@ cont.259108:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -94370,18 +91698,15 @@ then.259115:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.259114
 then.259113:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.259119
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.259121
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.259120
@@ -94401,8 +91726,7 @@ cont.259114:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.259112
 then.259125:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.245504:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -94479,18 +91803,15 @@ then.259132:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.259131
 then.259130:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.259136
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.259138
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.259137
@@ -94510,28 +91831,23 @@ cont.259131:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245505
 then.259142:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.245504
 	jmp	%i0, 0(%i31)
 then.259128:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245505
 loop_end.245505:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.259112
 then.259111:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.259112:
 	jeq	%i5, %i0, then.259144
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245490
 then.259144:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245489
 	jmp	%i0, 0(%i31)
 then.259109:
@@ -94541,8 +91857,7 @@ then.259109:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.259146
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245489
 	jmp	%i0, 0(%i31)
 then.259146:
@@ -94553,12 +91868,10 @@ then.259073:
 	jzero	%i0, %i0, loop_end.245490
 loop_end.245490:
 	jeq	%i31, %i0, then.259148
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245486
 then.259148:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.245485
 	jmp	%i0, 0(%i31)
 then.259070:
@@ -94608,15 +91921,15 @@ loop_start.245519:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -94683,15 +91996,15 @@ cont.259165:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.259169
 then.259168:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.259169:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.259159
@@ -94709,8 +92022,8 @@ then.259160:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.259159
 then.259170:
@@ -94728,16 +92041,14 @@ then.259158:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.259172
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.259174
@@ -94760,16 +92071,14 @@ then.259176:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.259178
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.259180
@@ -94792,16 +92101,14 @@ then.259182:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.259184
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.259186
@@ -94824,8 +92131,7 @@ cont.259189:
 cont.259183:
 cont.259177:
 cont.259159:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.259190
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -94842,16 +92148,16 @@ cont.259191:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -94926,18 +92232,15 @@ then.259198:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.259197
 then.259196:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.259202
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.259204
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.259203
@@ -94957,8 +92260,7 @@ cont.259197:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.259195
 then.259208:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.245534:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -95035,18 +92337,15 @@ then.259215:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.259214
 then.259213:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.259219
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.259221
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.259220
@@ -95066,28 +92365,23 @@ cont.259214:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245535
 then.259225:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.245534
 	jmp	%i0, 0(%i31)
 then.259211:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245535
 loop_end.245535:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.259195
 then.259194:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.259195:
 	jeq	%i5, %i0, then.259227
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245520
 then.259227:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245519
 	jmp	%i0, 0(%i31)
 then.259192:
@@ -95097,8 +92391,7 @@ then.259192:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.259229
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245519
 	jmp	%i0, 0(%i31)
 then.259229:
@@ -95109,12 +92402,10 @@ then.259156:
 	jzero	%i0, %i0, loop_end.245520
 loop_end.245520:
 	jeq	%i31, %i0, then.259231
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245516
 then.259231:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.245515
 	jmp	%i0, 0(%i31)
 then.259153:
@@ -95122,17 +92413,14 @@ then.259153:
 	jzero	%i0, %i0, loop_end.245516
 loop_end.245516:
 	jeq	%i31, %i0, then.259233
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245474
 then.259233:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.245473
 	jmp	%i0, 0(%i31)
 then.259150:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.245473
 	jmp	%i0, 0(%i31)
 then.259029:
@@ -95161,16 +92449,14 @@ loop_end.245474:
 	fmul	%f5, %f12, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fmov	%f1, %f4
+	lf	%f4, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	fmul	%f1, %f12, %f4
+	fadd	%f9, %f9, %f1
 cont.259235:
 	set_label	%i31, cont.258790
 	jmp	%i0, 0(%i31)
@@ -95186,8 +92472,7 @@ then.258789:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.245554:
 	slli	%i4, %i15, 2
@@ -95245,16 +92530,16 @@ then.259245:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.259250
 then.259249:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.259250:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.259242
@@ -95267,8 +92552,8 @@ then.259243:
 	jeq	%i19, %i0, then.259251
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.259242
 then.259251:
@@ -95281,15 +92566,13 @@ then.259241:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.259253
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.259255
@@ -95314,15 +92597,13 @@ then.259257:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f17, %f1
 	jeq	%i19, %i0, then.259259
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f16, %f1
+	fabs	%f16, %f1
 	lf	%f1, 2(%i5)
 	flt	%i19, %f16, %f1
 	jeq	%i19, %i0, then.259261
@@ -95347,15 +92628,13 @@ then.259263:
 	fmul	%f16, %f4, %f1
 	fmul	%f1, %f16, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i5)
 	flt	%i19, %f4, %f1
 	jeq	%i19, %i0, then.259265
 	fmul	%f1, %f16, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i5)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.259267
@@ -95380,8 +92659,8 @@ cont.259264:
 cont.259258:
 cont.259242:
 	jeq	%i5, %i0, cont.259240
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.259240
 	movi	%i23, 1
 loop_start.245565:
@@ -95444,16 +92723,16 @@ then.259283:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.259288
 then.259287:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.259288:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.259280
@@ -95466,8 +92745,8 @@ then.259281:
 	jeq	%i19, %i0, then.259289
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.259280
 then.259289:
@@ -95481,16 +92760,14 @@ then.259279:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.259291
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.259293
@@ -95516,16 +92793,14 @@ then.259295:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.259297
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.259299
@@ -95551,16 +92826,14 @@ then.259301:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.259303
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.259305
@@ -95585,9 +92858,8 @@ cont.259302:
 cont.259296:
 cont.259280:
 	jeq	%i19, %i0, then.259309
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.259311
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.259312
@@ -95597,16 +92869,16 @@ cont.259280:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -95710,8 +92982,7 @@ cont.259316:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.259314
 then.259327:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.245582:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -95817,20 +93088,17 @@ cont.259333:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245583
 then.259344:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245582
 	jmp	%i0, 0(%i31)
 then.259330:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245583
 loop_end.245583:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.259314
 then.259313:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.259314:
 	jeq	%i5, %i0, cont.259346
 	fmov	%f5, %f14
@@ -95842,8 +93110,7 @@ cont.259314:
 cont.259346:
 cont.259312:
 cont.259311:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.245569
 	jmp	%i0, 0(%i31)
 then.259309:
@@ -95853,13 +93120,11 @@ then.259309:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.245570
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.245569
 	jmp	%i0, 0(%i31)
 loop_end.245570:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.245565
 	jmp	%i0, 0(%i31)
 then.259239:
@@ -95924,16 +93189,16 @@ then.259359:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.259364
 then.259363:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.259364:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.259356
@@ -95946,8 +93211,8 @@ then.259357:
 	jeq	%i19, %i0, then.259365
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i18)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.259356
 then.259365:
@@ -95961,16 +93226,14 @@ then.259355:
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.259367
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.259369
@@ -95996,16 +93259,14 @@ then.259371:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.259373
 	lf	%f1, 2(%i16)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i19)
 	flt	%i18, %f14, %f1
 	jeq	%i18, %i0, then.259375
@@ -96031,16 +93292,14 @@ then.259377:
 	lf	%f1, 0(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i19)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.259379
 	lf	%f1, 1(%i16)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i19)
 	flt	%i18, %f3, %f1
 	jeq	%i18, %i0, then.259381
@@ -96065,9 +93324,8 @@ cont.259378:
 cont.259372:
 cont.259356:
 	jeq	%i19, %i0, then.259385
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.259387
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.259388
@@ -96077,16 +93335,16 @@ cont.259356:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i16)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i18, %i0
 	lw	%i4, 0(%i22)
 	movi	%i31, -1
@@ -96190,8 +93448,7 @@ cont.259392:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.259390
 then.259403:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 loop_start.245616:
 	slli	%i4, %i18, 2
 	add	%i31, %i22, %i4
@@ -96297,20 +93554,17 @@ cont.259409:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245617
 then.259420:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245616
 	jmp	%i0, 0(%i31)
 then.259406:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245617
 loop_end.245617:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.259390
 then.259389:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.259390:
 	jeq	%i5, %i0, cont.259422
 	fmov	%f5, %f14
@@ -96322,8 +93576,7 @@ cont.259390:
 cont.259422:
 cont.259388:
 cont.259387:
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.245603
 	jmp	%i0, 0(%i31)
 then.259385:
@@ -96333,19 +93586,16 @@ then.259385:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.245604
-	addi	%i4, %i21, 1
-	mov	%i21, %i4
+	addi	%i21, %i21, 1
 	set_label	%i31, loop_start.245603
 	jmp	%i0, 0(%i31)
 loop_end.245604:
-	addi	%i4, %i23, 1
-	mov	%i23, %i4
+	addi	%i23, %i23, 1
 	set_label	%i31, loop_start.245599
 	jmp	%i0, 0(%i31)
 loop_end.245600:
 cont.259240:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.245554
 	jmp	%i0, 0(%i31)
 loop_end.245555:
@@ -96368,8 +93618,8 @@ cont.259426:
 	set_label	%i31, cont.259427
 	jmp	%i0, 0(%i31)
 Lrelax_skip_53:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i17, 0(%i31)
@@ -96386,15 +93636,15 @@ Lrelax_skip_53:
 	jeq	%i20, %i31, then.259428
 	movi	%i31, 2
 	jeq	%i20, %i31, then.259430
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i15)
-	fsub	%f4, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f4, %f3, %f1
+	lf	%f3, 111(%i1)
 	lf	%f1, 1(%i15)
-	fsub	%f3, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f3, %f3, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i15)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	lf	%f1, 0(%i5)
 	fmul	%f15, %f4, %f1
 	lf	%f1, 1(%i5)
@@ -96496,8 +93746,7 @@ then.259430:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.259429
 then.259428:
-	lw	%i31, 109(%i1)
-	mov	%i19, %i31
+	lw	%i19, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -96524,18 +93773,13 @@ cont.259439:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.259429:
-	lf	%f31, 110(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 112(%i1)
-	fmov	%f5, %f31
-	lf	%f1, 0(%i18)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i18)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i18)
-	sf	%f1, 115(%i1)
+	lf	%f13, 110(%i1)
+	lf	%f14, 111(%i1)
+	lf	%f5, 112(%i1)
+	lf	%f4, 0(%i18)
+	lf	%f3, 1(%i18)
+	lf	%f31, 2(%i18)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i17, %i31, then.259440
 	movi	%i31, 2
@@ -96559,8 +93803,7 @@ cont.259429:
 	fmul	%f5, %f16, %f16
 	fmul	%f1, %f15, %f15
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f16
-	fmov	%f5, %f1
+	fabs	%f5, %f16
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -96572,8 +93815,7 @@ cont.259429:
 then.259447:
 	finv	%f1, %f16
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i17, %f1, %f15
@@ -96637,8 +93879,7 @@ cont.259448:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -96650,8 +93891,7 @@ cont.259448:
 then.259449:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i15, %f1, %f14
@@ -96732,8 +93972,8 @@ cont.259450:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.259446:
 	jzero	%i0, %i0, cont.259441
 then.259444:
@@ -96865,15 +94105,14 @@ cont.259452:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.259441
 then.259442:
 	movui	%i31, 256000
@@ -96986,14 +94225,12 @@ cont.259460:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.259441
 then.259440:
 	lf	%f1, 0(%i15)
@@ -97002,8 +94239,7 @@ then.259440:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f13, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -97017,8 +94253,7 @@ then.259440:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -97066,15 +94301,15 @@ loop_start.245674:
 	lw	%i20, 4(%i4)
 	lw	%i17, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i19)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i19)
-	fsub	%f13, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f13, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i19)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f5, %f1
 	slli	%i18, %i22, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i18
@@ -97141,15 +94376,15 @@ cont.259485:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fadd	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.259489
 then.259488:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fsub	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 cont.259489:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.259479
@@ -97167,8 +94402,8 @@ then.259480:
 	fmul	%f1, %f16, %f13
 	fadd	%f13, %f14, %f1
 	fmul	%f1, %f15, %f5
-	fadd	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.259479
 then.259490:
@@ -97274,11 +94509,11 @@ cont.259503:
 cont.259497:
 cont.259479:
 	jeq	%i5, %i0, then.259510
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.259512
 	movi	%i20, 1
 loop_start.245686:
@@ -97311,15 +94546,15 @@ loop_start.245690:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -97386,15 +94621,15 @@ cont.259527:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.259531
 then.259530:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.259531:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.259521
@@ -97412,8 +94647,8 @@ then.259522:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.259521
 then.259532:
@@ -97431,16 +94666,14 @@ then.259520:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.259534
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.259536
@@ -97463,16 +94696,14 @@ then.259538:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.259540
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.259542
@@ -97495,16 +94726,14 @@ then.259544:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.259546
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.259548
@@ -97527,8 +94756,7 @@ cont.259551:
 cont.259545:
 cont.259539:
 cont.259521:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.259552
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -97545,16 +94773,16 @@ cont.259553:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -97629,18 +94857,15 @@ then.259560:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.259559
 then.259558:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.259564
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.259566
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.259565
@@ -97660,8 +94885,7 @@ cont.259559:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.259557
 then.259570:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.245705:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -97738,18 +94962,15 @@ then.259577:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.259576
 then.259575:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.259581
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.259583
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.259582
@@ -97769,28 +94990,23 @@ cont.259576:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245706
 then.259587:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.245705
 	jmp	%i0, 0(%i31)
 then.259573:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245706
 loop_end.245706:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.259557
 then.259556:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.259557:
 	jeq	%i5, %i0, then.259589
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245691
 then.259589:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245690
 	jmp	%i0, 0(%i31)
 then.259554:
@@ -97800,8 +95016,7 @@ then.259554:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.259591
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245690
 	jmp	%i0, 0(%i31)
 then.259591:
@@ -97812,12 +95027,10 @@ then.259518:
 	jzero	%i0, %i0, loop_end.245691
 loop_end.245691:
 	jeq	%i31, %i0, then.259593
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245687
 then.259593:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.245686
 	jmp	%i0, 0(%i31)
 then.259515:
@@ -97867,15 +95080,15 @@ loop_start.245720:
 	lw	%i23, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i25)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i25)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i25)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i24, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i24
@@ -97942,15 +95155,15 @@ cont.259610:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.259614
 then.259613:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.259614:
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.259604
@@ -97968,8 +95181,8 @@ then.259605:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i17, 1
 	jzero	%i0, %i0, cont.259604
 then.259615:
@@ -97987,16 +95200,14 @@ then.259603:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.259617
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f20, %f1
 	jeq	%i17, %i0, then.259619
@@ -98019,16 +95230,14 @@ then.259621:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.259623
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i23)
 	flt	%i17, %f18, %f1
 	jeq	%i17, %i0, then.259625
@@ -98051,16 +95260,14 @@ then.259627:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.259629
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i23)
 	flt	%i17, %f13, %f1
 	jeq	%i17, %i0, then.259631
@@ -98083,8 +95290,7 @@ cont.259634:
 cont.259628:
 cont.259622:
 cont.259604:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i17, %i0, then.259635
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -98101,16 +95307,16 @@ cont.259636:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i19)
 	movi	%i31, -1
@@ -98185,18 +95391,15 @@ then.259643:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.259642
 then.259641:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.259647
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.259649
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.259648
@@ -98216,8 +95419,7 @@ cont.259642:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.259640
 then.259653:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.245735:
 	slli	%i4, %i17, 2
 	add	%i31, %i19, %i4
@@ -98294,18 +95496,15 @@ then.259660:
 	ceq	%i5, %i5, %i21
 	jzero	%i0, %i0, cont.259659
 then.259658:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i22, %f16, %f1
 	jeq	%i22, %i0, then.259664
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i22, %f15, %f1
 	jeq	%i22, %i0, then.259666
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i21, %f15, %f1
 	jzero	%i0, %i0, cont.259665
@@ -98325,28 +95524,23 @@ cont.259659:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245736
 then.259670:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.245735
 	jmp	%i0, 0(%i31)
 then.259656:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245736
 loop_end.245736:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.259640
 then.259639:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.259640:
 	jeq	%i5, %i0, then.259672
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245721
 then.259672:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245720
 	jmp	%i0, 0(%i31)
 then.259637:
@@ -98356,8 +95550,7 @@ then.259637:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.259674
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245720
 	jmp	%i0, 0(%i31)
 then.259674:
@@ -98368,12 +95561,10 @@ then.259601:
 	jzero	%i0, %i0, loop_end.245721
 loop_end.245721:
 	jeq	%i31, %i0, then.259676
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245717
 then.259676:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.245716
 	jmp	%i0, 0(%i31)
 then.259598:
@@ -98381,17 +95572,14 @@ then.259598:
 	jzero	%i0, %i0, loop_end.245717
 loop_end.245717:
 	jeq	%i31, %i0, then.259678
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245675
 then.259678:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.245674
 	jmp	%i0, 0(%i31)
 then.259595:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.245674
 	jmp	%i0, 0(%i31)
 then.259474:
@@ -98420,21 +95608,18 @@ loop_end.245675:
 	fmul	%f5, %f12, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f12, %f5, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fmov	%f1, %f4
+	lf	%f4, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	fmul	%f1, %f12, %f4
+	fadd	%f9, %f9, %f1
 cont.259680:
 cont.259427:
 cont.258790:
-	subi	%i4, %i12, 2
-	mov	%i12, %i4
+	subi	%i12, %i12, 2
 	set_label	%i30, loop_start.245347
 	jmp	%i0, 0(%i30)
 loop_end.245348:
@@ -98454,10 +95639,9 @@ Lrelax_skip_54:
 	sf	%f3, 122(%i1)
 	sf	%f2, 123(%i1)
 	sf	%f1, 124(%i1)
-	lw	%i31, 105(%i1)
-	subi	%i4, %i31, 1
-	mov	%i5, %i4
-	jleq	%i0, %i4, then.259682
+	lw	%i4, 105(%i1)
+	subi	%i5, %i4, 1
+	jleq	%i0, %i5, then.259682
 	jzero	%i0, %i0, cont.259683
 then.259682:
 	slli	%i4, %i5, 2
@@ -98536,8 +95720,7 @@ then.259684:
 	fadd	%f4, %f5, %f4
 	sf	%f4, 3(%i17)
 cont.259685:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 loop_start.245758:
 	jleq	%i0, %i5, then.259690
 	jzero	%i0, %i0, loop_end.245759
@@ -98618,8 +95801,7 @@ then.259692:
 	fadd	%f4, %f5, %f4
 	sf	%f4, 3(%i17)
 cont.259693:
-	subi	%i4, %i5, 1
-	mov	%i5, %i4
+	subi	%i5, %i5, 1
 	set_label	%i30, loop_start.245758
 	jmp	%i0, 0(%i30)
 loop_end.245759:
@@ -98664,8 +95846,7 @@ Lrelax_skip_55:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.245770:
 	slli	%i4, %i15, 2
@@ -98723,16 +95904,16 @@ then.259711:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.259716
 then.259715:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.259716:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.259708
@@ -98745,8 +95926,8 @@ then.259709:
 	jeq	%i18, %i0, then.259717
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i17)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.259708
 then.259717:
@@ -98759,15 +95940,13 @@ then.259707:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i5)
 	flt	%i18, %f17, %f1
 	jeq	%i18, %i0, then.259719
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i5)
 	flt	%i18, %f17, %f1
 	jeq	%i18, %i0, then.259721
@@ -98792,15 +95971,13 @@ then.259723:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i5)
 	flt	%i18, %f17, %f1
 	jeq	%i18, %i0, then.259725
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f16, %f1
+	fabs	%f16, %f1
 	lf	%f1, 2(%i5)
 	flt	%i18, %f16, %f1
 	jeq	%i18, %i0, then.259727
@@ -98825,15 +96002,13 @@ then.259729:
 	fmul	%f16, %f4, %f1
 	fmul	%f1, %f16, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i5)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.259731
 	fmul	%f1, %f16, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i5)
 	flt	%i17, %f3, %f1
 	jeq	%i17, %i0, then.259733
@@ -98858,8 +96033,8 @@ cont.259730:
 cont.259724:
 cont.259708:
 	jeq	%i5, %i0, cont.259706
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.259706
 	movi	%i22, 1
 loop_start.245781:
@@ -98922,16 +96097,16 @@ then.259749:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.259754
 then.259753:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.259754:
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.259746
@@ -98944,8 +96119,8 @@ then.259747:
 	jeq	%i18, %i0, then.259755
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i17)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.259746
 then.259755:
@@ -98959,16 +96134,14 @@ then.259745:
 	lf	%f1, 1(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.259757
 	lf	%f1, 2(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.259759
@@ -98994,16 +96167,14 @@ then.259761:
 	lf	%f1, 0(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.259763
 	lf	%f1, 2(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.259765
@@ -99029,16 +96200,14 @@ then.259767:
 	lf	%f1, 0(%i14)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i18)
 	flt	%i17, %f4, %f1
 	jeq	%i17, %i0, then.259769
 	lf	%f1, 1(%i14)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i18)
 	flt	%i17, %f3, %f1
 	jeq	%i17, %i0, then.259771
@@ -99063,9 +96232,8 @@ cont.259768:
 cont.259762:
 cont.259746:
 	jeq	%i18, %i0, then.259775
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.259777
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.259778
@@ -99075,16 +96243,16 @@ cont.259746:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i21)
 	movi	%i31, -1
@@ -99187,8 +96355,7 @@ cont.259782:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.259780
 then.259793:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.245798:
 	slli	%i4, %i17, 2
 	add	%i31, %i21, %i4
@@ -99293,20 +96460,17 @@ cont.259799:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245799
 then.259810:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.245798
 	jmp	%i0, 0(%i31)
 then.259796:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245799
 loop_end.245799:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.259780
 then.259779:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.259780:
 	jeq	%i5, %i0, cont.259812
 	fmov	%f5, %f14
@@ -99318,8 +96482,7 @@ cont.259780:
 cont.259812:
 cont.259778:
 cont.259777:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.245785
 	jmp	%i0, 0(%i31)
 then.259775:
@@ -99329,13 +96492,11 @@ then.259775:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.245786
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.245785
 	jmp	%i0, 0(%i31)
 loop_end.245786:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.245781
 	jmp	%i0, 0(%i31)
 then.259705:
@@ -99400,16 +96561,16 @@ then.259825:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.259830
 then.259829:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.259830:
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.259822
@@ -99422,8 +96583,8 @@ then.259823:
 	jeq	%i18, %i0, then.259831
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i17)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.259822
 then.259831:
@@ -99437,16 +96598,14 @@ then.259821:
 	lf	%f1, 1(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.259833
 	lf	%f1, 2(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.259835
@@ -99472,16 +96631,14 @@ then.259837:
 	lf	%f1, 0(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.259839
 	lf	%f1, 2(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.259841
@@ -99507,16 +96664,14 @@ then.259843:
 	lf	%f1, 0(%i14)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i18)
 	flt	%i17, %f4, %f1
 	jeq	%i17, %i0, then.259845
 	lf	%f1, 1(%i14)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i18)
 	flt	%i17, %f3, %f1
 	jeq	%i17, %i0, then.259847
@@ -99541,9 +96696,8 @@ cont.259844:
 cont.259838:
 cont.259822:
 	jeq	%i18, %i0, then.259851
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.259853
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.259854
@@ -99553,16 +96707,16 @@ cont.259822:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i21)
 	movi	%i31, -1
@@ -99665,8 +96819,7 @@ cont.259858:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.259856
 then.259869:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.245832:
 	slli	%i4, %i17, 2
 	add	%i31, %i21, %i4
@@ -99771,20 +96924,17 @@ cont.259875:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245833
 then.259886:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.245832
 	jmp	%i0, 0(%i31)
 then.259872:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245833
 loop_end.245833:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.259856
 then.259855:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.259856:
 	jeq	%i5, %i0, cont.259888
 	fmov	%f5, %f14
@@ -99796,8 +96946,7 @@ cont.259856:
 cont.259888:
 cont.259854:
 cont.259853:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.245819
 	jmp	%i0, 0(%i31)
 then.259851:
@@ -99807,19 +96956,16 @@ then.259851:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.245820
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.245819
 	jmp	%i0, 0(%i31)
 loop_end.245820:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.245815
 	jmp	%i0, 0(%i31)
 loop_end.245816:
 cont.259706:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.245770
 	jmp	%i0, 0(%i31)
 loop_end.245771:
@@ -99842,8 +96988,8 @@ cont.259892:
 	set_label	%i31, cont.259701
 	jmp	%i0, 0(%i31)
 Lrelax_skip_56:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i16, 0(%i31)
@@ -99860,15 +97006,15 @@ Lrelax_skip_56:
 	jeq	%i18, %i31, then.259894
 	movi	%i31, 2
 	jeq	%i18, %i31, then.259896
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f4, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f4, %f3, %f1
+	lf	%f3, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f3, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f3, %f3, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	lf	%f1, 0(%i15)
 	fmul	%f15, %f4, %f1
 	lf	%f1, 1(%i15)
@@ -99970,8 +97116,7 @@ then.259896:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.259895
 then.259894:
-	lw	%i31, 109(%i1)
-	mov	%i18, %i31
+	lw	%i18, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -99998,18 +97143,13 @@ cont.259905:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.259895:
-	lf	%f31, 110(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 112(%i1)
-	fmov	%f5, %f31
-	lf	%f1, 0(%i17)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i17)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i17)
-	sf	%f1, 115(%i1)
+	lf	%f13, 110(%i1)
+	lf	%f14, 111(%i1)
+	lf	%f5, 112(%i1)
+	lf	%f4, 0(%i17)
+	lf	%f3, 1(%i17)
+	lf	%f31, 2(%i17)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i16, %i31, then.259906
 	movi	%i31, 2
@@ -100033,8 +97173,7 @@ cont.259895:
 	fmul	%f5, %f16, %f16
 	fmul	%f1, %f15, %f15
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f16
-	fmov	%f5, %f1
+	fabs	%f5, %f16
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -100046,8 +97185,7 @@ cont.259895:
 then.259913:
 	finv	%f1, %f16
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i16, %f1, %f15
@@ -100111,8 +97249,7 @@ cont.259914:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -100124,8 +97261,7 @@ cont.259914:
 then.259915:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i14, %f1, %f14
@@ -100206,8 +97342,8 @@ cont.259916:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.259912:
 	jzero	%i0, %i0, cont.259907
 then.259910:
@@ -100339,15 +97475,14 @@ cont.259918:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.259907
 then.259908:
 	movui	%i31, 256000
@@ -100460,14 +97595,12 @@ cont.259926:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.259907
 then.259906:
 	lf	%f1, 0(%i5)
@@ -100476,8 +97609,7 @@ then.259906:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f13, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -100491,8 +97623,7 @@ then.259906:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -100540,15 +97671,15 @@ loop_start.245890:
 	lw	%i19, 4(%i4)
 	lw	%i16, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i18)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i18)
-	fsub	%f13, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f13, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i18)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f5, %f1
 	slli	%i17, %i21, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -100615,15 +97746,15 @@ cont.259951:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fadd	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.259955
 then.259954:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fsub	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 cont.259955:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.259945
@@ -100641,8 +97772,8 @@ then.259946:
 	fmul	%f1, %f16, %f13
 	fadd	%f13, %f14, %f1
 	fmul	%f1, %f15, %f5
-	fadd	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.259945
 then.259956:
@@ -100748,11 +97879,11 @@ cont.259969:
 cont.259963:
 cont.259945:
 	jeq	%i5, %i0, then.259976
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.259978
 	movi	%i18, 1
 loop_start.245902:
@@ -100785,15 +97916,15 @@ loop_start.245906:
 	lw	%i21, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i24)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i24)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i24)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i23, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i23
@@ -100860,15 +97991,15 @@ cont.259993:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.259997
 then.259996:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.259997:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.259987
@@ -100886,8 +98017,8 @@ then.259988:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.259987
 then.259998:
@@ -100905,16 +98036,14 @@ then.259986:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i21)
 	flt	%i19, %f20, %f1
 	jeq	%i19, %i0, then.260000
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i21)
 	flt	%i19, %f20, %f1
 	jeq	%i19, %i0, then.260002
@@ -100937,16 +98066,14 @@ then.260004:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i21)
 	flt	%i19, %f18, %f1
 	jeq	%i19, %i0, then.260006
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i21)
 	flt	%i19, %f18, %f1
 	jeq	%i19, %i0, then.260008
@@ -100969,16 +98096,14 @@ then.260010:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i21)
 	flt	%i19, %f13, %f1
 	jeq	%i19, %i0, then.260012
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i21)
 	flt	%i19, %f13, %f1
 	jeq	%i19, %i0, then.260014
@@ -101001,8 +98126,7 @@ cont.260017:
 cont.260011:
 cont.260005:
 cont.259987:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i19, %i0, then.260018
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -101019,16 +98143,16 @@ cont.260019:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i17)
 	movi	%i31, -1
@@ -101103,18 +98227,15 @@ then.260026:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.260025
 then.260024:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.260030
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i21, %f15, %f1
 	jeq	%i21, %i0, then.260032
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i20, %f15, %f1
 	jzero	%i0, %i0, cont.260031
@@ -101134,8 +98255,7 @@ cont.260025:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.260023
 then.260036:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.245921:
 	slli	%i4, %i19, 2
 	add	%i31, %i17, %i4
@@ -101212,18 +98332,15 @@ then.260043:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.260042
 then.260041:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.260047
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i21, %f15, %f1
 	jeq	%i21, %i0, then.260049
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i20, %f15, %f1
 	jzero	%i0, %i0, cont.260048
@@ -101243,28 +98360,23 @@ cont.260042:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245922
 then.260053:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.245921
 	jmp	%i0, 0(%i31)
 then.260039:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245922
 loop_end.245922:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.260023
 then.260022:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.260023:
 	jeq	%i5, %i0, then.260055
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245907
 then.260055:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.245906
 	jmp	%i0, 0(%i31)
 then.260020:
@@ -101274,8 +98386,7 @@ then.260020:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.260057
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.245906
 	jmp	%i0, 0(%i31)
 then.260057:
@@ -101286,12 +98397,10 @@ then.259984:
 	jzero	%i0, %i0, loop_end.245907
 loop_end.245907:
 	jeq	%i31, %i0, then.260059
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245903
 then.260059:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245902
 	jmp	%i0, 0(%i31)
 then.259981:
@@ -101341,15 +98450,15 @@ loop_start.245936:
 	lw	%i21, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i24)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i24)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i24)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i23, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i23
@@ -101416,15 +98525,15 @@ cont.260076:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.260080
 then.260079:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.260080:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.260070
@@ -101442,8 +98551,8 @@ then.260071:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.260070
 then.260081:
@@ -101461,16 +98570,14 @@ then.260069:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i21)
 	flt	%i19, %f20, %f1
 	jeq	%i19, %i0, then.260083
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i21)
 	flt	%i19, %f20, %f1
 	jeq	%i19, %i0, then.260085
@@ -101493,16 +98600,14 @@ then.260087:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i21)
 	flt	%i19, %f18, %f1
 	jeq	%i19, %i0, then.260089
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i21)
 	flt	%i19, %f18, %f1
 	jeq	%i19, %i0, then.260091
@@ -101525,16 +98630,14 @@ then.260093:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i21)
 	flt	%i19, %f13, %f1
 	jeq	%i19, %i0, then.260095
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i21)
 	flt	%i19, %f13, %f1
 	jeq	%i19, %i0, then.260097
@@ -101557,8 +98660,7 @@ cont.260100:
 cont.260094:
 cont.260088:
 cont.260070:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i19, %i0, then.260101
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -101575,16 +98677,16 @@ cont.260102:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i17)
 	movi	%i31, -1
@@ -101659,18 +98761,15 @@ then.260109:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.260108
 then.260107:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.260113
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i21, %f15, %f1
 	jeq	%i21, %i0, then.260115
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i20, %f15, %f1
 	jzero	%i0, %i0, cont.260114
@@ -101690,8 +98789,7 @@ cont.260108:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.260106
 then.260119:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.245951:
 	slli	%i4, %i19, 2
 	add	%i31, %i17, %i4
@@ -101768,18 +98866,15 @@ then.260126:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.260125
 then.260124:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.260130
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i21, %f15, %f1
 	jeq	%i21, %i0, then.260132
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i20, %f15, %f1
 	jzero	%i0, %i0, cont.260131
@@ -101799,28 +98894,23 @@ cont.260125:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.245952
 then.260136:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.245951
 	jmp	%i0, 0(%i31)
 then.260122:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245952
 loop_end.245952:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.260106
 then.260105:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.260106:
 	jeq	%i5, %i0, then.260138
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245937
 then.260138:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.245936
 	jmp	%i0, 0(%i31)
 then.260103:
@@ -101830,8 +98920,7 @@ then.260103:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.260140
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.245936
 	jmp	%i0, 0(%i31)
 then.260140:
@@ -101842,12 +98931,10 @@ then.260067:
 	jzero	%i0, %i0, loop_end.245937
 loop_end.245937:
 	jeq	%i31, %i0, then.260142
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245933
 then.260142:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.245932
 	jmp	%i0, 0(%i31)
 then.260064:
@@ -101855,17 +98942,14 @@ then.260064:
 	jzero	%i0, %i0, loop_end.245933
 loop_end.245933:
 	jeq	%i31, %i0, then.260144
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.245891
 then.260144:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.245890
 	jmp	%i0, 0(%i31)
 then.260061:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.245890
 	jmp	%i0, 0(%i31)
 then.259940:
@@ -101894,16 +98978,14 @@ loop_end.245891:
 	fmul	%f5, %f12, %f1
 	lf	%f1, 0(%i13)
 	fmul	%f12, %f5, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fmov	%f1, %f4
+	lf	%f4, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	fmul	%f1, %f12, %f4
+	fadd	%f9, %f9, %f1
 cont.260146:
 	set_label	%i31, cont.259701
 	jmp	%i0, 0(%i31)
@@ -101919,8 +99001,7 @@ then.259700:
 	fmul	%f12, %f3, %f1
 	movui	%i31, 321254
 	ori	%i31, %i31, -1240
-	mif	%f1, %i31
-	fmov	%f5, %f1
+	mif	%f5, %i31
 	mov	%i15, %i0
 loop_start.245971:
 	slli	%i4, %i15, 2
@@ -101978,16 +99059,16 @@ then.260156:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.260161
 then.260160:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.260161:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.260153
@@ -102000,8 +99081,8 @@ then.260154:
 	jeq	%i18, %i0, then.260162
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i17)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.260153
 then.260162:
@@ -102014,15 +99095,13 @@ then.260152:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 1(%i5)
 	flt	%i18, %f17, %f1
 	jeq	%i18, %i0, then.260164
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 2(%i5)
 	flt	%i18, %f17, %f1
 	jeq	%i18, %i0, then.260166
@@ -102047,15 +99126,13 @@ then.260168:
 	fmul	%f18, %f17, %f1
 	fmul	%f1, %f18, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f17, %f1
+	fabs	%f17, %f1
 	lf	%f1, 0(%i5)
 	flt	%i18, %f17, %f1
 	jeq	%i18, %i0, then.260170
 	fmul	%f1, %f18, %f16
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f16, %f1
+	fabs	%f16, %f1
 	lf	%f1, 2(%i5)
 	flt	%i18, %f16, %f1
 	jeq	%i18, %i0, then.260172
@@ -102080,15 +99157,13 @@ then.260174:
 	fmul	%f16, %f4, %f1
 	fmul	%f1, %f16, %f15
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i5)
 	flt	%i18, %f4, %f1
 	jeq	%i18, %i0, then.260176
 	fmul	%f1, %f16, %f14
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i5)
 	flt	%i17, %f3, %f1
 	jeq	%i17, %i0, then.260178
@@ -102113,8 +99188,8 @@ cont.260175:
 cont.260169:
 cont.260153:
 	jeq	%i5, %i0, cont.260151
-	lf	%f31, 108(%i1)
-	flt	%i5, %f31, %f5
+	lf	%f3, 108(%i1)
+	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.260151
 	movi	%i22, 1
 loop_start.245982:
@@ -102177,16 +99252,16 @@ then.260194:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.260199
 then.260198:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.260199:
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.260191
@@ -102199,8 +99274,8 @@ then.260192:
 	jeq	%i18, %i0, then.260200
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i17)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.260191
 then.260200:
@@ -102214,16 +99289,14 @@ then.260190:
 	lf	%f1, 1(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.260202
 	lf	%f1, 2(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.260204
@@ -102249,16 +99322,14 @@ then.260206:
 	lf	%f1, 0(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.260208
 	lf	%f1, 2(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.260210
@@ -102284,16 +99355,14 @@ then.260212:
 	lf	%f1, 0(%i14)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i18)
 	flt	%i17, %f4, %f1
 	jeq	%i17, %i0, then.260214
 	lf	%f1, 1(%i14)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i18)
 	flt	%i17, %f3, %f1
 	jeq	%i17, %i0, then.260216
@@ -102318,9 +99387,8 @@ cont.260213:
 cont.260207:
 cont.260191:
 	jeq	%i18, %i0, then.260220
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.260222
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.260223
@@ -102330,16 +99398,16 @@ cont.260191:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i21)
 	movi	%i31, -1
@@ -102442,8 +99510,7 @@ cont.260227:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.260225
 then.260238:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.245999:
 	slli	%i4, %i17, 2
 	add	%i31, %i21, %i4
@@ -102548,20 +99615,17 @@ cont.260244:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.246000
 then.260255:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.245999
 	jmp	%i0, 0(%i31)
 then.260241:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.246000
 loop_end.246000:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.260225
 then.260224:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.260225:
 	jeq	%i5, %i0, cont.260257
 	fmov	%f5, %f14
@@ -102573,8 +99637,7 @@ cont.260225:
 cont.260257:
 cont.260223:
 cont.260222:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.245986
 	jmp	%i0, 0(%i31)
 then.260220:
@@ -102584,13 +99647,11 @@ then.260220:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.245987
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.245986
 	jmp	%i0, 0(%i31)
 loop_end.245987:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.245982
 	jmp	%i0, 0(%i31)
 then.260150:
@@ -102655,16 +99716,16 @@ then.260270:
 	fmul	%f1, %f1, %f3
 	fadd	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.260275
 then.260274:
 	frsqrt	%f1, %f3
 	fmul	%f1, %f1, %f3
 	fsub	%f3, %f4, %f1
 	lf	%f1, 4(%i4)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 cont.260275:
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.260267
@@ -102677,8 +99738,8 @@ then.260268:
 	jeq	%i18, %i0, then.260276
 	lf	%f3, 0(%i4)
 	lf	%f1, 3(%i17)
-	fmul	%f1, %f3, %f1
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f3, %f1
+	sf	%f31, 108(%i1)
 	movi	%i18, 1
 	jzero	%i0, %i0, cont.260267
 then.260276:
@@ -102692,16 +99753,14 @@ then.260266:
 	lf	%f1, 1(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 1(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.260278
 	lf	%f1, 2(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.260280
@@ -102727,16 +99786,14 @@ then.260282:
 	lf	%f1, 0(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 0(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.260284
 	lf	%f1, 2(%i14)
 	fmul	%f1, %f15, %f1
 	fadd	%f1, %f1, %f4
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	lf	%f1, 2(%i18)
 	flt	%i17, %f14, %f1
 	jeq	%i17, %i0, then.260286
@@ -102762,16 +99819,14 @@ then.260288:
 	lf	%f1, 0(%i14)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f13
-	fabs	%f1, %f1
-	fmov	%f4, %f1
+	fabs	%f4, %f1
 	lf	%f1, 0(%i18)
 	flt	%i17, %f4, %f1
 	jeq	%i17, %i0, then.260290
 	lf	%f1, 1(%i14)
 	fmul	%f1, %f14, %f1
 	fadd	%f1, %f1, %f3
-	fabs	%f1, %f1
-	fmov	%f3, %f1
+	fabs	%f3, %f1
 	lf	%f1, 1(%i18)
 	flt	%i17, %f3, %f1
 	jeq	%i17, %i0, then.260292
@@ -102796,9 +99851,8 @@ cont.260289:
 cont.260283:
 cont.260267:
 	jeq	%i18, %i0, then.260296
-	lf	%f31, 108(%i1)
-	fmov	%f3, %f31
-	flt	%i5, %f0, %f31
+	lf	%f3, 108(%i1)
+	flt	%i5, %f0, %f3
 	jeq	%i5, %i0, cont.260298
 	flt	%i5, %f3, %f5
 	jeq	%i5, %i0, cont.260299
@@ -102808,16 +99862,16 @@ cont.260267:
 	fadd	%f14, %f3, %f1
 	lf	%f1, 0(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 122(%i1)
-	fadd	%f13, %f3, %f31
+	lf	%f1, 122(%i1)
+	fadd	%f13, %f3, %f1
 	lf	%f1, 1(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 123(%i1)
-	fadd	%f4, %f3, %f31
+	lf	%f1, 123(%i1)
+	fadd	%f4, %f3, %f1
 	lf	%f1, 2(%i14)
 	fmul	%f3, %f1, %f14
-	lf	%f31, 124(%i1)
-	fadd	%f3, %f3, %f31
+	lf	%f1, 124(%i1)
+	fadd	%f3, %f3, %f1
 	mov	%i17, %i0
 	lw	%i4, 0(%i21)
 	movi	%i31, -1
@@ -102920,8 +99974,7 @@ cont.260303:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.260301
 then.260314:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 loop_start.246033:
 	slli	%i4, %i17, 2
 	add	%i31, %i21, %i4
@@ -103026,20 +100079,17 @@ cont.260320:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.246034
 then.260331:
-	addi	%i4, %i17, 1
-	mov	%i17, %i4
+	addi	%i17, %i17, 1
 	set_label	%i31, loop_start.246033
 	jmp	%i0, 0(%i31)
 then.260317:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.246034
 loop_end.246034:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.260301
 then.260300:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.260301:
 	jeq	%i5, %i0, cont.260333
 	fmov	%f5, %f14
@@ -103051,8 +100101,7 @@ cont.260301:
 cont.260333:
 cont.260299:
 cont.260298:
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.246020
 	jmp	%i0, 0(%i31)
 then.260296:
@@ -103062,19 +100111,16 @@ then.260296:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, loop_end.246021
-	addi	%i4, %i20, 1
-	mov	%i20, %i4
+	addi	%i20, %i20, 1
 	set_label	%i31, loop_start.246020
 	jmp	%i0, 0(%i31)
 loop_end.246021:
-	addi	%i4, %i22, 1
-	mov	%i22, %i4
+	addi	%i22, %i22, 1
 	set_label	%i31, loop_start.246016
 	jmp	%i0, 0(%i31)
 loop_end.246017:
 cont.260151:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.245971
 	jmp	%i0, 0(%i31)
 loop_end.245972:
@@ -103097,8 +100143,8 @@ cont.260337:
 	set_label	%i31, cont.260338
 	jmp	%i0, 0(%i31)
 Lrelax_skip_57:
-	lw	%i31, 113(%i1)
-	slli	%i4, %i31, 2
+	lw	%i4, 113(%i1)
+	slli	%i4, %i4, 2
 	lw	%i30, 106(%i1)
 	add	%i31, %i30, %i4
 	lw	%i16, 0(%i31)
@@ -103115,15 +100161,15 @@ Lrelax_skip_57:
 	jeq	%i18, %i31, then.260339
 	movi	%i31, 2
 	jeq	%i18, %i31, then.260341
-	lf	%f31, 110(%i1)
+	lf	%f3, 110(%i1)
 	lf	%f1, 0(%i5)
-	fsub	%f4, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f4, %f3, %f1
+	lf	%f3, 111(%i1)
 	lf	%f1, 1(%i5)
-	fsub	%f3, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f3, %f3, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i5)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	lf	%f1, 0(%i15)
 	fmul	%f15, %f4, %f1
 	lf	%f1, 1(%i15)
@@ -103225,8 +100271,7 @@ then.260341:
 	sf	%f1, 2(%i31)
 	jzero	%i0, %i0, cont.260340
 then.260339:
-	lw	%i31, 109(%i1)
-	mov	%i18, %i31
+	lw	%i18, 109(%i1)
 	lw	%i31, 114(%i1)
 	sf	%f0, 0(%i31)
 	sf	%f0, 1(%i31)
@@ -103253,18 +100298,13 @@ cont.260350:
 	add	%i31, %i30, %i4
 	sf	%f1, 0(%i31)
 cont.260340:
-	lf	%f31, 110(%i1)
-	fmov	%f13, %f31
-	lf	%f31, 111(%i1)
-	fmov	%f14, %f31
-	lf	%f31, 112(%i1)
-	fmov	%f5, %f31
-	lf	%f1, 0(%i17)
-	fmov	%f4, %f1
-	lf	%f1, 1(%i17)
-	fmov	%f3, %f1
-	lf	%f1, 2(%i17)
-	sf	%f1, 115(%i1)
+	lf	%f13, 110(%i1)
+	lf	%f14, 111(%i1)
+	lf	%f5, 112(%i1)
+	lf	%f4, 0(%i17)
+	lf	%f3, 1(%i17)
+	lf	%f31, 2(%i17)
+	sf	%f31, 115(%i1)
 	movi	%i31, 1
 	jeq	%i16, %i31, then.260351
 	movi	%i31, 2
@@ -103288,8 +100328,7 @@ cont.260340:
 	fmul	%f5, %f16, %f16
 	fmul	%f1, %f15, %f15
 	fadd	%f13, %f5, %f1
-	fabs	%f1, %f16
-	fmov	%f5, %f1
+	fabs	%f5, %f16
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -103301,8 +100340,7 @@ cont.260340:
 then.260358:
 	finv	%f1, %f16
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f15, %f1
+	fabs	%f15, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i16, %f1, %f15
@@ -103366,8 +100404,7 @@ cont.260359:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fmul	%f15, %f15, %f1
-	fabs	%f1, %f13
-	fmov	%f14, %f1
+	fabs	%f14, %f13
 	movui	%i31, 232731
 	ori	%i31, %i31, 1815
 	mif	%f1, %i31
@@ -103379,8 +100416,7 @@ cont.260359:
 then.260360:
 	finv	%f1, %f13
 	fmul	%f1, %f15, %f1
-	fabs	%f1, %f1
-	fmov	%f14, %f1
+	fabs	%f14, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	flt	%i14, %f1, %f14
@@ -103461,8 +100497,8 @@ cont.260361:
 	ori	%i31, %i31, -1638
 	mif	%f1, %i31
 	finv	%f1, %f1
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 cont.260357:
 	jzero	%i0, %i0, cont.260352
 then.260355:
@@ -103594,15 +100630,14 @@ cont.260363:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f5, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f5, %f1, %f5
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f5, %f1
-	sf	%f1, 115(%i1)
+	fmul	%f31, %f5, %f1
+	sf	%f31, 115(%i1)
 	jzero	%i0, %i0, cont.260352
 then.260353:
 	movui	%i31, 256000
@@ -103715,14 +100750,12 @@ cont.260371:
 	fmul	%f5, %f1, %f1
 	movui	%i31, 276464
 	mif	%f1, %i31
-	fmul	%f1, %f1, %f5
-	fmov	%f4, %f1
-	mif	%f3, %i31
+	fmul	%f4, %f1, %f5
+	fmov	%f3, %f1
 	movui	%i31, 260096
 	mif	%f1, %i31
 	fsub	%f1, %f1, %f5
-	fmul	%f1, %f3, %f1
-	fmov	%f3, %f1
+	fmul	%f3, %f3, %f1
 	jzero	%i0, %i0, cont.260352
 then.260351:
 	lf	%f1, 0(%i5)
@@ -103731,8 +100764,7 @@ then.260351:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f13, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -103746,8 +100778,7 @@ then.260351:
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
 	fmul	%f1, %f5, %f1
-	ffloor	%f1, %f1
-	fmov	%f3, %f1
+	ffloor	%f3, %f1
 	movui	%i31, 268800
 	mif	%f1, %i31
 	fmul	%f1, %f3, %f1
@@ -103795,15 +100826,15 @@ loop_start.246091:
 	lw	%i19, 4(%i4)
 	lw	%i16, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i18)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i18)
-	fsub	%f13, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f13, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i18)
-	fsub	%f5, %f31, %f1
+	fsub	%f5, %f5, %f1
 	slli	%i17, %i21, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i17
@@ -103870,15 +100901,15 @@ cont.260396:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fadd	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.260400
 then.260399:
 	frsqrt	%f1, %f5
 	fmul	%f1, %f1, %f5
 	fsub	%f1, %f16, %f1
-	fmul	%f1, %f1, %f15
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f15
+	sf	%f31, 108(%i1)
 cont.260400:
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.260390
@@ -103896,8 +100927,8 @@ then.260391:
 	fmul	%f1, %f16, %f13
 	fadd	%f13, %f14, %f1
 	fmul	%f1, %f15, %f5
-	fadd	%f1, %f13, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f13, %f1
+	sf	%f31, 108(%i1)
 	movi	%i5, 1
 	jzero	%i0, %i0, cont.260390
 then.260401:
@@ -104003,11 +101034,11 @@ cont.260414:
 cont.260408:
 cont.260390:
 	jeq	%i5, %i0, then.260421
-	lf	%f31, 108(%i1)
+	lf	%f5, 108(%i1)
 	movui	%i31, 777420
 	ori	%i31, %i31, -819
 	mif	%f1, %i31
-	flt	%i5, %f31, %f1
+	flt	%i5, %f5, %f1
 	jeq	%i5, %i0, then.260423
 	movi	%i18, 1
 loop_start.246103:
@@ -104040,15 +101071,15 @@ loop_start.246107:
 	lw	%i21, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i24)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i24)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i24)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i23, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i23
@@ -104115,15 +101146,15 @@ cont.260438:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.260442
 then.260441:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.260442:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.260432
@@ -104141,8 +101172,8 @@ then.260433:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.260432
 then.260443:
@@ -104160,16 +101191,14 @@ then.260431:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i21)
 	flt	%i19, %f20, %f1
 	jeq	%i19, %i0, then.260445
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i21)
 	flt	%i19, %f20, %f1
 	jeq	%i19, %i0, then.260447
@@ -104192,16 +101221,14 @@ then.260449:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i21)
 	flt	%i19, %f18, %f1
 	jeq	%i19, %i0, then.260451
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i21)
 	flt	%i19, %f18, %f1
 	jeq	%i19, %i0, then.260453
@@ -104224,16 +101251,14 @@ then.260455:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i21)
 	flt	%i19, %f13, %f1
 	jeq	%i19, %i0, then.260457
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i21)
 	flt	%i19, %f13, %f1
 	jeq	%i19, %i0, then.260459
@@ -104256,8 +101281,7 @@ cont.260462:
 cont.260456:
 cont.260450:
 cont.260432:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i19, %i0, then.260463
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -104274,16 +101298,16 @@ cont.260464:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i17)
 	movi	%i31, -1
@@ -104358,18 +101382,15 @@ then.260471:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.260470
 then.260469:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.260475
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i21, %f15, %f1
 	jeq	%i21, %i0, then.260477
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i20, %f15, %f1
 	jzero	%i0, %i0, cont.260476
@@ -104389,8 +101410,7 @@ cont.260470:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.260468
 then.260481:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.246122:
 	slli	%i4, %i19, 2
 	add	%i31, %i17, %i4
@@ -104467,18 +101487,15 @@ then.260488:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.260487
 then.260486:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.260492
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i21, %f15, %f1
 	jeq	%i21, %i0, then.260494
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i20, %f15, %f1
 	jzero	%i0, %i0, cont.260493
@@ -104498,28 +101515,23 @@ cont.260487:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.246123
 then.260498:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.246122
 	jmp	%i0, 0(%i31)
 then.260484:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.246123
 loop_end.246123:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.260468
 then.260467:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.260468:
 	jeq	%i5, %i0, then.260500
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.246108
 then.260500:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.246107
 	jmp	%i0, 0(%i31)
 then.260465:
@@ -104529,8 +101541,7 @@ then.260465:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.260502
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.246107
 	jmp	%i0, 0(%i31)
 then.260502:
@@ -104541,12 +101552,10 @@ then.260429:
 	jzero	%i0, %i0, loop_end.246108
 loop_end.246108:
 	jeq	%i31, %i0, then.260504
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.246104
 then.260504:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.246103
 	jmp	%i0, 0(%i31)
 then.260426:
@@ -104596,15 +101605,15 @@ loop_start.246137:
 	lw	%i21, 4(%i4)
 	lw	%i22, 3(%i4)
 	lw	%i4, 1(%i4)
-	lf	%f31, 110(%i1)
+	lf	%f5, 110(%i1)
 	lf	%f1, 0(%i24)
-	fsub	%f15, %f31, %f1
-	lf	%f31, 111(%i1)
+	fsub	%f15, %f5, %f1
+	lf	%f5, 111(%i1)
 	lf	%f1, 1(%i24)
-	fsub	%f14, %f31, %f1
-	lf	%f31, 112(%i1)
+	fsub	%f14, %f5, %f1
+	lf	%f5, 112(%i1)
 	lf	%f1, 2(%i24)
-	fsub	%f16, %f31, %f1
+	fsub	%f16, %f5, %f1
 	slli	%i23, %i5, 2
 	lw	%i30, 127(%i1)
 	add	%i31, %i30, %i23
@@ -104671,15 +101680,15 @@ cont.260521:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fadd	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 	jzero	%i0, %i0, cont.260525
 then.260524:
 	frsqrt	%f1, %f14
 	fmul	%f1, %f1, %f14
 	fsub	%f1, %f13, %f1
-	fmul	%f1, %f1, %f5
-	sf	%f1, 108(%i1)
+	fmul	%f31, %f1, %f5
+	sf	%f31, 108(%i1)
 cont.260525:
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.260515
@@ -104697,8 +101706,8 @@ then.260516:
 	fmul	%f1, %f17, %f14
 	fadd	%f5, %f5, %f1
 	fmul	%f1, %f13, %f16
-	fadd	%f1, %f5, %f1
-	sf	%f1, 108(%i1)
+	fadd	%f31, %f5, %f1
+	sf	%f31, 108(%i1)
 	movi	%i19, 1
 	jzero	%i0, %i0, cont.260515
 then.260526:
@@ -104716,16 +101725,14 @@ then.260514:
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 1(%i21)
 	flt	%i19, %f20, %f1
 	jeq	%i19, %i0, then.260528
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f21, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f20, %f1
+	fabs	%f20, %f1
 	lf	%f1, 2(%i21)
 	flt	%i19, %f20, %f1
 	jeq	%i19, %i0, then.260530
@@ -104748,16 +101755,14 @@ then.260532:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 0(%i21)
 	flt	%i19, %f18, %f1
 	jeq	%i19, %i0, then.260534
 	lf	%f31, 137(%i1)
 	fmul	%f1, %f19, %f31
 	fadd	%f1, %f1, %f16
-	fabs	%f1, %f1
-	fmov	%f18, %f1
+	fabs	%f18, %f1
 	lf	%f1, 2(%i21)
 	flt	%i19, %f18, %f1
 	jeq	%i19, %i0, then.260536
@@ -104780,16 +101785,14 @@ then.260538:
 	lf	%f31, 136(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f15
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 0(%i21)
 	flt	%i19, %f13, %f1
 	jeq	%i19, %i0, then.260540
 	lf	%f31, 135(%i1)
 	fmul	%f1, %f16, %f31
 	fadd	%f1, %f1, %f14
-	fabs	%f1, %f1
-	fmov	%f13, %f1
+	fabs	%f13, %f1
 	lf	%f1, 1(%i21)
 	flt	%i19, %f13, %f1
 	jeq	%i19, %i0, then.260542
@@ -104812,8 +101815,7 @@ cont.260545:
 cont.260539:
 cont.260533:
 cont.260515:
-	lf	%f31, 108(%i1)
-	fmov	%f5, %f31
+	lf	%f5, 108(%i1)
 	jeq	%i19, %i0, then.260546
 	movui	%i31, 779468
 	ori	%i31, %i31, -819
@@ -104830,16 +101832,16 @@ cont.260547:
 	fadd	%f15, %f5, %f1
 	lf	%f31, 136(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 110(%i1)
-	fadd	%f14, %f5, %f31
+	lf	%f1, 110(%i1)
+	fadd	%f14, %f5, %f1
 	lf	%f31, 135(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 111(%i1)
-	fadd	%f13, %f5, %f31
+	lf	%f1, 111(%i1)
+	fadd	%f13, %f5, %f1
 	lf	%f31, 137(%i1)
 	fmul	%f5, %f31, %f15
-	lf	%f31, 112(%i1)
-	fadd	%f5, %f5, %f31
+	lf	%f1, 112(%i1)
+	fadd	%f5, %f5, %f1
 	mov	%i19, %i0
 	lw	%i4, 0(%i17)
 	movi	%i31, -1
@@ -104914,18 +101916,15 @@ then.260554:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.260553
 then.260552:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.260558
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i21, %f15, %f1
 	jeq	%i21, %i0, then.260560
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i20, %f15, %f1
 	jzero	%i0, %i0, cont.260559
@@ -104945,8 +101944,7 @@ cont.260553:
 	mov	%i5, %i0
 	jzero	%i0, %i0, cont.260551
 then.260564:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 loop_start.246152:
 	slli	%i4, %i19, 2
 	add	%i31, %i17, %i4
@@ -105023,18 +102021,15 @@ then.260571:
 	ceq	%i5, %i5, %i20
 	jzero	%i0, %i0, cont.260570
 then.260569:
-	fabs	%f1, %f16
-	fmov	%f16, %f1
+	fabs	%f16, %f16
 	lf	%f1, 0(%i4)
 	flt	%i21, %f16, %f1
 	jeq	%i21, %i0, then.260575
-	fabs	%f1, %f15
-	fmov	%f15, %f1
+	fabs	%f15, %f15
 	lf	%f1, 1(%i4)
 	flt	%i21, %f15, %f1
 	jeq	%i21, %i0, then.260577
-	fabs	%f1, %f18
-	fmov	%f15, %f1
+	fabs	%f15, %f18
 	lf	%f1, 2(%i4)
 	flt	%i20, %f15, %f1
 	jzero	%i0, %i0, cont.260576
@@ -105054,28 +102049,23 @@ cont.260570:
 	mov	%i31, %i0
 	jzero	%i0, %i0, loop_end.246153
 then.260581:
-	addi	%i4, %i19, 1
-	mov	%i19, %i4
+	addi	%i19, %i19, 1
 	set_label	%i31, loop_start.246152
 	jmp	%i0, 0(%i31)
 then.260567:
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.246153
 loop_end.246153:
 	mov	%i5, %i31
 	jzero	%i0, %i0, cont.260551
 then.260550:
-	movi	%i4, 1
-	mov	%i5, %i4
+	movi	%i5, 1
 cont.260551:
 	jeq	%i5, %i0, then.260583
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.246138
 then.260583:
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.246137
 	jmp	%i0, 0(%i31)
 then.260548:
@@ -105085,8 +102075,7 @@ then.260548:
 	lw	%i4, 0(%i31)
 	lw	%i5, 6(%i4)
 	jeq	%i5, %i0, then.260585
-	addi	%i4, %i16, 1
-	mov	%i16, %i4
+	addi	%i16, %i16, 1
 	set_label	%i31, loop_start.246137
 	jmp	%i0, 0(%i31)
 then.260585:
@@ -105097,12 +102086,10 @@ then.260512:
 	jzero	%i0, %i0, loop_end.246138
 loop_end.246138:
 	jeq	%i31, %i0, then.260587
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.246134
 then.260587:
-	addi	%i4, %i18, 1
-	mov	%i18, %i4
+	addi	%i18, %i18, 1
 	set_label	%i31, loop_start.246133
 	jmp	%i0, 0(%i31)
 then.260509:
@@ -105110,17 +102097,14 @@ then.260509:
 	jzero	%i0, %i0, loop_end.246134
 loop_end.246134:
 	jeq	%i31, %i0, then.260589
-	movi	%i4, 1
-	mov	%i31, %i4
+	movi	%i31, 1
 	jzero	%i0, %i0, loop_end.246092
 then.260589:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.246091
 	jmp	%i0, 0(%i31)
 then.260506:
-	addi	%i4, %i15, 1
-	mov	%i15, %i4
+	addi	%i15, %i15, 1
 	set_label	%i31, loop_start.246091
 	jmp	%i0, 0(%i31)
 then.260385:
@@ -105149,21 +102133,18 @@ loop_end.246092:
 	fmul	%f5, %f12, %f1
 	lf	%f1, 0(%i13)
 	fmul	%f12, %f5, %f1
-	lf	%f31, 115(%i1)
-	fmul	%f1, %f12, %f4
-	fadd	%f1, %f11, %f1
-	fmov	%f11, %f1
+	fmov	%f1, %f4
+	lf	%f4, 115(%i1)
+	fmul	%f1, %f12, %f1
+	fadd	%f11, %f11, %f1
 	fmul	%f1, %f12, %f3
-	fadd	%f1, %f10, %f1
-	fmov	%f10, %f1
-	fmul	%f1, %f12, %f31
-	fadd	%f1, %f9, %f1
-	fmov	%f9, %f1
+	fadd	%f10, %f10, %f1
+	fmul	%f1, %f12, %f4
+	fadd	%f9, %f9, %f1
 cont.260591:
 cont.260338:
 cont.259701:
-	subi	%i4, %i6, 2
-	mov	%i6, %i4
+	subi	%i6, %i6, 2
 	set_label	%i30, loop_start.245764
 	jmp	%i0, 0(%i30)
 loop_end.245765:
@@ -105174,21 +102155,20 @@ cont.259681:
 	lf	%f8, 0(%i5)
 	lf	%f7, 1(%i5)
 	lf	%f5, 2(%i5)
-	lf	%f31, 116(%i1)
+	lf	%f2, 116(%i1)
 	fmul	%f1, %f8, %f11
-	fadd	%f1, %f31, %f1
-	sf	%f1, 116(%i1)
-	lf	%f31, 117(%i1)
+	fadd	%f31, %f2, %f1
+	sf	%f31, 116(%i1)
+	lf	%f2, 117(%i1)
 	fmul	%f1, %f7, %f10
-	fadd	%f1, %f31, %f1
-	sf	%f1, 117(%i1)
-	lf	%f31, 118(%i1)
+	fadd	%f31, %f2, %f1
+	sf	%f31, 117(%i1)
+	lf	%f2, 118(%i1)
 	fmul	%f1, %f5, %f9
-	fadd	%f1, %f31, %f1
-	sf	%f1, 118(%i1)
+	fadd	%f31, %f2, %f1
+	sf	%f31, 118(%i1)
 cont.256036:
-	addi	%i4, %i11, 1
-	mov	%i11, %i4
+	addi	%i11, %i11, 1
 	set_label	%i30, loop_start.244075
 	jmp	%i0, 0(%i30)
 loop_end.244076:
@@ -105737,28 +102717,26 @@ cont.260695:
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	lw	%i31, 154(%i1)
-	addi	%i4, %i31, 1
-	sw	%i4, 154(%i1)
+	addi	%i31, %i31, 1
+	sw	%i31, 154(%i1)
 	set_label	%i31, loop_start.241921
 	jmp	%i0, 0(%i31)
 loop_end.241922:
 	lw	%i31, 143(%i1)
-	addi	%i8, %i31, 1
-	lw	%i31, 147(%i1)
-	addi	%i6, %i31, 2
+	addi	%i31, %i31, 1
+	lw	%i4, 147(%i1)
+	addi	%i6, %i4, 2
 	movi	%i4, 5
 	subi	%i5, %i6, 5
 	cleq	%i4, %i4, %i6
 	tern	%i7, %i4, %i5, %i6
-	lw	%i31, 145(%i1)
-	mov	%i6, %i31
-	lw	%i31, 146(%i1)
-	mov	%i5, %i31
-	lw	%i31, 144(%i1)
-	sw	%i8, 143(%i1)
+	lw	%i6, 145(%i1)
+	lw	%i5, 146(%i1)
+	lw	%i4, 144(%i1)
+	sw	%i31, 143(%i1)
 	sw	%i6, 144(%i1)
 	sw	%i5, 145(%i1)
-	sw	%i31, 146(%i1)
+	sw	%i4, 146(%i1)
 	sw	%i7, 147(%i1)
 	set_label	%i31, loop_start.241053
 	jmp	%i0, 0(%i31)
@@ -105779,10 +102757,9 @@ read_net_item.3790:
 	or	%i4, %i4, %i31
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
-	or	%i4, %i4, %i31
-	mov	%i6, %i4
+	or	%i6, %i4, %i31
 	movi	%i31, -1
-	jeq	%i4, %i31, then.260712
+	jeq	%i6, %i31, then.260712
 	addi	%i4, %i7, 1
 	subi	%i1, %i1, 8
 	sw	%i6, 0(%i1)
@@ -105800,9 +102777,8 @@ read_net_item.3790:
 	addi	%i1, %i1, 8
 	jmp	%i0, 0(%i3)
 then.260712:
-	addi	%i4, %i7, 1
+	addi	%i29, %i7, 1
 	movi	%i5, -1
-	mov	%i29, %i4
 	mov	%i4, %i2
 ca_loop.260713:
 	jlt	%i0, %i29, ca_cont.260714
@@ -105851,9 +102827,8 @@ read_or_network.3804:
 	addi	%i1, %i1, 8
 	jmp	%i0, 0(%i3)
 then.260716:
-	addi	%i4, %i7, 1
+	addi	%i29, %i7, 1
 	mov	%i5, %i6
-	mov	%i29, %i4
 	mov	%i4, %i2
 ca_loop.260717:
 	jlt	%i0, %i29, ca_cont.260718

@@ -50,6 +50,10 @@ pub fn optimize_virtual(instructions: Vec<Instruction>) -> VirtualOptimizeResult
         instructions = ins;
         alias_use_rewrites += r;
 
+        let (ins, r) = inv_beta_virtual_opt(instructions);
+        instructions = ins;
+        dead_move_rewrites += r;
+
         let (ins, r) = register_cse_virtual_opt(instructions);
         instructions = ins;
         reg_cse_rewrites += r;
@@ -101,6 +105,10 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
         let (ins, r) = normalize_mov_alias_uses_opt(instructions);
         instructions = ins;
         alias_use_rewrites += r;
+
+        let (ins, r) = inv_beta_opt(instructions);
+        instructions = ins;
+        dead_move_rewrites += r;
 
         let (ins, r) = eliminate_dead_moves_cfg_opt(instructions);
         instructions = ins;
@@ -1881,6 +1889,312 @@ fn prune_unused_labels_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>,
     }
 
     (out, rewrites)
+}
+
+fn inv_beta_opt_with_mode(mut instructions: Vec<Instruction>, virtual_only: bool) -> (Vec<Instruction>, usize) {
+    fn rewrite_use_operand_from_to(op: &str, from: &str, to: &str) -> Option<String> {
+        if from == to {
+            return None;
+        }
+        if op == from {
+            return Some(to.to_string());
+        }
+        let Some(start) = op.find('(') else {
+            return None;
+        };
+        let Some(end_rel) = op[start + 1..].find(')') else {
+            return None;
+        };
+        let end = start + 1 + end_rel;
+        let base = &op[start + 1..end];
+        if base != from {
+            return None;
+        }
+        let mut out = String::new();
+        out.push_str(&op[..start + 1]);
+        out.push_str(to);
+        out.push_str(&op[end..]);
+        Some(out)
+    }
+
+    fn rewrite_uses_from_to(inst: &Instruction, from: &str, to: &str) -> (Instruction, usize) {
+        let Some(mnemonic) = inst.mnemonic.as_deref() else {
+            return (inst.clone(), 0);
+        };
+        let mut out = inst.clone();
+        let def_first = if out.operands.is_empty() {
+            false
+        } else {
+            mnemonic_defines_first_operand(mnemonic, &out.operands[0])
+        };
+        let mut rewrites = 0usize;
+        for (op_idx, op) in out.operands.iter_mut().enumerate() {
+            if op_idx == 0 && def_first {
+                continue;
+            }
+            if let Some(new_op) = rewrite_use_operand_from_to(op, from, to) {
+                if new_op != *op {
+                    *op = new_op;
+                    rewrites += 1;
+                }
+            }
+        }
+        (out, rewrites)
+    }
+
+    fn movable_pair(mnemonic: &str, rd: &str, rs: &str, virtual_only: bool) -> bool {
+        if rd == rs {
+            return false;
+        }
+        match mnemonic {
+            "mov" => {
+                if virtual_only {
+                    is_trackable_int_reg(rd)
+                        && !is_forbidden_reg(rd)
+                        && is_trackable_int_reg(rs)
+                        && !is_forbidden_reg(rs)
+                } else {
+                    is_trackable_int_reg(rd)
+                        && !is_forbidden_reg(rd)
+                        && is_trackable_int_reg(rs)
+                        && !is_forbidden_reg(rs)
+                }
+            }
+            "fmov" => {
+                if virtual_only {
+                    is_trackable_float_reg(rd)
+                        && !is_forbidden_reg(rd)
+                        && is_trackable_float_reg(rs)
+                        && !is_forbidden_reg(rs)
+                } else {
+                    is_trackable_float_reg(rd)
+                        && !is_forbidden_reg(rd)
+                        && is_trackable_float_reg(rs)
+                        && !is_forbidden_reg(rs)
+                }
+            }
+            _ => false,
+        }
+    }
+
+    let mut total_rewrites = 0usize;
+    loop {
+        let analyzed = analysis::analyze(&instructions);
+        let call_arg_live_out_bits = compute_call_arg_live_out_bits(&analyzed);
+        let reset_points = compute_non_fallthrough_entry_points(&instructions);
+        let n = instructions.len();
+        let mut block_id = vec![0usize; n];
+        let mut cur_block = 0usize;
+        for i in 0..n {
+            let prev_is_barrier = if i > 0 {
+                instructions[i - 1]
+                    .mnemonic
+                    .as_deref()
+                    .map(is_trace_barrier)
+                    .unwrap_or(false)
+            } else {
+                false
+            };
+            if i == 0
+                || prev_is_barrier
+                || instructions[i].label.is_some()
+                || reset_points.get(i).copied().unwrap_or(false)
+            {
+                cur_block = cur_block.saturating_add(1);
+            }
+            block_id[i] = cur_block;
+        }
+        let reg_used_at = |idx: usize, reg: &str| -> bool {
+            if analyzed[idx].uses.contains(reg) {
+                return true;
+            }
+            if call_arg_bit(reg).is_some() && inst_is_call_like(&analyzed[idx].instruction) {
+                return true;
+            }
+            false
+        };
+        let reg_live_out_at = |idx: usize, reg: &str| -> bool {
+            if analyzed[idx].live_out.contains(reg) {
+                return true;
+            }
+            call_arg_bit(reg)
+                .map(|b| ((call_arg_live_out_bits[idx] >> b) & 1) != 0)
+                .unwrap_or(false)
+        };
+
+        let mut remove = vec![false; n];
+        let mut blocked = vec![false; n];
+        let mut rewrites = 0usize;
+
+        for idx in (0..n).rev() {
+            if blocked[idx] || remove[idx] {
+                continue;
+            }
+            let inst = &instructions[idx];
+            let Some(mnemonic) = inst.mnemonic.as_deref() else {
+                continue;
+            };
+            if !(mnemonic == "mov" || mnemonic == "fmov") || inst.operands.len() != 2 {
+                continue;
+            }
+            let rd = inst.operands[0].clone();
+            let rs = inst.operands[1].clone();
+            if !movable_pair(mnemonic, &rd, &rs, virtual_only) {
+                continue;
+            }
+
+            let mut def_idx: Option<usize> = None;
+            let mut fail = false;
+            let bid = block_id[idx];
+            for j in (0..idx).rev() {
+                if block_id[j] != bid {
+                    break;
+                }
+                if blocked[j] || remove[j] {
+                    fail = true;
+                    break;
+                }
+                if analyzed[j].defs.contains(&rs) {
+                    let def_inst = &instructions[j];
+                    let Some(def_mnem) = def_inst.mnemonic.as_deref() else {
+                        fail = true;
+                        break;
+                    };
+                    if def_inst.operands.is_empty()
+                        || def_inst.operands[0] != rs
+                        || !mnemonic_defines_first_operand(def_mnem, &rs)
+                        || is_side_effecting_or_control_mnemonic(def_mnem)
+                    {
+                        fail = true;
+                    } else {
+                        def_idx = Some(j);
+                    }
+                    break;
+                }
+                // Any use of rs before its nearest reaching def blocks reverse substitution.
+                // If this instruction is both DEF+USE of rs, we already handled it above
+                // and rewrite only DEF side at def_idx.
+                if reg_used_at(j, &rs) {
+                    fail = true;
+                    break;
+                }
+            }
+            if fail {
+                continue;
+            }
+            let Some(j) = def_idx else {
+                continue;
+            };
+
+            // No touch of rd/rs may exist between def and mov.
+            for k in (j + 1)..idx {
+                if blocked[k] || remove[k] {
+                    fail = true;
+                    break;
+                }
+                let a = &analyzed[k];
+                if reg_used_at(k, &rd)
+                    || a.defs.contains(&rd)
+                    || reg_used_at(k, &rs)
+                    || a.defs.contains(&rs)
+                {
+                    fail = true;
+                    break;
+                }
+            }
+            if fail {
+                continue;
+            }
+
+            // Extend inverse-beta:
+            // Rewrite uses of rs (whose reaching def is this unique def) to rd.
+            // Safety:
+            // - stay in the same block,
+            // - stop at first re-def of rs,
+            // - rd must stay unmodified until each rewritten use,
+            // - if rs reaches block exit, require no external live-out.
+            let mut block_end = idx;
+            while block_end + 1 < n && block_id[block_end + 1] == bid {
+                block_end += 1;
+            }
+
+            let mut rd_valid = true;
+            let mut rs_redefined = false;
+            let mut forward_end = idx;
+            let mut edits: Vec<(usize, Instruction)> = Vec::new();
+            let mut use_rewrites = 0usize;
+
+            for k in (idx + 1)..=block_end {
+                if blocked[k] || remove[k] {
+                    fail = true;
+                    break;
+                }
+                let a = &analyzed[k];
+                if reg_used_at(k, &rs) {
+                    if !rd_valid {
+                        fail = true;
+                        break;
+                    }
+                    let (new_inst, rw) = rewrite_uses_from_to(&instructions[k], &rs, &rd);
+                    if rw == 0 {
+                        fail = true;
+                        break;
+                    }
+                    edits.push((k, new_inst));
+                    use_rewrites += rw;
+                }
+
+                if a.defs.contains(&rs) {
+                    rs_redefined = true;
+                    forward_end = k;
+                    break;
+                }
+
+                if a.defs.contains(&rd) {
+                    rd_valid = false;
+                }
+                forward_end = k;
+            }
+
+            if !fail && !rs_redefined {
+                if reg_live_out_at(block_end, &rs) {
+                    fail = true;
+                }
+            }
+
+            if fail {
+                continue;
+            }
+
+            instructions[j].operands[0] = rd.clone();
+            rewrites += 1; // def destination rewrite
+            for (k, new_inst) in edits {
+                instructions[k] = new_inst;
+            }
+            rewrites += use_rewrites;
+            remove[idx] = true;
+            rewrites += 1; // mov elimination
+            let block_until = std::cmp::max(forward_end, idx);
+            for b in blocked.iter_mut().take(block_until + 1).skip(j) {
+                *b = true;
+            }
+        }
+
+        if rewrites == 0 {
+            break;
+        }
+        total_rewrites += rewrites;
+        instructions = remove_indices_preserve_labels(&instructions, &remove);
+    }
+    (instructions, total_rewrites)
+}
+
+fn inv_beta_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    inv_beta_opt_with_mode(instructions, false)
+}
+
+fn inv_beta_virtual_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    inv_beta_opt_with_mode(instructions, true)
 }
 
 fn eliminate_dead_moves_cfg_opt(mut instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
