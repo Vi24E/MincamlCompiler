@@ -62,6 +62,10 @@ pub fn optimize_virtual(instructions: Vec<Instruction>) -> VirtualOptimizeResult
         instructions = ins;
         dead_move_rewrites += r;
 
+        let (ins, r) = eliminate_noop_add_opt(instructions);
+        instructions = ins;
+        dead_move_rewrites += r;
+
         let (ins, r) = eliminate_zero_dest_nop_opt(instructions);
         instructions = ins;
         dead_move_rewrites += r;
@@ -114,6 +118,10 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
         instructions = ins;
         dead_move_rewrites += r;
 
+        let (ins, r) = eliminate_noop_add_opt(instructions);
+        instructions = ins;
+        dead_move_rewrites += r;
+
         let (ins, r) = eliminate_zero_dest_nop_opt(instructions);
         instructions = ins;
         dead_move_rewrites += r;
@@ -127,6 +135,10 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
         loop_invariant_hoist_rewrites += r;
 
         let (ins, r) = eliminate_dead_moves_cfg_opt(instructions);
+        instructions = ins;
+        dead_move_rewrites += r;
+
+        let (ins, r) = eliminate_noop_add_opt(instructions);
         instructions = ins;
         dead_move_rewrites += r;
 
@@ -1826,6 +1838,44 @@ fn is_zero_dest_nop(inst: &Instruction) -> bool {
     )
 }
 
+fn is_noop_add(inst: &Instruction) -> bool {
+    match inst.mnemonic.as_deref() {
+        Some("add") if inst.operands.len() == 3 => {
+            let rd = inst.operands[0].as_str();
+            let rs1 = inst.operands[1].as_str();
+            let rs2 = inst.operands[2].as_str();
+            is_int_reg(rd)
+                && ((rs1 == "%i0" && rs2 == rd) || (rs2 == "%i0" && rs1 == rd))
+        }
+        Some("addi") if inst.operands.len() == 3 => {
+            let rd = inst.operands[0].as_str();
+            let rs = inst.operands[1].as_str();
+            rd == rs && parse_imm_i32(inst.operands[2].as_str()).is_some_and(|v| v == 0)
+        }
+        _ => false,
+    }
+}
+
+fn eliminate_noop_add_opt(mut instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    let mut total_rewrites = 0usize;
+    loop {
+        let mut remove = vec![false; instructions.len()];
+        let mut rewrites = 0usize;
+        for (idx, inst) in instructions.iter().enumerate() {
+            if is_noop_add(inst) {
+                remove[idx] = true;
+                rewrites += 1;
+            }
+        }
+        if rewrites == 0 {
+            break;
+        }
+        total_rewrites += rewrites;
+        instructions = remove_indices_preserve_labels(&instructions, &remove);
+    }
+    (instructions, total_rewrites)
+}
+
 fn eliminate_zero_dest_nop_opt(mut instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
     let mut total_rewrites = 0usize;
     loop {
@@ -3313,7 +3363,7 @@ pub fn jump_trampoline_elim(instructions: Vec<Instruction>) -> (Vec<Instruction>
 }
 
 /// Relax conditional branches (`jeq`, `jleq`, `jlt`, `jzero`) if they jump
-/// backward or if they jump forward by more than 2048 instructions.
+/// backward or if they jump forward by more than 4095 instructions.
 /// tkasm limits conditional branch offsets to 12-bit unsigned (max 4095).
 /// Uses %i31 as a scratch register.
 /// %i31 is reserved as a dedicated scratch register in this backend.
@@ -3338,7 +3388,7 @@ pub fn relax_branches_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, 
             if ops.len() == 3 {
                 let target_label = &ops[2];
                 let is_far_or_backward = if let Some(&target_idx) = label_index.get(target_label) {
-                    target_idx < idx || target_idx.abs_diff(idx) > 2048
+                    target_idx < idx || target_idx.saturating_sub(idx) > 4095
                 } else {
                     // Unknown label (possibly external), assume far
                     true
@@ -3418,10 +3468,10 @@ pub fn relax_branches_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, 
 ///                jmp        %i0, 0(%rX)
 /// into:
 ///   [opt-label:] jzero      %i0, %i0, TARGET
-/// when TARGET is a FORWARD label within 2048 instructions from current position.
+/// when TARGET is a FORWARD label within 4095 instructions from current position.
 /// jzero uses %i0 (zero register) as comparison: always 0 = unconditional branch.
 /// Since each replacement removes 1 instruction, the actual offset is ≤ pre-computed
-/// distance - 1, so the 2048 threshold is always safe.
+/// distance - 1, so the 4095 threshold is always safe.
 pub fn fold_short_unconditional_jumps_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
     let n = instructions.len();
     // Pre-compute label → original index
@@ -3458,9 +3508,9 @@ pub fn fold_short_unconditional_jumps_opt(instructions: Vec<Instruction>) -> (Ve
                 if next.operands[1] == expected_base
                     && reg_x != "%i0"  // exclude degenerate jmp %i0, 0(%i0)
                 {
-                    // Check forward + within 2048 (original coordinates; actual is ≤ this - 1)
+                    // Check forward + within 4095 (original coordinates; actual is ≤ this - 1)
                     if let Some(&target_idx) = label_index.get(target.as_str()) {
-                        if target_idx > i && target_idx - i <= 2048 {
+                        if target_idx > i && target_idx - i <= 4095 {
                             out.push(Instruction {
                                 label: instructions[i].label.clone(),
                                 mnemonic: Some("jzero".to_string()),

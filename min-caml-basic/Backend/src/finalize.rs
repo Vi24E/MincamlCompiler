@@ -93,9 +93,9 @@ fn external_caller_clobber_regs(name: &str) -> BTreeSet<String> {
             out.insert("%i5".to_string());
             return out;
         }
-        // array creators use %i15 as temporary under current ABI.
+        // array creators use %i29 as temporary under current ABI.
         "min_caml_create_array" | "min_caml_create_float_array" => {
-            out.insert("%i15".to_string());
+            out.insert("%i29".to_string());
             return out;
         }
         // rsqrt/floor/fabs write only %f30 (not caller-save).
@@ -159,9 +159,9 @@ fn build_interproc_save_policies(
                     continue;
                 };
                 if callee == "min_caml_create_array" || callee == "min_caml_create_float_array" {
-                    // Finalize expands these helpers with %i15 as jump target scratch.
+                    // Finalize expands these helpers with %i29 as jump target scratch.
                     // This clobber is not visible in pre-finalize DEF sets.
-                    local_caller_clobber.insert("%i15".to_string());
+                    local_caller_clobber.insert("%i29".to_string());
                 }
                 let edge_set = edge_need_callee.entry(callee.clone()).or_default();
                 for r in &info.live_out {
@@ -1271,23 +1271,23 @@ fn expand_call_dir(
 
 fn filter_create_array_save_int(save_int: &[String]) -> Vec<String> {
     let mut out = Vec::new();
-    if save_int.iter().any(|r| r == "%i15") {
-        out.push("%i15".to_string());
+    if save_int.iter().any(|r| r == "%i29") {
+        out.push("%i29".to_string());
     }
     out
 }
 
 /// Expand call_dir min_caml_create_array/min_caml_create_float_array.
-/// Uses %i15 as temporary target register (clobbered by the helper).
-/// %i3 is callee-save (prologue), so only %i15 needs save/restore (if live).
-/// If %i15 is not live, the call expands to just set_label + jmp (zero frame).
+/// Uses %i29 as temporary target register (clobbered by the helper).
+/// %i3 is callee-save (prologue), so only %i29 needs save/restore (if live).
+/// If %i29 is not live, the call expands to just set_label + jmp (zero frame).
 fn expand_call_dir_create_array(out: &mut Vec<Instruction>, inst: &Instruction, save_int: &[String]) {
     let label = &inst.operands[0];
-    // This helper clobbers %i15 as loop counter, so preserve only when live.
-    let save_i15 = save_int.iter().any(|r| r == "%i15");
+    // This helper clobbers %i29 as loop counter, so preserve only when live.
+    let save_i29 = save_int.iter().any(|r| r == "%i29");
 
     let mut next_off = 0;
-    let i15_off = if save_i15 {
+    let i29_off = if save_i29 {
         let off = next_off;
         next_off += 4;
         Some(off)
@@ -1300,23 +1300,23 @@ fn expand_call_dir_create_array(out: &mut Vec<Instruction>, inst: &Instruction, 
     if call_frame > 0 {
         emit_subi(out, "%i1", "%i1", call_frame);
     }
-    if let Some(off) = i15_off {
-        emit_store(out, "sw", "%i15", off, "%i1");
+    if let Some(off) = i29_off {
+        emit_store(out, "sw", "%i29", off, "%i1");
     }
 
     out.push(Instruction {
         label: None,
         mnemonic: Some("set_label".to_string()),
-        operands: vec!["%i15".to_string(), label.clone()],
+        operands: vec!["%i29".to_string(), label.clone()],
     });
     out.push(Instruction {
         label: None,
         mnemonic: Some("jmp".to_string()),
-        operands: vec!["%i3".to_string(), "0(%i15)".to_string()],
+        operands: vec!["%i3".to_string(), "0(%i29)".to_string()],
     });
 
-    if let Some(off) = i15_off {
-        emit_load(out, "lw", "%i15", off, "%i1");
+    if let Some(off) = i29_off {
+        emit_load(out, "lw", "%i29", off, "%i1");
     }
     if call_frame > 0 {
         emit_addi(out, "%i1", "%i1", call_frame);

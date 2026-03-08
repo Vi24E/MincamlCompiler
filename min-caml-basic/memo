@@ -7,17 +7,28 @@
 -- Globalを読み出し/保存するのには1命令あたりコストS(~ 50)
 -- 以上に従ってコストを最小化する。これはそれぞれの変数についてdp[index][state] := min_costで、計算できる。(ただし変数がuseされているにも拘らず、state=liveoutの時はコストinfとする。)
 
-```
-mov	%i4, %i5
-	mov	%i5, %i25
-	xor	%i25, %i4, %i5
-```
-
-次の機能を実装してください。
-1. loopを検出する(CFG上でループになっており、startの入次数が2のものに限る)
-2. loop中killされずずっと生存している変数の集合Sを取得する
-
-Reordering priority sort: 0 (disabled)
+- use and for if
 
 
 関数がある時、引数の処理がbeta等で正しくない？関数が残るiter = 1でバグ
+
+- 	add	%i31, %i0, %i31
+- movi	%i31, 4
+  ceq	%i31, %i6, %i31
+  jzero	%i0, %i31, Lrelax_skip_54
+- ceq	%i31, %i5, %i0
+  jzero	%i0, %i31, Lrelax_skip_55
+
+
+sw	%i7, 292(%i0)
+sw	%i0, 292(%i0)
+
+lw	%i6, 138(%i1)
+sw	%i31, 138(%i1)
+
+sf	%f31, 129(%i1)
+lf	%f31, 129(%i1)
+
+fleq %i4, %f5, %f31     ; 比較結果 → 整数0/1
+itof %f1, %i4            ; ← 0/1をfloatに変換
+ftern %f5, %f1, %f5, %f3 ; 条件選択

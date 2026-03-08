@@ -669,8 +669,8 @@ fn library_caller_clobbers(name: &str) -> &'static [&'static str] {
         "min_caml_print_newline" => &["%i4", "%i5"],
         // print_char/read_char clobber %i5 only.
         "min_caml_print_char" | "min_caml_read_char" => &["%i5"],
-        // array creators use %i15 as temporary under current ABI.
-        "min_caml_create_array" | "min_caml_create_float_array" => &["%i15"],
+        // array creators use %i29 as temporary under current ABI.
+        "min_caml_create_array" | "min_caml_create_float_array" => &["%i29"],
         // rsqrt/floor/fabs write only return register %f30.
         "min_caml_rsqrt" | "min_caml_floor" | "min_caml_fabs" => &[],
         _ => &[],
