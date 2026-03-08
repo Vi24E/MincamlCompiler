@@ -9,6 +9,9 @@ let should_keep_leakable_binding x =
 let is_live_non_leakable x live =
   (not (Id.is_leakable x)) && S.mem x live
 
+let has_needed_leakable_def e =
+  S.exists VariableChecker.is_leakable_defined (collect_leakable e)
+
 let rec g = function (* 不要定義削除ルーチン本体 (caml2html: elim_f) *)
   | IfEq(x, y, e1, e2) -> IfEq(x, y, g e1, g e2)
   | IfLE(x, y, e1, e2) -> IfLE(x, y, g e1, g e2)
@@ -18,6 +21,7 @@ let rec g = function (* 不要定義削除ルーチン本体 (caml2html: elim_f)
       if has_side_effect e1'
          || is_live_non_leakable x (fv e2')
          || should_keep_leakable_binding x
+         || has_needed_leakable_def e1'
       then Let((x, t), e1', e2') else
       e2'
   | LetRec({ name = (x, t); args = yts; body = e1; tags = tags }, e2) -> (* let recの場合 (caml2html: elim_letrec) *)

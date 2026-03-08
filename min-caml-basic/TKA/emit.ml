@@ -1126,6 +1126,16 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let reg_ra = Id.to_string Asm.reg_ra in
       if !Asm.virtual_mode then Printf.fprintf oc "\tret\n"
       else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero reg_ra
+  | Tail, CallDir(Id.L("min_caml_fabs"), [], [z]) ->
+      g'_args oc [] [] [z];
+      let f0 = Id.to_string fregs.(0) in
+      let fr = Id.to_string (float_return_reg ()) in
+      Printf.fprintf oc "\tfabs\t%s, %s\n" fr f0;
+      if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
+      let reg_zero = Id.to_string reg_zero in
+      let reg_ra = Id.to_string Asm.reg_ra in
+      if !Asm.virtual_mode then Printf.fprintf oc "\tret\n"
+      else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero reg_ra
   | Tail, CallDir(Id.L("min_caml_create_array"), ys, []) ->
       let i2     = Id.to_string Asm.reg_hp in
       let i15    = "%i29" in
@@ -1358,6 +1368,14 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let f0 = Id.to_string fregs.(0) in
       let fr = Id.to_string (float_return_reg ()) in
       Printf.fprintf oc "\tffloor\t%s, %s\n" fr f0;
+      if (List.mem a allfregs || a = Asm.reg_fsw) && a <> float_return_reg () then
+        Printf.fprintf oc "\tfmov\t%s, %s\n" a_str fr
+  | NonTail(a), CallDir(Id.L("min_caml_fabs"), [], [z]) ->
+      g'_args oc [] [] [z];
+      let a_str = Id.to_string a in
+      let f0 = Id.to_string fregs.(0) in
+      let fr = Id.to_string (float_return_reg ()) in
+      Printf.fprintf oc "\tfabs\t%s, %s\n" fr f0;
       if (List.mem a allfregs || a = Asm.reg_fsw) && a <> float_return_reg () then
         Printf.fprintf oc "\tfmov\t%s, %s\n" a_str fr
   | NonTail(a), CallDir(Id.L("min_caml_create_array"), ys, []) ->

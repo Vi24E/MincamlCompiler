@@ -9,6 +9,7 @@ let builtin_types =
   |> M.add ("create_float_array", Id.Unknown) (Fun([Int; Float], Array(Float)))
   |> M.add ("rsqrt", Id.Unknown) (Fun([Float], Float))
   |> M.add ("floor", Id.Unknown) (Fun([Float], Float))
+  |> M.add ("fabs", Id.Unknown) (Fun([Float], Float))
   |> M.add ("int_of_float", Id.Unknown) (Fun([Float], Int))
   |> M.add ("float_of_int", Id.Unknown) (Fun([Int], Float))
   |> M.add ("print_char", Id.Unknown) (Fun([Int], Unit))

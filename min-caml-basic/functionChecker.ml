@@ -40,7 +40,7 @@ let rec checkExpPurity e =
   | Put(_, _, _) | Get(_, _) -> false
   | ExtFunApp(f, _) -> 
     (match f with
-    | ("floor", _) | ("rsqrt", _) | ("int_of_float", _) | ("float_of_int", _) -> true
+    | ("floor", _) | ("rsqrt", _) | ("fabs", _) | ("int_of_float", _) | ("float_of_int", _) -> true
     | _ -> false)
   | App(f, _) -> 
     let fundef_opt = findFunction (Id.L(Id.to_string f)) in

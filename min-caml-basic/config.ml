@@ -69,6 +69,9 @@ module TernPhiInsert = struct
   (* Maximum branch size for if-to-TernPhi conversion. *)
   let small_if_threshold = ref 6
 
+  (* Maximum size of the pure "short wing" for one-sided Unit+TernPhi. *)
+  let small_unit_wing_threshold = ref 0
+
   (* Dump detailed TernPhiInsert trace logs. *)
   let trace_enabled = ref false
 

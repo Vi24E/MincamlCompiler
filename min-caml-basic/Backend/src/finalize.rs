@@ -98,8 +98,8 @@ fn external_caller_clobber_regs(name: &str) -> BTreeSet<String> {
             out.insert("%i15".to_string());
             return out;
         }
-        // rsqrt/floor write only %f30 (not caller-save).
-        "min_caml_rsqrt" | "min_caml_floor" => return out,
+        // rsqrt/floor/fabs write only %f30 (not caller-save).
+        "min_caml_rsqrt" | "min_caml_floor" | "min_caml_fabs" => return out,
         _ => {}
     }
     // Unknown external call: conservative fallback.

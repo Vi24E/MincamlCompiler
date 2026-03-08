@@ -129,6 +129,7 @@ fn is_pure_mnemonic(m: &str) -> bool {
             | "finv"
             | "frsqrt"
             | "ffloor"
+            | "fabs"
             | "ftoi"
             | "itof"
             | "mif"

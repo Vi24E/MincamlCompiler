@@ -86,3 +86,8 @@ min_caml_rsqrt:
 min_caml_floor:
     ffloor %f30, %f1
     jmp	%i0, 0(%i3)
+
+.global min_caml_fabs
+min_caml_fabs:
+    fabs %f30, %f1
+    jmp	%i0, 0(%i3)

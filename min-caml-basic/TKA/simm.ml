@@ -131,15 +131,15 @@ let rec g env = function
                used_e のスコープが枝内に限られるため枝外の参照を検出できない。
                phi 変数は always keep、その他は通常の used チェック。 *)
             let sx = Id.to_string x in
-            let has_phi =
+            (* let has_phi =
               let len = String.length sx in
               let rec check i =
                 if i + 5 > len then false
                 else if String.sub sx i 5 = "_phi." then true
                 else check (i + 1)
               in check 0
-            in
-            if has_phi then true else S.mem x used_e
+            in *)
+            if Id.is_leakable x then true else S.mem x used_e
           | _ -> true
       in
       if keep then (Let((x, t), exp', e'), used_out)

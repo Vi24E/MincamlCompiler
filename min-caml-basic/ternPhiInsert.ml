@@ -26,6 +26,7 @@ let trace_limit = 20000
 let trace_event_count = ref 0
 let phi_threshold = Config.TernPhiInsert.phi_threshold
 let small_if_threshold = Config.TernPhiInsert.small_if_threshold
+let small_unit_wing_threshold = Config.TernPhiInsert.small_unit_wing_threshold
 let trace_enabled_flag = Config.TernPhiInsert.trace_enabled
 let ternphi_fallback_enabled = Config.TernPhiInsert.fallback_enabled
 
@@ -199,32 +200,51 @@ let is_boolification_if then_e else_e =
   | Int(1), Int(0) | Int(0), Int(1) -> true
   | _ -> false
 
-let is_small_pure_callee f =
+let is_small_pure_callee threshold_ref f =
   match FunctionChecker.findFunction (Id.L (Id.to_string f)) with
   | Some fundef ->
       FunctionChecker.checkFunctionPurity fundef
-      && size fundef.body <= !small_if_threshold
+      && size fundef.body <= !threshold_ref
   | None ->
       false
 
-let rec is_pure_small_expr = function
+let rec is_pure_small_expr threshold_ref = function
   | Let(_, e1, e2) ->
-      is_pure_small_expr e1 && is_pure_small_expr e2
+      is_pure_small_expr threshold_ref e1 && is_pure_small_expr threshold_ref e2
   | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) ->
-      is_pure_small_expr e1 && is_pure_small_expr e2
+      is_pure_small_expr threshold_ref e1 && is_pure_small_expr threshold_ref e2
   | LetTuple(_, _, e) ->
-      is_pure_small_expr e
+      is_pure_small_expr threshold_ref e
   | App(f, _) as e ->
-      FunctionChecker.checkExpPurity e && is_small_pure_callee f
+      FunctionChecker.checkExpPurity e && is_small_pure_callee threshold_ref f
   | e ->
       FunctionChecker.checkExpPurity e
+
+let can_small_unit_wing_to_tern bound_t wing_e =
+  bound_t <> Type.Unit
+  && size wing_e <= !small_unit_wing_threshold
+  && is_pure_small_expr small_unit_wing_threshold wing_e
 
 let can_small_if_to_tern bound_t if_expr then_e else_e =
   bound_t <> Type.Unit
   && size if_expr <= !small_if_threshold
-  && is_pure_small_expr then_e
-  && is_pure_small_expr else_e
+  && is_pure_small_expr small_if_threshold then_e
+  && is_pure_small_expr small_if_threshold else_e
   && not (is_boolification_if then_e else_e)
+
+let choose_small_unit_wing bound_t then_e else_e =
+  let can_then = can_small_unit_wing_to_tern bound_t then_e in
+  let can_else = can_small_unit_wing_to_tern bound_t else_e in
+  match can_then, can_else with
+  | false, false -> None
+  | true, false -> Some `Then
+  | false, true -> Some `Else
+  | true, true ->
+      if size then_e <= size else_e then Some `Then else Some `Else
+
+let gen_leakable_id base =
+  let (name, _) = Id.genid base in
+  (name, Id.Known(Id.Leakable, Id.None))
 
 let rec insert_small_if_to_tern = function
   | Let((dst, t), IfEq(x, y, then_e, else_e), cont) ->
@@ -240,6 +260,28 @@ let rec insert_small_if_to_tern = function
           Let((else_v, t), else_e',
             Let((cond_v, Type.Int), IfEq(x, y, Int(1), Int(0)),
               Let((dst, t), TernPhi(cond_v, then_v, else_v), cont'))))
+      else if not (is_boolification_if then_e' else_e') then
+        match choose_small_unit_wing t then_e' else_e' with
+        | Some `Then ->
+            let unit_sink = Id.gentmp Type.Unit in
+            let short_v = Id.gentmp t in
+            let long_v = gen_leakable_id (Id.to_string dst ^ "_long") in
+            let cond_v = Id.genid "small_phi_cond" in
+            Let((unit_sink, Type.Unit), IfEq(x, y, Unit, Let((long_v, t), else_e', Unit)),
+              Let((short_v, t), then_e',
+                Let((cond_v, Type.Int), IfEq(x, y, Int(1), Int(0)),
+                  Let((dst, t), TernPhi(cond_v, short_v, long_v), cont'))))
+        | Some `Else ->
+            let unit_sink = Id.gentmp Type.Unit in
+            let short_v = Id.gentmp t in
+            let long_v = gen_leakable_id (Id.to_string dst ^ "_long") in
+            let cond_v = Id.genid "small_phi_cond" in
+            Let((unit_sink, Type.Unit), IfEq(x, y, Let((long_v, t), then_e', Unit), Unit),
+              Let((short_v, t), else_e',
+                Let((cond_v, Type.Int), IfEq(x, y, Int(1), Int(0)),
+                  Let((dst, t), TernPhi(cond_v, long_v, short_v), cont'))))
+        | None ->
+            Let((dst, t), if_expr, cont')
       else
         Let((dst, t), if_expr, cont')
   | Let((dst, t), IfLE(x, y, then_e, else_e), cont) ->
@@ -255,6 +297,28 @@ let rec insert_small_if_to_tern = function
           Let((else_v, t), else_e',
             Let((cond_v, Type.Int), IfLE(x, y, Int(1), Int(0)),
               Let((dst, t), TernPhi(cond_v, then_v, else_v), cont'))))
+      else if not (is_boolification_if then_e' else_e') then
+        match choose_small_unit_wing t then_e' else_e' with
+        | Some `Then ->
+            let unit_sink = Id.gentmp Type.Unit in
+            let short_v = Id.gentmp t in
+            let long_v = gen_leakable_id (Id.to_string dst ^ "_long") in
+            let cond_v = Id.genid "small_phi_cond" in
+            Let((unit_sink, Type.Unit), IfLE(x, y, Unit, Let((long_v, t), else_e', Unit)),
+              Let((short_v, t), then_e',
+                Let((cond_v, Type.Int), IfLE(x, y, Int(1), Int(0)),
+                  Let((dst, t), TernPhi(cond_v, short_v, long_v), cont'))))
+        | Some `Else ->
+            let unit_sink = Id.gentmp Type.Unit in
+            let short_v = Id.gentmp t in
+            let long_v = gen_leakable_id (Id.to_string dst ^ "_long") in
+            let cond_v = Id.genid "small_phi_cond" in
+            Let((unit_sink, Type.Unit), IfLE(x, y, Let((long_v, t), then_e', Unit), Unit),
+              Let((short_v, t), else_e',
+                Let((cond_v, Type.Int), IfLE(x, y, Int(1), Int(0)),
+                  Let((dst, t), TernPhi(cond_v, long_v, short_v), cont'))))
+        | None ->
+            Let((dst, t), if_expr, cont')
       else
         Let((dst, t), if_expr, cont')
   | Let((x, t), e1, e2) ->

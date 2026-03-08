@@ -996,8 +996,8 @@ fn get_def_use_indices(mnemonic: &str, operands: &[String]) -> (Vec<usize>, Vec<
             }
         }
         // 2-operand ops: dst, src
-        "mov" | "neg" | "fmov" | "fneg" | "finv" | "frsqrt" | "ffloor" | "ftoi" | "itof"
-        | "mif" => {
+        "mov" | "neg" | "fmov" | "fneg" | "finv" | "frsqrt" | "ffloor" | "fabs" | "ftoi"
+        | "itof" | "mif" => {
             if n > 0 {
                 expect_direct_reg_operand(operands, mnemonic, 0);
                 defs.push(0);

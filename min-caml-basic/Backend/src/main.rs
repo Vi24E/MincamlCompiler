@@ -579,7 +579,8 @@ fn mnemonic_defines_first_operand(mnemonic: &str, rd: &str) -> bool {
         | "fleq" | "flt"
         | "fadd" | "fsub" | "fmul" | "fma" | "fdiv" | "addi" | "subi" | "slli" | "sari" | "ori"
         | "xori" | "ceqi" | "cleqi" | "clti" | "mov" | "neg" | "fmov" | "fneg" | "finv"
-        | "frsqrt" | "ffloor" | "ftoi" | "itof" | "movi" | "movui" | "mif" | "lw" | "lf" | "lb"
+        | "frsqrt" | "ffloor" | "fabs" | "ftoi" | "itof" | "movi" | "movui" | "mif" | "lw"
+        | "lf" | "lb"
         | "set_label" | "tern" | "ftern" => true,
         "jmp" => rd != "%i0",
         _ => false,
@@ -668,6 +669,7 @@ fn is_library_label(label: &str) -> bool {
             | "min_caml_create_float_array"
             | "min_caml_rsqrt"
             | "min_caml_floor"
+            | "min_caml_fabs"
     )
 }
 

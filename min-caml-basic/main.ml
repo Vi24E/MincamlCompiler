@@ -89,6 +89,7 @@ let () =
      ("-loop-insert", Arg.Unit(fun () -> enable_loop_insert := true), "enable loop insertion before optimize iterations");
      ("-no-loop-insert", Arg.Unit(fun () -> enable_loop_insert := false), "disable loop insertion before optimize iterations");
      ("-unroll", Arg.Int(fun i -> LoopUnroll.threshold := max 0 i), "loop unroll size threshold for loop-inserted while(1)");
+     ("-tern-unit-wing", Arg.Int(fun i -> Config.TernPhiInsert.small_unit_wing_threshold := max 0 i), "max pure wing size for one-sided Unit+TernPhi conversion");
      ("-virtual", Arg.Unit(fun () -> Asm.virtual_mode := true), "enable virtual register mode (infinite registers)");
      ("-debug", Arg.Unit(fun () -> debug := true), "enable debug markers (print_debug insertion)");
      ("--debug", Arg.Unit(fun () -> debug := true), "enable debug markers (print_debug insertion)")]

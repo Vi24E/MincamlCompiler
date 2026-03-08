@@ -180,7 +180,7 @@ fn get_def_use(inst: &Instruction) -> (BTreeSet<String>, BTreeSet<String>) {
                 }
             }
             // 2-operand float: dest, src
-            "fmov" | "fneg" | "finv" | "frsqrt" | "ffloor" => {
+            "fmov" | "fneg" | "finv" | "frsqrt" | "ffloor" | "fabs" => {
                 if let Some(op0) = args.get(0) {
                     defs.insert(expect_direct_reg(op0, mnemonic, 0));
                 }
@@ -375,8 +375,12 @@ pub fn analyze(instructions: &[Instruction]) -> Vec<AnalyzedInstruction> {
                             succs.push(*idx);
                         }
                     }
-                    // Fall-through
-                    if i + 1 < analyzed.len() {
+                    // jzero %i0, %i0, label is an unconditional branch.
+                    let is_unconditional = inst.operands.len() >= 2
+                        && inst.operands[0] == "%i0"
+                        && inst.operands[1] == "%i0";
+                    // Fall-through for normal conditional jzero only.
+                    if !is_unconditional && i + 1 < analyzed.len() {
                         succs.push(i + 1);
                     }
                     // Not a terminator (has fall-through), but we've added it manually

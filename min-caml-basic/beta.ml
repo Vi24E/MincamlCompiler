@@ -21,19 +21,8 @@ let rec collect_mutable acc = function
   | ExtFunApp(_, _) | TernPhi(_, _, _) | Break(_) ->
       acc
 
-let contains_sub s sub =
-  let ls = String.length s in
-  let lsub = String.length sub in
-  let rec go i =
-    if i + lsub > ls then false
-    else if String.sub s i lsub = sub then true
-    else go (i + 1)
-  in
-  go 0
-
 let should_keep_binding x =
-  let s = Id.to_string x in
-  contains_sub s "_as." || contains_sub s "_phi."
+  Id.is_leakable x
 
 let kill_aliases_of x env =
   M.filter (fun _ v -> Id.compare v x <> 0) env

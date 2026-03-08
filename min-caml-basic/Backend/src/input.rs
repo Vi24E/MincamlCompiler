@@ -1,4 +1,5 @@
 /// Assembly parser: reads virtual register assembly text into a Vec<Instruction>.
+use std::collections::HashSet;
 use std::fs;
 use std::io;
 
@@ -106,7 +107,51 @@ pub fn read_assembly_file(path: &str) -> io::Result<Vec<Instruction>> {
         });
     }
 
-    Ok(instructions)
+    Ok(prune_unused_labels(instructions))
+}
+
+/// Drop label definitions that are never referenced by any operand.
+/// This runs at parse-time so later passes operate on a cleaner IR.
+fn prune_unused_labels(instructions: Vec<Instruction>) -> Vec<Instruction> {
+    let mut defined_labels: HashSet<String> = HashSet::new();
+    for inst in &instructions {
+        if let Some(lbl) = inst.label.as_ref() {
+            if !lbl.is_empty() {
+                defined_labels.insert(lbl.clone());
+            }
+        }
+    }
+    if defined_labels.is_empty() {
+        return instructions;
+    }
+
+    let mut used_labels: HashSet<String> = HashSet::new();
+    for inst in &instructions {
+        for op in &inst.operands {
+            if defined_labels.contains(op.as_str()) {
+                used_labels.insert(op.clone());
+            }
+        }
+    }
+
+    // Keep entry label even when not explicitly referenced.
+    if defined_labels.contains("min_caml_start") {
+        used_labels.insert("min_caml_start".to_string());
+    }
+
+    let mut out: Vec<Instruction> = Vec::with_capacity(instructions.len());
+    for mut inst in instructions {
+        if let Some(lbl) = inst.label.as_ref() {
+            if !used_labels.contains(lbl.as_str()) {
+                inst.label = None;
+            }
+        }
+        if inst.label.is_none() && inst.mnemonic.is_none() {
+            continue;
+        }
+        out.push(inst);
+    }
+    out
 }
 
 /// Parse an instruction text (without label) into mnemonic + operands.

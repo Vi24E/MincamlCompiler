@@ -26,11 +26,43 @@ pub struct VirtualOptimizeResult {
     pub dead_move_rewrites: usize,
 }
 
+fn register_opt_iterations() -> usize {
+    std::env::var("BACKEND_REG_OPT_ITER")
+        .ok()
+        .and_then(|v| v.parse::<usize>().ok())
+        .filter(|&v| v >= 1)
+        .unwrap_or(2)
+}
+
 pub fn optimize_virtual(instructions: Vec<Instruction>) -> VirtualOptimizeResult {
-    let (instructions, val_trace_rewrites) = const_reuse_with_val_trace_opt(instructions);
-    let (instructions, alias_use_rewrites) = normalize_mov_alias_uses_virtual_opt(instructions);
-    let (instructions, reg_cse_rewrites) = register_cse_virtual_opt(instructions);
-    let (instructions, dead_move_rewrites) = eliminate_dead_moves_virtual_opt(instructions);
+    let mut instructions = instructions;
+    let mut val_trace_rewrites = 0usize;
+    let mut alias_use_rewrites = 0usize;
+    let mut reg_cse_rewrites = 0usize;
+    let mut dead_move_rewrites = 0usize;
+
+    for _ in 0..register_opt_iterations() {
+        let (ins, r) = const_reuse_with_val_trace_opt(instructions);
+        instructions = ins;
+        val_trace_rewrites += r;
+
+        let (ins, r) = normalize_mov_alias_uses_virtual_opt(instructions);
+        instructions = ins;
+        alias_use_rewrites += r;
+
+        let (ins, r) = register_cse_virtual_opt(instructions);
+        instructions = ins;
+        reg_cse_rewrites += r;
+
+        let (ins, r) = eliminate_dead_moves_virtual_opt(instructions);
+        instructions = ins;
+        dead_move_rewrites += r;
+
+        let (ins, r) = eliminate_zero_dest_nop_opt(instructions);
+        instructions = ins;
+        dead_move_rewrites += r;
+    }
+
     VirtualOptimizeResult {
         instructions,
         val_trace_rewrites,
@@ -47,20 +79,65 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
     let (instructions, branch_relax_rewrites) = relax_branches_opt(instructions);
     // Pass 2: eliminate any remaining or newly visible trampolines
     let (instructions, trampoline_elim_rewrites_2) = jump_trampoline_elim(instructions);
-    let trampoline_elim_rewrites = trampoline_elim_rewrites_1 + trampoline_elim_rewrites_2;
     // Fold short unconditional jumps: set_label + jmp -> jzero %i0, %i0, label
     let (instructions, short_jump_fold_rewrites) = fold_short_unconditional_jumps_opt(instructions);
     let (instructions, global_access_rewrites) = global_access_opt(instructions);
     let (instructions, zero_base_fold_rewrites) = fold_zero_base_addr_opt(instructions);
     let (instructions, word_offset_rewrites) = scale_word_mem_offset_opt(instructions);
-    let (instructions, val_trace_rewrites) = const_reuse_with_val_trace_opt(instructions);
-    let (instructions, alias_use_rewrites) = normalize_mov_alias_uses_opt(instructions);
-    let (instructions, dead_move_rewrites_1) = eliminate_dead_moves_cfg_opt(instructions);
-    let (instructions, reg_cse_rewrites) = register_cse_opt(instructions);
-    let (instructions, loop_invariant_hoist_rewrites) = hoist_loop_invariants_opt(instructions);
-    let (instructions, dead_move_rewrites_2) = eliminate_dead_moves_cfg_opt(instructions);
-    let dead_move_rewrites = dead_move_rewrites_1 + dead_move_rewrites_2;
-    let (instructions, redundant_reload_rewrites) = eliminate_redundant_store_load_opt(instructions);
+    let mut instructions = instructions;
+    let mut val_trace_rewrites = 0usize;
+    let mut alias_use_rewrites = 0usize;
+    let mut dead_move_rewrites = 0usize;
+    let mut reg_cse_rewrites = 0usize;
+    let mut loop_invariant_hoist_rewrites = 0usize;
+    let mut redundant_reload_rewrites = 0usize;
+    let mut trampoline_elim_rewrites = trampoline_elim_rewrites_1 + trampoline_elim_rewrites_2;
+
+    for _ in 0..register_opt_iterations() {
+        let (ins, r) = const_reuse_with_val_trace_opt(instructions);
+        instructions = ins;
+        val_trace_rewrites += r;
+
+        let (ins, r) = normalize_mov_alias_uses_opt(instructions);
+        instructions = ins;
+        alias_use_rewrites += r;
+
+        let (ins, r) = eliminate_dead_moves_cfg_opt(instructions);
+        instructions = ins;
+        dead_move_rewrites += r;
+
+        let (ins, r) = eliminate_zero_dest_nop_opt(instructions);
+        instructions = ins;
+        dead_move_rewrites += r;
+
+        let (ins, r) = register_cse_opt(instructions);
+        instructions = ins;
+        reg_cse_rewrites += r;
+
+        let (ins, r) = hoist_loop_invariants_opt(instructions);
+        instructions = ins;
+        loop_invariant_hoist_rewrites += r;
+
+        let (ins, r) = eliminate_dead_moves_cfg_opt(instructions);
+        instructions = ins;
+        dead_move_rewrites += r;
+
+        let (ins, r) = eliminate_zero_dest_nop_opt(instructions);
+        instructions = ins;
+        dead_move_rewrites += r;
+
+        let (ins, r) = eliminate_redundant_store_load_opt(instructions);
+        instructions = ins;
+        redundant_reload_rewrites += r;
+
+        let (ins, r) = jump_trampoline_elim(instructions);
+        instructions = ins;
+        trampoline_elim_rewrites += r;
+
+        let (ins, _) = prune_unused_labels_opt(instructions);
+        instructions = ins;
+    }
+
     OptimizeResult {
         instructions,
         global_access_rewrites,
@@ -449,6 +526,7 @@ fn is_licm_pure_mnemonic(m: &str) -> bool {
             | "finv"
             | "frsqrt"
             | "ffloor"
+            | "fabs"
             | "add"
             | "sub"
             | "sll"
@@ -1015,7 +1093,9 @@ fn build_cse_expr_with_mode(
         "fmov" if ops.len() == 2 && float_ok(&ops[1]) => {
             Some(CseExpr::FloatUnary("fmov".to_string(), ops[1].clone()))
         }
-        "fneg" | "finv" | "frsqrt" | "ffloor" if ops.len() == 2 && float_ok(&ops[1]) => {
+        "fneg" | "finv" | "frsqrt" | "ffloor" | "fabs"
+            if ops.len() == 2 && float_ok(&ops[1]) =>
+        {
             Some(CseExpr::FloatUnary(m.to_string(), ops[1].clone()))
         }
         "fadd" | "fmul" | "feq" | "fneq" if ops.len() == 3 && float_ok(&ops[1]) && float_ok(&ops[2]) => {
@@ -1675,6 +1755,132 @@ fn remove_indices_preserve_labels(instructions: &[Instruction], remove: &[bool])
     }
 
     out
+}
+
+fn is_zero_dest_nop(inst: &Instruction) -> bool {
+    let Some(mnemonic) = inst.mnemonic.as_deref() else {
+        return false;
+    };
+    if mnemonic.starts_with('.') || inst.operands.is_empty() {
+        return false;
+    }
+    let rd = inst.operands[0].as_str();
+    if rd != "%i0" && rd != "%f0" {
+        return false;
+    }
+    if !mnemonic_defines_first_operand(mnemonic, rd) {
+        return false;
+    }
+    matches!(
+        mnemonic,
+        "mov"
+            | "neg"
+            | "fmov"
+            | "fneg"
+            | "finv"
+            | "frsqrt"
+            | "ffloor"
+            | "fabs"
+            | "ftoi"
+            | "itof"
+            | "movi"
+            | "movui"
+            | "mif"
+            | "add"
+            | "sub"
+            | "sll"
+            | "sar"
+            | "or"
+            | "xor"
+            | "ceq"
+            | "cleq"
+            | "clt"
+            | "feq"
+            | "fneq"
+            | "fleq"
+            | "flt"
+            | "fadd"
+            | "fsub"
+            | "fmul"
+            | "fdiv"
+            | "fma"
+            | "addi"
+            | "subi"
+            | "slli"
+            | "sari"
+            | "ori"
+            | "xori"
+            | "ceqi"
+            | "cleqi"
+            | "clti"
+            | "tern"
+            | "ftern"
+    )
+}
+
+fn eliminate_zero_dest_nop_opt(mut instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    let mut total_rewrites = 0usize;
+    loop {
+        let mut remove = vec![false; instructions.len()];
+        let mut rewrites = 0usize;
+        for (idx, inst) in instructions.iter().enumerate() {
+            if is_zero_dest_nop(inst) {
+                remove[idx] = true;
+                rewrites += 1;
+            }
+        }
+        if rewrites == 0 {
+            break;
+        }
+        total_rewrites += rewrites;
+        instructions = remove_indices_preserve_labels(&instructions, &remove);
+    }
+    (instructions, total_rewrites)
+}
+
+fn prune_unused_labels_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    let mut defined_labels: HashSet<String> = HashSet::new();
+    for inst in &instructions {
+        if let Some(lbl) = inst.label.as_ref() {
+            if !lbl.is_empty() {
+                defined_labels.insert(lbl.clone());
+            }
+        }
+    }
+    if defined_labels.is_empty() {
+        return (instructions, 0);
+    }
+
+    let mut used_labels: HashSet<String> = HashSet::new();
+    for inst in &instructions {
+        for op in &inst.operands {
+            if defined_labels.contains(op.as_str()) {
+                used_labels.insert(op.clone());
+            }
+        }
+    }
+
+    if defined_labels.contains("min_caml_start") {
+        used_labels.insert("min_caml_start".to_string());
+    }
+
+    let mut rewrites = 0usize;
+    let mut out: Vec<Instruction> = Vec::with_capacity(instructions.len());
+    for mut inst in instructions {
+        if let Some(lbl) = inst.label.as_ref() {
+            if !used_labels.contains(lbl.as_str()) {
+                inst.label = None;
+                rewrites += 1;
+            }
+        }
+        if inst.label.is_none() && inst.mnemonic.is_none() {
+            rewrites += 1;
+            continue;
+        }
+        out.push(inst);
+    }
+
+    (out, rewrites)
 }
 
 fn eliminate_dead_moves_cfg_opt(mut instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
@@ -2514,102 +2720,186 @@ fn fold_bool_neg_pattern(i0: &Instruction, i1: &Instruction, trace: &ValTrace) -
 }
 
 /// Jump-trampoline beta-reduction:
-/// A block of the form:
-///   LABEL:
-///       set_label  %rX, TARGET
-///       jmp        %i0, 0(%rX)   ← %i0 = zero reg (return addr discarded = pure forward)
-/// is a pure trampoline.
-/// - `set_label` references to the trampoline are always rewritten (full-range).
-/// - Conditional branch (`jzero` etc.) references are rewritten AND the trampoline
-///   is removed only if every branch referencing it is within BRANCH_THRESHOLD
-///   instructions of the trampoline block.
+/// Trampoline forms:
+/// 1) [label-only*] [label:] set_label %rX, TARGET; jmp %i0, 0(%rX)
+/// 2) [label-only*] [label:] jzero %i0, %i0, TARGET
+/// are treated as pure forwarders.
+/// - `set_label` references are always rewritten transitively (full-range).
+/// - Other references are rewritten when physical removal is safe.
 const BRANCH_THRESHOLD: usize = usize::MAX;
 
 pub fn jump_trampoline_elim(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
-    let n = instructions.len();
-    // Map: trampoline_label -> (instruction_index_of_set_label, target_label)
-    let mut trampoline_map: HashMap<String, (usize, String)> = HashMap::new();
-    // Indices of the two instructions forming each trampoline block
-    let mut trampoline_indices: HashSet<usize> = HashSet::new();
+    #[derive(Debug, Clone)]
+    struct TrampolineInfo {
+        entry_idx: usize,
+        body_indices: Vec<usize>,
+        labels: Vec<String>,
+        target: String,
+    }
 
-    // Detect trampoline blocks:
-    //   inst[i]  : label=Some(L), mnemonic="set_label", operands=[reg, TARGET]
-    //   inst[i+1]: label=None,    mnemonic="jmp",       operands=["%i0", "0(reg)"]
+    fn collect_entry(
+        instructions: &[Instruction],
+        first_exec_idx: usize,
+    ) -> (usize, Vec<usize>, Vec<String>) {
+        let mut entry_idx = first_exec_idx;
+        while entry_idx > 0 {
+            let prev = &instructions[entry_idx - 1];
+            if prev.mnemonic.is_none() && prev.label.is_some() {
+                entry_idx -= 1;
+            } else {
+                break;
+            }
+        }
+
+        let mut label_only_indices = Vec::new();
+        let mut labels = Vec::new();
+        let mut seen = HashSet::new();
+
+        for (idx, inst) in instructions
+            .iter()
+            .enumerate()
+            .take(first_exec_idx)
+            .skip(entry_idx)
+        {
+            if inst.mnemonic.is_none() {
+                if let Some(lbl) = inst.label.as_ref() {
+                    if seen.insert(lbl.clone()) {
+                        labels.push(lbl.clone());
+                    }
+                    label_only_indices.push(idx);
+                }
+            }
+        }
+
+        if let Some(lbl) = instructions[first_exec_idx].label.as_ref() {
+            if seen.insert(lbl.clone()) {
+                labels.push(lbl.clone());
+            }
+        }
+
+        (entry_idx, label_only_indices, labels)
+    }
+
+    fn register_candidate(
+        infos: &mut Vec<TrampolineInfo>,
+        label_to_info: &mut HashMap<String, usize>,
+        mut info: TrampolineInfo,
+    ) {
+        info.labels.retain(|lbl| !label_to_info.contains_key(lbl));
+        if info.labels.is_empty() {
+            return;
+        }
+        let idx = infos.len();
+        for lbl in &info.labels {
+            label_to_info.insert(lbl.clone(), idx);
+        }
+        infos.push(info);
+    }
+
+    let n = instructions.len();
+    let mut infos: Vec<TrampolineInfo> = Vec::new();
+    let mut label_to_info: HashMap<String, usize> = HashMap::new();
+
+    // Pattern A:
+    //   [label-only*]
+    //   [label:] set_label %r, TARGET
+    //            jmp %i0, 0(%r)
     for i in 0..n.saturating_sub(1) {
         let inst = &instructions[i];
-        let Some(label) = inst.label.as_deref() else {
-            continue;
-        };
         if inst.mnemonic.as_deref() != Some("set_label") || inst.operands.len() != 2 {
             continue;
         }
         let reg = &inst.operands[0];
-        let target = &inst.operands[1];
+        let target = inst.operands[1].clone();
 
         let next = &instructions[i + 1];
-        if next.label.is_some() {
-            continue;
-        }
-        if next.mnemonic.as_deref() != Some("jmp") || next.operands.len() != 2 {
-            continue;
-        }
-        if next.operands[1] != format!("0({})", reg) {
-            continue;
-        }
-        // Only pure trampolines: jmp first operand must be %i0 (zero register,
-        // return address discarded).  If it's %i3 etc., the jmp is a function
-        // CALL that saves PC+4 into that register — not a transparent forward.
-        if next.operands[0] != "%i0" {
+        if next.label.is_some()
+            || next.mnemonic.as_deref() != Some("jmp")
+            || next.operands.len() != 2
+            || next.operands[0] != "%i0"
+            || next.operands[1] != format!("0({})", reg)
+        {
             continue;
         }
 
-        trampoline_map.insert(label.to_string(), (i, target.clone()));
-        trampoline_indices.insert(i);
-        trampoline_indices.insert(i + 1);
+        let (entry_idx, mut body_indices, labels) = collect_entry(&instructions, i);
+        body_indices.push(i);
+        body_indices.push(i + 1);
+        register_candidate(
+            &mut infos,
+            &mut label_to_info,
+            TrampolineInfo {
+                entry_idx,
+                body_indices,
+                labels,
+                target,
+            },
+        );
     }
 
-    // Transitively resolve chains (A -> B -> C  ==>  A -> C).
-    loop {
-        let mut changed = false;
-        let pairs: Vec<(String, usize, String)> = trampoline_map
-            .iter()
-            .map(|(k, (idx, v))| (k.clone(), *idx, v.clone()))
-            .collect();
-        for (k, idx, v) in pairs {
-            if let Some((_, vv)) = trampoline_map.get(&v).cloned() {
-                let entry = trampoline_map.get_mut(&k).unwrap();
-                if entry.1 != vv {
-                    entry.1 = vv;
-                    // keep idx (the block's own position) unchanged
-                    let _ = idx;
-                    changed = true;
-                }
+    // Pattern B:
+    //   [label-only*]
+    //   [label:] jzero %i0, %i0, TARGET
+    for i in 0..n {
+        let inst = &instructions[i];
+        if inst.mnemonic.as_deref() != Some("jzero")
+            || inst.operands.len() != 3
+            || inst.operands[0] != "%i0"
+            || inst.operands[1] != "%i0"
+        {
+            continue;
+        }
+
+        let target = inst.operands[2].clone();
+        let (entry_idx, mut body_indices, labels) = collect_entry(&instructions, i);
+        body_indices.push(i);
+        register_candidate(
+            &mut infos,
+            &mut label_to_info,
+            TrampolineInfo {
+                entry_idx,
+                body_indices,
+                labels,
+                target,
+            },
+        );
+    }
+
+    if infos.is_empty() {
+        return (instructions, 0);
+    }
+
+    // Transitively resolve chains (A -> B -> C => A -> C).
+    let mut resolved_target: HashMap<String, String> = HashMap::new();
+    for (lbl, &info_idx) in &label_to_info {
+        let mut cur = infos[info_idx].target.clone();
+        let mut seen = HashSet::new();
+        while let Some(&next_idx) = label_to_info.get(cur.as_str()) {
+            if !seen.insert(cur.clone()) {
+                break;
             }
+            cur = infos[next_idx].target.clone();
         }
-        if !changed {
-            break;
-        }
+        resolved_target.insert(lbl.clone(), cur);
     }
 
     // For each trampoline, decide if it is safe to physically remove the block.
-    // A trampoline is safe to remove when every non-set_label instruction referencing
-    // its label, when rewritten to the final resolved target, would still be within
-    // BRANCH_THRESHOLD instructions of the branch site.
-    // We need a label-to-index map for the final target distance check.
+    let mut safe_to_remove = vec![true; infos.len()];
+
+    // Never remove self-referential trampolines.
+    for (lbl, &info_idx) in &label_to_info {
+        if resolved_target
+            .get(lbl.as_str())
+            .is_some_and(|target| target == lbl)
+        {
+            safe_to_remove[info_idx] = false;
+        }
+    }
+
     let mut label_index: HashMap<String, usize> = HashMap::new();
     for (idx, inst) in instructions.iter().enumerate() {
         if let Some(label) = inst.label.as_deref() {
             label_index.insert(label.to_string(), idx);
-        }
-    }
-
-    let mut safe_to_remove: HashSet<String> = trampoline_map.keys().cloned().collect();
-
-    // Never remove self-referential trampolines (e.g. `fin: set_label %rX, fin; jmp %i0`).
-    // These are intentional infinite loops used as program termination markers.
-    for (lbl, (_, tgt)) in &trampoline_map {
-        if lbl == tgt {
-            safe_to_remove.remove(lbl.as_str());
         }
     }
 
@@ -2618,81 +2908,85 @@ pub fn jump_trampoline_elim(instructions: Vec<Instruction>) -> (Vec<Instruction>
             continue;
         };
         if mnem == "set_label" {
-            continue; // unconditional indirect jmp — full range, never a problem
+            continue; // full-range indirection; always rewritable
         }
         for op in &inst.operands {
-            if let Some((_, final_target)) = trampoline_map.get(op.as_str()) {
-                // Distance to the final resolved target (not the intermediate trampoline).
-                let target_idx = label_index.get(final_target).copied().unwrap_or(usize::MAX);
-                let dist = ref_idx.abs_diff(target_idx);
-                if dist > BRANCH_THRESHOLD {
-                    safe_to_remove.remove(op.as_str());
-                }
+            let Some(&info_idx) = label_to_info.get(op.as_str()) else {
+                continue;
+            };
+            let Some(final_target) = resolved_target.get(op.as_str()) else {
+                continue;
+            };
+            let target_idx = label_index.get(final_target).copied().unwrap_or(usize::MAX);
+            let dist = ref_idx.abs_diff(target_idx);
+            if dist > BRANCH_THRESHOLD {
+                safe_to_remove[info_idx] = false;
             }
         }
     }
 
-    // Additional safety: a trampoline block at index `i` can only be removed if
-    // there is NO fall-through into it.  Fall-through exists when instruction
-    // `i-1` is not a terminator.  If the predecessor is not a terminator, code
-    // can reach the block by falling through, and removing the `set_label + jmp`
-    // would redirect that fall-through to wrong code.
+    // Additional safety: no fall-through into trampoline entry.
     let is_terminator =
         |mnem: &str| matches!(mnem, "jmp" | "jzero" | "jeq" | "jlt" | "jleq" | "ret");
-    for (lbl, (block_idx, _)) in &trampoline_map {
-        if !safe_to_remove.contains(lbl.as_str()) {
+    for (info_idx, info) in infos.iter().enumerate() {
+        if !safe_to_remove[info_idx] {
             continue;
         }
-        // block_idx is the set_label instruction; check predecessor at block_idx-1.
-        if *block_idx == 0 {
-            safe_to_remove.remove(lbl.as_str());
-            continue;
+        let mut prev_exec = None;
+        let mut j = info.entry_idx;
+        while j > 0 {
+            j -= 1;
+            if instructions[j].mnemonic.is_some() {
+                prev_exec = Some(j);
+                break;
+            }
         }
-        let pred = &instructions[*block_idx - 1];
-        let pred_mnem = pred.mnemonic.as_deref().unwrap_or("");
-        if !is_terminator(pred_mnem) {
-            safe_to_remove.remove(lbl.as_str());
+        if let Some(pred_idx) = prev_exec {
+            let pred_mnem = instructions[pred_idx].mnemonic.as_deref().unwrap_or("");
+            if !is_terminator(pred_mnem) {
+                safe_to_remove[info_idx] = false;
+            }
         }
     }
 
-    // Indices to actually drop (only safe-to-remove trampoline blocks).
-    let drop_indices: HashSet<usize> = trampoline_indices
-        .iter()
-        .copied()
-        .filter(|&idx| {
-            let label = if let Some(l) = instructions[idx].label.as_deref() {
-                l
-            } else if idx > 0 {
-                instructions[idx - 1].label.as_deref().unwrap_or("")
-            } else {
-                ""
-            };
-            safe_to_remove.contains(label)
-        })
-        .collect();
+    let mut drop_indices: HashSet<usize> = HashSet::new();
+    for (info_idx, info) in infos.iter().enumerate() {
+        if safe_to_remove[info_idx] {
+            for &bi in &info.body_indices {
+                drop_indices.insert(bi);
+            }
+        }
+    }
 
-    // Rebuild instructions.
     let mut rewrites = 0usize;
     let mut out = Vec::with_capacity(n);
-
     for (i, mut inst) in instructions.into_iter().enumerate() {
         if drop_indices.contains(&i) {
+            rewrites += 1;
             continue;
         }
+
         let mnem = inst.mnemonic.as_deref().unwrap_or("");
         if mnem == "set_label" && inst.operands.len() == 2 {
-            // Always rewrite set_label targets (full-range indirect jmp).
-            if let Some((_, new_target)) = trampoline_map.get(&inst.operands[1]).cloned() {
-                inst.operands[1] = new_target;
-                rewrites += 1;
+            let old = inst.operands[1].clone();
+            if let Some(new_target) = resolved_target.get(old.as_str()) {
+                if old != *new_target {
+                    inst.operands[1] = new_target.clone();
+                    rewrites += 1;
+                }
             }
         } else {
-            // Rewrite branch operands only for safe-to-remove trampolines
-            // (distance was within threshold, so direct branch is valid).
             for op in inst.operands.iter_mut() {
-                if safe_to_remove.contains(op.as_str()) {
-                    if let Some((_, new_target)) = trampoline_map.get(op.as_str()).cloned() {
-                        *op = new_target;
+                let old = op.clone();
+                let Some(&info_idx) = label_to_info.get(old.as_str()) else {
+                    continue;
+                };
+                if !safe_to_remove[info_idx] {
+                    continue;
+                }
+                if let Some(new_target) = resolved_target.get(old.as_str()) {
+                    if old != *new_target {
+                        *op = new_target.clone();
                         rewrites += 1;
                     }
                 }

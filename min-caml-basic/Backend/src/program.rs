@@ -402,6 +402,7 @@ fn override_known_arity(name: &str, int_arity: usize, float_arity: usize) -> (us
         "min_caml_create_float_array" => (1, 1),
         "min_caml_rsqrt" => (0, 1),
         "min_caml_floor" => (0, 1),
+        "min_caml_fabs" => (0, 1),
         _ => (int_arity, float_arity),
     }
 }
@@ -670,8 +671,8 @@ fn library_caller_clobbers(name: &str) -> &'static [&'static str] {
         "min_caml_print_char" | "min_caml_read_char" => &["%i5"],
         // array creators use %i15 as temporary under current ABI.
         "min_caml_create_array" | "min_caml_create_float_array" => &["%i15"],
-        // rsqrt/floor write only return register %f30.
-        "min_caml_rsqrt" | "min_caml_floor" => &[],
+        // rsqrt/floor/fabs write only return register %f30.
+        "min_caml_rsqrt" | "min_caml_floor" | "min_caml_fabs" => &[],
         _ => &[],
     }
 }
