@@ -1631,6 +1631,7 @@ let h oc { name = Id.L(x); args = _; fargs = _; body = e; ret = _ } =
 let f oc prog =
   let Prog(data, fundefs, e) = OptLeakable.prune_emit prog in
   Format.eprintf "generating assembly...@.";
+  Printf.fprintf oc "# .global use: %d words\n" ((VariableChecker.global_use_words ()) * 4);
   Printf.fprintf oc ".data\n";
   Printf.fprintf oc ".align\t8\n";
   List.iter

@@ -4,6 +4,7 @@ mod codegen;
 mod coloring;
 mod input;
 mod peephole;
+mod peephole_lite;
 mod program;
 
 use std::env;
@@ -1291,8 +1292,7 @@ fn main() {
                 env::var("BACKEND_RULES_PATH_STAGE2").unwrap_or_else(|_| rules_path.clone());
             let rules_path_stage3 =
                 env::var("BACKEND_RULES_PATH_STAGE3").unwrap_or_else(|_| rules_path.clone());
-            // let enable_stage1 = env_enabled("BACKEND_PEEPHOLE_STAGE1", true);
-            let enable_stage1 = env_enabled("BACKEND_PEEPHOLE_STAGE1", false);
+            let enable_stage1 = env_enabled("BACKEND_PEEPHOLE_STAGE1", true);
             let enable_stage2 = env_enabled("BACKEND_PEEPHOLE_STAGE2", false);
             // let enable_stage3 = env_enabled("BACKEND_PEEPHOLE_STAGE3", true);
             let enable_stage3 = env_enabled("BACKEND_PEEPHOLE_STAGE3", false);
@@ -1356,20 +1356,19 @@ fn main() {
             );
 
             if enable_stage1 {
-                let stage1_call_arity = build_call_arity_map(&current_program);
-                let stage1 = peephole::optimize(
-                    program::flatten(&current_program),
-                    &rules_path_stage1,
-                    &stage1_call_arity,
-                    "stage1",
+                let stage1_lite = peephole_lite::optimize(program::flatten(&current_program), "stage1");
+                println!(
+                    "Peephole stage1 (frontend-like regs) rewrites: {} (replaced by peephole_lite)",
+                    0
                 );
                 println!(
-                    "Peephole stage1 (frontend-like regs) rewrites: {}",
-                    stage1.rewrites
+                    "Peephole_lite stage1 (fma only) rewrites: {}",
+                    stage1_lite.rewrites
                 );
-                current_program = program::from_instructions(stage1.instructions);
+                current_program = program::from_instructions(stage1_lite.instructions);
             } else {
                 println!("Peephole stage1 (frontend-like regs) rewrites: 0 (disabled)");
+                println!("Peephole_lite stage1 (fma only) rewrites: 0 (disabled)");
             }
             if enable_reorder {
                 let reordered = reordering::reorder_with_config(

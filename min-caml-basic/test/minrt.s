@@ -1,3 +1,4 @@
+# .global use: 4720 words
 .data
 .align	8
 .text

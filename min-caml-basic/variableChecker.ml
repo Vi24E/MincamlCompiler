@@ -25,8 +25,10 @@ end)
 let const_env_ref = ref C.empty
 let mutable_env_ref = ref S.empty
 let leakable_env_ref : bool LeakM.t ref = ref LeakM.empty
+let global_use_words_ref = ref 0
 
 let find_const x = C.find_opt x !const_env_ref
+let global_use_words () = !global_use_words_ref
 
 let leakable_env () = !leakable_env_ref
 
@@ -119,8 +121,11 @@ let rec g e is_top_level global_env const_env global_ptr =
   | Let(((x, tag), t), e1, e2) when is_top_level ->
     (match e1 with
     | ExtFunApp((f, _), [(sz, _); _]) when (f = "create_array" || f = "create_float_array") && C.mem sz const_env -> 
+      let span = 4 * C.find sz const_env in
+      let end_bytes = global_ptr + span in
+      global_use_words_ref := max !global_use_words_ref ((end_bytes + 3) / 4);
       let e1' = g e1 false global_env const_env global_ptr in
-      let e2' = g e2 is_top_level (M.add x global_ptr global_env) const_env (global_ptr + 4 * C.find sz const_env) in
+      let e2' = g e2 is_top_level (M.add x global_ptr global_env) const_env (global_ptr + span) in
       Let(((x, Id.Known(Id.Global global_ptr, Id.None)), t), e1', e2')
     | _ -> 
       (match t with
@@ -129,6 +134,8 @@ let rec g e is_top_level global_env const_env global_ptr =
           let e2' = g e2 is_top_level global_env const_env global_ptr in
           Let(((x, Id.Known(Id.Local, Id.None)), t), e1', e2')
       | _ -> 
+        let end_bytes = global_ptr + 4 in
+        global_use_words_ref := max !global_use_words_ref ((end_bytes + 3) / 4);
         let e1' = g e1 false global_env const_env global_ptr in
         (match e1 with Int i -> const_env_ref := C.add x i !const_env_ref | _ -> ());
         let e2' = g e2 is_top_level (M.add x global_ptr global_env) const_env (global_ptr + 4) in
@@ -242,6 +249,7 @@ let rec get_mutable_env e acc =
   | _ -> acc
 
 let f e =
+  global_use_words_ref := 0;
   mutable_env_ref := get_mutable_env e S.empty;
   let const_env = get_const_env e C.empty in
   const_env_ref := S.fold C.remove !mutable_env_ref const_env;
