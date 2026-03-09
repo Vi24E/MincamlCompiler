@@ -90,7 +90,8 @@ output: Hello World
 |----------|------|
 | 算術 | `add`, `sub`, `mul`, `div`, `rem` (+ 即値版 `-i`) |
 | シフト | `sar`, `sll`, `slr` |
-| 論理 | `and`, `or`, `xor` |
+| 論理 | `or`, `xor` |
+| アドレス計算 | `add4` (`rd <- rs1 + rs2 * 4`) |
 | 比較 | `clt`, `cleq`, `ceq` |
 | 分岐 | `jeq`, `jlt`, `jleq`, `jmp` |
 | ロード/ストア | `lb`, `sb`, `lw`, `sw`, `lf`, `sf` |

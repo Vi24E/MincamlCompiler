@@ -177,6 +177,55 @@ fn build_movi_fold_from_pair(movi: &Instruction, user: &Instruction) -> Option<I
     }
 }
 
+fn imm_is_two(s: &str) -> bool {
+    let t = s.trim();
+    if t == "2" || t == "+2" {
+        return true;
+    }
+    if let Ok(v) = t.parse::<i64>() {
+        return v == 2;
+    }
+    let lower = t.to_ascii_lowercase();
+    if let Some(rest) = lower.strip_prefix("0x") {
+        return i64::from_str_radix(rest, 16)
+            .map(|v| v == 2)
+            .unwrap_or(false);
+    }
+    false
+}
+
+fn build_add4_from_pair(slli: &Instruction, add: &Instruction) -> Option<Instruction> {
+    if slli.mnemonic.as_deref() != Some("slli") || add.mnemonic.as_deref() != Some("add") {
+        return None;
+    }
+    if slli.operands.len() != 3 || add.operands.len() != 3 {
+        return None;
+    }
+    if !imm_is_two(&slli.operands[2]) {
+        return None;
+    }
+
+    let t = &slli.operands[0];
+    let r = &slli.operands[1];
+    let dst = &add.operands[0];
+    let x = &add.operands[1];
+    let y = &add.operands[2];
+
+    let base = if x == t {
+        y.clone()
+    } else if y == t {
+        x.clone()
+    } else {
+        return None;
+    };
+
+    Some(Instruction {
+        label: add.label.clone(),
+        mnemonic: Some("add4".to_string()),
+        operands: vec![dst.clone(), base, r.clone()],
+    })
+}
+
 fn is_real_instruction(inst: &Instruction) -> bool {
     match inst.mnemonic.as_deref() {
         Some(m) => !m.starts_with('.'),
@@ -501,6 +550,32 @@ fn fold_window_with_dep_graph(window: &[Instruction]) -> (Vec<Instruction>, usiz
             continue;
         }
         let Some(folded) = build_movi_fold_from_pair(&window[u], &window[v]) else {
+            continue;
+        };
+
+        remove[u] = true;
+        replace_at[v] = Some(folded);
+        rewrites += 1;
+    }
+
+    // Rule C: slli by 2 can be folded into its single RAW add consumer.
+    for u in 0..n {
+        if window[u].mnemonic.as_deref() != Some("slli") {
+            continue;
+        }
+        if succ[u].len() != 1 {
+            continue;
+        }
+        let Some(&v) = succ[u].iter().next() else {
+            continue;
+        };
+        if !succ_raw[u].contains(&v) {
+            continue;
+        }
+        if remove[u] || remove[v] || replace_at[v].is_some() {
+            continue;
+        }
+        let Some(folded) = build_add4_from_pair(&window[u], &window[v]) else {
             continue;
         };
 

@@ -53,7 +53,7 @@ enum Opcode {
   SLLI,
   SLR,
   SLRI,
-  AND,
+  ADD4,
   ANDI,
   OR,
   ORI,
@@ -550,8 +550,8 @@ void load_binary(const string &filename) {
           inst.original_line = "frsqrt " + get_freg_name(inst.rd) + ", " +
                                get_freg_name(inst.rs1);
         } else {
-          inst.op = AND;
-          inst.original_line = "and " + get_reg_name(inst.rd) + ", " +
+          inst.op = ADD4;
+          inst.original_line = "add4 " + get_reg_name(inst.rd) + ", " +
                                get_reg_name(inst.rs1) + ", " +
                                get_reg_name(inst.rs2);
         }
@@ -846,8 +846,8 @@ void exec_one_step(bool running) {
   case SLLI:
     set_x(inst.rd, get_x(inst.rs1) << (inst.imm & 31));
     break;
-  case AND:
-    set_x(inst.rd, get_x(inst.rs1) & get_x(inst.rs2));
+  case ADD4:
+    set_x(inst.rd, get_x(inst.rs1) + (get_x(inst.rs2) << 2));
     break;
   case ANDI:
     set_x(inst.rd, get_x(inst.rs1) & inst.imm);

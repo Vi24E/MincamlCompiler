@@ -88,6 +88,7 @@ fn is_pure_mnemonic(m: &str) -> bool {
             |
             // Integer / compare
             "add"
+            | "add4"
             | "sub"
             | "sll"
             | "sar"

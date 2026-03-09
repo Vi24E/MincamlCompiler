@@ -107,8 +107,8 @@ fn get_def_use(inst: &Instruction) -> (BTreeSet<String>, BTreeSet<String>) {
         let args = &inst.operands;
         match mnemonic.as_str() {
             // 3-operand arithmetic/comparison: dest, src1, src2
-            "add" | "sub" | "sll" | "sar" | "or" | "xor" | "ceq" | "cleq" | "clt" | "feq"
-            | "fneq" | "fleq" | "flt" => {
+            "add" | "add4" | "sub" | "sll" | "sar" | "or" | "xor" | "ceq" | "cleq" | "clt"
+            | "feq" | "fneq" | "fleq" | "flt" => {
                 if let Some(op0) = args.get(0) {
                     defs.insert(expect_direct_reg(op0, mnemonic, 0));
                 }

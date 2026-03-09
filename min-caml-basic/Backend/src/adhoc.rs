@@ -604,6 +604,7 @@ fn is_licm_pure_mnemonic(m: &str) -> bool {
             | "ffloor"
             | "fabs"
             | "add"
+            | "add4"
             | "sub"
             | "sll"
             | "sar"
@@ -792,6 +793,7 @@ fn is_stage1_licm_pure_mnemonic(m: &str) -> bool {
             | "ffloor"
             | "fabs"
             | "add"
+            | "add4"
             | "sub"
             | "sll"
             | "sar"
@@ -1509,7 +1511,7 @@ fn build_cse_expr_with_mode(
             let (a, b) = normalize_commutative_pair(&ops[1], &ops[2]);
             Some(CseExpr::IntBinary(m.to_string(), a, b))
         }
-        "sub" | "sll" | "sar" | "cleq" | "clt"
+        "add4" | "sub" | "sll" | "sar" | "cleq" | "clt"
             if ops.len() == 3 && int_ok(&ops[1]) && int_ok(&ops[2]) =>
         {
             Some(CseExpr::IntBinary(
@@ -2325,6 +2327,7 @@ fn is_zero_dest_nop(inst: &Instruction) -> bool {
             | "movui"
             | "mif"
             | "add"
+            | "add4"
             | "sub"
             | "sll"
             | "sar"
@@ -2363,6 +2366,12 @@ fn is_noop_add(inst: &Instruction) -> bool {
             let rs1 = inst.operands[1].as_str();
             let rs2 = inst.operands[2].as_str();
             is_int_reg(rd) && ((rs1 == "%i0" && rs2 == rd) || (rs2 == "%i0" && rs1 == rd))
+        }
+        Some("add4") if inst.operands.len() == 3 => {
+            let rd = inst.operands[0].as_str();
+            let rs1 = inst.operands[1].as_str();
+            let rs2 = inst.operands[2].as_str();
+            is_int_reg(rd) && rd == rs1 && rs2 == "%i0"
         }
         Some("addi") if inst.operands.len() == 3 => {
             let rd = inst.operands[0].as_str();

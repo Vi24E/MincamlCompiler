@@ -36,7 +36,7 @@ General use
 
 Formats of Instruction
 
-Type dss: add, sub, mul, div, rem, sar, sll, slr, and, or, xor, clt, cleq, ceq, fadd, fsub, fmul, fdiv
+Type dss: add, sub, mul, div, rem, sar, sll, slr, add4, or, xor, clt, cleq, ceq, fadd, fsub, fmul, fdiv
 operand_type[2] 00000 0 rd[5] rs1[5] rs2[5] opcode[9]
 
 
@@ -138,10 +138,10 @@ slri
 0000000 1 rd[5] rs1[5] imm[4:0] 001010100
 slri, rd, rs1, imm	rd <- rs1 >> imm
 
-and
+add4
 
 0000000 0 rd[5] rs1[5] rs2[5] 001000111
-and, rd, rs1, rs2	rd <- rs1 & rs2
+add4, rd, rs1, rs2	rd <- rs1 + rs2 * 4
 
 andi
 

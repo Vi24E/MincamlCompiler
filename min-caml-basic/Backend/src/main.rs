@@ -586,11 +586,11 @@ fn normalize_movui_addi_to_ori(
 
 fn mnemonic_defines_first_operand(mnemonic: &str, rd: &str) -> bool {
     match mnemonic {
-        "add" | "sub" | "sll" | "sar" | "xor" | "ceq" | "cleq" | "clt" | "feq" | "fneq"
-        | "fleq" | "flt" | "fadd" | "fsub" | "fmul" | "fma" | "fdiv" | "addi" | "subi" | "slli"
-        | "sari" | "ori" | "xori" | "ceqi" | "cleqi" | "clti" | "mov" | "neg" | "fmov" | "fneg"
-        | "finv" | "frsqrt" | "ffloor" | "fabs" | "ftoi" | "itof" | "movi" | "movui" | "mif"
-        | "lw" | "lf" | "lb" | "set_label" | "tern" | "ftern" => true,
+        "add" | "add4" | "sub" | "sll" | "sar" | "xor" | "ceq" | "cleq" | "clt" | "feq"
+        | "fneq" | "fleq" | "flt" | "fadd" | "fsub" | "fmul" | "fma" | "fdiv" | "addi" | "subi"
+        | "slli" | "sari" | "ori" | "xori" | "ceqi" | "cleqi" | "clti" | "mov" | "neg" | "fmov"
+        | "fneg" | "finv" | "frsqrt" | "ffloor" | "fabs" | "ftoi" | "itof" | "movi" | "movui"
+        | "mif" | "lw" | "lf" | "lb" | "set_label" | "tern" | "ftern" => true,
         "jmp" => rd != "%i0",
         _ => false,
     }
@@ -1455,7 +1455,7 @@ fn main() {
                     0
                 );
                 println!(
-                    "Peephole_lite stage1 (fma only) rewrites: {}",
+                    "Peephole_lite stage1 (fma/add4) rewrites: {}",
                     stage1_lite_rewrites
                 );
                 if enable_stage1_virtual_cse {
@@ -1481,7 +1481,7 @@ fn main() {
                 current_program = program::from_instructions(stage1_insts);
             } else {
                 println!("Peephole stage1 (frontend-like regs) rewrites: 0 (disabled)");
-                println!("Peephole_lite stage1 (fma only) rewrites: 0 (disabled)");
+                println!("Peephole_lite stage1 (fma/add4) rewrites: 0 (disabled)");
                 println!("Stage1 virtual register CSE rewrites: 0 (disabled)");
                 println!("Stage1 virtual beta/elim rewrites: 0 (disabled)");
                 println!("Stage1 loop invariant hoist rewrites: 0 (disabled)");

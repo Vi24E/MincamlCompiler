@@ -23,7 +23,7 @@ enum {
   OP_FNEG = 0x45,
   OP_FINV = 0x44,
   OP_CLT = 0x46,
-  OP_AND = 0x47,
+  OP_ADD4 = 0x47,
   OP_FRSQRT = 0x47,
   OP_OR = 0x48,
   OP_FTOI = 0x48,
@@ -60,7 +60,7 @@ typedef struct {
 static const OpMap kOps[] = {{"add", OP_ADD},       {"sub", OP_SUB},
                              {"fmul", OP_MUL},      {"div", OP_DIV},
                              {"tern", OP_TERN},     {"ftern", OP_FTERN},
-                             {"clt", OP_CLT},       {"and", OP_AND},
+                             {"clt", OP_CLT},       {"add4", OP_ADD4},
                              {"or", OP_OR},         {"xor", OP_XOR},
                              {"cleq", OP_CLEQ},     {"ceq", OP_CEQ},
                              {"sar", OP_SAR},       {"sll", OP_SLL},
@@ -82,7 +82,7 @@ typedef struct {
 } Alias;
 static const Alias kImmAlias[] = {
     {"addi", "add"},   {"subi", "sub"}, {"divi", "div"},
-    {"remi", "rem"},   {"andi", "and"}, {"ori", "or"},   {"xori", "xor"},
+    {"remi", "rem"},   {"andi", "add4"}, {"ori", "or"},   {"xori", "xor"},
     {"sari", "sar"},   {"slli", "sll"}, {"slri", "slr"}, {"clti", "clt"},
     {"cleqi", "cleq"}, {"ceqi", "ceq"}, {NULL, NULL}};
 static const Alias kFAlias[] = {
@@ -947,7 +947,7 @@ void second_pass(const VecLine *lines, const VecLabel *labels, VecWord *words,
     // DSS
     if (!strcasecmp(base, "add") || !strcasecmp(base, "sub") ||
         !strcasecmp(base, "fmul") || !strcasecmp(base, "div") ||
-        !strcasecmp(base, "rem") || !strcasecmp(base, "and") ||
+        !strcasecmp(base, "rem") || !strcasecmp(base, "add4") ||
         !strcasecmp(base, "or") || !strcasecmp(base, "xor") ||
         !strcasecmp(base, "sar") || !strcasecmp(base, "sll") ||
         !strcasecmp(base, "slr") || !strcasecmp(base, "clt") ||

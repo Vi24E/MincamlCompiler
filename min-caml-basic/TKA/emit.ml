@@ -242,8 +242,7 @@ let emit_zero_filled_create_array_dynamic oc ~count_reg ~ret_reg =
   let i15 = "%i29" in
   Printf.fprintf oc "\tmov\t%s, %s\n" i15 count_reg;
   Printf.fprintf oc "\tmov\t%s, %s\n" ret_reg hp;
-  Printf.fprintf oc "\tslli\t%s, %s, 2\n" i15 i15;
-  Printf.fprintf oc "\tadd\t%s, %s, %s\n" hp hp i15
+  Printf.fprintf oc "\tadd4\t%s, %s, %s\n" hp hp i15
 
 let emit_read_u32_to_int oc ~dst_reg =
   let i5 = Id.to_string regs.(1) in
