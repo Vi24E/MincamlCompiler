@@ -67,6 +67,325 @@ fn build_fma_from_pair(fmul: &Instruction, fadd: &Instruction) -> Option<Instruc
     })
 }
 
+fn build_movi_fold_from_pair(movi: &Instruction, user: &Instruction) -> Option<Instruction> {
+    if movi.mnemonic.as_deref() != Some("movi") || movi.operands.len() != 2 {
+        return None;
+    }
+    let t = &movi.operands[0];
+    let imm = &movi.operands[1];
+    let Some(mn) = user.mnemonic.as_deref() else {
+        return None;
+    };
+
+    match mn {
+        "add" if user.operands.len() == 3 => {
+            let dst = &user.operands[0];
+            let x = &user.operands[1];
+            let y = &user.operands[2];
+            if x == t {
+                Some(Instruction {
+                    label: user.label.clone(),
+                    mnemonic: Some("addi".to_string()),
+                    operands: vec![dst.clone(), y.clone(), imm.clone()],
+                })
+            } else if y == t {
+                Some(Instruction {
+                    label: user.label.clone(),
+                    mnemonic: Some("addi".to_string()),
+                    operands: vec![dst.clone(), x.clone(), imm.clone()],
+                })
+            } else {
+                None
+            }
+        }
+        "sub" if user.operands.len() == 3 => {
+            let dst = &user.operands[0];
+            let x = &user.operands[1];
+            let y = &user.operands[2];
+            if y == t {
+                Some(Instruction {
+                    label: user.label.clone(),
+                    mnemonic: Some("subi".to_string()),
+                    operands: vec![dst.clone(), x.clone(), imm.clone()],
+                })
+            } else {
+                None
+            }
+        }
+        "sll" if user.operands.len() == 3 => {
+            let dst = &user.operands[0];
+            let x = &user.operands[1];
+            let y = &user.operands[2];
+            if y == t {
+                Some(Instruction {
+                    label: user.label.clone(),
+                    mnemonic: Some("slli".to_string()),
+                    operands: vec![dst.clone(), x.clone(), imm.clone()],
+                })
+            } else {
+                None
+            }
+        }
+        "ceq" if user.operands.len() == 3 => {
+            let dst = &user.operands[0];
+            let x = &user.operands[1];
+            let y = &user.operands[2];
+            if x == t {
+                Some(Instruction {
+                    label: user.label.clone(),
+                    mnemonic: Some("ceqi".to_string()),
+                    operands: vec![dst.clone(), y.clone(), imm.clone()],
+                })
+            } else if y == t {
+                Some(Instruction {
+                    label: user.label.clone(),
+                    mnemonic: Some("ceqi".to_string()),
+                    operands: vec![dst.clone(), x.clone(), imm.clone()],
+                })
+            } else {
+                None
+            }
+        }
+        "cleq" if user.operands.len() == 3 => {
+            let dst = &user.operands[0];
+            let x = &user.operands[1];
+            let y = &user.operands[2];
+            if y == t {
+                Some(Instruction {
+                    label: user.label.clone(),
+                    mnemonic: Some("cleqi".to_string()),
+                    operands: vec![dst.clone(), x.clone(), imm.clone()],
+                })
+            } else {
+                None
+            }
+        }
+        "clt" if user.operands.len() == 3 => {
+            let dst = &user.operands[0];
+            let x = &user.operands[1];
+            let y = &user.operands[2];
+            if y == t {
+                Some(Instruction {
+                    label: user.label.clone(),
+                    mnemonic: Some("clti".to_string()),
+                    operands: vec![dst.clone(), x.clone(), imm.clone()],
+                })
+            } else {
+                None
+            }
+        }
+        _ => None,
+    }
+}
+
+fn is_real_instruction(inst: &Instruction) -> bool {
+    match inst.mnemonic.as_deref() {
+        Some(m) => !m.starts_with('.'),
+        None => false,
+    }
+}
+
+fn is_terminator(inst: &Instruction) -> bool {
+    if let Some(mnemonic) = inst.mnemonic.as_deref() {
+        mnemonic.starts_with('j') || mnemonic == "ret" || mnemonic.starts_with("call_")
+    } else {
+        false
+    }
+}
+
+fn parse_mem_base(op: &str) -> Option<String> {
+    let start = op.find('(')?;
+    let end = op.find(')')?;
+    if end <= start + 1 {
+        return None;
+    }
+    Some(op[start + 1..end].trim().to_string())
+}
+
+fn inst_mentions_reg(inst: &Instruction, reg: &str) -> bool {
+    for op in &inst.operands {
+        if op == reg {
+            return true;
+        }
+        if let Some(base) = parse_mem_base(op) {
+            if base == reg {
+                return true;
+            }
+        }
+    }
+    false
+}
+
+fn rewrite_like(orig: &Instruction, mnemonic: &str, operands: Vec<String>) -> Instruction {
+    Instruction {
+        label: orig.label.clone(),
+        mnemonic: Some(mnemonic.to_string()),
+        operands,
+    }
+}
+
+fn imm_is_zero(s: &str) -> bool {
+    let t = s.trim();
+    if t == "0" || t == "+0" || t == "-0" {
+        return true;
+    }
+    if let Ok(v) = t.parse::<i64>() {
+        return v == 0;
+    }
+    let lower = t.to_ascii_lowercase();
+    if let Some(rest) = lower.strip_prefix("0x") {
+        return i64::from_str_radix(rest, 16).map(|v| v == 0).unwrap_or(false);
+    }
+    false
+}
+
+fn fold_sp_addi_subi_triplet(i0: &Instruction, i1: &Instruction, i2: &Instruction) -> Option<Instruction> {
+    if i0.label.is_some() || i1.label.is_some() || i2.label.is_some() {
+        return None;
+    }
+    if i0.mnemonic.as_deref() != Some("addi") || i2.mnemonic.as_deref() != Some("subi") {
+        return None;
+    }
+    if i0.operands.len() != 3 || i2.operands.len() != 3 {
+        return None;
+    }
+    if !is_real_instruction(i1) || is_terminator(i1) {
+        return None;
+    }
+
+    let sp = "%i1";
+    if i0.operands[0] != sp || i0.operands[1] != sp {
+        return None;
+    }
+    if i2.operands[0] != sp || i2.operands[1] != sp {
+        return None;
+    }
+    if i0.operands[2] != i2.operands[2] {
+        return None;
+    }
+    if inst_mentions_reg(i1, sp) {
+        return None;
+    }
+
+    Some(i1.clone())
+}
+
+fn fold_sp_addi_subi_sandwich_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    let mut out = Vec::with_capacity(instructions.len());
+    let mut rewrites = 0usize;
+    let mut i = 0usize;
+    let n = instructions.len();
+
+    while i < n {
+        if i + 2 < n {
+            if let Some(mid) =
+                fold_sp_addi_subi_triplet(&instructions[i], &instructions[i + 1], &instructions[i + 2])
+            {
+                out.push(mid);
+                rewrites += 1;
+                i += 3;
+                continue;
+            }
+        }
+        out.push(instructions[i].clone());
+        i += 1;
+    }
+
+    (out, rewrites)
+}
+
+fn fold_trivial_identities(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    let mut out = Vec::with_capacity(instructions.len());
+    let mut rewrites = 0usize;
+
+    for inst in instructions {
+        let mut replaced: Option<Instruction> = None;
+        let mut remove_noop = false;
+
+        if let Some(mn) = inst.mnemonic.as_deref() {
+            match mn {
+                "addi" | "subi" | "slli" | "sari" if inst.operands.len() == 3 => {
+                    let dst = &inst.operands[0];
+                    let src = &inst.operands[1];
+                    let imm = &inst.operands[2];
+                    if imm_is_zero(imm) {
+                        if dst == src {
+                            remove_noop = true;
+                        } else {
+                            replaced = Some(rewrite_like(&inst, "mov", vec![dst.clone(), src.clone()]));
+                        }
+                    }
+                }
+                "ceq" | "cleq" | "clt" | "feq" | "fleq" | "flt" if inst.operands.len() == 3 => {
+                    let dst = &inst.operands[0];
+                    let lhs = &inst.operands[1];
+                    let rhs = &inst.operands[2];
+                    if lhs == rhs {
+                        let value = match mn {
+                            "clt" | "flt" => "0",
+                            _ => "1",
+                        };
+                        if dst == "%i0" {
+                            remove_noop = true;
+                        } else {
+                            replaced = Some(rewrite_like(
+                                &inst,
+                                "movi",
+                                vec![dst.clone(), value.to_string()],
+                            ));
+                        }
+                    }
+                }
+                "tern" if inst.operands.len() == 4 => {
+                    let dst = &inst.operands[0];
+                    let y = &inst.operands[2];
+                    let z = &inst.operands[3];
+                    if y == z {
+                        if dst == y {
+                            remove_noop = true;
+                        } else {
+                            replaced = Some(rewrite_like(&inst, "mov", vec![dst.clone(), y.clone()]));
+                        }
+                    }
+                }
+                "ftern" if inst.operands.len() == 4 => {
+                    let dst = &inst.operands[0];
+                    let y = &inst.operands[2];
+                    let z = &inst.operands[3];
+                    if y == z {
+                        if dst == y {
+                            remove_noop = true;
+                        } else {
+                            replaced = Some(rewrite_like(&inst, "fmov", vec![dst.clone(), y.clone()]));
+                        }
+                    }
+                }
+                _ => {}
+            }
+        }
+
+        if let Some(new_inst) = replaced {
+            rewrites += 1;
+            out.push(new_inst);
+            continue;
+        }
+        if remove_noop {
+            rewrites += 1;
+            if let Some(label) = inst.label.clone() {
+                out.push(Instruction {
+                    label: Some(label),
+                    mnemonic: None,
+                    operands: Vec::new(),
+                });
+            }
+            continue;
+        }
+        out.push(inst);
+    }
+
+    (out, rewrites)
+}
+
 fn fold_window_with_dep_graph(window: &[Instruction]) -> (Vec<Instruction>, usize) {
     let n = window.len();
     if n < 2 {
@@ -126,7 +445,7 @@ fn fold_window_with_dep_graph(window: &[Instruction]) -> (Vec<Instruction>, usiz
     let mut remove = vec![false; n];
     let mut rewrites = 0usize;
 
-    // Rule: fmul node is a leaf-source (indeg=0), has exactly one outgoing edge,
+    // Rule A: fmul node is a leaf-source (indeg=0), has exactly one outgoing edge,
     // that edge is RAW and points to fadd consuming its result.
     for u in 0..n {
         if window[u].mnemonic.as_deref() != Some("fmul") {
@@ -150,6 +469,32 @@ fn fold_window_with_dep_graph(window: &[Instruction]) -> (Vec<Instruction>, usiz
 
         remove[u] = true;
         replace_at[v] = Some(fma);
+        rewrites += 1;
+    }
+
+    // Rule B: movi leaf can be folded into its single RAW consumer.
+    for u in 0..n {
+        if window[u].mnemonic.as_deref() != Some("movi") {
+            continue;
+        }
+        if indeg[u] != 0 || succ[u].len() != 1 {
+            continue;
+        }
+        let Some(&v) = succ[u].iter().next() else {
+            continue;
+        };
+        if !succ_raw[u].contains(&v) {
+            continue;
+        }
+        if remove[u] || remove[v] || replace_at[v].is_some() {
+            continue;
+        }
+        let Some(folded) = build_movi_fold_from_pair(&window[u], &window[v]) else {
+            continue;
+        };
+
+        remove[u] = true;
+        replace_at[v] = Some(folded);
         rewrites += 1;
     }
 
@@ -195,8 +540,13 @@ pub fn optimize(instructions: Vec<Instruction>, _stage_name: &str) -> OptimizeRe
         rewrites += rw;
     }
 
+    // Stage3-equivalent safe local folds promoted into lite stage.
+    let (out2, rw2) = fold_sp_addi_subi_sandwich_opt(out);
+    let (out3, rw3) = fold_trivial_identities(out2);
+    rewrites += rw2 + rw3;
+
     OptimizeResult {
-        instructions: out,
+        instructions: out3,
         rewrites,
     }
 }

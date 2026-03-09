@@ -1337,6 +1337,7 @@ fn main() {
             let rules_path_stage3 =
                 env::var("BACKEND_RULES_PATH_STAGE3").unwrap_or_else(|_| rules_path.clone());
             let enable_stage1 = env_enabled("BACKEND_PEEPHOLE_STAGE1", true);
+            let enable_stage1_virtual_cse = env_enabled("BACKEND_STAGE1_VIRTUAL_CSE", true);
             let enable_stage2 = env_enabled("BACKEND_PEEPHOLE_STAGE2", false);
             // let enable_stage3 = env_enabled("BACKEND_PEEPHOLE_STAGE3", true);
             let enable_stage3 = env_enabled("BACKEND_PEEPHOLE_STAGE3", false);
@@ -1385,8 +1386,9 @@ fn main() {
             let allocator_kind =
                 env::var("BACKEND_ALLOCATOR").unwrap_or_else(|_| "chaitin".to_string());
             println!(
-                "Peephole config: stage1={} stage2={} stage3={} preference={} reorder={} rules={}/{}/{} verbose_stats={} func_color_report={} allocator={}",
+                "Peephole config: stage1={} stage1_virtual_cse={} stage2={} stage3={} preference={} reorder={} rules={}/{}/{} verbose_stats={} func_color_report={} allocator={}",
                 enable_stage1,
+                enable_stage1_virtual_cse,
                 enable_stage2,
                 enable_stage3,
                 enable_preference,
@@ -1409,10 +1411,19 @@ fn main() {
                     "Peephole_lite stage1 (fma only) rewrites: {}",
                     stage1_lite.rewrites
                 );
-                current_program = program::from_instructions(stage1_lite.instructions);
+                let stage1_insts = if enable_stage1_virtual_cse {
+                    let (ins, r) = adhoc::optimize_virtual_cse_only(stage1_lite.instructions);
+                    println!("Stage1 virtual register CSE rewrites: {}", r);
+                    ins
+                } else {
+                    println!("Stage1 virtual register CSE rewrites: 0 (disabled)");
+                    stage1_lite.instructions
+                };
+                current_program = program::from_instructions(stage1_insts);
             } else {
                 println!("Peephole stage1 (frontend-like regs) rewrites: 0 (disabled)");
                 println!("Peephole_lite stage1 (fma only) rewrites: 0 (disabled)");
+                println!("Stage1 virtual register CSE rewrites: 0 (disabled)");
             }
             if enable_reorder {
                 let reordered = reordering::reorder_with_config(

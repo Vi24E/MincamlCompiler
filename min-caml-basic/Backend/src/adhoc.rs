@@ -80,6 +80,10 @@ pub fn optimize_virtual(instructions: Vec<Instruction>) -> VirtualOptimizeResult
     }
 }
 
+pub fn optimize_virtual_cse_only(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {
+    register_cse_virtual_opt(instructions)
+}
+
 pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
     // Pass 1: eliminate trampolines that are clearly visible before relaxation
     let (instructions, trampoline_elim_rewrites_1) = jump_trampoline_elim(instructions);
