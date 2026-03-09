@@ -94,7 +94,8 @@ let is_float_reg x =
   let s = Id.to_string x in
   String.length s >= 2 &&
   (String.sub s 0 2 = "%f" ||
-   (String.length s >= 3 && String.sub s 0 3 = "%vf"))
+   (String.length s >= 3 && String.sub s 0 3 = "%vf") ||
+   (String.length s >= 4 && String.sub s 0 4 = "%vtf"))
 
 let starts_with s prefix =
   let ls = String.length s and lp = String.length prefix in
@@ -650,7 +651,15 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       Printf.fprintf oc "\ttern\t%s, %s, %s, %s\n" x c y z
   | NonTail(x), TernF(c, y, z) ->
       let x = Id.to_string x in
-      let c = Id.to_string c in
+      let c =
+        if is_float_reg c then
+          Id.to_string c
+        else
+          let c_int = Id.to_string c in
+          let c_float = Id.to_string (fresh_fsw_reg ()) in
+          Printf.fprintf oc "\tmif\t%s, %s\n" c_float c_int;
+          c_float
+      in
       let y = Id.to_string y in
       let z = Id.to_string z in
       Printf.fprintf oc "\tftern\t%s, %s, %s, %s\n" x c y z

@@ -85,6 +85,17 @@ let empty_state = {
   get_cache = IdMap.empty;
 }
 
+let const_of_id const_env x =
+  match IdMap.find_opt x const_env with
+  | Some c -> Some c
+  | None ->
+      if Id.is_leakable x then None
+      else
+        match snd x with
+        | Id.Known (_, Id.ConstInt i) -> Some (CInt i)
+        | Id.Known (_, Id.ConstFloat f) -> Some (CFloat f)
+        | _ -> None
+
 let simplify_expr (const_env : const_env_t) e =
   let counter = ref 0 in
   let fresh () =
@@ -93,7 +104,7 @@ let simplify_expr (const_env : const_env_t) e =
     (Printf.sprintf "v%d" n, Id.Unknown)
   in
   let rename env x =
-    match IdMap.find_opt x const_env with
+    match const_of_id const_env x with
     | Some (CInt i) -> (Printf.sprintf "CONST_INT_%d" i, Id.Unknown)
     | Some (CFloat f) -> (Printf.sprintf "CONST_FLOAT_%d" (Int32.to_int (Int32.bits_of_float f)), Id.Unknown)
     | None ->
@@ -103,10 +114,11 @@ let simplify_expr (const_env : const_env_t) e =
   in
   let rec helper env e =
     match e with
-    | Var x when IdMap.mem x const_env ->
-        (match IdMap.find x const_env with
-         | CInt i -> KNormal.Int i
-         | CFloat f -> KNormal.Float f)
+    | Var x ->
+        (match const_of_id const_env x with
+         | Some (CInt i) -> KNormal.Int i
+         | Some (CFloat f) -> KNormal.Float f
+         | None -> Var (rename env x))
     | _ ->
         (match e with
          | Unit -> Unit
@@ -170,7 +182,7 @@ let is_simple_expr e =
   | _ -> true
 
 let get_const_int const_env x =
-  match IdMap.find_opt x const_env with
+  match const_of_id const_env x with
   | Some (CInt i) -> Some i
   | _ -> None
 
@@ -179,10 +191,43 @@ let update_const_env const_env x rhs =
   | Int i -> IdMap.add x (CInt i) const_env
   | Float f -> IdMap.add x (CFloat f) const_env
   | Var y ->
-      (match IdMap.find_opt y const_env with
+      (match const_of_id const_env y with
        | Some c -> IdMap.add x c const_env
        | None -> IdMap.remove x const_env)
   | _ -> IdMap.remove x const_env
+
+let rec expr_has_leakable = function
+  | Unit | Int _ | Float _ | ExtArray _ -> false
+  | Neg x | FNeg x | Var x | Break x -> Id.is_leakable x
+  | Add (x, y) | Sub (x, y) | Sll (x, y) | Sra (x, y)
+  | FAdd (x, y) | FSub (x, y) | FMul (x, y) | FDiv (x, y)
+  | Get (x, y) ->
+      Id.is_leakable x || Id.is_leakable y
+  | Put (x, y, z) ->
+      Id.is_leakable x || Id.is_leakable y || Id.is_leakable z
+  | IfEq (x, y, e1, e2) | IfLE (x, y, e1, e2) ->
+      Id.is_leakable x || Id.is_leakable y || expr_has_leakable e1 || expr_has_leakable e2
+  | Let ((x, _), e1, e2) ->
+      Id.is_leakable x || expr_has_leakable e1 || expr_has_leakable e2
+  | LetRec ({ name = (f, _); args = yts; body; tags = _ }, e2) ->
+      Id.is_leakable f
+      || List.exists (fun (y, _) -> Id.is_leakable y) yts
+      || expr_has_leakable body
+      || expr_has_leakable e2
+  | App (f, xs) ->
+      Id.is_leakable f || List.exists Id.is_leakable xs
+  | Tuple xs | ExtFunApp (_, xs) ->
+      List.exists Id.is_leakable xs
+  | LetTuple (xts, y, e) ->
+      Id.is_leakable y
+      || List.exists (fun (x, _) -> Id.is_leakable x) xts
+      || expr_has_leakable e
+  | TernPhi (c, x, y) ->
+      Id.is_leakable c || Id.is_leakable x || Id.is_leakable y
+  | Assign (x, y, e2, _) ->
+      Id.is_leakable x || Id.is_leakable y || expr_has_leakable e2
+  | While (e1, e2) ->
+      expr_has_leakable e1 || expr_has_leakable e2
 
 let remove_cse_value x cse_env =
   ExprMap.filter (fun _ v -> Id.compare v x <> 0) cse_env
@@ -402,15 +447,19 @@ let rec g st e =
   match e with
   | Let ((x, t), e1, e2) ->
       let e1', st_after_e1 = g st e1 in
+      let cse_ok = not (expr_has_leakable e1') in
       let simp_e1 = simplify_expr st_after_e1.const_env e1' in
       let rhs, st_for_e2 =
-        match ExprMap.find_opt simp_e1 st_after_e1.cse_env with
-        | Some x' ->
-            let rhs = Var x' in
-            (rhs, bind_let st_after_e1 x t rhs false simp_e1)
-        | None ->
-            let add_cse = is_simple_expr e1' && FunctionChecker.checkExpPurity e1' in
-            (e1', bind_let st_after_e1 x t e1' add_cse simp_e1)
+        if cse_ok then
+          match ExprMap.find_opt simp_e1 st_after_e1.cse_env with
+          | Some x' ->
+              let rhs = Var x' in
+              (rhs, bind_let st_after_e1 x t rhs false simp_e1)
+          | None ->
+              let add_cse = is_simple_expr e1' && FunctionChecker.checkExpPurity e1' in
+              (e1', bind_let st_after_e1 x t e1' add_cse simp_e1)
+        else
+          (e1', bind_let st_after_e1 x t e1' false simp_e1)
       in
       let e2', st_after_e2 = g st_for_e2 e2 in
       (Let ((x, t), rhs, e2'), drop_var_state st_after_e2 x)

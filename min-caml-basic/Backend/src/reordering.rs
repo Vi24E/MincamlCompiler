@@ -75,7 +75,17 @@ fn is_control_or_barrier_mnemonic(m: &str) -> bool {
     }
     matches!(
         m,
-        "sw" | "sf" | "sb" | "jmp" | "jzero" | "jeq" | "jlt" | "jleq" | "ret" | "set_label"
+        "sw"
+            | "sf"
+            | "sb"
+            | "jmp"
+            | "jzero"
+            | "jeq"
+            | "jlt"
+            | "jleq"
+            | "goto"
+            | "ret"
+            | "set_label"
     )
 }
 

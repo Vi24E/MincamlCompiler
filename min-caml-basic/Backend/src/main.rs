@@ -694,7 +694,10 @@ fn normalize_call_result_moves(instructions: Vec<input::Instruction>) -> Vec<inp
             }
 
             // Alias information does not cross explicit control-flow boundaries.
-            if matches!(mnemonic, "jmp" | "jzero" | "jeq" | "jlt" | "jleq" | "ret") {
+            if matches!(
+                mnemonic,
+                "jmp" | "jzero" | "jeq" | "jlt" | "jleq" | "goto" | "ret"
+            ) {
                 int_alias_active = false;
                 float_alias_active = false;
             }

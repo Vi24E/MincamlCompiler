@@ -3597,7 +3597,8 @@ else.230735:
 	fsub	%vf115, %vf102, %vf114
 	fsub	%vf116, %vf31, %vf115
 	fleq	%vi926, %vf115, %vf32
-	ftern	%vf117, %vi926, %vf115, %vf116
+	mif	%vtf97, %vi926
+	ftern	%vf117, %vtf97, %vf115, %vf116
 	fmul	%vf118, %vf117, %vf117
 	fmul	%vf119, %vf35, %vf118
 	fadd	%vf120, %vf119, %vf36
@@ -3634,7 +3635,8 @@ else.230733:
 	fsub	%vf138, %vf102, %vf137
 	fsub	%vf139, %vf31, %vf138
 	fleq	%vi927, %vf138, %vf32
-	ftern	%vf140, %vi927, %vf138, %vf139
+	mif	%vtf99, %vi927
+	ftern	%vf140, %vtf99, %vf138, %vf139
 	fmul	%vf141, %vf140, %vf140
 	fmul	%vf142, %vf35, %vf141
 	fadd	%vf143, %vf142, %vf36
@@ -3687,7 +3689,8 @@ else.230743:
 	fsub	%vf169, %vf101, %vf168
 	fsub	%vf170, %vf31, %vf169
 	fleq	%vi928, %vf169, %vf32
-	ftern	%vf171, %vi928, %vf169, %vf170
+	mif	%vtf101, %vi928
+	ftern	%vf171, %vtf101, %vf169, %vf170
 	fmul	%vf172, %vf171, %vf171
 	fmul	%vf173, %vf35, %vf172
 	fadd	%vf174, %vf173, %vf36
@@ -3724,7 +3727,8 @@ else.230741:
 	fsub	%vf192, %vf101, %vf191
 	fsub	%vf193, %vf31, %vf192
 	fleq	%vi929, %vf192, %vf32
-	ftern	%vf194, %vi929, %vf192, %vf193
+	mif	%vtf103, %vi929
+	ftern	%vf194, %vtf103, %vf192, %vf193
 	fmul	%vf195, %vf194, %vf194
 	fmul	%vf196, %vf35, %vf195
 	fadd	%vf197, %vf196, %vf36
@@ -3804,7 +3808,8 @@ else.230751:
 	fsub	%vf227, %vf214, %vf226
 	fsub	%vf228, %vf31, %vf227
 	fleq	%vi930, %vf227, %vf32
-	ftern	%vf229, %vi930, %vf227, %vf228
+	mif	%vtf105, %vi930
+	ftern	%vf229, %vtf105, %vf227, %vf228
 	fmul	%vf230, %vf229, %vf229
 	fmul	%vf231, %vf35, %vf230
 	fadd	%vf232, %vf231, %vf36
@@ -3841,7 +3846,8 @@ else.230749:
 	fsub	%vf250, %vf214, %vf249
 	fsub	%vf251, %vf31, %vf250
 	fleq	%vi931, %vf250, %vf32
-	ftern	%vf252, %vi931, %vf250, %vf251
+	mif	%vtf107, %vi931
+	ftern	%vf252, %vtf107, %vf250, %vf251
 	fmul	%vf253, %vf252, %vf252
 	fmul	%vf254, %vf35, %vf253
 	fadd	%vf255, %vf254, %vf36
@@ -3894,7 +3900,8 @@ else.230759:
 	fsub	%vf281, %vf213, %vf280
 	fsub	%vf282, %vf31, %vf281
 	fleq	%vi932, %vf281, %vf32
-	ftern	%vf283, %vi932, %vf281, %vf282
+	mif	%vtf109, %vi932
+	ftern	%vf283, %vtf109, %vf281, %vf282
 	fmul	%vf284, %vf283, %vf283
 	fmul	%vf285, %vf35, %vf284
 	fadd	%vf286, %vf285, %vf36
@@ -3931,7 +3938,8 @@ else.230757:
 	fsub	%vf304, %vf213, %vf303
 	fsub	%vf305, %vf31, %vf304
 	fleq	%vi933, %vf304, %vf32
-	ftern	%vf306, %vi933, %vf304, %vf305
+	mif	%vtf111, %vi933
+	ftern	%vf306, %vtf111, %vf304, %vf305
 	fmul	%vf307, %vf306, %vf306
 	fmul	%vf308, %vf35, %vf307
 	fadd	%vf309, %vf308, %vf36
@@ -4098,7 +4106,8 @@ else.230767:
 	fsub	%vf351, %vf338, %vf350
 	fsub	%vf352, %vf31, %vf351
 	fleq	%vi936, %vf351, %vf32
-	ftern	%vf353, %vi936, %vf351, %vf352
+	mif	%vtf113, %vi936
+	ftern	%vf353, %vtf113, %vf351, %vf352
 	fmul	%vf354, %vf353, %vf353
 	fmul	%vf355, %vf35, %vf354
 	fadd	%vf356, %vf355, %vf36
@@ -4135,7 +4144,8 @@ else.230765:
 	fsub	%vf374, %vf338, %vf373
 	fsub	%vf375, %vf31, %vf374
 	fleq	%vi937, %vf374, %vf32
-	ftern	%vf376, %vi937, %vf374, %vf375
+	mif	%vtf115, %vi937
+	ftern	%vf376, %vtf115, %vf374, %vf375
 	fmul	%vf377, %vf376, %vf376
 	fmul	%vf378, %vf35, %vf377
 	fadd	%vf379, %vf378, %vf36
@@ -4221,7 +4231,8 @@ else.230775:
 	fsub	%vf410, %vf397, %vf409
 	fsub	%vf411, %vf31, %vf410
 	fleq	%vi938, %vf410, %vf32
-	ftern	%vf412, %vi938, %vf410, %vf411
+	mif	%vtf117, %vi938
+	ftern	%vf412, %vtf117, %vf410, %vf411
 	fmul	%vf413, %vf412, %vf412
 	fmul	%vf414, %vf35, %vf413
 	fadd	%vf415, %vf414, %vf36
@@ -4258,7 +4269,8 @@ else.230773:
 	fsub	%vf433, %vf397, %vf432
 	fsub	%vf434, %vf31, %vf433
 	fleq	%vi939, %vf433, %vf32
-	ftern	%vf435, %vi939, %vf433, %vf434
+	mif	%vtf119, %vi939
+	ftern	%vf435, %vtf119, %vf433, %vf434
 	fmul	%vf436, %vf435, %vf435
 	fmul	%vf437, %vf35, %vf436
 	fadd	%vf438, %vf437, %vf36
@@ -4311,7 +4323,8 @@ else.230783:
 	fsub	%vf464, %vf396, %vf463
 	fsub	%vf465, %vf31, %vf464
 	fleq	%vi940, %vf464, %vf32
-	ftern	%vf466, %vi940, %vf464, %vf465
+	mif	%vtf121, %vi940
+	ftern	%vf466, %vtf121, %vf464, %vf465
 	fmul	%vf467, %vf466, %vf466
 	fmul	%vf468, %vf35, %vf467
 	fadd	%vf469, %vf468, %vf36
@@ -4348,7 +4361,8 @@ else.230781:
 	fsub	%vf487, %vf396, %vf486
 	fsub	%vf488, %vf31, %vf487
 	fleq	%vi941, %vf487, %vf32
-	ftern	%vf489, %vi941, %vf487, %vf488
+	mif	%vtf123, %vi941
+	ftern	%vf489, %vtf123, %vf487, %vf488
 	fmul	%vf490, %vf489, %vf489
 	fmul	%vf491, %vf35, %vf490
 	fadd	%vf492, %vf491, %vf36
@@ -4412,7 +4426,8 @@ else.230791:
 	fsub	%vf520, %vf507, %vf519
 	fsub	%vf521, %vf31, %vf520
 	fleq	%vi942, %vf520, %vf32
-	ftern	%vf522, %vi942, %vf520, %vf521
+	mif	%vtf125, %vi942
+	ftern	%vf522, %vtf125, %vf520, %vf521
 	fmul	%vf523, %vf522, %vf522
 	fmul	%vf524, %vf35, %vf523
 	fadd	%vf525, %vf524, %vf36
@@ -4449,7 +4464,8 @@ else.230789:
 	fsub	%vf543, %vf507, %vf542
 	fsub	%vf544, %vf31, %vf543
 	fleq	%vi943, %vf543, %vf32
-	ftern	%vf545, %vi943, %vf543, %vf544
+	mif	%vtf127, %vi943
+	ftern	%vf545, %vtf127, %vf543, %vf544
 	fmul	%vf546, %vf545, %vf545
 	fmul	%vf547, %vf35, %vf546
 	fadd	%vf548, %vf547, %vf36
@@ -4866,9 +4882,11 @@ cont.230800:
 	finv	%vf626, %vf623
 	fmul	%vf627, %vf29, %vf626
 	ceqi	%vi1009, %vi1004, 0
-	ftern	%vf628, %vi1009, %vf625, %vf627
+	mif	%vtf129, %vi1009
+	ftern	%vf628, %vtf129, %vf625, %vf627
 	ceqi	%vi1010, %vi1006, 0
-	ftern	%vf629, %vi1010, %vf628, %vf30
+	mif	%vtf130, %vi1010
+	ftern	%vf629, %vtf130, %vf628, %vf30
 	mov	%vi1011, %i0
 	fmul	%vf630, %vf613, %vf629
 	sf	%vf630, 0(%vi957)
@@ -5001,7 +5019,8 @@ else.230825:
 	fsub	%vf647, %vf634, %vf646
 	fsub	%vf648, %vf31, %vf647
 	fleq	%vi1014, %vf647, %vf32
-	ftern	%vf649, %vi1014, %vf647, %vf648
+	mif	%vtf132, %vi1014
+	ftern	%vf649, %vtf132, %vf647, %vf648
 	fmul	%vf650, %vf649, %vf649
 	fmul	%vf651, %vf35, %vf650
 	fadd	%vf652, %vf651, %vf36
@@ -5038,7 +5057,8 @@ else.230823:
 	fsub	%vf670, %vf634, %vf669
 	fsub	%vf671, %vf31, %vf670
 	fleq	%vi1015, %vf670, %vf32
-	ftern	%vf672, %vi1015, %vf670, %vf671
+	mif	%vtf134, %vi1015
+	ftern	%vf672, %vtf134, %vf670, %vf671
 	fmul	%vf673, %vf672, %vf672
 	fmul	%vf674, %vf35, %vf673
 	fadd	%vf675, %vf674, %vf36
@@ -5087,7 +5107,8 @@ else.230833:
 	fsub	%vf701, %vf633, %vf700
 	fsub	%vf702, %vf31, %vf701
 	fleq	%vi1016, %vf701, %vf32
-	ftern	%vf703, %vi1016, %vf701, %vf702
+	mif	%vtf136, %vi1016
+	ftern	%vf703, %vtf136, %vf701, %vf702
 	fmul	%vf704, %vf703, %vf703
 	fmul	%vf705, %vf35, %vf704
 	fadd	%vf706, %vf705, %vf36
@@ -5124,7 +5145,8 @@ else.230831:
 	fsub	%vf724, %vf633, %vf723
 	fsub	%vf725, %vf31, %vf724
 	fleq	%vi1017, %vf724, %vf32
-	ftern	%vf726, %vi1017, %vf724, %vf725
+	mif	%vtf138, %vi1017
+	ftern	%vf726, %vtf138, %vf724, %vf725
 	fmul	%vf727, %vf726, %vf726
 	fmul	%vf728, %vf35, %vf727
 	fadd	%vf729, %vf728, %vf36
@@ -5175,7 +5197,8 @@ else.230841:
 	fsub	%vf757, %vf744, %vf756
 	fsub	%vf758, %vf31, %vf757
 	fleq	%vi1018, %vf757, %vf32
-	ftern	%vf759, %vi1018, %vf757, %vf758
+	mif	%vtf140, %vi1018
+	ftern	%vf759, %vtf140, %vf757, %vf758
 	fmul	%vf760, %vf759, %vf759
 	fmul	%vf761, %vf35, %vf760
 	fadd	%vf762, %vf761, %vf36
@@ -5212,7 +5235,8 @@ else.230839:
 	fsub	%vf780, %vf744, %vf779
 	fsub	%vf781, %vf31, %vf780
 	fleq	%vi1019, %vf780, %vf32
-	ftern	%vf782, %vi1019, %vf780, %vf781
+	mif	%vtf142, %vi1019
+	ftern	%vf782, %vtf142, %vf780, %vf781
 	fmul	%vf783, %vf782, %vf782
 	fmul	%vf784, %vf35, %vf783
 	fadd	%vf785, %vf784, %vf36
@@ -5261,7 +5285,8 @@ else.230849:
 	fsub	%vf811, %vf743, %vf810
 	fsub	%vf812, %vf31, %vf811
 	fleq	%vi1020, %vf811, %vf32
-	ftern	%vf813, %vi1020, %vf811, %vf812
+	mif	%vtf144, %vi1020
+	ftern	%vf813, %vtf144, %vf811, %vf812
 	fmul	%vf814, %vf813, %vf813
 	fmul	%vf815, %vf35, %vf814
 	fadd	%vf816, %vf815, %vf36
@@ -5298,7 +5323,8 @@ else.230847:
 	fsub	%vf834, %vf743, %vf833
 	fsub	%vf835, %vf31, %vf834
 	fleq	%vi1021, %vf834, %vf32
-	ftern	%vf836, %vi1021, %vf834, %vf835
+	mif	%vtf146, %vi1021
+	ftern	%vf836, %vtf146, %vf834, %vf835
 	fmul	%vf837, %vf836, %vf836
 	fmul	%vf838, %vf35, %vf837
 	fadd	%vf839, %vf838, %vf36
@@ -5349,7 +5375,8 @@ else.230857:
 	fsub	%vf867, %vf854, %vf866
 	fsub	%vf868, %vf31, %vf867
 	fleq	%vi1022, %vf867, %vf32
-	ftern	%vf869, %vi1022, %vf867, %vf868
+	mif	%vtf148, %vi1022
+	ftern	%vf869, %vtf148, %vf867, %vf868
 	fmul	%vf870, %vf869, %vf869
 	fmul	%vf871, %vf35, %vf870
 	fadd	%vf872, %vf871, %vf36
@@ -5386,7 +5413,8 @@ else.230855:
 	fsub	%vf890, %vf854, %vf889
 	fsub	%vf891, %vf31, %vf890
 	fleq	%vi1023, %vf890, %vf32
-	ftern	%vf892, %vi1023, %vf890, %vf891
+	mif	%vtf150, %vi1023
+	ftern	%vf892, %vtf150, %vf890, %vf891
 	fmul	%vf893, %vf892, %vf892
 	fmul	%vf894, %vf35, %vf893
 	fadd	%vf895, %vf894, %vf36
@@ -5435,7 +5463,8 @@ else.230865:
 	fsub	%vf921, %vf853, %vf920
 	fsub	%vf922, %vf31, %vf921
 	fleq	%vi1024, %vf921, %vf32
-	ftern	%vf923, %vi1024, %vf921, %vf922
+	mif	%vtf152, %vi1024
+	ftern	%vf923, %vtf152, %vf921, %vf922
 	fmul	%vf924, %vf923, %vf923
 	fmul	%vf925, %vf35, %vf924
 	fadd	%vf926, %vf925, %vf36
@@ -5472,7 +5501,8 @@ else.230863:
 	fsub	%vf944, %vf853, %vf943
 	fsub	%vf945, %vf31, %vf944
 	fleq	%vi1025, %vf944, %vf32
-	ftern	%vf946, %vi1025, %vf944, %vf945
+	mif	%vtf154, %vi1025
+	ftern	%vf946, %vtf154, %vf944, %vf945
 	fmul	%vf947, %vf946, %vf946
 	fmul	%vf948, %vf35, %vf947
 	fadd	%vf949, %vf948, %vf36
@@ -5948,9 +5978,11 @@ cont.230878:
 	finv	%vf1094, %vf1091
 	fmul	%vf1095, %vf29, %vf1094
 	ceqi	%vi1095, %vi1090, 0
-	ftern	%vf1096, %vi1095, %vf1093, %vf1095
+	mif	%vtf163, %vi1095
+	ftern	%vf1096, %vtf163, %vf1093, %vf1095
 	ceqi	%vi1096, %vi1092, 0
-	ftern	%vf1097, %vi1096, %vf1096, %vf30
+	mif	%vtf164, %vi1096
+	ftern	%vf1097, %vtf164, %vf1096, %vf30
 	mov	%vi1097, %i0
 	fmul	%vf1098, %vf1081, %vf1097
 	sf	%vf1098, 0(%vi1043)
@@ -6083,7 +6115,8 @@ else.230903:
 	fsub	%vf1115, %vf1102, %vf1114
 	fsub	%vf1116, %vf31, %vf1115
 	fleq	%vi1100, %vf1115, %vf32
-	ftern	%vf1117, %vi1100, %vf1115, %vf1116
+	mif	%vtf166, %vi1100
+	ftern	%vf1117, %vtf166, %vf1115, %vf1116
 	fmul	%vf1118, %vf1117, %vf1117
 	fmul	%vf1119, %vf35, %vf1118
 	fadd	%vf1120, %vf1119, %vf36
@@ -6120,7 +6153,8 @@ else.230901:
 	fsub	%vf1138, %vf1102, %vf1137
 	fsub	%vf1139, %vf31, %vf1138
 	fleq	%vi1101, %vf1138, %vf32
-	ftern	%vf1140, %vi1101, %vf1138, %vf1139
+	mif	%vtf168, %vi1101
+	ftern	%vf1140, %vtf168, %vf1138, %vf1139
 	fmul	%vf1141, %vf1140, %vf1140
 	fmul	%vf1142, %vf35, %vf1141
 	fadd	%vf1143, %vf1142, %vf36
@@ -6169,7 +6203,8 @@ else.230911:
 	fsub	%vf1169, %vf1101, %vf1168
 	fsub	%vf1170, %vf31, %vf1169
 	fleq	%vi1102, %vf1169, %vf32
-	ftern	%vf1171, %vi1102, %vf1169, %vf1170
+	mif	%vtf170, %vi1102
+	ftern	%vf1171, %vtf170, %vf1169, %vf1170
 	fmul	%vf1172, %vf1171, %vf1171
 	fmul	%vf1173, %vf35, %vf1172
 	fadd	%vf1174, %vf1173, %vf36
@@ -6206,7 +6241,8 @@ else.230909:
 	fsub	%vf1192, %vf1101, %vf1191
 	fsub	%vf1193, %vf31, %vf1192
 	fleq	%vi1103, %vf1192, %vf32
-	ftern	%vf1194, %vi1103, %vf1192, %vf1193
+	mif	%vtf172, %vi1103
+	ftern	%vf1194, %vtf172, %vf1192, %vf1193
 	fmul	%vf1195, %vf1194, %vf1194
 	fmul	%vf1196, %vf35, %vf1195
 	fadd	%vf1197, %vf1196, %vf36
@@ -6257,7 +6293,8 @@ else.230919:
 	fsub	%vf1225, %vf1212, %vf1224
 	fsub	%vf1226, %vf31, %vf1225
 	fleq	%vi1104, %vf1225, %vf32
-	ftern	%vf1227, %vi1104, %vf1225, %vf1226
+	mif	%vtf174, %vi1104
+	ftern	%vf1227, %vtf174, %vf1225, %vf1226
 	fmul	%vf1228, %vf1227, %vf1227
 	fmul	%vf1229, %vf35, %vf1228
 	fadd	%vf1230, %vf1229, %vf36
@@ -6294,7 +6331,8 @@ else.230917:
 	fsub	%vf1248, %vf1212, %vf1247
 	fsub	%vf1249, %vf31, %vf1248
 	fleq	%vi1105, %vf1248, %vf32
-	ftern	%vf1250, %vi1105, %vf1248, %vf1249
+	mif	%vtf176, %vi1105
+	ftern	%vf1250, %vtf176, %vf1248, %vf1249
 	fmul	%vf1251, %vf1250, %vf1250
 	fmul	%vf1252, %vf35, %vf1251
 	fadd	%vf1253, %vf1252, %vf36
@@ -6343,7 +6381,8 @@ else.230927:
 	fsub	%vf1279, %vf1211, %vf1278
 	fsub	%vf1280, %vf31, %vf1279
 	fleq	%vi1106, %vf1279, %vf32
-	ftern	%vf1281, %vi1106, %vf1279, %vf1280
+	mif	%vtf178, %vi1106
+	ftern	%vf1281, %vtf178, %vf1279, %vf1280
 	fmul	%vf1282, %vf1281, %vf1281
 	fmul	%vf1283, %vf35, %vf1282
 	fadd	%vf1284, %vf1283, %vf36
@@ -6380,7 +6419,8 @@ else.230925:
 	fsub	%vf1302, %vf1211, %vf1301
 	fsub	%vf1303, %vf31, %vf1302
 	fleq	%vi1107, %vf1302, %vf32
-	ftern	%vf1304, %vi1107, %vf1302, %vf1303
+	mif	%vtf180, %vi1107
+	ftern	%vf1304, %vtf180, %vf1302, %vf1303
 	fmul	%vf1305, %vf1304, %vf1304
 	fmul	%vf1306, %vf35, %vf1305
 	fadd	%vf1307, %vf1306, %vf36
@@ -6431,7 +6471,8 @@ else.230935:
 	fsub	%vf1335, %vf1322, %vf1334
 	fsub	%vf1336, %vf31, %vf1335
 	fleq	%vi1108, %vf1335, %vf32
-	ftern	%vf1337, %vi1108, %vf1335, %vf1336
+	mif	%vtf182, %vi1108
+	ftern	%vf1337, %vtf182, %vf1335, %vf1336
 	fmul	%vf1338, %vf1337, %vf1337
 	fmul	%vf1339, %vf35, %vf1338
 	fadd	%vf1340, %vf1339, %vf36
@@ -6468,7 +6509,8 @@ else.230933:
 	fsub	%vf1358, %vf1322, %vf1357
 	fsub	%vf1359, %vf31, %vf1358
 	fleq	%vi1109, %vf1358, %vf32
-	ftern	%vf1360, %vi1109, %vf1358, %vf1359
+	mif	%vtf184, %vi1109
+	ftern	%vf1360, %vtf184, %vf1358, %vf1359
 	fmul	%vf1361, %vf1360, %vf1360
 	fmul	%vf1362, %vf35, %vf1361
 	fadd	%vf1363, %vf1362, %vf36
@@ -6517,7 +6559,8 @@ else.230943:
 	fsub	%vf1389, %vf1321, %vf1388
 	fsub	%vf1390, %vf31, %vf1389
 	fleq	%vi1110, %vf1389, %vf32
-	ftern	%vf1391, %vi1110, %vf1389, %vf1390
+	mif	%vtf186, %vi1110
+	ftern	%vf1391, %vtf186, %vf1389, %vf1390
 	fmul	%vf1392, %vf1391, %vf1391
 	fmul	%vf1393, %vf35, %vf1392
 	fadd	%vf1394, %vf1393, %vf36
@@ -6554,7 +6597,8 @@ else.230941:
 	fsub	%vf1412, %vf1321, %vf1411
 	fsub	%vf1413, %vf31, %vf1412
 	fleq	%vi1111, %vf1412, %vf32
-	ftern	%vf1414, %vi1111, %vf1412, %vf1413
+	mif	%vtf188, %vi1111
+	ftern	%vf1414, %vtf188, %vf1412, %vf1413
 	fmul	%vf1415, %vf1414, %vf1414
 	fmul	%vf1416, %vf35, %vf1415
 	fadd	%vf1417, %vf1416, %vf36
@@ -7090,7 +7134,8 @@ then.230979:
 	finv	%vf1535, %vf1534
 	fmul	%vf1536, %vf30, %vf1535
 	ceq	%vi1230, %vi1228, %vi1229
-	ftern	%vf1537, %vi1230, %vf1536, %vf1534
+	mif	%vtf220, %vi1230
+	ftern	%vf1537, %vtf220, %vf1536, %vf1534
 	fmul	%vf1538, %vf1537, %vf1537
 	fmul	%vf1539, %vf39, %vf1538
 	fadd	%vf1540, %vf1539, %vf40
@@ -7104,7 +7149,8 @@ then.230979:
 	fadd	%vf1548, %vf1547, %vf44
 	fmul	%vf1549, %vf1548, %vf1538
 	fadd	%vf1550, %vf1549, %vf45
-	ftern	%vf1551, %vi1230, %vf30, %vf29
+	mif	%vtf221, %vi1230
+	ftern	%vf1551, %vtf221, %vf30, %vf29
 	fmul	%vf1552, %vf1551, %vf1550
 	fmul	%vf1553, %vf1552, %vf1537
 	add	%vi1231, %vi1228, %vi1229
@@ -7140,7 +7186,8 @@ else.230985:
 	fsub	%vf1570, %vf1557, %vf1569
 	fsub	%vf1571, %vf31, %vf1570
 	fleq	%vi1233, %vf1570, %vf32
-	ftern	%vf1572, %vi1233, %vf1570, %vf1571
+	mif	%vtf224, %vi1233
+	ftern	%vf1572, %vtf224, %vf1570, %vf1571
 	fmul	%vf1573, %vf1572, %vf1572
 	fmul	%vf1574, %vf35, %vf1573
 	fadd	%vf1575, %vf1574, %vf36
@@ -7177,7 +7224,8 @@ else.230983:
 	fsub	%vf1593, %vf1557, %vf1592
 	fsub	%vf1594, %vf31, %vf1593
 	fleq	%vi1234, %vf1593, %vf32
-	ftern	%vf1595, %vi1234, %vf1593, %vf1594
+	mif	%vtf226, %vi1234
+	ftern	%vf1595, %vtf226, %vf1593, %vf1594
 	fmul	%vf1596, %vf1595, %vf1595
 	fmul	%vf1597, %vf35, %vf1596
 	fadd	%vf1598, %vf1597, %vf36
@@ -7221,7 +7269,8 @@ cont.230984:
 	finv	%vf1625, %vf1624
 	fmul	%vf1626, %vf30, %vf1625
 	ceq	%vi1238, %vi1236, %vi1237
-	ftern	%vf1627, %vi1238, %vf1626, %vf1624
+	mif	%vtf229, %vi1238
+	ftern	%vf1627, %vtf229, %vf1626, %vf1624
 	fmul	%vf1628, %vf1627, %vf1627
 	fmul	%vf1629, %vf39, %vf1628
 	fadd	%vf1630, %vf1629, %vf40
@@ -7235,7 +7284,8 @@ cont.230984:
 	fadd	%vf1638, %vf1637, %vf44
 	fmul	%vf1639, %vf1638, %vf1628
 	fadd	%vf1640, %vf1639, %vf45
-	ftern	%vf1641, %vi1238, %vf30, %vf29
+	mif	%vtf230, %vi1238
+	ftern	%vf1641, %vtf230, %vf30, %vf29
 	fmul	%vf1642, %vf1641, %vf1640
 	fmul	%vf1643, %vf1642, %vf1627
 	add	%vi1239, %vi1236, %vi1237
@@ -7271,7 +7321,8 @@ else.230993:
 	fsub	%vf1660, %vf1647, %vf1659
 	fsub	%vf1661, %vf31, %vf1660
 	fleq	%vi1241, %vf1660, %vf32
-	ftern	%vf1662, %vi1241, %vf1660, %vf1661
+	mif	%vtf233, %vi1241
+	ftern	%vf1662, %vtf233, %vf1660, %vf1661
 	fmul	%vf1663, %vf1662, %vf1662
 	fmul	%vf1664, %vf35, %vf1663
 	fadd	%vf1665, %vf1664, %vf36
@@ -7308,7 +7359,8 @@ else.230991:
 	fsub	%vf1683, %vf1647, %vf1682
 	fsub	%vf1684, %vf31, %vf1683
 	fleq	%vi1242, %vf1683, %vf32
-	ftern	%vf1685, %vi1242, %vf1683, %vf1684
+	mif	%vtf235, %vi1242
+	ftern	%vf1685, %vtf235, %vf1683, %vf1684
 	fmul	%vf1686, %vf1685, %vf1685
 	fmul	%vf1687, %vf35, %vf1686
 	fadd	%vf1688, %vf1687, %vf36
@@ -7357,7 +7409,8 @@ loop_start.224257:
 	finv	%vf1734, %vf1733
 	fmul	%vf1735, %vf30, %vf1734
 	ceq	%vi1276, %vi1274, %vi1275
-	ftern	%vf1736, %vi1276, %vf1735, %vf1733
+	mif	%vtf239, %vi1276
+	ftern	%vf1736, %vtf239, %vf1735, %vf1733
 	fmul	%vf1737, %vf1736, %vf1736
 	fmul	%vf1738, %vf39, %vf1737
 	fadd	%vf1739, %vf1738, %vf40
@@ -7371,7 +7424,8 @@ loop_start.224257:
 	fadd	%vf1747, %vf1746, %vf44
 	fmul	%vf1748, %vf1747, %vf1737
 	fadd	%vf1749, %vf1748, %vf45
-	ftern	%vf1750, %vi1276, %vf30, %vf29
+	mif	%vtf240, %vi1276
+	ftern	%vf1750, %vtf240, %vf30, %vf29
 	fmul	%vf1751, %vf1750, %vf1749
 	fmul	%vf1752, %vf1751, %vf1736
 	add	%vi1277, %vi1274, %vi1275
@@ -7407,7 +7461,8 @@ else.231004:
 	fsub	%vf1769, %vf1756, %vf1768
 	fsub	%vf1770, %vf31, %vf1769
 	fleq	%vi1279, %vf1769, %vf32
-	ftern	%vf1771, %vi1279, %vf1769, %vf1770
+	mif	%vtf243, %vi1279
+	ftern	%vf1771, %vtf243, %vf1769, %vf1770
 	fmul	%vf1772, %vf1771, %vf1771
 	fmul	%vf1773, %vf35, %vf1772
 	fadd	%vf1774, %vf1773, %vf36
@@ -7444,7 +7499,8 @@ else.231002:
 	fsub	%vf1792, %vf1756, %vf1791
 	fsub	%vf1793, %vf31, %vf1792
 	fleq	%vi1280, %vf1792, %vf32
-	ftern	%vf1794, %vi1280, %vf1792, %vf1793
+	mif	%vtf245, %vi1280
+	ftern	%vf1794, %vtf245, %vf1792, %vf1793
 	fmul	%vf1795, %vf1794, %vf1794
 	fmul	%vf1796, %vf35, %vf1795
 	fadd	%vf1797, %vf1796, %vf36
@@ -7488,7 +7544,8 @@ cont.231003:
 	finv	%vf1824, %vf1823
 	fmul	%vf1825, %vf30, %vf1824
 	ceq	%vi1284, %vi1282, %vi1283
-	ftern	%vf1826, %vi1284, %vf1825, %vf1823
+	mif	%vtf248, %vi1284
+	ftern	%vf1826, %vtf248, %vf1825, %vf1823
 	fmul	%vf1827, %vf1826, %vf1826
 	fmul	%vf1828, %vf39, %vf1827
 	fadd	%vf1829, %vf1828, %vf40
@@ -7502,7 +7559,8 @@ cont.231003:
 	fadd	%vf1837, %vf1836, %vf44
 	fmul	%vf1838, %vf1837, %vf1827
 	fadd	%vf1839, %vf1838, %vf45
-	ftern	%vf1840, %vi1284, %vf30, %vf29
+	mif	%vtf249, %vi1284
+	ftern	%vf1840, %vtf249, %vf30, %vf29
 	fmul	%vf1841, %vf1840, %vf1839
 	fmul	%vf1842, %vf1841, %vf1826
 	add	%vi1285, %vi1282, %vi1283
@@ -7538,7 +7596,8 @@ else.231012:
 	fsub	%vf1859, %vf1846, %vf1858
 	fsub	%vf1860, %vf31, %vf1859
 	fleq	%vi1287, %vf1859, %vf32
-	ftern	%vf1861, %vi1287, %vf1859, %vf1860
+	mif	%vtf252, %vi1287
+	ftern	%vf1861, %vtf252, %vf1859, %vf1860
 	fmul	%vf1862, %vf1861, %vf1861
 	fmul	%vf1863, %vf35, %vf1862
 	fadd	%vf1864, %vf1863, %vf36
@@ -7575,7 +7634,8 @@ else.231010:
 	fsub	%vf1882, %vf1846, %vf1881
 	fsub	%vf1883, %vf31, %vf1882
 	fleq	%vi1288, %vf1882, %vf32
-	ftern	%vf1884, %vi1288, %vf1882, %vf1883
+	mif	%vtf254, %vi1288
+	ftern	%vf1884, %vtf254, %vf1882, %vf1883
 	fmul	%vf1885, %vf1884, %vf1884
 	fmul	%vf1886, %vf35, %vf1885
 	fadd	%vf1887, %vf1886, %vf36
@@ -7798,7 +7858,8 @@ cont.230982:
 	finv	%vf1938, %vf1937
 	fmul	%vf1939, %vf30, %vf1938
 	ceq	%vi1326, %vi1324, %vi1325
-	ftern	%vf1940, %vi1326, %vf1939, %vf1937
+	mif	%vtf260, %vi1326
+	ftern	%vf1940, %vtf260, %vf1939, %vf1937
 	fmul	%vf1941, %vf1940, %vf1940
 	fmul	%vf1942, %vf39, %vf1941
 	fadd	%vf1943, %vf1942, %vf40
@@ -7812,7 +7873,8 @@ cont.230982:
 	fadd	%vf1951, %vf1950, %vf44
 	fmul	%vf1952, %vf1951, %vf1941
 	fadd	%vf1953, %vf1952, %vf45
-	ftern	%vf1954, %vi1326, %vf30, %vf29
+	mif	%vtf261, %vi1326
+	ftern	%vf1954, %vtf261, %vf30, %vf29
 	fmul	%vf1955, %vf1954, %vf1953
 	fmul	%vf1956, %vf1955, %vf1940
 	add	%vi1327, %vi1324, %vi1325
@@ -7848,7 +7910,8 @@ else.231022:
 	fsub	%vf1973, %vf1960, %vf1972
 	fsub	%vf1974, %vf31, %vf1973
 	fleq	%vi1329, %vf1973, %vf32
-	ftern	%vf1975, %vi1329, %vf1973, %vf1974
+	mif	%vtf264, %vi1329
+	ftern	%vf1975, %vtf264, %vf1973, %vf1974
 	fmul	%vf1976, %vf1975, %vf1975
 	fmul	%vf1977, %vf35, %vf1976
 	fadd	%vf1978, %vf1977, %vf36
@@ -7885,7 +7948,8 @@ else.231020:
 	fsub	%vf1996, %vf1960, %vf1995
 	fsub	%vf1997, %vf31, %vf1996
 	fleq	%vi1330, %vf1996, %vf32
-	ftern	%vf1998, %vi1330, %vf1996, %vf1997
+	mif	%vtf266, %vi1330
+	ftern	%vf1998, %vtf266, %vf1996, %vf1997
 	fmul	%vf1999, %vf1998, %vf1998
 	fmul	%vf2000, %vf35, %vf1999
 	fadd	%vf2001, %vf2000, %vf36
@@ -7929,7 +7993,8 @@ cont.231021:
 	finv	%vf2028, %vf2027
 	fmul	%vf2029, %vf30, %vf2028
 	ceq	%vi1334, %vi1332, %vi1333
-	ftern	%vf2030, %vi1334, %vf2029, %vf2027
+	mif	%vtf269, %vi1334
+	ftern	%vf2030, %vtf269, %vf2029, %vf2027
 	fmul	%vf2031, %vf2030, %vf2030
 	fmul	%vf2032, %vf39, %vf2031
 	fadd	%vf2033, %vf2032, %vf40
@@ -7943,7 +8008,8 @@ cont.231021:
 	fadd	%vf2041, %vf2040, %vf44
 	fmul	%vf2042, %vf2041, %vf2031
 	fadd	%vf2043, %vf2042, %vf45
-	ftern	%vf2044, %vi1334, %vf30, %vf29
+	mif	%vtf270, %vi1334
+	ftern	%vf2044, %vtf270, %vf30, %vf29
 	fmul	%vf2045, %vf2044, %vf2043
 	fmul	%vf2046, %vf2045, %vf2030
 	add	%vi1335, %vi1332, %vi1333
@@ -7979,7 +8045,8 @@ else.231030:
 	fsub	%vf2063, %vf2050, %vf2062
 	fsub	%vf2064, %vf31, %vf2063
 	fleq	%vi1337, %vf2063, %vf32
-	ftern	%vf2065, %vi1337, %vf2063, %vf2064
+	mif	%vtf273, %vi1337
+	ftern	%vf2065, %vtf273, %vf2063, %vf2064
 	fmul	%vf2066, %vf2065, %vf2065
 	fmul	%vf2067, %vf35, %vf2066
 	fadd	%vf2068, %vf2067, %vf36
@@ -8016,7 +8083,8 @@ else.231028:
 	fsub	%vf2086, %vf2050, %vf2085
 	fsub	%vf2087, %vf31, %vf2086
 	fleq	%vi1338, %vf2086, %vf32
-	ftern	%vf2088, %vi1338, %vf2086, %vf2087
+	mif	%vtf275, %vi1338
+	ftern	%vf2088, %vtf275, %vf2086, %vf2087
 	fmul	%vf2089, %vf2088, %vf2088
 	fmul	%vf2090, %vf35, %vf2089
 	fadd	%vf2091, %vf2090, %vf36
@@ -8065,7 +8133,8 @@ loop_start.224301:
 	finv	%vf2137, %vf2136
 	fmul	%vf2138, %vf30, %vf2137
 	ceq	%vi1372, %vi1370, %vi1371
-	ftern	%vf2139, %vi1372, %vf2138, %vf2136
+	mif	%vtf279, %vi1372
+	ftern	%vf2139, %vtf279, %vf2138, %vf2136
 	fmul	%vf2140, %vf2139, %vf2139
 	fmul	%vf2141, %vf39, %vf2140
 	fadd	%vf2142, %vf2141, %vf40
@@ -8079,7 +8148,8 @@ loop_start.224301:
 	fadd	%vf2150, %vf2149, %vf44
 	fmul	%vf2151, %vf2150, %vf2140
 	fadd	%vf2152, %vf2151, %vf45
-	ftern	%vf2153, %vi1372, %vf30, %vf29
+	mif	%vtf280, %vi1372
+	ftern	%vf2153, %vtf280, %vf30, %vf29
 	fmul	%vf2154, %vf2153, %vf2152
 	fmul	%vf2155, %vf2154, %vf2139
 	add	%vi1373, %vi1370, %vi1371
@@ -8115,7 +8185,8 @@ else.231041:
 	fsub	%vf2172, %vf2159, %vf2171
 	fsub	%vf2173, %vf31, %vf2172
 	fleq	%vi1375, %vf2172, %vf32
-	ftern	%vf2174, %vi1375, %vf2172, %vf2173
+	mif	%vtf283, %vi1375
+	ftern	%vf2174, %vtf283, %vf2172, %vf2173
 	fmul	%vf2175, %vf2174, %vf2174
 	fmul	%vf2176, %vf35, %vf2175
 	fadd	%vf2177, %vf2176, %vf36
@@ -8152,7 +8223,8 @@ else.231039:
 	fsub	%vf2195, %vf2159, %vf2194
 	fsub	%vf2196, %vf31, %vf2195
 	fleq	%vi1376, %vf2195, %vf32
-	ftern	%vf2197, %vi1376, %vf2195, %vf2196
+	mif	%vtf285, %vi1376
+	ftern	%vf2197, %vtf285, %vf2195, %vf2196
 	fmul	%vf2198, %vf2197, %vf2197
 	fmul	%vf2199, %vf35, %vf2198
 	fadd	%vf2200, %vf2199, %vf36
@@ -8196,7 +8268,8 @@ cont.231040:
 	finv	%vf2227, %vf2226
 	fmul	%vf2228, %vf30, %vf2227
 	ceq	%vi1380, %vi1378, %vi1379
-	ftern	%vf2229, %vi1380, %vf2228, %vf2226
+	mif	%vtf288, %vi1380
+	ftern	%vf2229, %vtf288, %vf2228, %vf2226
 	fmul	%vf2230, %vf2229, %vf2229
 	fmul	%vf2231, %vf39, %vf2230
 	fadd	%vf2232, %vf2231, %vf40
@@ -8210,7 +8283,8 @@ cont.231040:
 	fadd	%vf2240, %vf2239, %vf44
 	fmul	%vf2241, %vf2240, %vf2230
 	fadd	%vf2242, %vf2241, %vf45
-	ftern	%vf2243, %vi1380, %vf30, %vf29
+	mif	%vtf289, %vi1380
+	ftern	%vf2243, %vtf289, %vf30, %vf29
 	fmul	%vf2244, %vf2243, %vf2242
 	fmul	%vf2245, %vf2244, %vf2229
 	add	%vi1381, %vi1378, %vi1379
@@ -8246,7 +8320,8 @@ else.231049:
 	fsub	%vf2262, %vf2249, %vf2261
 	fsub	%vf2263, %vf31, %vf2262
 	fleq	%vi1383, %vf2262, %vf32
-	ftern	%vf2264, %vi1383, %vf2262, %vf2263
+	mif	%vtf292, %vi1383
+	ftern	%vf2264, %vtf292, %vf2262, %vf2263
 	fmul	%vf2265, %vf2264, %vf2264
 	fmul	%vf2266, %vf35, %vf2265
 	fadd	%vf2267, %vf2266, %vf36
@@ -8283,7 +8358,8 @@ else.231047:
 	fsub	%vf2285, %vf2249, %vf2284
 	fsub	%vf2286, %vf31, %vf2285
 	fleq	%vi1384, %vf2285, %vf32
-	ftern	%vf2287, %vi1384, %vf2285, %vf2286
+	mif	%vtf294, %vi1384
+	ftern	%vf2287, %vtf294, %vf2285, %vf2286
 	fmul	%vf2288, %vf2287, %vf2287
 	fmul	%vf2289, %vf35, %vf2288
 	fadd	%vf2290, %vf2289, %vf36
@@ -8718,7 +8794,8 @@ then.231074:
 	mov	%vi1430, %i0
 	fneg	%vf2312, %vf2311
 	ceqi	%vi1431, %vi1428, 0
-	ftern	%vf2313, %vi1431, %vf2312, %vf2311
+	mif	%vtf300, %vi1431
+	ftern	%vf2313, %vtf300, %vf2312, %vf2311
 	sf	%vf2313, 0(%vi1424)
 	mov	%vi1432, %i0
 	lf	%vf2314, 0(%vi1409)
@@ -8741,7 +8818,8 @@ then.231076:
 	mov	%vi1436, %i0
 	fneg	%vf2319, %vf2318
 	ceqi	%vi1437, %vi1435, 0
-	ftern	%vf2320, %vi1437, %vf2319, %vf2318
+	mif	%vtf301, %vi1437
+	ftern	%vf2320, %vtf301, %vf2319, %vf2318
 	sf	%vf2320, 8(%vi1424)
 	lf	%vf2321, 4(%vi1409)
 	finv	%vf2322, %vf2321
@@ -8763,7 +8841,8 @@ then.231078:
 	mov	%vi1441, %i0
 	fneg	%vf2326, %vf2325
 	ceqi	%vi1442, %vi1440, 0
-	ftern	%vf2327, %vi1442, %vf2326, %vf2325
+	mif	%vtf302, %vi1442
+	ftern	%vf2327, %vtf302, %vf2326, %vf2325
 	sf	%vf2327, 16(%vi1424)
 	lf	%vf2328, 8(%vi1409)
 	finv	%vf2329, %vf2328
@@ -8952,7 +9031,8 @@ then.231094:
 	mov	%vi1472, %i0
 	fneg	%vf2404, %vf2403
 	ceqi	%vi1473, %vi1470, 0
-	ftern	%vf2405, %vi1473, %vf2404, %vf2403
+	mif	%vtf307, %vi1473
+	ftern	%vf2405, %vtf307, %vf2404, %vf2403
 	sf	%vf2405, 0(%vi1466)
 	mov	%vi1474, %i0
 	lf	%vf2406, 0(%vi1409)
@@ -8975,7 +9055,8 @@ then.231096:
 	mov	%vi1478, %i0
 	fneg	%vf2411, %vf2410
 	ceqi	%vi1479, %vi1477, 0
-	ftern	%vf2412, %vi1479, %vf2411, %vf2410
+	mif	%vtf308, %vi1479
+	ftern	%vf2412, %vtf308, %vf2411, %vf2410
 	sf	%vf2412, 8(%vi1466)
 	lf	%vf2413, 4(%vi1409)
 	finv	%vf2414, %vf2413
@@ -8997,7 +9078,8 @@ then.231098:
 	mov	%vi1483, %i0
 	fneg	%vf2418, %vf2417
 	ceqi	%vi1484, %vi1482, 0
-	ftern	%vf2419, %vi1484, %vf2418, %vf2417
+	mif	%vtf309, %vi1484
+	ftern	%vf2419, %vtf309, %vf2418, %vf2417
 	sf	%vf2419, 16(%vi1466)
 	lf	%vf2420, 8(%vi1409)
 	finv	%vf2421, %vf2420
@@ -9217,7 +9299,8 @@ then.231113:
 	mov	%vi1519, %i0
 	fneg	%vf2497, %vf2494
 	ceqi	%vi1520, %vi1518, 0
-	ftern	%vf2498, %vi1520, %vf2497, %vf2494
+	mif	%vtf310, %vi1520
+	ftern	%vf2498, %vtf310, %vf2497, %vf2494
 	sf	%vf2498, 0(%vi1514)
 	finv	%vf2499, %vf506
 	fmul	%vf2500, %vf30, %vf2499
@@ -9236,7 +9319,8 @@ then.231115:
 	mov	%vi1524, %i0
 	fneg	%vf2501, %vf2495
 	ceqi	%vi1525, %vi1523, 0
-	ftern	%vf2502, %vi1525, %vf2501, %vf2495
+	mif	%vtf311, %vi1525
+	ftern	%vf2502, %vtf311, %vf2501, %vf2495
 	sf	%vf2502, 8(%vi1514)
 	finv	%vf2503, %vf393
 	fmul	%vf2504, %vf30, %vf2503
@@ -9255,7 +9339,8 @@ then.231117:
 	mov	%vi1529, %i0
 	fneg	%vf2505, %vf2496
 	ceqi	%vi1530, %vi1528, 0
-	ftern	%vf2506, %vi1530, %vf2505, %vf2496
+	mif	%vtf312, %vi1530
+	ftern	%vf2506, %vtf312, %vf2505, %vf2496
 	sf	%vf2506, 16(%vi1514)
 	finv	%vf2507, %vf562
 	fmul	%vf2508, %vf30, %vf2507
@@ -9436,7 +9521,8 @@ then.231133:
 	mov	%vi1558, %i0
 	fneg	%vf2577, %vf2574
 	ceqi	%vi1559, %vi1557, 0
-	ftern	%vf2578, %vi1559, %vf2577, %vf2574
+	mif	%vtf317, %vi1559
+	ftern	%vf2578, %vtf317, %vf2577, %vf2574
 	sf	%vf2578, 0(%vi1553)
 	finv	%vf2579, %vf506
 	fmul	%vf2580, %vf30, %vf2579
@@ -9455,7 +9541,8 @@ then.231135:
 	mov	%vi1563, %i0
 	fneg	%vf2581, %vf2575
 	ceqi	%vi1564, %vi1562, 0
-	ftern	%vf2582, %vi1564, %vf2581, %vf2575
+	mif	%vtf318, %vi1564
+	ftern	%vf2582, %vtf318, %vf2581, %vf2575
 	sf	%vf2582, 8(%vi1553)
 	finv	%vf2583, %vf393
 	fmul	%vf2584, %vf30, %vf2583
@@ -9474,7 +9561,8 @@ then.231137:
 	mov	%vi1568, %i0
 	fneg	%vf2585, %vf2576
 	ceqi	%vi1569, %vi1567, 0
-	ftern	%vf2586, %vi1569, %vf2585, %vf2576
+	mif	%vtf319, %vi1569
+	ftern	%vf2586, %vtf319, %vf2585, %vf2576
 	sf	%vf2586, 16(%vi1553)
 	finv	%vf2587, %vf562
 	fmul	%vf2588, %vf30, %vf2587
@@ -9767,7 +9855,8 @@ then.231165:
 	mov	%vi1924, %i0
 	fneg	%vf3231, %vf3230
 	ceqi	%vi1925, %vi1922, 0
-	ftern	%vf3232, %vi1925, %vf3231, %vf3230
+	mif	%vtf321, %vi1925
+	ftern	%vf3232, %vtf321, %vf3231, %vf3230
 	sf	%vf3232, 0(%vi1918)
 	mov	%vi1926, %i0
 	lf	%vf3233, 0(%vi1899)
@@ -9790,7 +9879,8 @@ then.231167:
 	mov	%vi1930, %i0
 	fneg	%vf3238, %vf3237
 	ceqi	%vi1931, %vi1929, 0
-	ftern	%vf3239, %vi1931, %vf3238, %vf3237
+	mif	%vtf322, %vi1931
+	ftern	%vf3239, %vtf322, %vf3238, %vf3237
 	sf	%vf3239, 8(%vi1918)
 	lf	%vf3240, 4(%vi1899)
 	finv	%vf3241, %vf3240
@@ -9812,7 +9902,8 @@ then.231169:
 	mov	%vi1935, %i0
 	fneg	%vf3245, %vf3244
 	ceqi	%vi1936, %vi1934, 0
-	ftern	%vf3246, %vi1936, %vf3245, %vf3244
+	mif	%vtf323, %vi1936
+	ftern	%vf3246, %vtf323, %vf3245, %vf3244
 	sf	%vf3246, 16(%vi1918)
 	lf	%vf3247, 8(%vi1899)
 	finv	%vf3248, %vf3247
@@ -10001,7 +10092,8 @@ then.231185:
 	mov	%vi1966, %i0
 	fneg	%vf3323, %vf3322
 	ceqi	%vi1967, %vi1964, 0
-	ftern	%vf3324, %vi1967, %vf3323, %vf3322
+	mif	%vtf328, %vi1967
+	ftern	%vf3324, %vtf328, %vf3323, %vf3322
 	sf	%vf3324, 0(%vi1960)
 	mov	%vi1968, %i0
 	lf	%vf3325, 0(%vi1899)
@@ -10024,7 +10116,8 @@ then.231187:
 	mov	%vi1972, %i0
 	fneg	%vf3330, %vf3329
 	ceqi	%vi1973, %vi1971, 0
-	ftern	%vf3331, %vi1973, %vf3330, %vf3329
+	mif	%vtf329, %vi1973
+	ftern	%vf3331, %vtf329, %vf3330, %vf3329
 	sf	%vf3331, 8(%vi1960)
 	lf	%vf3332, 4(%vi1899)
 	finv	%vf3333, %vf3332
@@ -10046,7 +10139,8 @@ then.231189:
 	mov	%vi1977, %i0
 	fneg	%vf3337, %vf3336
 	ceqi	%vi1978, %vi1976, 0
-	ftern	%vf3338, %vi1978, %vf3337, %vf3336
+	mif	%vtf330, %vi1978
+	ftern	%vf3338, %vtf330, %vf3337, %vf3336
 	sf	%vf3338, 16(%vi1960)
 	lf	%vf3339, 8(%vi1899)
 	finv	%vf3340, %vf3339
@@ -10291,7 +10385,8 @@ then.231207:
 	mov	%vi1625, %i0
 	fneg	%vf2661, %vf2660
 	ceqi	%vi1626, %vi1623, 0
-	ftern	%vf2662, %vi1626, %vf2661, %vf2660
+	mif	%vtf332, %vi1626
+	ftern	%vf2662, %vtf332, %vf2661, %vf2660
 	sf	%vf2662, 0(%vi1619)
 	mov	%vi1627, %i0
 	lf	%vf2663, 0(%vi1600)
@@ -10314,7 +10409,8 @@ then.231209:
 	mov	%vi1631, %i0
 	fneg	%vf2668, %vf2667
 	ceqi	%vi1632, %vi1630, 0
-	ftern	%vf2669, %vi1632, %vf2668, %vf2667
+	mif	%vtf333, %vi1632
+	ftern	%vf2669, %vtf333, %vf2668, %vf2667
 	sf	%vf2669, 8(%vi1619)
 	lf	%vf2670, 4(%vi1600)
 	finv	%vf2671, %vf2670
@@ -10336,7 +10432,8 @@ then.231211:
 	mov	%vi1636, %i0
 	fneg	%vf2675, %vf2674
 	ceqi	%vi1637, %vi1635, 0
-	ftern	%vf2676, %vi1637, %vf2675, %vf2674
+	mif	%vtf334, %vi1637
+	ftern	%vf2676, %vtf334, %vf2675, %vf2674
 	sf	%vf2676, 16(%vi1619)
 	lf	%vf2677, 8(%vi1600)
 	finv	%vf2678, %vf2677
@@ -10525,7 +10622,8 @@ then.231227:
 	mov	%vi1667, %i0
 	fneg	%vf2753, %vf2752
 	ceqi	%vi1668, %vi1665, 0
-	ftern	%vf2754, %vi1668, %vf2753, %vf2752
+	mif	%vtf339, %vi1668
+	ftern	%vf2754, %vtf339, %vf2753, %vf2752
 	sf	%vf2754, 0(%vi1661)
 	mov	%vi1669, %i0
 	lf	%vf2755, 0(%vi1600)
@@ -10548,7 +10646,8 @@ then.231229:
 	mov	%vi1673, %i0
 	fneg	%vf2760, %vf2759
 	ceqi	%vi1674, %vi1672, 0
-	ftern	%vf2761, %vi1674, %vf2760, %vf2759
+	mif	%vtf340, %vi1674
+	ftern	%vf2761, %vtf340, %vf2760, %vf2759
 	sf	%vf2761, 8(%vi1661)
 	lf	%vf2762, 4(%vi1600)
 	finv	%vf2763, %vf2762
@@ -10570,7 +10669,8 @@ then.231231:
 	mov	%vi1678, %i0
 	fneg	%vf2767, %vf2766
 	ceqi	%vi1679, %vi1677, 0
-	ftern	%vf2768, %vi1679, %vf2767, %vf2766
+	mif	%vtf341, %vi1679
+	ftern	%vf2768, %vtf341, %vf2767, %vf2766
 	sf	%vf2768, 16(%vi1661)
 	lf	%vf2769, 8(%vi1600)
 	finv	%vf2770, %vf2769
@@ -10800,7 +10900,8 @@ then.231249:
 	mov	%vi1723, %i0
 	fneg	%vf2845, %vf2844
 	ceqi	%vi1724, %vi1721, 0
-	ftern	%vf2846, %vi1724, %vf2845, %vf2844
+	mif	%vtf343, %vi1724
+	ftern	%vf2846, %vtf343, %vf2845, %vf2844
 	sf	%vf2846, 0(%vi1717)
 	mov	%vi1725, %i0
 	lf	%vf2847, 0(%vi1698)
@@ -10823,7 +10924,8 @@ then.231251:
 	mov	%vi1729, %i0
 	fneg	%vf2852, %vf2851
 	ceqi	%vi1730, %vi1728, 0
-	ftern	%vf2853, %vi1730, %vf2852, %vf2851
+	mif	%vtf344, %vi1730
+	ftern	%vf2853, %vtf344, %vf2852, %vf2851
 	sf	%vf2853, 8(%vi1717)
 	lf	%vf2854, 4(%vi1698)
 	finv	%vf2855, %vf2854
@@ -10845,7 +10947,8 @@ then.231253:
 	mov	%vi1734, %i0
 	fneg	%vf2859, %vf2858
 	ceqi	%vi1735, %vi1733, 0
-	ftern	%vf2860, %vi1735, %vf2859, %vf2858
+	mif	%vtf345, %vi1735
+	ftern	%vf2860, %vtf345, %vf2859, %vf2858
 	sf	%vf2860, 16(%vi1717)
 	lf	%vf2861, 8(%vi1698)
 	finv	%vf2862, %vf2861
@@ -11034,7 +11137,8 @@ then.231269:
 	mov	%vi1765, %i0
 	fneg	%vf2937, %vf2936
 	ceqi	%vi1766, %vi1763, 0
-	ftern	%vf2938, %vi1766, %vf2937, %vf2936
+	mif	%vtf350, %vi1766
+	ftern	%vf2938, %vtf350, %vf2937, %vf2936
 	sf	%vf2938, 0(%vi1759)
 	mov	%vi1767, %i0
 	lf	%vf2939, 0(%vi1698)
@@ -11057,7 +11161,8 @@ then.231271:
 	mov	%vi1771, %i0
 	fneg	%vf2944, %vf2943
 	ceqi	%vi1772, %vi1770, 0
-	ftern	%vf2945, %vi1772, %vf2944, %vf2943
+	mif	%vtf351, %vi1772
+	ftern	%vf2945, %vtf351, %vf2944, %vf2943
 	sf	%vf2945, 8(%vi1759)
 	lf	%vf2946, 4(%vi1698)
 	finv	%vf2947, %vf2946
@@ -11079,7 +11184,8 @@ then.231273:
 	mov	%vi1776, %i0
 	fneg	%vf2951, %vf2950
 	ceqi	%vi1777, %vi1775, 0
-	ftern	%vf2952, %vi1777, %vf2951, %vf2950
+	mif	%vtf352, %vi1777
+	ftern	%vf2952, %vtf352, %vf2951, %vf2950
 	sf	%vf2952, 16(%vi1759)
 	lf	%vf2953, 8(%vi1698)
 	finv	%vf2954, %vf2953
@@ -11309,7 +11415,8 @@ then.231291:
 	mov	%vi1821, %i0
 	fneg	%vf3029, %vf3028
 	ceqi	%vi1822, %vi1819, 0
-	ftern	%vf3030, %vi1822, %vf3029, %vf3028
+	mif	%vtf354, %vi1822
+	ftern	%vf3030, %vtf354, %vf3029, %vf3028
 	sf	%vf3030, 0(%vi1815)
 	mov	%vi1823, %i0
 	lf	%vf3031, 0(%vi1796)
@@ -11332,7 +11439,8 @@ then.231293:
 	mov	%vi1827, %i0
 	fneg	%vf3036, %vf3035
 	ceqi	%vi1828, %vi1826, 0
-	ftern	%vf3037, %vi1828, %vf3036, %vf3035
+	mif	%vtf355, %vi1828
+	ftern	%vf3037, %vtf355, %vf3036, %vf3035
 	sf	%vf3037, 8(%vi1815)
 	lf	%vf3038, 4(%vi1796)
 	finv	%vf3039, %vf3038
@@ -11354,7 +11462,8 @@ then.231295:
 	mov	%vi1832, %i0
 	fneg	%vf3043, %vf3042
 	ceqi	%vi1833, %vi1831, 0
-	ftern	%vf3044, %vi1833, %vf3043, %vf3042
+	mif	%vtf356, %vi1833
+	ftern	%vf3044, %vtf356, %vf3043, %vf3042
 	sf	%vf3044, 16(%vi1815)
 	lf	%vf3045, 8(%vi1796)
 	finv	%vf3046, %vf3045
@@ -11543,7 +11652,8 @@ then.231311:
 	mov	%vi1863, %i0
 	fneg	%vf3121, %vf3120
 	ceqi	%vi1864, %vi1861, 0
-	ftern	%vf3122, %vi1864, %vf3121, %vf3120
+	mif	%vtf361, %vi1864
+	ftern	%vf3122, %vtf361, %vf3121, %vf3120
 	sf	%vf3122, 0(%vi1857)
 	mov	%vi1865, %i0
 	lf	%vf3123, 0(%vi1796)
@@ -11566,7 +11676,8 @@ then.231313:
 	mov	%vi1869, %i0
 	fneg	%vf3128, %vf3127
 	ceqi	%vi1870, %vi1868, 0
-	ftern	%vf3129, %vi1870, %vf3128, %vf3127
+	mif	%vtf362, %vi1870
+	ftern	%vf3129, %vtf362, %vf3128, %vf3127
 	sf	%vf3129, 8(%vi1857)
 	lf	%vf3130, 4(%vi1796)
 	finv	%vf3131, %vf3130
@@ -11588,7 +11699,8 @@ then.231315:
 	mov	%vi1874, %i0
 	fneg	%vf3135, %vf3134
 	ceqi	%vi1875, %vi1873, 0
-	ftern	%vf3136, %vi1875, %vf3135, %vf3134
+	mif	%vtf363, %vi1875
+	ftern	%vf3136, %vtf363, %vf3135, %vf3134
 	sf	%vf3136, 16(%vi1857)
 	lf	%vf3137, 8(%vi1796)
 	finv	%vf3138, %vf3137
@@ -11746,7 +11858,8 @@ then.231318:
 	finv	%vf3440, %vf3439
 	fmul	%vf3441, %vf30, %vf3440
 	ceqi	%vi2019, %vi2017, 0
-	ftern	%vf3442, %vi2019, %vf3441, %vf30
+	mif	%vtf368, %vi2019
+	ftern	%vf3442, %vtf368, %vf3441, %vf30
 	mov	%vi2020, %i0
 	fmul	%vf3443, %vf3429, %vf3442
 	sf	%vf3443, 0(%vi59)
@@ -11909,7 +12022,8 @@ then.231338:
 cont.231339:
 	fsub	%vf3855, %vf3854, %vf30
 	ceqi	%vi2221, %vi2180, 3
-	ftern	%vf3856, %vi2221, %vf3855, %vf3854
+	mif	%vtf371, %vi2221
+	ftern	%vf3856, %vtf371, %vf3855, %vf3854
 	fmul	%vf3857, %vf3837, %vf3837
 	fmul	%vf3858, %vf3813, %vf3856
 	fsub	%vf3859, %vf3857, %vf3858
@@ -11923,7 +12037,8 @@ cont.231339:
 	mov	%vi2224, %i0
 	fneg	%vf3863, %vf3862
 	ceqi	%vi2225, %vi2176, 0
-	ftern	%vf3864, %vi2225, %vf3863, %vf3862
+	mif	%vtf373, %vi2225
+	ftern	%vf3864, %vtf373, %vf3863, %vf3862
 	fsub	%vf3865, %vf3864, %vf3837
 	finv	%vf3866, %vf3813
 	fmul	%vf3867, %vf3865, %vf3866
@@ -11989,7 +12104,8 @@ then.231344:
 	mov	%vi2186, %i0
 	fneg	%vf3730, %vf3724
 	ceqi	%vi2187, %vi2185, 0
-	ftern	%vf3731, %vi2187, %vf3730, %vf3724
+	mif	%vtf374, %vi2187
+	ftern	%vf3731, %vtf374, %vf3730, %vf3724
 	fsub	%vf3732, %vf3731, %vf3717
 	finv	%vf3733, %vf3727
 	fmul	%vf3734, %vf3732, %vf3733
@@ -12041,7 +12157,8 @@ then.231352:
 	mov	%vi2197, %i0
 	fneg	%vf3743, %vf3725
 	ceqi	%vi2198, %vi2196, 0
-	ftern	%vf3744, %vi2198, %vf3743, %vf3725
+	mif	%vtf377, %vi2198
+	ftern	%vf3744, %vtf377, %vf3743, %vf3725
 	fsub	%vf3745, %vf3744, %vf3720
 	finv	%vf3746, %vf3728
 	fmul	%vf3747, %vf3745, %vf3746
@@ -12094,7 +12211,8 @@ then.231360:
 	mov	%vi2209, %i0
 	fneg	%vf3756, %vf3726
 	ceqi	%vi2210, %vi2208, 0
-	ftern	%vf3757, %vi2210, %vf3756, %vf3726
+	mif	%vtf380, %vi2210
+	ftern	%vf3757, %vtf380, %vf3756, %vf3726
 	fsub	%vf3758, %vf3757, %vf3723
 	finv	%vf3759, %vf3729
 	fmul	%vf3760, %vf3758, %vf3759
@@ -12292,7 +12410,8 @@ then.231386:
 cont.231387:
 	fsub	%vf4016, %vf4015, %vf30
 	ceqi	%vi2293, %vi2246, 3
-	ftern	%vf4017, %vi2293, %vf4016, %vf4015
+	mif	%vtf385, %vi2293
+	ftern	%vf4017, %vtf385, %vf4016, %vf4015
 	fmul	%vf4018, %vf3995, %vf3995
 	fmul	%vf4019, %vf3968, %vf4017
 	fsub	%vf4020, %vf4018, %vf4019
@@ -12306,7 +12425,8 @@ cont.231387:
 	mov	%vi2296, %i0
 	fneg	%vf4024, %vf4023
 	ceqi	%vi2297, %vi2242, 0
-	ftern	%vf4025, %vi2297, %vf4024, %vf4023
+	mif	%vtf387, %vi2297
+	ftern	%vf4025, %vtf387, %vf4024, %vf4023
 	fsub	%vf4026, %vf4025, %vf3995
 	finv	%vf4027, %vf3968
 	fmul	%vf4028, %vf4026, %vf4027
@@ -12364,7 +12484,8 @@ then.231392:
 	mov	%vi2252, %i0
 	fneg	%vf3883, %vf3882
 	ceqi	%vi2253, %vi2251, 0
-	ftern	%vf3884, %vi2253, %vf3883, %vf3882
+	mif	%vtf388, %vi2253
+	ftern	%vf3884, %vtf388, %vf3883, %vf3882
 	fsub	%vf3885, %vf3884, %vf3875
 	finv	%vf3886, %vf3870
 	fmul	%vf3887, %vf3885, %vf3886
@@ -12420,7 +12541,8 @@ then.231400:
 	mov	%vi2264, %i0
 	fneg	%vf3899, %vf3898
 	ceqi	%vi2265, %vi2263, 0
-	ftern	%vf3900, %vi2265, %vf3899, %vf3898
+	mif	%vtf391, %vi2265
+	ftern	%vf3900, %vtf391, %vf3899, %vf3898
 	fsub	%vf3901, %vf3900, %vf3878
 	finv	%vf3902, %vf3871
 	fmul	%vf3903, %vf3901, %vf3902
@@ -12477,7 +12599,8 @@ then.231408:
 	mov	%vi2277, %i0
 	fneg	%vf3915, %vf3914
 	ceqi	%vi2278, %vi2276, 0
-	ftern	%vf3916, %vi2278, %vf3915, %vf3914
+	mif	%vtf394, %vi2278
+	ftern	%vf3916, %vtf394, %vf3915, %vf3914
 	fsub	%vf3917, %vf3916, %vf3881
 	finv	%vf3918, %vf3872
 	fmul	%vf3919, %vf3917, %vf3918
@@ -12600,7 +12723,8 @@ then.231426:
 cont.231427:
 	fsub	%vf4087, %vf4086, %vf30
 	ceqi	%vi2330, %vi2319, 3
-	ftern	%vf4088, %vi2330, %vf4087, %vf4086
+	mif	%vtf397, %vi2330
+	ftern	%vf4088, %vtf397, %vf4087, %vf4086
 	flt	%vi2331, %vf4088, %f0
 	mov	%i4, %vi2315
 	mov	%i5, %vi2331
@@ -12731,7 +12855,8 @@ then.231443:
 cont.231444:
 	fsub	%vf4135, %vf4134, %vf30
 	ceqi	%vi2357, %vi2346, 3
-	ftern	%vf4136, %vi2357, %vf4135, %vf4134
+	mif	%vtf402, %vi2357
+	ftern	%vf4136, %vtf402, %vf4135, %vf4134
 	flt	%vi2358, %vf4136, %f0
 	mov	%i4, %vi2342
 	mov	%i5, %vi2358
@@ -13031,7 +13156,8 @@ then.231472:
 cont.231473:
 	fsub	%vf3594, %vf3593, %vf30
 	ceqi	%vi2097, %vi2050, 3
-	ftern	%vf3595, %vi2097, %vf3594, %vf3593
+	mif	%vtf408, %vi2097
+	ftern	%vf3595, %vtf408, %vf3594, %vf3593
 	fmul	%vf3596, %vf3573, %vf3573
 	fmul	%vf3597, %vf3546, %vf3595
 	fsub	%vf3598, %vf3596, %vf3597
@@ -13045,7 +13171,8 @@ cont.231473:
 	mov	%vi2100, %i0
 	fneg	%vf3602, %vf3601
 	ceqi	%vi2101, %vi2046, 0
-	ftern	%vf3603, %vi2101, %vf3602, %vf3601
+	mif	%vtf410, %vi2101
+	ftern	%vf3603, %vtf410, %vf3602, %vf3601
 	fsub	%vf3604, %vf3603, %vf3573
 	finv	%vf3605, %vf3546
 	fmul	%vf3606, %vf3604, %vf3605
@@ -13103,7 +13230,8 @@ then.231478:
 	mov	%vi2056, %i0
 	fneg	%vf3461, %vf3460
 	ceqi	%vi2057, %vi2055, 0
-	ftern	%vf3462, %vi2057, %vf3461, %vf3460
+	mif	%vtf411, %vi2057
+	ftern	%vf3462, %vtf411, %vf3461, %vf3460
 	fsub	%vf3463, %vf3462, %vf3453
 	finv	%vf3464, %vf3448
 	fmul	%vf3465, %vf3463, %vf3464
@@ -13159,7 +13287,8 @@ then.231486:
 	mov	%vi2068, %i0
 	fneg	%vf3477, %vf3476
 	ceqi	%vi2069, %vi2067, 0
-	ftern	%vf3478, %vi2069, %vf3477, %vf3476
+	mif	%vtf414, %vi2069
+	ftern	%vf3478, %vtf414, %vf3477, %vf3476
 	fsub	%vf3479, %vf3478, %vf3456
 	finv	%vf3480, %vf3449
 	fmul	%vf3481, %vf3479, %vf3480
@@ -13216,7 +13345,8 @@ then.231494:
 	mov	%vi2081, %i0
 	fneg	%vf3493, %vf3492
 	ceqi	%vi2082, %vi2080, 0
-	ftern	%vf3494, %vi2082, %vf3493, %vf3492
+	mif	%vtf417, %vi2082
+	ftern	%vf3494, %vtf417, %vf3493, %vf3492
 	fsub	%vf3495, %vf3494, %vf3459
 	finv	%vf3496, %vf3450
 	fmul	%vf3497, %vf3495, %vf3496
@@ -13339,7 +13469,8 @@ then.231512:
 cont.231513:
 	fsub	%vf3665, %vf3664, %vf30
 	ceqi	%vi2134, %vi2123, 3
-	ftern	%vf3666, %vi2134, %vf3665, %vf3664
+	mif	%vtf420, %vi2134
+	ftern	%vf3666, %vtf420, %vf3665, %vf3664
 	flt	%vi2135, %vf3666, %f0
 	mov	%i4, %vi2119
 	mov	%i5, %vi2135
@@ -13470,7 +13601,8 @@ then.231529:
 cont.231530:
 	fsub	%vf3713, %vf3712, %vf30
 	ceqi	%vi2161, %vi2150, 3
-	ftern	%vf3714, %vi2161, %vf3713, %vf3712
+	mif	%vtf425, %vi2161
+	ftern	%vf3714, %vtf425, %vf3713, %vf3712
 	flt	%vi2162, %vf3714, %f0
 	mov	%i4, %vi2146
 	mov	%i5, %vi2162
@@ -13728,9 +13860,11 @@ cont.231549:
 	finv	%vf4214, %vf4211
 	fmul	%vf4215, %vf29, %vf4214
 	ceqi	%vi2409, %vi2389, 0
-	ftern	%vf4216, %vi2409, %vf4213, %vf4215
+	mif	%vtf430, %vi2409
+	ftern	%vf4216, %vtf430, %vf4213, %vf4215
 	ceqi	%vi2410, %vi2407, 0
-	ftern	%vf4217, %vi2410, %vf4216, %vf30
+	mif	%vtf431, %vi2410
+	ftern	%vf4217, %vtf431, %vf4216, %vf30
 	fmul	%vf4218, %vf4201, %vf4217
 	sf	%vf4218, 0(%vi52)
 	fmul	%vf4219, %vf4203, %vf4217
@@ -13845,7 +13979,8 @@ then.231561:
 	finv	%vf4399, %vf4398
 	fmul	%vf4400, %vf30, %vf4399
 	ceq	%vi2428, %vi2426, %vi2427
-	ftern	%vf4401, %vi2428, %vf4400, %vf4398
+	mif	%vtf436, %vi2428
+	ftern	%vf4401, %vtf436, %vf4400, %vf4398
 	fmul	%vf4402, %vf4401, %vf4401
 	fmul	%vf4403, %vf39, %vf4402
 	fadd	%vf4404, %vf4403, %vf40
@@ -13859,7 +13994,8 @@ then.231561:
 	fadd	%vf4412, %vf4411, %vf44
 	fmul	%vf4413, %vf4412, %vf4402
 	fadd	%vf4414, %vf4413, %vf45
-	ftern	%vf4415, %vi2428, %vf30, %vf29
+	mif	%vtf437, %vi2428
+	ftern	%vf4415, %vtf437, %vf30, %vf29
 	fmul	%vf4416, %vf4415, %vf4414
 	fmul	%vf4417, %vf4416, %vf4401
 	add	%vi2429, %vi2426, %vi2427
@@ -13904,7 +14040,8 @@ then.231563:
 	finv	%vf4440, %vf4439
 	fmul	%vf4441, %vf30, %vf4440
 	ceq	%vi2435, %vi2433, %vi2434
-	ftern	%vf4442, %vi2435, %vf4441, %vf4439
+	mif	%vtf443, %vi2435
+	ftern	%vf4442, %vtf443, %vf4441, %vf4439
 	fmul	%vf4443, %vf4442, %vf4442
 	fmul	%vf4444, %vf39, %vf4443
 	fadd	%vf4445, %vf4444, %vf40
@@ -13918,7 +14055,8 @@ then.231563:
 	fadd	%vf4453, %vf4452, %vf44
 	fmul	%vf4454, %vf4453, %vf4443
 	fadd	%vf4455, %vf4454, %vf45
-	ftern	%vf4456, %vi2435, %vf30, %vf29
+	mif	%vtf444, %vi2435
+	ftern	%vf4456, %vtf444, %vf30, %vf29
 	fmul	%vf4457, %vf4456, %vf4455
 	fmul	%vf4458, %vf4457, %vf4442
 	add	%vi2436, %vi2433, %vi2434
@@ -13944,7 +14082,8 @@ cont.231564:
 	flt	%vi2438, %vf4473, %f0
 	mov	%vi2439, %i0
 	ceqi	%vi2440, %vi2438, 0
-	ftern	%vf4474, %vi2440, %vf4473, %f0
+	mif	%vtf447, %vi2440
+	ftern	%vf4474, %vtf447, %vf4473, %f0
 	fmul	%vf4475, %vf55, %vf4474
 	finv	%vf4476, %vf9
 	fmul	%vf4477, %vf4475, %vf4476
@@ -13999,7 +14138,8 @@ else.231567:
 	fsub	%vf4330, %vf4317, %vf4329
 	fsub	%vf4331, %vf31, %vf4330
 	fleq	%vi2420, %vf4330, %vf32
-	ftern	%vf4332, %vi2420, %vf4330, %vf4331
+	mif	%vtf451, %vi2420
+	ftern	%vf4332, %vtf451, %vf4330, %vf4331
 	fmul	%vf4333, %vf4332, %vf4332
 	fmul	%vf4334, %vf35, %vf4333
 	fadd	%vf4335, %vf4334, %vf36
@@ -14036,7 +14176,8 @@ else.231565:
 	fsub	%vf4353, %vf4317, %vf4352
 	fsub	%vf4354, %vf31, %vf4353
 	fleq	%vi2421, %vf4353, %vf32
-	ftern	%vf4355, %vi2421, %vf4353, %vf4354
+	mif	%vtf453, %vi2421
+	ftern	%vf4355, %vtf453, %vf4353, %vf4354
 	fmul	%vf4356, %vf4355, %vf4355
 	fmul	%vf4357, %vf35, %vf4356
 	fadd	%vf4358, %vf4357, %vf36
@@ -14096,7 +14237,8 @@ else.231575:
 	fsub	%vf4255, %vf4242, %vf4254
 	fsub	%vf4256, %vf31, %vf4255
 	fleq	%vi2417, %vf4255, %vf32
-	ftern	%vf4257, %vi2417, %vf4255, %vf4256
+	mif	%vtf455, %vi2417
+	ftern	%vf4257, %vtf455, %vf4255, %vf4256
 	fmul	%vf4258, %vf4257, %vf4257
 	fmul	%vf4259, %vf35, %vf4258
 	fadd	%vf4260, %vf4259, %vf36
@@ -14133,7 +14275,8 @@ else.231573:
 	fsub	%vf4278, %vf4242, %vf4277
 	fsub	%vf4279, %vf31, %vf4278
 	fleq	%vi2418, %vf4278, %vf32
-	ftern	%vf4280, %vi2418, %vf4278, %vf4279
+	mif	%vtf457, %vi2418
+	ftern	%vf4280, %vtf457, %vf4278, %vf4279
 	fmul	%vf4281, %vf4280, %vf4280
 	fmul	%vf4282, %vf35, %vf4281
 	fadd	%vf4283, %vf4282, %vf36
@@ -14384,7 +14527,8 @@ then.231600:
 cont.231601:
 	fsub	%vf4601, %vf4600, %vf30
 	ceqi	%vi2508, %vi2479, 3
-	ftern	%vf4602, %vi2508, %vf4601, %vf4600
+	mif	%vtf461, %vi2508
+	ftern	%vf4602, %vtf461, %vf4601, %vf4600
 	fmul	%vf4603, %vf4577, %vf4577
 	fmul	%vf4604, %vf4569, %vf4602
 	fsub	%vf4605, %vf4603, %vf4604
@@ -14670,7 +14814,8 @@ then.231642:
 cont.231643:
 	fsub	%vf4706, %vf4705, %vf30
 	ceqi	%vi2564, %vi2535, 3
-	ftern	%vf4707, %vi2564, %vf4706, %vf4705
+	mif	%vtf471, %vi2564
+	ftern	%vf4707, %vtf471, %vf4706, %vf4705
 	fmul	%vf4708, %vf4682, %vf4682
 	fmul	%vf4709, %vf4674, %vf4707
 	fsub	%vf4710, %vf4708, %vf4709
@@ -14922,7 +15067,8 @@ then.231676:
 cont.231677:
 	fsub	%vf4774, %vf4773, %vf30
 	ceqi	%vi2601, %vi2589, 3
-	ftern	%vf4775, %vi2601, %vf4774, %vf4773
+	mif	%vtf479, %vi2601
+	ftern	%vf4775, %vtf479, %vf4774, %vf4773
 	flt	%vi2602, %vf4775, %f0
 	mov	%i4, %vi2585
 	mov	%i5, %vi2602
@@ -15054,7 +15200,8 @@ then.231693:
 cont.231694:
 	fsub	%vf4822, %vf4821, %vf30
 	ceqi	%vi2629, %vi2617, 3
-	ftern	%vf4823, %vi2629, %vf4822, %vf4821
+	mif	%vtf484, %vi2629
+	ftern	%vf4823, %vtf484, %vf4822, %vf4821
 	flt	%vi2630, %vf4823, %f0
 	mov	%i4, %vi2613
 	mov	%i5, %vi2630
@@ -15325,7 +15472,8 @@ then.231723:
 cont.231724:
 	fsub	%vf4914, %vf4913, %vf30
 	ceqi	%vi2697, %vi2668, 3
-	ftern	%vf4915, %vi2697, %vf4914, %vf4913
+	mif	%vtf490, %vi2697
+	ftern	%vf4915, %vtf490, %vf4914, %vf4913
 	fmul	%vf4916, %vf4890, %vf4890
 	fmul	%vf4917, %vf4882, %vf4915
 	fsub	%vf4918, %vf4916, %vf4917
@@ -15577,7 +15725,8 @@ then.231757:
 cont.231758:
 	fsub	%vf4982, %vf4981, %vf30
 	ceqi	%vi2734, %vi2722, 3
-	ftern	%vf4983, %vi2734, %vf4982, %vf4981
+	mif	%vtf498, %vi2734
+	ftern	%vf4983, %vtf498, %vf4982, %vf4981
 	flt	%vi2735, %vf4983, %f0
 	mov	%i4, %vi2718
 	mov	%i5, %vi2735
@@ -15709,7 +15858,8 @@ then.231774:
 cont.231775:
 	fsub	%vf5030, %vf5029, %vf30
 	ceqi	%vi2762, %vi2750, 3
-	ftern	%vf5031, %vi2762, %vf5030, %vf5029
+	mif	%vtf503, %vi2762
+	ftern	%vf5031, %vtf503, %vf5030, %vf5029
 	flt	%vi2763, %vf5031, %f0
 	mov	%i4, %vi2746
 	mov	%i5, %vi2763
@@ -16027,7 +16177,8 @@ then.231800:
 cont.231801:
 	fsub	%vf5121, %vf5120, %vf30
 	ceqi	%vi2808, %vi2799, 3
-	ftern	%vf5122, %vi2808, %vf5121, %vf5120
+	mif	%vtf507, %vi2808
+	ftern	%vf5122, %vtf507, %vf5121, %vf5120
 	sf	%vf5122, 12(%vi2794)
 cont.231799:
 	set_label	%vti1915, cont.231798
@@ -16121,7 +16272,8 @@ then.231808:
 cont.231809:
 	fsub	%vf5169, %vf5168, %vf30
 	ceqi	%vi2826, %vi2817, 3
-	ftern	%vf5170, %vi2826, %vf5169, %vf5168
+	mif	%vtf509, %vi2826
+	ftern	%vf5170, %vtf509, %vf5169, %vf5168
 	sf	%vf5170, 12(%vi2812)
 cont.231807:
 	set_label	%vti1922, cont.231806
@@ -16700,7 +16852,8 @@ then.231896:
 cont.231897:
 	fsub	%vf5550, %vf5549, %vf30
 	ceqi	%vi3064, %vi3054, 3
-	ftern	%vf5551, %vi3064, %vf5550, %vf5549
+	mif	%vtf528, %vi3064
+	ftern	%vf5551, %vtf528, %vf5550, %vf5549
 	flt	%vi3065, %vf5551, %f0
 	mov	%i4, %vi3050
 	mov	%i5, %vi3065
@@ -16830,7 +16983,8 @@ then.231913:
 cont.231914:
 	fsub	%vf5598, %vf5597, %vf30
 	ceqi	%vi3090, %vi3080, 3
-	ftern	%vf5599, %vi3090, %vf5598, %vf5597
+	mif	%vtf533, %vi3090
+	ftern	%vf5599, %vtf533, %vf5598, %vf5597
 	flt	%vi3091, %vf5599, %f0
 	mov	%i4, %vi3076
 	mov	%i5, %vi3091
@@ -17288,7 +17442,8 @@ then.231972:
 cont.231973:
 	fsub	%vf5301, %vf5300, %vf30
 	ceqi	%vi2915, %vi2905, 3
-	ftern	%vf5302, %vi2915, %vf5301, %vf5300
+	mif	%vtf546, %vi2915
+	ftern	%vf5302, %vtf546, %vf5301, %vf5300
 	flt	%vi2916, %vf5302, %f0
 	mov	%i4, %vi2901
 	mov	%i5, %vi2916
@@ -17418,7 +17573,8 @@ then.231989:
 cont.231990:
 	fsub	%vf5349, %vf5348, %vf30
 	ceqi	%vi2941, %vi2931, 3
-	ftern	%vf5350, %vi2941, %vf5349, %vf5348
+	mif	%vtf551, %vi2941
+	ftern	%vf5350, %vtf551, %vf5349, %vf5348
 	flt	%vi2942, %vf5350, %f0
 	mov	%i4, %vi2927
 	mov	%i5, %vi2942
@@ -17682,7 +17838,8 @@ then.232015:
 cont.232016:
 	fsub	%vf5691, %vf5690, %vf30
 	ceqi	%vi3153, %vi3127, 3
-	ftern	%vf5692, %vi3153, %vf5691, %vf5690
+	mif	%vtf556, %vi3153
+	ftern	%vf5692, %vtf556, %vf5691, %vf5690
 	fmul	%vf5693, %vf5673, %vf5673
 	fmul	%vf5694, %vf5664, %vf5692
 	fsub	%vf5695, %vf5693, %vf5694
@@ -17965,7 +18122,8 @@ then.232057:
 cont.232058:
 	fsub	%vf5795, %vf5794, %vf30
 	ceqi	%vi3209, %vi3180, 3
-	ftern	%vf5796, %vi3209, %vf5795, %vf5794
+	mif	%vtf566, %vi3209
+	ftern	%vf5796, %vtf566, %vf5795, %vf5794
 	fmul	%vf5797, %vf5771, %vf5771
 	fmul	%vf5798, %vf5762, %vf5796
 	fsub	%vf5799, %vf5797, %vf5798
@@ -18214,7 +18372,8 @@ then.232091:
 cont.232092:
 	fsub	%vf5861, %vf5860, %vf30
 	ceqi	%vi3245, %vi3234, 3
-	ftern	%vf5862, %vi3245, %vf5861, %vf5860
+	mif	%vtf574, %vi3245
+	ftern	%vf5862, %vtf574, %vf5861, %vf5860
 	flt	%vi3246, %vf5862, %f0
 	mov	%i4, %vi3230
 	mov	%i5, %vi3246
@@ -18345,7 +18504,8 @@ then.232108:
 cont.232109:
 	fsub	%vf5909, %vf5908, %vf30
 	ceqi	%vi3272, %vi3261, 3
-	ftern	%vf5910, %vi3272, %vf5909, %vf5908
+	mif	%vtf579, %vi3272
+	ftern	%vf5910, %vtf579, %vf5909, %vf5908
 	flt	%vi3273, %vf5910, %f0
 	mov	%i4, %vi3257
 	mov	%i5, %vi3273
@@ -18617,7 +18777,8 @@ then.232138:
 cont.232139:
 	fsub	%vf6002, %vf6001, %vf30
 	ceqi	%vi3340, %vi3311, 3
-	ftern	%vf6003, %vi3340, %vf6002, %vf6001
+	mif	%vtf585, %vi3340
+	ftern	%vf6003, %vtf585, %vf6002, %vf6001
 	fmul	%vf6004, %vf5978, %vf5978
 	fmul	%vf6005, %vf5969, %vf6003
 	fsub	%vf6006, %vf6004, %vf6005
@@ -18866,7 +19027,8 @@ then.232172:
 cont.232173:
 	fsub	%vf6068, %vf6067, %vf30
 	ceqi	%vi3376, %vi3365, 3
-	ftern	%vf6069, %vi3376, %vf6068, %vf6067
+	mif	%vtf593, %vi3376
+	ftern	%vf6069, %vtf593, %vf6068, %vf6067
 	flt	%vi3377, %vf6069, %f0
 	mov	%i4, %vi3361
 	mov	%i5, %vi3377
@@ -18997,7 +19159,8 @@ then.232189:
 cont.232190:
 	fsub	%vf6116, %vf6115, %vf30
 	ceqi	%vi3403, %vi3392, 3
-	ftern	%vf6117, %vi3403, %vf6116, %vf6115
+	mif	%vtf598, %vi3403
+	ftern	%vf6117, %vtf598, %vf6116, %vf6115
 	flt	%vi3404, %vf6117, %f0
 	mov	%i4, %vi3388
 	mov	%i5, %vi3404
@@ -19483,7 +19646,8 @@ then.232230:
 cont.232231:
 	fsub	%vf6219, %vf6218, %vf30
 	ceqi	%vi3494, %vi3484, 3
-	ftern	%vf6220, %vi3494, %vf6219, %vf6218
+	mif	%vtf603, %vi3494
+	ftern	%vf6220, %vtf603, %vf6219, %vf6218
 	sf	%vf6220, 12(%vi3479)
 cont.232229:
 	set_label	%vti2309, cont.232228
@@ -19578,7 +19742,8 @@ then.232238:
 cont.232239:
 	fsub	%vf6267, %vf6266, %vf30
 	ceqi	%vi3513, %vi3503, 3
-	ftern	%vf6268, %vi3513, %vf6267, %vf6266
+	mif	%vtf605, %vi3513
+	ftern	%vf6268, %vtf605, %vf6267, %vf6266
 	sf	%vf6268, 12(%vi3498)
 cont.232237:
 	set_label	%vti2316, cont.232236
@@ -20179,7 +20344,8 @@ then.232328:
 cont.232329:
 	fsub	%vf7908, %vf7907, %vf30
 	ceqi	%vi4422, %vi4410, 3
-	ftern	%vf7909, %vi4422, %vf7908, %vf7907
+	mif	%vtf624, %vi4422
+	ftern	%vf7909, %vtf624, %vf7908, %vf7907
 	flt	%vi4423, %vf7909, %f0
 	mov	%i4, %vi4406
 	mov	%i5, %vi4423
@@ -20311,7 +20477,8 @@ then.232345:
 cont.232346:
 	fsub	%vf7956, %vf7955, %vf30
 	ceqi	%vi4450, %vi4438, 3
-	ftern	%vf7957, %vi4450, %vf7956, %vf7955
+	mif	%vtf629, %vi4450
+	ftern	%vf7957, %vtf629, %vf7956, %vf7955
 	flt	%vi4451, %vf7957, %f0
 	mov	%i4, %vi4434
 	mov	%i5, %vi4451
@@ -20768,7 +20935,8 @@ then.232404:
 cont.232405:
 	fsub	%vf7662, %vf7661, %vf30
 	ceqi	%vi4269, %vi4257, 3
-	ftern	%vf7663, %vi4269, %vf7662, %vf7661
+	mif	%vtf642, %vi4269
+	ftern	%vf7663, %vtf642, %vf7662, %vf7661
 	flt	%vi4270, %vf7663, %f0
 	mov	%i4, %vi4253
 	mov	%i5, %vi4270
@@ -20900,7 +21068,8 @@ then.232421:
 cont.232422:
 	fsub	%vf7710, %vf7709, %vf30
 	ceqi	%vi4297, %vi4285, 3
-	ftern	%vf7711, %vi4297, %vf7710, %vf7709
+	mif	%vtf647, %vi4297
+	ftern	%vf7711, %vtf647, %vf7710, %vf7709
 	flt	%vi4298, %vf7711, %f0
 	mov	%i4, %vi4281
 	mov	%i5, %vi4298
@@ -21156,9 +21325,11 @@ cont.232440:
 	finv	%vf8011, %vf8008
 	fmul	%vf8012, %vf29, %vf8011
 	ceqi	%vi4496, %vi4476, 0
-	ftern	%vf8013, %vi4496, %vf8010, %vf8012
+	mif	%vtf652, %vi4496
+	ftern	%vf8013, %vtf652, %vf8010, %vf8012
 	ceqi	%vi4497, %vi4494, 0
-	ftern	%vf8014, %vi4497, %vf8013, %vf30
+	mif	%vtf653, %vi4497
+	ftern	%vf8014, %vtf653, %vf8013, %vf30
 	fmul	%vf8015, %vf7998, %vf8014
 	sf	%vf8015, 0(%vi52)
 	fmul	%vf8016, %vf8000, %vf8014
@@ -21260,7 +21431,8 @@ then.232452:
 	finv	%vf8188, %vf8187
 	fmul	%vf8189, %vf30, %vf8188
 	ceq	%vi4511, %vi4509, %vi4510
-	ftern	%vf8190, %vi4511, %vf8189, %vf8187
+	mif	%vtf658, %vi4511
+	ftern	%vf8190, %vtf658, %vf8189, %vf8187
 	fmul	%vf8191, %vf8190, %vf8190
 	fmul	%vf8192, %vf39, %vf8191
 	fadd	%vf8193, %vf8192, %vf40
@@ -21274,7 +21446,8 @@ then.232452:
 	fadd	%vf8201, %vf8200, %vf44
 	fmul	%vf8202, %vf8201, %vf8191
 	fadd	%vf8203, %vf8202, %vf45
-	ftern	%vf8204, %vi4511, %vf30, %vf29
+	mif	%vtf659, %vi4511
+	ftern	%vf8204, %vtf659, %vf30, %vf29
 	fmul	%vf8205, %vf8204, %vf8203
 	fmul	%vf8206, %vf8205, %vf8190
 	add	%vi4512, %vi4509, %vi4510
@@ -21317,7 +21490,8 @@ then.232454:
 	finv	%vf8227, %vf8226
 	fmul	%vf8228, %vf30, %vf8227
 	ceq	%vi4518, %vi4516, %vi4517
-	ftern	%vf8229, %vi4518, %vf8228, %vf8226
+	mif	%vtf665, %vi4518
+	ftern	%vf8229, %vtf665, %vf8228, %vf8226
 	fmul	%vf8230, %vf8229, %vf8229
 	fmul	%vf8231, %vf39, %vf8230
 	fadd	%vf8232, %vf8231, %vf40
@@ -21331,7 +21505,8 @@ then.232454:
 	fadd	%vf8240, %vf8239, %vf44
 	fmul	%vf8241, %vf8240, %vf8230
 	fadd	%vf8242, %vf8241, %vf45
-	ftern	%vf8243, %vi4518, %vf30, %vf29
+	mif	%vtf666, %vi4518
+	ftern	%vf8243, %vtf666, %vf30, %vf29
 	fmul	%vf8244, %vf8243, %vf8242
 	fmul	%vf8245, %vf8244, %vf8229
 	add	%vi4519, %vi4516, %vi4517
@@ -21357,7 +21532,8 @@ cont.232455:
 	flt	%vi4521, %vf8260, %f0
 	mov	%vi4522, %i0
 	ceqi	%vi4523, %vi4521, 0
-	ftern	%vf8261, %vi4523, %vf8260, %f0
+	mif	%vtf669, %vi4523
+	ftern	%vf8261, %vtf669, %vf8260, %f0
 	fmul	%vf8262, %vf55, %vf8261
 	finv	%vf8263, %vf9
 	fmul	%vf8264, %vf8262, %vf8263
@@ -21409,7 +21585,8 @@ else.232458:
 	fsub	%vf8123, %vf8110, %vf8122
 	fsub	%vf8124, %vf31, %vf8123
 	fleq	%vi4505, %vf8123, %vf32
-	ftern	%vf8125, %vi4505, %vf8123, %vf8124
+	mif	%vtf673, %vi4505
+	ftern	%vf8125, %vtf673, %vf8123, %vf8124
 	fmul	%vf8126, %vf8125, %vf8125
 	fmul	%vf8127, %vf35, %vf8126
 	fadd	%vf8128, %vf8127, %vf36
@@ -21446,7 +21623,8 @@ else.232456:
 	fsub	%vf8146, %vf8110, %vf8145
 	fsub	%vf8147, %vf31, %vf8146
 	fleq	%vi4506, %vf8146, %vf32
-	ftern	%vf8148, %vi4506, %vf8146, %vf8147
+	mif	%vtf675, %vi4506
+	ftern	%vf8148, %vtf675, %vf8146, %vf8147
 	fmul	%vf8149, %vf8148, %vf8148
 	fmul	%vf8150, %vf35, %vf8149
 	fadd	%vf8151, %vf8150, %vf36
@@ -21506,7 +21684,8 @@ else.232466:
 	fsub	%vf8050, %vf8037, %vf8049
 	fsub	%vf8051, %vf31, %vf8050
 	fleq	%vi4503, %vf8050, %vf32
-	ftern	%vf8052, %vi4503, %vf8050, %vf8051
+	mif	%vtf677, %vi4503
+	ftern	%vf8052, %vtf677, %vf8050, %vf8051
 	fmul	%vf8053, %vf8052, %vf8052
 	fmul	%vf8054, %vf35, %vf8053
 	fadd	%vf8055, %vf8054, %vf36
@@ -21543,7 +21722,8 @@ else.232464:
 	fsub	%vf8073, %vf8037, %vf8072
 	fsub	%vf8074, %vf31, %vf8073
 	fleq	%vi4504, %vf8073, %vf32
-	ftern	%vf8075, %vi4504, %vf8073, %vf8074
+	mif	%vtf679, %vi4504
+	ftern	%vf8075, %vtf679, %vf8073, %vf8074
 	fmul	%vf8076, %vf8075, %vf8075
 	fmul	%vf8077, %vf35, %vf8076
 	fadd	%vf8078, %vf8077, %vf36
@@ -21704,7 +21884,8 @@ then.232489:
 cont.232490:
 	fsub	%vf8356, %vf8355, %vf30
 	ceqi	%vi4566, %vi4537, 3
-	ftern	%vf8357, %vi4566, %vf8356, %vf8355
+	mif	%vtf683, %vi4566
+	ftern	%vf8357, %vtf683, %vf8356, %vf8355
 	fmul	%vf8358, %vf8332, %vf8332
 	fmul	%vf8359, %vf8323, %vf8357
 	fsub	%vf8360, %vf8358, %vf8359
@@ -21987,7 +22168,8 @@ then.232531:
 cont.232532:
 	fsub	%vf8459, %vf8458, %vf30
 	ceqi	%vi4619, %vi4593, 3
-	ftern	%vf8460, %vi4619, %vf8459, %vf8458
+	mif	%vtf693, %vi4619
+	ftern	%vf8460, %vtf693, %vf8459, %vf8458
 	fmul	%vf8461, %vf8441, %vf8441
 	fmul	%vf8462, %vf8432, %vf8460
 	fsub	%vf8463, %vf8461, %vf8462
@@ -22236,7 +22418,8 @@ then.232565:
 cont.232566:
 	fsub	%vf8519, %vf8518, %vf30
 	ceqi	%vi4657, %vi4644, 3
-	ftern	%vf8520, %vi4657, %vf8519, %vf8518
+	mif	%vtf701, %vi4657
+	ftern	%vf8520, %vtf701, %vf8519, %vf8518
 	flt	%vi4658, %vf8520, %f0
 	mov	%i4, %vi4640
 	mov	%i5, %vi4658
@@ -22363,7 +22546,8 @@ then.232582:
 cont.232583:
 	fsub	%vf8561, %vf8560, %vf30
 	ceqi	%vi4686, %vi4673, 3
-	ftern	%vf8562, %vi4686, %vf8561, %vf8560
+	mif	%vtf706, %vi4686
+	ftern	%vf8562, %vtf706, %vf8561, %vf8560
 	flt	%vi4687, %vf8562, %f0
 	mov	%i4, %vi4669
 	mov	%i5, %vi4687
@@ -22627,7 +22811,8 @@ then.232612:
 cont.232613:
 	fsub	%vf8653, %vf8652, %vf30
 	ceqi	%vi4751, %vi4725, 3
-	ftern	%vf8654, %vi4751, %vf8653, %vf8652
+	mif	%vtf712, %vi4751
+	ftern	%vf8654, %vtf712, %vf8653, %vf8652
 	fmul	%vf8655, %vf8635, %vf8635
 	fmul	%vf8656, %vf8626, %vf8654
 	fsub	%vf8657, %vf8655, %vf8656
@@ -22876,7 +23061,8 @@ then.232646:
 cont.232647:
 	fsub	%vf8713, %vf8712, %vf30
 	ceqi	%vi4789, %vi4776, 3
-	ftern	%vf8714, %vi4789, %vf8713, %vf8712
+	mif	%vtf720, %vi4789
+	ftern	%vf8714, %vtf720, %vf8713, %vf8712
 	flt	%vi4790, %vf8714, %f0
 	mov	%i4, %vi4772
 	mov	%i5, %vi4790
@@ -23003,7 +23189,8 @@ then.232663:
 cont.232664:
 	fsub	%vf8755, %vf8754, %vf30
 	ceqi	%vi4818, %vi4805, 3
-	ftern	%vf8756, %vi4818, %vf8755, %vf8754
+	mif	%vtf725, %vi4818
+	ftern	%vf8756, %vtf725, %vf8755, %vf8754
 	flt	%vi4819, %vf8756, %f0
 	mov	%i4, %vi4801
 	mov	%i5, %vi4819
@@ -23192,7 +23379,8 @@ loop_end.225053:
 	flt	%vi4839, %f0, %vf8765
 	mov	%vi4840, %i0
 	ceqi	%vi4841, %vi4839, 0
-	ftern	%vf8766, %vi4841, %f0, %vf8765
+	mif	%vtf729, %vi4841
+	ftern	%vf8766, %vtf729, %f0, %vf8765
 	fmul	%vf8767, %vf7532, %vf8766
 	mov	%vi4842, %i0
 	lf	%vf8768, 0(%vi4475)
@@ -23760,7 +23948,8 @@ then.232765:
 cont.232766:
 	fsub	%vf6657, %vf6656, %vf30
 	ceqi	%vi3762, %vi3750, 3
-	ftern	%vf6658, %vi3762, %vf6657, %vf6656
+	mif	%vtf747, %vi3762
+	ftern	%vf6658, %vtf747, %vf6657, %vf6656
 	flt	%vi3763, %vf6658, %f0
 	mov	%i4, %vi3746
 	mov	%i5, %vi3763
@@ -23892,7 +24081,8 @@ then.232782:
 cont.232783:
 	fsub	%vf6705, %vf6704, %vf30
 	ceqi	%vi3790, %vi3778, 3
-	ftern	%vf6706, %vi3790, %vf6705, %vf6704
+	mif	%vtf752, %vi3790
+	ftern	%vf6706, %vtf752, %vf6705, %vf6704
 	flt	%vi3791, %vf6706, %f0
 	mov	%i4, %vi3774
 	mov	%i5, %vi3791
@@ -24349,7 +24539,8 @@ then.232841:
 cont.232842:
 	fsub	%vf6411, %vf6410, %vf30
 	ceqi	%vi3609, %vi3597, 3
-	ftern	%vf6412, %vi3609, %vf6411, %vf6410
+	mif	%vtf765, %vi3609
+	ftern	%vf6412, %vtf765, %vf6411, %vf6410
 	flt	%vi3610, %vf6412, %f0
 	mov	%i4, %vi3593
 	mov	%i5, %vi3610
@@ -24481,7 +24672,8 @@ then.232858:
 cont.232859:
 	fsub	%vf6459, %vf6458, %vf30
 	ceqi	%vi3637, %vi3625, 3
-	ftern	%vf6460, %vi3637, %vf6459, %vf6458
+	mif	%vtf770, %vi3637
+	ftern	%vf6460, %vtf770, %vf6459, %vf6458
 	flt	%vi3638, %vf6460, %f0
 	mov	%i4, %vi3621
 	mov	%i5, %vi3638
@@ -24737,9 +24929,11 @@ cont.232877:
 	finv	%vf6760, %vf6757
 	fmul	%vf6761, %vf29, %vf6760
 	ceqi	%vi3836, %vi3816, 0
-	ftern	%vf6762, %vi3836, %vf6759, %vf6761
+	mif	%vtf775, %vi3836
+	ftern	%vf6762, %vtf775, %vf6759, %vf6761
 	ceqi	%vi3837, %vi3834, 0
-	ftern	%vf6763, %vi3837, %vf6762, %vf30
+	mif	%vtf776, %vi3837
+	ftern	%vf6763, %vtf776, %vf6762, %vf30
 	fmul	%vf6764, %vf6747, %vf6763
 	sf	%vf6764, 0(%vi52)
 	fmul	%vf6765, %vf6749, %vf6763
@@ -24841,7 +25035,8 @@ then.232889:
 	finv	%vf6937, %vf6936
 	fmul	%vf6938, %vf30, %vf6937
 	ceq	%vi3851, %vi3849, %vi3850
-	ftern	%vf6939, %vi3851, %vf6938, %vf6936
+	mif	%vtf781, %vi3851
+	ftern	%vf6939, %vtf781, %vf6938, %vf6936
 	fmul	%vf6940, %vf6939, %vf6939
 	fmul	%vf6941, %vf39, %vf6940
 	fadd	%vf6942, %vf6941, %vf40
@@ -24855,7 +25050,8 @@ then.232889:
 	fadd	%vf6950, %vf6949, %vf44
 	fmul	%vf6951, %vf6950, %vf6940
 	fadd	%vf6952, %vf6951, %vf45
-	ftern	%vf6953, %vi3851, %vf30, %vf29
+	mif	%vtf782, %vi3851
+	ftern	%vf6953, %vtf782, %vf30, %vf29
 	fmul	%vf6954, %vf6953, %vf6952
 	fmul	%vf6955, %vf6954, %vf6939
 	add	%vi3852, %vi3849, %vi3850
@@ -24898,7 +25094,8 @@ then.232891:
 	finv	%vf6976, %vf6975
 	fmul	%vf6977, %vf30, %vf6976
 	ceq	%vi3858, %vi3856, %vi3857
-	ftern	%vf6978, %vi3858, %vf6977, %vf6975
+	mif	%vtf788, %vi3858
+	ftern	%vf6978, %vtf788, %vf6977, %vf6975
 	fmul	%vf6979, %vf6978, %vf6978
 	fmul	%vf6980, %vf39, %vf6979
 	fadd	%vf6981, %vf6980, %vf40
@@ -24912,7 +25109,8 @@ then.232891:
 	fadd	%vf6989, %vf6988, %vf44
 	fmul	%vf6990, %vf6989, %vf6979
 	fadd	%vf6991, %vf6990, %vf45
-	ftern	%vf6992, %vi3858, %vf30, %vf29
+	mif	%vtf789, %vi3858
+	ftern	%vf6992, %vtf789, %vf30, %vf29
 	fmul	%vf6993, %vf6992, %vf6991
 	fmul	%vf6994, %vf6993, %vf6978
 	add	%vi3859, %vi3856, %vi3857
@@ -24938,7 +25136,8 @@ cont.232892:
 	flt	%vi3861, %vf7009, %f0
 	mov	%vi3862, %i0
 	ceqi	%vi3863, %vi3861, 0
-	ftern	%vf7010, %vi3863, %vf7009, %f0
+	mif	%vtf792, %vi3863
+	ftern	%vf7010, %vtf792, %vf7009, %f0
 	fmul	%vf7011, %vf55, %vf7010
 	finv	%vf7012, %vf9
 	fmul	%vf7013, %vf7011, %vf7012
@@ -24990,7 +25189,8 @@ else.232895:
 	fsub	%vf6872, %vf6859, %vf6871
 	fsub	%vf6873, %vf31, %vf6872
 	fleq	%vi3845, %vf6872, %vf32
-	ftern	%vf6874, %vi3845, %vf6872, %vf6873
+	mif	%vtf796, %vi3845
+	ftern	%vf6874, %vtf796, %vf6872, %vf6873
 	fmul	%vf6875, %vf6874, %vf6874
 	fmul	%vf6876, %vf35, %vf6875
 	fadd	%vf6877, %vf6876, %vf36
@@ -25027,7 +25227,8 @@ else.232893:
 	fsub	%vf6895, %vf6859, %vf6894
 	fsub	%vf6896, %vf31, %vf6895
 	fleq	%vi3846, %vf6895, %vf32
-	ftern	%vf6897, %vi3846, %vf6895, %vf6896
+	mif	%vtf798, %vi3846
+	ftern	%vf6897, %vtf798, %vf6895, %vf6896
 	fmul	%vf6898, %vf6897, %vf6897
 	fmul	%vf6899, %vf35, %vf6898
 	fadd	%vf6900, %vf6899, %vf36
@@ -25087,7 +25288,8 @@ else.232903:
 	fsub	%vf6799, %vf6786, %vf6798
 	fsub	%vf6800, %vf31, %vf6799
 	fleq	%vi3843, %vf6799, %vf32
-	ftern	%vf6801, %vi3843, %vf6799, %vf6800
+	mif	%vtf800, %vi3843
+	ftern	%vf6801, %vtf800, %vf6799, %vf6800
 	fmul	%vf6802, %vf6801, %vf6801
 	fmul	%vf6803, %vf35, %vf6802
 	fadd	%vf6804, %vf6803, %vf36
@@ -25124,7 +25326,8 @@ else.232901:
 	fsub	%vf6822, %vf6786, %vf6821
 	fsub	%vf6823, %vf31, %vf6822
 	fleq	%vi3844, %vf6822, %vf32
-	ftern	%vf6824, %vi3844, %vf6822, %vf6823
+	mif	%vtf802, %vi3844
+	ftern	%vf6824, %vtf802, %vf6822, %vf6823
 	fmul	%vf6825, %vf6824, %vf6824
 	fmul	%vf6826, %vf35, %vf6825
 	fadd	%vf6827, %vf6826, %vf36
@@ -25285,7 +25488,8 @@ then.232926:
 cont.232927:
 	fsub	%vf7105, %vf7104, %vf30
 	ceqi	%vi3906, %vi3877, 3
-	ftern	%vf7106, %vi3906, %vf7105, %vf7104
+	mif	%vtf806, %vi3906
+	ftern	%vf7106, %vtf806, %vf7105, %vf7104
 	fmul	%vf7107, %vf7081, %vf7081
 	fmul	%vf7108, %vf7072, %vf7106
 	fsub	%vf7109, %vf7107, %vf7108
@@ -25568,7 +25772,8 @@ then.232968:
 cont.232969:
 	fsub	%vf7208, %vf7207, %vf30
 	ceqi	%vi3959, %vi3933, 3
-	ftern	%vf7209, %vi3959, %vf7208, %vf7207
+	mif	%vtf816, %vi3959
+	ftern	%vf7209, %vtf816, %vf7208, %vf7207
 	fmul	%vf7210, %vf7190, %vf7190
 	fmul	%vf7211, %vf7181, %vf7209
 	fsub	%vf7212, %vf7210, %vf7211
@@ -25817,7 +26022,8 @@ then.233002:
 cont.233003:
 	fsub	%vf7268, %vf7267, %vf30
 	ceqi	%vi3997, %vi3984, 3
-	ftern	%vf7269, %vi3997, %vf7268, %vf7267
+	mif	%vtf824, %vi3997
+	ftern	%vf7269, %vtf824, %vf7268, %vf7267
 	flt	%vi3998, %vf7269, %f0
 	mov	%i4, %vi3980
 	mov	%i5, %vi3998
@@ -25944,7 +26150,8 @@ then.233019:
 cont.233020:
 	fsub	%vf7310, %vf7309, %vf30
 	ceqi	%vi4026, %vi4013, 3
-	ftern	%vf7311, %vi4026, %vf7310, %vf7309
+	mif	%vtf829, %vi4026
+	ftern	%vf7311, %vtf829, %vf7310, %vf7309
 	flt	%vi4027, %vf7311, %f0
 	mov	%i4, %vi4009
 	mov	%i5, %vi4027
@@ -26208,7 +26415,8 @@ then.233049:
 cont.233050:
 	fsub	%vf7402, %vf7401, %vf30
 	ceqi	%vi4091, %vi4065, 3
-	ftern	%vf7403, %vi4091, %vf7402, %vf7401
+	mif	%vtf835, %vi4091
+	ftern	%vf7403, %vtf835, %vf7402, %vf7401
 	fmul	%vf7404, %vf7384, %vf7384
 	fmul	%vf7405, %vf7375, %vf7403
 	fsub	%vf7406, %vf7404, %vf7405
@@ -26457,7 +26665,8 @@ then.233083:
 cont.233084:
 	fsub	%vf7462, %vf7461, %vf30
 	ceqi	%vi4129, %vi4116, 3
-	ftern	%vf7463, %vi4129, %vf7462, %vf7461
+	mif	%vtf843, %vi4129
+	ftern	%vf7463, %vtf843, %vf7462, %vf7461
 	flt	%vi4130, %vf7463, %f0
 	mov	%i4, %vi4112
 	mov	%i5, %vi4130
@@ -26584,7 +26793,8 @@ then.233100:
 cont.233101:
 	fsub	%vf7504, %vf7503, %vf30
 	ceqi	%vi4158, %vi4145, 3
-	ftern	%vf7505, %vi4158, %vf7504, %vf7503
+	mif	%vtf848, %vi4158
+	ftern	%vf7505, %vtf848, %vf7504, %vf7503
 	flt	%vi4159, %vf7505, %f0
 	mov	%i4, %vi4141
 	mov	%i5, %vi4159
@@ -26773,7 +26983,8 @@ loop_end.225228:
 	flt	%vi4179, %f0, %vf7514
 	mov	%vi4180, %i0
 	ceqi	%vi4181, %vi4179, 0
-	ftern	%vf7515, %vi4181, %f0, %vf7514
+	mif	%vtf852, %vi4181
+	ftern	%vf7515, %vtf852, %f0, %vf7514
 	fmul	%vf7516, %vf6281, %vf7515
 	mov	%vi4182, %i0
 	lf	%vf7517, 0(%vi3815)
@@ -26912,7 +27123,8 @@ then.233124:
 	finv	%vf8812, %vf8811
 	fmul	%vf8813, %vf30, %vf8812
 	ceqi	%vi4874, %vi4872, 0
-	ftern	%vf8814, %vi4874, %vf8813, %vf30
+	mif	%vtf858, %vi4874
+	ftern	%vf8814, %vtf858, %vf8813, %vf30
 	mov	%vi4875, %i0
 	fmul	%vf8815, %vf8801, %vf8814
 	sf	%vf8815, 0(%vi59)
@@ -27086,7 +27298,8 @@ then.233144:
 cont.233145:
 	fsub	%vf9227, %vf9226, %vf30
 	ceqi	%vi5077, %vi5030, 3
-	ftern	%vf9228, %vi5077, %vf9227, %vf9226
+	mif	%vtf861, %vi5077
+	ftern	%vf9228, %vtf861, %vf9227, %vf9226
 	fmul	%vf9229, %vf9206, %vf9206
 	fmul	%vf9230, %vf9179, %vf9228
 	fsub	%vf9231, %vf9229, %vf9230
@@ -27100,7 +27313,8 @@ cont.233145:
 	mov	%vi5080, %i0
 	fneg	%vf9235, %vf9234
 	ceqi	%vi5081, %vi5026, 0
-	ftern	%vf9236, %vi5081, %vf9235, %vf9234
+	mif	%vtf863, %vi5081
+	ftern	%vf9236, %vtf863, %vf9235, %vf9234
 	fsub	%vf9237, %vf9236, %vf9206
 	finv	%vf9238, %vf9179
 	fmul	%vf9239, %vf9237, %vf9238
@@ -27158,7 +27372,8 @@ then.233150:
 	mov	%vi5037, %i0
 	fneg	%vf9094, %vf9093
 	ceqi	%vi5038, %vi5036, 0
-	ftern	%vf9095, %vi5038, %vf9094, %vf9093
+	mif	%vtf864, %vi5038
+	ftern	%vf9095, %vtf864, %vf9094, %vf9093
 	fsub	%vf9096, %vf9095, %vf9088
 	finv	%vf9097, %vf9081
 	fmul	%vf9098, %vf9096, %vf9097
@@ -27214,7 +27429,8 @@ then.233158:
 	mov	%vi5049, %i0
 	fneg	%vf9110, %vf9109
 	ceqi	%vi5050, %vi5048, 0
-	ftern	%vf9111, %vi5050, %vf9110, %vf9109
+	mif	%vtf867, %vi5050
+	ftern	%vf9111, %vtf867, %vf9110, %vf9109
 	fsub	%vf9112, %vf9111, %vf9090
 	finv	%vf9113, %vf9082
 	fmul	%vf9114, %vf9112, %vf9113
@@ -27271,7 +27487,8 @@ then.233166:
 	mov	%vi5062, %i0
 	fneg	%vf9126, %vf9125
 	ceqi	%vi5063, %vi5061, 0
-	ftern	%vf9127, %vi5063, %vf9126, %vf9125
+	mif	%vtf870, %vi5063
+	ftern	%vf9127, %vtf870, %vf9126, %vf9125
 	fsub	%vf9128, %vf9127, %vf9092
 	finv	%vf9129, %vf9083
 	fmul	%vf9130, %vf9128, %vf9129
@@ -27462,7 +27679,8 @@ then.233192:
 cont.233193:
 	fsub	%vf9382, %vf9381, %vf30
 	ceqi	%vi5146, %vi5102, 3
-	ftern	%vf9383, %vi5146, %vf9382, %vf9381
+	mif	%vtf875, %vi5146
+	ftern	%vf9383, %vtf875, %vf9382, %vf9381
 	fmul	%vf9384, %vf9364, %vf9364
 	fmul	%vf9385, %vf9340, %vf9383
 	fsub	%vf9386, %vf9384, %vf9385
@@ -27476,7 +27694,8 @@ cont.233193:
 	mov	%vi5149, %i0
 	fneg	%vf9390, %vf9389
 	ceqi	%vi5150, %vi5098, 0
-	ftern	%vf9391, %vi5150, %vf9390, %vf9389
+	mif	%vtf877, %vi5150
+	ftern	%vf9391, %vtf877, %vf9390, %vf9389
 	fsub	%vf9392, %vf9391, %vf9364
 	finv	%vf9393, %vf9340
 	fmul	%vf9394, %vf9392, %vf9393
@@ -27534,7 +27753,8 @@ then.233198:
 	mov	%vi5109, %i0
 	fneg	%vf9255, %vf9254
 	ceqi	%vi5110, %vi5108, 0
-	ftern	%vf9256, %vi5110, %vf9255, %vf9254
+	mif	%vtf878, %vi5110
+	ftern	%vf9256, %vtf878, %vf9255, %vf9254
 	fsub	%vf9257, %vf9256, %vf9249
 	finv	%vf9258, %vf9242
 	fmul	%vf9259, %vf9257, %vf9258
@@ -27590,7 +27810,8 @@ then.233206:
 	mov	%vi5121, %i0
 	fneg	%vf9271, %vf9270
 	ceqi	%vi5122, %vi5120, 0
-	ftern	%vf9272, %vi5122, %vf9271, %vf9270
+	mif	%vtf881, %vi5122
+	ftern	%vf9272, %vtf881, %vf9271, %vf9270
 	fsub	%vf9273, %vf9272, %vf9251
 	finv	%vf9274, %vf9243
 	fmul	%vf9275, %vf9273, %vf9274
@@ -27647,7 +27868,8 @@ then.233214:
 	mov	%vi5134, %i0
 	fneg	%vf9287, %vf9286
 	ceqi	%vi5135, %vi5133, 0
-	ftern	%vf9288, %vi5135, %vf9287, %vf9286
+	mif	%vtf884, %vi5135
+	ftern	%vf9288, %vtf884, %vf9287, %vf9286
 	fsub	%vf9289, %vf9288, %vf9253
 	finv	%vf9290, %vf9244
 	fmul	%vf9291, %vf9289, %vf9290
@@ -27769,7 +27991,8 @@ then.233232:
 cont.233233:
 	fsub	%vf9453, %vf9452, %vf30
 	ceqi	%vi5182, %vi5172, 3
-	ftern	%vf9454, %vi5182, %vf9453, %vf9452
+	mif	%vtf887, %vi5182
+	ftern	%vf9454, %vtf887, %vf9453, %vf9452
 	flt	%vi5183, %vf9454, %f0
 	mov	%i4, %vi5168
 	mov	%i5, %vi5183
@@ -27899,7 +28122,8 @@ then.233249:
 cont.233250:
 	fsub	%vf9501, %vf9500, %vf30
 	ceqi	%vi5208, %vi5198, 3
-	ftern	%vf9502, %vi5208, %vf9501, %vf9500
+	mif	%vtf892, %vi5208
+	ftern	%vf9502, %vtf892, %vf9501, %vf9500
 	flt	%vi5209, %vf9502, %f0
 	mov	%i4, %vi5194
 	mov	%i5, %vi5209
@@ -28189,7 +28413,8 @@ then.233278:
 cont.233279:
 	fsub	%vf8960, %vf8959, %vf30
 	ceqi	%vi4949, %vi4905, 3
-	ftern	%vf8961, %vi4949, %vf8960, %vf8959
+	mif	%vtf898, %vi4949
+	ftern	%vf8961, %vtf898, %vf8960, %vf8959
 	fmul	%vf8962, %vf8942, %vf8942
 	fmul	%vf8963, %vf8918, %vf8961
 	fsub	%vf8964, %vf8962, %vf8963
@@ -28203,7 +28428,8 @@ cont.233279:
 	mov	%vi4952, %i0
 	fneg	%vf8968, %vf8967
 	ceqi	%vi4953, %vi4901, 0
-	ftern	%vf8969, %vi4953, %vf8968, %vf8967
+	mif	%vtf900, %vi4953
+	ftern	%vf8969, %vtf900, %vf8968, %vf8967
 	fsub	%vf8970, %vf8969, %vf8942
 	finv	%vf8971, %vf8918
 	fmul	%vf8972, %vf8970, %vf8971
@@ -28261,7 +28487,8 @@ then.233284:
 	mov	%vi4912, %i0
 	fneg	%vf8833, %vf8832
 	ceqi	%vi4913, %vi4911, 0
-	ftern	%vf8834, %vi4913, %vf8833, %vf8832
+	mif	%vtf901, %vi4913
+	ftern	%vf8834, %vtf901, %vf8833, %vf8832
 	fsub	%vf8835, %vf8834, %vf8827
 	finv	%vf8836, %vf8820
 	fmul	%vf8837, %vf8835, %vf8836
@@ -28317,7 +28544,8 @@ then.233292:
 	mov	%vi4924, %i0
 	fneg	%vf8849, %vf8848
 	ceqi	%vi4925, %vi4923, 0
-	ftern	%vf8850, %vi4925, %vf8849, %vf8848
+	mif	%vtf904, %vi4925
+	ftern	%vf8850, %vtf904, %vf8849, %vf8848
 	fsub	%vf8851, %vf8850, %vf8829
 	finv	%vf8852, %vf8821
 	fmul	%vf8853, %vf8851, %vf8852
@@ -28374,7 +28602,8 @@ then.233300:
 	mov	%vi4937, %i0
 	fneg	%vf8865, %vf8864
 	ceqi	%vi4938, %vi4936, 0
-	ftern	%vf8866, %vi4938, %vf8865, %vf8864
+	mif	%vtf907, %vi4938
+	ftern	%vf8866, %vtf907, %vf8865, %vf8864
 	fsub	%vf8867, %vf8866, %vf8831
 	finv	%vf8868, %vf8822
 	fmul	%vf8869, %vf8867, %vf8868
@@ -28496,7 +28725,8 @@ then.233318:
 cont.233319:
 	fsub	%vf9031, %vf9030, %vf30
 	ceqi	%vi4985, %vi4975, 3
-	ftern	%vf9032, %vi4985, %vf9031, %vf9030
+	mif	%vtf910, %vi4985
+	ftern	%vf9032, %vtf910, %vf9031, %vf9030
 	flt	%vi4986, %vf9032, %f0
 	mov	%i4, %vi4971
 	mov	%i5, %vi4986
@@ -28626,7 +28856,8 @@ then.233335:
 cont.233336:
 	fsub	%vf9079, %vf9078, %vf30
 	ceqi	%vi5011, %vi5001, 3
-	ftern	%vf9080, %vi5011, %vf9079, %vf9078
+	mif	%vtf915, %vi5011
+	ftern	%vf9080, %vtf915, %vf9079, %vf9078
 	flt	%vi5012, %vf9080, %f0
 	mov	%i4, %vi4997
 	mov	%i5, %vi5012
@@ -28884,9 +29115,11 @@ cont.233355:
 	finv	%vf9580, %vf9577
 	fmul	%vf9581, %vf29, %vf9580
 	ceqi	%vi5259, %vi5240, 0
-	ftern	%vf9582, %vi5259, %vf9579, %vf9581
+	mif	%vtf920, %vi5259
+	ftern	%vf9582, %vtf920, %vf9579, %vf9581
 	ceqi	%vi5260, %vi5258, 0
-	ftern	%vf9583, %vi5260, %vf9582, %vf30
+	mif	%vtf921, %vi5260
+	ftern	%vf9583, %vtf921, %vf9582, %vf30
 	fmul	%vf9584, %vf9567, %vf9583
 	sf	%vf9584, 0(%vi52)
 	fmul	%vf9585, %vf9569, %vf9583
@@ -29000,7 +29233,8 @@ then.233367:
 	finv	%vf9765, %vf9764
 	fmul	%vf9766, %vf30, %vf9765
 	ceq	%vi5278, %vi5276, %vi5277
-	ftern	%vf9767, %vi5278, %vf9766, %vf9764
+	mif	%vtf926, %vi5278
+	ftern	%vf9767, %vtf926, %vf9766, %vf9764
 	fmul	%vf9768, %vf9767, %vf9767
 	fmul	%vf9769, %vf39, %vf9768
 	fadd	%vf9770, %vf9769, %vf40
@@ -29014,7 +29248,8 @@ then.233367:
 	fadd	%vf9778, %vf9777, %vf44
 	fmul	%vf9779, %vf9778, %vf9768
 	fadd	%vf9780, %vf9779, %vf45
-	ftern	%vf9781, %vi5278, %vf30, %vf29
+	mif	%vtf927, %vi5278
+	ftern	%vf9781, %vtf927, %vf30, %vf29
 	fmul	%vf9782, %vf9781, %vf9780
 	fmul	%vf9783, %vf9782, %vf9767
 	add	%vi5279, %vi5276, %vi5277
@@ -29059,7 +29294,8 @@ then.233369:
 	finv	%vf9806, %vf9805
 	fmul	%vf9807, %vf30, %vf9806
 	ceq	%vi5285, %vi5283, %vi5284
-	ftern	%vf9808, %vi5285, %vf9807, %vf9805
+	mif	%vtf933, %vi5285
+	ftern	%vf9808, %vtf933, %vf9807, %vf9805
 	fmul	%vf9809, %vf9808, %vf9808
 	fmul	%vf9810, %vf39, %vf9809
 	fadd	%vf9811, %vf9810, %vf40
@@ -29073,7 +29309,8 @@ then.233369:
 	fadd	%vf9819, %vf9818, %vf44
 	fmul	%vf9820, %vf9819, %vf9809
 	fadd	%vf9821, %vf9820, %vf45
-	ftern	%vf9822, %vi5285, %vf30, %vf29
+	mif	%vtf934, %vi5285
+	ftern	%vf9822, %vtf934, %vf30, %vf29
 	fmul	%vf9823, %vf9822, %vf9821
 	fmul	%vf9824, %vf9823, %vf9808
 	add	%vi5286, %vi5283, %vi5284
@@ -29099,7 +29336,8 @@ cont.233370:
 	flt	%vi5288, %vf9839, %f0
 	mov	%vi5289, %i0
 	ceqi	%vi5290, %vi5288, 0
-	ftern	%vf9840, %vi5290, %vf9839, %f0
+	mif	%vtf937, %vi5290
+	ftern	%vf9840, %vtf937, %vf9839, %f0
 	fmul	%vf9841, %vf55, %vf9840
 	finv	%vf9842, %vf9
 	fmul	%vf9843, %vf9841, %vf9842
@@ -29154,7 +29392,8 @@ else.233373:
 	fsub	%vf9696, %vf9683, %vf9695
 	fsub	%vf9697, %vf31, %vf9696
 	fleq	%vi5270, %vf9696, %vf32
-	ftern	%vf9698, %vi5270, %vf9696, %vf9697
+	mif	%vtf941, %vi5270
+	ftern	%vf9698, %vtf941, %vf9696, %vf9697
 	fmul	%vf9699, %vf9698, %vf9698
 	fmul	%vf9700, %vf35, %vf9699
 	fadd	%vf9701, %vf9700, %vf36
@@ -29191,7 +29430,8 @@ else.233371:
 	fsub	%vf9719, %vf9683, %vf9718
 	fsub	%vf9720, %vf31, %vf9719
 	fleq	%vi5271, %vf9719, %vf32
-	ftern	%vf9721, %vi5271, %vf9719, %vf9720
+	mif	%vtf943, %vi5271
+	ftern	%vf9721, %vtf943, %vf9719, %vf9720
 	fmul	%vf9722, %vf9721, %vf9721
 	fmul	%vf9723, %vf35, %vf9722
 	fadd	%vf9724, %vf9723, %vf36
@@ -29251,7 +29491,8 @@ else.233381:
 	fsub	%vf9621, %vf9608, %vf9620
 	fsub	%vf9622, %vf31, %vf9621
 	fleq	%vi5267, %vf9621, %vf32
-	ftern	%vf9623, %vi5267, %vf9621, %vf9622
+	mif	%vtf945, %vi5267
+	ftern	%vf9623, %vtf945, %vf9621, %vf9622
 	fmul	%vf9624, %vf9623, %vf9623
 	fmul	%vf9625, %vf35, %vf9624
 	fadd	%vf9626, %vf9625, %vf36
@@ -29288,7 +29529,8 @@ else.233379:
 	fsub	%vf9644, %vf9608, %vf9643
 	fsub	%vf9645, %vf31, %vf9644
 	fleq	%vi5268, %vf9644, %vf32
-	ftern	%vf9646, %vi5268, %vf9644, %vf9645
+	mif	%vtf947, %vi5268
+	ftern	%vf9646, %vtf947, %vf9644, %vf9645
 	fmul	%vf9647, %vf9646, %vf9646
 	fmul	%vf9648, %vf35, %vf9647
 	fadd	%vf9649, %vf9648, %vf36
@@ -29535,7 +29777,8 @@ then.233406:
 cont.233407:
 	fsub	%vf9967, %vf9966, %vf30
 	ceqi	%vi5352, %vi5326, 3
-	ftern	%vf9968, %vi5352, %vf9967, %vf9966
+	mif	%vtf951, %vi5352
+	ftern	%vf9968, %vtf951, %vf9967, %vf9966
 	fmul	%vf9969, %vf9949, %vf9949
 	fmul	%vf9970, %vf9940, %vf9968
 	fsub	%vf9971, %vf9969, %vf9970
@@ -29818,7 +30061,8 @@ then.233448:
 cont.233449:
 	fsub	%vf10071, %vf10070, %vf30
 	ceqi	%vi5408, %vi5379, 3
-	ftern	%vf10072, %vi5408, %vf10071, %vf10070
+	mif	%vtf961, %vi5408
+	ftern	%vf10072, %vtf961, %vf10071, %vf10070
 	fmul	%vf10073, %vf10047, %vf10047
 	fmul	%vf10074, %vf10038, %vf10072
 	fsub	%vf10075, %vf10073, %vf10074
@@ -30067,7 +30311,8 @@ then.233482:
 cont.233483:
 	fsub	%vf10137, %vf10136, %vf30
 	ceqi	%vi5444, %vi5433, 3
-	ftern	%vf10138, %vi5444, %vf10137, %vf10136
+	mif	%vtf969, %vi5444
+	ftern	%vf10138, %vtf969, %vf10137, %vf10136
 	flt	%vi5445, %vf10138, %f0
 	mov	%i4, %vi5429
 	mov	%i5, %vi5445
@@ -30198,7 +30443,8 @@ then.233499:
 cont.233500:
 	fsub	%vf10185, %vf10184, %vf30
 	ceqi	%vi5471, %vi5460, 3
-	ftern	%vf10186, %vi5471, %vf10185, %vf10184
+	mif	%vtf974, %vi5471
+	ftern	%vf10186, %vtf974, %vf10185, %vf10184
 	flt	%vi5472, %vf10186, %f0
 	mov	%i4, %vi5456
 	mov	%i5, %vi5472
@@ -30470,7 +30716,8 @@ then.233529:
 cont.233530:
 	fsub	%vf10278, %vf10277, %vf30
 	ceqi	%vi5539, %vi5510, 3
-	ftern	%vf10279, %vi5539, %vf10278, %vf10277
+	mif	%vtf980, %vi5539
+	ftern	%vf10279, %vtf980, %vf10278, %vf10277
 	fmul	%vf10280, %vf10254, %vf10254
 	fmul	%vf10281, %vf10245, %vf10279
 	fsub	%vf10282, %vf10280, %vf10281
@@ -30719,7 +30966,8 @@ then.233563:
 cont.233564:
 	fsub	%vf10344, %vf10343, %vf30
 	ceqi	%vi5575, %vi5564, 3
-	ftern	%vf10345, %vi5575, %vf10344, %vf10343
+	mif	%vtf988, %vi5575
+	ftern	%vf10345, %vtf988, %vf10344, %vf10343
 	flt	%vi5576, %vf10345, %f0
 	mov	%i4, %vi5560
 	mov	%i5, %vi5576
@@ -30850,7 +31098,8 @@ then.233580:
 cont.233581:
 	fsub	%vf10392, %vf10391, %vf30
 	ceqi	%vi5602, %vi5591, 3
-	ftern	%vf10393, %vi5602, %vf10392, %vf10391
+	mif	%vtf993, %vi5602
+	ftern	%vf10393, %vtf993, %vf10392, %vf10391
 	flt	%vi5603, %vf10393, %f0
 	mov	%i4, %vi5587
 	mov	%i5, %vi5603
@@ -31168,7 +31417,8 @@ then.233606:
 cont.233607:
 	fsub	%vf10483, %vf10482, %vf30
 	ceqi	%vi5648, %vi5639, 3
-	ftern	%vf10484, %vi5648, %vf10483, %vf10482
+	mif	%vtf997, %vi5648
+	ftern	%vf10484, %vtf997, %vf10483, %vf10482
 	sf	%vf10484, 12(%vi5634)
 cont.233605:
 	set_label	%vti3612, cont.233604
@@ -31262,7 +31512,8 @@ then.233614:
 cont.233615:
 	fsub	%vf10531, %vf10530, %vf30
 	ceqi	%vi5666, %vi5657, 3
-	ftern	%vf10532, %vi5666, %vf10531, %vf10530
+	mif	%vtf999, %vi5666
+	ftern	%vf10532, %vtf999, %vf10531, %vf10530
 	sf	%vf10532, 12(%vi5652)
 cont.233613:
 	set_label	%vti3619, cont.233612
@@ -31840,7 +32091,8 @@ then.233702:
 cont.233703:
 	fsub	%vf10886, %vf10885, %vf30
 	ceqi	%vi5911, %vi5898, 3
-	ftern	%vf10887, %vi5911, %vf10886, %vf10885
+	mif	%vtf1018, %vi5911
+	ftern	%vf10887, %vtf1018, %vf10886, %vf10885
 	flt	%vi5912, %vf10887, %f0
 	mov	%i4, %vi5894
 	mov	%i5, %vi5912
@@ -31967,7 +32219,8 @@ then.233719:
 cont.233720:
 	fsub	%vf10928, %vf10927, %vf30
 	ceqi	%vi5940, %vi5927, 3
-	ftern	%vf10929, %vi5940, %vf10928, %vf10927
+	mif	%vtf1023, %vi5940
+	ftern	%vf10929, %vtf1023, %vf10928, %vf10927
 	flt	%vi5941, %vf10929, %f0
 	mov	%i4, %vi5923
 	mov	%i5, %vi5941
@@ -32416,7 +32669,8 @@ then.233778:
 cont.233779:
 	fsub	%vf10655, %vf10654, %vf30
 	ceqi	%vi5757, %vi5744, 3
-	ftern	%vf10656, %vi5757, %vf10655, %vf10654
+	mif	%vtf1036, %vi5757
+	ftern	%vf10656, %vtf1036, %vf10655, %vf10654
 	flt	%vi5758, %vf10656, %f0
 	mov	%i4, %vi5740
 	mov	%i5, %vi5758
@@ -32543,7 +32797,8 @@ then.233795:
 cont.233796:
 	fsub	%vf10697, %vf10696, %vf30
 	ceqi	%vi5786, %vi5773, 3
-	ftern	%vf10698, %vi5786, %vf10697, %vf10696
+	mif	%vtf1041, %vi5786
+	ftern	%vf10698, %vtf1041, %vf10697, %vf10696
 	flt	%vi5787, %vf10698, %f0
 	mov	%i4, %vi5769
 	mov	%i5, %vi5787
@@ -32802,7 +33057,8 @@ then.233821:
 cont.233822:
 	fsub	%vf11021, %vf11020, %vf30
 	ceqi	%vi6006, %vi5977, 3
-	ftern	%vf11022, %vi6006, %vf11021, %vf11020
+	mif	%vtf1046, %vi6006
+	ftern	%vf11022, %vtf1046, %vf11021, %vf11020
 	fmul	%vf11023, %vf10997, %vf10997
 	fmul	%vf11024, %vf10989, %vf11022
 	fsub	%vf11025, %vf11023, %vf11024
@@ -33088,7 +33344,8 @@ then.233863:
 cont.233864:
 	fsub	%vf11126, %vf11125, %vf30
 	ceqi	%vi6062, %vi6033, 3
-	ftern	%vf11127, %vi6062, %vf11126, %vf11125
+	mif	%vtf1056, %vi6062
+	ftern	%vf11127, %vtf1056, %vf11126, %vf11125
 	fmul	%vf11128, %vf11102, %vf11102
 	fmul	%vf11129, %vf11094, %vf11127
 	fsub	%vf11130, %vf11128, %vf11129
@@ -33338,7 +33595,8 @@ then.233897:
 cont.233898:
 	fsub	%vf11194, %vf11193, %vf30
 	ceqi	%vi6097, %vi6087, 3
-	ftern	%vf11195, %vi6097, %vf11194, %vf11193
+	mif	%vtf1064, %vi6097
+	ftern	%vf11195, %vtf1064, %vf11194, %vf11193
 	flt	%vi6098, %vf11195, %f0
 	mov	%i4, %vi6083
 	mov	%i5, %vi6098
@@ -33468,7 +33726,8 @@ then.233914:
 cont.233915:
 	fsub	%vf11242, %vf11241, %vf30
 	ceqi	%vi6123, %vi6113, 3
-	ftern	%vf11243, %vi6123, %vf11242, %vf11241
+	mif	%vtf1069, %vi6123
+	ftern	%vf11243, %vtf1069, %vf11242, %vf11241
 	flt	%vi6124, %vf11243, %f0
 	mov	%i4, %vi6109
 	mov	%i5, %vi6124
@@ -33739,7 +33998,8 @@ then.233944:
 cont.233945:
 	fsub	%vf11334, %vf11333, %vf30
 	ceqi	%vi6191, %vi6162, 3
-	ftern	%vf11335, %vi6191, %vf11334, %vf11333
+	mif	%vtf1075, %vi6191
+	ftern	%vf11335, %vtf1075, %vf11334, %vf11333
 	fmul	%vf11336, %vf11310, %vf11310
 	fmul	%vf11337, %vf11302, %vf11335
 	fsub	%vf11338, %vf11336, %vf11337
@@ -33989,7 +34249,8 @@ then.233978:
 cont.233979:
 	fsub	%vf11402, %vf11401, %vf30
 	ceqi	%vi6226, %vi6216, 3
-	ftern	%vf11403, %vi6226, %vf11402, %vf11401
+	mif	%vtf1083, %vi6226
+	ftern	%vf11403, %vtf1083, %vf11402, %vf11401
 	flt	%vi6227, %vf11403, %f0
 	mov	%i4, %vi6212
 	mov	%i5, %vi6227
@@ -34119,7 +34380,8 @@ then.233995:
 cont.233996:
 	fsub	%vf11450, %vf11449, %vf30
 	ceqi	%vi6252, %vi6242, 3
-	ftern	%vf11451, %vi6252, %vf11450, %vf11449
+	mif	%vtf1088, %vi6252
+	ftern	%vf11451, %vtf1088, %vf11450, %vf11449
 	flt	%vi6253, %vf11451, %f0
 	mov	%i4, %vi6238
 	mov	%i5, %vi6253
@@ -34601,7 +34863,8 @@ then.234036:
 cont.234037:
 	fsub	%vf11550, %vf11549, %vf30
 	ceqi	%vi6342, %vi6333, 3
-	ftern	%vf11551, %vi6342, %vf11550, %vf11549
+	mif	%vtf1093, %vi6342
+	ftern	%vf11551, %vtf1093, %vf11550, %vf11549
 	sf	%vf11551, 12(%vi6328)
 cont.234035:
 	set_label	%vti4006, cont.234034
@@ -34692,7 +34955,8 @@ then.234044:
 cont.234045:
 	fsub	%vf11595, %vf11594, %vf30
 	ceqi	%vi6360, %vi6351, 3
-	ftern	%vf11596, %vi6360, %vf11595, %vf11594
+	mif	%vtf1095, %vi6360
+	ftern	%vf11596, %vtf1095, %vf11595, %vf11594
 	sf	%vf11596, 12(%vi6346)
 cont.234043:
 	set_label	%vti4013, cont.234042
@@ -35294,7 +35558,8 @@ then.234134:
 cont.234135:
 	fsub	%vf13299, %vf13298, %vf30
 	ceqi	%vi7266, %vi7255, 3
-	ftern	%vf13300, %vi7266, %vf13299, %vf13298
+	mif	%vtf1114, %vi7266
+	ftern	%vf13300, %vtf1114, %vf13299, %vf13298
 	flt	%vi7267, %vf13300, %f0
 	mov	%i4, %vi7251
 	mov	%i5, %vi7267
@@ -35425,7 +35690,8 @@ then.234151:
 cont.234152:
 	fsub	%vf13347, %vf13346, %vf30
 	ceqi	%vi7293, %vi7282, 3
-	ftern	%vf13348, %vi7293, %vf13347, %vf13346
+	mif	%vtf1119, %vi7293
+	ftern	%vf13348, %vtf1119, %vf13347, %vf13346
 	flt	%vi7294, %vf13348, %f0
 	mov	%i4, %vi7278
 	mov	%i5, %vi7294
@@ -35887,7 +36153,8 @@ then.234210:
 cont.234211:
 	fsub	%vf13047, %vf13046, %vf30
 	ceqi	%vi7115, %vi7104, 3
-	ftern	%vf13048, %vi7115, %vf13047, %vf13046
+	mif	%vtf1132, %vi7115
+	ftern	%vf13048, %vtf1132, %vf13047, %vf13046
 	flt	%vi7116, %vf13048, %f0
 	mov	%i4, %vi7100
 	mov	%i5, %vi7116
@@ -36018,7 +36285,8 @@ then.234227:
 cont.234228:
 	fsub	%vf13095, %vf13094, %vf30
 	ceqi	%vi7142, %vi7131, 3
-	ftern	%vf13096, %vi7142, %vf13095, %vf13094
+	mif	%vtf1137, %vi7142
+	ftern	%vf13096, %vtf1137, %vf13095, %vf13094
 	flt	%vi7143, %vf13096, %f0
 	mov	%i4, %vi7127
 	mov	%i5, %vi7143
@@ -36271,9 +36539,11 @@ cont.234246:
 	finv	%vf13405, %vf13402
 	fmul	%vf13406, %vf29, %vf13405
 	ceqi	%vi7337, %vi7319, 0
-	ftern	%vf13407, %vi7337, %vf13404, %vf13406
+	mif	%vtf1142, %vi7337
+	ftern	%vf13407, %vtf1142, %vf13404, %vf13406
 	ceqi	%vi7338, %vi7335, 0
-	ftern	%vf13408, %vi7338, %vf13407, %vf30
+	mif	%vtf1143, %vi7338
+	ftern	%vf13408, %vtf1143, %vf13407, %vf30
 	fmul	%vf13409, %vf13392, %vf13408
 	sf	%vf13409, 0(%vi52)
 	fmul	%vf13410, %vf13394, %vf13408
@@ -36384,7 +36654,8 @@ then.234258:
 	finv	%vf13594, %vf13593
 	fmul	%vf13595, %vf30, %vf13594
 	ceq	%vi7356, %vi7354, %vi7355
-	ftern	%vf13596, %vi7356, %vf13595, %vf13593
+	mif	%vtf1148, %vi7356
+	ftern	%vf13596, %vtf1148, %vf13595, %vf13593
 	fmul	%vf13597, %vf13596, %vf13596
 	fmul	%vf13598, %vf39, %vf13597
 	fadd	%vf13599, %vf13598, %vf40
@@ -36398,7 +36669,8 @@ then.234258:
 	fadd	%vf13607, %vf13606, %vf44
 	fmul	%vf13608, %vf13607, %vf13597
 	fadd	%vf13609, %vf13608, %vf45
-	ftern	%vf13610, %vi7356, %vf30, %vf29
+	mif	%vtf1149, %vi7356
+	ftern	%vf13610, %vtf1149, %vf30, %vf29
 	fmul	%vf13611, %vf13610, %vf13609
 	fmul	%vf13612, %vf13611, %vf13596
 	add	%vi7357, %vi7354, %vi7355
@@ -36444,7 +36716,8 @@ then.234260:
 	finv	%vf13636, %vf13635
 	fmul	%vf13637, %vf30, %vf13636
 	ceq	%vi7363, %vi7361, %vi7362
-	ftern	%vf13638, %vi7363, %vf13637, %vf13635
+	mif	%vtf1155, %vi7363
+	ftern	%vf13638, %vtf1155, %vf13637, %vf13635
 	fmul	%vf13639, %vf13638, %vf13638
 	fmul	%vf13640, %vf39, %vf13639
 	fadd	%vf13641, %vf13640, %vf40
@@ -36458,7 +36731,8 @@ then.234260:
 	fadd	%vf13649, %vf13648, %vf44
 	fmul	%vf13650, %vf13649, %vf13639
 	fadd	%vf13651, %vf13650, %vf45
-	ftern	%vf13652, %vi7363, %vf30, %vf29
+	mif	%vtf1156, %vi7363
+	ftern	%vf13652, %vtf1156, %vf30, %vf29
 	fmul	%vf13653, %vf13652, %vf13651
 	fmul	%vf13654, %vf13653, %vf13638
 	add	%vi7364, %vi7361, %vi7362
@@ -36484,7 +36758,8 @@ cont.234261:
 	flt	%vi7366, %vf13669, %f0
 	mov	%vi7367, %i0
 	ceqi	%vi7368, %vi7366, 0
-	ftern	%vf13670, %vi7368, %vf13669, %f0
+	mif	%vtf1159, %vi7368
+	ftern	%vf13670, %vtf1159, %vf13669, %f0
 	fmul	%vf13671, %vf55, %vf13670
 	finv	%vf13672, %vf9
 	fmul	%vf13673, %vf13671, %vf13672
@@ -36541,7 +36816,8 @@ else.234264:
 	fsub	%vf13523, %vf13510, %vf13522
 	fsub	%vf13524, %vf31, %vf13523
 	fleq	%vi7348, %vf13523, %vf32
-	ftern	%vf13525, %vi7348, %vf13523, %vf13524
+	mif	%vtf1163, %vi7348
+	ftern	%vf13525, %vtf1163, %vf13523, %vf13524
 	fmul	%vf13526, %vf13525, %vf13525
 	fmul	%vf13527, %vf35, %vf13526
 	fadd	%vf13528, %vf13527, %vf36
@@ -36578,7 +36854,8 @@ else.234262:
 	fsub	%vf13546, %vf13510, %vf13545
 	fsub	%vf13547, %vf31, %vf13546
 	fleq	%vi7349, %vf13546, %vf32
-	ftern	%vf13548, %vi7349, %vf13546, %vf13547
+	mif	%vtf1165, %vi7349
+	ftern	%vf13548, %vtf1165, %vf13546, %vf13547
 	fmul	%vf13549, %vf13548, %vf13548
 	fmul	%vf13550, %vf35, %vf13549
 	fadd	%vf13551, %vf13550, %vf36
@@ -36639,7 +36916,8 @@ else.234272:
 	fsub	%vf13446, %vf13433, %vf13445
 	fsub	%vf13447, %vf31, %vf13446
 	fleq	%vi7345, %vf13446, %vf32
-	ftern	%vf13448, %vi7345, %vf13446, %vf13447
+	mif	%vtf1167, %vi7345
+	ftern	%vf13448, %vtf1167, %vf13446, %vf13447
 	fmul	%vf13449, %vf13448, %vf13448
 	fmul	%vf13450, %vf35, %vf13449
 	fadd	%vf13451, %vf13450, %vf36
@@ -36676,7 +36954,8 @@ else.234270:
 	fsub	%vf13469, %vf13433, %vf13468
 	fsub	%vf13470, %vf31, %vf13469
 	fleq	%vi7346, %vf13469, %vf32
-	ftern	%vf13471, %vi7346, %vf13469, %vf13470
+	mif	%vtf1169, %vi7346
+	ftern	%vf13471, %vtf1169, %vf13469, %vf13470
 	fmul	%vf13472, %vf13471, %vf13471
 	fmul	%vf13473, %vf35, %vf13472
 	fadd	%vf13474, %vf13473, %vf36
@@ -36841,7 +37120,8 @@ then.234295:
 cont.234296:
 	fsub	%vf13764, %vf13763, %vf30
 	ceqi	%vi7411, %vi7382, 3
-	ftern	%vf13765, %vi7411, %vf13764, %vf13763
+	mif	%vtf1173, %vi7411
+	ftern	%vf13765, %vtf1173, %vf13764, %vf13763
 	fmul	%vf13766, %vf13740, %vf13740
 	fmul	%vf13767, %vf13732, %vf13765
 	fsub	%vf13768, %vf13766, %vf13767
@@ -37127,7 +37407,8 @@ then.234337:
 cont.234338:
 	fsub	%vf13869, %vf13868, %vf30
 	ceqi	%vi7467, %vi7438, 3
-	ftern	%vf13870, %vi7467, %vf13869, %vf13868
+	mif	%vtf1183, %vi7467
+	ftern	%vf13870, %vtf1183, %vf13869, %vf13868
 	fmul	%vf13871, %vf13845, %vf13845
 	fmul	%vf13872, %vf13837, %vf13870
 	fsub	%vf13873, %vf13871, %vf13872
@@ -37379,7 +37660,8 @@ then.234371:
 cont.234372:
 	fsub	%vf13937, %vf13936, %vf30
 	ceqi	%vi7504, %vi7492, 3
-	ftern	%vf13938, %vi7504, %vf13937, %vf13936
+	mif	%vtf1191, %vi7504
+	ftern	%vf13938, %vtf1191, %vf13937, %vf13936
 	flt	%vi7505, %vf13938, %f0
 	mov	%i4, %vi7488
 	mov	%i5, %vi7505
@@ -37511,7 +37793,8 @@ then.234388:
 cont.234389:
 	fsub	%vf13985, %vf13984, %vf30
 	ceqi	%vi7532, %vi7520, 3
-	ftern	%vf13986, %vi7532, %vf13985, %vf13984
+	mif	%vtf1196, %vi7532
+	ftern	%vf13986, %vtf1196, %vf13985, %vf13984
 	flt	%vi7533, %vf13986, %f0
 	mov	%i4, %vi7516
 	mov	%i5, %vi7533
@@ -37782,7 +38065,8 @@ then.234418:
 cont.234419:
 	fsub	%vf14077, %vf14076, %vf30
 	ceqi	%vi7600, %vi7571, 3
-	ftern	%vf14078, %vi7600, %vf14077, %vf14076
+	mif	%vtf1202, %vi7600
+	ftern	%vf14078, %vtf1202, %vf14077, %vf14076
 	fmul	%vf14079, %vf14053, %vf14053
 	fmul	%vf14080, %vf14045, %vf14078
 	fsub	%vf14081, %vf14079, %vf14080
@@ -38034,7 +38318,8 @@ then.234452:
 cont.234453:
 	fsub	%vf14145, %vf14144, %vf30
 	ceqi	%vi7637, %vi7625, 3
-	ftern	%vf14146, %vi7637, %vf14145, %vf14144
+	mif	%vtf1210, %vi7637
+	ftern	%vf14146, %vtf1210, %vf14145, %vf14144
 	flt	%vi7638, %vf14146, %f0
 	mov	%i4, %vi7621
 	mov	%i5, %vi7638
@@ -38166,7 +38451,8 @@ then.234469:
 cont.234470:
 	fsub	%vf14193, %vf14192, %vf30
 	ceqi	%vi7665, %vi7653, 3
-	ftern	%vf14194, %vi7665, %vf14193, %vf14192
+	mif	%vtf1215, %vi7665
+	ftern	%vf14194, %vtf1215, %vf14193, %vf14192
 	flt	%vi7666, %vf14194, %f0
 	mov	%i4, %vi7649
 	mov	%i5, %vi7666
@@ -38361,7 +38647,8 @@ loop_end.225813:
 	flt	%vi7686, %f0, %vf14203
 	mov	%vi7687, %i0
 	ceqi	%vi7688, %vi7686, 0
-	ftern	%vf14204, %vi7688, %f0, %vf14203
+	mif	%vtf1219, %vi7688
+	ftern	%vf14204, %vtf1219, %f0, %vf14203
 	fmul	%vf14205, %vf12915, %vf14204
 	mov	%vi7689, %i0
 	lf	%vf14206, 0(%vi7318)
@@ -38930,7 +39217,8 @@ then.234571:
 cont.234572:
 	fsub	%vf11993, %vf11992, %vf30
 	ceqi	%vi6606, %vi6595, 3
-	ftern	%vf11994, %vi6606, %vf11993, %vf11992
+	mif	%vtf1237, %vi6606
+	ftern	%vf11994, %vtf1237, %vf11993, %vf11992
 	flt	%vi6607, %vf11994, %f0
 	mov	%i4, %vi6591
 	mov	%i5, %vi6607
@@ -39061,7 +39349,8 @@ then.234588:
 cont.234589:
 	fsub	%vf12041, %vf12040, %vf30
 	ceqi	%vi6633, %vi6622, 3
-	ftern	%vf12042, %vi6633, %vf12041, %vf12040
+	mif	%vtf1242, %vi6633
+	ftern	%vf12042, %vtf1242, %vf12041, %vf12040
 	flt	%vi6634, %vf12042, %f0
 	mov	%i4, %vi6618
 	mov	%i5, %vi6634
@@ -39523,7 +39812,8 @@ then.234647:
 cont.234648:
 	fsub	%vf11741, %vf11740, %vf30
 	ceqi	%vi6455, %vi6444, 3
-	ftern	%vf11742, %vi6455, %vf11741, %vf11740
+	mif	%vtf1255, %vi6455
+	ftern	%vf11742, %vtf1255, %vf11741, %vf11740
 	flt	%vi6456, %vf11742, %f0
 	mov	%i4, %vi6440
 	mov	%i5, %vi6456
@@ -39654,7 +39944,8 @@ then.234664:
 cont.234665:
 	fsub	%vf11789, %vf11788, %vf30
 	ceqi	%vi6482, %vi6471, 3
-	ftern	%vf11790, %vi6482, %vf11789, %vf11788
+	mif	%vtf1260, %vi6482
+	ftern	%vf11790, %vtf1260, %vf11789, %vf11788
 	flt	%vi6483, %vf11790, %f0
 	mov	%i4, %vi6467
 	mov	%i5, %vi6483
@@ -39907,9 +40198,11 @@ cont.234683:
 	finv	%vf12099, %vf12096
 	fmul	%vf12100, %vf29, %vf12099
 	ceqi	%vi6677, %vi6659, 0
-	ftern	%vf12101, %vi6677, %vf12098, %vf12100
+	mif	%vtf1265, %vi6677
+	ftern	%vf12101, %vtf1265, %vf12098, %vf12100
 	ceqi	%vi6678, %vi6675, 0
-	ftern	%vf12102, %vi6678, %vf12101, %vf30
+	mif	%vtf1266, %vi6678
+	ftern	%vf12102, %vtf1266, %vf12101, %vf30
 	fmul	%vf12103, %vf12086, %vf12102
 	sf	%vf12103, 0(%vi52)
 	fmul	%vf12104, %vf12088, %vf12102
@@ -40020,7 +40313,8 @@ then.234695:
 	finv	%vf12288, %vf12287
 	fmul	%vf12289, %vf30, %vf12288
 	ceq	%vi6696, %vi6694, %vi6695
-	ftern	%vf12290, %vi6696, %vf12289, %vf12287
+	mif	%vtf1271, %vi6696
+	ftern	%vf12290, %vtf1271, %vf12289, %vf12287
 	fmul	%vf12291, %vf12290, %vf12290
 	fmul	%vf12292, %vf39, %vf12291
 	fadd	%vf12293, %vf12292, %vf40
@@ -40034,7 +40328,8 @@ then.234695:
 	fadd	%vf12301, %vf12300, %vf44
 	fmul	%vf12302, %vf12301, %vf12291
 	fadd	%vf12303, %vf12302, %vf45
-	ftern	%vf12304, %vi6696, %vf30, %vf29
+	mif	%vtf1272, %vi6696
+	ftern	%vf12304, %vtf1272, %vf30, %vf29
 	fmul	%vf12305, %vf12304, %vf12303
 	fmul	%vf12306, %vf12305, %vf12290
 	add	%vi6697, %vi6694, %vi6695
@@ -40080,7 +40375,8 @@ then.234697:
 	finv	%vf12330, %vf12329
 	fmul	%vf12331, %vf30, %vf12330
 	ceq	%vi6703, %vi6701, %vi6702
-	ftern	%vf12332, %vi6703, %vf12331, %vf12329
+	mif	%vtf1278, %vi6703
+	ftern	%vf12332, %vtf1278, %vf12331, %vf12329
 	fmul	%vf12333, %vf12332, %vf12332
 	fmul	%vf12334, %vf39, %vf12333
 	fadd	%vf12335, %vf12334, %vf40
@@ -40094,7 +40390,8 @@ then.234697:
 	fadd	%vf12343, %vf12342, %vf44
 	fmul	%vf12344, %vf12343, %vf12333
 	fadd	%vf12345, %vf12344, %vf45
-	ftern	%vf12346, %vi6703, %vf30, %vf29
+	mif	%vtf1279, %vi6703
+	ftern	%vf12346, %vtf1279, %vf30, %vf29
 	fmul	%vf12347, %vf12346, %vf12345
 	fmul	%vf12348, %vf12347, %vf12332
 	add	%vi6704, %vi6701, %vi6702
@@ -40120,7 +40417,8 @@ cont.234698:
 	flt	%vi6706, %vf12363, %f0
 	mov	%vi6707, %i0
 	ceqi	%vi6708, %vi6706, 0
-	ftern	%vf12364, %vi6708, %vf12363, %f0
+	mif	%vtf1282, %vi6708
+	ftern	%vf12364, %vtf1282, %vf12363, %f0
 	fmul	%vf12365, %vf55, %vf12364
 	finv	%vf12366, %vf9
 	fmul	%vf12367, %vf12365, %vf12366
@@ -40177,7 +40475,8 @@ else.234701:
 	fsub	%vf12217, %vf12204, %vf12216
 	fsub	%vf12218, %vf31, %vf12217
 	fleq	%vi6688, %vf12217, %vf32
-	ftern	%vf12219, %vi6688, %vf12217, %vf12218
+	mif	%vtf1286, %vi6688
+	ftern	%vf12219, %vtf1286, %vf12217, %vf12218
 	fmul	%vf12220, %vf12219, %vf12219
 	fmul	%vf12221, %vf35, %vf12220
 	fadd	%vf12222, %vf12221, %vf36
@@ -40214,7 +40513,8 @@ else.234699:
 	fsub	%vf12240, %vf12204, %vf12239
 	fsub	%vf12241, %vf31, %vf12240
 	fleq	%vi6689, %vf12240, %vf32
-	ftern	%vf12242, %vi6689, %vf12240, %vf12241
+	mif	%vtf1288, %vi6689
+	ftern	%vf12242, %vtf1288, %vf12240, %vf12241
 	fmul	%vf12243, %vf12242, %vf12242
 	fmul	%vf12244, %vf35, %vf12243
 	fadd	%vf12245, %vf12244, %vf36
@@ -40275,7 +40575,8 @@ else.234709:
 	fsub	%vf12140, %vf12127, %vf12139
 	fsub	%vf12141, %vf31, %vf12140
 	fleq	%vi6685, %vf12140, %vf32
-	ftern	%vf12142, %vi6685, %vf12140, %vf12141
+	mif	%vtf1290, %vi6685
+	ftern	%vf12142, %vtf1290, %vf12140, %vf12141
 	fmul	%vf12143, %vf12142, %vf12142
 	fmul	%vf12144, %vf35, %vf12143
 	fadd	%vf12145, %vf12144, %vf36
@@ -40312,7 +40613,8 @@ else.234707:
 	fsub	%vf12163, %vf12127, %vf12162
 	fsub	%vf12164, %vf31, %vf12163
 	fleq	%vi6686, %vf12163, %vf32
-	ftern	%vf12165, %vi6686, %vf12163, %vf12164
+	mif	%vtf1292, %vi6686
+	ftern	%vf12165, %vtf1292, %vf12163, %vf12164
 	fmul	%vf12166, %vf12165, %vf12165
 	fmul	%vf12167, %vf35, %vf12166
 	fadd	%vf12168, %vf12167, %vf36
@@ -40477,7 +40779,8 @@ then.234732:
 cont.234733:
 	fsub	%vf12458, %vf12457, %vf30
 	ceqi	%vi6751, %vi6722, 3
-	ftern	%vf12459, %vi6751, %vf12458, %vf12457
+	mif	%vtf1296, %vi6751
+	ftern	%vf12459, %vtf1296, %vf12458, %vf12457
 	fmul	%vf12460, %vf12434, %vf12434
 	fmul	%vf12461, %vf12426, %vf12459
 	fsub	%vf12462, %vf12460, %vf12461
@@ -40763,7 +41066,8 @@ then.234774:
 cont.234775:
 	fsub	%vf12563, %vf12562, %vf30
 	ceqi	%vi6807, %vi6778, 3
-	ftern	%vf12564, %vi6807, %vf12563, %vf12562
+	mif	%vtf1306, %vi6807
+	ftern	%vf12564, %vtf1306, %vf12563, %vf12562
 	fmul	%vf12565, %vf12539, %vf12539
 	fmul	%vf12566, %vf12531, %vf12564
 	fsub	%vf12567, %vf12565, %vf12566
@@ -41015,7 +41319,8 @@ then.234808:
 cont.234809:
 	fsub	%vf12631, %vf12630, %vf30
 	ceqi	%vi6844, %vi6832, 3
-	ftern	%vf12632, %vi6844, %vf12631, %vf12630
+	mif	%vtf1314, %vi6844
+	ftern	%vf12632, %vtf1314, %vf12631, %vf12630
 	flt	%vi6845, %vf12632, %f0
 	mov	%i4, %vi6828
 	mov	%i5, %vi6845
@@ -41147,7 +41452,8 @@ then.234825:
 cont.234826:
 	fsub	%vf12679, %vf12678, %vf30
 	ceqi	%vi6872, %vi6860, 3
-	ftern	%vf12680, %vi6872, %vf12679, %vf12678
+	mif	%vtf1319, %vi6872
+	ftern	%vf12680, %vtf1319, %vf12679, %vf12678
 	flt	%vi6873, %vf12680, %f0
 	mov	%i4, %vi6856
 	mov	%i5, %vi6873
@@ -41418,7 +41724,8 @@ then.234855:
 cont.234856:
 	fsub	%vf12771, %vf12770, %vf30
 	ceqi	%vi6940, %vi6911, 3
-	ftern	%vf12772, %vi6940, %vf12771, %vf12770
+	mif	%vtf1325, %vi6940
+	ftern	%vf12772, %vtf1325, %vf12771, %vf12770
 	fmul	%vf12773, %vf12747, %vf12747
 	fmul	%vf12774, %vf12739, %vf12772
 	fsub	%vf12775, %vf12773, %vf12774
@@ -41670,7 +41977,8 @@ then.234889:
 cont.234890:
 	fsub	%vf12839, %vf12838, %vf30
 	ceqi	%vi6977, %vi6965, 3
-	ftern	%vf12840, %vi6977, %vf12839, %vf12838
+	mif	%vtf1333, %vi6977
+	ftern	%vf12840, %vtf1333, %vf12839, %vf12838
 	flt	%vi6978, %vf12840, %f0
 	mov	%i4, %vi6961
 	mov	%i5, %vi6978
@@ -41802,7 +42110,8 @@ then.234906:
 cont.234907:
 	fsub	%vf12887, %vf12886, %vf30
 	ceqi	%vi7005, %vi6993, 3
-	ftern	%vf12888, %vi7005, %vf12887, %vf12886
+	mif	%vtf1338, %vi7005
+	ftern	%vf12888, %vtf1338, %vf12887, %vf12886
 	flt	%vi7006, %vf12888, %f0
 	mov	%i4, %vi6989
 	mov	%i5, %vi7006
@@ -41997,7 +42306,8 @@ loop_end.225988:
 	flt	%vi7026, %f0, %vf12897
 	mov	%vi7027, %i0
 	ceqi	%vi7028, %vi7026, 0
-	ftern	%vf12898, %vi7028, %f0, %vf12897
+	mif	%vtf1342, %vi7028
+	ftern	%vf12898, %vtf1342, %f0, %vf12897
 	fmul	%vf12899, %vf11609, %vf12898
 	mov	%vi7029, %i0
 	lf	%vf12900, 0(%vi6658)
@@ -42459,7 +42769,8 @@ then.234962:
 cont.234963:
 	fsub	%vf27906, %vf27905, %vf30
 	ceqi	%vi14596, %vi14587, 3
-	ftern	%vf27907, %vi14596, %vf27906, %vf27905
+	mif	%vtf1346, %vi14596
+	ftern	%vf27907, %vtf1346, %vf27906, %vf27905
 	sf	%vf27907, 12(%vi14582)
 cont.234961:
 	set_label	%vti4908, cont.234960
@@ -42550,7 +42861,8 @@ then.234970:
 cont.234971:
 	fsub	%vf27951, %vf27950, %vf30
 	ceqi	%vi14614, %vi14605, 3
-	ftern	%vf27952, %vi14614, %vf27951, %vf27950
+	mif	%vtf1348, %vi14614
+	ftern	%vf27952, %vtf1348, %vf27951, %vf27950
 	sf	%vf27952, 12(%vi14600)
 cont.234969:
 	set_label	%vti4915, cont.234968
@@ -43150,7 +43462,8 @@ then.235060:
 cont.235061:
 	fsub	%vf29614, %vf29613, %vf30
 	ceqi	%vi15520, %vi15507, 3
-	ftern	%vf29615, %vi15520, %vf29614, %vf29613
+	mif	%vtf1367, %vi15520
+	ftern	%vf29615, %vtf1367, %vf29614, %vf29613
 	flt	%vi15521, %vf29615, %f0
 	mov	%i4, %vi15503
 	mov	%i5, %vi15521
@@ -43277,7 +43590,8 @@ then.235077:
 cont.235078:
 	fsub	%vf29656, %vf29655, %vf30
 	ceqi	%vi15549, %vi15536, 3
-	ftern	%vf29657, %vi15549, %vf29656, %vf29655
+	mif	%vtf1372, %vi15549
+	ftern	%vf29657, %vtf1372, %vf29656, %vf29655
 	flt	%vi15550, %vf29657, %f0
 	mov	%i4, %vi15532
 	mov	%i5, %vi15550
@@ -43733,7 +44047,8 @@ then.235136:
 cont.235137:
 	fsub	%vf29374, %vf29373, %vf30
 	ceqi	%vi15365, %vi15352, 3
-	ftern	%vf29375, %vi15365, %vf29374, %vf29373
+	mif	%vtf1385, %vi15365
+	ftern	%vf29375, %vtf1385, %vf29374, %vf29373
 	flt	%vi15366, %vf29375, %f0
 	mov	%i4, %vi15348
 	mov	%i5, %vi15366
@@ -43860,7 +44175,8 @@ then.235153:
 cont.235154:
 	fsub	%vf29416, %vf29415, %vf30
 	ceqi	%vi15394, %vi15381, 3
-	ftern	%vf29417, %vi15394, %vf29416, %vf29415
+	mif	%vtf1390, %vi15394
+	ftern	%vf29417, %vtf1390, %vf29416, %vf29415
 	flt	%vi15395, %vf29417, %f0
 	mov	%i4, %vi15377
 	mov	%i5, %vi15395
@@ -44105,9 +44421,11 @@ cont.235172:
 	finv	%vf29714, %vf29711
 	fmul	%vf29715, %vf29, %vf29714
 	ceqi	%vi15590, %vi15575, 0
-	ftern	%vf29716, %vi15590, %vf29713, %vf29715
+	mif	%vtf1395, %vi15590
+	ftern	%vf29716, %vtf1395, %vf29713, %vf29715
 	ceqi	%vi15591, %vi15589, 0
-	ftern	%vf29717, %vi15591, %vf29716, %vf30
+	mif	%vtf1396, %vi15591
+	ftern	%vf29717, %vtf1396, %vf29716, %vf30
 	fmul	%vf29718, %vf29701, %vf29717
 	sf	%vf29718, 0(%vi52)
 	fmul	%vf29719, %vf29703, %vf29717
@@ -44217,7 +44535,8 @@ then.235184:
 	finv	%vf29903, %vf29902
 	fmul	%vf29904, %vf30, %vf29903
 	ceq	%vi15609, %vi15607, %vi15608
-	ftern	%vf29905, %vi15609, %vf29904, %vf29902
+	mif	%vtf1401, %vi15609
+	ftern	%vf29905, %vtf1401, %vf29904, %vf29902
 	fmul	%vf29906, %vf29905, %vf29905
 	fmul	%vf29907, %vf39, %vf29906
 	fadd	%vf29908, %vf29907, %vf40
@@ -44231,7 +44550,8 @@ then.235184:
 	fadd	%vf29916, %vf29915, %vf44
 	fmul	%vf29917, %vf29916, %vf29906
 	fadd	%vf29918, %vf29917, %vf45
-	ftern	%vf29919, %vi15609, %vf30, %vf29
+	mif	%vtf1402, %vi15609
+	ftern	%vf29919, %vtf1402, %vf30, %vf29
 	fmul	%vf29920, %vf29919, %vf29918
 	fmul	%vf29921, %vf29920, %vf29905
 	add	%vi15610, %vi15607, %vi15608
@@ -44277,7 +44597,8 @@ then.235186:
 	finv	%vf29945, %vf29944
 	fmul	%vf29946, %vf30, %vf29945
 	ceq	%vi15616, %vi15614, %vi15615
-	ftern	%vf29947, %vi15616, %vf29946, %vf29944
+	mif	%vtf1408, %vi15616
+	ftern	%vf29947, %vtf1408, %vf29946, %vf29944
 	fmul	%vf29948, %vf29947, %vf29947
 	fmul	%vf29949, %vf39, %vf29948
 	fadd	%vf29950, %vf29949, %vf40
@@ -44291,7 +44612,8 @@ then.235186:
 	fadd	%vf29958, %vf29957, %vf44
 	fmul	%vf29959, %vf29958, %vf29948
 	fadd	%vf29960, %vf29959, %vf45
-	ftern	%vf29961, %vi15616, %vf30, %vf29
+	mif	%vtf1409, %vi15616
+	ftern	%vf29961, %vtf1409, %vf30, %vf29
 	fmul	%vf29962, %vf29961, %vf29960
 	fmul	%vf29963, %vf29962, %vf29947
 	add	%vi15617, %vi15614, %vi15615
@@ -44317,7 +44639,8 @@ cont.235187:
 	flt	%vi15619, %vf29978, %f0
 	mov	%vi15620, %i0
 	ceqi	%vi15621, %vi15619, 0
-	ftern	%vf29979, %vi15621, %vf29978, %f0
+	mif	%vtf1412, %vi15621
+	ftern	%vf29979, %vtf1412, %vf29978, %f0
 	fmul	%vf29980, %vf55, %vf29979
 	finv	%vf29981, %vf9
 	fmul	%vf29982, %vf29980, %vf29981
@@ -44374,7 +44697,8 @@ else.235190:
 	fsub	%vf29832, %vf29819, %vf29831
 	fsub	%vf29833, %vf31, %vf29832
 	fleq	%vi15601, %vf29832, %vf32
-	ftern	%vf29834, %vi15601, %vf29832, %vf29833
+	mif	%vtf1416, %vi15601
+	ftern	%vf29834, %vtf1416, %vf29832, %vf29833
 	fmul	%vf29835, %vf29834, %vf29834
 	fmul	%vf29836, %vf35, %vf29835
 	fadd	%vf29837, %vf29836, %vf36
@@ -44411,7 +44735,8 @@ else.235188:
 	fsub	%vf29855, %vf29819, %vf29854
 	fsub	%vf29856, %vf31, %vf29855
 	fleq	%vi15602, %vf29855, %vf32
-	ftern	%vf29857, %vi15602, %vf29855, %vf29856
+	mif	%vtf1418, %vi15602
+	ftern	%vf29857, %vtf1418, %vf29855, %vf29856
 	fmul	%vf29858, %vf29857, %vf29857
 	fmul	%vf29859, %vf35, %vf29858
 	fadd	%vf29860, %vf29859, %vf36
@@ -44472,7 +44797,8 @@ else.235198:
 	fsub	%vf29755, %vf29742, %vf29754
 	fsub	%vf29756, %vf31, %vf29755
 	fleq	%vi15598, %vf29755, %vf32
-	ftern	%vf29757, %vi15598, %vf29755, %vf29756
+	mif	%vtf1420, %vi15598
+	ftern	%vf29757, %vtf1420, %vf29755, %vf29756
 	fmul	%vf29758, %vf29757, %vf29757
 	fmul	%vf29759, %vf35, %vf29758
 	fadd	%vf29760, %vf29759, %vf36
@@ -44509,7 +44835,8 @@ else.235196:
 	fsub	%vf29778, %vf29742, %vf29777
 	fsub	%vf29779, %vf31, %vf29778
 	fleq	%vi15599, %vf29778, %vf32
-	ftern	%vf29780, %vi15599, %vf29778, %vf29779
+	mif	%vtf1422, %vi15599
+	ftern	%vf29780, %vtf1422, %vf29778, %vf29779
 	fmul	%vf29781, %vf29780, %vf29780
 	fmul	%vf29782, %vf35, %vf29781
 	fadd	%vf29783, %vf29782, %vf36
@@ -44674,7 +45001,8 @@ then.235221:
 cont.235222:
 	fsub	%vf30073, %vf30072, %vf30
 	ceqi	%vi15664, %vi15635, 3
-	ftern	%vf30074, %vi15664, %vf30073, %vf30072
+	mif	%vtf1426, %vi15664
+	ftern	%vf30074, %vtf1426, %vf30073, %vf30072
 	fmul	%vf30075, %vf30049, %vf30049
 	fmul	%vf30076, %vf30041, %vf30074
 	fsub	%vf30077, %vf30075, %vf30076
@@ -44960,7 +45288,8 @@ then.235263:
 cont.235264:
 	fsub	%vf30178, %vf30177, %vf30
 	ceqi	%vi15720, %vi15691, 3
-	ftern	%vf30179, %vi15720, %vf30178, %vf30177
+	mif	%vtf1436, %vi15720
+	ftern	%vf30179, %vtf1436, %vf30178, %vf30177
 	fmul	%vf30180, %vf30154, %vf30154
 	fmul	%vf30181, %vf30146, %vf30179
 	fsub	%vf30182, %vf30180, %vf30181
@@ -45213,7 +45542,8 @@ then.235297:
 cont.235298:
 	fsub	%vf30249, %vf30248, %vf30
 	ceqi	%vi15755, %vi15745, 3
-	ftern	%vf30250, %vi15755, %vf30249, %vf30248
+	mif	%vtf1444, %vi15755
+	ftern	%vf30250, %vtf1444, %vf30249, %vf30248
 	flt	%vi15756, %vf30250, %f0
 	mov	%i4, %vi15741
 	mov	%i5, %vi15756
@@ -45343,7 +45673,8 @@ then.235314:
 cont.235315:
 	fsub	%vf30297, %vf30296, %vf30
 	ceqi	%vi15781, %vi15771, 3
-	ftern	%vf30298, %vi15781, %vf30297, %vf30296
+	mif	%vtf1449, %vi15781
+	ftern	%vf30298, %vtf1449, %vf30297, %vf30296
 	flt	%vi15782, %vf30298, %f0
 	mov	%i4, %vi15767
 	mov	%i5, %vi15782
@@ -45614,7 +45945,8 @@ then.235344:
 cont.235345:
 	fsub	%vf30389, %vf30388, %vf30
 	ceqi	%vi15849, %vi15820, 3
-	ftern	%vf30390, %vi15849, %vf30389, %vf30388
+	mif	%vtf1455, %vi15849
+	ftern	%vf30390, %vtf1455, %vf30389, %vf30388
 	fmul	%vf30391, %vf30365, %vf30365
 	fmul	%vf30392, %vf30357, %vf30390
 	fsub	%vf30393, %vf30391, %vf30392
@@ -45867,7 +46199,8 @@ then.235378:
 cont.235379:
 	fsub	%vf30460, %vf30459, %vf30
 	ceqi	%vi15884, %vi15874, 3
-	ftern	%vf30461, %vi15884, %vf30460, %vf30459
+	mif	%vtf1463, %vi15884
+	ftern	%vf30461, %vtf1463, %vf30460, %vf30459
 	flt	%vi15885, %vf30461, %f0
 	mov	%i4, %vi15870
 	mov	%i5, %vi15885
@@ -45997,7 +46330,8 @@ then.235395:
 cont.235396:
 	fsub	%vf30508, %vf30507, %vf30
 	ceqi	%vi15910, %vi15900, 3
-	ftern	%vf30509, %vi15910, %vf30508, %vf30507
+	mif	%vtf1468, %vi15910
+	ftern	%vf30509, %vtf1468, %vf30508, %vf30507
 	flt	%vi15911, %vf30509, %f0
 	mov	%i4, %vi15896
 	mov	%i5, %vi15911
@@ -46192,7 +46526,8 @@ loop_end.226243:
 	flt	%vi15931, %f0, %vf30518
 	mov	%vi15932, %i0
 	ceqi	%vi15933, %vi15931, 0
-	ftern	%vf30519, %vi15933, %f0, %vf30518
+	mif	%vtf1472, %vi15933
+	ftern	%vf30519, %vtf1472, %f0, %vf30518
 	fmul	%vf30520, %vf29249, %vf30519
 	mov	%vi15934, %i0
 	lf	%vf30521, 0(%vi15574)
@@ -46763,7 +47098,8 @@ then.235497:
 cont.235498:
 	fsub	%vf28327, %vf28326, %vf30
 	ceqi	%vi14864, %vi14851, 3
-	ftern	%vf28328, %vi14864, %vf28327, %vf28326
+	mif	%vtf1490, %vi14864
+	ftern	%vf28328, %vtf1490, %vf28327, %vf28326
 	flt	%vi14865, %vf28328, %f0
 	mov	%i4, %vi14847
 	mov	%i5, %vi14865
@@ -46890,7 +47226,8 @@ then.235514:
 cont.235515:
 	fsub	%vf28369, %vf28368, %vf30
 	ceqi	%vi14893, %vi14880, 3
-	ftern	%vf28370, %vi14893, %vf28369, %vf28368
+	mif	%vtf1495, %vi14893
+	ftern	%vf28370, %vtf1495, %vf28369, %vf28368
 	flt	%vi14894, %vf28370, %f0
 	mov	%i4, %vi14876
 	mov	%i5, %vi14894
@@ -47346,7 +47683,8 @@ then.235573:
 cont.235574:
 	fsub	%vf28087, %vf28086, %vf30
 	ceqi	%vi14709, %vi14696, 3
-	ftern	%vf28088, %vi14709, %vf28087, %vf28086
+	mif	%vtf1508, %vi14709
+	ftern	%vf28088, %vtf1508, %vf28087, %vf28086
 	flt	%vi14710, %vf28088, %f0
 	mov	%i4, %vi14692
 	mov	%i5, %vi14710
@@ -47473,7 +47811,8 @@ then.235590:
 cont.235591:
 	fsub	%vf28129, %vf28128, %vf30
 	ceqi	%vi14738, %vi14725, 3
-	ftern	%vf28130, %vi14738, %vf28129, %vf28128
+	mif	%vtf1513, %vi14738
+	ftern	%vf28130, %vtf1513, %vf28129, %vf28128
 	flt	%vi14739, %vf28130, %f0
 	mov	%i4, %vi14721
 	mov	%i5, %vi14739
@@ -47718,9 +48057,11 @@ cont.235609:
 	finv	%vf28427, %vf28424
 	fmul	%vf28428, %vf29, %vf28427
 	ceqi	%vi14934, %vi14919, 0
-	ftern	%vf28429, %vi14934, %vf28426, %vf28428
+	mif	%vtf1518, %vi14934
+	ftern	%vf28429, %vtf1518, %vf28426, %vf28428
 	ceqi	%vi14935, %vi14933, 0
-	ftern	%vf28430, %vi14935, %vf28429, %vf30
+	mif	%vtf1519, %vi14935
+	ftern	%vf28430, %vtf1519, %vf28429, %vf30
 	fmul	%vf28431, %vf28414, %vf28430
 	sf	%vf28431, 0(%vi52)
 	fmul	%vf28432, %vf28416, %vf28430
@@ -47830,7 +48171,8 @@ then.235621:
 	finv	%vf28616, %vf28615
 	fmul	%vf28617, %vf30, %vf28616
 	ceq	%vi14953, %vi14951, %vi14952
-	ftern	%vf28618, %vi14953, %vf28617, %vf28615
+	mif	%vtf1524, %vi14953
+	ftern	%vf28618, %vtf1524, %vf28617, %vf28615
 	fmul	%vf28619, %vf28618, %vf28618
 	fmul	%vf28620, %vf39, %vf28619
 	fadd	%vf28621, %vf28620, %vf40
@@ -47844,7 +48186,8 @@ then.235621:
 	fadd	%vf28629, %vf28628, %vf44
 	fmul	%vf28630, %vf28629, %vf28619
 	fadd	%vf28631, %vf28630, %vf45
-	ftern	%vf28632, %vi14953, %vf30, %vf29
+	mif	%vtf1525, %vi14953
+	ftern	%vf28632, %vtf1525, %vf30, %vf29
 	fmul	%vf28633, %vf28632, %vf28631
 	fmul	%vf28634, %vf28633, %vf28618
 	add	%vi14954, %vi14951, %vi14952
@@ -47890,7 +48233,8 @@ then.235623:
 	finv	%vf28658, %vf28657
 	fmul	%vf28659, %vf30, %vf28658
 	ceq	%vi14960, %vi14958, %vi14959
-	ftern	%vf28660, %vi14960, %vf28659, %vf28657
+	mif	%vtf1531, %vi14960
+	ftern	%vf28660, %vtf1531, %vf28659, %vf28657
 	fmul	%vf28661, %vf28660, %vf28660
 	fmul	%vf28662, %vf39, %vf28661
 	fadd	%vf28663, %vf28662, %vf40
@@ -47904,7 +48248,8 @@ then.235623:
 	fadd	%vf28671, %vf28670, %vf44
 	fmul	%vf28672, %vf28671, %vf28661
 	fadd	%vf28673, %vf28672, %vf45
-	ftern	%vf28674, %vi14960, %vf30, %vf29
+	mif	%vtf1532, %vi14960
+	ftern	%vf28674, %vtf1532, %vf30, %vf29
 	fmul	%vf28675, %vf28674, %vf28673
 	fmul	%vf28676, %vf28675, %vf28660
 	add	%vi14961, %vi14958, %vi14959
@@ -47930,7 +48275,8 @@ cont.235624:
 	flt	%vi14963, %vf28691, %f0
 	mov	%vi14964, %i0
 	ceqi	%vi14965, %vi14963, 0
-	ftern	%vf28692, %vi14965, %vf28691, %f0
+	mif	%vtf1535, %vi14965
+	ftern	%vf28692, %vtf1535, %vf28691, %f0
 	fmul	%vf28693, %vf55, %vf28692
 	finv	%vf28694, %vf9
 	fmul	%vf28695, %vf28693, %vf28694
@@ -47987,7 +48333,8 @@ else.235627:
 	fsub	%vf28545, %vf28532, %vf28544
 	fsub	%vf28546, %vf31, %vf28545
 	fleq	%vi14945, %vf28545, %vf32
-	ftern	%vf28547, %vi14945, %vf28545, %vf28546
+	mif	%vtf1539, %vi14945
+	ftern	%vf28547, %vtf1539, %vf28545, %vf28546
 	fmul	%vf28548, %vf28547, %vf28547
 	fmul	%vf28549, %vf35, %vf28548
 	fadd	%vf28550, %vf28549, %vf36
@@ -48024,7 +48371,8 @@ else.235625:
 	fsub	%vf28568, %vf28532, %vf28567
 	fsub	%vf28569, %vf31, %vf28568
 	fleq	%vi14946, %vf28568, %vf32
-	ftern	%vf28570, %vi14946, %vf28568, %vf28569
+	mif	%vtf1541, %vi14946
+	ftern	%vf28570, %vtf1541, %vf28568, %vf28569
 	fmul	%vf28571, %vf28570, %vf28570
 	fmul	%vf28572, %vf35, %vf28571
 	fadd	%vf28573, %vf28572, %vf36
@@ -48085,7 +48433,8 @@ else.235635:
 	fsub	%vf28468, %vf28455, %vf28467
 	fsub	%vf28469, %vf31, %vf28468
 	fleq	%vi14942, %vf28468, %vf32
-	ftern	%vf28470, %vi14942, %vf28468, %vf28469
+	mif	%vtf1543, %vi14942
+	ftern	%vf28470, %vtf1543, %vf28468, %vf28469
 	fmul	%vf28471, %vf28470, %vf28470
 	fmul	%vf28472, %vf35, %vf28471
 	fadd	%vf28473, %vf28472, %vf36
@@ -48122,7 +48471,8 @@ else.235633:
 	fsub	%vf28491, %vf28455, %vf28490
 	fsub	%vf28492, %vf31, %vf28491
 	fleq	%vi14943, %vf28491, %vf32
-	ftern	%vf28493, %vi14943, %vf28491, %vf28492
+	mif	%vtf1545, %vi14943
+	ftern	%vf28493, %vtf1545, %vf28491, %vf28492
 	fmul	%vf28494, %vf28493, %vf28493
 	fmul	%vf28495, %vf35, %vf28494
 	fadd	%vf28496, %vf28495, %vf36
@@ -48287,7 +48637,8 @@ then.235658:
 cont.235659:
 	fsub	%vf28786, %vf28785, %vf30
 	ceqi	%vi15008, %vi14979, 3
-	ftern	%vf28787, %vi15008, %vf28786, %vf28785
+	mif	%vtf1549, %vi15008
+	ftern	%vf28787, %vtf1549, %vf28786, %vf28785
 	fmul	%vf28788, %vf28762, %vf28762
 	fmul	%vf28789, %vf28754, %vf28787
 	fsub	%vf28790, %vf28788, %vf28789
@@ -48573,7 +48924,8 @@ then.235700:
 cont.235701:
 	fsub	%vf28891, %vf28890, %vf30
 	ceqi	%vi15064, %vi15035, 3
-	ftern	%vf28892, %vi15064, %vf28891, %vf28890
+	mif	%vtf1559, %vi15064
+	ftern	%vf28892, %vtf1559, %vf28891, %vf28890
 	fmul	%vf28893, %vf28867, %vf28867
 	fmul	%vf28894, %vf28859, %vf28892
 	fsub	%vf28895, %vf28893, %vf28894
@@ -48826,7 +49178,8 @@ then.235734:
 cont.235735:
 	fsub	%vf28962, %vf28961, %vf30
 	ceqi	%vi15099, %vi15089, 3
-	ftern	%vf28963, %vi15099, %vf28962, %vf28961
+	mif	%vtf1567, %vi15099
+	ftern	%vf28963, %vtf1567, %vf28962, %vf28961
 	flt	%vi15100, %vf28963, %f0
 	mov	%i4, %vi15085
 	mov	%i5, %vi15100
@@ -48956,7 +49309,8 @@ then.235751:
 cont.235752:
 	fsub	%vf29010, %vf29009, %vf30
 	ceqi	%vi15125, %vi15115, 3
-	ftern	%vf29011, %vi15125, %vf29010, %vf29009
+	mif	%vtf1572, %vi15125
+	ftern	%vf29011, %vtf1572, %vf29010, %vf29009
 	flt	%vi15126, %vf29011, %f0
 	mov	%i4, %vi15111
 	mov	%i5, %vi15126
@@ -49227,7 +49581,8 @@ then.235781:
 cont.235782:
 	fsub	%vf29102, %vf29101, %vf30
 	ceqi	%vi15193, %vi15164, 3
-	ftern	%vf29103, %vi15193, %vf29102, %vf29101
+	mif	%vtf1578, %vi15193
+	ftern	%vf29103, %vtf1578, %vf29102, %vf29101
 	fmul	%vf29104, %vf29078, %vf29078
 	fmul	%vf29105, %vf29070, %vf29103
 	fsub	%vf29106, %vf29104, %vf29105
@@ -49480,7 +49835,8 @@ then.235815:
 cont.235816:
 	fsub	%vf29173, %vf29172, %vf30
 	ceqi	%vi15228, %vi15218, 3
-	ftern	%vf29174, %vi15228, %vf29173, %vf29172
+	mif	%vtf1586, %vi15228
+	ftern	%vf29174, %vtf1586, %vf29173, %vf29172
 	flt	%vi15229, %vf29174, %f0
 	mov	%i4, %vi15214
 	mov	%i5, %vi15229
@@ -49610,7 +49966,8 @@ then.235832:
 cont.235833:
 	fsub	%vf29221, %vf29220, %vf30
 	ceqi	%vi15254, %vi15244, 3
-	ftern	%vf29222, %vi15254, %vf29221, %vf29220
+	mif	%vtf1591, %vi15254
+	ftern	%vf29222, %vtf1591, %vf29221, %vf29220
 	flt	%vi15255, %vf29222, %f0
 	mov	%i4, %vi15240
 	mov	%i5, %vi15255
@@ -49805,7 +50162,8 @@ loop_end.226418:
 	flt	%vi15275, %f0, %vf29231
 	mov	%vi15276, %i0
 	ceqi	%vi15277, %vi15275, 0
-	ftern	%vf29232, %vi15277, %f0, %vf29231
+	mif	%vtf1595, %vi15277
+	ftern	%vf29232, %vtf1595, %f0, %vf29231
 	fmul	%vf29233, %vf27962, %vf29232
 	mov	%vi15278, %i0
 	lf	%vf29234, 0(%vi14918)
@@ -49920,7 +50278,8 @@ then.235857:
 cont.235858:
 	fsub	%vf30584, %vf30583, %vf30
 	ceqi	%vi15959, %vi15950, 3
-	ftern	%vf30585, %vi15959, %vf30584, %vf30583
+	mif	%vtf1596, %vi15959
+	ftern	%vf30585, %vtf1596, %vf30584, %vf30583
 	sf	%vf30585, 12(%vi15945)
 cont.235856:
 	set_label	%vti5760, cont.235855
@@ -50011,7 +50370,8 @@ then.235865:
 cont.235866:
 	fsub	%vf30629, %vf30628, %vf30
 	ceqi	%vi15977, %vi15968, 3
-	ftern	%vf30630, %vi15977, %vf30629, %vf30628
+	mif	%vtf1598, %vi15977
+	ftern	%vf30630, %vtf1598, %vf30629, %vf30628
 	sf	%vf30630, 12(%vi15963)
 cont.235864:
 	set_label	%vti5767, cont.235863
@@ -50611,7 +50971,8 @@ then.235955:
 cont.235956:
 	fsub	%vf32292, %vf32291, %vf30
 	ceqi	%vi16883, %vi16870, 3
-	ftern	%vf32293, %vi16883, %vf32292, %vf32291
+	mif	%vtf1617, %vi16883
+	ftern	%vf32293, %vtf1617, %vf32292, %vf32291
 	flt	%vi16884, %vf32293, %f0
 	mov	%i4, %vi16866
 	mov	%i5, %vi16884
@@ -50738,7 +51099,8 @@ then.235972:
 cont.235973:
 	fsub	%vf32334, %vf32333, %vf30
 	ceqi	%vi16912, %vi16899, 3
-	ftern	%vf32335, %vi16912, %vf32334, %vf32333
+	mif	%vtf1622, %vi16912
+	ftern	%vf32335, %vtf1622, %vf32334, %vf32333
 	flt	%vi16913, %vf32335, %f0
 	mov	%i4, %vi16895
 	mov	%i5, %vi16913
@@ -51194,7 +51556,8 @@ then.236031:
 cont.236032:
 	fsub	%vf32052, %vf32051, %vf30
 	ceqi	%vi16728, %vi16715, 3
-	ftern	%vf32053, %vi16728, %vf32052, %vf32051
+	mif	%vtf1635, %vi16728
+	ftern	%vf32053, %vtf1635, %vf32052, %vf32051
 	flt	%vi16729, %vf32053, %f0
 	mov	%i4, %vi16711
 	mov	%i5, %vi16729
@@ -51321,7 +51684,8 @@ then.236048:
 cont.236049:
 	fsub	%vf32094, %vf32093, %vf30
 	ceqi	%vi16757, %vi16744, 3
-	ftern	%vf32095, %vi16757, %vf32094, %vf32093
+	mif	%vtf1640, %vi16757
+	ftern	%vf32095, %vtf1640, %vf32094, %vf32093
 	flt	%vi16758, %vf32095, %f0
 	mov	%i4, %vi16740
 	mov	%i5, %vi16758
@@ -51566,9 +51930,11 @@ cont.236067:
 	finv	%vf32392, %vf32389
 	fmul	%vf32393, %vf29, %vf32392
 	ceqi	%vi16953, %vi16938, 0
-	ftern	%vf32394, %vi16953, %vf32391, %vf32393
+	mif	%vtf1645, %vi16953
+	ftern	%vf32394, %vtf1645, %vf32391, %vf32393
 	ceqi	%vi16954, %vi16952, 0
-	ftern	%vf32395, %vi16954, %vf32394, %vf30
+	mif	%vtf1646, %vi16954
+	ftern	%vf32395, %vtf1646, %vf32394, %vf30
 	fmul	%vf32396, %vf32379, %vf32395
 	sf	%vf32396, 0(%vi52)
 	fmul	%vf32397, %vf32381, %vf32395
@@ -51678,7 +52044,8 @@ then.236079:
 	finv	%vf32581, %vf32580
 	fmul	%vf32582, %vf30, %vf32581
 	ceq	%vi16972, %vi16970, %vi16971
-	ftern	%vf32583, %vi16972, %vf32582, %vf32580
+	mif	%vtf1651, %vi16972
+	ftern	%vf32583, %vtf1651, %vf32582, %vf32580
 	fmul	%vf32584, %vf32583, %vf32583
 	fmul	%vf32585, %vf39, %vf32584
 	fadd	%vf32586, %vf32585, %vf40
@@ -51692,7 +52059,8 @@ then.236079:
 	fadd	%vf32594, %vf32593, %vf44
 	fmul	%vf32595, %vf32594, %vf32584
 	fadd	%vf32596, %vf32595, %vf45
-	ftern	%vf32597, %vi16972, %vf30, %vf29
+	mif	%vtf1652, %vi16972
+	ftern	%vf32597, %vtf1652, %vf30, %vf29
 	fmul	%vf32598, %vf32597, %vf32596
 	fmul	%vf32599, %vf32598, %vf32583
 	add	%vi16973, %vi16970, %vi16971
@@ -51738,7 +52106,8 @@ then.236081:
 	finv	%vf32623, %vf32622
 	fmul	%vf32624, %vf30, %vf32623
 	ceq	%vi16979, %vi16977, %vi16978
-	ftern	%vf32625, %vi16979, %vf32624, %vf32622
+	mif	%vtf1658, %vi16979
+	ftern	%vf32625, %vtf1658, %vf32624, %vf32622
 	fmul	%vf32626, %vf32625, %vf32625
 	fmul	%vf32627, %vf39, %vf32626
 	fadd	%vf32628, %vf32627, %vf40
@@ -51752,7 +52121,8 @@ then.236081:
 	fadd	%vf32636, %vf32635, %vf44
 	fmul	%vf32637, %vf32636, %vf32626
 	fadd	%vf32638, %vf32637, %vf45
-	ftern	%vf32639, %vi16979, %vf30, %vf29
+	mif	%vtf1659, %vi16979
+	ftern	%vf32639, %vtf1659, %vf30, %vf29
 	fmul	%vf32640, %vf32639, %vf32638
 	fmul	%vf32641, %vf32640, %vf32625
 	add	%vi16980, %vi16977, %vi16978
@@ -51778,7 +52148,8 @@ cont.236082:
 	flt	%vi16982, %vf32656, %f0
 	mov	%vi16983, %i0
 	ceqi	%vi16984, %vi16982, 0
-	ftern	%vf32657, %vi16984, %vf32656, %f0
+	mif	%vtf1662, %vi16984
+	ftern	%vf32657, %vtf1662, %vf32656, %f0
 	fmul	%vf32658, %vf55, %vf32657
 	finv	%vf32659, %vf9
 	fmul	%vf32660, %vf32658, %vf32659
@@ -51835,7 +52206,8 @@ else.236085:
 	fsub	%vf32510, %vf32497, %vf32509
 	fsub	%vf32511, %vf31, %vf32510
 	fleq	%vi16964, %vf32510, %vf32
-	ftern	%vf32512, %vi16964, %vf32510, %vf32511
+	mif	%vtf1666, %vi16964
+	ftern	%vf32512, %vtf1666, %vf32510, %vf32511
 	fmul	%vf32513, %vf32512, %vf32512
 	fmul	%vf32514, %vf35, %vf32513
 	fadd	%vf32515, %vf32514, %vf36
@@ -51872,7 +52244,8 @@ else.236083:
 	fsub	%vf32533, %vf32497, %vf32532
 	fsub	%vf32534, %vf31, %vf32533
 	fleq	%vi16965, %vf32533, %vf32
-	ftern	%vf32535, %vi16965, %vf32533, %vf32534
+	mif	%vtf1668, %vi16965
+	ftern	%vf32535, %vtf1668, %vf32533, %vf32534
 	fmul	%vf32536, %vf32535, %vf32535
 	fmul	%vf32537, %vf35, %vf32536
 	fadd	%vf32538, %vf32537, %vf36
@@ -51933,7 +52306,8 @@ else.236093:
 	fsub	%vf32433, %vf32420, %vf32432
 	fsub	%vf32434, %vf31, %vf32433
 	fleq	%vi16961, %vf32433, %vf32
-	ftern	%vf32435, %vi16961, %vf32433, %vf32434
+	mif	%vtf1670, %vi16961
+	ftern	%vf32435, %vtf1670, %vf32433, %vf32434
 	fmul	%vf32436, %vf32435, %vf32435
 	fmul	%vf32437, %vf35, %vf32436
 	fadd	%vf32438, %vf32437, %vf36
@@ -51970,7 +52344,8 @@ else.236091:
 	fsub	%vf32456, %vf32420, %vf32455
 	fsub	%vf32457, %vf31, %vf32456
 	fleq	%vi16962, %vf32456, %vf32
-	ftern	%vf32458, %vi16962, %vf32456, %vf32457
+	mif	%vtf1672, %vi16962
+	ftern	%vf32458, %vtf1672, %vf32456, %vf32457
 	fmul	%vf32459, %vf32458, %vf32458
 	fmul	%vf32460, %vf35, %vf32459
 	fadd	%vf32461, %vf32460, %vf36
@@ -52135,7 +52510,8 @@ then.236116:
 cont.236117:
 	fsub	%vf32751, %vf32750, %vf30
 	ceqi	%vi17027, %vi16998, 3
-	ftern	%vf32752, %vi17027, %vf32751, %vf32750
+	mif	%vtf1676, %vi17027
+	ftern	%vf32752, %vtf1676, %vf32751, %vf32750
 	fmul	%vf32753, %vf32727, %vf32727
 	fmul	%vf32754, %vf32719, %vf32752
 	fsub	%vf32755, %vf32753, %vf32754
@@ -52421,7 +52797,8 @@ then.236158:
 cont.236159:
 	fsub	%vf32856, %vf32855, %vf30
 	ceqi	%vi17083, %vi17054, 3
-	ftern	%vf32857, %vi17083, %vf32856, %vf32855
+	mif	%vtf1686, %vi17083
+	ftern	%vf32857, %vtf1686, %vf32856, %vf32855
 	fmul	%vf32858, %vf32832, %vf32832
 	fmul	%vf32859, %vf32824, %vf32857
 	fsub	%vf32860, %vf32858, %vf32859
@@ -52674,7 +53051,8 @@ then.236192:
 cont.236193:
 	fsub	%vf32927, %vf32926, %vf30
 	ceqi	%vi17118, %vi17108, 3
-	ftern	%vf32928, %vi17118, %vf32927, %vf32926
+	mif	%vtf1694, %vi17118
+	ftern	%vf32928, %vtf1694, %vf32927, %vf32926
 	flt	%vi17119, %vf32928, %f0
 	mov	%i4, %vi17104
 	mov	%i5, %vi17119
@@ -52804,7 +53182,8 @@ then.236209:
 cont.236210:
 	fsub	%vf32975, %vf32974, %vf30
 	ceqi	%vi17144, %vi17134, 3
-	ftern	%vf32976, %vi17144, %vf32975, %vf32974
+	mif	%vtf1699, %vi17144
+	ftern	%vf32976, %vtf1699, %vf32975, %vf32974
 	flt	%vi17145, %vf32976, %f0
 	mov	%i4, %vi17130
 	mov	%i5, %vi17145
@@ -53075,7 +53454,8 @@ then.236239:
 cont.236240:
 	fsub	%vf33067, %vf33066, %vf30
 	ceqi	%vi17212, %vi17183, 3
-	ftern	%vf33068, %vi17212, %vf33067, %vf33066
+	mif	%vtf1705, %vi17212
+	ftern	%vf33068, %vtf1705, %vf33067, %vf33066
 	fmul	%vf33069, %vf33043, %vf33043
 	fmul	%vf33070, %vf33035, %vf33068
 	fsub	%vf33071, %vf33069, %vf33070
@@ -53328,7 +53708,8 @@ then.236273:
 cont.236274:
 	fsub	%vf33138, %vf33137, %vf30
 	ceqi	%vi17247, %vi17237, 3
-	ftern	%vf33139, %vi17247, %vf33138, %vf33137
+	mif	%vtf1713, %vi17247
+	ftern	%vf33139, %vtf1713, %vf33138, %vf33137
 	flt	%vi17248, %vf33139, %f0
 	mov	%i4, %vi17233
 	mov	%i5, %vi17248
@@ -53458,7 +53839,8 @@ then.236290:
 cont.236291:
 	fsub	%vf33186, %vf33185, %vf30
 	ceqi	%vi17273, %vi17263, 3
-	ftern	%vf33187, %vi17273, %vf33186, %vf33185
+	mif	%vtf1718, %vi17273
+	ftern	%vf33187, %vtf1718, %vf33186, %vf33185
 	flt	%vi17274, %vf33187, %f0
 	mov	%i4, %vi17259
 	mov	%i5, %vi17274
@@ -53653,7 +54035,8 @@ loop_end.226606:
 	flt	%vi17294, %f0, %vf33196
 	mov	%vi17295, %i0
 	ceqi	%vi17296, %vi17294, 0
-	ftern	%vf33197, %vi17296, %f0, %vf33196
+	mif	%vtf1722, %vi17296
+	ftern	%vf33197, %vtf1722, %f0, %vf33196
 	fmul	%vf33198, %vf31927, %vf33197
 	mov	%vi17297, %i0
 	lf	%vf33199, 0(%vi16937)
@@ -54224,7 +54607,8 @@ then.236392:
 cont.236393:
 	fsub	%vf31005, %vf31004, %vf30
 	ceqi	%vi16227, %vi16214, 3
-	ftern	%vf31006, %vi16227, %vf31005, %vf31004
+	mif	%vtf1740, %vi16227
+	ftern	%vf31006, %vtf1740, %vf31005, %vf31004
 	flt	%vi16228, %vf31006, %f0
 	mov	%i4, %vi16210
 	mov	%i5, %vi16228
@@ -54351,7 +54735,8 @@ then.236409:
 cont.236410:
 	fsub	%vf31047, %vf31046, %vf30
 	ceqi	%vi16256, %vi16243, 3
-	ftern	%vf31048, %vi16256, %vf31047, %vf31046
+	mif	%vtf1745, %vi16256
+	ftern	%vf31048, %vtf1745, %vf31047, %vf31046
 	flt	%vi16257, %vf31048, %f0
 	mov	%i4, %vi16239
 	mov	%i5, %vi16257
@@ -54807,7 +55192,8 @@ then.236468:
 cont.236469:
 	fsub	%vf30765, %vf30764, %vf30
 	ceqi	%vi16072, %vi16059, 3
-	ftern	%vf30766, %vi16072, %vf30765, %vf30764
+	mif	%vtf1758, %vi16072
+	ftern	%vf30766, %vtf1758, %vf30765, %vf30764
 	flt	%vi16073, %vf30766, %f0
 	mov	%i4, %vi16055
 	mov	%i5, %vi16073
@@ -54934,7 +55320,8 @@ then.236485:
 cont.236486:
 	fsub	%vf30807, %vf30806, %vf30
 	ceqi	%vi16101, %vi16088, 3
-	ftern	%vf30808, %vi16101, %vf30807, %vf30806
+	mif	%vtf1763, %vi16101
+	ftern	%vf30808, %vtf1763, %vf30807, %vf30806
 	flt	%vi16102, %vf30808, %f0
 	mov	%i4, %vi16084
 	mov	%i5, %vi16102
@@ -55179,9 +55566,11 @@ cont.236504:
 	finv	%vf31105, %vf31102
 	fmul	%vf31106, %vf29, %vf31105
 	ceqi	%vi16297, %vi16282, 0
-	ftern	%vf31107, %vi16297, %vf31104, %vf31106
+	mif	%vtf1768, %vi16297
+	ftern	%vf31107, %vtf1768, %vf31104, %vf31106
 	ceqi	%vi16298, %vi16296, 0
-	ftern	%vf31108, %vi16298, %vf31107, %vf30
+	mif	%vtf1769, %vi16298
+	ftern	%vf31108, %vtf1769, %vf31107, %vf30
 	fmul	%vf31109, %vf31092, %vf31108
 	sf	%vf31109, 0(%vi52)
 	fmul	%vf31110, %vf31094, %vf31108
@@ -55291,7 +55680,8 @@ then.236516:
 	finv	%vf31294, %vf31293
 	fmul	%vf31295, %vf30, %vf31294
 	ceq	%vi16316, %vi16314, %vi16315
-	ftern	%vf31296, %vi16316, %vf31295, %vf31293
+	mif	%vtf1774, %vi16316
+	ftern	%vf31296, %vtf1774, %vf31295, %vf31293
 	fmul	%vf31297, %vf31296, %vf31296
 	fmul	%vf31298, %vf39, %vf31297
 	fadd	%vf31299, %vf31298, %vf40
@@ -55305,7 +55695,8 @@ then.236516:
 	fadd	%vf31307, %vf31306, %vf44
 	fmul	%vf31308, %vf31307, %vf31297
 	fadd	%vf31309, %vf31308, %vf45
-	ftern	%vf31310, %vi16316, %vf30, %vf29
+	mif	%vtf1775, %vi16316
+	ftern	%vf31310, %vtf1775, %vf30, %vf29
 	fmul	%vf31311, %vf31310, %vf31309
 	fmul	%vf31312, %vf31311, %vf31296
 	add	%vi16317, %vi16314, %vi16315
@@ -55351,7 +55742,8 @@ then.236518:
 	finv	%vf31336, %vf31335
 	fmul	%vf31337, %vf30, %vf31336
 	ceq	%vi16323, %vi16321, %vi16322
-	ftern	%vf31338, %vi16323, %vf31337, %vf31335
+	mif	%vtf1781, %vi16323
+	ftern	%vf31338, %vtf1781, %vf31337, %vf31335
 	fmul	%vf31339, %vf31338, %vf31338
 	fmul	%vf31340, %vf39, %vf31339
 	fadd	%vf31341, %vf31340, %vf40
@@ -55365,7 +55757,8 @@ then.236518:
 	fadd	%vf31349, %vf31348, %vf44
 	fmul	%vf31350, %vf31349, %vf31339
 	fadd	%vf31351, %vf31350, %vf45
-	ftern	%vf31352, %vi16323, %vf30, %vf29
+	mif	%vtf1782, %vi16323
+	ftern	%vf31352, %vtf1782, %vf30, %vf29
 	fmul	%vf31353, %vf31352, %vf31351
 	fmul	%vf31354, %vf31353, %vf31338
 	add	%vi16324, %vi16321, %vi16322
@@ -55391,7 +55784,8 @@ cont.236519:
 	flt	%vi16326, %vf31369, %f0
 	mov	%vi16327, %i0
 	ceqi	%vi16328, %vi16326, 0
-	ftern	%vf31370, %vi16328, %vf31369, %f0
+	mif	%vtf1785, %vi16328
+	ftern	%vf31370, %vtf1785, %vf31369, %f0
 	fmul	%vf31371, %vf55, %vf31370
 	finv	%vf31372, %vf9
 	fmul	%vf31373, %vf31371, %vf31372
@@ -55448,7 +55842,8 @@ else.236522:
 	fsub	%vf31223, %vf31210, %vf31222
 	fsub	%vf31224, %vf31, %vf31223
 	fleq	%vi16308, %vf31223, %vf32
-	ftern	%vf31225, %vi16308, %vf31223, %vf31224
+	mif	%vtf1789, %vi16308
+	ftern	%vf31225, %vtf1789, %vf31223, %vf31224
 	fmul	%vf31226, %vf31225, %vf31225
 	fmul	%vf31227, %vf35, %vf31226
 	fadd	%vf31228, %vf31227, %vf36
@@ -55485,7 +55880,8 @@ else.236520:
 	fsub	%vf31246, %vf31210, %vf31245
 	fsub	%vf31247, %vf31, %vf31246
 	fleq	%vi16309, %vf31246, %vf32
-	ftern	%vf31248, %vi16309, %vf31246, %vf31247
+	mif	%vtf1791, %vi16309
+	ftern	%vf31248, %vtf1791, %vf31246, %vf31247
 	fmul	%vf31249, %vf31248, %vf31248
 	fmul	%vf31250, %vf35, %vf31249
 	fadd	%vf31251, %vf31250, %vf36
@@ -55546,7 +55942,8 @@ else.236530:
 	fsub	%vf31146, %vf31133, %vf31145
 	fsub	%vf31147, %vf31, %vf31146
 	fleq	%vi16305, %vf31146, %vf32
-	ftern	%vf31148, %vi16305, %vf31146, %vf31147
+	mif	%vtf1793, %vi16305
+	ftern	%vf31148, %vtf1793, %vf31146, %vf31147
 	fmul	%vf31149, %vf31148, %vf31148
 	fmul	%vf31150, %vf35, %vf31149
 	fadd	%vf31151, %vf31150, %vf36
@@ -55583,7 +55980,8 @@ else.236528:
 	fsub	%vf31169, %vf31133, %vf31168
 	fsub	%vf31170, %vf31, %vf31169
 	fleq	%vi16306, %vf31169, %vf32
-	ftern	%vf31171, %vi16306, %vf31169, %vf31170
+	mif	%vtf1795, %vi16306
+	ftern	%vf31171, %vtf1795, %vf31169, %vf31170
 	fmul	%vf31172, %vf31171, %vf31171
 	fmul	%vf31173, %vf35, %vf31172
 	fadd	%vf31174, %vf31173, %vf36
@@ -55748,7 +56146,8 @@ then.236553:
 cont.236554:
 	fsub	%vf31464, %vf31463, %vf30
 	ceqi	%vi16371, %vi16342, 3
-	ftern	%vf31465, %vi16371, %vf31464, %vf31463
+	mif	%vtf1799, %vi16371
+	ftern	%vf31465, %vtf1799, %vf31464, %vf31463
 	fmul	%vf31466, %vf31440, %vf31440
 	fmul	%vf31467, %vf31432, %vf31465
 	fsub	%vf31468, %vf31466, %vf31467
@@ -56034,7 +56433,8 @@ then.236595:
 cont.236596:
 	fsub	%vf31569, %vf31568, %vf30
 	ceqi	%vi16427, %vi16398, 3
-	ftern	%vf31570, %vi16427, %vf31569, %vf31568
+	mif	%vtf1809, %vi16427
+	ftern	%vf31570, %vtf1809, %vf31569, %vf31568
 	fmul	%vf31571, %vf31545, %vf31545
 	fmul	%vf31572, %vf31537, %vf31570
 	fsub	%vf31573, %vf31571, %vf31572
@@ -56287,7 +56687,8 @@ then.236629:
 cont.236630:
 	fsub	%vf31640, %vf31639, %vf30
 	ceqi	%vi16462, %vi16452, 3
-	ftern	%vf31641, %vi16462, %vf31640, %vf31639
+	mif	%vtf1817, %vi16462
+	ftern	%vf31641, %vtf1817, %vf31640, %vf31639
 	flt	%vi16463, %vf31641, %f0
 	mov	%i4, %vi16448
 	mov	%i5, %vi16463
@@ -56417,7 +56818,8 @@ then.236646:
 cont.236647:
 	fsub	%vf31688, %vf31687, %vf30
 	ceqi	%vi16488, %vi16478, 3
-	ftern	%vf31689, %vi16488, %vf31688, %vf31687
+	mif	%vtf1822, %vi16488
+	ftern	%vf31689, %vtf1822, %vf31688, %vf31687
 	flt	%vi16489, %vf31689, %f0
 	mov	%i4, %vi16474
 	mov	%i5, %vi16489
@@ -56688,7 +57090,8 @@ then.236676:
 cont.236677:
 	fsub	%vf31780, %vf31779, %vf30
 	ceqi	%vi16556, %vi16527, 3
-	ftern	%vf31781, %vi16556, %vf31780, %vf31779
+	mif	%vtf1828, %vi16556
+	ftern	%vf31781, %vtf1828, %vf31780, %vf31779
 	fmul	%vf31782, %vf31756, %vf31756
 	fmul	%vf31783, %vf31748, %vf31781
 	fsub	%vf31784, %vf31782, %vf31783
@@ -56941,7 +57344,8 @@ then.236710:
 cont.236711:
 	fsub	%vf31851, %vf31850, %vf30
 	ceqi	%vi16591, %vi16581, 3
-	ftern	%vf31852, %vi16591, %vf31851, %vf31850
+	mif	%vtf1836, %vi16591
+	ftern	%vf31852, %vtf1836, %vf31851, %vf31850
 	flt	%vi16592, %vf31852, %f0
 	mov	%i4, %vi16577
 	mov	%i5, %vi16592
@@ -57071,7 +57475,8 @@ then.236727:
 cont.236728:
 	fsub	%vf31899, %vf31898, %vf30
 	ceqi	%vi16617, %vi16607, 3
-	ftern	%vf31900, %vi16617, %vf31899, %vf31898
+	mif	%vtf1841, %vi16617
+	ftern	%vf31900, %vtf1841, %vf31899, %vf31898
 	flt	%vi16618, %vf31900, %f0
 	mov	%i4, %vi16603
 	mov	%i5, %vi16618
@@ -57266,7 +57671,8 @@ loop_end.226781:
 	flt	%vi16638, %f0, %vf31909
 	mov	%vi16639, %i0
 	ceqi	%vi16640, %vi16638, 0
-	ftern	%vf31910, %vi16640, %f0, %vf31909
+	mif	%vtf1845, %vi16640
+	ftern	%vf31910, %vtf1845, %f0, %vf31909
 	fmul	%vf31911, %vf30640, %vf31910
 	mov	%vi16641, %i0
 	lf	%vf31912, 0(%vi16281)
@@ -57381,7 +57787,8 @@ then.236752:
 cont.236753:
 	fsub	%vf33262, %vf33261, %vf30
 	ceqi	%vi17322, %vi17313, 3
-	ftern	%vf33263, %vi17322, %vf33262, %vf33261
+	mif	%vtf1846, %vi17322
+	ftern	%vf33263, %vtf1846, %vf33262, %vf33261
 	sf	%vf33263, 12(%vi17308)
 cont.236751:
 	set_label	%vti6612, cont.236750
@@ -57472,7 +57879,8 @@ then.236760:
 cont.236761:
 	fsub	%vf33307, %vf33306, %vf30
 	ceqi	%vi17340, %vi17331, 3
-	ftern	%vf33308, %vi17340, %vf33307, %vf33306
+	mif	%vtf1848, %vi17340
+	ftern	%vf33308, %vtf1848, %vf33307, %vf33306
 	sf	%vf33308, 12(%vi17326)
 cont.236759:
 	set_label	%vti6619, cont.236758
@@ -58072,7 +58480,8 @@ then.236850:
 cont.236851:
 	fsub	%vf34970, %vf34969, %vf30
 	ceqi	%vi18246, %vi18233, 3
-	ftern	%vf34971, %vi18246, %vf34970, %vf34969
+	mif	%vtf1867, %vi18246
+	ftern	%vf34971, %vtf1867, %vf34970, %vf34969
 	flt	%vi18247, %vf34971, %f0
 	mov	%i4, %vi18229
 	mov	%i5, %vi18247
@@ -58199,7 +58608,8 @@ then.236867:
 cont.236868:
 	fsub	%vf35012, %vf35011, %vf30
 	ceqi	%vi18275, %vi18262, 3
-	ftern	%vf35013, %vi18275, %vf35012, %vf35011
+	mif	%vtf1872, %vi18275
+	ftern	%vf35013, %vtf1872, %vf35012, %vf35011
 	flt	%vi18276, %vf35013, %f0
 	mov	%i4, %vi18258
 	mov	%i5, %vi18276
@@ -58655,7 +59065,8 @@ then.236926:
 cont.236927:
 	fsub	%vf34730, %vf34729, %vf30
 	ceqi	%vi18091, %vi18078, 3
-	ftern	%vf34731, %vi18091, %vf34730, %vf34729
+	mif	%vtf1885, %vi18091
+	ftern	%vf34731, %vtf1885, %vf34730, %vf34729
 	flt	%vi18092, %vf34731, %f0
 	mov	%i4, %vi18074
 	mov	%i5, %vi18092
@@ -58782,7 +59193,8 @@ then.236943:
 cont.236944:
 	fsub	%vf34772, %vf34771, %vf30
 	ceqi	%vi18120, %vi18107, 3
-	ftern	%vf34773, %vi18120, %vf34772, %vf34771
+	mif	%vtf1890, %vi18120
+	ftern	%vf34773, %vtf1890, %vf34772, %vf34771
 	flt	%vi18121, %vf34773, %f0
 	mov	%i4, %vi18103
 	mov	%i5, %vi18121
@@ -59027,9 +59439,11 @@ cont.236962:
 	finv	%vf35070, %vf35067
 	fmul	%vf35071, %vf29, %vf35070
 	ceqi	%vi18316, %vi18301, 0
-	ftern	%vf35072, %vi18316, %vf35069, %vf35071
+	mif	%vtf1895, %vi18316
+	ftern	%vf35072, %vtf1895, %vf35069, %vf35071
 	ceqi	%vi18317, %vi18315, 0
-	ftern	%vf35073, %vi18317, %vf35072, %vf30
+	mif	%vtf1896, %vi18317
+	ftern	%vf35073, %vtf1896, %vf35072, %vf30
 	fmul	%vf35074, %vf35057, %vf35073
 	sf	%vf35074, 0(%vi52)
 	fmul	%vf35075, %vf35059, %vf35073
@@ -59139,7 +59553,8 @@ then.236974:
 	finv	%vf35259, %vf35258
 	fmul	%vf35260, %vf30, %vf35259
 	ceq	%vi18335, %vi18333, %vi18334
-	ftern	%vf35261, %vi18335, %vf35260, %vf35258
+	mif	%vtf1901, %vi18335
+	ftern	%vf35261, %vtf1901, %vf35260, %vf35258
 	fmul	%vf35262, %vf35261, %vf35261
 	fmul	%vf35263, %vf39, %vf35262
 	fadd	%vf35264, %vf35263, %vf40
@@ -59153,7 +59568,8 @@ then.236974:
 	fadd	%vf35272, %vf35271, %vf44
 	fmul	%vf35273, %vf35272, %vf35262
 	fadd	%vf35274, %vf35273, %vf45
-	ftern	%vf35275, %vi18335, %vf30, %vf29
+	mif	%vtf1902, %vi18335
+	ftern	%vf35275, %vtf1902, %vf30, %vf29
 	fmul	%vf35276, %vf35275, %vf35274
 	fmul	%vf35277, %vf35276, %vf35261
 	add	%vi18336, %vi18333, %vi18334
@@ -59199,7 +59615,8 @@ then.236976:
 	finv	%vf35301, %vf35300
 	fmul	%vf35302, %vf30, %vf35301
 	ceq	%vi18342, %vi18340, %vi18341
-	ftern	%vf35303, %vi18342, %vf35302, %vf35300
+	mif	%vtf1908, %vi18342
+	ftern	%vf35303, %vtf1908, %vf35302, %vf35300
 	fmul	%vf35304, %vf35303, %vf35303
 	fmul	%vf35305, %vf39, %vf35304
 	fadd	%vf35306, %vf35305, %vf40
@@ -59213,7 +59630,8 @@ then.236976:
 	fadd	%vf35314, %vf35313, %vf44
 	fmul	%vf35315, %vf35314, %vf35304
 	fadd	%vf35316, %vf35315, %vf45
-	ftern	%vf35317, %vi18342, %vf30, %vf29
+	mif	%vtf1909, %vi18342
+	ftern	%vf35317, %vtf1909, %vf30, %vf29
 	fmul	%vf35318, %vf35317, %vf35316
 	fmul	%vf35319, %vf35318, %vf35303
 	add	%vi18343, %vi18340, %vi18341
@@ -59239,7 +59657,8 @@ cont.236977:
 	flt	%vi18345, %vf35334, %f0
 	mov	%vi18346, %i0
 	ceqi	%vi18347, %vi18345, 0
-	ftern	%vf35335, %vi18347, %vf35334, %f0
+	mif	%vtf1912, %vi18347
+	ftern	%vf35335, %vtf1912, %vf35334, %f0
 	fmul	%vf35336, %vf55, %vf35335
 	finv	%vf35337, %vf9
 	fmul	%vf35338, %vf35336, %vf35337
@@ -59296,7 +59715,8 @@ else.236980:
 	fsub	%vf35188, %vf35175, %vf35187
 	fsub	%vf35189, %vf31, %vf35188
 	fleq	%vi18327, %vf35188, %vf32
-	ftern	%vf35190, %vi18327, %vf35188, %vf35189
+	mif	%vtf1916, %vi18327
+	ftern	%vf35190, %vtf1916, %vf35188, %vf35189
 	fmul	%vf35191, %vf35190, %vf35190
 	fmul	%vf35192, %vf35, %vf35191
 	fadd	%vf35193, %vf35192, %vf36
@@ -59333,7 +59753,8 @@ else.236978:
 	fsub	%vf35211, %vf35175, %vf35210
 	fsub	%vf35212, %vf31, %vf35211
 	fleq	%vi18328, %vf35211, %vf32
-	ftern	%vf35213, %vi18328, %vf35211, %vf35212
+	mif	%vtf1918, %vi18328
+	ftern	%vf35213, %vtf1918, %vf35211, %vf35212
 	fmul	%vf35214, %vf35213, %vf35213
 	fmul	%vf35215, %vf35, %vf35214
 	fadd	%vf35216, %vf35215, %vf36
@@ -59394,7 +59815,8 @@ else.236988:
 	fsub	%vf35111, %vf35098, %vf35110
 	fsub	%vf35112, %vf31, %vf35111
 	fleq	%vi18324, %vf35111, %vf32
-	ftern	%vf35113, %vi18324, %vf35111, %vf35112
+	mif	%vtf1920, %vi18324
+	ftern	%vf35113, %vtf1920, %vf35111, %vf35112
 	fmul	%vf35114, %vf35113, %vf35113
 	fmul	%vf35115, %vf35, %vf35114
 	fadd	%vf35116, %vf35115, %vf36
@@ -59431,7 +59853,8 @@ else.236986:
 	fsub	%vf35134, %vf35098, %vf35133
 	fsub	%vf35135, %vf31, %vf35134
 	fleq	%vi18325, %vf35134, %vf32
-	ftern	%vf35136, %vi18325, %vf35134, %vf35135
+	mif	%vtf1922, %vi18325
+	ftern	%vf35136, %vtf1922, %vf35134, %vf35135
 	fmul	%vf35137, %vf35136, %vf35136
 	fmul	%vf35138, %vf35, %vf35137
 	fadd	%vf35139, %vf35138, %vf36
@@ -59596,7 +60019,8 @@ then.237011:
 cont.237012:
 	fsub	%vf35429, %vf35428, %vf30
 	ceqi	%vi18390, %vi18361, 3
-	ftern	%vf35430, %vi18390, %vf35429, %vf35428
+	mif	%vtf1926, %vi18390
+	ftern	%vf35430, %vtf1926, %vf35429, %vf35428
 	fmul	%vf35431, %vf35405, %vf35405
 	fmul	%vf35432, %vf35397, %vf35430
 	fsub	%vf35433, %vf35431, %vf35432
@@ -59882,7 +60306,8 @@ then.237053:
 cont.237054:
 	fsub	%vf35534, %vf35533, %vf30
 	ceqi	%vi18446, %vi18417, 3
-	ftern	%vf35535, %vi18446, %vf35534, %vf35533
+	mif	%vtf1936, %vi18446
+	ftern	%vf35535, %vtf1936, %vf35534, %vf35533
 	fmul	%vf35536, %vf35510, %vf35510
 	fmul	%vf35537, %vf35502, %vf35535
 	fsub	%vf35538, %vf35536, %vf35537
@@ -60135,7 +60560,8 @@ then.237087:
 cont.237088:
 	fsub	%vf35605, %vf35604, %vf30
 	ceqi	%vi18481, %vi18471, 3
-	ftern	%vf35606, %vi18481, %vf35605, %vf35604
+	mif	%vtf1944, %vi18481
+	ftern	%vf35606, %vtf1944, %vf35605, %vf35604
 	flt	%vi18482, %vf35606, %f0
 	mov	%i4, %vi18467
 	mov	%i5, %vi18482
@@ -60265,7 +60691,8 @@ then.237104:
 cont.237105:
 	fsub	%vf35653, %vf35652, %vf30
 	ceqi	%vi18507, %vi18497, 3
-	ftern	%vf35654, %vi18507, %vf35653, %vf35652
+	mif	%vtf1949, %vi18507
+	ftern	%vf35654, %vtf1949, %vf35653, %vf35652
 	flt	%vi18508, %vf35654, %f0
 	mov	%i4, %vi18493
 	mov	%i5, %vi18508
@@ -60536,7 +60963,8 @@ then.237134:
 cont.237135:
 	fsub	%vf35745, %vf35744, %vf30
 	ceqi	%vi18575, %vi18546, 3
-	ftern	%vf35746, %vi18575, %vf35745, %vf35744
+	mif	%vtf1955, %vi18575
+	ftern	%vf35746, %vtf1955, %vf35745, %vf35744
 	fmul	%vf35747, %vf35721, %vf35721
 	fmul	%vf35748, %vf35713, %vf35746
 	fsub	%vf35749, %vf35747, %vf35748
@@ -60789,7 +61217,8 @@ then.237168:
 cont.237169:
 	fsub	%vf35816, %vf35815, %vf30
 	ceqi	%vi18610, %vi18600, 3
-	ftern	%vf35817, %vi18610, %vf35816, %vf35815
+	mif	%vtf1963, %vi18610
+	ftern	%vf35817, %vtf1963, %vf35816, %vf35815
 	flt	%vi18611, %vf35817, %f0
 	mov	%i4, %vi18596
 	mov	%i5, %vi18611
@@ -60919,7 +61348,8 @@ then.237185:
 cont.237186:
 	fsub	%vf35864, %vf35863, %vf30
 	ceqi	%vi18636, %vi18626, 3
-	ftern	%vf35865, %vi18636, %vf35864, %vf35863
+	mif	%vtf1968, %vi18636
+	ftern	%vf35865, %vtf1968, %vf35864, %vf35863
 	flt	%vi18637, %vf35865, %f0
 	mov	%i4, %vi18622
 	mov	%i5, %vi18637
@@ -61114,7 +61544,8 @@ loop_end.226969:
 	flt	%vi18657, %f0, %vf35874
 	mov	%vi18658, %i0
 	ceqi	%vi18659, %vi18657, 0
-	ftern	%vf35875, %vi18659, %f0, %vf35874
+	mif	%vtf1972, %vi18659
+	ftern	%vf35875, %vtf1972, %f0, %vf35874
 	fmul	%vf35876, %vf34605, %vf35875
 	mov	%vi18660, %i0
 	lf	%vf35877, 0(%vi18300)
@@ -61685,7 +62116,8 @@ then.237287:
 cont.237288:
 	fsub	%vf33683, %vf33682, %vf30
 	ceqi	%vi17590, %vi17577, 3
-	ftern	%vf33684, %vi17590, %vf33683, %vf33682
+	mif	%vtf1990, %vi17590
+	ftern	%vf33684, %vtf1990, %vf33683, %vf33682
 	flt	%vi17591, %vf33684, %f0
 	mov	%i4, %vi17573
 	mov	%i5, %vi17591
@@ -61812,7 +62244,8 @@ then.237304:
 cont.237305:
 	fsub	%vf33725, %vf33724, %vf30
 	ceqi	%vi17619, %vi17606, 3
-	ftern	%vf33726, %vi17619, %vf33725, %vf33724
+	mif	%vtf1995, %vi17619
+	ftern	%vf33726, %vtf1995, %vf33725, %vf33724
 	flt	%vi17620, %vf33726, %f0
 	mov	%i4, %vi17602
 	mov	%i5, %vi17620
@@ -62268,7 +62701,8 @@ then.237363:
 cont.237364:
 	fsub	%vf33443, %vf33442, %vf30
 	ceqi	%vi17435, %vi17422, 3
-	ftern	%vf33444, %vi17435, %vf33443, %vf33442
+	mif	%vtf2008, %vi17435
+	ftern	%vf33444, %vtf2008, %vf33443, %vf33442
 	flt	%vi17436, %vf33444, %f0
 	mov	%i4, %vi17418
 	mov	%i5, %vi17436
@@ -62395,7 +62829,8 @@ then.237380:
 cont.237381:
 	fsub	%vf33485, %vf33484, %vf30
 	ceqi	%vi17464, %vi17451, 3
-	ftern	%vf33486, %vi17464, %vf33485, %vf33484
+	mif	%vtf2013, %vi17464
+	ftern	%vf33486, %vtf2013, %vf33485, %vf33484
 	flt	%vi17465, %vf33486, %f0
 	mov	%i4, %vi17447
 	mov	%i5, %vi17465
@@ -62640,9 +63075,11 @@ cont.237399:
 	finv	%vf33783, %vf33780
 	fmul	%vf33784, %vf29, %vf33783
 	ceqi	%vi17660, %vi17645, 0
-	ftern	%vf33785, %vi17660, %vf33782, %vf33784
+	mif	%vtf2018, %vi17660
+	ftern	%vf33785, %vtf2018, %vf33782, %vf33784
 	ceqi	%vi17661, %vi17659, 0
-	ftern	%vf33786, %vi17661, %vf33785, %vf30
+	mif	%vtf2019, %vi17661
+	ftern	%vf33786, %vtf2019, %vf33785, %vf30
 	fmul	%vf33787, %vf33770, %vf33786
 	sf	%vf33787, 0(%vi52)
 	fmul	%vf33788, %vf33772, %vf33786
@@ -62752,7 +63189,8 @@ then.237411:
 	finv	%vf33972, %vf33971
 	fmul	%vf33973, %vf30, %vf33972
 	ceq	%vi17679, %vi17677, %vi17678
-	ftern	%vf33974, %vi17679, %vf33973, %vf33971
+	mif	%vtf2024, %vi17679
+	ftern	%vf33974, %vtf2024, %vf33973, %vf33971
 	fmul	%vf33975, %vf33974, %vf33974
 	fmul	%vf33976, %vf39, %vf33975
 	fadd	%vf33977, %vf33976, %vf40
@@ -62766,7 +63204,8 @@ then.237411:
 	fadd	%vf33985, %vf33984, %vf44
 	fmul	%vf33986, %vf33985, %vf33975
 	fadd	%vf33987, %vf33986, %vf45
-	ftern	%vf33988, %vi17679, %vf30, %vf29
+	mif	%vtf2025, %vi17679
+	ftern	%vf33988, %vtf2025, %vf30, %vf29
 	fmul	%vf33989, %vf33988, %vf33987
 	fmul	%vf33990, %vf33989, %vf33974
 	add	%vi17680, %vi17677, %vi17678
@@ -62812,7 +63251,8 @@ then.237413:
 	finv	%vf34014, %vf34013
 	fmul	%vf34015, %vf30, %vf34014
 	ceq	%vi17686, %vi17684, %vi17685
-	ftern	%vf34016, %vi17686, %vf34015, %vf34013
+	mif	%vtf2031, %vi17686
+	ftern	%vf34016, %vtf2031, %vf34015, %vf34013
 	fmul	%vf34017, %vf34016, %vf34016
 	fmul	%vf34018, %vf39, %vf34017
 	fadd	%vf34019, %vf34018, %vf40
@@ -62826,7 +63266,8 @@ then.237413:
 	fadd	%vf34027, %vf34026, %vf44
 	fmul	%vf34028, %vf34027, %vf34017
 	fadd	%vf34029, %vf34028, %vf45
-	ftern	%vf34030, %vi17686, %vf30, %vf29
+	mif	%vtf2032, %vi17686
+	ftern	%vf34030, %vtf2032, %vf30, %vf29
 	fmul	%vf34031, %vf34030, %vf34029
 	fmul	%vf34032, %vf34031, %vf34016
 	add	%vi17687, %vi17684, %vi17685
@@ -62852,7 +63293,8 @@ cont.237414:
 	flt	%vi17689, %vf34047, %f0
 	mov	%vi17690, %i0
 	ceqi	%vi17691, %vi17689, 0
-	ftern	%vf34048, %vi17691, %vf34047, %f0
+	mif	%vtf2035, %vi17691
+	ftern	%vf34048, %vtf2035, %vf34047, %f0
 	fmul	%vf34049, %vf55, %vf34048
 	finv	%vf34050, %vf9
 	fmul	%vf34051, %vf34049, %vf34050
@@ -62909,7 +63351,8 @@ else.237417:
 	fsub	%vf33901, %vf33888, %vf33900
 	fsub	%vf33902, %vf31, %vf33901
 	fleq	%vi17671, %vf33901, %vf32
-	ftern	%vf33903, %vi17671, %vf33901, %vf33902
+	mif	%vtf2039, %vi17671
+	ftern	%vf33903, %vtf2039, %vf33901, %vf33902
 	fmul	%vf33904, %vf33903, %vf33903
 	fmul	%vf33905, %vf35, %vf33904
 	fadd	%vf33906, %vf33905, %vf36
@@ -62946,7 +63389,8 @@ else.237415:
 	fsub	%vf33924, %vf33888, %vf33923
 	fsub	%vf33925, %vf31, %vf33924
 	fleq	%vi17672, %vf33924, %vf32
-	ftern	%vf33926, %vi17672, %vf33924, %vf33925
+	mif	%vtf2041, %vi17672
+	ftern	%vf33926, %vtf2041, %vf33924, %vf33925
 	fmul	%vf33927, %vf33926, %vf33926
 	fmul	%vf33928, %vf35, %vf33927
 	fadd	%vf33929, %vf33928, %vf36
@@ -63007,7 +63451,8 @@ else.237425:
 	fsub	%vf33824, %vf33811, %vf33823
 	fsub	%vf33825, %vf31, %vf33824
 	fleq	%vi17668, %vf33824, %vf32
-	ftern	%vf33826, %vi17668, %vf33824, %vf33825
+	mif	%vtf2043, %vi17668
+	ftern	%vf33826, %vtf2043, %vf33824, %vf33825
 	fmul	%vf33827, %vf33826, %vf33826
 	fmul	%vf33828, %vf35, %vf33827
 	fadd	%vf33829, %vf33828, %vf36
@@ -63044,7 +63489,8 @@ else.237423:
 	fsub	%vf33847, %vf33811, %vf33846
 	fsub	%vf33848, %vf31, %vf33847
 	fleq	%vi17669, %vf33847, %vf32
-	ftern	%vf33849, %vi17669, %vf33847, %vf33848
+	mif	%vtf2045, %vi17669
+	ftern	%vf33849, %vtf2045, %vf33847, %vf33848
 	fmul	%vf33850, %vf33849, %vf33849
 	fmul	%vf33851, %vf35, %vf33850
 	fadd	%vf33852, %vf33851, %vf36
@@ -63209,7 +63655,8 @@ then.237448:
 cont.237449:
 	fsub	%vf34142, %vf34141, %vf30
 	ceqi	%vi17734, %vi17705, 3
-	ftern	%vf34143, %vi17734, %vf34142, %vf34141
+	mif	%vtf2049, %vi17734
+	ftern	%vf34143, %vtf2049, %vf34142, %vf34141
 	fmul	%vf34144, %vf34118, %vf34118
 	fmul	%vf34145, %vf34110, %vf34143
 	fsub	%vf34146, %vf34144, %vf34145
@@ -63495,7 +63942,8 @@ then.237490:
 cont.237491:
 	fsub	%vf34247, %vf34246, %vf30
 	ceqi	%vi17790, %vi17761, 3
-	ftern	%vf34248, %vi17790, %vf34247, %vf34246
+	mif	%vtf2059, %vi17790
+	ftern	%vf34248, %vtf2059, %vf34247, %vf34246
 	fmul	%vf34249, %vf34223, %vf34223
 	fmul	%vf34250, %vf34215, %vf34248
 	fsub	%vf34251, %vf34249, %vf34250
@@ -63748,7 +64196,8 @@ then.237524:
 cont.237525:
 	fsub	%vf34318, %vf34317, %vf30
 	ceqi	%vi17825, %vi17815, 3
-	ftern	%vf34319, %vi17825, %vf34318, %vf34317
+	mif	%vtf2067, %vi17825
+	ftern	%vf34319, %vtf2067, %vf34318, %vf34317
 	flt	%vi17826, %vf34319, %f0
 	mov	%i4, %vi17811
 	mov	%i5, %vi17826
@@ -63878,7 +64327,8 @@ then.237541:
 cont.237542:
 	fsub	%vf34366, %vf34365, %vf30
 	ceqi	%vi17851, %vi17841, 3
-	ftern	%vf34367, %vi17851, %vf34366, %vf34365
+	mif	%vtf2072, %vi17851
+	ftern	%vf34367, %vtf2072, %vf34366, %vf34365
 	flt	%vi17852, %vf34367, %f0
 	mov	%i4, %vi17837
 	mov	%i5, %vi17852
@@ -64149,7 +64599,8 @@ then.237571:
 cont.237572:
 	fsub	%vf34458, %vf34457, %vf30
 	ceqi	%vi17919, %vi17890, 3
-	ftern	%vf34459, %vi17919, %vf34458, %vf34457
+	mif	%vtf2078, %vi17919
+	ftern	%vf34459, %vtf2078, %vf34458, %vf34457
 	fmul	%vf34460, %vf34434, %vf34434
 	fmul	%vf34461, %vf34426, %vf34459
 	fsub	%vf34462, %vf34460, %vf34461
@@ -64402,7 +64853,8 @@ then.237605:
 cont.237606:
 	fsub	%vf34529, %vf34528, %vf30
 	ceqi	%vi17954, %vi17944, 3
-	ftern	%vf34530, %vi17954, %vf34529, %vf34528
+	mif	%vtf2086, %vi17954
+	ftern	%vf34530, %vtf2086, %vf34529, %vf34528
 	flt	%vi17955, %vf34530, %f0
 	mov	%i4, %vi17940
 	mov	%i5, %vi17955
@@ -64532,7 +64984,8 @@ then.237622:
 cont.237623:
 	fsub	%vf34577, %vf34576, %vf30
 	ceqi	%vi17980, %vi17970, 3
-	ftern	%vf34578, %vi17980, %vf34577, %vf34576
+	mif	%vtf2091, %vi17980
+	ftern	%vf34578, %vtf2091, %vf34577, %vf34576
 	flt	%vi17981, %vf34578, %f0
 	mov	%i4, %vi17966
 	mov	%i5, %vi17981
@@ -64727,7 +65180,8 @@ loop_end.227144:
 	flt	%vi18001, %f0, %vf34587
 	mov	%vi18002, %i0
 	ceqi	%vi18003, %vi18001, 0
-	ftern	%vf34588, %vi18003, %f0, %vf34587
+	mif	%vtf2095, %vi18003
+	ftern	%vf34588, %vtf2095, %f0, %vf34587
 	fmul	%vf34589, %vf33318, %vf34588
 	mov	%vi18004, %i0
 	lf	%vf34590, 0(%vi17644)
@@ -64842,7 +65296,8 @@ then.237647:
 cont.237648:
 	fsub	%vf35940, %vf35939, %vf30
 	ceqi	%vi18685, %vi18676, 3
-	ftern	%vf35941, %vi18685, %vf35940, %vf35939
+	mif	%vtf2096, %vi18685
+	ftern	%vf35941, %vtf2096, %vf35940, %vf35939
 	sf	%vf35941, 12(%vi18671)
 cont.237646:
 	set_label	%vti7464, cont.237645
@@ -64933,7 +65388,8 @@ then.237655:
 cont.237656:
 	fsub	%vf35985, %vf35984, %vf30
 	ceqi	%vi18703, %vi18694, 3
-	ftern	%vf35986, %vi18703, %vf35985, %vf35984
+	mif	%vtf2098, %vi18703
+	ftern	%vf35986, %vtf2098, %vf35985, %vf35984
 	sf	%vf35986, 12(%vi18689)
 cont.237654:
 	set_label	%vti7471, cont.237653
@@ -65533,7 +65989,8 @@ then.237745:
 cont.237746:
 	fsub	%vf37648, %vf37647, %vf30
 	ceqi	%vi19609, %vi19596, 3
-	ftern	%vf37649, %vi19609, %vf37648, %vf37647
+	mif	%vtf2117, %vi19609
+	ftern	%vf37649, %vtf2117, %vf37648, %vf37647
 	flt	%vi19610, %vf37649, %f0
 	mov	%i4, %vi19592
 	mov	%i5, %vi19610
@@ -65660,7 +66117,8 @@ then.237762:
 cont.237763:
 	fsub	%vf37690, %vf37689, %vf30
 	ceqi	%vi19638, %vi19625, 3
-	ftern	%vf37691, %vi19638, %vf37690, %vf37689
+	mif	%vtf2122, %vi19638
+	ftern	%vf37691, %vtf2122, %vf37690, %vf37689
 	flt	%vi19639, %vf37691, %f0
 	mov	%i4, %vi19621
 	mov	%i5, %vi19639
@@ -66116,7 +66574,8 @@ then.237821:
 cont.237822:
 	fsub	%vf37408, %vf37407, %vf30
 	ceqi	%vi19454, %vi19441, 3
-	ftern	%vf37409, %vi19454, %vf37408, %vf37407
+	mif	%vtf2135, %vi19454
+	ftern	%vf37409, %vtf2135, %vf37408, %vf37407
 	flt	%vi19455, %vf37409, %f0
 	mov	%i4, %vi19437
 	mov	%i5, %vi19455
@@ -66243,7 +66702,8 @@ then.237838:
 cont.237839:
 	fsub	%vf37450, %vf37449, %vf30
 	ceqi	%vi19483, %vi19470, 3
-	ftern	%vf37451, %vi19483, %vf37450, %vf37449
+	mif	%vtf2140, %vi19483
+	ftern	%vf37451, %vtf2140, %vf37450, %vf37449
 	flt	%vi19484, %vf37451, %f0
 	mov	%i4, %vi19466
 	mov	%i5, %vi19484
@@ -66488,9 +66948,11 @@ cont.237857:
 	finv	%vf37748, %vf37745
 	fmul	%vf37749, %vf29, %vf37748
 	ceqi	%vi19679, %vi19664, 0
-	ftern	%vf37750, %vi19679, %vf37747, %vf37749
+	mif	%vtf2145, %vi19679
+	ftern	%vf37750, %vtf2145, %vf37747, %vf37749
 	ceqi	%vi19680, %vi19678, 0
-	ftern	%vf37751, %vi19680, %vf37750, %vf30
+	mif	%vtf2146, %vi19680
+	ftern	%vf37751, %vtf2146, %vf37750, %vf30
 	fmul	%vf37752, %vf37735, %vf37751
 	sf	%vf37752, 0(%vi52)
 	fmul	%vf37753, %vf37737, %vf37751
@@ -66600,7 +67062,8 @@ then.237869:
 	finv	%vf37937, %vf37936
 	fmul	%vf37938, %vf30, %vf37937
 	ceq	%vi19698, %vi19696, %vi19697
-	ftern	%vf37939, %vi19698, %vf37938, %vf37936
+	mif	%vtf2151, %vi19698
+	ftern	%vf37939, %vtf2151, %vf37938, %vf37936
 	fmul	%vf37940, %vf37939, %vf37939
 	fmul	%vf37941, %vf39, %vf37940
 	fadd	%vf37942, %vf37941, %vf40
@@ -66614,7 +67077,8 @@ then.237869:
 	fadd	%vf37950, %vf37949, %vf44
 	fmul	%vf37951, %vf37950, %vf37940
 	fadd	%vf37952, %vf37951, %vf45
-	ftern	%vf37953, %vi19698, %vf30, %vf29
+	mif	%vtf2152, %vi19698
+	ftern	%vf37953, %vtf2152, %vf30, %vf29
 	fmul	%vf37954, %vf37953, %vf37952
 	fmul	%vf37955, %vf37954, %vf37939
 	add	%vi19699, %vi19696, %vi19697
@@ -66660,7 +67124,8 @@ then.237871:
 	finv	%vf37979, %vf37978
 	fmul	%vf37980, %vf30, %vf37979
 	ceq	%vi19705, %vi19703, %vi19704
-	ftern	%vf37981, %vi19705, %vf37980, %vf37978
+	mif	%vtf2158, %vi19705
+	ftern	%vf37981, %vtf2158, %vf37980, %vf37978
 	fmul	%vf37982, %vf37981, %vf37981
 	fmul	%vf37983, %vf39, %vf37982
 	fadd	%vf37984, %vf37983, %vf40
@@ -66674,7 +67139,8 @@ then.237871:
 	fadd	%vf37992, %vf37991, %vf44
 	fmul	%vf37993, %vf37992, %vf37982
 	fadd	%vf37994, %vf37993, %vf45
-	ftern	%vf37995, %vi19705, %vf30, %vf29
+	mif	%vtf2159, %vi19705
+	ftern	%vf37995, %vtf2159, %vf30, %vf29
 	fmul	%vf37996, %vf37995, %vf37994
 	fmul	%vf37997, %vf37996, %vf37981
 	add	%vi19706, %vi19703, %vi19704
@@ -66700,7 +67166,8 @@ cont.237872:
 	flt	%vi19708, %vf38012, %f0
 	mov	%vi19709, %i0
 	ceqi	%vi19710, %vi19708, 0
-	ftern	%vf38013, %vi19710, %vf38012, %f0
+	mif	%vtf2162, %vi19710
+	ftern	%vf38013, %vtf2162, %vf38012, %f0
 	fmul	%vf38014, %vf55, %vf38013
 	finv	%vf38015, %vf9
 	fmul	%vf38016, %vf38014, %vf38015
@@ -66757,7 +67224,8 @@ else.237875:
 	fsub	%vf37866, %vf37853, %vf37865
 	fsub	%vf37867, %vf31, %vf37866
 	fleq	%vi19690, %vf37866, %vf32
-	ftern	%vf37868, %vi19690, %vf37866, %vf37867
+	mif	%vtf2166, %vi19690
+	ftern	%vf37868, %vtf2166, %vf37866, %vf37867
 	fmul	%vf37869, %vf37868, %vf37868
 	fmul	%vf37870, %vf35, %vf37869
 	fadd	%vf37871, %vf37870, %vf36
@@ -66794,7 +67262,8 @@ else.237873:
 	fsub	%vf37889, %vf37853, %vf37888
 	fsub	%vf37890, %vf31, %vf37889
 	fleq	%vi19691, %vf37889, %vf32
-	ftern	%vf37891, %vi19691, %vf37889, %vf37890
+	mif	%vtf2168, %vi19691
+	ftern	%vf37891, %vtf2168, %vf37889, %vf37890
 	fmul	%vf37892, %vf37891, %vf37891
 	fmul	%vf37893, %vf35, %vf37892
 	fadd	%vf37894, %vf37893, %vf36
@@ -66855,7 +67324,8 @@ else.237883:
 	fsub	%vf37789, %vf37776, %vf37788
 	fsub	%vf37790, %vf31, %vf37789
 	fleq	%vi19687, %vf37789, %vf32
-	ftern	%vf37791, %vi19687, %vf37789, %vf37790
+	mif	%vtf2170, %vi19687
+	ftern	%vf37791, %vtf2170, %vf37789, %vf37790
 	fmul	%vf37792, %vf37791, %vf37791
 	fmul	%vf37793, %vf35, %vf37792
 	fadd	%vf37794, %vf37793, %vf36
@@ -66892,7 +67362,8 @@ else.237881:
 	fsub	%vf37812, %vf37776, %vf37811
 	fsub	%vf37813, %vf31, %vf37812
 	fleq	%vi19688, %vf37812, %vf32
-	ftern	%vf37814, %vi19688, %vf37812, %vf37813
+	mif	%vtf2172, %vi19688
+	ftern	%vf37814, %vtf2172, %vf37812, %vf37813
 	fmul	%vf37815, %vf37814, %vf37814
 	fmul	%vf37816, %vf35, %vf37815
 	fadd	%vf37817, %vf37816, %vf36
@@ -67057,7 +67528,8 @@ then.237906:
 cont.237907:
 	fsub	%vf38107, %vf38106, %vf30
 	ceqi	%vi19753, %vi19724, 3
-	ftern	%vf38108, %vi19753, %vf38107, %vf38106
+	mif	%vtf2176, %vi19753
+	ftern	%vf38108, %vtf2176, %vf38107, %vf38106
 	fmul	%vf38109, %vf38083, %vf38083
 	fmul	%vf38110, %vf38075, %vf38108
 	fsub	%vf38111, %vf38109, %vf38110
@@ -67343,7 +67815,8 @@ then.237948:
 cont.237949:
 	fsub	%vf38212, %vf38211, %vf30
 	ceqi	%vi19809, %vi19780, 3
-	ftern	%vf38213, %vi19809, %vf38212, %vf38211
+	mif	%vtf2186, %vi19809
+	ftern	%vf38213, %vtf2186, %vf38212, %vf38211
 	fmul	%vf38214, %vf38188, %vf38188
 	fmul	%vf38215, %vf38180, %vf38213
 	fsub	%vf38216, %vf38214, %vf38215
@@ -67596,7 +68069,8 @@ then.237982:
 cont.237983:
 	fsub	%vf38283, %vf38282, %vf30
 	ceqi	%vi19844, %vi19834, 3
-	ftern	%vf38284, %vi19844, %vf38283, %vf38282
+	mif	%vtf2194, %vi19844
+	ftern	%vf38284, %vtf2194, %vf38283, %vf38282
 	flt	%vi19845, %vf38284, %f0
 	mov	%i4, %vi19830
 	mov	%i5, %vi19845
@@ -67726,7 +68200,8 @@ then.237999:
 cont.238000:
 	fsub	%vf38331, %vf38330, %vf30
 	ceqi	%vi19870, %vi19860, 3
-	ftern	%vf38332, %vi19870, %vf38331, %vf38330
+	mif	%vtf2199, %vi19870
+	ftern	%vf38332, %vtf2199, %vf38331, %vf38330
 	flt	%vi19871, %vf38332, %f0
 	mov	%i4, %vi19856
 	mov	%i5, %vi19871
@@ -67997,7 +68472,8 @@ then.238029:
 cont.238030:
 	fsub	%vf38423, %vf38422, %vf30
 	ceqi	%vi19938, %vi19909, 3
-	ftern	%vf38424, %vi19938, %vf38423, %vf38422
+	mif	%vtf2205, %vi19938
+	ftern	%vf38424, %vtf2205, %vf38423, %vf38422
 	fmul	%vf38425, %vf38399, %vf38399
 	fmul	%vf38426, %vf38391, %vf38424
 	fsub	%vf38427, %vf38425, %vf38426
@@ -68250,7 +68726,8 @@ then.238063:
 cont.238064:
 	fsub	%vf38494, %vf38493, %vf30
 	ceqi	%vi19973, %vi19963, 3
-	ftern	%vf38495, %vi19973, %vf38494, %vf38493
+	mif	%vtf2213, %vi19973
+	ftern	%vf38495, %vtf2213, %vf38494, %vf38493
 	flt	%vi19974, %vf38495, %f0
 	mov	%i4, %vi19959
 	mov	%i5, %vi19974
@@ -68380,7 +68857,8 @@ then.238080:
 cont.238081:
 	fsub	%vf38542, %vf38541, %vf30
 	ceqi	%vi19999, %vi19989, 3
-	ftern	%vf38543, %vi19999, %vf38542, %vf38541
+	mif	%vtf2218, %vi19999
+	ftern	%vf38543, %vtf2218, %vf38542, %vf38541
 	flt	%vi20000, %vf38543, %f0
 	mov	%i4, %vi19985
 	mov	%i5, %vi20000
@@ -68575,7 +69053,8 @@ loop_end.227332:
 	flt	%vi20020, %f0, %vf38552
 	mov	%vi20021, %i0
 	ceqi	%vi20022, %vi20020, 0
-	ftern	%vf38553, %vi20022, %f0, %vf38552
+	mif	%vtf2222, %vi20022
+	ftern	%vf38553, %vtf2222, %f0, %vf38552
 	fmul	%vf38554, %vf37283, %vf38553
 	mov	%vi20023, %i0
 	lf	%vf38555, 0(%vi19663)
@@ -69146,7 +69625,8 @@ then.238182:
 cont.238183:
 	fsub	%vf36361, %vf36360, %vf30
 	ceqi	%vi18953, %vi18940, 3
-	ftern	%vf36362, %vi18953, %vf36361, %vf36360
+	mif	%vtf2240, %vi18953
+	ftern	%vf36362, %vtf2240, %vf36361, %vf36360
 	flt	%vi18954, %vf36362, %f0
 	mov	%i4, %vi18936
 	mov	%i5, %vi18954
@@ -69273,7 +69753,8 @@ then.238199:
 cont.238200:
 	fsub	%vf36403, %vf36402, %vf30
 	ceqi	%vi18982, %vi18969, 3
-	ftern	%vf36404, %vi18982, %vf36403, %vf36402
+	mif	%vtf2245, %vi18982
+	ftern	%vf36404, %vtf2245, %vf36403, %vf36402
 	flt	%vi18983, %vf36404, %f0
 	mov	%i4, %vi18965
 	mov	%i5, %vi18983
@@ -69729,7 +70210,8 @@ then.238258:
 cont.238259:
 	fsub	%vf36121, %vf36120, %vf30
 	ceqi	%vi18798, %vi18785, 3
-	ftern	%vf36122, %vi18798, %vf36121, %vf36120
+	mif	%vtf2258, %vi18798
+	ftern	%vf36122, %vtf2258, %vf36121, %vf36120
 	flt	%vi18799, %vf36122, %f0
 	mov	%i4, %vi18781
 	mov	%i5, %vi18799
@@ -69856,7 +70338,8 @@ then.238275:
 cont.238276:
 	fsub	%vf36163, %vf36162, %vf30
 	ceqi	%vi18827, %vi18814, 3
-	ftern	%vf36164, %vi18827, %vf36163, %vf36162
+	mif	%vtf2263, %vi18827
+	ftern	%vf36164, %vtf2263, %vf36163, %vf36162
 	flt	%vi18828, %vf36164, %f0
 	mov	%i4, %vi18810
 	mov	%i5, %vi18828
@@ -70101,9 +70584,11 @@ cont.238294:
 	finv	%vf36461, %vf36458
 	fmul	%vf36462, %vf29, %vf36461
 	ceqi	%vi19023, %vi19008, 0
-	ftern	%vf36463, %vi19023, %vf36460, %vf36462
+	mif	%vtf2268, %vi19023
+	ftern	%vf36463, %vtf2268, %vf36460, %vf36462
 	ceqi	%vi19024, %vi19022, 0
-	ftern	%vf36464, %vi19024, %vf36463, %vf30
+	mif	%vtf2269, %vi19024
+	ftern	%vf36464, %vtf2269, %vf36463, %vf30
 	fmul	%vf36465, %vf36448, %vf36464
 	sf	%vf36465, 0(%vi52)
 	fmul	%vf36466, %vf36450, %vf36464
@@ -70213,7 +70698,8 @@ then.238306:
 	finv	%vf36650, %vf36649
 	fmul	%vf36651, %vf30, %vf36650
 	ceq	%vi19042, %vi19040, %vi19041
-	ftern	%vf36652, %vi19042, %vf36651, %vf36649
+	mif	%vtf2274, %vi19042
+	ftern	%vf36652, %vtf2274, %vf36651, %vf36649
 	fmul	%vf36653, %vf36652, %vf36652
 	fmul	%vf36654, %vf39, %vf36653
 	fadd	%vf36655, %vf36654, %vf40
@@ -70227,7 +70713,8 @@ then.238306:
 	fadd	%vf36663, %vf36662, %vf44
 	fmul	%vf36664, %vf36663, %vf36653
 	fadd	%vf36665, %vf36664, %vf45
-	ftern	%vf36666, %vi19042, %vf30, %vf29
+	mif	%vtf2275, %vi19042
+	ftern	%vf36666, %vtf2275, %vf30, %vf29
 	fmul	%vf36667, %vf36666, %vf36665
 	fmul	%vf36668, %vf36667, %vf36652
 	add	%vi19043, %vi19040, %vi19041
@@ -70273,7 +70760,8 @@ then.238308:
 	finv	%vf36692, %vf36691
 	fmul	%vf36693, %vf30, %vf36692
 	ceq	%vi19049, %vi19047, %vi19048
-	ftern	%vf36694, %vi19049, %vf36693, %vf36691
+	mif	%vtf2281, %vi19049
+	ftern	%vf36694, %vtf2281, %vf36693, %vf36691
 	fmul	%vf36695, %vf36694, %vf36694
 	fmul	%vf36696, %vf39, %vf36695
 	fadd	%vf36697, %vf36696, %vf40
@@ -70287,7 +70775,8 @@ then.238308:
 	fadd	%vf36705, %vf36704, %vf44
 	fmul	%vf36706, %vf36705, %vf36695
 	fadd	%vf36707, %vf36706, %vf45
-	ftern	%vf36708, %vi19049, %vf30, %vf29
+	mif	%vtf2282, %vi19049
+	ftern	%vf36708, %vtf2282, %vf30, %vf29
 	fmul	%vf36709, %vf36708, %vf36707
 	fmul	%vf36710, %vf36709, %vf36694
 	add	%vi19050, %vi19047, %vi19048
@@ -70313,7 +70802,8 @@ cont.238309:
 	flt	%vi19052, %vf36725, %f0
 	mov	%vi19053, %i0
 	ceqi	%vi19054, %vi19052, 0
-	ftern	%vf36726, %vi19054, %vf36725, %f0
+	mif	%vtf2285, %vi19054
+	ftern	%vf36726, %vtf2285, %vf36725, %f0
 	fmul	%vf36727, %vf55, %vf36726
 	finv	%vf36728, %vf9
 	fmul	%vf36729, %vf36727, %vf36728
@@ -70370,7 +70860,8 @@ else.238312:
 	fsub	%vf36579, %vf36566, %vf36578
 	fsub	%vf36580, %vf31, %vf36579
 	fleq	%vi19034, %vf36579, %vf32
-	ftern	%vf36581, %vi19034, %vf36579, %vf36580
+	mif	%vtf2289, %vi19034
+	ftern	%vf36581, %vtf2289, %vf36579, %vf36580
 	fmul	%vf36582, %vf36581, %vf36581
 	fmul	%vf36583, %vf35, %vf36582
 	fadd	%vf36584, %vf36583, %vf36
@@ -70407,7 +70898,8 @@ else.238310:
 	fsub	%vf36602, %vf36566, %vf36601
 	fsub	%vf36603, %vf31, %vf36602
 	fleq	%vi19035, %vf36602, %vf32
-	ftern	%vf36604, %vi19035, %vf36602, %vf36603
+	mif	%vtf2291, %vi19035
+	ftern	%vf36604, %vtf2291, %vf36602, %vf36603
 	fmul	%vf36605, %vf36604, %vf36604
 	fmul	%vf36606, %vf35, %vf36605
 	fadd	%vf36607, %vf36606, %vf36
@@ -70468,7 +70960,8 @@ else.238320:
 	fsub	%vf36502, %vf36489, %vf36501
 	fsub	%vf36503, %vf31, %vf36502
 	fleq	%vi19031, %vf36502, %vf32
-	ftern	%vf36504, %vi19031, %vf36502, %vf36503
+	mif	%vtf2293, %vi19031
+	ftern	%vf36504, %vtf2293, %vf36502, %vf36503
 	fmul	%vf36505, %vf36504, %vf36504
 	fmul	%vf36506, %vf35, %vf36505
 	fadd	%vf36507, %vf36506, %vf36
@@ -70505,7 +70998,8 @@ else.238318:
 	fsub	%vf36525, %vf36489, %vf36524
 	fsub	%vf36526, %vf31, %vf36525
 	fleq	%vi19032, %vf36525, %vf32
-	ftern	%vf36527, %vi19032, %vf36525, %vf36526
+	mif	%vtf2295, %vi19032
+	ftern	%vf36527, %vtf2295, %vf36525, %vf36526
 	fmul	%vf36528, %vf36527, %vf36527
 	fmul	%vf36529, %vf35, %vf36528
 	fadd	%vf36530, %vf36529, %vf36
@@ -70670,7 +71164,8 @@ then.238343:
 cont.238344:
 	fsub	%vf36820, %vf36819, %vf30
 	ceqi	%vi19097, %vi19068, 3
-	ftern	%vf36821, %vi19097, %vf36820, %vf36819
+	mif	%vtf2299, %vi19097
+	ftern	%vf36821, %vtf2299, %vf36820, %vf36819
 	fmul	%vf36822, %vf36796, %vf36796
 	fmul	%vf36823, %vf36788, %vf36821
 	fsub	%vf36824, %vf36822, %vf36823
@@ -70956,7 +71451,8 @@ then.238385:
 cont.238386:
 	fsub	%vf36925, %vf36924, %vf30
 	ceqi	%vi19153, %vi19124, 3
-	ftern	%vf36926, %vi19153, %vf36925, %vf36924
+	mif	%vtf2309, %vi19153
+	ftern	%vf36926, %vtf2309, %vf36925, %vf36924
 	fmul	%vf36927, %vf36901, %vf36901
 	fmul	%vf36928, %vf36893, %vf36926
 	fsub	%vf36929, %vf36927, %vf36928
@@ -71209,7 +71705,8 @@ then.238419:
 cont.238420:
 	fsub	%vf36996, %vf36995, %vf30
 	ceqi	%vi19188, %vi19178, 3
-	ftern	%vf36997, %vi19188, %vf36996, %vf36995
+	mif	%vtf2317, %vi19188
+	ftern	%vf36997, %vtf2317, %vf36996, %vf36995
 	flt	%vi19189, %vf36997, %f0
 	mov	%i4, %vi19174
 	mov	%i5, %vi19189
@@ -71339,7 +71836,8 @@ then.238436:
 cont.238437:
 	fsub	%vf37044, %vf37043, %vf30
 	ceqi	%vi19214, %vi19204, 3
-	ftern	%vf37045, %vi19214, %vf37044, %vf37043
+	mif	%vtf2322, %vi19214
+	ftern	%vf37045, %vtf2322, %vf37044, %vf37043
 	flt	%vi19215, %vf37045, %f0
 	mov	%i4, %vi19200
 	mov	%i5, %vi19215
@@ -71610,7 +72108,8 @@ then.238466:
 cont.238467:
 	fsub	%vf37136, %vf37135, %vf30
 	ceqi	%vi19282, %vi19253, 3
-	ftern	%vf37137, %vi19282, %vf37136, %vf37135
+	mif	%vtf2328, %vi19282
+	ftern	%vf37137, %vtf2328, %vf37136, %vf37135
 	fmul	%vf37138, %vf37112, %vf37112
 	fmul	%vf37139, %vf37104, %vf37137
 	fsub	%vf37140, %vf37138, %vf37139
@@ -71863,7 +72362,8 @@ then.238500:
 cont.238501:
 	fsub	%vf37207, %vf37206, %vf30
 	ceqi	%vi19317, %vi19307, 3
-	ftern	%vf37208, %vi19317, %vf37207, %vf37206
+	mif	%vtf2336, %vi19317
+	ftern	%vf37208, %vtf2336, %vf37207, %vf37206
 	flt	%vi19318, %vf37208, %f0
 	mov	%i4, %vi19303
 	mov	%i5, %vi19318
@@ -71993,7 +72493,8 @@ then.238517:
 cont.238518:
 	fsub	%vf37255, %vf37254, %vf30
 	ceqi	%vi19343, %vi19333, 3
-	ftern	%vf37256, %vi19343, %vf37255, %vf37254
+	mif	%vtf2341, %vi19343
+	ftern	%vf37256, %vtf2341, %vf37255, %vf37254
 	flt	%vi19344, %vf37256, %f0
 	mov	%i4, %vi19329
 	mov	%i5, %vi19344
@@ -72188,7 +72689,8 @@ loop_end.227507:
 	flt	%vi19364, %f0, %vf37265
 	mov	%vi19365, %i0
 	ceqi	%vi19366, %vi19364, 0
-	ftern	%vf37266, %vi19366, %f0, %vf37265
+	mif	%vtf2345, %vi19366
+	ftern	%vf37266, %vtf2345, %f0, %vf37265
 	fmul	%vf37267, %vf35996, %vf37266
 	mov	%vi19367, %i0
 	lf	%vf37268, 0(%vi19007)
@@ -72303,7 +72805,8 @@ then.238542:
 cont.238543:
 	fsub	%vf38618, %vf38617, %vf30
 	ceqi	%vi20048, %vi20039, 3
-	ftern	%vf38619, %vi20048, %vf38618, %vf38617
+	mif	%vtf2346, %vi20048
+	ftern	%vf38619, %vtf2346, %vf38618, %vf38617
 	sf	%vf38619, 12(%vi20034)
 cont.238541:
 	set_label	%vti8316, cont.238540
@@ -72394,7 +72897,8 @@ then.238550:
 cont.238551:
 	fsub	%vf38663, %vf38662, %vf30
 	ceqi	%vi20066, %vi20057, 3
-	ftern	%vf38664, %vi20066, %vf38663, %vf38662
+	mif	%vtf2348, %vi20066
+	ftern	%vf38664, %vtf2348, %vf38663, %vf38662
 	sf	%vf38664, 12(%vi20052)
 cont.238549:
 	set_label	%vti8323, cont.238548
@@ -72994,7 +73498,8 @@ then.238640:
 cont.238641:
 	fsub	%vf40326, %vf40325, %vf30
 	ceqi	%vi20972, %vi20959, 3
-	ftern	%vf40327, %vi20972, %vf40326, %vf40325
+	mif	%vtf2367, %vi20972
+	ftern	%vf40327, %vtf2367, %vf40326, %vf40325
 	flt	%vi20973, %vf40327, %f0
 	mov	%i4, %vi20955
 	mov	%i5, %vi20973
@@ -73121,7 +73626,8 @@ then.238657:
 cont.238658:
 	fsub	%vf40368, %vf40367, %vf30
 	ceqi	%vi21001, %vi20988, 3
-	ftern	%vf40369, %vi21001, %vf40368, %vf40367
+	mif	%vtf2372, %vi21001
+	ftern	%vf40369, %vtf2372, %vf40368, %vf40367
 	flt	%vi21002, %vf40369, %f0
 	mov	%i4, %vi20984
 	mov	%i5, %vi21002
@@ -73577,7 +74083,8 @@ then.238716:
 cont.238717:
 	fsub	%vf40086, %vf40085, %vf30
 	ceqi	%vi20817, %vi20804, 3
-	ftern	%vf40087, %vi20817, %vf40086, %vf40085
+	mif	%vtf2385, %vi20817
+	ftern	%vf40087, %vtf2385, %vf40086, %vf40085
 	flt	%vi20818, %vf40087, %f0
 	mov	%i4, %vi20800
 	mov	%i5, %vi20818
@@ -73704,7 +74211,8 @@ then.238733:
 cont.238734:
 	fsub	%vf40128, %vf40127, %vf30
 	ceqi	%vi20846, %vi20833, 3
-	ftern	%vf40129, %vi20846, %vf40128, %vf40127
+	mif	%vtf2390, %vi20846
+	ftern	%vf40129, %vtf2390, %vf40128, %vf40127
 	flt	%vi20847, %vf40129, %f0
 	mov	%i4, %vi20829
 	mov	%i5, %vi20847
@@ -73949,9 +74457,11 @@ cont.238752:
 	finv	%vf40426, %vf40423
 	fmul	%vf40427, %vf29, %vf40426
 	ceqi	%vi21042, %vi21027, 0
-	ftern	%vf40428, %vi21042, %vf40425, %vf40427
+	mif	%vtf2395, %vi21042
+	ftern	%vf40428, %vtf2395, %vf40425, %vf40427
 	ceqi	%vi21043, %vi21041, 0
-	ftern	%vf40429, %vi21043, %vf40428, %vf30
+	mif	%vtf2396, %vi21043
+	ftern	%vf40429, %vtf2396, %vf40428, %vf30
 	fmul	%vf40430, %vf40413, %vf40429
 	sf	%vf40430, 0(%vi52)
 	fmul	%vf40431, %vf40415, %vf40429
@@ -74061,7 +74571,8 @@ then.238764:
 	finv	%vf40615, %vf40614
 	fmul	%vf40616, %vf30, %vf40615
 	ceq	%vi21061, %vi21059, %vi21060
-	ftern	%vf40617, %vi21061, %vf40616, %vf40614
+	mif	%vtf2401, %vi21061
+	ftern	%vf40617, %vtf2401, %vf40616, %vf40614
 	fmul	%vf40618, %vf40617, %vf40617
 	fmul	%vf40619, %vf39, %vf40618
 	fadd	%vf40620, %vf40619, %vf40
@@ -74075,7 +74586,8 @@ then.238764:
 	fadd	%vf40628, %vf40627, %vf44
 	fmul	%vf40629, %vf40628, %vf40618
 	fadd	%vf40630, %vf40629, %vf45
-	ftern	%vf40631, %vi21061, %vf30, %vf29
+	mif	%vtf2402, %vi21061
+	ftern	%vf40631, %vtf2402, %vf30, %vf29
 	fmul	%vf40632, %vf40631, %vf40630
 	fmul	%vf40633, %vf40632, %vf40617
 	add	%vi21062, %vi21059, %vi21060
@@ -74121,7 +74633,8 @@ then.238766:
 	finv	%vf40657, %vf40656
 	fmul	%vf40658, %vf30, %vf40657
 	ceq	%vi21068, %vi21066, %vi21067
-	ftern	%vf40659, %vi21068, %vf40658, %vf40656
+	mif	%vtf2408, %vi21068
+	ftern	%vf40659, %vtf2408, %vf40658, %vf40656
 	fmul	%vf40660, %vf40659, %vf40659
 	fmul	%vf40661, %vf39, %vf40660
 	fadd	%vf40662, %vf40661, %vf40
@@ -74135,7 +74648,8 @@ then.238766:
 	fadd	%vf40670, %vf40669, %vf44
 	fmul	%vf40671, %vf40670, %vf40660
 	fadd	%vf40672, %vf40671, %vf45
-	ftern	%vf40673, %vi21068, %vf30, %vf29
+	mif	%vtf2409, %vi21068
+	ftern	%vf40673, %vtf2409, %vf30, %vf29
 	fmul	%vf40674, %vf40673, %vf40672
 	fmul	%vf40675, %vf40674, %vf40659
 	add	%vi21069, %vi21066, %vi21067
@@ -74161,7 +74675,8 @@ cont.238767:
 	flt	%vi21071, %vf40690, %f0
 	mov	%vi21072, %i0
 	ceqi	%vi21073, %vi21071, 0
-	ftern	%vf40691, %vi21073, %vf40690, %f0
+	mif	%vtf2412, %vi21073
+	ftern	%vf40691, %vtf2412, %vf40690, %f0
 	fmul	%vf40692, %vf55, %vf40691
 	finv	%vf40693, %vf9
 	fmul	%vf40694, %vf40692, %vf40693
@@ -74218,7 +74733,8 @@ else.238770:
 	fsub	%vf40544, %vf40531, %vf40543
 	fsub	%vf40545, %vf31, %vf40544
 	fleq	%vi21053, %vf40544, %vf32
-	ftern	%vf40546, %vi21053, %vf40544, %vf40545
+	mif	%vtf2416, %vi21053
+	ftern	%vf40546, %vtf2416, %vf40544, %vf40545
 	fmul	%vf40547, %vf40546, %vf40546
 	fmul	%vf40548, %vf35, %vf40547
 	fadd	%vf40549, %vf40548, %vf36
@@ -74255,7 +74771,8 @@ else.238768:
 	fsub	%vf40567, %vf40531, %vf40566
 	fsub	%vf40568, %vf31, %vf40567
 	fleq	%vi21054, %vf40567, %vf32
-	ftern	%vf40569, %vi21054, %vf40567, %vf40568
+	mif	%vtf2418, %vi21054
+	ftern	%vf40569, %vtf2418, %vf40567, %vf40568
 	fmul	%vf40570, %vf40569, %vf40569
 	fmul	%vf40571, %vf35, %vf40570
 	fadd	%vf40572, %vf40571, %vf36
@@ -74316,7 +74833,8 @@ else.238778:
 	fsub	%vf40467, %vf40454, %vf40466
 	fsub	%vf40468, %vf31, %vf40467
 	fleq	%vi21050, %vf40467, %vf32
-	ftern	%vf40469, %vi21050, %vf40467, %vf40468
+	mif	%vtf2420, %vi21050
+	ftern	%vf40469, %vtf2420, %vf40467, %vf40468
 	fmul	%vf40470, %vf40469, %vf40469
 	fmul	%vf40471, %vf35, %vf40470
 	fadd	%vf40472, %vf40471, %vf36
@@ -74353,7 +74871,8 @@ else.238776:
 	fsub	%vf40490, %vf40454, %vf40489
 	fsub	%vf40491, %vf31, %vf40490
 	fleq	%vi21051, %vf40490, %vf32
-	ftern	%vf40492, %vi21051, %vf40490, %vf40491
+	mif	%vtf2422, %vi21051
+	ftern	%vf40492, %vtf2422, %vf40490, %vf40491
 	fmul	%vf40493, %vf40492, %vf40492
 	fmul	%vf40494, %vf35, %vf40493
 	fadd	%vf40495, %vf40494, %vf36
@@ -74518,7 +75037,8 @@ then.238801:
 cont.238802:
 	fsub	%vf40785, %vf40784, %vf30
 	ceqi	%vi21116, %vi21087, 3
-	ftern	%vf40786, %vi21116, %vf40785, %vf40784
+	mif	%vtf2426, %vi21116
+	ftern	%vf40786, %vtf2426, %vf40785, %vf40784
 	fmul	%vf40787, %vf40761, %vf40761
 	fmul	%vf40788, %vf40753, %vf40786
 	fsub	%vf40789, %vf40787, %vf40788
@@ -74804,7 +75324,8 @@ then.238843:
 cont.238844:
 	fsub	%vf40890, %vf40889, %vf30
 	ceqi	%vi21172, %vi21143, 3
-	ftern	%vf40891, %vi21172, %vf40890, %vf40889
+	mif	%vtf2436, %vi21172
+	ftern	%vf40891, %vtf2436, %vf40890, %vf40889
 	fmul	%vf40892, %vf40866, %vf40866
 	fmul	%vf40893, %vf40858, %vf40891
 	fsub	%vf40894, %vf40892, %vf40893
@@ -75057,7 +75578,8 @@ then.238877:
 cont.238878:
 	fsub	%vf40961, %vf40960, %vf30
 	ceqi	%vi21207, %vi21197, 3
-	ftern	%vf40962, %vi21207, %vf40961, %vf40960
+	mif	%vtf2444, %vi21207
+	ftern	%vf40962, %vtf2444, %vf40961, %vf40960
 	flt	%vi21208, %vf40962, %f0
 	mov	%i4, %vi21193
 	mov	%i5, %vi21208
@@ -75187,7 +75709,8 @@ then.238894:
 cont.238895:
 	fsub	%vf41009, %vf41008, %vf30
 	ceqi	%vi21233, %vi21223, 3
-	ftern	%vf41010, %vi21233, %vf41009, %vf41008
+	mif	%vtf2449, %vi21233
+	ftern	%vf41010, %vtf2449, %vf41009, %vf41008
 	flt	%vi21234, %vf41010, %f0
 	mov	%i4, %vi21219
 	mov	%i5, %vi21234
@@ -75458,7 +75981,8 @@ then.238924:
 cont.238925:
 	fsub	%vf41101, %vf41100, %vf30
 	ceqi	%vi21301, %vi21272, 3
-	ftern	%vf41102, %vi21301, %vf41101, %vf41100
+	mif	%vtf2455, %vi21301
+	ftern	%vf41102, %vtf2455, %vf41101, %vf41100
 	fmul	%vf41103, %vf41077, %vf41077
 	fmul	%vf41104, %vf41069, %vf41102
 	fsub	%vf41105, %vf41103, %vf41104
@@ -75711,7 +76235,8 @@ then.238958:
 cont.238959:
 	fsub	%vf41172, %vf41171, %vf30
 	ceqi	%vi21336, %vi21326, 3
-	ftern	%vf41173, %vi21336, %vf41172, %vf41171
+	mif	%vtf2463, %vi21336
+	ftern	%vf41173, %vtf2463, %vf41172, %vf41171
 	flt	%vi21337, %vf41173, %f0
 	mov	%i4, %vi21322
 	mov	%i5, %vi21337
@@ -75841,7 +76366,8 @@ then.238975:
 cont.238976:
 	fsub	%vf41220, %vf41219, %vf30
 	ceqi	%vi21362, %vi21352, 3
-	ftern	%vf41221, %vi21362, %vf41220, %vf41219
+	mif	%vtf2468, %vi21362
+	ftern	%vf41221, %vtf2468, %vf41220, %vf41219
 	flt	%vi21363, %vf41221, %f0
 	mov	%i4, %vi21348
 	mov	%i5, %vi21363
@@ -76036,7 +76562,8 @@ loop_end.227695:
 	flt	%vi21383, %f0, %vf41230
 	mov	%vi21384, %i0
 	ceqi	%vi21385, %vi21383, 0
-	ftern	%vf41231, %vi21385, %f0, %vf41230
+	mif	%vtf2472, %vi21385
+	ftern	%vf41231, %vtf2472, %f0, %vf41230
 	fmul	%vf41232, %vf39961, %vf41231
 	mov	%vi21386, %i0
 	lf	%vf41233, 0(%vi21026)
@@ -76607,7 +77134,8 @@ then.239077:
 cont.239078:
 	fsub	%vf39039, %vf39038, %vf30
 	ceqi	%vi20316, %vi20303, 3
-	ftern	%vf39040, %vi20316, %vf39039, %vf39038
+	mif	%vtf2490, %vi20316
+	ftern	%vf39040, %vtf2490, %vf39039, %vf39038
 	flt	%vi20317, %vf39040, %f0
 	mov	%i4, %vi20299
 	mov	%i5, %vi20317
@@ -76734,7 +77262,8 @@ then.239094:
 cont.239095:
 	fsub	%vf39081, %vf39080, %vf30
 	ceqi	%vi20345, %vi20332, 3
-	ftern	%vf39082, %vi20345, %vf39081, %vf39080
+	mif	%vtf2495, %vi20345
+	ftern	%vf39082, %vtf2495, %vf39081, %vf39080
 	flt	%vi20346, %vf39082, %f0
 	mov	%i4, %vi20328
 	mov	%i5, %vi20346
@@ -77190,7 +77719,8 @@ then.239153:
 cont.239154:
 	fsub	%vf38799, %vf38798, %vf30
 	ceqi	%vi20161, %vi20148, 3
-	ftern	%vf38800, %vi20161, %vf38799, %vf38798
+	mif	%vtf2508, %vi20161
+	ftern	%vf38800, %vtf2508, %vf38799, %vf38798
 	flt	%vi20162, %vf38800, %f0
 	mov	%i4, %vi20144
 	mov	%i5, %vi20162
@@ -77317,7 +77847,8 @@ then.239170:
 cont.239171:
 	fsub	%vf38841, %vf38840, %vf30
 	ceqi	%vi20190, %vi20177, 3
-	ftern	%vf38842, %vi20190, %vf38841, %vf38840
+	mif	%vtf2513, %vi20190
+	ftern	%vf38842, %vtf2513, %vf38841, %vf38840
 	flt	%vi20191, %vf38842, %f0
 	mov	%i4, %vi20173
 	mov	%i5, %vi20191
@@ -77562,9 +78093,11 @@ cont.239189:
 	finv	%vf39139, %vf39136
 	fmul	%vf39140, %vf29, %vf39139
 	ceqi	%vi20386, %vi20371, 0
-	ftern	%vf39141, %vi20386, %vf39138, %vf39140
+	mif	%vtf2518, %vi20386
+	ftern	%vf39141, %vtf2518, %vf39138, %vf39140
 	ceqi	%vi20387, %vi20385, 0
-	ftern	%vf39142, %vi20387, %vf39141, %vf30
+	mif	%vtf2519, %vi20387
+	ftern	%vf39142, %vtf2519, %vf39141, %vf30
 	fmul	%vf39143, %vf39126, %vf39142
 	sf	%vf39143, 0(%vi52)
 	fmul	%vf39144, %vf39128, %vf39142
@@ -77674,7 +78207,8 @@ then.239201:
 	finv	%vf39328, %vf39327
 	fmul	%vf39329, %vf30, %vf39328
 	ceq	%vi20405, %vi20403, %vi20404
-	ftern	%vf39330, %vi20405, %vf39329, %vf39327
+	mif	%vtf2524, %vi20405
+	ftern	%vf39330, %vtf2524, %vf39329, %vf39327
 	fmul	%vf39331, %vf39330, %vf39330
 	fmul	%vf39332, %vf39, %vf39331
 	fadd	%vf39333, %vf39332, %vf40
@@ -77688,7 +78222,8 @@ then.239201:
 	fadd	%vf39341, %vf39340, %vf44
 	fmul	%vf39342, %vf39341, %vf39331
 	fadd	%vf39343, %vf39342, %vf45
-	ftern	%vf39344, %vi20405, %vf30, %vf29
+	mif	%vtf2525, %vi20405
+	ftern	%vf39344, %vtf2525, %vf30, %vf29
 	fmul	%vf39345, %vf39344, %vf39343
 	fmul	%vf39346, %vf39345, %vf39330
 	add	%vi20406, %vi20403, %vi20404
@@ -77734,7 +78269,8 @@ then.239203:
 	finv	%vf39370, %vf39369
 	fmul	%vf39371, %vf30, %vf39370
 	ceq	%vi20412, %vi20410, %vi20411
-	ftern	%vf39372, %vi20412, %vf39371, %vf39369
+	mif	%vtf2531, %vi20412
+	ftern	%vf39372, %vtf2531, %vf39371, %vf39369
 	fmul	%vf39373, %vf39372, %vf39372
 	fmul	%vf39374, %vf39, %vf39373
 	fadd	%vf39375, %vf39374, %vf40
@@ -77748,7 +78284,8 @@ then.239203:
 	fadd	%vf39383, %vf39382, %vf44
 	fmul	%vf39384, %vf39383, %vf39373
 	fadd	%vf39385, %vf39384, %vf45
-	ftern	%vf39386, %vi20412, %vf30, %vf29
+	mif	%vtf2532, %vi20412
+	ftern	%vf39386, %vtf2532, %vf30, %vf29
 	fmul	%vf39387, %vf39386, %vf39385
 	fmul	%vf39388, %vf39387, %vf39372
 	add	%vi20413, %vi20410, %vi20411
@@ -77774,7 +78311,8 @@ cont.239204:
 	flt	%vi20415, %vf39403, %f0
 	mov	%vi20416, %i0
 	ceqi	%vi20417, %vi20415, 0
-	ftern	%vf39404, %vi20417, %vf39403, %f0
+	mif	%vtf2535, %vi20417
+	ftern	%vf39404, %vtf2535, %vf39403, %f0
 	fmul	%vf39405, %vf55, %vf39404
 	finv	%vf39406, %vf9
 	fmul	%vf39407, %vf39405, %vf39406
@@ -77831,7 +78369,8 @@ else.239207:
 	fsub	%vf39257, %vf39244, %vf39256
 	fsub	%vf39258, %vf31, %vf39257
 	fleq	%vi20397, %vf39257, %vf32
-	ftern	%vf39259, %vi20397, %vf39257, %vf39258
+	mif	%vtf2539, %vi20397
+	ftern	%vf39259, %vtf2539, %vf39257, %vf39258
 	fmul	%vf39260, %vf39259, %vf39259
 	fmul	%vf39261, %vf35, %vf39260
 	fadd	%vf39262, %vf39261, %vf36
@@ -77868,7 +78407,8 @@ else.239205:
 	fsub	%vf39280, %vf39244, %vf39279
 	fsub	%vf39281, %vf31, %vf39280
 	fleq	%vi20398, %vf39280, %vf32
-	ftern	%vf39282, %vi20398, %vf39280, %vf39281
+	mif	%vtf2541, %vi20398
+	ftern	%vf39282, %vtf2541, %vf39280, %vf39281
 	fmul	%vf39283, %vf39282, %vf39282
 	fmul	%vf39284, %vf35, %vf39283
 	fadd	%vf39285, %vf39284, %vf36
@@ -77929,7 +78469,8 @@ else.239215:
 	fsub	%vf39180, %vf39167, %vf39179
 	fsub	%vf39181, %vf31, %vf39180
 	fleq	%vi20394, %vf39180, %vf32
-	ftern	%vf39182, %vi20394, %vf39180, %vf39181
+	mif	%vtf2543, %vi20394
+	ftern	%vf39182, %vtf2543, %vf39180, %vf39181
 	fmul	%vf39183, %vf39182, %vf39182
 	fmul	%vf39184, %vf35, %vf39183
 	fadd	%vf39185, %vf39184, %vf36
@@ -77966,7 +78507,8 @@ else.239213:
 	fsub	%vf39203, %vf39167, %vf39202
 	fsub	%vf39204, %vf31, %vf39203
 	fleq	%vi20395, %vf39203, %vf32
-	ftern	%vf39205, %vi20395, %vf39203, %vf39204
+	mif	%vtf2545, %vi20395
+	ftern	%vf39205, %vtf2545, %vf39203, %vf39204
 	fmul	%vf39206, %vf39205, %vf39205
 	fmul	%vf39207, %vf35, %vf39206
 	fadd	%vf39208, %vf39207, %vf36
@@ -78131,7 +78673,8 @@ then.239238:
 cont.239239:
 	fsub	%vf39498, %vf39497, %vf30
 	ceqi	%vi20460, %vi20431, 3
-	ftern	%vf39499, %vi20460, %vf39498, %vf39497
+	mif	%vtf2549, %vi20460
+	ftern	%vf39499, %vtf2549, %vf39498, %vf39497
 	fmul	%vf39500, %vf39474, %vf39474
 	fmul	%vf39501, %vf39466, %vf39499
 	fsub	%vf39502, %vf39500, %vf39501
@@ -78417,7 +78960,8 @@ then.239280:
 cont.239281:
 	fsub	%vf39603, %vf39602, %vf30
 	ceqi	%vi20516, %vi20487, 3
-	ftern	%vf39604, %vi20516, %vf39603, %vf39602
+	mif	%vtf2559, %vi20516
+	ftern	%vf39604, %vtf2559, %vf39603, %vf39602
 	fmul	%vf39605, %vf39579, %vf39579
 	fmul	%vf39606, %vf39571, %vf39604
 	fsub	%vf39607, %vf39605, %vf39606
@@ -78670,7 +79214,8 @@ then.239314:
 cont.239315:
 	fsub	%vf39674, %vf39673, %vf30
 	ceqi	%vi20551, %vi20541, 3
-	ftern	%vf39675, %vi20551, %vf39674, %vf39673
+	mif	%vtf2567, %vi20551
+	ftern	%vf39675, %vtf2567, %vf39674, %vf39673
 	flt	%vi20552, %vf39675, %f0
 	mov	%i4, %vi20537
 	mov	%i5, %vi20552
@@ -78800,7 +79345,8 @@ then.239331:
 cont.239332:
 	fsub	%vf39722, %vf39721, %vf30
 	ceqi	%vi20577, %vi20567, 3
-	ftern	%vf39723, %vi20577, %vf39722, %vf39721
+	mif	%vtf2572, %vi20577
+	ftern	%vf39723, %vtf2572, %vf39722, %vf39721
 	flt	%vi20578, %vf39723, %f0
 	mov	%i4, %vi20563
 	mov	%i5, %vi20578
@@ -79071,7 +79617,8 @@ then.239361:
 cont.239362:
 	fsub	%vf39814, %vf39813, %vf30
 	ceqi	%vi20645, %vi20616, 3
-	ftern	%vf39815, %vi20645, %vf39814, %vf39813
+	mif	%vtf2578, %vi20645
+	ftern	%vf39815, %vtf2578, %vf39814, %vf39813
 	fmul	%vf39816, %vf39790, %vf39790
 	fmul	%vf39817, %vf39782, %vf39815
 	fsub	%vf39818, %vf39816, %vf39817
@@ -79324,7 +79871,8 @@ then.239395:
 cont.239396:
 	fsub	%vf39885, %vf39884, %vf30
 	ceqi	%vi20680, %vi20670, 3
-	ftern	%vf39886, %vi20680, %vf39885, %vf39884
+	mif	%vtf2586, %vi20680
+	ftern	%vf39886, %vtf2586, %vf39885, %vf39884
 	flt	%vi20681, %vf39886, %f0
 	mov	%i4, %vi20666
 	mov	%i5, %vi20681
@@ -79454,7 +80002,8 @@ then.239412:
 cont.239413:
 	fsub	%vf39933, %vf39932, %vf30
 	ceqi	%vi20706, %vi20696, 3
-	ftern	%vf39934, %vi20706, %vf39933, %vf39932
+	mif	%vtf2591, %vi20706
+	ftern	%vf39934, %vtf2591, %vf39933, %vf39932
 	flt	%vi20707, %vf39934, %f0
 	mov	%i4, %vi20692
 	mov	%i5, %vi20707
@@ -79649,7 +80198,8 @@ loop_end.227870:
 	flt	%vi20727, %f0, %vf39943
 	mov	%vi20728, %i0
 	ceqi	%vi20729, %vi20727, 0
-	ftern	%vf39944, %vi20729, %f0, %vf39943
+	mif	%vtf2595, %vi20729
+	ftern	%vf39944, %vtf2595, %f0, %vf39943
 	fmul	%vf39945, %vf38674, %vf39944
 	mov	%vi20730, %i0
 	lf	%vf39946, 0(%vi20370)
@@ -79856,7 +80406,8 @@ then.239443:
 cont.239444:
 	fsub	%vf14275, %vf14274, %vf30
 	ceqi	%vi7768, %vi7759, 3
-	ftern	%vf14276, %vi7768, %vf14275, %vf14274
+	mif	%vtf2597, %vi7768
+	ftern	%vf14276, %vtf2597, %vf14275, %vf14274
 	sf	%vf14276, 12(%vi7754)
 cont.239442:
 	set_label	%vti9178, cont.239441
@@ -79947,7 +80498,8 @@ then.239451:
 cont.239452:
 	fsub	%vf14320, %vf14319, %vf30
 	ceqi	%vi7786, %vi7777, 3
-	ftern	%vf14321, %vi7786, %vf14320, %vf14319
+	mif	%vtf2599, %vi7786
+	ftern	%vf14321, %vtf2599, %vf14320, %vf14319
 	sf	%vf14321, 12(%vi7772)
 cont.239450:
 	set_label	%vti9185, cont.239449
@@ -80554,7 +81106,8 @@ then.239541:
 cont.239542:
 	fsub	%vf16033, %vf16032, %vf30
 	ceqi	%vi8681, %vi8671, 3
-	ftern	%vf16034, %vi8681, %vf16033, %vf16032
+	mif	%vtf2618, %vi8681
+	ftern	%vf16034, %vtf2618, %vf16033, %vf16032
 	flt	%vi8682, %vf16034, %f0
 	mov	%i4, %vi8667
 	mov	%i5, %vi8682
@@ -80684,7 +81237,8 @@ then.239558:
 cont.239559:
 	fsub	%vf16081, %vf16080, %vf30
 	ceqi	%vi8707, %vi8697, 3
-	ftern	%vf16082, %vi8707, %vf16081, %vf16080
+	mif	%vtf2623, %vi8707
+	ftern	%vf16082, %vtf2623, %vf16081, %vf16080
 	flt	%vi8708, %vf16082, %f0
 	mov	%i4, %vi8693
 	mov	%i5, %vi8708
@@ -81147,7 +81701,8 @@ then.239617:
 cont.239618:
 	fsub	%vf15777, %vf15776, %vf30
 	ceqi	%vi8530, %vi8520, 3
-	ftern	%vf15778, %vi8530, %vf15777, %vf15776
+	mif	%vtf2636, %vi8530
+	ftern	%vf15778, %vtf2636, %vf15777, %vf15776
 	flt	%vi8531, %vf15778, %f0
 	mov	%i4, %vi8516
 	mov	%i5, %vi8531
@@ -81277,7 +81832,8 @@ then.239634:
 cont.239635:
 	fsub	%vf15825, %vf15824, %vf30
 	ceqi	%vi8556, %vi8546, 3
-	ftern	%vf15826, %vi8556, %vf15825, %vf15824
+	mif	%vtf2641, %vi8556
+	ftern	%vf15826, %vtf2641, %vf15825, %vf15824
 	flt	%vi8557, %vf15826, %f0
 	mov	%i4, %vi8542
 	mov	%i5, %vi8557
@@ -81530,9 +82086,11 @@ cont.239653:
 	finv	%vf16139, %vf16136
 	fmul	%vf16140, %vf29, %vf16139
 	ceqi	%vi8750, %vi8733, 0
-	ftern	%vf16141, %vi8750, %vf16138, %vf16140
+	mif	%vtf2646, %vi8750
+	ftern	%vf16141, %vtf2646, %vf16138, %vf16140
 	ceqi	%vi8751, %vi8749, 0
-	ftern	%vf16142, %vi8751, %vf16141, %vf30
+	mif	%vtf2647, %vi8751
+	ftern	%vf16142, %vtf2647, %vf16141, %vf30
 	fmul	%vf16143, %vf16126, %vf16142
 	sf	%vf16143, 0(%vi52)
 	fmul	%vf16144, %vf16128, %vf16142
@@ -81643,7 +82201,8 @@ then.239665:
 	finv	%vf16324, %vf16323
 	fmul	%vf16325, %vf30, %vf16324
 	ceq	%vi8769, %vi8767, %vi8768
-	ftern	%vf16326, %vi8769, %vf16325, %vf16323
+	mif	%vtf2652, %vi8769
+	ftern	%vf16326, %vtf2652, %vf16325, %vf16323
 	fmul	%vf16327, %vf16326, %vf16326
 	fmul	%vf16328, %vf39, %vf16327
 	fadd	%vf16329, %vf16328, %vf40
@@ -81657,7 +82216,8 @@ then.239665:
 	fadd	%vf16337, %vf16336, %vf44
 	fmul	%vf16338, %vf16337, %vf16327
 	fadd	%vf16339, %vf16338, %vf45
-	ftern	%vf16340, %vi8769, %vf30, %vf29
+	mif	%vtf2653, %vi8769
+	ftern	%vf16340, %vtf2653, %vf30, %vf29
 	fmul	%vf16341, %vf16340, %vf16339
 	fmul	%vf16342, %vf16341, %vf16326
 	add	%vi8770, %vi8767, %vi8768
@@ -81702,7 +82262,8 @@ then.239667:
 	finv	%vf16365, %vf16364
 	fmul	%vf16366, %vf30, %vf16365
 	ceq	%vi8776, %vi8774, %vi8775
-	ftern	%vf16367, %vi8776, %vf16366, %vf16364
+	mif	%vtf2659, %vi8776
+	ftern	%vf16367, %vtf2659, %vf16366, %vf16364
 	fmul	%vf16368, %vf16367, %vf16367
 	fmul	%vf16369, %vf39, %vf16368
 	fadd	%vf16370, %vf16369, %vf40
@@ -81716,7 +82277,8 @@ then.239667:
 	fadd	%vf16378, %vf16377, %vf44
 	fmul	%vf16379, %vf16378, %vf16368
 	fadd	%vf16380, %vf16379, %vf45
-	ftern	%vf16381, %vi8776, %vf30, %vf29
+	mif	%vtf2660, %vi8776
+	ftern	%vf16381, %vtf2660, %vf30, %vf29
 	fmul	%vf16382, %vf16381, %vf16380
 	fmul	%vf16383, %vf16382, %vf16367
 	add	%vi8777, %vi8774, %vi8775
@@ -81742,7 +82304,8 @@ cont.239668:
 	flt	%vi8779, %vf16398, %f0
 	mov	%vi8780, %i0
 	ceqi	%vi8781, %vi8779, 0
-	ftern	%vf16399, %vi8781, %vf16398, %f0
+	mif	%vtf2663, %vi8781
+	ftern	%vf16399, %vtf2663, %vf16398, %f0
 	fmul	%vf16400, %vf55, %vf16399
 	finv	%vf16401, %vf9
 	fmul	%vf16402, %vf16400, %vf16401
@@ -81797,7 +82360,8 @@ else.239671:
 	fsub	%vf16255, %vf16242, %vf16254
 	fsub	%vf16256, %vf31, %vf16255
 	fleq	%vi8761, %vf16255, %vf32
-	ftern	%vf16257, %vi8761, %vf16255, %vf16256
+	mif	%vtf2667, %vi8761
+	ftern	%vf16257, %vtf2667, %vf16255, %vf16256
 	fmul	%vf16258, %vf16257, %vf16257
 	fmul	%vf16259, %vf35, %vf16258
 	fadd	%vf16260, %vf16259, %vf36
@@ -81834,7 +82398,8 @@ else.239669:
 	fsub	%vf16278, %vf16242, %vf16277
 	fsub	%vf16279, %vf31, %vf16278
 	fleq	%vi8762, %vf16278, %vf32
-	ftern	%vf16280, %vi8762, %vf16278, %vf16279
+	mif	%vtf2669, %vi8762
+	ftern	%vf16280, %vtf2669, %vf16278, %vf16279
 	fmul	%vf16281, %vf16280, %vf16280
 	fmul	%vf16282, %vf35, %vf16281
 	fadd	%vf16283, %vf16282, %vf36
@@ -81894,7 +82459,8 @@ else.239679:
 	fsub	%vf16180, %vf16167, %vf16179
 	fsub	%vf16181, %vf31, %vf16180
 	fleq	%vi8758, %vf16180, %vf32
-	ftern	%vf16182, %vi8758, %vf16180, %vf16181
+	mif	%vtf2671, %vi8758
+	ftern	%vf16182, %vtf2671, %vf16180, %vf16181
 	fmul	%vf16183, %vf16182, %vf16182
 	fmul	%vf16184, %vf35, %vf16183
 	fadd	%vf16185, %vf16184, %vf36
@@ -81931,7 +82497,8 @@ else.239677:
 	fsub	%vf16203, %vf16167, %vf16202
 	fsub	%vf16204, %vf31, %vf16203
 	fleq	%vi8759, %vf16203, %vf32
-	ftern	%vf16205, %vi8759, %vf16203, %vf16204
+	mif	%vtf2673, %vi8759
+	ftern	%vf16205, %vtf2673, %vf16203, %vf16204
 	fmul	%vf16206, %vf16205, %vf16205
 	fmul	%vf16207, %vf35, %vf16206
 	fadd	%vf16208, %vf16207, %vf36
@@ -82093,7 +82660,8 @@ then.239702:
 cont.239703:
 	fsub	%vf16493, %vf16492, %vf30
 	ceqi	%vi8821, %vi8795, 3
-	ftern	%vf16494, %vi8821, %vf16493, %vf16492
+	mif	%vtf2677, %vi8821
+	ftern	%vf16494, %vtf2677, %vf16493, %vf16492
 	fmul	%vf16495, %vf16475, %vf16475
 	fmul	%vf16496, %vf16466, %vf16494
 	fsub	%vf16497, %vf16495, %vf16496
@@ -82376,7 +82944,8 @@ then.239744:
 cont.239745:
 	fsub	%vf16597, %vf16596, %vf30
 	ceqi	%vi8877, %vi8848, 3
-	ftern	%vf16598, %vi8877, %vf16597, %vf16596
+	mif	%vtf2687, %vi8877
+	ftern	%vf16598, %vtf2687, %vf16597, %vf16596
 	fmul	%vf16599, %vf16573, %vf16573
 	fmul	%vf16600, %vf16564, %vf16598
 	fsub	%vf16601, %vf16599, %vf16600
@@ -82628,7 +83197,8 @@ then.239778:
 cont.239779:
 	fsub	%vf16666, %vf16665, %vf30
 	ceqi	%vi8913, %vi8902, 3
-	ftern	%vf16667, %vi8913, %vf16666, %vf16665
+	mif	%vtf2695, %vi8913
+	ftern	%vf16667, %vtf2695, %vf16666, %vf16665
 	flt	%vi8914, %vf16667, %f0
 	mov	%i4, %vi8898
 	mov	%i5, %vi8914
@@ -82759,7 +83329,8 @@ then.239795:
 cont.239796:
 	fsub	%vf16714, %vf16713, %vf30
 	ceqi	%vi8940, %vi8929, 3
-	ftern	%vf16715, %vi8940, %vf16714, %vf16713
+	mif	%vtf2700, %vi8940
+	ftern	%vf16715, %vtf2700, %vf16714, %vf16713
 	flt	%vi8941, %vf16715, %f0
 	mov	%i4, %vi8925
 	mov	%i5, %vi8941
@@ -83031,7 +83602,8 @@ then.239825:
 cont.239826:
 	fsub	%vf16807, %vf16806, %vf30
 	ceqi	%vi9008, %vi8979, 3
-	ftern	%vf16808, %vi9008, %vf16807, %vf16806
+	mif	%vtf2706, %vi9008
+	ftern	%vf16808, %vtf2706, %vf16807, %vf16806
 	fmul	%vf16809, %vf16783, %vf16783
 	fmul	%vf16810, %vf16774, %vf16808
 	fsub	%vf16811, %vf16809, %vf16810
@@ -83283,7 +83855,8 @@ then.239859:
 cont.239860:
 	fsub	%vf16876, %vf16875, %vf30
 	ceqi	%vi9044, %vi9033, 3
-	ftern	%vf16877, %vi9044, %vf16876, %vf16875
+	mif	%vtf2714, %vi9044
+	ftern	%vf16877, %vtf2714, %vf16876, %vf16875
 	flt	%vi9045, %vf16877, %f0
 	mov	%i4, %vi9029
 	mov	%i5, %vi9045
@@ -83414,7 +83987,8 @@ then.239876:
 cont.239877:
 	fsub	%vf16924, %vf16923, %vf30
 	ceqi	%vi9071, %vi9060, 3
-	ftern	%vf16925, %vi9071, %vf16924, %vf16923
+	mif	%vtf2719, %vi9071
+	ftern	%vf16925, %vtf2719, %vf16924, %vf16923
 	flt	%vi9072, %vf16925, %f0
 	mov	%i4, %vi9056
 	mov	%i5, %vi9072
@@ -83609,7 +84183,8 @@ loop_end.228074:
 	flt	%vi9092, %f0, %vf16934
 	mov	%vi9093, %i0
 	ceqi	%vi9094, %vi9092, 0
-	ftern	%vf16935, %vi9094, %f0, %vf16934
+	mif	%vtf2723, %vi9094
+	ftern	%vf16935, %vtf2723, %f0, %vf16934
 	fmul	%vf16936, %vf15643, %vf16935
 	mov	%vi9095, %i0
 	lf	%vf16937, 0(%vi8732)
@@ -84183,7 +84758,8 @@ then.239978:
 cont.239979:
 	fsub	%vf14724, %vf14723, %vf30
 	ceqi	%vi8031, %vi8021, 3
-	ftern	%vf14725, %vi8031, %vf14724, %vf14723
+	mif	%vtf2741, %vi8031
+	ftern	%vf14725, %vtf2741, %vf14724, %vf14723
 	flt	%vi8032, %vf14725, %f0
 	mov	%i4, %vi8017
 	mov	%i5, %vi8032
@@ -84313,7 +84889,8 @@ then.239995:
 cont.239996:
 	fsub	%vf14772, %vf14771, %vf30
 	ceqi	%vi8057, %vi8047, 3
-	ftern	%vf14773, %vi8057, %vf14772, %vf14771
+	mif	%vtf2746, %vi8057
+	ftern	%vf14773, %vtf2746, %vf14772, %vf14771
 	flt	%vi8058, %vf14773, %f0
 	mov	%i4, %vi8043
 	mov	%i5, %vi8058
@@ -84776,7 +85353,8 @@ then.240054:
 cont.240055:
 	fsub	%vf14468, %vf14467, %vf30
 	ceqi	%vi7880, %vi7870, 3
-	ftern	%vf14469, %vi7880, %vf14468, %vf14467
+	mif	%vtf2759, %vi7880
+	ftern	%vf14469, %vtf2759, %vf14468, %vf14467
 	flt	%vi7881, %vf14469, %f0
 	mov	%i4, %vi7866
 	mov	%i5, %vi7881
@@ -84906,7 +85484,8 @@ then.240071:
 cont.240072:
 	fsub	%vf14516, %vf14515, %vf30
 	ceqi	%vi7906, %vi7896, 3
-	ftern	%vf14517, %vi7906, %vf14516, %vf14515
+	mif	%vtf2764, %vi7906
+	ftern	%vf14517, %vtf2764, %vf14516, %vf14515
 	flt	%vi7907, %vf14517, %f0
 	mov	%i4, %vi7892
 	mov	%i5, %vi7907
@@ -85159,9 +85738,11 @@ cont.240090:
 	finv	%vf14830, %vf14827
 	fmul	%vf14831, %vf29, %vf14830
 	ceqi	%vi8100, %vi8083, 0
-	ftern	%vf14832, %vi8100, %vf14829, %vf14831
+	mif	%vtf2769, %vi8100
+	ftern	%vf14832, %vtf2769, %vf14829, %vf14831
 	ceqi	%vi8101, %vi8099, 0
-	ftern	%vf14833, %vi8101, %vf14832, %vf30
+	mif	%vtf2770, %vi8101
+	ftern	%vf14833, %vtf2770, %vf14832, %vf30
 	fmul	%vf14834, %vf14817, %vf14833
 	sf	%vf14834, 0(%vi52)
 	fmul	%vf14835, %vf14819, %vf14833
@@ -85272,7 +85853,8 @@ then.240102:
 	finv	%vf15015, %vf15014
 	fmul	%vf15016, %vf30, %vf15015
 	ceq	%vi8119, %vi8117, %vi8118
-	ftern	%vf15017, %vi8119, %vf15016, %vf15014
+	mif	%vtf2775, %vi8119
+	ftern	%vf15017, %vtf2775, %vf15016, %vf15014
 	fmul	%vf15018, %vf15017, %vf15017
 	fmul	%vf15019, %vf39, %vf15018
 	fadd	%vf15020, %vf15019, %vf40
@@ -85286,7 +85868,8 @@ then.240102:
 	fadd	%vf15028, %vf15027, %vf44
 	fmul	%vf15029, %vf15028, %vf15018
 	fadd	%vf15030, %vf15029, %vf45
-	ftern	%vf15031, %vi8119, %vf30, %vf29
+	mif	%vtf2776, %vi8119
+	ftern	%vf15031, %vtf2776, %vf30, %vf29
 	fmul	%vf15032, %vf15031, %vf15030
 	fmul	%vf15033, %vf15032, %vf15017
 	add	%vi8120, %vi8117, %vi8118
@@ -85331,7 +85914,8 @@ then.240104:
 	finv	%vf15056, %vf15055
 	fmul	%vf15057, %vf30, %vf15056
 	ceq	%vi8126, %vi8124, %vi8125
-	ftern	%vf15058, %vi8126, %vf15057, %vf15055
+	mif	%vtf2782, %vi8126
+	ftern	%vf15058, %vtf2782, %vf15057, %vf15055
 	fmul	%vf15059, %vf15058, %vf15058
 	fmul	%vf15060, %vf39, %vf15059
 	fadd	%vf15061, %vf15060, %vf40
@@ -85345,7 +85929,8 @@ then.240104:
 	fadd	%vf15069, %vf15068, %vf44
 	fmul	%vf15070, %vf15069, %vf15059
 	fadd	%vf15071, %vf15070, %vf45
-	ftern	%vf15072, %vi8126, %vf30, %vf29
+	mif	%vtf2783, %vi8126
+	ftern	%vf15072, %vtf2783, %vf30, %vf29
 	fmul	%vf15073, %vf15072, %vf15071
 	fmul	%vf15074, %vf15073, %vf15058
 	add	%vi8127, %vi8124, %vi8125
@@ -85371,7 +85956,8 @@ cont.240105:
 	flt	%vi8129, %vf15089, %f0
 	mov	%vi8130, %i0
 	ceqi	%vi8131, %vi8129, 0
-	ftern	%vf15090, %vi8131, %vf15089, %f0
+	mif	%vtf2786, %vi8131
+	ftern	%vf15090, %vtf2786, %vf15089, %f0
 	fmul	%vf15091, %vf55, %vf15090
 	finv	%vf15092, %vf9
 	fmul	%vf15093, %vf15091, %vf15092
@@ -85426,7 +86012,8 @@ else.240108:
 	fsub	%vf14946, %vf14933, %vf14945
 	fsub	%vf14947, %vf31, %vf14946
 	fleq	%vi8111, %vf14946, %vf32
-	ftern	%vf14948, %vi8111, %vf14946, %vf14947
+	mif	%vtf2790, %vi8111
+	ftern	%vf14948, %vtf2790, %vf14946, %vf14947
 	fmul	%vf14949, %vf14948, %vf14948
 	fmul	%vf14950, %vf35, %vf14949
 	fadd	%vf14951, %vf14950, %vf36
@@ -85463,7 +86050,8 @@ else.240106:
 	fsub	%vf14969, %vf14933, %vf14968
 	fsub	%vf14970, %vf31, %vf14969
 	fleq	%vi8112, %vf14969, %vf32
-	ftern	%vf14971, %vi8112, %vf14969, %vf14970
+	mif	%vtf2792, %vi8112
+	ftern	%vf14971, %vtf2792, %vf14969, %vf14970
 	fmul	%vf14972, %vf14971, %vf14971
 	fmul	%vf14973, %vf35, %vf14972
 	fadd	%vf14974, %vf14973, %vf36
@@ -85523,7 +86111,8 @@ else.240116:
 	fsub	%vf14871, %vf14858, %vf14870
 	fsub	%vf14872, %vf31, %vf14871
 	fleq	%vi8108, %vf14871, %vf32
-	ftern	%vf14873, %vi8108, %vf14871, %vf14872
+	mif	%vtf2794, %vi8108
+	ftern	%vf14873, %vtf2794, %vf14871, %vf14872
 	fmul	%vf14874, %vf14873, %vf14873
 	fmul	%vf14875, %vf35, %vf14874
 	fadd	%vf14876, %vf14875, %vf36
@@ -85560,7 +86149,8 @@ else.240114:
 	fsub	%vf14894, %vf14858, %vf14893
 	fsub	%vf14895, %vf31, %vf14894
 	fleq	%vi8109, %vf14894, %vf32
-	ftern	%vf14896, %vi8109, %vf14894, %vf14895
+	mif	%vtf2796, %vi8109
+	ftern	%vf14896, %vtf2796, %vf14894, %vf14895
 	fmul	%vf14897, %vf14896, %vf14896
 	fmul	%vf14898, %vf35, %vf14897
 	fadd	%vf14899, %vf14898, %vf36
@@ -85722,7 +86312,8 @@ then.240139:
 cont.240140:
 	fsub	%vf15184, %vf15183, %vf30
 	ceqi	%vi8171, %vi8145, 3
-	ftern	%vf15185, %vi8171, %vf15184, %vf15183
+	mif	%vtf2800, %vi8171
+	ftern	%vf15185, %vtf2800, %vf15184, %vf15183
 	fmul	%vf15186, %vf15166, %vf15166
 	fmul	%vf15187, %vf15157, %vf15185
 	fsub	%vf15188, %vf15186, %vf15187
@@ -86005,7 +86596,8 @@ then.240181:
 cont.240182:
 	fsub	%vf15288, %vf15287, %vf30
 	ceqi	%vi8227, %vi8198, 3
-	ftern	%vf15289, %vi8227, %vf15288, %vf15287
+	mif	%vtf2810, %vi8227
+	ftern	%vf15289, %vtf2810, %vf15288, %vf15287
 	fmul	%vf15290, %vf15264, %vf15264
 	fmul	%vf15291, %vf15255, %vf15289
 	fsub	%vf15292, %vf15290, %vf15291
@@ -86257,7 +86849,8 @@ then.240215:
 cont.240216:
 	fsub	%vf15357, %vf15356, %vf30
 	ceqi	%vi8263, %vi8252, 3
-	ftern	%vf15358, %vi8263, %vf15357, %vf15356
+	mif	%vtf2818, %vi8263
+	ftern	%vf15358, %vtf2818, %vf15357, %vf15356
 	flt	%vi8264, %vf15358, %f0
 	mov	%i4, %vi8248
 	mov	%i5, %vi8264
@@ -86388,7 +86981,8 @@ then.240232:
 cont.240233:
 	fsub	%vf15405, %vf15404, %vf30
 	ceqi	%vi8290, %vi8279, 3
-	ftern	%vf15406, %vi8290, %vf15405, %vf15404
+	mif	%vtf2823, %vi8290
+	ftern	%vf15406, %vtf2823, %vf15405, %vf15404
 	flt	%vi8291, %vf15406, %f0
 	mov	%i4, %vi8275
 	mov	%i5, %vi8291
@@ -86660,7 +87254,8 @@ then.240262:
 cont.240263:
 	fsub	%vf15498, %vf15497, %vf30
 	ceqi	%vi8358, %vi8329, 3
-	ftern	%vf15499, %vi8358, %vf15498, %vf15497
+	mif	%vtf2829, %vi8358
+	ftern	%vf15499, %vtf2829, %vf15498, %vf15497
 	fmul	%vf15500, %vf15474, %vf15474
 	fmul	%vf15501, %vf15465, %vf15499
 	fsub	%vf15502, %vf15500, %vf15501
@@ -86912,7 +87507,8 @@ then.240296:
 cont.240297:
 	fsub	%vf15567, %vf15566, %vf30
 	ceqi	%vi8394, %vi8383, 3
-	ftern	%vf15568, %vi8394, %vf15567, %vf15566
+	mif	%vtf2837, %vi8394
+	ftern	%vf15568, %vtf2837, %vf15567, %vf15566
 	flt	%vi8395, %vf15568, %f0
 	mov	%i4, %vi8379
 	mov	%i5, %vi8395
@@ -87043,7 +87639,8 @@ then.240313:
 cont.240314:
 	fsub	%vf15615, %vf15614, %vf30
 	ceqi	%vi8421, %vi8410, 3
-	ftern	%vf15616, %vi8421, %vf15615, %vf15614
+	mif	%vtf2842, %vi8421
+	ftern	%vf15616, %vtf2842, %vf15615, %vf15614
 	flt	%vi8422, %vf15616, %f0
 	mov	%i4, %vi8406
 	mov	%i5, %vi8422
@@ -87238,7 +87835,8 @@ loop_end.228249:
 	flt	%vi8442, %f0, %vf15625
 	mov	%vi8443, %i0
 	ceqi	%vi8444, %vi8442, 0
-	ftern	%vf15626, %vi8444, %f0, %vf15625
+	mif	%vtf2846, %vi8444
+	ftern	%vf15626, %vtf2846, %f0, %vf15625
 	fmul	%vf15627, %vf14334, %vf15626
 	mov	%vi8445, %i0
 	lf	%vf15628, 0(%vi8082)
@@ -87349,7 +87947,8 @@ then.240338:
 cont.240339:
 	fsub	%vf16997, %vf16996, %vf30
 	ceqi	%vi9119, %vi9110, 3
-	ftern	%vf16998, %vi9119, %vf16997, %vf16996
+	mif	%vtf2847, %vi9119
+	ftern	%vf16998, %vtf2847, %vf16997, %vf16996
 	sf	%vf16998, 12(%vi9105)
 cont.240337:
 	set_label	%vti10030, cont.240336
@@ -87440,7 +88039,8 @@ then.240346:
 cont.240347:
 	fsub	%vf17042, %vf17041, %vf30
 	ceqi	%vi9137, %vi9128, 3
-	ftern	%vf17043, %vi9137, %vf17042, %vf17041
+	mif	%vtf2849, %vi9137
+	ftern	%vf17043, %vtf2849, %vf17042, %vf17041
 	sf	%vf17043, 12(%vi9123)
 cont.240345:
 	set_label	%vti10037, cont.240344
@@ -88047,7 +88647,8 @@ then.240436:
 cont.240437:
 	fsub	%vf18755, %vf18754, %vf30
 	ceqi	%vi10032, %vi10022, 3
-	ftern	%vf18756, %vi10032, %vf18755, %vf18754
+	mif	%vtf2868, %vi10032
+	ftern	%vf18756, %vtf2868, %vf18755, %vf18754
 	flt	%vi10033, %vf18756, %f0
 	mov	%i4, %vi10018
 	mov	%i5, %vi10033
@@ -88177,7 +88778,8 @@ then.240453:
 cont.240454:
 	fsub	%vf18803, %vf18802, %vf30
 	ceqi	%vi10058, %vi10048, 3
-	ftern	%vf18804, %vi10058, %vf18803, %vf18802
+	mif	%vtf2873, %vi10058
+	ftern	%vf18804, %vtf2873, %vf18803, %vf18802
 	flt	%vi10059, %vf18804, %f0
 	mov	%i4, %vi10044
 	mov	%i5, %vi10059
@@ -88640,7 +89242,8 @@ then.240512:
 cont.240513:
 	fsub	%vf18499, %vf18498, %vf30
 	ceqi	%vi9881, %vi9871, 3
-	ftern	%vf18500, %vi9881, %vf18499, %vf18498
+	mif	%vtf2886, %vi9881
+	ftern	%vf18500, %vtf2886, %vf18499, %vf18498
 	flt	%vi9882, %vf18500, %f0
 	mov	%i4, %vi9867
 	mov	%i5, %vi9882
@@ -88770,7 +89373,8 @@ then.240529:
 cont.240530:
 	fsub	%vf18547, %vf18546, %vf30
 	ceqi	%vi9907, %vi9897, 3
-	ftern	%vf18548, %vi9907, %vf18547, %vf18546
+	mif	%vtf2891, %vi9907
+	ftern	%vf18548, %vtf2891, %vf18547, %vf18546
 	flt	%vi9908, %vf18548, %f0
 	mov	%i4, %vi9893
 	mov	%i5, %vi9908
@@ -89023,9 +89627,11 @@ cont.240548:
 	finv	%vf18861, %vf18858
 	fmul	%vf18862, %vf29, %vf18861
 	ceqi	%vi10101, %vi10084, 0
-	ftern	%vf18863, %vi10101, %vf18860, %vf18862
+	mif	%vtf2896, %vi10101
+	ftern	%vf18863, %vtf2896, %vf18860, %vf18862
 	ceqi	%vi10102, %vi10100, 0
-	ftern	%vf18864, %vi10102, %vf18863, %vf30
+	mif	%vtf2897, %vi10102
+	ftern	%vf18864, %vtf2897, %vf18863, %vf30
 	fmul	%vf18865, %vf18848, %vf18864
 	sf	%vf18865, 0(%vi52)
 	fmul	%vf18866, %vf18850, %vf18864
@@ -89136,7 +89742,8 @@ then.240560:
 	finv	%vf19046, %vf19045
 	fmul	%vf19047, %vf30, %vf19046
 	ceq	%vi10120, %vi10118, %vi10119
-	ftern	%vf19048, %vi10120, %vf19047, %vf19045
+	mif	%vtf2902, %vi10120
+	ftern	%vf19048, %vtf2902, %vf19047, %vf19045
 	fmul	%vf19049, %vf19048, %vf19048
 	fmul	%vf19050, %vf39, %vf19049
 	fadd	%vf19051, %vf19050, %vf40
@@ -89150,7 +89757,8 @@ then.240560:
 	fadd	%vf19059, %vf19058, %vf44
 	fmul	%vf19060, %vf19059, %vf19049
 	fadd	%vf19061, %vf19060, %vf45
-	ftern	%vf19062, %vi10120, %vf30, %vf29
+	mif	%vtf2903, %vi10120
+	ftern	%vf19062, %vtf2903, %vf30, %vf29
 	fmul	%vf19063, %vf19062, %vf19061
 	fmul	%vf19064, %vf19063, %vf19048
 	add	%vi10121, %vi10118, %vi10119
@@ -89195,7 +89803,8 @@ then.240562:
 	finv	%vf19087, %vf19086
 	fmul	%vf19088, %vf30, %vf19087
 	ceq	%vi10127, %vi10125, %vi10126
-	ftern	%vf19089, %vi10127, %vf19088, %vf19086
+	mif	%vtf2909, %vi10127
+	ftern	%vf19089, %vtf2909, %vf19088, %vf19086
 	fmul	%vf19090, %vf19089, %vf19089
 	fmul	%vf19091, %vf39, %vf19090
 	fadd	%vf19092, %vf19091, %vf40
@@ -89209,7 +89818,8 @@ then.240562:
 	fadd	%vf19100, %vf19099, %vf44
 	fmul	%vf19101, %vf19100, %vf19090
 	fadd	%vf19102, %vf19101, %vf45
-	ftern	%vf19103, %vi10127, %vf30, %vf29
+	mif	%vtf2910, %vi10127
+	ftern	%vf19103, %vtf2910, %vf30, %vf29
 	fmul	%vf19104, %vf19103, %vf19102
 	fmul	%vf19105, %vf19104, %vf19089
 	add	%vi10128, %vi10125, %vi10126
@@ -89235,7 +89845,8 @@ cont.240563:
 	flt	%vi10130, %vf19120, %f0
 	mov	%vi10131, %i0
 	ceqi	%vi10132, %vi10130, 0
-	ftern	%vf19121, %vi10132, %vf19120, %f0
+	mif	%vtf2913, %vi10132
+	ftern	%vf19121, %vtf2913, %vf19120, %f0
 	fmul	%vf19122, %vf55, %vf19121
 	finv	%vf19123, %vf9
 	fmul	%vf19124, %vf19122, %vf19123
@@ -89290,7 +89901,8 @@ else.240566:
 	fsub	%vf18977, %vf18964, %vf18976
 	fsub	%vf18978, %vf31, %vf18977
 	fleq	%vi10112, %vf18977, %vf32
-	ftern	%vf18979, %vi10112, %vf18977, %vf18978
+	mif	%vtf2917, %vi10112
+	ftern	%vf18979, %vtf2917, %vf18977, %vf18978
 	fmul	%vf18980, %vf18979, %vf18979
 	fmul	%vf18981, %vf35, %vf18980
 	fadd	%vf18982, %vf18981, %vf36
@@ -89327,7 +89939,8 @@ else.240564:
 	fsub	%vf19000, %vf18964, %vf18999
 	fsub	%vf19001, %vf31, %vf19000
 	fleq	%vi10113, %vf19000, %vf32
-	ftern	%vf19002, %vi10113, %vf19000, %vf19001
+	mif	%vtf2919, %vi10113
+	ftern	%vf19002, %vtf2919, %vf19000, %vf19001
 	fmul	%vf19003, %vf19002, %vf19002
 	fmul	%vf19004, %vf35, %vf19003
 	fadd	%vf19005, %vf19004, %vf36
@@ -89387,7 +90000,8 @@ else.240574:
 	fsub	%vf18902, %vf18889, %vf18901
 	fsub	%vf18903, %vf31, %vf18902
 	fleq	%vi10109, %vf18902, %vf32
-	ftern	%vf18904, %vi10109, %vf18902, %vf18903
+	mif	%vtf2921, %vi10109
+	ftern	%vf18904, %vtf2921, %vf18902, %vf18903
 	fmul	%vf18905, %vf18904, %vf18904
 	fmul	%vf18906, %vf35, %vf18905
 	fadd	%vf18907, %vf18906, %vf36
@@ -89424,7 +90038,8 @@ else.240572:
 	fsub	%vf18925, %vf18889, %vf18924
 	fsub	%vf18926, %vf31, %vf18925
 	fleq	%vi10110, %vf18925, %vf32
-	ftern	%vf18927, %vi10110, %vf18925, %vf18926
+	mif	%vtf2923, %vi10110
+	ftern	%vf18927, %vtf2923, %vf18925, %vf18926
 	fmul	%vf18928, %vf18927, %vf18927
 	fmul	%vf18929, %vf35, %vf18928
 	fadd	%vf18930, %vf18929, %vf36
@@ -89586,7 +90201,8 @@ then.240597:
 cont.240598:
 	fsub	%vf19215, %vf19214, %vf30
 	ceqi	%vi10172, %vi10146, 3
-	ftern	%vf19216, %vi10172, %vf19215, %vf19214
+	mif	%vtf2927, %vi10172
+	ftern	%vf19216, %vtf2927, %vf19215, %vf19214
 	fmul	%vf19217, %vf19197, %vf19197
 	fmul	%vf19218, %vf19188, %vf19216
 	fsub	%vf19219, %vf19217, %vf19218
@@ -89869,7 +90485,8 @@ then.240639:
 cont.240640:
 	fsub	%vf19319, %vf19318, %vf30
 	ceqi	%vi10228, %vi10199, 3
-	ftern	%vf19320, %vi10228, %vf19319, %vf19318
+	mif	%vtf2937, %vi10228
+	ftern	%vf19320, %vtf2937, %vf19319, %vf19318
 	fmul	%vf19321, %vf19295, %vf19295
 	fmul	%vf19322, %vf19286, %vf19320
 	fsub	%vf19323, %vf19321, %vf19322
@@ -90121,7 +90738,8 @@ then.240673:
 cont.240674:
 	fsub	%vf19388, %vf19387, %vf30
 	ceqi	%vi10264, %vi10253, 3
-	ftern	%vf19389, %vi10264, %vf19388, %vf19387
+	mif	%vtf2945, %vi10264
+	ftern	%vf19389, %vtf2945, %vf19388, %vf19387
 	flt	%vi10265, %vf19389, %f0
 	mov	%i4, %vi10249
 	mov	%i5, %vi10265
@@ -90252,7 +90870,8 @@ then.240690:
 cont.240691:
 	fsub	%vf19436, %vf19435, %vf30
 	ceqi	%vi10291, %vi10280, 3
-	ftern	%vf19437, %vi10291, %vf19436, %vf19435
+	mif	%vtf2950, %vi10291
+	ftern	%vf19437, %vtf2950, %vf19436, %vf19435
 	flt	%vi10292, %vf19437, %f0
 	mov	%i4, %vi10276
 	mov	%i5, %vi10292
@@ -90524,7 +91143,8 @@ then.240720:
 cont.240721:
 	fsub	%vf19529, %vf19528, %vf30
 	ceqi	%vi10359, %vi10330, 3
-	ftern	%vf19530, %vi10359, %vf19529, %vf19528
+	mif	%vtf2956, %vi10359
+	ftern	%vf19530, %vtf2956, %vf19529, %vf19528
 	fmul	%vf19531, %vf19505, %vf19505
 	fmul	%vf19532, %vf19496, %vf19530
 	fsub	%vf19533, %vf19531, %vf19532
@@ -90776,7 +91396,8 @@ then.240754:
 cont.240755:
 	fsub	%vf19598, %vf19597, %vf30
 	ceqi	%vi10395, %vi10384, 3
-	ftern	%vf19599, %vi10395, %vf19598, %vf19597
+	mif	%vtf2964, %vi10395
+	ftern	%vf19599, %vtf2964, %vf19598, %vf19597
 	flt	%vi10396, %vf19599, %f0
 	mov	%i4, %vi10380
 	mov	%i5, %vi10396
@@ -90907,7 +91528,8 @@ then.240771:
 cont.240772:
 	fsub	%vf19646, %vf19645, %vf30
 	ceqi	%vi10422, %vi10411, 3
-	ftern	%vf19647, %vi10422, %vf19646, %vf19645
+	mif	%vtf2969, %vi10422
+	ftern	%vf19647, %vtf2969, %vf19646, %vf19645
 	flt	%vi10423, %vf19647, %f0
 	mov	%i4, %vi10407
 	mov	%i5, %vi10423
@@ -91102,7 +91724,8 @@ loop_end.228437:
 	flt	%vi10443, %f0, %vf19656
 	mov	%vi10444, %i0
 	ceqi	%vi10445, %vi10443, 0
-	ftern	%vf19657, %vi10445, %f0, %vf19656
+	mif	%vtf2973, %vi10445
+	ftern	%vf19657, %vtf2973, %f0, %vf19656
 	fmul	%vf19658, %vf18365, %vf19657
 	mov	%vi10446, %i0
 	lf	%vf19659, 0(%vi10083)
@@ -91676,7 +92299,8 @@ then.240873:
 cont.240874:
 	fsub	%vf17446, %vf17445, %vf30
 	ceqi	%vi9382, %vi9372, 3
-	ftern	%vf17447, %vi9382, %vf17446, %vf17445
+	mif	%vtf2991, %vi9382
+	ftern	%vf17447, %vtf2991, %vf17446, %vf17445
 	flt	%vi9383, %vf17447, %f0
 	mov	%i4, %vi9368
 	mov	%i5, %vi9383
@@ -91806,7 +92430,8 @@ then.240890:
 cont.240891:
 	fsub	%vf17494, %vf17493, %vf30
 	ceqi	%vi9408, %vi9398, 3
-	ftern	%vf17495, %vi9408, %vf17494, %vf17493
+	mif	%vtf2996, %vi9408
+	ftern	%vf17495, %vtf2996, %vf17494, %vf17493
 	flt	%vi9409, %vf17495, %f0
 	mov	%i4, %vi9394
 	mov	%i5, %vi9409
@@ -92269,7 +92894,8 @@ then.240949:
 cont.240950:
 	fsub	%vf17190, %vf17189, %vf30
 	ceqi	%vi9231, %vi9221, 3
-	ftern	%vf17191, %vi9231, %vf17190, %vf17189
+	mif	%vtf3009, %vi9231
+	ftern	%vf17191, %vtf3009, %vf17190, %vf17189
 	flt	%vi9232, %vf17191, %f0
 	mov	%i4, %vi9217
 	mov	%i5, %vi9232
@@ -92399,7 +93025,8 @@ then.240966:
 cont.240967:
 	fsub	%vf17238, %vf17237, %vf30
 	ceqi	%vi9257, %vi9247, 3
-	ftern	%vf17239, %vi9257, %vf17238, %vf17237
+	mif	%vtf3014, %vi9257
+	ftern	%vf17239, %vtf3014, %vf17238, %vf17237
 	flt	%vi9258, %vf17239, %f0
 	mov	%i4, %vi9243
 	mov	%i5, %vi9258
@@ -92652,9 +93279,11 @@ cont.240985:
 	finv	%vf17552, %vf17549
 	fmul	%vf17553, %vf29, %vf17552
 	ceqi	%vi9451, %vi9434, 0
-	ftern	%vf17554, %vi9451, %vf17551, %vf17553
+	mif	%vtf3019, %vi9451
+	ftern	%vf17554, %vtf3019, %vf17551, %vf17553
 	ceqi	%vi9452, %vi9450, 0
-	ftern	%vf17555, %vi9452, %vf17554, %vf30
+	mif	%vtf3020, %vi9452
+	ftern	%vf17555, %vtf3020, %vf17554, %vf30
 	fmul	%vf17556, %vf17539, %vf17555
 	sf	%vf17556, 0(%vi52)
 	fmul	%vf17557, %vf17541, %vf17555
@@ -92765,7 +93394,8 @@ then.240997:
 	finv	%vf17737, %vf17736
 	fmul	%vf17738, %vf30, %vf17737
 	ceq	%vi9470, %vi9468, %vi9469
-	ftern	%vf17739, %vi9470, %vf17738, %vf17736
+	mif	%vtf3025, %vi9470
+	ftern	%vf17739, %vtf3025, %vf17738, %vf17736
 	fmul	%vf17740, %vf17739, %vf17739
 	fmul	%vf17741, %vf39, %vf17740
 	fadd	%vf17742, %vf17741, %vf40
@@ -92779,7 +93409,8 @@ then.240997:
 	fadd	%vf17750, %vf17749, %vf44
 	fmul	%vf17751, %vf17750, %vf17740
 	fadd	%vf17752, %vf17751, %vf45
-	ftern	%vf17753, %vi9470, %vf30, %vf29
+	mif	%vtf3026, %vi9470
+	ftern	%vf17753, %vtf3026, %vf30, %vf29
 	fmul	%vf17754, %vf17753, %vf17752
 	fmul	%vf17755, %vf17754, %vf17739
 	add	%vi9471, %vi9468, %vi9469
@@ -92824,7 +93455,8 @@ then.240999:
 	finv	%vf17778, %vf17777
 	fmul	%vf17779, %vf30, %vf17778
 	ceq	%vi9477, %vi9475, %vi9476
-	ftern	%vf17780, %vi9477, %vf17779, %vf17777
+	mif	%vtf3032, %vi9477
+	ftern	%vf17780, %vtf3032, %vf17779, %vf17777
 	fmul	%vf17781, %vf17780, %vf17780
 	fmul	%vf17782, %vf39, %vf17781
 	fadd	%vf17783, %vf17782, %vf40
@@ -92838,7 +93470,8 @@ then.240999:
 	fadd	%vf17791, %vf17790, %vf44
 	fmul	%vf17792, %vf17791, %vf17781
 	fadd	%vf17793, %vf17792, %vf45
-	ftern	%vf17794, %vi9477, %vf30, %vf29
+	mif	%vtf3033, %vi9477
+	ftern	%vf17794, %vtf3033, %vf30, %vf29
 	fmul	%vf17795, %vf17794, %vf17793
 	fmul	%vf17796, %vf17795, %vf17780
 	add	%vi9478, %vi9475, %vi9476
@@ -92864,7 +93497,8 @@ cont.241000:
 	flt	%vi9480, %vf17811, %f0
 	mov	%vi9481, %i0
 	ceqi	%vi9482, %vi9480, 0
-	ftern	%vf17812, %vi9482, %vf17811, %f0
+	mif	%vtf3036, %vi9482
+	ftern	%vf17812, %vtf3036, %vf17811, %f0
 	fmul	%vf17813, %vf55, %vf17812
 	finv	%vf17814, %vf9
 	fmul	%vf17815, %vf17813, %vf17814
@@ -92919,7 +93553,8 @@ else.241003:
 	fsub	%vf17668, %vf17655, %vf17667
 	fsub	%vf17669, %vf31, %vf17668
 	fleq	%vi9462, %vf17668, %vf32
-	ftern	%vf17670, %vi9462, %vf17668, %vf17669
+	mif	%vtf3040, %vi9462
+	ftern	%vf17670, %vtf3040, %vf17668, %vf17669
 	fmul	%vf17671, %vf17670, %vf17670
 	fmul	%vf17672, %vf35, %vf17671
 	fadd	%vf17673, %vf17672, %vf36
@@ -92956,7 +93591,8 @@ else.241001:
 	fsub	%vf17691, %vf17655, %vf17690
 	fsub	%vf17692, %vf31, %vf17691
 	fleq	%vi9463, %vf17691, %vf32
-	ftern	%vf17693, %vi9463, %vf17691, %vf17692
+	mif	%vtf3042, %vi9463
+	ftern	%vf17693, %vtf3042, %vf17691, %vf17692
 	fmul	%vf17694, %vf17693, %vf17693
 	fmul	%vf17695, %vf35, %vf17694
 	fadd	%vf17696, %vf17695, %vf36
@@ -93016,7 +93652,8 @@ else.241011:
 	fsub	%vf17593, %vf17580, %vf17592
 	fsub	%vf17594, %vf31, %vf17593
 	fleq	%vi9459, %vf17593, %vf32
-	ftern	%vf17595, %vi9459, %vf17593, %vf17594
+	mif	%vtf3044, %vi9459
+	ftern	%vf17595, %vtf3044, %vf17593, %vf17594
 	fmul	%vf17596, %vf17595, %vf17595
 	fmul	%vf17597, %vf35, %vf17596
 	fadd	%vf17598, %vf17597, %vf36
@@ -93053,7 +93690,8 @@ else.241009:
 	fsub	%vf17616, %vf17580, %vf17615
 	fsub	%vf17617, %vf31, %vf17616
 	fleq	%vi9460, %vf17616, %vf32
-	ftern	%vf17618, %vi9460, %vf17616, %vf17617
+	mif	%vtf3046, %vi9460
+	ftern	%vf17618, %vtf3046, %vf17616, %vf17617
 	fmul	%vf17619, %vf17618, %vf17618
 	fmul	%vf17620, %vf35, %vf17619
 	fadd	%vf17621, %vf17620, %vf36
@@ -93215,7 +93853,8 @@ then.241034:
 cont.241035:
 	fsub	%vf17906, %vf17905, %vf30
 	ceqi	%vi9522, %vi9496, 3
-	ftern	%vf17907, %vi9522, %vf17906, %vf17905
+	mif	%vtf3050, %vi9522
+	ftern	%vf17907, %vtf3050, %vf17906, %vf17905
 	fmul	%vf17908, %vf17888, %vf17888
 	fmul	%vf17909, %vf17879, %vf17907
 	fsub	%vf17910, %vf17908, %vf17909
@@ -93498,7 +94137,8 @@ then.241076:
 cont.241077:
 	fsub	%vf18010, %vf18009, %vf30
 	ceqi	%vi9578, %vi9549, 3
-	ftern	%vf18011, %vi9578, %vf18010, %vf18009
+	mif	%vtf3060, %vi9578
+	ftern	%vf18011, %vtf3060, %vf18010, %vf18009
 	fmul	%vf18012, %vf17986, %vf17986
 	fmul	%vf18013, %vf17977, %vf18011
 	fsub	%vf18014, %vf18012, %vf18013
@@ -93750,7 +94390,8 @@ then.241110:
 cont.241111:
 	fsub	%vf18079, %vf18078, %vf30
 	ceqi	%vi9614, %vi9603, 3
-	ftern	%vf18080, %vi9614, %vf18079, %vf18078
+	mif	%vtf3068, %vi9614
+	ftern	%vf18080, %vtf3068, %vf18079, %vf18078
 	flt	%vi9615, %vf18080, %f0
 	mov	%i4, %vi9599
 	mov	%i5, %vi9615
@@ -93881,7 +94522,8 @@ then.241127:
 cont.241128:
 	fsub	%vf18127, %vf18126, %vf30
 	ceqi	%vi9641, %vi9630, 3
-	ftern	%vf18128, %vi9641, %vf18127, %vf18126
+	mif	%vtf3073, %vi9641
+	ftern	%vf18128, %vtf3073, %vf18127, %vf18126
 	flt	%vi9642, %vf18128, %f0
 	mov	%i4, %vi9626
 	mov	%i5, %vi9642
@@ -94153,7 +94795,8 @@ then.241157:
 cont.241158:
 	fsub	%vf18220, %vf18219, %vf30
 	ceqi	%vi9709, %vi9680, 3
-	ftern	%vf18221, %vi9709, %vf18220, %vf18219
+	mif	%vtf3079, %vi9709
+	ftern	%vf18221, %vtf3079, %vf18220, %vf18219
 	fmul	%vf18222, %vf18196, %vf18196
 	fmul	%vf18223, %vf18187, %vf18221
 	fsub	%vf18224, %vf18222, %vf18223
@@ -94405,7 +95048,8 @@ then.241191:
 cont.241192:
 	fsub	%vf18289, %vf18288, %vf30
 	ceqi	%vi9745, %vi9734, 3
-	ftern	%vf18290, %vi9745, %vf18289, %vf18288
+	mif	%vtf3087, %vi9745
+	ftern	%vf18290, %vtf3087, %vf18289, %vf18288
 	flt	%vi9746, %vf18290, %f0
 	mov	%i4, %vi9730
 	mov	%i5, %vi9746
@@ -94536,7 +95180,8 @@ then.241208:
 cont.241209:
 	fsub	%vf18337, %vf18336, %vf30
 	ceqi	%vi9772, %vi9761, 3
-	ftern	%vf18338, %vi9772, %vf18337, %vf18336
+	mif	%vtf3092, %vi9772
+	ftern	%vf18338, %vtf3092, %vf18337, %vf18336
 	flt	%vi9773, %vf18338, %f0
 	mov	%i4, %vi9757
 	mov	%i5, %vi9773
@@ -94731,7 +95376,8 @@ loop_end.228612:
 	flt	%vi9793, %f0, %vf18347
 	mov	%vi9794, %i0
 	ceqi	%vi9795, %vi9793, 0
-	ftern	%vf18348, %vi9795, %f0, %vf18347
+	mif	%vtf3096, %vi9795
+	ftern	%vf18348, %vtf3096, %f0, %vf18347
 	fmul	%vf18349, %vf17056, %vf18348
 	mov	%vi9796, %i0
 	lf	%vf18350, 0(%vi9433)
@@ -94842,7 +95488,8 @@ then.241233:
 cont.241234:
 	fsub	%vf19719, %vf19718, %vf30
 	ceqi	%vi10470, %vi10461, 3
-	ftern	%vf19720, %vi10470, %vf19719, %vf19718
+	mif	%vtf3097, %vi10470
+	ftern	%vf19720, %vtf3097, %vf19719, %vf19718
 	sf	%vf19720, 12(%vi10456)
 cont.241232:
 	set_label	%vti10882, cont.241231
@@ -94933,7 +95580,8 @@ then.241241:
 cont.241242:
 	fsub	%vf19764, %vf19763, %vf30
 	ceqi	%vi10488, %vi10479, 3
-	ftern	%vf19765, %vi10488, %vf19764, %vf19763
+	mif	%vtf3099, %vi10488
+	ftern	%vf19765, %vtf3099, %vf19764, %vf19763
 	sf	%vf19765, 12(%vi10474)
 cont.241240:
 	set_label	%vti10889, cont.241239
@@ -95540,7 +96188,8 @@ then.241331:
 cont.241332:
 	fsub	%vf21477, %vf21476, %vf30
 	ceqi	%vi11383, %vi11373, 3
-	ftern	%vf21478, %vi11383, %vf21477, %vf21476
+	mif	%vtf3118, %vi11383
+	ftern	%vf21478, %vtf3118, %vf21477, %vf21476
 	flt	%vi11384, %vf21478, %f0
 	mov	%i4, %vi11369
 	mov	%i5, %vi11384
@@ -95670,7 +96319,8 @@ then.241348:
 cont.241349:
 	fsub	%vf21525, %vf21524, %vf30
 	ceqi	%vi11409, %vi11399, 3
-	ftern	%vf21526, %vi11409, %vf21525, %vf21524
+	mif	%vtf3123, %vi11409
+	ftern	%vf21526, %vtf3123, %vf21525, %vf21524
 	flt	%vi11410, %vf21526, %f0
 	mov	%i4, %vi11395
 	mov	%i5, %vi11410
@@ -96133,7 +96783,8 @@ then.241407:
 cont.241408:
 	fsub	%vf21221, %vf21220, %vf30
 	ceqi	%vi11232, %vi11222, 3
-	ftern	%vf21222, %vi11232, %vf21221, %vf21220
+	mif	%vtf3136, %vi11232
+	ftern	%vf21222, %vtf3136, %vf21221, %vf21220
 	flt	%vi11233, %vf21222, %f0
 	mov	%i4, %vi11218
 	mov	%i5, %vi11233
@@ -96263,7 +96914,8 @@ then.241424:
 cont.241425:
 	fsub	%vf21269, %vf21268, %vf30
 	ceqi	%vi11258, %vi11248, 3
-	ftern	%vf21270, %vi11258, %vf21269, %vf21268
+	mif	%vtf3141, %vi11258
+	ftern	%vf21270, %vtf3141, %vf21269, %vf21268
 	flt	%vi11259, %vf21270, %f0
 	mov	%i4, %vi11244
 	mov	%i5, %vi11259
@@ -96516,9 +97168,11 @@ cont.241443:
 	finv	%vf21583, %vf21580
 	fmul	%vf21584, %vf29, %vf21583
 	ceqi	%vi11452, %vi11435, 0
-	ftern	%vf21585, %vi11452, %vf21582, %vf21584
+	mif	%vtf3146, %vi11452
+	ftern	%vf21585, %vtf3146, %vf21582, %vf21584
 	ceqi	%vi11453, %vi11451, 0
-	ftern	%vf21586, %vi11453, %vf21585, %vf30
+	mif	%vtf3147, %vi11453
+	ftern	%vf21586, %vtf3147, %vf21585, %vf30
 	fmul	%vf21587, %vf21570, %vf21586
 	sf	%vf21587, 0(%vi52)
 	fmul	%vf21588, %vf21572, %vf21586
@@ -96629,7 +97283,8 @@ then.241455:
 	finv	%vf21768, %vf21767
 	fmul	%vf21769, %vf30, %vf21768
 	ceq	%vi11471, %vi11469, %vi11470
-	ftern	%vf21770, %vi11471, %vf21769, %vf21767
+	mif	%vtf3152, %vi11471
+	ftern	%vf21770, %vtf3152, %vf21769, %vf21767
 	fmul	%vf21771, %vf21770, %vf21770
 	fmul	%vf21772, %vf39, %vf21771
 	fadd	%vf21773, %vf21772, %vf40
@@ -96643,7 +97298,8 @@ then.241455:
 	fadd	%vf21781, %vf21780, %vf44
 	fmul	%vf21782, %vf21781, %vf21771
 	fadd	%vf21783, %vf21782, %vf45
-	ftern	%vf21784, %vi11471, %vf30, %vf29
+	mif	%vtf3153, %vi11471
+	ftern	%vf21784, %vtf3153, %vf30, %vf29
 	fmul	%vf21785, %vf21784, %vf21783
 	fmul	%vf21786, %vf21785, %vf21770
 	add	%vi11472, %vi11469, %vi11470
@@ -96688,7 +97344,8 @@ then.241457:
 	finv	%vf21809, %vf21808
 	fmul	%vf21810, %vf30, %vf21809
 	ceq	%vi11478, %vi11476, %vi11477
-	ftern	%vf21811, %vi11478, %vf21810, %vf21808
+	mif	%vtf3159, %vi11478
+	ftern	%vf21811, %vtf3159, %vf21810, %vf21808
 	fmul	%vf21812, %vf21811, %vf21811
 	fmul	%vf21813, %vf39, %vf21812
 	fadd	%vf21814, %vf21813, %vf40
@@ -96702,7 +97359,8 @@ then.241457:
 	fadd	%vf21822, %vf21821, %vf44
 	fmul	%vf21823, %vf21822, %vf21812
 	fadd	%vf21824, %vf21823, %vf45
-	ftern	%vf21825, %vi11478, %vf30, %vf29
+	mif	%vtf3160, %vi11478
+	ftern	%vf21825, %vtf3160, %vf30, %vf29
 	fmul	%vf21826, %vf21825, %vf21824
 	fmul	%vf21827, %vf21826, %vf21811
 	add	%vi11479, %vi11476, %vi11477
@@ -96728,7 +97386,8 @@ cont.241458:
 	flt	%vi11481, %vf21842, %f0
 	mov	%vi11482, %i0
 	ceqi	%vi11483, %vi11481, 0
-	ftern	%vf21843, %vi11483, %vf21842, %f0
+	mif	%vtf3163, %vi11483
+	ftern	%vf21843, %vtf3163, %vf21842, %f0
 	fmul	%vf21844, %vf55, %vf21843
 	finv	%vf21845, %vf9
 	fmul	%vf21846, %vf21844, %vf21845
@@ -96783,7 +97442,8 @@ else.241461:
 	fsub	%vf21699, %vf21686, %vf21698
 	fsub	%vf21700, %vf31, %vf21699
 	fleq	%vi11463, %vf21699, %vf32
-	ftern	%vf21701, %vi11463, %vf21699, %vf21700
+	mif	%vtf3167, %vi11463
+	ftern	%vf21701, %vtf3167, %vf21699, %vf21700
 	fmul	%vf21702, %vf21701, %vf21701
 	fmul	%vf21703, %vf35, %vf21702
 	fadd	%vf21704, %vf21703, %vf36
@@ -96820,7 +97480,8 @@ else.241459:
 	fsub	%vf21722, %vf21686, %vf21721
 	fsub	%vf21723, %vf31, %vf21722
 	fleq	%vi11464, %vf21722, %vf32
-	ftern	%vf21724, %vi11464, %vf21722, %vf21723
+	mif	%vtf3169, %vi11464
+	ftern	%vf21724, %vtf3169, %vf21722, %vf21723
 	fmul	%vf21725, %vf21724, %vf21724
 	fmul	%vf21726, %vf35, %vf21725
 	fadd	%vf21727, %vf21726, %vf36
@@ -96880,7 +97541,8 @@ else.241469:
 	fsub	%vf21624, %vf21611, %vf21623
 	fsub	%vf21625, %vf31, %vf21624
 	fleq	%vi11460, %vf21624, %vf32
-	ftern	%vf21626, %vi11460, %vf21624, %vf21625
+	mif	%vtf3171, %vi11460
+	ftern	%vf21626, %vtf3171, %vf21624, %vf21625
 	fmul	%vf21627, %vf21626, %vf21626
 	fmul	%vf21628, %vf35, %vf21627
 	fadd	%vf21629, %vf21628, %vf36
@@ -96917,7 +97579,8 @@ else.241467:
 	fsub	%vf21647, %vf21611, %vf21646
 	fsub	%vf21648, %vf31, %vf21647
 	fleq	%vi11461, %vf21647, %vf32
-	ftern	%vf21649, %vi11461, %vf21647, %vf21648
+	mif	%vtf3173, %vi11461
+	ftern	%vf21649, %vtf3173, %vf21647, %vf21648
 	fmul	%vf21650, %vf21649, %vf21649
 	fmul	%vf21651, %vf35, %vf21650
 	fadd	%vf21652, %vf21651, %vf36
@@ -97079,7 +97742,8 @@ then.241492:
 cont.241493:
 	fsub	%vf21937, %vf21936, %vf30
 	ceqi	%vi11523, %vi11497, 3
-	ftern	%vf21938, %vi11523, %vf21937, %vf21936
+	mif	%vtf3177, %vi11523
+	ftern	%vf21938, %vtf3177, %vf21937, %vf21936
 	fmul	%vf21939, %vf21919, %vf21919
 	fmul	%vf21940, %vf21910, %vf21938
 	fsub	%vf21941, %vf21939, %vf21940
@@ -97362,7 +98026,8 @@ then.241534:
 cont.241535:
 	fsub	%vf22041, %vf22040, %vf30
 	ceqi	%vi11579, %vi11550, 3
-	ftern	%vf22042, %vi11579, %vf22041, %vf22040
+	mif	%vtf3187, %vi11579
+	ftern	%vf22042, %vtf3187, %vf22041, %vf22040
 	fmul	%vf22043, %vf22017, %vf22017
 	fmul	%vf22044, %vf22008, %vf22042
 	fsub	%vf22045, %vf22043, %vf22044
@@ -97614,7 +98279,8 @@ then.241568:
 cont.241569:
 	fsub	%vf22110, %vf22109, %vf30
 	ceqi	%vi11615, %vi11604, 3
-	ftern	%vf22111, %vi11615, %vf22110, %vf22109
+	mif	%vtf3195, %vi11615
+	ftern	%vf22111, %vtf3195, %vf22110, %vf22109
 	flt	%vi11616, %vf22111, %f0
 	mov	%i4, %vi11600
 	mov	%i5, %vi11616
@@ -97745,7 +98411,8 @@ then.241585:
 cont.241586:
 	fsub	%vf22158, %vf22157, %vf30
 	ceqi	%vi11642, %vi11631, 3
-	ftern	%vf22159, %vi11642, %vf22158, %vf22157
+	mif	%vtf3200, %vi11642
+	ftern	%vf22159, %vtf3200, %vf22158, %vf22157
 	flt	%vi11643, %vf22159, %f0
 	mov	%i4, %vi11627
 	mov	%i5, %vi11643
@@ -98017,7 +98684,8 @@ then.241615:
 cont.241616:
 	fsub	%vf22251, %vf22250, %vf30
 	ceqi	%vi11710, %vi11681, 3
-	ftern	%vf22252, %vi11710, %vf22251, %vf22250
+	mif	%vtf3206, %vi11710
+	ftern	%vf22252, %vtf3206, %vf22251, %vf22250
 	fmul	%vf22253, %vf22227, %vf22227
 	fmul	%vf22254, %vf22218, %vf22252
 	fsub	%vf22255, %vf22253, %vf22254
@@ -98269,7 +98937,8 @@ then.241649:
 cont.241650:
 	fsub	%vf22320, %vf22319, %vf30
 	ceqi	%vi11746, %vi11735, 3
-	ftern	%vf22321, %vi11746, %vf22320, %vf22319
+	mif	%vtf3214, %vi11746
+	ftern	%vf22321, %vtf3214, %vf22320, %vf22319
 	flt	%vi11747, %vf22321, %f0
 	mov	%i4, %vi11731
 	mov	%i5, %vi11747
@@ -98400,7 +99069,8 @@ then.241666:
 cont.241667:
 	fsub	%vf22368, %vf22367, %vf30
 	ceqi	%vi11773, %vi11762, 3
-	ftern	%vf22369, %vi11773, %vf22368, %vf22367
+	mif	%vtf3219, %vi11773
+	ftern	%vf22369, %vtf3219, %vf22368, %vf22367
 	flt	%vi11774, %vf22369, %f0
 	mov	%i4, %vi11758
 	mov	%i5, %vi11774
@@ -98595,7 +99265,8 @@ loop_end.228800:
 	flt	%vi11794, %f0, %vf22378
 	mov	%vi11795, %i0
 	ceqi	%vi11796, %vi11794, 0
-	ftern	%vf22379, %vi11796, %f0, %vf22378
+	mif	%vtf3223, %vi11796
+	ftern	%vf22379, %vtf3223, %f0, %vf22378
 	fmul	%vf22380, %vf21087, %vf22379
 	mov	%vi11797, %i0
 	lf	%vf22381, 0(%vi11434)
@@ -99169,7 +99840,8 @@ then.241768:
 cont.241769:
 	fsub	%vf20168, %vf20167, %vf30
 	ceqi	%vi10733, %vi10723, 3
-	ftern	%vf20169, %vi10733, %vf20168, %vf20167
+	mif	%vtf3241, %vi10733
+	ftern	%vf20169, %vtf3241, %vf20168, %vf20167
 	flt	%vi10734, %vf20169, %f0
 	mov	%i4, %vi10719
 	mov	%i5, %vi10734
@@ -99299,7 +99971,8 @@ then.241785:
 cont.241786:
 	fsub	%vf20216, %vf20215, %vf30
 	ceqi	%vi10759, %vi10749, 3
-	ftern	%vf20217, %vi10759, %vf20216, %vf20215
+	mif	%vtf3246, %vi10759
+	ftern	%vf20217, %vtf3246, %vf20216, %vf20215
 	flt	%vi10760, %vf20217, %f0
 	mov	%i4, %vi10745
 	mov	%i5, %vi10760
@@ -99762,7 +100435,8 @@ then.241844:
 cont.241845:
 	fsub	%vf19912, %vf19911, %vf30
 	ceqi	%vi10582, %vi10572, 3
-	ftern	%vf19913, %vi10582, %vf19912, %vf19911
+	mif	%vtf3259, %vi10582
+	ftern	%vf19913, %vtf3259, %vf19912, %vf19911
 	flt	%vi10583, %vf19913, %f0
 	mov	%i4, %vi10568
 	mov	%i5, %vi10583
@@ -99892,7 +100566,8 @@ then.241861:
 cont.241862:
 	fsub	%vf19960, %vf19959, %vf30
 	ceqi	%vi10608, %vi10598, 3
-	ftern	%vf19961, %vi10608, %vf19960, %vf19959
+	mif	%vtf3264, %vi10608
+	ftern	%vf19961, %vtf3264, %vf19960, %vf19959
 	flt	%vi10609, %vf19961, %f0
 	mov	%i4, %vi10594
 	mov	%i5, %vi10609
@@ -100145,9 +100820,11 @@ cont.241880:
 	finv	%vf20274, %vf20271
 	fmul	%vf20275, %vf29, %vf20274
 	ceqi	%vi10802, %vi10785, 0
-	ftern	%vf20276, %vi10802, %vf20273, %vf20275
+	mif	%vtf3269, %vi10802
+	ftern	%vf20276, %vtf3269, %vf20273, %vf20275
 	ceqi	%vi10803, %vi10801, 0
-	ftern	%vf20277, %vi10803, %vf20276, %vf30
+	mif	%vtf3270, %vi10803
+	ftern	%vf20277, %vtf3270, %vf20276, %vf30
 	fmul	%vf20278, %vf20261, %vf20277
 	sf	%vf20278, 0(%vi52)
 	fmul	%vf20279, %vf20263, %vf20277
@@ -100258,7 +100935,8 @@ then.241892:
 	finv	%vf20459, %vf20458
 	fmul	%vf20460, %vf30, %vf20459
 	ceq	%vi10821, %vi10819, %vi10820
-	ftern	%vf20461, %vi10821, %vf20460, %vf20458
+	mif	%vtf3275, %vi10821
+	ftern	%vf20461, %vtf3275, %vf20460, %vf20458
 	fmul	%vf20462, %vf20461, %vf20461
 	fmul	%vf20463, %vf39, %vf20462
 	fadd	%vf20464, %vf20463, %vf40
@@ -100272,7 +100950,8 @@ then.241892:
 	fadd	%vf20472, %vf20471, %vf44
 	fmul	%vf20473, %vf20472, %vf20462
 	fadd	%vf20474, %vf20473, %vf45
-	ftern	%vf20475, %vi10821, %vf30, %vf29
+	mif	%vtf3276, %vi10821
+	ftern	%vf20475, %vtf3276, %vf30, %vf29
 	fmul	%vf20476, %vf20475, %vf20474
 	fmul	%vf20477, %vf20476, %vf20461
 	add	%vi10822, %vi10819, %vi10820
@@ -100317,7 +100996,8 @@ then.241894:
 	finv	%vf20500, %vf20499
 	fmul	%vf20501, %vf30, %vf20500
 	ceq	%vi10828, %vi10826, %vi10827
-	ftern	%vf20502, %vi10828, %vf20501, %vf20499
+	mif	%vtf3282, %vi10828
+	ftern	%vf20502, %vtf3282, %vf20501, %vf20499
 	fmul	%vf20503, %vf20502, %vf20502
 	fmul	%vf20504, %vf39, %vf20503
 	fadd	%vf20505, %vf20504, %vf40
@@ -100331,7 +101011,8 @@ then.241894:
 	fadd	%vf20513, %vf20512, %vf44
 	fmul	%vf20514, %vf20513, %vf20503
 	fadd	%vf20515, %vf20514, %vf45
-	ftern	%vf20516, %vi10828, %vf30, %vf29
+	mif	%vtf3283, %vi10828
+	ftern	%vf20516, %vtf3283, %vf30, %vf29
 	fmul	%vf20517, %vf20516, %vf20515
 	fmul	%vf20518, %vf20517, %vf20502
 	add	%vi10829, %vi10826, %vi10827
@@ -100357,7 +101038,8 @@ cont.241895:
 	flt	%vi10831, %vf20533, %f0
 	mov	%vi10832, %i0
 	ceqi	%vi10833, %vi10831, 0
-	ftern	%vf20534, %vi10833, %vf20533, %f0
+	mif	%vtf3286, %vi10833
+	ftern	%vf20534, %vtf3286, %vf20533, %f0
 	fmul	%vf20535, %vf55, %vf20534
 	finv	%vf20536, %vf9
 	fmul	%vf20537, %vf20535, %vf20536
@@ -100412,7 +101094,8 @@ else.241898:
 	fsub	%vf20390, %vf20377, %vf20389
 	fsub	%vf20391, %vf31, %vf20390
 	fleq	%vi10813, %vf20390, %vf32
-	ftern	%vf20392, %vi10813, %vf20390, %vf20391
+	mif	%vtf3290, %vi10813
+	ftern	%vf20392, %vtf3290, %vf20390, %vf20391
 	fmul	%vf20393, %vf20392, %vf20392
 	fmul	%vf20394, %vf35, %vf20393
 	fadd	%vf20395, %vf20394, %vf36
@@ -100449,7 +101132,8 @@ else.241896:
 	fsub	%vf20413, %vf20377, %vf20412
 	fsub	%vf20414, %vf31, %vf20413
 	fleq	%vi10814, %vf20413, %vf32
-	ftern	%vf20415, %vi10814, %vf20413, %vf20414
+	mif	%vtf3292, %vi10814
+	ftern	%vf20415, %vtf3292, %vf20413, %vf20414
 	fmul	%vf20416, %vf20415, %vf20415
 	fmul	%vf20417, %vf35, %vf20416
 	fadd	%vf20418, %vf20417, %vf36
@@ -100509,7 +101193,8 @@ else.241906:
 	fsub	%vf20315, %vf20302, %vf20314
 	fsub	%vf20316, %vf31, %vf20315
 	fleq	%vi10810, %vf20315, %vf32
-	ftern	%vf20317, %vi10810, %vf20315, %vf20316
+	mif	%vtf3294, %vi10810
+	ftern	%vf20317, %vtf3294, %vf20315, %vf20316
 	fmul	%vf20318, %vf20317, %vf20317
 	fmul	%vf20319, %vf35, %vf20318
 	fadd	%vf20320, %vf20319, %vf36
@@ -100546,7 +101231,8 @@ else.241904:
 	fsub	%vf20338, %vf20302, %vf20337
 	fsub	%vf20339, %vf31, %vf20338
 	fleq	%vi10811, %vf20338, %vf32
-	ftern	%vf20340, %vi10811, %vf20338, %vf20339
+	mif	%vtf3296, %vi10811
+	ftern	%vf20340, %vtf3296, %vf20338, %vf20339
 	fmul	%vf20341, %vf20340, %vf20340
 	fmul	%vf20342, %vf35, %vf20341
 	fadd	%vf20343, %vf20342, %vf36
@@ -100708,7 +101394,8 @@ then.241929:
 cont.241930:
 	fsub	%vf20628, %vf20627, %vf30
 	ceqi	%vi10873, %vi10847, 3
-	ftern	%vf20629, %vi10873, %vf20628, %vf20627
+	mif	%vtf3300, %vi10873
+	ftern	%vf20629, %vtf3300, %vf20628, %vf20627
 	fmul	%vf20630, %vf20610, %vf20610
 	fmul	%vf20631, %vf20601, %vf20629
 	fsub	%vf20632, %vf20630, %vf20631
@@ -100991,7 +101678,8 @@ then.241971:
 cont.241972:
 	fsub	%vf20732, %vf20731, %vf30
 	ceqi	%vi10929, %vi10900, 3
-	ftern	%vf20733, %vi10929, %vf20732, %vf20731
+	mif	%vtf3310, %vi10929
+	ftern	%vf20733, %vtf3310, %vf20732, %vf20731
 	fmul	%vf20734, %vf20708, %vf20708
 	fmul	%vf20735, %vf20699, %vf20733
 	fsub	%vf20736, %vf20734, %vf20735
@@ -101243,7 +101931,8 @@ then.242005:
 cont.242006:
 	fsub	%vf20801, %vf20800, %vf30
 	ceqi	%vi10965, %vi10954, 3
-	ftern	%vf20802, %vi10965, %vf20801, %vf20800
+	mif	%vtf3318, %vi10965
+	ftern	%vf20802, %vtf3318, %vf20801, %vf20800
 	flt	%vi10966, %vf20802, %f0
 	mov	%i4, %vi10950
 	mov	%i5, %vi10966
@@ -101374,7 +102063,8 @@ then.242022:
 cont.242023:
 	fsub	%vf20849, %vf20848, %vf30
 	ceqi	%vi10992, %vi10981, 3
-	ftern	%vf20850, %vi10992, %vf20849, %vf20848
+	mif	%vtf3323, %vi10992
+	ftern	%vf20850, %vtf3323, %vf20849, %vf20848
 	flt	%vi10993, %vf20850, %f0
 	mov	%i4, %vi10977
 	mov	%i5, %vi10993
@@ -101646,7 +102336,8 @@ then.242052:
 cont.242053:
 	fsub	%vf20942, %vf20941, %vf30
 	ceqi	%vi11060, %vi11031, 3
-	ftern	%vf20943, %vi11060, %vf20942, %vf20941
+	mif	%vtf3329, %vi11060
+	ftern	%vf20943, %vtf3329, %vf20942, %vf20941
 	fmul	%vf20944, %vf20918, %vf20918
 	fmul	%vf20945, %vf20909, %vf20943
 	fsub	%vf20946, %vf20944, %vf20945
@@ -101898,7 +102589,8 @@ then.242086:
 cont.242087:
 	fsub	%vf21011, %vf21010, %vf30
 	ceqi	%vi11096, %vi11085, 3
-	ftern	%vf21012, %vi11096, %vf21011, %vf21010
+	mif	%vtf3337, %vi11096
+	ftern	%vf21012, %vtf3337, %vf21011, %vf21010
 	flt	%vi11097, %vf21012, %f0
 	mov	%i4, %vi11081
 	mov	%i5, %vi11097
@@ -102029,7 +102721,8 @@ then.242103:
 cont.242104:
 	fsub	%vf21059, %vf21058, %vf30
 	ceqi	%vi11123, %vi11112, 3
-	ftern	%vf21060, %vi11123, %vf21059, %vf21058
+	mif	%vtf3342, %vi11123
+	ftern	%vf21060, %vtf3342, %vf21059, %vf21058
 	flt	%vi11124, %vf21060, %f0
 	mov	%i4, %vi11108
 	mov	%i5, %vi11124
@@ -102224,7 +102917,8 @@ loop_end.228975:
 	flt	%vi11144, %f0, %vf21069
 	mov	%vi11145, %i0
 	ceqi	%vi11146, %vi11144, 0
-	ftern	%vf21070, %vi11146, %f0, %vf21069
+	mif	%vtf3346, %vi11146
+	ftern	%vf21070, %vtf3346, %f0, %vf21069
 	fmul	%vf21071, %vf19778, %vf21070
 	mov	%vi11147, %i0
 	lf	%vf21072, 0(%vi10784)
@@ -102335,7 +103029,8 @@ then.242128:
 cont.242129:
 	fsub	%vf22441, %vf22440, %vf30
 	ceqi	%vi11821, %vi11812, 3
-	ftern	%vf22442, %vi11821, %vf22441, %vf22440
+	mif	%vtf3347, %vi11821
+	ftern	%vf22442, %vtf3347, %vf22441, %vf22440
 	sf	%vf22442, 12(%vi11807)
 cont.242127:
 	set_label	%vti11734, cont.242126
@@ -102426,7 +103121,8 @@ then.242136:
 cont.242137:
 	fsub	%vf22486, %vf22485, %vf30
 	ceqi	%vi11839, %vi11830, 3
-	ftern	%vf22487, %vi11839, %vf22486, %vf22485
+	mif	%vtf3349, %vi11839
+	ftern	%vf22487, %vtf3349, %vf22486, %vf22485
 	sf	%vf22487, 12(%vi11825)
 cont.242135:
 	set_label	%vti11741, cont.242134
@@ -103033,7 +103729,8 @@ then.242226:
 cont.242227:
 	fsub	%vf24199, %vf24198, %vf30
 	ceqi	%vi12734, %vi12724, 3
-	ftern	%vf24200, %vi12734, %vf24199, %vf24198
+	mif	%vtf3368, %vi12734
+	ftern	%vf24200, %vtf3368, %vf24199, %vf24198
 	flt	%vi12735, %vf24200, %f0
 	mov	%i4, %vi12720
 	mov	%i5, %vi12735
@@ -103163,7 +103860,8 @@ then.242243:
 cont.242244:
 	fsub	%vf24247, %vf24246, %vf30
 	ceqi	%vi12760, %vi12750, 3
-	ftern	%vf24248, %vi12760, %vf24247, %vf24246
+	mif	%vtf3373, %vi12760
+	ftern	%vf24248, %vtf3373, %vf24247, %vf24246
 	flt	%vi12761, %vf24248, %f0
 	mov	%i4, %vi12746
 	mov	%i5, %vi12761
@@ -103626,7 +104324,8 @@ then.242302:
 cont.242303:
 	fsub	%vf23943, %vf23942, %vf30
 	ceqi	%vi12583, %vi12573, 3
-	ftern	%vf23944, %vi12583, %vf23943, %vf23942
+	mif	%vtf3386, %vi12583
+	ftern	%vf23944, %vtf3386, %vf23943, %vf23942
 	flt	%vi12584, %vf23944, %f0
 	mov	%i4, %vi12569
 	mov	%i5, %vi12584
@@ -103756,7 +104455,8 @@ then.242319:
 cont.242320:
 	fsub	%vf23991, %vf23990, %vf30
 	ceqi	%vi12609, %vi12599, 3
-	ftern	%vf23992, %vi12609, %vf23991, %vf23990
+	mif	%vtf3391, %vi12609
+	ftern	%vf23992, %vtf3391, %vf23991, %vf23990
 	flt	%vi12610, %vf23992, %f0
 	mov	%i4, %vi12595
 	mov	%i5, %vi12610
@@ -104009,9 +104709,11 @@ cont.242338:
 	finv	%vf24305, %vf24302
 	fmul	%vf24306, %vf29, %vf24305
 	ceqi	%vi12803, %vi12786, 0
-	ftern	%vf24307, %vi12803, %vf24304, %vf24306
+	mif	%vtf3396, %vi12803
+	ftern	%vf24307, %vtf3396, %vf24304, %vf24306
 	ceqi	%vi12804, %vi12802, 0
-	ftern	%vf24308, %vi12804, %vf24307, %vf30
+	mif	%vtf3397, %vi12804
+	ftern	%vf24308, %vtf3397, %vf24307, %vf30
 	fmul	%vf24309, %vf24292, %vf24308
 	sf	%vf24309, 0(%vi52)
 	fmul	%vf24310, %vf24294, %vf24308
@@ -104122,7 +104824,8 @@ then.242350:
 	finv	%vf24490, %vf24489
 	fmul	%vf24491, %vf30, %vf24490
 	ceq	%vi12822, %vi12820, %vi12821
-	ftern	%vf24492, %vi12822, %vf24491, %vf24489
+	mif	%vtf3402, %vi12822
+	ftern	%vf24492, %vtf3402, %vf24491, %vf24489
 	fmul	%vf24493, %vf24492, %vf24492
 	fmul	%vf24494, %vf39, %vf24493
 	fadd	%vf24495, %vf24494, %vf40
@@ -104136,7 +104839,8 @@ then.242350:
 	fadd	%vf24503, %vf24502, %vf44
 	fmul	%vf24504, %vf24503, %vf24493
 	fadd	%vf24505, %vf24504, %vf45
-	ftern	%vf24506, %vi12822, %vf30, %vf29
+	mif	%vtf3403, %vi12822
+	ftern	%vf24506, %vtf3403, %vf30, %vf29
 	fmul	%vf24507, %vf24506, %vf24505
 	fmul	%vf24508, %vf24507, %vf24492
 	add	%vi12823, %vi12820, %vi12821
@@ -104181,7 +104885,8 @@ then.242352:
 	finv	%vf24531, %vf24530
 	fmul	%vf24532, %vf30, %vf24531
 	ceq	%vi12829, %vi12827, %vi12828
-	ftern	%vf24533, %vi12829, %vf24532, %vf24530
+	mif	%vtf3409, %vi12829
+	ftern	%vf24533, %vtf3409, %vf24532, %vf24530
 	fmul	%vf24534, %vf24533, %vf24533
 	fmul	%vf24535, %vf39, %vf24534
 	fadd	%vf24536, %vf24535, %vf40
@@ -104195,7 +104900,8 @@ then.242352:
 	fadd	%vf24544, %vf24543, %vf44
 	fmul	%vf24545, %vf24544, %vf24534
 	fadd	%vf24546, %vf24545, %vf45
-	ftern	%vf24547, %vi12829, %vf30, %vf29
+	mif	%vtf3410, %vi12829
+	ftern	%vf24547, %vtf3410, %vf30, %vf29
 	fmul	%vf24548, %vf24547, %vf24546
 	fmul	%vf24549, %vf24548, %vf24533
 	add	%vi12830, %vi12827, %vi12828
@@ -104221,7 +104927,8 @@ cont.242353:
 	flt	%vi12832, %vf24564, %f0
 	mov	%vi12833, %i0
 	ceqi	%vi12834, %vi12832, 0
-	ftern	%vf24565, %vi12834, %vf24564, %f0
+	mif	%vtf3413, %vi12834
+	ftern	%vf24565, %vtf3413, %vf24564, %f0
 	fmul	%vf24566, %vf55, %vf24565
 	finv	%vf24567, %vf9
 	fmul	%vf24568, %vf24566, %vf24567
@@ -104276,7 +104983,8 @@ else.242356:
 	fsub	%vf24421, %vf24408, %vf24420
 	fsub	%vf24422, %vf31, %vf24421
 	fleq	%vi12814, %vf24421, %vf32
-	ftern	%vf24423, %vi12814, %vf24421, %vf24422
+	mif	%vtf3417, %vi12814
+	ftern	%vf24423, %vtf3417, %vf24421, %vf24422
 	fmul	%vf24424, %vf24423, %vf24423
 	fmul	%vf24425, %vf35, %vf24424
 	fadd	%vf24426, %vf24425, %vf36
@@ -104313,7 +105021,8 @@ else.242354:
 	fsub	%vf24444, %vf24408, %vf24443
 	fsub	%vf24445, %vf31, %vf24444
 	fleq	%vi12815, %vf24444, %vf32
-	ftern	%vf24446, %vi12815, %vf24444, %vf24445
+	mif	%vtf3419, %vi12815
+	ftern	%vf24446, %vtf3419, %vf24444, %vf24445
 	fmul	%vf24447, %vf24446, %vf24446
 	fmul	%vf24448, %vf35, %vf24447
 	fadd	%vf24449, %vf24448, %vf36
@@ -104373,7 +105082,8 @@ else.242364:
 	fsub	%vf24346, %vf24333, %vf24345
 	fsub	%vf24347, %vf31, %vf24346
 	fleq	%vi12811, %vf24346, %vf32
-	ftern	%vf24348, %vi12811, %vf24346, %vf24347
+	mif	%vtf3421, %vi12811
+	ftern	%vf24348, %vtf3421, %vf24346, %vf24347
 	fmul	%vf24349, %vf24348, %vf24348
 	fmul	%vf24350, %vf35, %vf24349
 	fadd	%vf24351, %vf24350, %vf36
@@ -104410,7 +105120,8 @@ else.242362:
 	fsub	%vf24369, %vf24333, %vf24368
 	fsub	%vf24370, %vf31, %vf24369
 	fleq	%vi12812, %vf24369, %vf32
-	ftern	%vf24371, %vi12812, %vf24369, %vf24370
+	mif	%vtf3423, %vi12812
+	ftern	%vf24371, %vtf3423, %vf24369, %vf24370
 	fmul	%vf24372, %vf24371, %vf24371
 	fmul	%vf24373, %vf35, %vf24372
 	fadd	%vf24374, %vf24373, %vf36
@@ -104572,7 +105283,8 @@ then.242387:
 cont.242388:
 	fsub	%vf24659, %vf24658, %vf30
 	ceqi	%vi12874, %vi12848, 3
-	ftern	%vf24660, %vi12874, %vf24659, %vf24658
+	mif	%vtf3427, %vi12874
+	ftern	%vf24660, %vtf3427, %vf24659, %vf24658
 	fmul	%vf24661, %vf24641, %vf24641
 	fmul	%vf24662, %vf24632, %vf24660
 	fsub	%vf24663, %vf24661, %vf24662
@@ -104855,7 +105567,8 @@ then.242429:
 cont.242430:
 	fsub	%vf24763, %vf24762, %vf30
 	ceqi	%vi12930, %vi12901, 3
-	ftern	%vf24764, %vi12930, %vf24763, %vf24762
+	mif	%vtf3437, %vi12930
+	ftern	%vf24764, %vtf3437, %vf24763, %vf24762
 	fmul	%vf24765, %vf24739, %vf24739
 	fmul	%vf24766, %vf24730, %vf24764
 	fsub	%vf24767, %vf24765, %vf24766
@@ -105107,7 +105820,8 @@ then.242463:
 cont.242464:
 	fsub	%vf24832, %vf24831, %vf30
 	ceqi	%vi12966, %vi12955, 3
-	ftern	%vf24833, %vi12966, %vf24832, %vf24831
+	mif	%vtf3445, %vi12966
+	ftern	%vf24833, %vtf3445, %vf24832, %vf24831
 	flt	%vi12967, %vf24833, %f0
 	mov	%i4, %vi12951
 	mov	%i5, %vi12967
@@ -105238,7 +105952,8 @@ then.242480:
 cont.242481:
 	fsub	%vf24880, %vf24879, %vf30
 	ceqi	%vi12993, %vi12982, 3
-	ftern	%vf24881, %vi12993, %vf24880, %vf24879
+	mif	%vtf3450, %vi12993
+	ftern	%vf24881, %vtf3450, %vf24880, %vf24879
 	flt	%vi12994, %vf24881, %f0
 	mov	%i4, %vi12978
 	mov	%i5, %vi12994
@@ -105510,7 +106225,8 @@ then.242510:
 cont.242511:
 	fsub	%vf24973, %vf24972, %vf30
 	ceqi	%vi13061, %vi13032, 3
-	ftern	%vf24974, %vi13061, %vf24973, %vf24972
+	mif	%vtf3456, %vi13061
+	ftern	%vf24974, %vtf3456, %vf24973, %vf24972
 	fmul	%vf24975, %vf24949, %vf24949
 	fmul	%vf24976, %vf24940, %vf24974
 	fsub	%vf24977, %vf24975, %vf24976
@@ -105762,7 +106478,8 @@ then.242544:
 cont.242545:
 	fsub	%vf25042, %vf25041, %vf30
 	ceqi	%vi13097, %vi13086, 3
-	ftern	%vf25043, %vi13097, %vf25042, %vf25041
+	mif	%vtf3464, %vi13097
+	ftern	%vf25043, %vtf3464, %vf25042, %vf25041
 	flt	%vi13098, %vf25043, %f0
 	mov	%i4, %vi13082
 	mov	%i5, %vi13098
@@ -105893,7 +106610,8 @@ then.242561:
 cont.242562:
 	fsub	%vf25090, %vf25089, %vf30
 	ceqi	%vi13124, %vi13113, 3
-	ftern	%vf25091, %vi13124, %vf25090, %vf25089
+	mif	%vtf3469, %vi13124
+	ftern	%vf25091, %vtf3469, %vf25090, %vf25089
 	flt	%vi13125, %vf25091, %f0
 	mov	%i4, %vi13109
 	mov	%i5, %vi13125
@@ -106088,7 +106806,8 @@ loop_end.229163:
 	flt	%vi13145, %f0, %vf25100
 	mov	%vi13146, %i0
 	ceqi	%vi13147, %vi13145, 0
-	ftern	%vf25101, %vi13147, %f0, %vf25100
+	mif	%vtf3473, %vi13147
+	ftern	%vf25101, %vtf3473, %f0, %vf25100
 	fmul	%vf25102, %vf23809, %vf25101
 	mov	%vi13148, %i0
 	lf	%vf25103, 0(%vi12785)
@@ -106662,7 +107381,8 @@ then.242663:
 cont.242664:
 	fsub	%vf22890, %vf22889, %vf30
 	ceqi	%vi12084, %vi12074, 3
-	ftern	%vf22891, %vi12084, %vf22890, %vf22889
+	mif	%vtf3491, %vi12084
+	ftern	%vf22891, %vtf3491, %vf22890, %vf22889
 	flt	%vi12085, %vf22891, %f0
 	mov	%i4, %vi12070
 	mov	%i5, %vi12085
@@ -106792,7 +107512,8 @@ then.242680:
 cont.242681:
 	fsub	%vf22938, %vf22937, %vf30
 	ceqi	%vi12110, %vi12100, 3
-	ftern	%vf22939, %vi12110, %vf22938, %vf22937
+	mif	%vtf3496, %vi12110
+	ftern	%vf22939, %vtf3496, %vf22938, %vf22937
 	flt	%vi12111, %vf22939, %f0
 	mov	%i4, %vi12096
 	mov	%i5, %vi12111
@@ -107255,7 +107976,8 @@ then.242739:
 cont.242740:
 	fsub	%vf22634, %vf22633, %vf30
 	ceqi	%vi11933, %vi11923, 3
-	ftern	%vf22635, %vi11933, %vf22634, %vf22633
+	mif	%vtf3509, %vi11933
+	ftern	%vf22635, %vtf3509, %vf22634, %vf22633
 	flt	%vi11934, %vf22635, %f0
 	mov	%i4, %vi11919
 	mov	%i5, %vi11934
@@ -107385,7 +108107,8 @@ then.242756:
 cont.242757:
 	fsub	%vf22682, %vf22681, %vf30
 	ceqi	%vi11959, %vi11949, 3
-	ftern	%vf22683, %vi11959, %vf22682, %vf22681
+	mif	%vtf3514, %vi11959
+	ftern	%vf22683, %vtf3514, %vf22682, %vf22681
 	flt	%vi11960, %vf22683, %f0
 	mov	%i4, %vi11945
 	mov	%i5, %vi11960
@@ -107638,9 +108361,11 @@ cont.242775:
 	finv	%vf22996, %vf22993
 	fmul	%vf22997, %vf29, %vf22996
 	ceqi	%vi12153, %vi12136, 0
-	ftern	%vf22998, %vi12153, %vf22995, %vf22997
+	mif	%vtf3519, %vi12153
+	ftern	%vf22998, %vtf3519, %vf22995, %vf22997
 	ceqi	%vi12154, %vi12152, 0
-	ftern	%vf22999, %vi12154, %vf22998, %vf30
+	mif	%vtf3520, %vi12154
+	ftern	%vf22999, %vtf3520, %vf22998, %vf30
 	fmul	%vf23000, %vf22983, %vf22999
 	sf	%vf23000, 0(%vi52)
 	fmul	%vf23001, %vf22985, %vf22999
@@ -107751,7 +108476,8 @@ then.242787:
 	finv	%vf23181, %vf23180
 	fmul	%vf23182, %vf30, %vf23181
 	ceq	%vi12172, %vi12170, %vi12171
-	ftern	%vf23183, %vi12172, %vf23182, %vf23180
+	mif	%vtf3525, %vi12172
+	ftern	%vf23183, %vtf3525, %vf23182, %vf23180
 	fmul	%vf23184, %vf23183, %vf23183
 	fmul	%vf23185, %vf39, %vf23184
 	fadd	%vf23186, %vf23185, %vf40
@@ -107765,7 +108491,8 @@ then.242787:
 	fadd	%vf23194, %vf23193, %vf44
 	fmul	%vf23195, %vf23194, %vf23184
 	fadd	%vf23196, %vf23195, %vf45
-	ftern	%vf23197, %vi12172, %vf30, %vf29
+	mif	%vtf3526, %vi12172
+	ftern	%vf23197, %vtf3526, %vf30, %vf29
 	fmul	%vf23198, %vf23197, %vf23196
 	fmul	%vf23199, %vf23198, %vf23183
 	add	%vi12173, %vi12170, %vi12171
@@ -107810,7 +108537,8 @@ then.242789:
 	finv	%vf23222, %vf23221
 	fmul	%vf23223, %vf30, %vf23222
 	ceq	%vi12179, %vi12177, %vi12178
-	ftern	%vf23224, %vi12179, %vf23223, %vf23221
+	mif	%vtf3532, %vi12179
+	ftern	%vf23224, %vtf3532, %vf23223, %vf23221
 	fmul	%vf23225, %vf23224, %vf23224
 	fmul	%vf23226, %vf39, %vf23225
 	fadd	%vf23227, %vf23226, %vf40
@@ -107824,7 +108552,8 @@ then.242789:
 	fadd	%vf23235, %vf23234, %vf44
 	fmul	%vf23236, %vf23235, %vf23225
 	fadd	%vf23237, %vf23236, %vf45
-	ftern	%vf23238, %vi12179, %vf30, %vf29
+	mif	%vtf3533, %vi12179
+	ftern	%vf23238, %vtf3533, %vf30, %vf29
 	fmul	%vf23239, %vf23238, %vf23237
 	fmul	%vf23240, %vf23239, %vf23224
 	add	%vi12180, %vi12177, %vi12178
@@ -107850,7 +108579,8 @@ cont.242790:
 	flt	%vi12182, %vf23255, %f0
 	mov	%vi12183, %i0
 	ceqi	%vi12184, %vi12182, 0
-	ftern	%vf23256, %vi12184, %vf23255, %f0
+	mif	%vtf3536, %vi12184
+	ftern	%vf23256, %vtf3536, %vf23255, %f0
 	fmul	%vf23257, %vf55, %vf23256
 	finv	%vf23258, %vf9
 	fmul	%vf23259, %vf23257, %vf23258
@@ -107905,7 +108635,8 @@ else.242793:
 	fsub	%vf23112, %vf23099, %vf23111
 	fsub	%vf23113, %vf31, %vf23112
 	fleq	%vi12164, %vf23112, %vf32
-	ftern	%vf23114, %vi12164, %vf23112, %vf23113
+	mif	%vtf3540, %vi12164
+	ftern	%vf23114, %vtf3540, %vf23112, %vf23113
 	fmul	%vf23115, %vf23114, %vf23114
 	fmul	%vf23116, %vf35, %vf23115
 	fadd	%vf23117, %vf23116, %vf36
@@ -107942,7 +108673,8 @@ else.242791:
 	fsub	%vf23135, %vf23099, %vf23134
 	fsub	%vf23136, %vf31, %vf23135
 	fleq	%vi12165, %vf23135, %vf32
-	ftern	%vf23137, %vi12165, %vf23135, %vf23136
+	mif	%vtf3542, %vi12165
+	ftern	%vf23137, %vtf3542, %vf23135, %vf23136
 	fmul	%vf23138, %vf23137, %vf23137
 	fmul	%vf23139, %vf35, %vf23138
 	fadd	%vf23140, %vf23139, %vf36
@@ -108002,7 +108734,8 @@ else.242801:
 	fsub	%vf23037, %vf23024, %vf23036
 	fsub	%vf23038, %vf31, %vf23037
 	fleq	%vi12161, %vf23037, %vf32
-	ftern	%vf23039, %vi12161, %vf23037, %vf23038
+	mif	%vtf3544, %vi12161
+	ftern	%vf23039, %vtf3544, %vf23037, %vf23038
 	fmul	%vf23040, %vf23039, %vf23039
 	fmul	%vf23041, %vf35, %vf23040
 	fadd	%vf23042, %vf23041, %vf36
@@ -108039,7 +108772,8 @@ else.242799:
 	fsub	%vf23060, %vf23024, %vf23059
 	fsub	%vf23061, %vf31, %vf23060
 	fleq	%vi12162, %vf23060, %vf32
-	ftern	%vf23062, %vi12162, %vf23060, %vf23061
+	mif	%vtf3546, %vi12162
+	ftern	%vf23062, %vtf3546, %vf23060, %vf23061
 	fmul	%vf23063, %vf23062, %vf23062
 	fmul	%vf23064, %vf35, %vf23063
 	fadd	%vf23065, %vf23064, %vf36
@@ -108201,7 +108935,8 @@ then.242824:
 cont.242825:
 	fsub	%vf23350, %vf23349, %vf30
 	ceqi	%vi12224, %vi12198, 3
-	ftern	%vf23351, %vi12224, %vf23350, %vf23349
+	mif	%vtf3550, %vi12224
+	ftern	%vf23351, %vtf3550, %vf23350, %vf23349
 	fmul	%vf23352, %vf23332, %vf23332
 	fmul	%vf23353, %vf23323, %vf23351
 	fsub	%vf23354, %vf23352, %vf23353
@@ -108484,7 +109219,8 @@ then.242866:
 cont.242867:
 	fsub	%vf23454, %vf23453, %vf30
 	ceqi	%vi12280, %vi12251, 3
-	ftern	%vf23455, %vi12280, %vf23454, %vf23453
+	mif	%vtf3560, %vi12280
+	ftern	%vf23455, %vtf3560, %vf23454, %vf23453
 	fmul	%vf23456, %vf23430, %vf23430
 	fmul	%vf23457, %vf23421, %vf23455
 	fsub	%vf23458, %vf23456, %vf23457
@@ -108736,7 +109472,8 @@ then.242900:
 cont.242901:
 	fsub	%vf23523, %vf23522, %vf30
 	ceqi	%vi12316, %vi12305, 3
-	ftern	%vf23524, %vi12316, %vf23523, %vf23522
+	mif	%vtf3568, %vi12316
+	ftern	%vf23524, %vtf3568, %vf23523, %vf23522
 	flt	%vi12317, %vf23524, %f0
 	mov	%i4, %vi12301
 	mov	%i5, %vi12317
@@ -108867,7 +109604,8 @@ then.242917:
 cont.242918:
 	fsub	%vf23571, %vf23570, %vf30
 	ceqi	%vi12343, %vi12332, 3
-	ftern	%vf23572, %vi12343, %vf23571, %vf23570
+	mif	%vtf3573, %vi12343
+	ftern	%vf23572, %vtf3573, %vf23571, %vf23570
 	flt	%vi12344, %vf23572, %f0
 	mov	%i4, %vi12328
 	mov	%i5, %vi12344
@@ -109139,7 +109877,8 @@ then.242947:
 cont.242948:
 	fsub	%vf23664, %vf23663, %vf30
 	ceqi	%vi12411, %vi12382, 3
-	ftern	%vf23665, %vi12411, %vf23664, %vf23663
+	mif	%vtf3579, %vi12411
+	ftern	%vf23665, %vtf3579, %vf23664, %vf23663
 	fmul	%vf23666, %vf23640, %vf23640
 	fmul	%vf23667, %vf23631, %vf23665
 	fsub	%vf23668, %vf23666, %vf23667
@@ -109391,7 +110130,8 @@ then.242981:
 cont.242982:
 	fsub	%vf23733, %vf23732, %vf30
 	ceqi	%vi12447, %vi12436, 3
-	ftern	%vf23734, %vi12447, %vf23733, %vf23732
+	mif	%vtf3587, %vi12447
+	ftern	%vf23734, %vtf3587, %vf23733, %vf23732
 	flt	%vi12448, %vf23734, %f0
 	mov	%i4, %vi12432
 	mov	%i5, %vi12448
@@ -109522,7 +110262,8 @@ then.242998:
 cont.242999:
 	fsub	%vf23781, %vf23780, %vf30
 	ceqi	%vi12474, %vi12463, 3
-	ftern	%vf23782, %vi12474, %vf23781, %vf23780
+	mif	%vtf3592, %vi12474
+	ftern	%vf23782, %vtf3592, %vf23781, %vf23780
 	flt	%vi12475, %vf23782, %f0
 	mov	%i4, %vi12459
 	mov	%i5, %vi12475
@@ -109717,7 +110458,8 @@ loop_end.229338:
 	flt	%vi12495, %f0, %vf23791
 	mov	%vi12496, %i0
 	ceqi	%vi12497, %vi12495, 0
-	ftern	%vf23792, %vi12497, %f0, %vf23791
+	mif	%vtf3596, %vi12497
+	ftern	%vf23792, %vtf3596, %f0, %vf23791
 	fmul	%vf23793, %vf22500, %vf23792
 	mov	%vi12498, %i0
 	lf	%vf23794, 0(%vi12135)
@@ -109828,7 +110570,8 @@ then.243023:
 cont.243024:
 	fsub	%vf25163, %vf25162, %vf30
 	ceqi	%vi13172, %vi13163, 3
-	ftern	%vf25164, %vi13172, %vf25163, %vf25162
+	mif	%vtf3597, %vi13172
+	ftern	%vf25164, %vtf3597, %vf25163, %vf25162
 	sf	%vf25164, 12(%vi13158)
 cont.243022:
 	set_label	%vti12586, cont.243021
@@ -109919,7 +110662,8 @@ then.243031:
 cont.243032:
 	fsub	%vf25208, %vf25207, %vf30
 	ceqi	%vi13190, %vi13181, 3
-	ftern	%vf25209, %vi13190, %vf25208, %vf25207
+	mif	%vtf3599, %vi13190
+	ftern	%vf25209, %vtf3599, %vf25208, %vf25207
 	sf	%vf25209, 12(%vi13176)
 cont.243030:
 	set_label	%vti12593, cont.243029
@@ -110526,7 +111270,8 @@ then.243121:
 cont.243122:
 	fsub	%vf26921, %vf26920, %vf30
 	ceqi	%vi14085, %vi14075, 3
-	ftern	%vf26922, %vi14085, %vf26921, %vf26920
+	mif	%vtf3618, %vi14085
+	ftern	%vf26922, %vtf3618, %vf26921, %vf26920
 	flt	%vi14086, %vf26922, %f0
 	mov	%i4, %vi14071
 	mov	%i5, %vi14086
@@ -110656,7 +111401,8 @@ then.243138:
 cont.243139:
 	fsub	%vf26969, %vf26968, %vf30
 	ceqi	%vi14111, %vi14101, 3
-	ftern	%vf26970, %vi14111, %vf26969, %vf26968
+	mif	%vtf3623, %vi14111
+	ftern	%vf26970, %vtf3623, %vf26969, %vf26968
 	flt	%vi14112, %vf26970, %f0
 	mov	%i4, %vi14097
 	mov	%i5, %vi14112
@@ -111119,7 +111865,8 @@ then.243197:
 cont.243198:
 	fsub	%vf26665, %vf26664, %vf30
 	ceqi	%vi13934, %vi13924, 3
-	ftern	%vf26666, %vi13934, %vf26665, %vf26664
+	mif	%vtf3636, %vi13934
+	ftern	%vf26666, %vtf3636, %vf26665, %vf26664
 	flt	%vi13935, %vf26666, %f0
 	mov	%i4, %vi13920
 	mov	%i5, %vi13935
@@ -111249,7 +111996,8 @@ then.243214:
 cont.243215:
 	fsub	%vf26713, %vf26712, %vf30
 	ceqi	%vi13960, %vi13950, 3
-	ftern	%vf26714, %vi13960, %vf26713, %vf26712
+	mif	%vtf3641, %vi13960
+	ftern	%vf26714, %vtf3641, %vf26713, %vf26712
 	flt	%vi13961, %vf26714, %f0
 	mov	%i4, %vi13946
 	mov	%i5, %vi13961
@@ -111502,9 +112250,11 @@ cont.243233:
 	finv	%vf27027, %vf27024
 	fmul	%vf27028, %vf29, %vf27027
 	ceqi	%vi14154, %vi14137, 0
-	ftern	%vf27029, %vi14154, %vf27026, %vf27028
+	mif	%vtf3646, %vi14154
+	ftern	%vf27029, %vtf3646, %vf27026, %vf27028
 	ceqi	%vi14155, %vi14153, 0
-	ftern	%vf27030, %vi14155, %vf27029, %vf30
+	mif	%vtf3647, %vi14155
+	ftern	%vf27030, %vtf3647, %vf27029, %vf30
 	fmul	%vf27031, %vf27014, %vf27030
 	sf	%vf27031, 0(%vi52)
 	fmul	%vf27032, %vf27016, %vf27030
@@ -111615,7 +112365,8 @@ then.243245:
 	finv	%vf27212, %vf27211
 	fmul	%vf27213, %vf30, %vf27212
 	ceq	%vi14173, %vi14171, %vi14172
-	ftern	%vf27214, %vi14173, %vf27213, %vf27211
+	mif	%vtf3652, %vi14173
+	ftern	%vf27214, %vtf3652, %vf27213, %vf27211
 	fmul	%vf27215, %vf27214, %vf27214
 	fmul	%vf27216, %vf39, %vf27215
 	fadd	%vf27217, %vf27216, %vf40
@@ -111629,7 +112380,8 @@ then.243245:
 	fadd	%vf27225, %vf27224, %vf44
 	fmul	%vf27226, %vf27225, %vf27215
 	fadd	%vf27227, %vf27226, %vf45
-	ftern	%vf27228, %vi14173, %vf30, %vf29
+	mif	%vtf3653, %vi14173
+	ftern	%vf27228, %vtf3653, %vf30, %vf29
 	fmul	%vf27229, %vf27228, %vf27227
 	fmul	%vf27230, %vf27229, %vf27214
 	add	%vi14174, %vi14171, %vi14172
@@ -111674,7 +112426,8 @@ then.243247:
 	finv	%vf27253, %vf27252
 	fmul	%vf27254, %vf30, %vf27253
 	ceq	%vi14180, %vi14178, %vi14179
-	ftern	%vf27255, %vi14180, %vf27254, %vf27252
+	mif	%vtf3659, %vi14180
+	ftern	%vf27255, %vtf3659, %vf27254, %vf27252
 	fmul	%vf27256, %vf27255, %vf27255
 	fmul	%vf27257, %vf39, %vf27256
 	fadd	%vf27258, %vf27257, %vf40
@@ -111688,7 +112441,8 @@ then.243247:
 	fadd	%vf27266, %vf27265, %vf44
 	fmul	%vf27267, %vf27266, %vf27256
 	fadd	%vf27268, %vf27267, %vf45
-	ftern	%vf27269, %vi14180, %vf30, %vf29
+	mif	%vtf3660, %vi14180
+	ftern	%vf27269, %vtf3660, %vf30, %vf29
 	fmul	%vf27270, %vf27269, %vf27268
 	fmul	%vf27271, %vf27270, %vf27255
 	add	%vi14181, %vi14178, %vi14179
@@ -111714,7 +112468,8 @@ cont.243248:
 	flt	%vi14183, %vf27286, %f0
 	mov	%vi14184, %i0
 	ceqi	%vi14185, %vi14183, 0
-	ftern	%vf27287, %vi14185, %vf27286, %f0
+	mif	%vtf3663, %vi14185
+	ftern	%vf27287, %vtf3663, %vf27286, %f0
 	fmul	%vf27288, %vf55, %vf27287
 	finv	%vf27289, %vf9
 	fmul	%vf27290, %vf27288, %vf27289
@@ -111769,7 +112524,8 @@ else.243251:
 	fsub	%vf27143, %vf27130, %vf27142
 	fsub	%vf27144, %vf31, %vf27143
 	fleq	%vi14165, %vf27143, %vf32
-	ftern	%vf27145, %vi14165, %vf27143, %vf27144
+	mif	%vtf3667, %vi14165
+	ftern	%vf27145, %vtf3667, %vf27143, %vf27144
 	fmul	%vf27146, %vf27145, %vf27145
 	fmul	%vf27147, %vf35, %vf27146
 	fadd	%vf27148, %vf27147, %vf36
@@ -111806,7 +112562,8 @@ else.243249:
 	fsub	%vf27166, %vf27130, %vf27165
 	fsub	%vf27167, %vf31, %vf27166
 	fleq	%vi14166, %vf27166, %vf32
-	ftern	%vf27168, %vi14166, %vf27166, %vf27167
+	mif	%vtf3669, %vi14166
+	ftern	%vf27168, %vtf3669, %vf27166, %vf27167
 	fmul	%vf27169, %vf27168, %vf27168
 	fmul	%vf27170, %vf35, %vf27169
 	fadd	%vf27171, %vf27170, %vf36
@@ -111866,7 +112623,8 @@ else.243259:
 	fsub	%vf27068, %vf27055, %vf27067
 	fsub	%vf27069, %vf31, %vf27068
 	fleq	%vi14162, %vf27068, %vf32
-	ftern	%vf27070, %vi14162, %vf27068, %vf27069
+	mif	%vtf3671, %vi14162
+	ftern	%vf27070, %vtf3671, %vf27068, %vf27069
 	fmul	%vf27071, %vf27070, %vf27070
 	fmul	%vf27072, %vf35, %vf27071
 	fadd	%vf27073, %vf27072, %vf36
@@ -111903,7 +112661,8 @@ else.243257:
 	fsub	%vf27091, %vf27055, %vf27090
 	fsub	%vf27092, %vf31, %vf27091
 	fleq	%vi14163, %vf27091, %vf32
-	ftern	%vf27093, %vi14163, %vf27091, %vf27092
+	mif	%vtf3673, %vi14163
+	ftern	%vf27093, %vtf3673, %vf27091, %vf27092
 	fmul	%vf27094, %vf27093, %vf27093
 	fmul	%vf27095, %vf35, %vf27094
 	fadd	%vf27096, %vf27095, %vf36
@@ -112065,7 +112824,8 @@ then.243282:
 cont.243283:
 	fsub	%vf27381, %vf27380, %vf30
 	ceqi	%vi14225, %vi14199, 3
-	ftern	%vf27382, %vi14225, %vf27381, %vf27380
+	mif	%vtf3677, %vi14225
+	ftern	%vf27382, %vtf3677, %vf27381, %vf27380
 	fmul	%vf27383, %vf27363, %vf27363
 	fmul	%vf27384, %vf27354, %vf27382
 	fsub	%vf27385, %vf27383, %vf27384
@@ -112348,7 +113108,8 @@ then.243324:
 cont.243325:
 	fsub	%vf27485, %vf27484, %vf30
 	ceqi	%vi14281, %vi14252, 3
-	ftern	%vf27486, %vi14281, %vf27485, %vf27484
+	mif	%vtf3687, %vi14281
+	ftern	%vf27486, %vtf3687, %vf27485, %vf27484
 	fmul	%vf27487, %vf27461, %vf27461
 	fmul	%vf27488, %vf27452, %vf27486
 	fsub	%vf27489, %vf27487, %vf27488
@@ -112600,7 +113361,8 @@ then.243358:
 cont.243359:
 	fsub	%vf27554, %vf27553, %vf30
 	ceqi	%vi14317, %vi14306, 3
-	ftern	%vf27555, %vi14317, %vf27554, %vf27553
+	mif	%vtf3695, %vi14317
+	ftern	%vf27555, %vtf3695, %vf27554, %vf27553
 	flt	%vi14318, %vf27555, %f0
 	mov	%i4, %vi14302
 	mov	%i5, %vi14318
@@ -112731,7 +113493,8 @@ then.243375:
 cont.243376:
 	fsub	%vf27602, %vf27601, %vf30
 	ceqi	%vi14344, %vi14333, 3
-	ftern	%vf27603, %vi14344, %vf27602, %vf27601
+	mif	%vtf3700, %vi14344
+	ftern	%vf27603, %vtf3700, %vf27602, %vf27601
 	flt	%vi14345, %vf27603, %f0
 	mov	%i4, %vi14329
 	mov	%i5, %vi14345
@@ -113003,7 +113766,8 @@ then.243405:
 cont.243406:
 	fsub	%vf27695, %vf27694, %vf30
 	ceqi	%vi14412, %vi14383, 3
-	ftern	%vf27696, %vi14412, %vf27695, %vf27694
+	mif	%vtf3706, %vi14412
+	ftern	%vf27696, %vtf3706, %vf27695, %vf27694
 	fmul	%vf27697, %vf27671, %vf27671
 	fmul	%vf27698, %vf27662, %vf27696
 	fsub	%vf27699, %vf27697, %vf27698
@@ -113255,7 +114019,8 @@ then.243439:
 cont.243440:
 	fsub	%vf27764, %vf27763, %vf30
 	ceqi	%vi14448, %vi14437, 3
-	ftern	%vf27765, %vi14448, %vf27764, %vf27763
+	mif	%vtf3714, %vi14448
+	ftern	%vf27765, %vtf3714, %vf27764, %vf27763
 	flt	%vi14449, %vf27765, %f0
 	mov	%i4, %vi14433
 	mov	%i5, %vi14449
@@ -113386,7 +114151,8 @@ then.243456:
 cont.243457:
 	fsub	%vf27812, %vf27811, %vf30
 	ceqi	%vi14475, %vi14464, 3
-	ftern	%vf27813, %vi14475, %vf27812, %vf27811
+	mif	%vtf3719, %vi14475
+	ftern	%vf27813, %vtf3719, %vf27812, %vf27811
 	flt	%vi14476, %vf27813, %f0
 	mov	%i4, %vi14460
 	mov	%i5, %vi14476
@@ -113581,7 +114347,8 @@ loop_end.229526:
 	flt	%vi14496, %f0, %vf27822
 	mov	%vi14497, %i0
 	ceqi	%vi14498, %vi14496, 0
-	ftern	%vf27823, %vi14498, %f0, %vf27822
+	mif	%vtf3723, %vi14498
+	ftern	%vf27823, %vtf3723, %f0, %vf27822
 	fmul	%vf27824, %vf26531, %vf27823
 	mov	%vi14499, %i0
 	lf	%vf27825, 0(%vi14136)
@@ -114155,7 +114922,8 @@ then.243558:
 cont.243559:
 	fsub	%vf25612, %vf25611, %vf30
 	ceqi	%vi13435, %vi13425, 3
-	ftern	%vf25613, %vi13435, %vf25612, %vf25611
+	mif	%vtf3741, %vi13435
+	ftern	%vf25613, %vtf3741, %vf25612, %vf25611
 	flt	%vi13436, %vf25613, %f0
 	mov	%i4, %vi13421
 	mov	%i5, %vi13436
@@ -114285,7 +115053,8 @@ then.243575:
 cont.243576:
 	fsub	%vf25660, %vf25659, %vf30
 	ceqi	%vi13461, %vi13451, 3
-	ftern	%vf25661, %vi13461, %vf25660, %vf25659
+	mif	%vtf3746, %vi13461
+	ftern	%vf25661, %vtf3746, %vf25660, %vf25659
 	flt	%vi13462, %vf25661, %f0
 	mov	%i4, %vi13447
 	mov	%i5, %vi13462
@@ -114748,7 +115517,8 @@ then.243634:
 cont.243635:
 	fsub	%vf25356, %vf25355, %vf30
 	ceqi	%vi13284, %vi13274, 3
-	ftern	%vf25357, %vi13284, %vf25356, %vf25355
+	mif	%vtf3759, %vi13284
+	ftern	%vf25357, %vtf3759, %vf25356, %vf25355
 	flt	%vi13285, %vf25357, %f0
 	mov	%i4, %vi13270
 	mov	%i5, %vi13285
@@ -114878,7 +115648,8 @@ then.243651:
 cont.243652:
 	fsub	%vf25404, %vf25403, %vf30
 	ceqi	%vi13310, %vi13300, 3
-	ftern	%vf25405, %vi13310, %vf25404, %vf25403
+	mif	%vtf3764, %vi13310
+	ftern	%vf25405, %vtf3764, %vf25404, %vf25403
 	flt	%vi13311, %vf25405, %f0
 	mov	%i4, %vi13296
 	mov	%i5, %vi13311
@@ -115131,9 +115902,11 @@ cont.243670:
 	finv	%vf25718, %vf25715
 	fmul	%vf25719, %vf29, %vf25718
 	ceqi	%vi13504, %vi13487, 0
-	ftern	%vf25720, %vi13504, %vf25717, %vf25719
+	mif	%vtf3769, %vi13504
+	ftern	%vf25720, %vtf3769, %vf25717, %vf25719
 	ceqi	%vi13505, %vi13503, 0
-	ftern	%vf25721, %vi13505, %vf25720, %vf30
+	mif	%vtf3770, %vi13505
+	ftern	%vf25721, %vtf3770, %vf25720, %vf30
 	fmul	%vf25722, %vf25705, %vf25721
 	sf	%vf25722, 0(%vi52)
 	fmul	%vf25723, %vf25707, %vf25721
@@ -115244,7 +116017,8 @@ then.243682:
 	finv	%vf25903, %vf25902
 	fmul	%vf25904, %vf30, %vf25903
 	ceq	%vi13523, %vi13521, %vi13522
-	ftern	%vf25905, %vi13523, %vf25904, %vf25902
+	mif	%vtf3775, %vi13523
+	ftern	%vf25905, %vtf3775, %vf25904, %vf25902
 	fmul	%vf25906, %vf25905, %vf25905
 	fmul	%vf25907, %vf39, %vf25906
 	fadd	%vf25908, %vf25907, %vf40
@@ -115258,7 +116032,8 @@ then.243682:
 	fadd	%vf25916, %vf25915, %vf44
 	fmul	%vf25917, %vf25916, %vf25906
 	fadd	%vf25918, %vf25917, %vf45
-	ftern	%vf25919, %vi13523, %vf30, %vf29
+	mif	%vtf3776, %vi13523
+	ftern	%vf25919, %vtf3776, %vf30, %vf29
 	fmul	%vf25920, %vf25919, %vf25918
 	fmul	%vf25921, %vf25920, %vf25905
 	add	%vi13524, %vi13521, %vi13522
@@ -115303,7 +116078,8 @@ then.243684:
 	finv	%vf25944, %vf25943
 	fmul	%vf25945, %vf30, %vf25944
 	ceq	%vi13530, %vi13528, %vi13529
-	ftern	%vf25946, %vi13530, %vf25945, %vf25943
+	mif	%vtf3782, %vi13530
+	ftern	%vf25946, %vtf3782, %vf25945, %vf25943
 	fmul	%vf25947, %vf25946, %vf25946
 	fmul	%vf25948, %vf39, %vf25947
 	fadd	%vf25949, %vf25948, %vf40
@@ -115317,7 +116093,8 @@ then.243684:
 	fadd	%vf25957, %vf25956, %vf44
 	fmul	%vf25958, %vf25957, %vf25947
 	fadd	%vf25959, %vf25958, %vf45
-	ftern	%vf25960, %vi13530, %vf30, %vf29
+	mif	%vtf3783, %vi13530
+	ftern	%vf25960, %vtf3783, %vf30, %vf29
 	fmul	%vf25961, %vf25960, %vf25959
 	fmul	%vf25962, %vf25961, %vf25946
 	add	%vi13531, %vi13528, %vi13529
@@ -115343,7 +116120,8 @@ cont.243685:
 	flt	%vi13533, %vf25977, %f0
 	mov	%vi13534, %i0
 	ceqi	%vi13535, %vi13533, 0
-	ftern	%vf25978, %vi13535, %vf25977, %f0
+	mif	%vtf3786, %vi13535
+	ftern	%vf25978, %vtf3786, %vf25977, %f0
 	fmul	%vf25979, %vf55, %vf25978
 	finv	%vf25980, %vf9
 	fmul	%vf25981, %vf25979, %vf25980
@@ -115398,7 +116176,8 @@ else.243688:
 	fsub	%vf25834, %vf25821, %vf25833
 	fsub	%vf25835, %vf31, %vf25834
 	fleq	%vi13515, %vf25834, %vf32
-	ftern	%vf25836, %vi13515, %vf25834, %vf25835
+	mif	%vtf3790, %vi13515
+	ftern	%vf25836, %vtf3790, %vf25834, %vf25835
 	fmul	%vf25837, %vf25836, %vf25836
 	fmul	%vf25838, %vf35, %vf25837
 	fadd	%vf25839, %vf25838, %vf36
@@ -115435,7 +116214,8 @@ else.243686:
 	fsub	%vf25857, %vf25821, %vf25856
 	fsub	%vf25858, %vf31, %vf25857
 	fleq	%vi13516, %vf25857, %vf32
-	ftern	%vf25859, %vi13516, %vf25857, %vf25858
+	mif	%vtf3792, %vi13516
+	ftern	%vf25859, %vtf3792, %vf25857, %vf25858
 	fmul	%vf25860, %vf25859, %vf25859
 	fmul	%vf25861, %vf35, %vf25860
 	fadd	%vf25862, %vf25861, %vf36
@@ -115495,7 +116275,8 @@ else.243696:
 	fsub	%vf25759, %vf25746, %vf25758
 	fsub	%vf25760, %vf31, %vf25759
 	fleq	%vi13512, %vf25759, %vf32
-	ftern	%vf25761, %vi13512, %vf25759, %vf25760
+	mif	%vtf3794, %vi13512
+	ftern	%vf25761, %vtf3794, %vf25759, %vf25760
 	fmul	%vf25762, %vf25761, %vf25761
 	fmul	%vf25763, %vf35, %vf25762
 	fadd	%vf25764, %vf25763, %vf36
@@ -115532,7 +116313,8 @@ else.243694:
 	fsub	%vf25782, %vf25746, %vf25781
 	fsub	%vf25783, %vf31, %vf25782
 	fleq	%vi13513, %vf25782, %vf32
-	ftern	%vf25784, %vi13513, %vf25782, %vf25783
+	mif	%vtf3796, %vi13513
+	ftern	%vf25784, %vtf3796, %vf25782, %vf25783
 	fmul	%vf25785, %vf25784, %vf25784
 	fmul	%vf25786, %vf35, %vf25785
 	fadd	%vf25787, %vf25786, %vf36
@@ -115694,7 +116476,8 @@ then.243719:
 cont.243720:
 	fsub	%vf26072, %vf26071, %vf30
 	ceqi	%vi13575, %vi13549, 3
-	ftern	%vf26073, %vi13575, %vf26072, %vf26071
+	mif	%vtf3800, %vi13575
+	ftern	%vf26073, %vtf3800, %vf26072, %vf26071
 	fmul	%vf26074, %vf26054, %vf26054
 	fmul	%vf26075, %vf26045, %vf26073
 	fsub	%vf26076, %vf26074, %vf26075
@@ -115977,7 +116760,8 @@ then.243761:
 cont.243762:
 	fsub	%vf26176, %vf26175, %vf30
 	ceqi	%vi13631, %vi13602, 3
-	ftern	%vf26177, %vi13631, %vf26176, %vf26175
+	mif	%vtf3810, %vi13631
+	ftern	%vf26177, %vtf3810, %vf26176, %vf26175
 	fmul	%vf26178, %vf26152, %vf26152
 	fmul	%vf26179, %vf26143, %vf26177
 	fsub	%vf26180, %vf26178, %vf26179
@@ -116229,7 +117013,8 @@ then.243795:
 cont.243796:
 	fsub	%vf26245, %vf26244, %vf30
 	ceqi	%vi13667, %vi13656, 3
-	ftern	%vf26246, %vi13667, %vf26245, %vf26244
+	mif	%vtf3818, %vi13667
+	ftern	%vf26246, %vtf3818, %vf26245, %vf26244
 	flt	%vi13668, %vf26246, %f0
 	mov	%i4, %vi13652
 	mov	%i5, %vi13668
@@ -116360,7 +117145,8 @@ then.243812:
 cont.243813:
 	fsub	%vf26293, %vf26292, %vf30
 	ceqi	%vi13694, %vi13683, 3
-	ftern	%vf26294, %vi13694, %vf26293, %vf26292
+	mif	%vtf3823, %vi13694
+	ftern	%vf26294, %vtf3823, %vf26293, %vf26292
 	flt	%vi13695, %vf26294, %f0
 	mov	%i4, %vi13679
 	mov	%i5, %vi13695
@@ -116632,7 +117418,8 @@ then.243842:
 cont.243843:
 	fsub	%vf26386, %vf26385, %vf30
 	ceqi	%vi13762, %vi13733, 3
-	ftern	%vf26387, %vi13762, %vf26386, %vf26385
+	mif	%vtf3829, %vi13762
+	ftern	%vf26387, %vtf3829, %vf26386, %vf26385
 	fmul	%vf26388, %vf26362, %vf26362
 	fmul	%vf26389, %vf26353, %vf26387
 	fsub	%vf26390, %vf26388, %vf26389
@@ -116884,7 +117671,8 @@ then.243876:
 cont.243877:
 	fsub	%vf26455, %vf26454, %vf30
 	ceqi	%vi13798, %vi13787, 3
-	ftern	%vf26456, %vi13798, %vf26455, %vf26454
+	mif	%vtf3837, %vi13798
+	ftern	%vf26456, %vtf3837, %vf26455, %vf26454
 	flt	%vi13799, %vf26456, %f0
 	mov	%i4, %vi13783
 	mov	%i5, %vi13799
@@ -117015,7 +117803,8 @@ then.243893:
 cont.243894:
 	fsub	%vf26503, %vf26502, %vf30
 	ceqi	%vi13825, %vi13814, 3
-	ftern	%vf26504, %vi13825, %vf26503, %vf26502
+	mif	%vtf3842, %vi13825
+	ftern	%vf26504, %vtf3842, %vf26503, %vf26502
 	flt	%vi13826, %vf26504, %f0
 	mov	%i4, %vi13810
 	mov	%i5, %vi13826
@@ -117210,7 +117999,8 @@ loop_end.229701:
 	flt	%vi13846, %f0, %vf26513
 	mov	%vi13847, %i0
 	ceqi	%vi13848, %vi13846, 0
-	ftern	%vf26514, %vi13848, %f0, %vf26513
+	mif	%vtf3846, %vi13848
+	ftern	%vf26514, %vtf3846, %f0, %vf26513
 	fmul	%vf26515, %vf25222, %vf26514
 	mov	%vi13849, %i0
 	lf	%vf26516, 0(%vi13486)

@@ -1149,6 +1149,7 @@ fn get_def_use_indices(mnemonic: &str, operands: &[String]) -> (Vec<usize>, Vec<
                 uses.push(1);
             }
         }
+        "goto" => {}
         // jeq rs1, rs2, label  / jlt rs1, rs2, label  / jleq rs1, rs2, label
         "jeq" | "jlt" | "jleq" => {
             if n > 0 {
@@ -1211,6 +1212,6 @@ fn get_def_use_indices(mnemonic: &str, operands: &[String]) -> (Vec<usize>, Vec<
 fn is_control_transfer(mnem: &str) -> bool {
     matches!(
         mnem,
-        "jzero" | "jeq" | "jlt" | "jleq" | "jmp" | "ret" | "call_dir" | "call_cls"
+        "jzero" | "jeq" | "jlt" | "jleq" | "goto" | "jmp" | "ret" | "call_dir" | "call_cls"
     )
 }

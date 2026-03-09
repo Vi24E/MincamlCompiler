@@ -243,6 +243,8 @@ fn get_def_use(inst: &Instruction) -> (BTreeSet<String>, BTreeSet<String>) {
                     uses.insert(expect_direct_reg(op1, mnemonic, 1));
                 }
             }
+            // goto: goto label -> DEF={}, USE={}
+            "goto" => {}
             // jeq rs1, rs2, offset -> DEF={}, USE={rs1, rs2}
             // jlt rs1, rs2, offset -> DEF={}, USE={rs1, rs2}
             // jleq rs1, rs2, offset -> DEF={}, USE={rs1, rs2}
@@ -366,6 +368,14 @@ pub fn analyze(instructions: &[Instruction]) -> Vec<AnalyzedInstruction> {
                 continue;
             }
             match mnemonic.as_str() {
+                "goto" => {
+                    if let Some(label) = inst.operands.first() {
+                        if let Some(idx) = label_map.get(label) {
+                            succs.push(*idx);
+                        }
+                    }
+                    is_terminator = true;
+                }
                 "jzero" => {
                     // Conditional branch: jzero rd, rs, label
                     // Successors: fall-through + label target

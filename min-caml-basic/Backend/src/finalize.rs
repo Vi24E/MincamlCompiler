@@ -1161,7 +1161,7 @@ fn find_block_start(func_insts: &[Instruction], call_idx: usize) -> usize {
 }
 
 fn is_block_terminator(mnemonic: &str) -> bool {
-    matches!(mnemonic, "jmp" | "jzero" | "jeq" | "jlt" | "jleq" | "ret")
+    matches!(mnemonic, "jmp" | "jzero" | "jeq" | "jlt" | "jleq" | "goto" | "ret")
 }
 
 fn resolve_reg_to_physical(reg: &str, allocation: &Allocation) -> Option<String> {

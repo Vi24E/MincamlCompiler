@@ -126,7 +126,8 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
     let (instructions, branch_relax_rewrites) = relax_branches_opt(instructions);
     // Pass 2: eliminate any remaining or newly visible trampolines
     let (instructions, trampoline_elim_rewrites_2) = jump_trampoline_elim(instructions);
-    // Fold short unconditional jumps: set_label + jmp -> jzero %i0, %i0, label
+    // Fold unconditional jumps to goto:
+    //   set_label + jmp -> goto,  jzero %i0,%i0,label -> goto.
     let (instructions, short_jump_fold_rewrites_0) =
         fold_short_unconditional_jumps_opt(instructions);
     // short_jump_fold can newly create:
@@ -1372,6 +1373,7 @@ fn is_side_effecting_or_control_mnemonic(mnemonic: &str) -> bool {
             | "jeq"
             | "jlt"
             | "jleq"
+            | "goto"
             | "jmp"
             | "ret"
             | "call_dir"
@@ -1590,7 +1592,12 @@ fn build_cse_expr_with_mode(
         "itof" | "mif" if ops.len() == 2 && int_ok(&ops[1]) => {
             Some(CseExpr::FloatFromInt(m.to_string(), ops[1].clone()))
         }
-        "ftern" if ops.len() == 4 && int_ok(&ops[1]) && float_ok(&ops[2]) && float_ok(&ops[3]) => {
+        "ftern"
+            if ops.len() == 4
+                && float_ok(&ops[1])
+                && float_ok(&ops[2])
+                && float_ok(&ops[3]) =>
+        {
             Some(CseExpr::FloatTern(
                 ops[1].clone(),
                 ops[2].clone(),
@@ -3751,9 +3758,17 @@ fn mnemonic_defines_first_operand(mnemonic: &str, rd: &str) -> bool {
         return false;
     }
     match mnemonic {
-        "sw" | "sb" | "sf" | "jzero" | "jeq" | "jlt" | "jleq" | "ret" | "call_dir" | "call_cls" => {
-            false
-        }
+        "sw"
+        | "sb"
+        | "sf"
+        | "jzero"
+        | "jeq"
+        | "jlt"
+        | "jleq"
+        | "goto"
+        | "ret"
+        | "call_dir"
+        | "call_cls" => false,
         "jmp" => rd != "%i0",
         _ => true,
     }
@@ -3774,7 +3789,7 @@ fn defined_int_reg(inst: &Instruction) -> Option<&str> {
 fn is_trace_barrier(mnemonic: &str) -> bool {
     matches!(
         mnemonic,
-        "jmp" | "jzero" | "jeq" | "jlt" | "jleq" | "ret" | "call_dir" | "call_cls"
+        "jmp" | "jzero" | "jeq" | "jlt" | "jleq" | "goto" | "ret" | "call_dir" | "call_cls"
     ) || mnemonic.starts_with('.')
 }
 
@@ -4099,7 +4114,7 @@ fn is_unconditional_jzero(inst: &Instruction) -> bool {
 
 /// Fold:
 ///   jump_if rs1, rs2, T
-///   jzero   %i0, %i0, F
+///   (jzero %i0, %i0, F) or (goto F)
 /// T:
 /// into:
 ///   jump_if_not rs1, rs2, F
@@ -4125,6 +4140,12 @@ pub fn fold_conditional_jump_over_unconditional_opt(
     }
 
     let n = instructions.len();
+    let mut label_index: HashMap<String, usize> = HashMap::new();
+    for (idx, inst) in instructions.iter().enumerate() {
+        if let Some(label) = inst.label.as_deref() {
+            label_index.insert(label.to_string(), idx);
+        }
+    }
     let mut out = Vec::with_capacity(n);
     let mut rewrites = 0usize;
     let mut i = 0usize;
@@ -4134,10 +4155,33 @@ pub fn fold_conditional_jump_over_unconditional_opt(
             let i0 = &instructions[i];
             let i1 = &instructions[i + 1];
             if let Some((inv_mnem, inv_rs1, inv_rs2, then_label)) = invert_conditional_branch(i0) {
-                if is_unconditional_jzero(i1)
-                    && fallthrough_reaches_label(&instructions, i + 2, then_label.as_str())
+                let else_label = if is_unconditional_jzero(i1) {
+                    Some(i1.operands[2].clone())
+                } else if i1.mnemonic.as_deref() == Some("goto")
+                    && i1.label.is_none()
+                    && i1.operands.len() == 1
                 {
-                    let else_label = i1.operands[2].clone();
+                    Some(i1.operands[0].clone())
+                } else {
+                    None
+                };
+                if let Some(else_label) = else_label {
+                    if !fallthrough_reaches_label(&instructions, i + 2, then_label.as_str()) {
+                        out.push(instructions[i].clone());
+                        i += 1;
+                        continue;
+                    }
+                    // jlt/jleq in this ISA need unsigned 12-bit branch distance.
+                    // Skip this fold when the rewritten target is not encodable.
+                    let can_encode = label_index
+                        .get(else_label.as_str())
+                        .copied()
+                        .is_some_and(|tidx| tidx >= i && (tidx - i) <= 4095);
+                    if !can_encode {
+                        out.push(instructions[i].clone());
+                        i += 1;
+                        continue;
+                    }
                     out.push(Instruction {
                         label: i0.label.clone(),
                         mnemonic: Some(inv_mnem),
@@ -4162,6 +4206,7 @@ pub fn fold_conditional_jump_over_unconditional_opt(
 /// Trampoline forms:
 /// 1) [label-only*] [label:] set_label %rX, TARGET; jmp %i0, 0(%rX)
 /// 2) [label-only*] [label:] jzero %i0, %i0, TARGET
+/// 3) [label-only*] [label:] goto TARGET
 /// are treated as pure forwarders.
 /// - `set_label` references are always rewritten transitively (full-range).
 /// - Other references are rewritten when physical removal is safe.
@@ -4276,20 +4321,23 @@ pub fn jump_trampoline_elim(instructions: Vec<Instruction>) -> (Vec<Instruction>
         );
     }
 
-    // Pattern B:
+    // Pattern B/C:
     //   [label-only*]
     //   [label:] jzero %i0, %i0, TARGET
+    //   [label:] goto TARGET
     for i in 0..n {
         let inst = &instructions[i];
-        if inst.mnemonic.as_deref() != Some("jzero")
-            || inst.operands.len() != 3
-            || inst.operands[0] != "%i0"
-            || inst.operands[1] != "%i0"
+        let target = if inst.mnemonic.as_deref() == Some("jzero")
+            && inst.operands.len() == 3
+            && inst.operands[0] == "%i0"
+            && inst.operands[1] == "%i0"
         {
+            inst.operands[2].clone()
+        } else if inst.mnemonic.as_deref() == Some("goto") && inst.operands.len() == 1 {
+            inst.operands[0].clone()
+        } else {
             continue;
-        }
-
-        let target = inst.operands[2].clone();
+        };
         let (entry_idx, mut body_indices, labels) = collect_entry(&instructions, i);
         body_indices.push(i);
         register_candidate(
@@ -4366,7 +4414,7 @@ pub fn jump_trampoline_elim(instructions: Vec<Instruction>) -> (Vec<Instruction>
 
     // Additional safety: no fall-through into trampoline entry.
     let is_terminator =
-        |mnem: &str| matches!(mnem, "jmp" | "jzero" | "jeq" | "jlt" | "jleq" | "ret");
+        |mnem: &str| matches!(mnem, "jmp" | "jzero" | "jeq" | "jlt" | "jleq" | "goto" | "ret");
     for (info_idx, info) in infos.iter().enumerate() {
         if !safe_to_remove[info_idx] {
             continue;
@@ -4538,33 +4586,41 @@ pub fn relax_branches_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, 
     (out, rewrites)
 }
 
-/// Fold short unconditional forward jumps:
+/// Fold unconditional jumps to goto:
 ///   [opt-label:] set_label  %rX, TARGET
 ///                jmp        %i0, 0(%rX)
 /// into:
+///   [opt-label:] goto       TARGET
+///
+/// Also rewrites:
 ///   [opt-label:] jzero      %i0, %i0, TARGET
-/// when TARGET is a FORWARD label within 4095 instructions from current position.
-/// jzero uses %i0 (zero register) as comparison: always 0 = unconditional branch.
-/// Since each replacement removes 1 instruction, the actual offset is ≤ pre-computed
-/// distance - 1, so the 4095 threshold is always safe.
+/// into:
+///   [opt-label:] goto       TARGET
 pub fn fold_short_unconditional_jumps_opt(
     instructions: Vec<Instruction>,
 ) -> (Vec<Instruction>, usize) {
     let n = instructions.len();
-    // Pre-compute label → original index
-    let mut label_index: HashMap<String, usize> = HashMap::new();
-    for (idx, inst) in instructions.iter().enumerate() {
-        if let Some(label) = inst.label.as_deref() {
-            label_index.insert(label.to_string(), idx);
-        }
-    }
-
     let mut out: Vec<Instruction> = Vec::with_capacity(n);
     let mut rewrites = 0usize;
     let mut i = 0;
 
     while i < n {
         let mnem = instructions[i].mnemonic.as_deref().unwrap_or("");
+
+        if mnem == "jzero"
+            && instructions[i].operands.len() == 3
+            && instructions[i].operands[0] == "%i0"
+            && instructions[i].operands[1] == "%i0"
+        {
+            out.push(Instruction {
+                label: instructions[i].label.clone(),
+                mnemonic: Some("goto".to_string()),
+                operands: vec![instructions[i].operands[2].clone()],
+            });
+            rewrites += 1;
+            i += 1;
+            continue;
+        }
 
         if mnem == "set_label" && i + 1 < n {
             let ops = &instructions[i].operands;
@@ -4585,23 +4641,14 @@ pub fn fold_short_unconditional_jumps_opt(
                 if next.operands[1] == expected_base && reg_x != "%i0"
                 // exclude degenerate jmp %i0, 0(%i0)
                 {
-                    // Check forward + within 4095 (original coordinates; actual is ≤ this - 1)
-                    if let Some(&target_idx) = label_index.get(target.as_str()) {
-                        if target_idx > i && target_idx - i <= 4095 {
-                            out.push(Instruction {
-                                label: instructions[i].label.clone(),
-                                mnemonic: Some("jzero".to_string()),
-                                operands: vec![
-                                    "%i0".to_string(),
-                                    "%i0".to_string(),
-                                    target.clone(),
-                                ],
-                            });
-                            rewrites += 1;
-                            i += 2;
-                            continue;
-                        }
-                    }
+                    out.push(Instruction {
+                        label: instructions[i].label.clone(),
+                        mnemonic: Some("goto".to_string()),
+                        operands: vec![target.clone()],
+                    });
+                    rewrites += 1;
+                    i += 2;
+                    continue;
                 }
             }
         }
@@ -4772,7 +4819,7 @@ fn is_control_flow_barrier(inst: &Instruction) -> bool {
     let Some(mnemonic) = inst.mnemonic.as_deref() else {
         return false;
     };
-    mnemonic == "ret" || mnemonic.starts_with('j')
+    mnemonic == "ret" || mnemonic == "goto" || mnemonic.starts_with('j')
 }
 
 fn writes_i31(inst: &Instruction) -> bool {
@@ -4784,7 +4831,7 @@ fn writes_i31(inst: &Instruction) -> bool {
     }
     if matches!(
         mnemonic,
-        "sw" | "sb" | "sf" | "jzero" | "ret" | "call_dir" | "call_cls"
+        "sw" | "sb" | "sf" | "jzero" | "goto" | "ret" | "call_dir" | "call_cls"
     ) || mnemonic.starts_with('.')
         || (mnemonic.starts_with('j') && mnemonic != "jmp")
     {
@@ -4806,7 +4853,7 @@ fn uses_i31(inst: &Instruction) -> bool {
 
     let has_def = !(matches!(
         mnemonic,
-        "sw" | "sb" | "sf" | "jzero" | "ret" | "call_dir" | "call_cls"
+        "sw" | "sb" | "sf" | "jzero" | "goto" | "ret" | "call_dir" | "call_cls"
     ) || mnemonic.starts_with('.')
         || (mnemonic.starts_with('j') && mnemonic != "jmp"))
         && !inst.operands.is_empty();

@@ -857,7 +857,7 @@ fn def_regs(inst: &Instruction) -> Vec<String> {
     // Store/branch-like instructions do not define destination registers.
     let no_def = matches!(
         mnemonic,
-        "sw" | "sb" | "sf" | "jzero" | "ret" | "call_dir" | "call_cls"
+        "sw" | "sb" | "sf" | "jzero" | "goto" | "ret" | "call_dir" | "call_cls"
     ) || mnemonic.starts_with('.')
         || (mnemonic.starts_with('j') && mnemonic != "jmp");
     if no_def || inst.operands.is_empty() {
@@ -932,7 +932,7 @@ fn use_regs(
         .map(|m| {
             !(matches!(
                 m,
-                "sw" | "sb" | "sf" | "jzero" | "ret" | "call_dir" | "call_cls"
+                "sw" | "sb" | "sf" | "jzero" | "goto" | "ret" | "call_dir" | "call_cls"
             ) || m.starts_with('.')
                 || (m.starts_with('j') && m != "jmp"))
         })
@@ -1167,7 +1167,10 @@ fn is_real_instruction(inst: &Instruction) -> bool {
 
 fn is_terminator(inst: &Instruction) -> bool {
     if let Some(mnemonic) = inst.mnemonic.as_deref() {
-        mnemonic.starts_with('j') || mnemonic == "ret" || mnemonic.starts_with("call_")
+        mnemonic.starts_with('j')
+            || mnemonic == "goto"
+            || mnemonic == "ret"
+            || mnemonic.starts_with("call_")
     } else {
         false
     }

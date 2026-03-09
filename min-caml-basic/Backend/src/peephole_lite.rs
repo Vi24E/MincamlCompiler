@@ -29,6 +29,7 @@ fn is_boundary(inst: &Instruction) -> bool {
             | "jeq"
             | "jlt"
             | "jleq"
+            | "goto"
             | "ret"
             | "set_label"
             | "call_dir"
@@ -235,7 +236,10 @@ fn is_real_instruction(inst: &Instruction) -> bool {
 
 fn is_terminator(inst: &Instruction) -> bool {
     if let Some(mnemonic) = inst.mnemonic.as_deref() {
-        mnemonic.starts_with('j') || mnemonic == "ret" || mnemonic.starts_with("call_")
+        mnemonic.starts_with('j')
+            || mnemonic == "goto"
+            || mnemonic == "ret"
+            || mnemonic.starts_with("call_")
     } else {
         false
     }

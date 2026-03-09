@@ -67,7 +67,16 @@ fn is_control_or_barrier(inst: &Instruction) -> bool {
     }
     matches!(
         m,
-        "jmp" | "jzero" | "jeq" | "jlt" | "jleq" | "ret" | "call_dir" | "call_cls" | "set_label"
+        "jmp"
+            | "jzero"
+            | "jeq"
+            | "jlt"
+            | "jleq"
+            | "goto"
+            | "ret"
+            | "call_dir"
+            | "call_cls"
+            | "set_label"
     )
 }
 
