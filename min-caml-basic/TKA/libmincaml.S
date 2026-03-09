@@ -49,31 +49,29 @@ min_caml_read_float:
 
 .global min_caml_create_array # done!
 min_caml_create_array:
-    mov    %i15, %i4
+    mov    %i29, %i4
     mov    %i30, %i2
 create_array_loop:
-    ceqi    %i31, %i15, 0
-    jzero    %i0, %i31, create_array_cont
+    jlt     %i0, %i29, create_array_cont
     jmp	%i0, 0(%i3)    
 create_array_cont:
     sw    %i5, 0(%i2)
     addi    %i2, %i2, 4    
-    subi    %i15, %i15, 1    
+    subi    %i29, %i29, 1    
     set_label    %i31, create_array_loop
     jmp    %i0, 0(%i31)
 
 .global min_caml_create_float_array # done!
 min_caml_create_float_array:
-    mov    %i15, %i4
+    mov    %i29, %i4
     mov    %i30, %i2
 create_float_array_loop:
-    ceqi    %i31, %i15, 0
-    jzero    %i0, %i31, create_float_array_cont
+    jlt     %i0, %i29, create_float_array_cont
     jmp	%i0, 0(%i3)
 create_float_array_cont:
     sf    %f1, 0(%i2)
     addi    %i2, %i2, 4
-    subi    %i15, %i15, 1
+    subi    %i29, %i29, 1
     set_label    %i31, create_float_array_loop
     jmp    %i0, 0(%i31)
 

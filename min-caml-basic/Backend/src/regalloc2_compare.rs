@@ -1,7 +1,7 @@
 use crate::analysis::AnalyzedInstruction;
 use regalloc2::{
     run, Algorithm, AllocationKind, Block, Function, Inst, InstRange, MachineEnv, Operand, PReg,
-    PRegSet, RegClass, RegAllocError, RegallocOptions, VReg,
+    PRegSet, RegAllocError, RegClass, RegallocOptions, VReg,
 };
 use std::collections::{HashMap, HashSet};
 
@@ -339,7 +339,9 @@ pub fn compare_spills(analyzed: &[AnalyzedInstruction]) -> Result<CompareResult,
     })
 }
 
-pub fn seed_color_hints(analyzed: &[AnalyzedInstruction]) -> Result<HashMap<String, usize>, RegAllocError> {
+pub fn seed_color_hints(
+    analyzed: &[AnalyzedInstruction],
+) -> Result<HashMap<String, usize>, RegAllocError> {
     let built = build_adapter(analyzed);
     let name_by_vreg = built.name_by_vreg;
     let (seed_colors, _saw_stack, _spillslots) = seed_from_regalloc2(analyzed)?;

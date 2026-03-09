@@ -40,7 +40,11 @@ fn is_same_class(name: &str, is_int: bool) -> bool {
 }
 
 fn max_color_for_class(is_int: bool, k_int: usize) -> usize {
-    if is_int { k_int } else { 29 }
+    if is_int {
+        k_int
+    } else {
+        29
+    }
 }
 
 fn pick_color(
@@ -328,11 +332,7 @@ fn assign_class(
     }
 }
 
-pub fn allocate(
-    graph: &InterferenceGraph,
-    prefs: &PreferenceMap,
-    k_int: usize,
-) -> Allocation {
+pub fn allocate(graph: &InterferenceGraph, prefs: &PreferenceMap, k_int: usize) -> Allocation {
     let mut out = Allocation::new();
     assign_class(graph, prefs, true, k_int, &mut out);
     assign_class(graph, prefs, false, k_int, &mut out);

@@ -327,13 +327,7 @@ impl Coloring {
 
             let forbidden = self.graph.forbidden.get(&node).cloned().unwrap_or_default();
 
-            let color = self.pick_color_with_preference(
-                &node,
-                k,
-                is_int,
-                &used_colors,
-                &forbidden,
-            );
+            let color = self.pick_color_with_preference(&node, k, is_int, &used_colors, &forbidden);
 
             match color {
                 Some(c) => {
@@ -397,7 +391,6 @@ impl Coloring {
 
         best.map(|(_, c)| c)
     }
-
 }
 
 fn is_caller_color(color: usize, is_int: bool) -> bool {

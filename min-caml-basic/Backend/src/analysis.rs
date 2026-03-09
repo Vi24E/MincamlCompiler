@@ -306,8 +306,8 @@ fn get_def_use(inst: &Instruction) -> (BTreeSet<String>, BTreeSet<String>) {
                 }
             }
             // nop and directives
-            "nop" | "print_debug" | ".data" | ".text" | ".align" | ".global" | ".section" | ".func_entry"
-            | ".end_function" | ".long" => {}
+            "nop" | "print_debug" | ".data" | ".text" | ".align" | ".global" | ".section"
+            | ".func_entry" | ".end_function" | ".long" => {}
             // Unknown mnemonic is a backend bug. Do not fallback silently.
             _ => {
                 panic!(
@@ -611,7 +611,11 @@ pub fn analyze(instructions: &[Instruction]) -> Vec<AnalyzedInstruction> {
                 .iter()
                 .filter_map(|&k| {
                     let (i, v) = decode_pair(k);
-                    if v == vid { Some(i) } else { None }
+                    if v == vid {
+                        Some(i)
+                    } else {
+                        None
+                    }
                 })
                 .collect();
             seen_idx.sort_unstable();

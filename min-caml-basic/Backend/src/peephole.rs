@@ -72,17 +72,15 @@ pub fn optimize(
             }
 
             let block_slice = &current[block_start..block_end];
-            if let Some((rule_idx, anchor, matched, bindings)) =
-                find_match_in_block(
-                    block_slice,
-                    &rules,
-                    &rule_index,
-                    &analyzed,
-                    block_start,
-                    call_arity_map,
-                    stage_name,
-                )
-            {
+            if let Some((rule_idx, anchor, matched, bindings)) = find_match_in_block(
+                block_slice,
+                &rules,
+                &rule_index,
+                &analyzed,
+                block_start,
+                call_arity_map,
+                stage_name,
+            ) {
                 let mut block = block_slice.to_vec();
                 apply_rule(&mut block, anchor, &matched, &rules[rule_idx], &bindings);
                 rewrites += 1;
@@ -158,7 +156,11 @@ fn fold_sp_addi_subi_sandwich_opt(instructions: Vec<Instruction>) -> (Vec<Instru
 
     while i < n {
         if i + 2 < n {
-            if let Some(mid) = fold_sp_addi_subi_triplet(&instructions[i], &instructions[i + 1], &instructions[i + 2]) {
+            if let Some(mid) = fold_sp_addi_subi_triplet(
+                &instructions[i],
+                &instructions[i + 1],
+                &instructions[i + 2],
+            ) {
                 out.push(mid);
                 rewrites += 1;
                 i += 3;
@@ -172,7 +174,11 @@ fn fold_sp_addi_subi_sandwich_opt(instructions: Vec<Instruction>) -> (Vec<Instru
     (out, rewrites)
 }
 
-fn fold_sp_addi_subi_triplet(i0: &Instruction, i1: &Instruction, i2: &Instruction) -> Option<Instruction> {
+fn fold_sp_addi_subi_triplet(
+    i0: &Instruction,
+    i1: &Instruction,
+    i2: &Instruction,
+) -> Option<Instruction> {
     if i0.label.is_some() || i1.label.is_some() || i2.label.is_some() {
         return None;
     }
@@ -222,7 +228,8 @@ fn fold_trivial_identities(instructions: Vec<Instruction>) -> (Vec<Instruction>,
                         if dst == src {
                             remove_noop = true;
                         } else {
-                            replaced = Some(rewrite_like(&inst, "mov", vec![dst.clone(), src.clone()]));
+                            replaced =
+                                Some(rewrite_like(&inst, "mov", vec![dst.clone(), src.clone()]));
                         }
                     }
                 }
@@ -256,7 +263,8 @@ fn fold_trivial_identities(instructions: Vec<Instruction>) -> (Vec<Instruction>,
                         if dst == y {
                             remove_noop = true;
                         } else {
-                            replaced = Some(rewrite_like(&inst, "mov", vec![dst.clone(), y.clone()]));
+                            replaced =
+                                Some(rewrite_like(&inst, "mov", vec![dst.clone(), y.clone()]));
                         }
                     }
                 }
@@ -268,7 +276,8 @@ fn fold_trivial_identities(instructions: Vec<Instruction>) -> (Vec<Instruction>,
                         if dst == y {
                             remove_noop = true;
                         } else {
-                            replaced = Some(rewrite_like(&inst, "fmov", vec![dst.clone(), y.clone()]));
+                            replaced =
+                                Some(rewrite_like(&inst, "fmov", vec![dst.clone(), y.clone()]));
                         }
                     }
                 }
@@ -316,7 +325,9 @@ fn imm_is_zero(s: &str) -> bool {
     }
     let lower = t.to_ascii_lowercase();
     if let Some(rest) = lower.strip_prefix("0x") {
-        return i64::from_str_radix(rest, 16).map(|v| v == 0).unwrap_or(false);
+        return i64::from_str_radix(rest, 16)
+            .map(|v| v == 0)
+            .unwrap_or(false);
     }
     false
 }
@@ -844,8 +855,10 @@ fn def_regs(inst: &Instruction) -> Vec<String> {
     }
 
     // Store/branch-like instructions do not define destination registers.
-    let no_def = matches!(mnemonic, "sw" | "sb" | "sf" | "jzero" | "ret" | "call_dir" | "call_cls")
-        || mnemonic.starts_with('.')
+    let no_def = matches!(
+        mnemonic,
+        "sw" | "sb" | "sf" | "jzero" | "ret" | "call_dir" | "call_cls"
+    ) || mnemonic.starts_with('.')
         || (mnemonic.starts_with('j') && mnemonic != "jmp");
     if no_def || inst.operands.is_empty() {
         return Vec::new();
@@ -1024,7 +1037,9 @@ fn resolve_call_arity(
             let prev = &block[idx - 1];
             if prev.mnemonic.as_deref() == Some("set_label") && prev.operands.len() >= 2 {
                 let set_reg = &prev.operands[0];
-                if let Some(base) = parse_mem_base(inst.operands.get(1).map(|s| s.as_str()).unwrap_or("")) {
+                if let Some(base) =
+                    parse_mem_base(inst.operands.get(1).map(|s| s.as_str()).unwrap_or(""))
+                {
                     if set_reg == &base {
                         let label = &prev.operands[1];
                         return call_arity_map.get(label).copied().unwrap_or((12, 15));

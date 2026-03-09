@@ -16,9 +16,9 @@ mod spilling;
 
 mod finalize;
 mod long_gap_spill;
-mod reordering;
-mod regalloc2_compare;
 mod petgraph_alloc;
+mod regalloc2_compare;
+mod reordering;
 
 use std::collections::BTreeMap;
 use std::collections::BTreeSet;
@@ -61,7 +61,11 @@ fn dump_liveness_at_indices(analyzed: &[analysis::AnalyzedInstruction]) {
     let limit = live_dump_limit();
     for idx in idxs {
         let Some(inst) = analyzed.get(idx) else {
-            println!("[live-dump] idx={} out_of_range(len={})", idx, analyzed.len());
+            println!(
+                "[live-dump] idx={} out_of_range(len={})",
+                idx,
+                analyzed.len()
+            );
             continue;
         };
         let mnem = inst.instruction.mnemonic.as_deref().unwrap_or("");
@@ -87,8 +91,14 @@ fn dump_liveness_at_indices(analyzed: &[analysis::AnalyzedInstruction]) {
         uses.sort();
         println!("[live-dump]   defs={:?}", defs);
         println!("[live-dump]   uses={:?}", uses);
-        println!("[live-dump]   live_in(first {} sorted)={:?}", limit, in_show);
-        println!("[live-dump]   live_out(first {} sorted)={:?}", limit, out_show);
+        println!(
+            "[live-dump]   live_in(first {} sorted)={:?}",
+            limit, in_show
+        );
+        println!(
+            "[live-dump]   live_out(first {} sorted)={:?}",
+            limit, out_show
+        );
     }
 }
 
@@ -577,12 +587,10 @@ fn normalize_movui_addi_to_ori(
 fn mnemonic_defines_first_operand(mnemonic: &str, rd: &str) -> bool {
     match mnemonic {
         "add" | "sub" | "sll" | "sar" | "xor" | "ceq" | "cleq" | "clt" | "feq" | "fneq"
-        | "fleq" | "flt"
-        | "fadd" | "fsub" | "fmul" | "fma" | "fdiv" | "addi" | "subi" | "slli" | "sari" | "ori"
-        | "xori" | "ceqi" | "cleqi" | "clti" | "mov" | "neg" | "fmov" | "fneg" | "finv"
-        | "frsqrt" | "ffloor" | "fabs" | "ftoi" | "itof" | "movi" | "movui" | "mif" | "lw"
-        | "lf" | "lb"
-        | "set_label" | "tern" | "ftern" => true,
+        | "fleq" | "flt" | "fadd" | "fsub" | "fmul" | "fma" | "fdiv" | "addi" | "subi" | "slli"
+        | "sari" | "ori" | "xori" | "ceqi" | "cleqi" | "clti" | "mov" | "neg" | "fmov" | "fneg"
+        | "finv" | "frsqrt" | "ffloor" | "fabs" | "ftoi" | "itof" | "movi" | "movui" | "mif"
+        | "lw" | "lf" | "lb" | "set_label" | "tern" | "ftern" => true,
         "jmp" => rd != "%i0",
         _ => false,
     }
@@ -753,6 +761,10 @@ fn env_usize(name: &str, default: usize) -> usize {
         .ok()
         .and_then(|v| v.trim().parse::<usize>().ok())
         .unwrap_or(default)
+}
+
+fn stage_opt_iterations() -> usize {
+    env_usize("BACKEND_STAGE_OPT_ITER", 3).max(1)
 }
 
 fn is_virtual_int_reg(reg: &str) -> bool {
@@ -1168,7 +1180,11 @@ fn print_function_color_stats(stats: &[FunctionColorStats]) {
             s.total_int_virtual,
             s.total_float_virtual,
             s.spilled_virtual,
-            format!("{}({})", s.used_int_colors.len(), color_range_string(&s.used_int_colors)),
+            format!(
+                "{}({})",
+                s.used_int_colors.len(),
+                color_range_string(&s.used_int_colors)
+            ),
             format!(
                 "{}({})",
                 s.used_float_colors.len(),
@@ -1338,6 +1354,8 @@ fn main() {
                 env::var("BACKEND_RULES_PATH_STAGE3").unwrap_or_else(|_| rules_path.clone());
             let enable_stage1 = env_enabled("BACKEND_PEEPHOLE_STAGE1", true);
             let enable_stage1_virtual_cse = env_enabled("BACKEND_STAGE1_VIRTUAL_CSE", true);
+            let enable_stage1_virtual_beta_elim =
+                env_enabled("BACKEND_STAGE1_VIRTUAL_BETA_ELIM", false);
             let enable_stage2 = env_enabled("BACKEND_PEEPHOLE_STAGE2", false);
             // let enable_stage3 = env_enabled("BACKEND_PEEPHOLE_STAGE3", true);
             let enable_stage3 = env_enabled("BACKEND_PEEPHOLE_STAGE3", false);
@@ -1371,8 +1389,7 @@ fn main() {
             );
             let long_gap_exclude_loop_vars =
                 env_enabled("BACKEND_LONG_GAP_EXCLUDE_LOOP_VARS", false);
-            let long_gap_retry_on_spill =
-                env_enabled("BACKEND_LONG_GAP_RETRY_ON_SPILL", false);
+            let long_gap_retry_on_spill = env_enabled("BACKEND_LONG_GAP_RETRY_ON_SPILL", false);
             let mut long_gap_chunk_max = env_usize(
                 "BACKEND_LONG_GAP_CHUNK_MAX_INIT",
                 long_gap_spill::CHUNK_MAX_INIT_DEFAULT,
@@ -1385,12 +1402,15 @@ fn main() {
             .max(long_gap_chunk_max);
             let allocator_kind =
                 env::var("BACKEND_ALLOCATOR").unwrap_or_else(|_| "chaitin".to_string());
+            let stage_opt_iter = stage_opt_iterations();
             println!(
-                "Peephole config: stage1={} stage1_virtual_cse={} stage2={} stage3={} preference={} reorder={} rules={}/{}/{} verbose_stats={} func_color_report={} allocator={}",
+                "Peephole config: stage1={} stage1_virtual_cse={} stage1_virtual_beta_elim={} stage2={} stage3={} stage_opt_iter={} preference={} reorder={} rules={}/{}/{} verbose_stats={} func_color_report={} allocator={}",
                 enable_stage1,
                 enable_stage1_virtual_cse,
+                enable_stage1_virtual_beta_elim,
                 enable_stage2,
                 enable_stage3,
+                stage_opt_iter,
                 enable_preference,
                 enable_reorder,
                 rules_path_stage1,
@@ -1402,28 +1422,69 @@ fn main() {
             );
 
             if enable_stage1 {
-                let stage1_lite = peephole_lite::optimize(program::flatten(&current_program), "stage1");
+                let mut stage1_insts = program::flatten(&current_program);
+                let mut stage1_lite_rewrites = 0usize;
+                let mut stage1_virtual_cse_rewrites = 0usize;
+                let mut stage1_virtual_beta_elim_rewrites = 0usize;
+                let mut stage1_loop_inv_hoist_rewrites = 0usize;
+
+                for _ in 0..stage_opt_iter {
+                    let stage1_lite = peephole_lite::optimize(stage1_insts, "stage1");
+                    stage1_lite_rewrites += stage1_lite.rewrites;
+                    stage1_insts = stage1_lite.instructions;
+
+                    if enable_stage1_virtual_cse {
+                        let (ins, r) = adhoc::optimize_virtual_cse_only(stage1_insts);
+                        stage1_virtual_cse_rewrites += r;
+                        stage1_insts = ins;
+                    }
+
+                    if enable_stage1_virtual_beta_elim {
+                        let (ins, r) = adhoc::optimize_virtual_beta_elim_only(stage1_insts);
+                        stage1_virtual_beta_elim_rewrites += r;
+                        stage1_insts = ins;
+                    }
+
+                    let (ins, r) = adhoc::optimize_virtual_loop_invariant_hoist_only(stage1_insts);
+                    stage1_loop_inv_hoist_rewrites += r;
+                    stage1_insts = ins;
+                }
+
                 println!(
                     "Peephole stage1 (frontend-like regs) rewrites: {} (replaced by peephole_lite)",
                     0
                 );
                 println!(
                     "Peephole_lite stage1 (fma only) rewrites: {}",
-                    stage1_lite.rewrites
+                    stage1_lite_rewrites
                 );
-                let stage1_insts = if enable_stage1_virtual_cse {
-                    let (ins, r) = adhoc::optimize_virtual_cse_only(stage1_lite.instructions);
-                    println!("Stage1 virtual register CSE rewrites: {}", r);
-                    ins
+                if enable_stage1_virtual_cse {
+                    println!(
+                        "Stage1 virtual register CSE rewrites: {}",
+                        stage1_virtual_cse_rewrites
+                    );
                 } else {
                     println!("Stage1 virtual register CSE rewrites: 0 (disabled)");
-                    stage1_lite.instructions
-                };
+                }
+                if enable_stage1_virtual_beta_elim {
+                    println!(
+                        "Stage1 virtual beta/elim rewrites: {}",
+                        stage1_virtual_beta_elim_rewrites
+                    );
+                } else {
+                    println!("Stage1 virtual beta/elim rewrites: 0 (disabled)");
+                }
+                println!(
+                    "Stage1 loop invariant hoist rewrites: {}",
+                    stage1_loop_inv_hoist_rewrites
+                );
                 current_program = program::from_instructions(stage1_insts);
             } else {
                 println!("Peephole stage1 (frontend-like regs) rewrites: 0 (disabled)");
                 println!("Peephole_lite stage1 (fma only) rewrites: 0 (disabled)");
                 println!("Stage1 virtual register CSE rewrites: 0 (disabled)");
+                println!("Stage1 virtual beta/elim rewrites: 0 (disabled)");
+                println!("Stage1 loop invariant hoist rewrites: 0 (disabled)");
             }
             if enable_reorder {
                 let reordered = reordering::reorder_with_config(
@@ -1454,10 +1515,8 @@ fn main() {
                     chunk_max: long_gap_chunk_max,
                     exclude_loop_vars: long_gap_exclude_loop_vars,
                 };
-                let split = long_gap_spill::apply_with_config(
-                    program::flatten(&current_program),
-                    cfg,
-                );
+                let split =
+                    long_gap_spill::apply_with_config(program::flatten(&current_program), cfg);
                 println!(
                     "LongGap spill split: funcs={} vregs={} candidates={} applied={} loads={} stores={} skipped_loop_vars={} threshold_alive={} chunk_max={} exclude_loop_vars={} retry_on_spill={} chunk_max_limit={}",
                     split.stats.functions,
@@ -1677,14 +1736,23 @@ fn main() {
                     }
                     let stage3_instructions = if should_run_stage3 {
                         let stage3_call_arity = build_call_arity_map(&work_program);
-                        let r = peephole::optimize(
-                            stage3_target,
-                            &rules_path_stage3,
-                            &stage3_call_arity,
-                            "stage3",
+                        let mut stage3_cur = stage3_target;
+                        let mut stage3_rewrites = 0usize;
+                        for _ in 0..stage_opt_iter {
+                            let r = peephole::optimize(
+                                stage3_cur,
+                                &rules_path_stage3,
+                                &stage3_call_arity,
+                                "stage3",
+                            );
+                            stage3_rewrites += r.rewrites;
+                            stage3_cur = r.instructions;
+                        }
+                        println!(
+                            "Peephole stage3 (physical regs) rewrites: {}",
+                            stage3_rewrites
                         );
-                        println!("Peephole stage3 (physical regs) rewrites: {}", r.rewrites);
-                        let mut merged = r.instructions;
+                        let mut merged = stage3_cur;
                         merged.extend(stage3_protected_tail);
                         merged
                     } else {

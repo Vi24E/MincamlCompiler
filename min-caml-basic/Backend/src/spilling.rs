@@ -64,8 +64,7 @@ pub fn perform_spilling(
     let functions = program::partition_function_ranges(&instructions);
 
     // Assign spill slots per function.
-    let mut func_spill_maps: Vec<HashMap<String, SpillLoc>> =
-        vec![HashMap::new(); functions.len()];
+    let mut func_spill_maps: Vec<HashMap<String, SpillLoc>> = vec![HashMap::new(); functions.len()];
     for (func_idx, range) in functions.iter().enumerate() {
         let mut existing_max = 0i32;
         for i in range.clone() {
@@ -115,15 +114,11 @@ pub fn perform_spilling(
                     if spilled_vars.contains_key(&token)
                         && !func_spill_maps[func_idx].contains_key(&token)
                     {
-                        let use_global_backing =
-                            def_counts.get(&token).copied().unwrap_or(0) == 1
-                                && global_store_offsets.get(&token).copied().is_some();
+                        let use_global_backing = def_counts.get(&token).copied().unwrap_or(0) == 1
+                            && global_store_offsets.get(&token).copied().is_some();
 
                         if use_global_backing {
-                            let off = global_store_offsets
-                                .get(&token)
-                                .copied()
-                                .unwrap_or(0);
+                            let off = global_store_offsets.get(&token).copied().unwrap_or(0);
                             func_spill_maps[func_idx].insert(
                                 token,
                                 SpillLoc {
@@ -733,10 +728,11 @@ fn collect_physical_use_counts(
     let mut int_use_counts: HashMap<String, usize> = HashMap::new();
     let mut float_use_counts: HashMap<String, usize> = HashMap::new();
 
-    for i in range {
-        let inst = &instructions[i];
+    for gi in range {
+        let inst = &instructions[gi];
         let mnem = inst.mnemonic.as_deref().unwrap_or("");
         let (_, use_indices) = get_def_use_indices(mnem, &inst.operands);
+
         for idx in use_indices {
             if let Some(op) = inst.operands.get(idx) {
                 for reg in extract_regs_from_op(op) {
@@ -765,14 +761,14 @@ fn choose_victim(
     };
 
     let mut best_reg: Option<&str> = None;
-    let mut best_count: usize = usize::MAX;
-    for r in candidates {
-        if used_regs.contains(*r) {
+    let mut best_count = usize::MAX;
+    for r in candidates.iter().copied() {
+        if used_regs.contains(r) {
             continue;
         }
-        let cnt = *use_counts.get(*r).unwrap_or(&0);
+        let cnt = *use_counts.get(r).unwrap_or(&0);
         if best_reg.is_none() || cnt < best_count {
-            best_reg = Some(*r);
+            best_reg = Some(r);
             best_count = cnt;
         }
     }
@@ -1050,8 +1046,8 @@ fn get_def_use_indices(mnemonic: &str, operands: &[String]) -> (Vec<usize>, Vec<
 
     match mnemonic {
         // 3-operand reg-reg/reg-float ops: dst, src1, src2
-        "add" | "sub" | "sll" | "sar" | "or" | "xor" | "ceq" | "cleq" | "clt" | "feq"
-        | "fneq" | "fleq" | "flt" | "fadd" | "fsub" | "fmul" | "fdiv" => {
+        "add" | "sub" | "sll" | "sar" | "or" | "xor" | "ceq" | "cleq" | "clt" | "feq" | "fneq"
+        | "fleq" | "flt" | "fadd" | "fsub" | "fmul" | "fdiv" => {
             if n > 0 {
                 expect_direct_reg_operand(operands, mnemonic, 0);
                 defs.push(0);
@@ -1201,8 +1197,8 @@ fn get_def_use_indices(mnemonic: &str, operands: &[String]) -> (Vec<usize>, Vec<
                 defs.push(idx);
             }
         }
-        "" | "nop" | "print_debug" | ".data" | ".text" | ".align" | ".global" | ".section" | ".func_entry"
-        | ".end_function" | ".long" => {}
+        "" | "nop" | "print_debug" | ".data" | ".text" | ".align" | ".global" | ".section"
+        | ".func_entry" | ".end_function" | ".long" => {}
         _ => panic!(
             "spilling::get_def_use_indices: unknown mnemonic '{}' operands={:?}",
             mnemonic, operands
@@ -1213,5 +1209,8 @@ fn get_def_use_indices(mnemonic: &str, operands: &[String]) -> (Vec<usize>, Vec<
 }
 
 fn is_control_transfer(mnem: &str) -> bool {
-    matches!(mnem, "jzero" | "jeq" | "jlt" | "jleq" | "jmp" | "ret" | "call_dir" | "call_cls")
+    matches!(
+        mnem,
+        "jzero" | "jeq" | "jlt" | "jleq" | "jmp" | "ret" | "call_dir" | "call_cls"
+    )
 }

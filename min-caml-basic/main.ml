@@ -10,6 +10,7 @@ let rec iter n e =
              |> TupleElim.f
              |> ArrayElim.f
              |> TernPhiInsert.f
+             |> HoistIf.f
              |> Elim.f
              |> ConstFold.f
              |> CommonExpElim.f
@@ -73,11 +74,6 @@ let file f =
   let outchan = open_out (f ^ ".s") in
   try
     lexbuf f outchan (Lexing.from_string (libstr ^ str));
-    let asmchan = open_in "TKA/libmincaml.S" in
-    let asmlen = in_channel_length asmchan in
-    let asmstr = really_input_string asmchan asmlen in
-    close_in asmchan;
-    output_string outchan asmstr;
     close_out outchan;
   with e -> (close_out outchan; raise e)
 

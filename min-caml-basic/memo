@@ -32,3 +32,13 @@ lf	%f31, 129(%i1)
 fleq %i4, %f5, %f31     ; 比較結果 → 整数0/1
 itof %f1, %i4            ; ← 0/1をfloatに変換
 ftern %f5, %f1, %f5, %f3 ; 条件選択
+
+2 の「ランダムで Accuracy が落ちる原因」は、かなり高確率でこれです。
+
+victim 選定の禁止条件が「その命令で使っているか」だけで、live-out を見ていない
+spilling.rs (line 700)
+そのため、need_load だけのケースで victim を上書きしても復元されず、後続で必要な値を壊しうる
+通常命令側: spilling.rs (line 342)
+分岐命令側: spilling.rs (line 410)
+use最小 だとたまたま壊れにくいレジスタを選び続けて症状が隠れ、ランダムだと壊れやすいレジスタを引いて Accuracy 低下が顕在化します。
+

@@ -41,8 +41,7 @@ pub struct FunctionProg {
 impl FunctionProg {
     #[allow(dead_code)]
     pub fn instructions(&self) -> Vec<Instruction> {
-        let mut out =
-            Vec::with_capacity(self.prolog.len() + self.body.len() + self.epilog.len());
+        let mut out = Vec::with_capacity(self.prolog.len() + self.body.len() + self.epilog.len());
         out.extend(self.prolog.iter().cloned());
         out.extend(self.body.iter().cloned());
         out.extend(self.epilog.iter().cloned());
@@ -367,7 +366,8 @@ fn build_function_prog(slice: &[Instruction]) -> FunctionProg {
     let float_arity = entry_float_args.values().max().map(|v| v + 1).unwrap_or(0);
     let (int_arity, float_arity) = override_known_arity(&name, int_arity, float_arity);
     let local_caller_clobber = collect_local_caller_clobber(&def_regs);
-    let (local_caller_used, local_callee_used) = collect_local_call_class_usage(&used_regs, &def_regs);
+    let (local_caller_used, local_callee_used) =
+        collect_local_call_class_usage(&used_regs, &def_regs);
 
     FunctionProg {
         name,

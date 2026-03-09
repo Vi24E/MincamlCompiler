@@ -75,16 +75,7 @@ fn is_control_or_barrier_mnemonic(m: &str) -> bool {
     }
     matches!(
         m,
-        "sw"
-            | "sf"
-            | "sb"
-            | "jmp"
-            | "jzero"
-            | "jeq"
-            | "jlt"
-            | "jleq"
-            | "ret"
-            | "set_label"
+        "sw" | "sf" | "sb" | "jmp" | "jzero" | "jeq" | "jlt" | "jleq" | "ret" | "set_label"
     )
 }
 
@@ -163,7 +154,10 @@ fn is_movable(inst: &Instruction) -> bool {
 }
 
 fn is_call(inst: &Instruction) -> bool {
-    matches!(inst.mnemonic.as_deref(), Some("call_dir") | Some("call_cls"))
+    matches!(
+        inst.mnemonic.as_deref(),
+        Some("call_dir") | Some("call_cls")
+    )
 }
 
 fn instruction_priority(inst: &Instruction, live_out: &BTreeSet<String>) -> u8 {

@@ -579,15 +579,14 @@ pub fn finalize_code(instructions: Vec<Instruction>, allocation: &Allocation) ->
                         idx,
                         allocation,
                     );
-                let (save_int, save_float) =
-                    collect_call_save_regs(
+                    let (save_int, save_float) = collect_call_save_regs(
                         &analyzed_func[idx].live_out,
                         &defined_before_call,
                         &live_in_at_block_entry,
                         None, // call_cls target is unknown; conservatively save all live caller-save
                         allocation,
                     );
-                expand_call_cls(&mut final_insts, inst, &save_int, &save_float);
+                    expand_call_cls(&mut final_insts, inst, &save_int, &save_float);
                 } else if mnemonic == "ret" {
                     // ret in main/fin: just jump to return address (no frame to restore)
                     // Return convention in v2: %i30/%f30 hold return values.
@@ -631,7 +630,8 @@ pub fn finalize_code(instructions: Vec<Instruction>, allocation: &Allocation) ->
             let before_float = callee_save_float.len();
             callee_save_int.retain(|r| policy.ancestor_used.contains(r));
             callee_save_float.retain(|r| policy.ancestor_used.contains(r));
-            let removed = (before_int - callee_save_int.len()) + (before_float - callee_save_float.len());
+            let removed =
+                (before_int - callee_save_int.len()) + (before_float - callee_save_float.len());
             if removed > 0 {
                 eprintln!(
                     "[callee-filter] {}: removed {} callee-save regs (int: {}->{}, float: {}->{}), ancestor_used={}",
@@ -872,14 +872,13 @@ pub fn finalize_code(instructions: Vec<Instruction>, allocation: &Allocation) ->
                     idx,
                     allocation,
                 );
-                let (save_int, save_float) =
-                    collect_call_save_regs(
-                        &analyzed_func[idx].live_out,
-                        &defined_before_call,
-                        &live_in_at_block_entry,
-                        None, // call_cls target is unknown; conservatively save all live caller-save
-                        allocation,
-                    );
+                let (save_int, save_float) = collect_call_save_regs(
+                    &analyzed_func[idx].live_out,
+                    &defined_before_call,
+                    &live_in_at_block_entry,
+                    None, // call_cls target is unknown; conservatively save all live caller-save
+                    allocation,
+                );
                 expand_call_cls(&mut final_insts, &stripped, &save_int, &save_float);
                 idx += 1;
             } else {
@@ -1281,7 +1280,11 @@ fn filter_create_array_save_int(save_int: &[String]) -> Vec<String> {
 /// Uses %i29 as temporary target register (clobbered by the helper).
 /// %i3 is callee-save (prologue), so only %i29 needs save/restore (if live).
 /// If %i29 is not live, the call expands to just set_label + jmp (zero frame).
-fn expand_call_dir_create_array(out: &mut Vec<Instruction>, inst: &Instruction, save_int: &[String]) {
+fn expand_call_dir_create_array(
+    out: &mut Vec<Instruction>,
+    inst: &Instruction,
+    save_int: &[String],
+) {
     let label = &inst.operands[0];
     // This helper clobbers %i29 as loop counter, so preserve only when live.
     let save_i29 = save_int.iter().any(|r| r == "%i29");

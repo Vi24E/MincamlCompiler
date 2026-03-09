@@ -19,8 +19,7 @@ fn is_boundary(inst: &Instruction) -> bool {
     }
     matches!(
         m,
-        "lw"
-            | "lf"
+        "lw" | "lf"
             | "lb"
             | "sw"
             | "sf"
@@ -234,12 +233,18 @@ fn imm_is_zero(s: &str) -> bool {
     }
     let lower = t.to_ascii_lowercase();
     if let Some(rest) = lower.strip_prefix("0x") {
-        return i64::from_str_radix(rest, 16).map(|v| v == 0).unwrap_or(false);
+        return i64::from_str_radix(rest, 16)
+            .map(|v| v == 0)
+            .unwrap_or(false);
     }
     false
 }
 
-fn fold_sp_addi_subi_triplet(i0: &Instruction, i1: &Instruction, i2: &Instruction) -> Option<Instruction> {
+fn fold_sp_addi_subi_triplet(
+    i0: &Instruction,
+    i1: &Instruction,
+    i2: &Instruction,
+) -> Option<Instruction> {
     if i0.label.is_some() || i1.label.is_some() || i2.label.is_some() {
         return None;
     }
@@ -278,9 +283,11 @@ fn fold_sp_addi_subi_sandwich_opt(instructions: Vec<Instruction>) -> (Vec<Instru
 
     while i < n {
         if i + 2 < n {
-            if let Some(mid) =
-                fold_sp_addi_subi_triplet(&instructions[i], &instructions[i + 1], &instructions[i + 2])
-            {
+            if let Some(mid) = fold_sp_addi_subi_triplet(
+                &instructions[i],
+                &instructions[i + 1],
+                &instructions[i + 2],
+            ) {
                 out.push(mid);
                 rewrites += 1;
                 i += 3;
@@ -312,7 +319,8 @@ fn fold_trivial_identities(instructions: Vec<Instruction>) -> (Vec<Instruction>,
                         if dst == src {
                             remove_noop = true;
                         } else {
-                            replaced = Some(rewrite_like(&inst, "mov", vec![dst.clone(), src.clone()]));
+                            replaced =
+                                Some(rewrite_like(&inst, "mov", vec![dst.clone(), src.clone()]));
                         }
                     }
                 }
@@ -344,7 +352,8 @@ fn fold_trivial_identities(instructions: Vec<Instruction>) -> (Vec<Instruction>,
                         if dst == y {
                             remove_noop = true;
                         } else {
-                            replaced = Some(rewrite_like(&inst, "mov", vec![dst.clone(), y.clone()]));
+                            replaced =
+                                Some(rewrite_like(&inst, "mov", vec![dst.clone(), y.clone()]));
                         }
                     }
                 }
@@ -356,7 +365,8 @@ fn fold_trivial_identities(instructions: Vec<Instruction>) -> (Vec<Instruction>,
                         if dst == y {
                             remove_noop = true;
                         } else {
-                            replaced = Some(rewrite_like(&inst, "fmov", vec![dst.clone(), y.clone()]));
+                            replaced =
+                                Some(rewrite_like(&inst, "fmov", vec![dst.clone(), y.clone()]));
                         }
                     }
                 }
@@ -445,13 +455,14 @@ fn fold_window_with_dep_graph(window: &[Instruction]) -> (Vec<Instruction>, usiz
     let mut remove = vec![false; n];
     let mut rewrites = 0usize;
 
-    // Rule A: fmul node is a leaf-source (indeg=0), has exactly one outgoing edge,
-    // that edge is RAW and points to fadd consuming its result.
+    // Rule A: fmul node has exactly one outgoing edge, and that edge is RAW
+    // to fadd consuming its result.
+    // Note: indeg may be non-zero (its operands can be produced in the same window).
     for u in 0..n {
         if window[u].mnemonic.as_deref() != Some("fmul") {
             continue;
         }
-        if indeg[u] != 0 || succ[u].len() != 1 {
+        if succ[u].len() != 1 {
             continue;
         }
         let Some(&v) = succ[u].iter().next() else {
