@@ -495,7 +495,7 @@ void load_binary(const string &filename) {
           inst.op = FTERN;
           inst.is_float = true;
           inst.original_line = "ftern " + get_freg_name(inst.rd) + ", " +
-                               get_freg_name(inst.rs1) + ", " +
+                               get_reg_name(inst.rs1) + ", " +
                                get_freg_name(inst.rs2) + ", " +
                                get_freg_name(inst.rs3);
         } else if (is_imm) {
@@ -829,7 +829,7 @@ void exec_one_step(bool running) {
     set_x(inst.rd, (int32_t)get_x(inst.rs1) >> (get_x(inst.rs2) & 31));
     break;
   case FTERN:
-    set_f(inst.rd, get_f(inst.rs1) != 0.0f ? get_f(inst.rs2) : get_f(inst.rs3));
+    set_f(inst.rd, get_x(inst.rs1) != 0 ? get_f(inst.rs2) : get_f(inst.rs3));
     break;
   case SARI:
     set_x(inst.rd, (int32_t)get_x(inst.rs1) >> (inst.imm & 31));

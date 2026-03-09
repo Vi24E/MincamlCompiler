@@ -431,7 +431,6 @@ let rec g env const_env break_label continue_label e =
       | _ -> assert false)
     | Closure.ExtArray(Id.L(x)) -> Ans(SetLabel(Id.L("min_caml_" ^ x)))
     | Closure.TernPhi(c, x, y) ->
-      let tc = try Some(find_type c env) with Not_found -> None in
       let tx = try Some(find_type x env) with Not_found -> None in
       let ty = try Some(find_type y env) with Not_found -> None in
       let txy =
@@ -446,15 +445,7 @@ let rec g env const_env break_label continue_label e =
       | Type.Unit ->
           Ans(Nop)
       | Type.Float ->
-          (match tc with
-          | Some Type.Float ->
-              Ans(TernF(c, x, y))
-          | _ ->
-              let cf = Id.gentmp Type.Float in
-              concat
-                (Ans(CallDir(Id.L("min_caml_float_of_int"), [c], [])))
-                (cf, Type.Float)
-                (Ans(TernF(cf, x, y))))
+          Ans(TernF(c, x, y))
       | _ ->
           Ans(Tern(c, x, y)))
     | Closure.Loop(e) ->
