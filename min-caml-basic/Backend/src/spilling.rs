@@ -39,6 +39,12 @@ struct ClassPlan {
     post: Vec<Instruction>,
 }
 
+#[derive(Clone, Debug)]
+struct SpillLoc {
+    base: String,
+    off: i32,
+}
+
 fn spill_debug_enabled() -> bool {
     std::env::var("BACKEND_DEBUG_SPILL")
         .map(|v| v != "0")
@@ -58,7 +64,8 @@ pub fn perform_spilling(
     let functions = program::partition_function_ranges(&instructions);
 
     // Assign spill slots per function.
-    let mut func_spill_maps: Vec<HashMap<String, i32>> = vec![HashMap::new(); functions.len()];
+    let mut func_spill_maps: Vec<HashMap<String, SpillLoc>> =
+        vec![HashMap::new(); functions.len()];
     for (func_idx, range) in functions.iter().enumerate() {
         let mut existing_max = 0i32;
         for i in range.clone() {
@@ -72,6 +79,34 @@ pub fn perform_spilling(
             }
         }
 
+        let mut def_counts: HashMap<String, usize> = HashMap::new();
+        let mut global_store_offsets: HashMap<String, i32> = HashMap::new();
+        for i in range.clone() {
+            let inst = &instructions[i];
+            let mnem = inst.mnemonic.as_deref().unwrap_or("");
+            if mnem != ".virtual_def" {
+                let (def_indices, _) = get_def_use_indices(mnem, &inst.operands);
+                for idx in def_indices {
+                    if let Some(op) = inst.operands.get(idx) {
+                        if is_virtual_register(op) && spilled_vars.contains_key(op) {
+                            *def_counts.entry(op.clone()).or_insert(0) += 1;
+                        }
+                    }
+                }
+            }
+
+            if matches!(mnem, "sw" | "sf") && inst.operands.len() == 2 {
+                let src = &inst.operands[0];
+                if is_virtual_register(src) && spilled_vars.contains_key(src) {
+                    if let Some((off, base)) = parse_offset(&inst.operands[1]) {
+                        if base == "%i0" {
+                            global_store_offsets.entry(src.clone()).or_insert(off);
+                        }
+                    }
+                }
+            }
+        }
+
         let mut slot_counter = existing_max / 4;
         for i in range.clone() {
             let inst = &instructions[i];
@@ -80,8 +115,32 @@ pub fn perform_spilling(
                     if spilled_vars.contains_key(&token)
                         && !func_spill_maps[func_idx].contains_key(&token)
                     {
-                        func_spill_maps[func_idx].insert(token, slot_counter);
-                        slot_counter += 1;
+                        let use_global_backing =
+                            def_counts.get(&token).copied().unwrap_or(0) == 1
+                                && global_store_offsets.get(&token).copied().is_some();
+
+                        if use_global_backing {
+                            let off = global_store_offsets
+                                .get(&token)
+                                .copied()
+                                .unwrap_or(0);
+                            func_spill_maps[func_idx].insert(
+                                token,
+                                SpillLoc {
+                                    base: "%i0".to_string(),
+                                    off,
+                                },
+                            );
+                        } else {
+                            func_spill_maps[func_idx].insert(
+                                token,
+                                SpillLoc {
+                                    base: "%i1".to_string(),
+                                    off: slot_counter * 4,
+                                },
+                            );
+                            slot_counter += 1;
+                        }
                     }
                 }
             }
@@ -265,7 +324,7 @@ pub fn perform_spilling(
 
 fn build_class_plan(
     vars: &[String],
-    spill_map: &HashMap<String, i32>,
+    spill_map: &HashMap<String, SpillLoc>,
     is_float: bool,
     used_regs: &HashSet<String>,
     use_counts: &HashMap<String, usize>,
@@ -277,8 +336,47 @@ fn build_class_plan(
     sorted.sort();
 
     let mut used = used_regs.clone();
-    build_class_plan_rec(
-        &sorted,
+    let mut stack_vars: Vec<String> = Vec::new();
+    let mut plan = ClassPlan::default();
+
+    for var in sorted {
+        let loc = spill_map
+            .get(&var)
+            .unwrap_or_else(|| panic!("missing spill slot for {}", var));
+        if loc.base != "%i1" {
+            let reg = choose_victim(is_float, &used, use_counts)
+                .unwrap_or_else(|| panic!("no victim register available for {}", var));
+            used.insert(reg.clone());
+            plan.map.insert(var.clone(), reg.clone());
+
+            let (need_load, need_store) = need_load_store(&var, operands, def_indices, use_indices);
+            if need_load {
+                emit_mem_load(
+                    &mut plan.pre,
+                    if is_float { "lf" } else { "lw" },
+                    &reg,
+                    loc.off,
+                    &loc.base,
+                    &used,
+                );
+            }
+            if need_store {
+                emit_mem_store(
+                    &mut plan.post,
+                    if is_float { "sf" } else { "sw" },
+                    &reg,
+                    loc.off,
+                    &loc.base,
+                    &used,
+                );
+            }
+        } else {
+            stack_vars.push(var);
+        }
+    }
+
+    let mut stack_plan = build_class_plan_rec(
+        &stack_vars,
         spill_map,
         is_float,
         &mut used,
@@ -286,12 +384,17 @@ fn build_class_plan(
         operands,
         def_indices,
         use_indices,
-    )
+    );
+    plan.map.extend(stack_plan.map);
+    plan.pre.extend(stack_plan.pre);
+    stack_plan.post.extend(plan.post);
+    plan.post = stack_plan.post;
+    plan
 }
 
 fn build_control_transfer_class_plan(
     vars: &[String],
-    spill_map: &HashMap<String, i32>,
+    spill_map: &HashMap<String, SpillLoc>,
     is_float: bool,
     used_regs: &HashSet<String>,
     use_counts: &HashMap<String, usize>,
@@ -306,11 +409,9 @@ fn build_control_transfer_class_plan(
     let mut used = used_regs.clone();
 
     for var in sorted {
-        let offset = spill_map
+        let loc = spill_map
             .get(&var)
-            .copied()
-            .unwrap_or_else(|| panic!("missing spill slot for {}", var))
-            * 4;
+            .unwrap_or_else(|| panic!("missing spill slot for {}", var));
         let reg = choose_victim(is_float, &used, use_counts)
             .unwrap_or_else(|| panic!("no victim register available for {}", var));
         used.insert(reg.clone());
@@ -322,7 +423,8 @@ fn build_control_transfer_class_plan(
                 &mut plan.pre,
                 if is_float { "lf" } else { "lw" },
                 &reg,
-                offset,
+                loc.off,
+                &loc.base,
                 &used,
             );
         }
@@ -333,7 +435,8 @@ fn build_control_transfer_class_plan(
                 &mut plan.post,
                 if is_float { "sf" } else { "sw" },
                 &reg,
-                offset,
+                loc.off,
+                &loc.base,
                 &used,
             );
         }
@@ -344,7 +447,7 @@ fn build_control_transfer_class_plan(
 
 fn build_class_plan_rec(
     vars: &[String],
-    spill_map: &HashMap<String, i32>,
+    spill_map: &HashMap<String, SpillLoc>,
     is_float: bool,
     used_regs: &mut HashSet<String>,
     use_counts: &HashMap<String, usize>,
@@ -358,11 +461,11 @@ fn build_class_plan_rec(
 
     if vars.len() == 1 {
         let var = vars[0].clone();
-        let offset = spill_map
+        let loc = spill_map
             .get(&var)
-            .copied()
-            .unwrap_or_else(|| panic!("missing spill slot for {}", var))
-            * 4;
+            .unwrap_or_else(|| panic!("missing spill slot for {}", var));
+        let offset = loc.off;
+        let base = loc.base.as_str();
         let scratch = if is_float { "%f31" } else { "%i31" };
 
         let mut plan = ClassPlan::default();
@@ -374,10 +477,10 @@ fn build_class_plan_rec(
             if !is_float && !used_regs.contains("%i30") {
                 plan.map.insert(var.clone(), "%i30".to_string());
                 if need_load {
-                    emit_mem_load(&mut plan.pre, "lw", "%i30", offset, used_regs);
+                    emit_mem_load(&mut plan.pre, "lw", "%i30", offset, base, used_regs);
                 }
                 if need_store {
-                    emit_mem_store(&mut plan.post, "sw", "%i30", offset, used_regs);
+                    emit_mem_store(&mut plan.post, "sw", "%i30", offset, base, used_regs);
                 }
                 return plan;
             }
@@ -392,6 +495,7 @@ fn build_class_plan_rec(
                         if is_float { "lf" } else { "lw" },
                         scratch,
                         offset,
+                        base,
                         used_regs,
                     );
                 }
@@ -401,6 +505,7 @@ fn build_class_plan_rec(
                         if is_float { "sf" } else { "sw" },
                         scratch,
                         offset,
+                        base,
                         used_regs,
                     );
                 }
@@ -423,6 +528,7 @@ fn build_class_plan_rec(
                 if is_float { "lf" } else { "lw" },
                 &victim,
                 offset,
+                base,
                 &used2,
             );
             emit_mem_store(
@@ -430,6 +536,7 @@ fn build_class_plan_rec(
                 if is_float { "sf" } else { "sw" },
                 &swap_scratch,
                 offset,
+                base,
                 &used2,
             );
             // If the operand is never defined, restore victim immediately after use.
@@ -440,6 +547,7 @@ fn build_class_plan_rec(
                     if is_float { "lf" } else { "lw" },
                     &swap_scratch,
                     offset,
+                    base,
                     &used2,
                 );
                 emit_mem_store(
@@ -447,6 +555,7 @@ fn build_class_plan_rec(
                     if is_float { "sf" } else { "sw" },
                     &victim,
                     offset,
+                    base,
                     &used2,
                 );
                 emit_reg_move(&mut plan.post, is_float, &victim, &swap_scratch);
@@ -460,6 +569,7 @@ fn build_class_plan_rec(
                     if is_float { "lf" } else { "lw" },
                     scratch,
                     offset,
+                    base,
                     used_regs,
                 );
             }
@@ -469,6 +579,7 @@ fn build_class_plan_rec(
                     if is_float { "sf" } else { "sw" },
                     scratch,
                     offset,
+                    base,
                     used_regs,
                 );
             }
@@ -493,11 +604,13 @@ fn build_class_plan_rec(
         .unwrap_or_else(|| panic!("no victim register available for {}", slow_var));
     used_regs.insert(victim.clone());
 
-    let offset = spill_map
+    let slow_loc = spill_map
         .get(&slow_var)
-        .copied()
-        .unwrap_or_else(|| panic!("missing spill slot for {}", slow_var))
-        * 4;
+        .unwrap_or_else(|| panic!("missing spill slot for {}", slow_var));
+    if slow_loc.base != "%i1" {
+        panic!("slow spill requires stack-backed location for {}", slow_var);
+    }
+    let offset = slow_loc.off;
 
     let mut inner = build_class_plan_rec(
         rest,
@@ -517,6 +630,7 @@ fn build_class_plan_rec(
         if is_float { "lf" } else { "lw" },
         &victim,
         offset,
+        "%i1",
         used_regs,
     );
     emit_mem_store(
@@ -524,6 +638,7 @@ fn build_class_plan_rec(
         if is_float { "sf" } else { "sw" },
         &scratch,
         offset,
+        "%i1",
         used_regs,
     );
     pre.extend(inner.pre);
@@ -534,6 +649,7 @@ fn build_class_plan_rec(
         if is_float { "lf" } else { "lw" },
         &scratch,
         offset,
+        "%i1",
         used_regs,
     );
     emit_mem_store(
@@ -541,6 +657,7 @@ fn build_class_plan_rec(
         if is_float { "sf" } else { "sw" },
         &victim,
         offset,
+        "%i1",
         used_regs,
     );
     emit_reg_move(&mut post, is_float, &victim, &scratch);
@@ -553,7 +670,7 @@ fn build_class_plan_rec(
 
 fn collect_spilled_vars_by_class(
     inst: &Instruction,
-    spill_map: &HashMap<String, i32>,
+    spill_map: &HashMap<String, SpillLoc>,
 ) -> (Vec<String>, Vec<String>) {
     let mut ints: BTreeSet<String> = BTreeSet::new();
     let mut floats: BTreeSet<String> = BTreeSet::new();
@@ -583,7 +700,7 @@ fn collect_spilled_vars_by_class(
 fn collect_used_regs(
     inst: &Instruction,
     is_float: bool,
-    spill_map: &HashMap<String, i32>,
+    spill_map: &HashMap<String, SpillLoc>,
     allocation: &Allocation,
 ) -> HashSet<String> {
     let mut used = HashSet::new();
@@ -739,13 +856,14 @@ fn emit_mem_load(
     mnem: &str,
     reg: &str,
     off: i32,
+    base: &str,
     used_regs: &HashSet<String>,
 ) {
     if (-2048..2048).contains(&off) {
         out.push(Instruction {
             label: None,
             mnemonic: Some(mnem.to_string()),
-            operands: vec![reg.to_string(), format!("{}(%i1)", off)],
+            operands: vec![reg.to_string(), format!("{}({})", off, base)],
         });
         return;
     }
@@ -756,7 +874,7 @@ fn emit_mem_load(
     out.push(Instruction {
         label: None,
         mnemonic: Some("add".to_string()),
-        operands: vec![addr.clone(), "%i1".to_string(), addr.clone()],
+        operands: vec![addr.clone(), base.to_string(), addr.clone()],
     });
     out.push(Instruction {
         label: None,
@@ -770,13 +888,14 @@ fn emit_mem_store(
     mnem: &str,
     reg: &str,
     off: i32,
+    base: &str,
     used_regs: &HashSet<String>,
 ) {
     if (-2048..2048).contains(&off) {
         out.push(Instruction {
             label: None,
             mnemonic: Some(mnem.to_string()),
-            operands: vec![reg.to_string(), format!("{}(%i1)", off)],
+            operands: vec![reg.to_string(), format!("{}({})", off, base)],
         });
         return;
     }
@@ -787,7 +906,7 @@ fn emit_mem_store(
     out.push(Instruction {
         label: None,
         mnemonic: Some("add".to_string()),
-        operands: vec![addr.clone(), "%i1".to_string(), addr.clone()],
+        operands: vec![addr.clone(), base.to_string(), addr.clone()],
     });
     out.push(Instruction {
         label: None,

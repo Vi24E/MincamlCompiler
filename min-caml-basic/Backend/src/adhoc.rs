@@ -146,6 +146,10 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
         instructions = ins;
         dead_move_rewrites += r;
 
+        let (ins, r) = redirect_global_const_stack_mirror_opt(instructions);
+        instructions = ins;
+        redundant_reload_rewrites += r;
+
         let (ins, r) = eliminate_redundant_store_load_opt(instructions);
         instructions = ins;
         redundant_reload_rewrites += r;
@@ -2410,6 +2414,229 @@ fn eliminate_dead_moves_virtual_opt(mut instructions: Vec<Instruction>) -> (Vec<
         instructions = remove_indices_preserve_labels(&instructions, &remove);
     }
     (instructions, total_rewrites)
+}
+
+#[derive(Clone)]
+struct GlobalMirrorInfo {
+    global_off: i32,
+    src: String,
+}
+
+fn redirect_global_const_stack_mirror_opt(
+    mut instructions: Vec<Instruction>,
+) -> (Vec<Instruction>, usize) {
+    let n = instructions.len();
+    let mut float_map: HashMap<i32, GlobalMirrorInfo> = HashMap::new();
+    let mut int_map: HashMap<i32, GlobalMirrorInfo> = HashMap::new();
+    let mut invalid_float: HashSet<i32> = HashSet::new();
+    let mut invalid_int: HashSet<i32> = HashSet::new();
+
+    for i in 0..n {
+        let inst = &instructions[i];
+        let Some(mnem) = inst.mnemonic.as_deref() else {
+            continue;
+        };
+        if !matches!(mnem, "sf" | "sw") || inst.operands.len() != 2 {
+            continue;
+        }
+        let src = inst.operands[0].clone();
+        let Some((slot_off, base)) = parse_mem_operand(&inst.operands[1]) else {
+            continue;
+        };
+        if base != "%i1" {
+            continue;
+        }
+
+        let mut found: Option<i32> = None;
+        let mut j = i + 1;
+        while j < n && j <= i + 6 {
+            let look = &instructions[j];
+            if look.label.is_some() {
+                break;
+            }
+            let Some(look_mnem) = look.mnemonic.as_deref() else {
+                j += 1;
+                continue;
+            };
+            if is_trace_barrier(look_mnem) {
+                break;
+            }
+            if !look.operands.is_empty()
+                && look.operands[0] == src
+                && mnemonic_defines_first_operand(look_mnem, &src)
+            {
+                break;
+            }
+            if look_mnem == mnem && look.operands.len() == 2 && look.operands[0] == src {
+                if let Some((g_off, g_base)) = parse_mem_operand(&look.operands[1]) {
+                    if g_base == "%i0" {
+                        found = Some(g_off);
+                        break;
+                    }
+                }
+            }
+            j += 1;
+        }
+
+        let Some(global_off) = found else {
+            continue;
+        };
+
+        if mnem == "sf" {
+            if let Some(prev) = float_map.get(&slot_off) {
+                if prev.global_off != global_off || prev.src != src {
+                    invalid_float.insert(slot_off);
+                }
+            } else {
+                float_map.insert(
+                    slot_off,
+                    GlobalMirrorInfo {
+                        global_off,
+                        src,
+                    },
+                );
+            }
+        } else {
+            if let Some(prev) = int_map.get(&slot_off) {
+                if prev.global_off != global_off || prev.src != src {
+                    invalid_int.insert(slot_off);
+                }
+            } else {
+                int_map.insert(
+                    slot_off,
+                    GlobalMirrorInfo {
+                        global_off,
+                        src,
+                    },
+                );
+            }
+        }
+    }
+
+    for slot in invalid_float {
+        float_map.remove(&slot);
+    }
+    for slot in invalid_int {
+        int_map.remove(&slot);
+    }
+
+    if float_map.is_empty() && int_map.is_empty() {
+        return (instructions, 0);
+    }
+
+    let mut kill_float: HashSet<i32> = HashSet::new();
+    let mut kill_int: HashSet<i32> = HashSet::new();
+    for inst in &instructions {
+        let Some(mnem) = inst.mnemonic.as_deref() else {
+            continue;
+        };
+        if !matches!(mnem, "sf" | "sw") || inst.operands.len() != 2 {
+            continue;
+        }
+        let src = inst.operands[0].as_str();
+        let Some((off, base)) = parse_mem_operand(&inst.operands[1]) else {
+            continue;
+        };
+
+        if mnem == "sf" {
+            if base == "%i1" {
+                if let Some(info) = float_map.get(&off) {
+                    if info.src != src {
+                        kill_float.insert(off);
+                    }
+                }
+            } else if base == "%i0" {
+                for (slot, info) in &float_map {
+                    if info.global_off == off && info.src != src {
+                        kill_float.insert(*slot);
+                    }
+                }
+            }
+        } else {
+            if base == "%i1" {
+                if let Some(info) = int_map.get(&off) {
+                    if info.src != src {
+                        kill_int.insert(off);
+                    }
+                }
+            } else if base == "%i0" {
+                for (slot, info) in &int_map {
+                    if info.global_off == off && info.src != src {
+                        kill_int.insert(*slot);
+                    }
+                }
+            }
+        }
+    }
+    for slot in kill_float {
+        float_map.remove(&slot);
+    }
+    for slot in kill_int {
+        int_map.remove(&slot);
+    }
+
+    if float_map.is_empty() && int_map.is_empty() {
+        return (instructions, 0);
+    }
+
+    let mut rewrites = 0usize;
+    for inst in &mut instructions {
+        let Some(mnem) = inst.mnemonic.as_deref() else {
+            continue;
+        };
+        if inst.operands.len() != 2 {
+            continue;
+        }
+        let Some((off, base)) = parse_mem_operand(&inst.operands[1]) else {
+            continue;
+        };
+
+        match mnem {
+            "lf" if base == "%i1" => {
+                if let Some(info) = float_map.get(&off) {
+                    let new_mem = format!("{}(%i0)", info.global_off);
+                    if inst.operands[1] != new_mem {
+                        inst.operands[1] = new_mem;
+                        rewrites += 1;
+                    }
+                }
+            }
+            "lw" if base == "%i1" => {
+                if let Some(info) = int_map.get(&off) {
+                    let new_mem = format!("{}(%i0)", info.global_off);
+                    if inst.operands[1] != new_mem {
+                        inst.operands[1] = new_mem;
+                        rewrites += 1;
+                    }
+                }
+            }
+            "sf" if base == "%i1" => {
+                if let Some(info) = float_map.get(&off) {
+                    if inst.operands[0] == info.src {
+                        let new_mem = format!("{}(%i0)", info.global_off);
+                        if inst.operands[1] != new_mem {
+                            inst.operands[1] = new_mem;
+                            rewrites += 1;
+                        }
+                    }
+                }
+            }
+            "sw" if base == "%i1" => {
+                if let Some(info) = int_map.get(&off) {
+                    if inst.operands[0] == info.src {
+                        let new_mem = format!("{}(%i0)", info.global_off);
+                        if inst.operands[1] != new_mem {
+                            inst.operands[1] = new_mem;
+                            rewrites += 1;
+                        }
+                    }
+                }
+            }
+            _ => {}
+        }
+    }
+
+    (instructions, rewrites)
 }
 
 fn eliminate_redundant_store_load_opt(instructions: Vec<Instruction>) -> (Vec<Instruction>, usize) {

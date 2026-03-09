@@ -40,6 +40,17 @@ let int_return_reg () =
 let float_return_reg () =
   if !Asm.virtual_mode then fregs.(0) else fregs.(Array.length fregs - 1)
 
+(* In virtual-mode emission, scratch regs are expressed as virtual temps so
+   pre-regalloc optimizations can see/propagate them.
+   They are lowered back to fixed %i31/%f31 in Backend before analysis. *)
+let virtual_tmp_sw = ("%vti0", Id.Unknown)
+let virtual_tmp_fsw = ("%vtf0", Id.Unknown)
+
+let sw_reg () = if !Asm.virtual_mode then virtual_tmp_sw else Asm.reg_sw
+let fsw_reg () = if !Asm.virtual_mode then virtual_tmp_fsw else Asm.reg_fsw
+let sw_name () = Id.to_string (sw_reg ())
+let fsw_name () = Id.to_string (fsw_reg ())
+
 let is_float_reg x =
   let s = Id.to_string x in
   String.length s >= 2 &&
@@ -91,7 +102,7 @@ let emit_stack_op oc op_name reg_dst reg_src value =
   if check_imm value then
     Printf.fprintf oc "\t%si\t%s, %s, %d\n" op_name reg_dst reg_src value
   else begin
-    emit_movi oc Asm.reg_sw value;
+    emit_movi oc (sw_reg ()) value;
     Printf.fprintf oc "\t%s\t%s, %s, %s\n" op_name reg_dst reg_src reg_sw
   end
 
@@ -101,7 +112,7 @@ let emit_subi oc reg_dst reg_src value = emit_stack_op oc "sub" reg_dst reg_src 
 let check_word_imm_bytes off = off mod 4 = 0 && check_imm (off / 4)
 
 let emit_word_mem oc op reg off base =
-  let reg_sw = Id.to_string Asm.reg_sw in
+  let reg_sw = sw_name () in
   let enc_opt =
     if !Asm.virtual_mode then
       if check_imm off then Some off else None
@@ -115,7 +126,7 @@ let emit_word_mem oc op reg off base =
     Printf.fprintf oc "\t%s\t%s, %d(%s)\n" op reg enc_off base
   | None ->
     begin
-      emit_movi oc Asm.reg_sw off;
+      emit_movi oc (sw_reg ()) off;
       Printf.fprintf oc "\tadd\t%s, %s, %s\n" reg_sw base reg_sw;
       Printf.fprintf oc "\t%s\t%s, 0(%s)\n" op reg reg_sw
     end
@@ -134,8 +145,8 @@ let prepare_unrolled_int_fill oc y =
   match const_int_of_id y with
   | Some(0) -> Id.to_string reg_zero
   | Some(i) ->
-      emit_movi oc Asm.reg_sw i;
-      Id.to_string Asm.reg_sw
+      emit_movi oc (sw_reg ()) i;
+      sw_name ()
   | None -> Id.to_string y
 
 let prepare_unrolled_float_fill oc z =
@@ -143,9 +154,9 @@ let prepare_unrolled_float_fill oc z =
   | Some(f) when is_pos_zero_float f -> Id.to_string reg_fzero
   | Some(f) ->
       let bits = Int32.to_int (get_single_bits f) in
-      emit_movi oc Asm.reg_sw bits;
-      Printf.fprintf oc "\tmif\t%s, %s\n" (Id.to_string Asm.reg_fsw) (Id.to_string Asm.reg_sw);
-      Id.to_string Asm.reg_fsw
+      emit_movi oc (sw_reg ()) bits;
+      Printf.fprintf oc "\tmif\t%s, %s\n" (fsw_name ()) (sw_name ());
+      fsw_name ()
   | None -> Id.to_string z
 
 let small_const_count ys =
@@ -190,7 +201,7 @@ let emit_zero_filled_create_array_dynamic oc ~count_reg ~ret_reg =
 
 let emit_read_u32_to_int oc ~dst_reg =
   let i5 = Id.to_string regs.(1) in
-  let rsw = Id.to_string Asm.reg_sw in
+  let rsw = sw_name () in
   Printf.fprintf oc "\tmovui\t%s, 0xf0000\n" i5;
   Printf.fprintf oc "\tlb\t%s, 0(%s)\n" dst_reg i5;
   Printf.fprintf oc "\tlb\t%s, 0(%s)\n" rsw i5;
@@ -238,7 +249,7 @@ and must_terminate_exp = function
    Loads the rhs into reg_sw if it's a constant or ConstInt variable.
    Returns the register string used as rhs. *)
 let emit_cond_jump_op oc op lhs y' label =
-  let reg_sw = Id.to_string Asm.reg_sw in
+  let reg_sw = sw_name () in
   let reg_zero_str = Id.to_string reg_zero in
   match y' with
   | V(y) ->
@@ -246,7 +257,7 @@ let emit_cond_jump_op oc op lhs y' label =
        | (_, Id.Known(_, Id.ConstInt 0)) ->
            Printf.fprintf oc "\t%s\t%s, %s, %s\n" op lhs reg_zero_str label
        | (_, Id.Known(_, Id.ConstInt i)) ->
-           emit_movi oc Asm.reg_sw i;
+           emit_movi oc (sw_reg ()) i;
            Printf.fprintf oc "\t%s\t%s, %s, %s\n" op lhs reg_sw label
        | _ ->
            let y_s = Id.to_string y in
@@ -254,14 +265,14 @@ let emit_cond_jump_op oc op lhs y' label =
   | C(0) ->
       Printf.fprintf oc "\t%s\t%s, %s, %s\n" op lhs reg_zero_str label
   | C(i) ->
-      emit_movi oc Asm.reg_sw i;
+      emit_movi oc (sw_reg ()) i;
       Printf.fprintf oc "\t%s\t%s, %s, %s\n" op lhs reg_sw label
 
 (* Emit a direct conditional jump for the negated version of IfLE:
    NOT(x <= y) = y < x, so emit jlt y, x, label.
    For C(i): NOT(x <= i) = i < x, load i into reg_sw then jlt reg_sw, x. *)
 let emit_nle_jump oc lhs y' label =
-  let reg_sw = Id.to_string Asm.reg_sw in
+  let reg_sw = sw_name () in
   let reg_zero_str = Id.to_string reg_zero in
   match y' with
   | V(y) ->
@@ -269,7 +280,7 @@ let emit_nle_jump oc lhs y' label =
        | (_, Id.Known(_, Id.ConstInt 0)) ->
            Printf.fprintf oc "\tjlt\t%s, %s, %s\n" reg_zero_str lhs label
        | (_, Id.Known(_, Id.ConstInt i)) ->
-           emit_movi oc Asm.reg_sw i;
+           emit_movi oc (sw_reg ()) i;
            Printf.fprintf oc "\tjlt\t%s, %s, %s\n" reg_sw lhs label
        | _ ->
            let y_s = Id.to_string y in
@@ -277,7 +288,7 @@ let emit_nle_jump oc lhs y' label =
   | C(0) ->
       Printf.fprintf oc "\tjlt\t%s, %s, %s\n" reg_zero_str lhs label
   | C(i) ->
-      emit_movi oc Asm.reg_sw i;
+      emit_movi oc (sw_reg ()) i;
       Printf.fprintf oc "\tjlt\t%s, %s, %s\n" reg_sw lhs label
 
 (* Pre-scan function to populate stackmap *)
@@ -363,9 +374,9 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       if x <> f0 then Printf.fprintf oc "\tfmov\t%s, %s\n" x f0
   | NonTail(x), SetFloat(f) -> 
       let i = Int32.to_int (get_single_bits f) in
-      emit_movi oc Asm.reg_sw i;
+      emit_movi oc (sw_reg ()) i;
       let x = Id.to_string x in
-      let reg_sw = Id.to_string Asm.reg_sw in
+      let reg_sw = sw_name () in
       Printf.fprintf oc "\tmif\t%s, %s\n" x reg_sw
   | NonTail(x), SetLabel(Id.L(y)) -> 
       let x = Id.to_string x in
@@ -392,8 +403,8 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
                 Printf.fprintf oc "\tadd\t%s, %s, %s\n" x y z)
        | C(i) ->
            if check_imm i then Printf.fprintf oc "\taddi\t%s, %s, %d\n" x y i
-           else (emit_movi oc Asm.reg_sw i;
-                 let reg_sw = Id.to_string Asm.reg_sw in
+           else (emit_movi oc (sw_reg ()) i;
+                 let reg_sw = sw_name () in
                  Printf.fprintf oc "\tadd\t%s, %s, %s\n" x y reg_sw))
   | NonTail(x), Sub(y, z') -> 
       let x = Id.to_string x in
@@ -408,8 +419,8 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
                 Printf.fprintf oc "\tsub\t%s, %s, %s\n" x y z)
        | C(i) ->
            if check_imm i then Printf.fprintf oc "\tsubi\t%s, %s, %d\n" x y i
-           else (emit_movi oc Asm.reg_sw i;
-                 let reg_sw = Id.to_string Asm.reg_sw in
+           else (emit_movi oc (sw_reg ()) i;
+                 let reg_sw = sw_name () in
                  Printf.fprintf oc "\tsub\t%s, %s, %s\n" x y reg_sw))
   | NonTail(x), Sll(y, z') ->  
       let x = Id.to_string x in
@@ -424,8 +435,8 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
                 Printf.fprintf oc "\tsll\t%s, %s, %s\n" x y z)
        | C(i) ->
            if check_imm i then Printf.fprintf oc "\tslli\t%s, %s, %d\n" x y i
-           else (emit_movi oc Asm.reg_sw i;
-                 let reg_sw = Id.to_string Asm.reg_sw in
+           else (emit_movi oc (sw_reg ()) i;
+                 let reg_sw = sw_name () in
                  Printf.fprintf oc "\tsll\t%s, %s, %s\n" x y reg_sw))
   | NonTail(x), Sra(y, z') -> 
       let x = Id.to_string x in
@@ -440,8 +451,8 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
                 Printf.fprintf oc "\tsar\t%s, %s, %s\n" x y z)
        | C(i) ->
            if check_imm i then Printf.fprintf oc "\tsari\t%s, %s, %d\n" x y i
-           else (emit_movi oc Asm.reg_sw i;
-                 let reg_sw = Id.to_string Asm.reg_sw in
+           else (emit_movi oc (sw_reg ()) i;
+                 let reg_sw = sw_name () in
                  Printf.fprintf oc "\tsar\t%s, %s, %s\n" x y reg_sw))
   | NonTail(x), Ld(y, V(z)) -> 
       let x = Id.to_string x in
@@ -451,7 +462,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
            emit_word_mem oc "lw" x i y
        | _ ->
            let z = Id.to_string z in
-           let reg_sw = Id.to_string Asm.reg_sw in
+           let reg_sw = sw_name () in
            Printf.fprintf oc "\tadd\t%s, %s, %s\n" reg_sw y z;
            Printf.fprintf oc "\tlw\t%s, 0(%s)\n" x reg_sw)
   | NonTail(x), Ld(y, C(i)) -> 
@@ -466,7 +477,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
            emit_word_mem oc "sw" x i y
        | _ ->
            let z = Id.to_string z in
-           let reg_sw = Id.to_string Asm.reg_sw in
+           let reg_sw = sw_name () in
            Printf.fprintf oc "\tadd\t%s, %s, %s\n" reg_sw y z;
            Printf.fprintf oc "\tsw\t%s, 0(%s)\n" x reg_sw)
   | NonTail(_), St(x, y, C(i)) -> 
@@ -522,8 +533,8 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
                 Printf.fprintf oc "\tceq\t%s, %s, %s\n" x y z)
        | C(i) ->
            if check_imm i then Printf.fprintf oc "\tceqi\t%s, %s, %d\n" x y i
-           else (emit_movi oc Asm.reg_sw i;
-                 Printf.fprintf oc "\tceq\t%s, %s, %s\n" x y (Id.to_string Asm.reg_sw)))
+           else (emit_movi oc (sw_reg ()) i;
+                 Printf.fprintf oc "\tceq\t%s, %s, %s\n" x y (sw_name ())))
   | NonTail(x), CmpLE(y, z') ->
       let x = Id.to_string x in
       let y = Id.to_string y in
@@ -537,8 +548,8 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
                 Printf.fprintf oc "\tcleq\t%s, %s, %s\n" x y z)
        | C(i) ->
            if check_imm i then Printf.fprintf oc "\tcleqi\t%s, %s, %d\n" x y i
-           else (emit_movi oc Asm.reg_sw i;
-                 Printf.fprintf oc "\tcleq\t%s, %s, %s\n" x y (Id.to_string Asm.reg_sw)))
+           else (emit_movi oc (sw_reg ()) i;
+                 Printf.fprintf oc "\tcleq\t%s, %s, %s\n" x y (sw_name ())))
   | NonTail(x), CmpFEq(y, z) ->
       let x = Id.to_string x in
       let y = Id.to_string y in
@@ -567,8 +578,8 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
                 Printf.fprintf oc "\tclt\t%s, %s, %s\n" x y z)
        | C(i) ->
            if check_imm i then Printf.fprintf oc "\tclti\t%s, %s, %d\n" x y i
-           else (emit_movi oc Asm.reg_sw i;
-                 Printf.fprintf oc "\tclt\t%s, %s, %s\n" x y (Id.to_string Asm.reg_sw)))
+           else (emit_movi oc (sw_reg ()) i;
+                 Printf.fprintf oc "\tclt\t%s, %s, %s\n" x y (sw_name ())))
   | NonTail(x), Tern(c, y, z) ->
       let x = Id.to_string x in
       let c = Id.to_string c in
@@ -589,7 +600,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
            emit_word_mem oc "lf" x i y
        | _ ->
            let z = Id.to_string z in
-           let reg_sw = Id.to_string Asm.reg_sw in
+           let reg_sw = sw_name () in
            Printf.fprintf oc "\tadd\t%s, %s, %s\n" reg_sw y z;
            Printf.fprintf oc "\tlf\t%s, 0(%s)\n" x reg_sw)
   | NonTail(x), LdF(y, C(i)) -> 
@@ -604,7 +615,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
            emit_word_mem oc "sf" x i y
        | _ ->
            let z = Id.to_string z in
-           let reg_sw = Id.to_string Asm.reg_sw in
+           let reg_sw = sw_name () in
            Printf.fprintf oc "\tadd\t%s, %s, %s\n" reg_sw y z;
            Printf.fprintf oc "\tsf\t%s, 0(%s)\n" x reg_sw)
   | NonTail(_), StF(x, y, C(i)) -> 
@@ -660,21 +671,21 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       Printf.fprintf oc "%s:\n" l_end;
       let dest_s = Id.to_string dest in
       if is_float_reg dest then (
-        let fsw = Id.to_string Asm.reg_fsw in
+        let fsw = fsw_name () in
         if dest_s <> fsw then Printf.fprintf oc "\tfmov\t%s, %s\n" dest_s fsw
       ) else if dest_s <> "%unit" then (
-        let sw = Id.to_string Asm.reg_sw in
+        let sw = sw_name () in
         if dest_s <> sw then Printf.fprintf oc "\tmov\t%s, %s\n" dest_s sw
       )
   | NonTail(_), Break(x, t, Id.L(l)) ->
       (match t with
       | Type.Float ->
           let x = Id.to_string x in
-          let fsw = Id.to_string Asm.reg_fsw in
+          let fsw = fsw_name () in
           if x <> fsw then Printf.fprintf oc "\tfmov\t%s, %s\n" fsw x
       | _ ->
           let x = Id.to_string x in
-          let sw = Id.to_string Asm.reg_sw in
+          let sw = sw_name () in
           if x <> "%unit" && x <> sw then Printf.fprintf oc "\tmov\t%s, %s\n" sw x);
       g' oc ss (NonTail(Asm.reg_cl), SetLabel(Id.L(l)));
       Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" (Id.to_string reg_zero) (Id.to_string Asm.reg_cl)
@@ -728,8 +739,8 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       g' oc ss (NonTail(Asm.reg_cl), SetLabel(Id.L(l_start)));
       Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" (Id.to_string reg_zero) (Id.to_string Asm.reg_cl);
       Printf.fprintf oc "%s:\n" l_end;
-      Printf.fprintf oc "\tmov\t%s, %s\n" (Id.to_string (int_return_reg ())) (Id.to_string Asm.reg_sw);
-      Printf.fprintf oc "\tfmov\t%s, %s\n" (Id.to_string (float_return_reg ())) (Id.to_string Asm.reg_fsw);
+      Printf.fprintf oc "\tmov\t%s, %s\n" (Id.to_string (int_return_reg ())) (sw_name ());
+      Printf.fprintf oc "\tfmov\t%s, %s\n" (Id.to_string (float_return_reg ())) (fsw_name ());
       let reg_zero = Id.to_string reg_zero in
       let reg_ra = Id.to_string Asm.reg_ra in
       if ss > 0 then emit_addi oc Asm.reg_sp Asm.reg_sp ss;
@@ -739,11 +750,11 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       (match t with
       | Type.Float ->
           let x = Id.to_string x in
-          let fsw = Id.to_string Asm.reg_fsw in
+          let fsw = fsw_name () in
           if x <> fsw then Printf.fprintf oc "\tfmov\t%s, %s\n" fsw x
       | _ ->
           let x = Id.to_string x in
-          let sw = Id.to_string Asm.reg_sw in
+          let sw = sw_name () in
           if x <> "%unit" && x <> sw then Printf.fprintf oc "\tmov\t%s, %s\n" sw x);
       g' oc ss (NonTail(Asm.reg_cl), SetLabel(Id.L(l)));
       Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" (Id.to_string reg_zero) (Id.to_string Asm.reg_cl)
@@ -815,15 +826,15 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
   | Tail, IfFEq(x, y, e1, e2) ->
       let x = Id.to_string x in
       let y = Id.to_string y in
-      let reg_sw = Id.to_string Asm.reg_sw in
+      let reg_sw = sw_name () in
       Printf.fprintf oc "\tfeq\t%s, %s, %s\n" reg_sw x y;
-      g'_tail_if oc ss Asm.reg_sw e1 e2
+      g'_tail_if oc ss (sw_reg ()) e1 e2
   | Tail, IfFLE(x, y, e1, e2) ->
       let x = Id.to_string x in
       let y = Id.to_string y in
-      let reg_sw = Id.to_string Asm.reg_sw in
+      let reg_sw = sw_name () in
       Printf.fprintf oc "\tfleq\t%s, %s, %s\n" reg_sw x y;
-      g'_tail_if oc ss Asm.reg_sw e1 e2
+      g'_tail_if oc ss (sw_reg ()) e1 e2
   (* Optimized: if x==y then () else e2 → jeq x,y,cont; e2; cont: *)
   | NonTail(z), IfEq(x, y', e1, e2) when is_nop e1 ->
       let x_s = Id.to_string x in
@@ -838,7 +849,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
   (* Optimized: if x==y then e1 else () → ceq + jzero..cont (skip set_label+jmp) *)
   | NonTail(z), IfEq(x, y', e1, e2) when is_nop e2 ->
       let x_s = Id.to_string x in
-      let reg_sw = Id.to_string Asm.reg_sw in
+      let reg_sw = sw_name () in
       let reg_zero_s = Id.to_string reg_zero in
       (match y' with
        | V(y) ->
@@ -850,7 +861,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
                 Printf.fprintf oc "\tceq\t%s, %s, %s\n" reg_sw x_s y_s)
        | C(i) ->
            if check_imm i then Printf.fprintf oc "\tceqi\t%s, %s, %d\n" reg_sw x_s i
-           else (emit_movi oc Asm.reg_sw i; Printf.fprintf oc "\tceq\t%s, %s, %s\n" reg_sw x_s reg_sw));
+           else (emit_movi oc (sw_reg ()) i; Printf.fprintf oc "\tceq\t%s, %s, %s\n" reg_sw x_s reg_sw));
       let b_cont = Id.genid "cont" in
       let b_cont_s = Id.to_string b_cont in
       Printf.fprintf oc "\tjzero\t%s, %s, %s\n" reg_zero_s reg_sw b_cont_s;
@@ -887,7 +898,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let b_then_s = Id.to_string b_then in
       let b_cont = Id.genid "cont" in
       let b_cont_s = Id.to_string b_cont in
-      let reg_sw = Id.to_string Asm.reg_sw in
+      let reg_sw = sw_name () in
       let reg_zero_s = Id.to_string reg_zero in
       emit_cond_jump_op oc "jeq" x_s y' b_then_s;
       let stackset_back = !stackset in
@@ -909,7 +920,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let b_then_s = Id.to_string b_then in
       let b_cont = Id.genid "cont" in
       let b_cont_s = Id.to_string b_cont in
-      let reg_sw = Id.to_string Asm.reg_sw in
+      let reg_sw = sw_name () in
       let reg_zero_s = Id.to_string reg_zero in
       emit_cond_jump_op oc "jleq" x_s y' b_then_s;
       let stackset_back = !stackset in
@@ -929,7 +940,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
   | NonTail(z), IfFEq(x, y, e1, e2) when is_nop e1 ->
       let x = Id.to_string x in
       let y = Id.to_string y in
-      let reg_sw = Id.to_string Asm.reg_sw in
+      let reg_sw = sw_name () in
       let reg_zero_s = Id.to_string reg_zero in
       Printf.fprintf oc "\tfneq\t%s, %s, %s\n" reg_sw x y;
       (* Printf.fprintf oc "\tfeq\t%s, %s, %s\n" reg_sw x y;
@@ -946,7 +957,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
   | NonTail(z), IfFEq(x, y, e1, e2) when is_nop e2 ->
       let x = Id.to_string x in
       let y = Id.to_string y in
-      let reg_sw = Id.to_string Asm.reg_sw in
+      let reg_sw = sw_name () in
       let reg_zero_s = Id.to_string reg_zero in
       Printf.fprintf oc "\tfeq\t%s, %s, %s\n" reg_sw x y;
       let b_cont = Id.genid "cont" in
@@ -960,14 +971,14 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
   | NonTail(z), IfFEq(x, y, e1, e2) ->
       let x = Id.to_string x in
       let y = Id.to_string y in
-      let reg_sw = Id.to_string Asm.reg_sw in
+      let reg_sw = sw_name () in
       Printf.fprintf oc "\tfeq\t%s, %s, %s\n" reg_sw x y;
-      g'_non_tail_if oc ss (NonTail(z)) Asm.reg_sw e1 e2
+      g'_non_tail_if oc ss (NonTail(z)) (sw_reg ()) e1 e2
   (* Optimized: if x<=.y then () else e2 → fleq; ceqi(invert); jzero..cont; e2; cont: *)
   | NonTail(z), IfFLE(x, y, e1, e2) when is_nop e1 ->
       let x = Id.to_string x in
       let y = Id.to_string y in
-      let reg_sw = Id.to_string Asm.reg_sw in
+      let reg_sw = sw_name () in
       let reg_zero_s = Id.to_string reg_zero in
       Printf.fprintf oc "\tflt\t%s, %s, %s\n" reg_sw y x;
       (* Printf.fprintf oc "\tfleq\t%s, %s, %s\n" reg_sw x y;
@@ -984,7 +995,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
   | NonTail(z), IfFLE(x, y, e1, e2) when is_nop e2 ->
       let x = Id.to_string x in
       let y = Id.to_string y in
-      let reg_sw = Id.to_string Asm.reg_sw in
+      let reg_sw = sw_name () in
       let reg_zero_s = Id.to_string reg_zero in
       Printf.fprintf oc "\tfleq\t%s, %s, %s\n" reg_sw x y;
       let b_cont = Id.genid "cont" in
@@ -998,13 +1009,13 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
   | NonTail(z), IfFLE(x, y, e1, e2) ->
       let x = Id.to_string x in
       let y = Id.to_string y in
-      let reg_sw = Id.to_string Asm.reg_sw in
+      let reg_sw = sw_name () in
       Printf.fprintf oc "\tfleq\t%s, %s, %s\n" reg_sw x y;
-      g'_non_tail_if oc ss (NonTail(z)) Asm.reg_sw e1 e2
+      g'_non_tail_if oc ss (NonTail(z)) (sw_reg ()) e1 e2
   (* 関数呼び出しの仮想命令の実装 (caml2html: emit_call) *)
   | Tail, CallCls(x, ys, zs) -> (* 末尾呼び出し (caml2html: emit_tailcall) *)
       g'_args oc [(x, Asm.reg_cl)] ys zs;
-      let reg_sw = Id.to_string Asm.reg_sw in
+      let reg_sw = sw_name () in
       let reg_cl = Id.to_string Asm.reg_cl in
       let reg_zero = Id.to_string reg_zero in
       Printf.fprintf oc "\tlw\t%s, 0(%s)\n" reg_sw reg_cl;
@@ -1058,7 +1069,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       else Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" reg_zero reg_ra
   | Tail, CallDir(Id.L("min_caml_print_newline"), [], []) ->
       let i5 = Id.to_string regs.(1) in
-      let i31 = Id.to_string Asm.reg_sw in
+      let i31 = sw_name () in
       Printf.fprintf oc "\tmovui\t%s, 0xf0000\n" i5;
       Printf.fprintf oc "\tmovi\t%s, 10\n" i31;
       Printf.fprintf oc "\tsb\t%s, 0(%s)\n" i31 i5;
@@ -1141,7 +1152,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let i15    = "%i29" in
       let ret    = Id.to_string (int_return_reg ()) in
       let rz     = Id.to_string reg_zero in
-      let rsw    = Id.to_string Asm.reg_sw in
+      let rsw    = sw_name () in
       let loop_s = Id.to_string (Id.genid "ca_loop") in
       let cont_s = Id.to_string (Id.genid "ca_cont") in
       let finish_tail () =
@@ -1207,7 +1218,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let i15    = "%i29" in
       let ret    = Id.to_string (int_return_reg ()) in
       let rz     = Id.to_string reg_zero in
-      let rsw    = Id.to_string Asm.reg_sw in
+      let rsw    = sw_name () in
       let loop_s = Id.to_string (Id.genid "cfa_loop") in
       let cont_s = Id.to_string (Id.genid "cfa_cont") in
       let finish_tail () =
@@ -1271,7 +1282,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
           Printf.fprintf oc "\tjmp\t%s, 0(%s)\n" rz rsw)
   | Tail, CallDir(Id.L(x), ys, zs) -> (* 末尾呼び出し *)
       g'_args oc [] ys zs;
-      let reg_sw = Id.to_string Asm.reg_sw in
+      let reg_sw = sw_name () in
       let reg_zero = Id.to_string reg_zero in
       if !Asm.virtual_mode then (
         Printf.fprintf oc "\tcall_dir\t%s\n" x;
@@ -1288,14 +1299,14 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
          let a_str = Id.to_string a in
          let r0 = Id.to_string (int_return_reg ()) in
          let f0 = Id.to_string (float_return_reg ()) in
-         if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
+         if (List.mem a allregs || a = Asm.reg_cl || a = sw_reg ())  && a <> int_return_reg () then
            Printf.fprintf oc "\tmov\t%s, %s\n" a_str r0
-         else if (List.mem a allfregs || a = Asm.reg_fsw) && a <> float_return_reg () then
+         else if (List.mem a allfregs || a = fsw_reg ()) && a <> float_return_reg () then
            Printf.fprintf oc "\tfmov\t%s, %s\n" a_str f0
       ) else (
         let call_frame = 8 in
         let reg_cl = Id.to_string Asm.reg_cl in
-        let reg_sw = Id.to_string Asm.reg_sw in
+        let reg_sw = sw_name () in
         let reg_ra = Id.to_string Asm.reg_ra in
         let reg_sp = Id.to_string Asm.reg_sp in
         emit_subi oc Asm.reg_sp Asm.reg_sp call_frame;
@@ -1308,9 +1319,9 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
         let r0 = Id.to_string (int_return_reg ()) in
         let f0 = Id.to_string (float_return_reg ()) in
         let a_str = Id.to_string a in
-        if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
+        if (List.mem a allregs || a = Asm.reg_cl || a = sw_reg ())  && a <> int_return_reg () then
             Printf.fprintf oc "\tmov\t%s, %s\n" a_str r0
-        else if (List.mem a allfregs || a = Asm.reg_fsw) && a <> float_return_reg () then
+        else if (List.mem a allfregs || a = fsw_reg ()) && a <> float_return_reg () then
             Printf.fprintf oc "\tfmov\t%s, %s\n" a_str f0
       )
   | NonTail(a), CallDir(Id.L("min_caml_xor"), [y; z], []) ->
@@ -1322,7 +1333,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       emit_print_debug oc x
   | NonTail(_), CallDir(Id.L("min_caml_print_newline"), [], []) ->
       let i5 = Id.to_string regs.(1) in
-      let i31 = Id.to_string Asm.reg_sw in
+      let i31 = sw_name () in
       Printf.fprintf oc "\tmovui\t%s, 0xf0000\n" i5;
       Printf.fprintf oc "\tmovi\t%s, 10\n" i31;
       Printf.fprintf oc "\tsb\t%s, 0(%s)\n" i31 i5
@@ -1338,13 +1349,13 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let r0 = Id.to_string (int_return_reg ()) in
       Printf.fprintf oc "\tmovui\t%s, 0xf0000\n" i5;
       Printf.fprintf oc "\tlb\t%s, 0(%s)\n" r0 i5;
-      if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
+      if (List.mem a allregs || a = Asm.reg_cl || a = sw_reg ())  && a <> int_return_reg () then
         Printf.fprintf oc "\tmov\t%s, %s\n" a_str r0
   | NonTail(a), CallDir(Id.L("min_caml_read_int"), [], []) ->
       let a_str = Id.to_string a in
       let r0 = Id.to_string (int_return_reg ()) in
       emit_read_u32_to_int oc ~dst_reg:r0;
-      if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
+      if (List.mem a allregs || a = Asm.reg_cl || a = sw_reg ())  && a <> int_return_reg () then
         Printf.fprintf oc "\tmov\t%s, %s\n" a_str r0
   | NonTail(a), CallDir(Id.L("min_caml_read_float"), [], []) ->
       let a_str = Id.to_string a in
@@ -1352,7 +1363,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let fr = Id.to_string (float_return_reg ()) in
       emit_read_u32_to_int oc ~dst_reg:r0;
       Printf.fprintf oc "\tmif\t%s, %s\n" fr r0;
-      if (List.mem a allfregs || a = Asm.reg_fsw) && a <> float_return_reg () then
+      if (List.mem a allfregs || a = fsw_reg ()) && a <> float_return_reg () then
         Printf.fprintf oc "\tfmov\t%s, %s\n" a_str fr
   | NonTail(a), CallDir(Id.L("min_caml_rsqrt"), [], [z]) ->
       g'_args oc [] [] [z];
@@ -1360,7 +1371,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let f0 = Id.to_string fregs.(0) in
       let fr = Id.to_string (float_return_reg ()) in
       Printf.fprintf oc "\tfrsqrt\t%s, %s\n" fr f0;
-      if (List.mem a allfregs || a = Asm.reg_fsw) && a <> float_return_reg () then
+      if (List.mem a allfregs || a = fsw_reg ()) && a <> float_return_reg () then
         Printf.fprintf oc "\tfmov\t%s, %s\n" a_str fr
   | NonTail(a), CallDir(Id.L("min_caml_floor"), [], [z]) ->
       g'_args oc [] [] [z];
@@ -1368,7 +1379,7 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let f0 = Id.to_string fregs.(0) in
       let fr = Id.to_string (float_return_reg ()) in
       Printf.fprintf oc "\tffloor\t%s, %s\n" fr f0;
-      if (List.mem a allfregs || a = Asm.reg_fsw) && a <> float_return_reg () then
+      if (List.mem a allfregs || a = fsw_reg ()) && a <> float_return_reg () then
         Printf.fprintf oc "\tfmov\t%s, %s\n" a_str fr
   | NonTail(a), CallDir(Id.L("min_caml_fabs"), [], [z]) ->
       g'_args oc [] [] [z];
@@ -1376,17 +1387,17 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let f0 = Id.to_string fregs.(0) in
       let fr = Id.to_string (float_return_reg ()) in
       Printf.fprintf oc "\tfabs\t%s, %s\n" fr f0;
-      if (List.mem a allfregs || a = Asm.reg_fsw) && a <> float_return_reg () then
+      if (List.mem a allfregs || a = fsw_reg ()) && a <> float_return_reg () then
         Printf.fprintf oc "\tfmov\t%s, %s\n" a_str fr
   | NonTail(a), CallDir(Id.L("min_caml_create_array"), ys, []) ->
       let i2     = Id.to_string Asm.reg_hp in
       let i15    = "%i29" in
       let ret    = Id.to_string (int_return_reg ()) in
       let rz     = Id.to_string reg_zero in
-      let rsw    = Id.to_string Asm.reg_sw in
+      let rsw    = sw_name () in
       let move_result () =
         let a_str = Id.to_string a in
-        if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
+        if (List.mem a allregs || a = Asm.reg_cl || a = sw_reg ())  && a <> int_return_reg () then
           Printf.fprintf oc "\tmov\t%s, %s\n" a_str ret
       in
       (match ys with
@@ -1456,10 +1467,10 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
       let i15    = "%i29" in
       let ret    = Id.to_string (int_return_reg ()) in
       let rz     = Id.to_string reg_zero in
-      let rsw    = Id.to_string Asm.reg_sw in
+      let rsw    = sw_name () in
       let move_result () =
         let a_str = Id.to_string a in
-        if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
+        if (List.mem a allregs || a = Asm.reg_cl || a = sw_reg ())  && a <> int_return_reg () then
           Printf.fprintf oc "\tmov\t%s, %s\n" a_str ret
       in
       (match ys, zs with
@@ -1530,15 +1541,15 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
         let a_str = Id.to_string a in
         let r0 = Id.to_string (int_return_reg ()) in
         let f0 = Id.to_string (float_return_reg ()) in
-        if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
+        if (List.mem a allregs || a = Asm.reg_cl || a = sw_reg ())  && a <> int_return_reg () then
           Printf.fprintf oc "\tmov\t%s, %s\n" a_str r0
-        else if (List.mem a allfregs || a = Asm.reg_fsw) && a <> float_return_reg () then
+        else if (List.mem a allfregs || a = fsw_reg ()) && a <> float_return_reg () then
           Printf.fprintf oc "\tfmov\t%s, %s\n" a_str f0
       ) else (
         let call_frame = 16 in
         g'_args oc [] ys zs;
         let reg_ra = Id.to_string Asm.reg_ra in
-        let reg_sw = Id.to_string Asm.reg_sw in
+        let reg_sw = sw_name () in
         let reg_sp = Id.to_string Asm.reg_sp in
         emit_subi oc Asm.reg_sp Asm.reg_sp call_frame;
         emit_word_mem oc "sw" reg_ra (call_frame - 4) reg_sp;
@@ -1549,9 +1560,9 @@ and g' oc ss = function (* 各命令のアセンブリ生成 (caml2html: emit_gp
         let a_str = Id.to_string a in
         let r0 = Id.to_string (int_return_reg ()) in
         let f0 = Id.to_string (float_return_reg ()) in
-        if (List.mem a allregs || a = Asm.reg_cl || a = Asm.reg_sw) && a <> int_return_reg () then
+        if (List.mem a allregs || a = Asm.reg_cl || a = sw_reg ())  && a <> int_return_reg () then
             Printf.fprintf oc "\tmov\t%s, %s\n" a_str r0
-        else if (List.mem a allfregs || a = Asm.reg_fsw) && a <> float_return_reg () then
+        else if (List.mem a allfregs || a = fsw_reg ()) && a <> float_return_reg () then
             Printf.fprintf oc "\tfmov\t%s, %s\n" a_str f0
       )
 and g'_tail_if oc ss cmp_reg e1 e2 =
@@ -1575,7 +1586,7 @@ and g'_non_tail_if oc ss dest cmp_reg e1 e2 =
   let b_else_s = Id.to_string b_else in
   let b_cont_s = Id.to_string b_cont in
   let cmp_reg = Id.to_string cmp_reg in
-  let reg_sw = Id.to_string Asm.reg_sw in
+  let reg_sw = sw_name () in
   let reg_zero = Id.to_string reg_zero in
   Printf.fprintf oc "\tjzero\t%s, %s, %s\n" reg_zero cmp_reg b_else_s;
   let stackset_back = !stackset in
@@ -1599,7 +1610,7 @@ and g'_args oc x_reg_cl ys zs =
       ys in
   List.iter
     (fun (y, r) -> Printf.fprintf oc "\tmov\t%s, %s\n" (Id.to_string r) (Id.to_string y))
-    (shuffle Asm.reg_sw yrs);
+    (shuffle (sw_reg ()) yrs);
   let (_, zfrs) =
     List.fold_left
       (fun (d, zfrs) z -> (d + 1, (z, fregs.(d)) :: zfrs))
@@ -1607,7 +1618,7 @@ and g'_args oc x_reg_cl ys zs =
       zs in
   List.iter
     (fun (z, fr) -> Printf.fprintf oc "\tfmov\t%s, %s\n" (Id.to_string fr) (Id.to_string z))
-    (shuffle Asm.reg_fsw zfrs)
+    (shuffle (fsw_reg ()) zfrs)
 
 let h oc { name = Id.L(x); args = _; fargs = _; body = e; ret = _ } =
   if !Asm.virtual_mode then Printf.fprintf oc "\t.func_entry\n";

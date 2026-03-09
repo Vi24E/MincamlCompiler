@@ -22,6 +22,11 @@ module LeakM = Map.Make(struct
   let compare = Id.compare
 end)
 
+module FloatM = Map.Make(struct
+  type t = string
+  let compare = String.compare
+end)
+
 let const_env_ref = ref C.empty
 let mutable_env_ref = ref S.empty
 let leakable_env_ref : bool LeakM.t ref = ref LeakM.empty
@@ -114,7 +119,103 @@ let replace_tag (x, t) global_env =
 
 let get_const_tag = function
   | Int i -> Id.ConstInt i
+  | Float d -> Id.ConstFloat d
   | _ -> Id.None
+
+let float_key d = Printf.sprintf "%016Lx" (Int64.bits_of_float d)
+
+let fresh_float_const_id d =
+  let key = float_key d in
+  Id.genid ("float_const_" ^ key)
+
+let rec rewrite_float_literals e is_top_level fmap new_defs =
+  match e with
+  | Let((x, t), e1, e2) ->
+      (match e1, is_top_level, t with
+      | Float d, true, Type.Float ->
+          let key = float_key d in
+          let (e1'', fmap1, new_defs1) =
+            match FloatM.find_opt key fmap with
+            | None ->
+                (Float d, FloatM.add key x fmap, new_defs)
+            | Some y when y = x ->
+                (Float d, fmap, new_defs)
+            | Some y ->
+                (Var y, fmap, new_defs)
+          in
+          let (e2', fmap2, new_defs2) =
+            rewrite_float_literals e2 true fmap1 new_defs1
+          in
+          (Let((x, t), e1'', e2'), fmap2, new_defs2)
+      | _ ->
+          let (e1', fmap1, new_defs1) =
+            rewrite_float_literals e1 false fmap new_defs
+          in
+          let (e2', fmap2, new_defs2) =
+            rewrite_float_literals e2 is_top_level fmap1 new_defs1
+          in
+          (Let((x, t), e1', e2'), fmap2, new_defs2))
+  | LetRec({ name = xt; args = yts; body = e1; tags = tags }, e2) ->
+      let (e1', fmap1, new_defs1) =
+        rewrite_float_literals e1 false fmap new_defs
+      in
+      let (e2', fmap2, new_defs2) =
+        rewrite_float_literals e2 is_top_level fmap1 new_defs1
+      in
+      (LetRec({ name = xt; args = yts; body = e1'; tags = tags }, e2'), fmap2, new_defs2)
+  | LetTuple(xts, y, e1) ->
+      let (e1', fmap1, new_defs1) =
+        rewrite_float_literals e1 is_top_level fmap new_defs
+      in
+      (LetTuple(xts, y, e1'), fmap1, new_defs1)
+  | IfEq(x, y, e1, e2) ->
+      let (e1', fmap1, new_defs1) =
+        rewrite_float_literals e1 false fmap new_defs
+      in
+      let (e2', fmap2, new_defs2) =
+        rewrite_float_literals e2 false fmap1 new_defs1
+      in
+      (IfEq(x, y, e1', e2'), fmap2, new_defs2)
+  | IfLE(x, y, e1, e2) ->
+      let (e1', fmap1, new_defs1) =
+        rewrite_float_literals e1 false fmap new_defs
+      in
+      let (e2', fmap2, new_defs2) =
+        rewrite_float_literals e2 false fmap1 new_defs1
+      in
+      (IfLE(x, y, e1', e2'), fmap2, new_defs2)
+  | While(e1, e2) ->
+      let (e1', fmap1, new_defs1) =
+        rewrite_float_literals e1 false fmap new_defs
+      in
+      let (e2', fmap2, new_defs2) =
+        rewrite_float_literals e2 false fmap1 new_defs1
+      in
+      (While(e1', e2'), fmap2, new_defs2)
+  | Assign(x, y, e1, tag) ->
+      let (e1', fmap1, new_defs1) =
+        rewrite_float_literals e1 false fmap new_defs
+      in
+      (Assign(x, y, e1', tag), fmap1, new_defs1)
+  | Float d ->
+      let key = float_key d in
+      (match FloatM.find_opt key fmap with
+      | Some x -> (Var x, fmap, new_defs)
+      | None ->
+          let x = fresh_float_const_id d in
+          (Var x, FloatM.add key x fmap, (x, d) :: new_defs))
+  | Unit | Int(_) | Neg(_) | Add(_, _) | Sub(_, _) | Sll(_, _) | Sra(_, _)
+  | FNeg(_) | FAdd(_, _) | FSub(_, _) | FMul(_, _) | FDiv(_, _)
+  | TernPhi(_, _, _) | Break(_) | Var(_) | App(_, _) | Tuple(_) | Get(_, _)
+  | Put(_, _, _) | ExtArray(_) | ExtFunApp(_, _) ->
+      (e, fmap, new_defs)
+
+let hoist_float_literals_to_global_head e =
+  let (e', _, new_defs_rev) = rewrite_float_literals e true FloatM.empty [] in
+  List.fold_left
+    (fun acc (x, d) -> Let((x, Type.Float), Float d, acc))
+    e'
+    (List.rev new_defs_rev)
 
 let rec g e is_top_level global_env const_env global_ptr =
   match e with
@@ -250,6 +351,7 @@ let rec get_mutable_env e acc =
 
 let f e =
   global_use_words_ref := 0;
+  let e = hoist_float_literals_to_global_head e in
   mutable_env_ref := get_mutable_env e S.empty;
   let const_env = get_const_env e C.empty in
   const_env_ref := S.fold C.remove !mutable_env_ref const_env;

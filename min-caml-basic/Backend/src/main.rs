@@ -599,6 +599,50 @@ fn replace_reg_in_operand(op: &str, from: &str, to: &str) -> String {
     op.to_string()
 }
 
+fn remap_frontend_tmp_scratch_reg(reg: &str) -> Option<&'static str> {
+    if reg.starts_with("%vti") {
+        Some("%i31")
+    } else if reg.starts_with("%vtf") {
+        Some("%f31")
+    } else {
+        None
+    }
+}
+
+fn remap_frontend_tmp_scratch_operand(op: &str) -> String {
+    if let Some(mapped) = remap_frontend_tmp_scratch_reg(op) {
+        return mapped.to_string();
+    }
+
+    if let Some(start) = op.find('(') {
+        if let Some(end_rel) = op[start + 1..].find(')') {
+            let end = start + 1 + end_rel;
+            let base = &op[start + 1..end];
+            if let Some(mapped_base) = remap_frontend_tmp_scratch_reg(base) {
+                return format!("{}({})", &op[..start], mapped_base);
+            }
+        }
+    }
+
+    op.to_string()
+}
+
+fn remap_frontend_tmp_scratch_regs(
+    instructions: Vec<input::Instruction>,
+) -> Vec<input::Instruction> {
+    let mut out = Vec::with_capacity(instructions.len());
+    for mut inst in instructions {
+        for op in &mut inst.operands {
+            let remapped = remap_frontend_tmp_scratch_operand(op);
+            if remapped != *op {
+                *op = remapped;
+            }
+        }
+        out.push(inst);
+    }
+    out
+}
+
 fn normalize_call_result_moves(instructions: Vec<input::Instruction>) -> Vec<input::Instruction> {
     let mut out = Vec::with_capacity(instructions.len());
     let mut int_alias_active = false;
@@ -1426,6 +1470,7 @@ fn main() {
             loop {
                 iteration += 1;
                 let normalized = normalize_backend_conventions(program::flatten(&current_program));
+                let normalized = remap_frontend_tmp_scratch_regs(normalized);
                 let mut work_program = program::from_instructions(normalized);
                 program::annotate_interprocedural(&mut work_program);
                 let work_instructions = program::flatten(&work_program);
