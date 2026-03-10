@@ -5353,8 +5353,8 @@ LetRec{
 	Int Ti373.6171 = 2;
 	scan_line.5755(Ti372.6170, prev.6149, cur.6151, next.6153, Ti373.6171, version.6130)
 }
-Int Ti345.6172 = 32;
-Int Ti346.6173 = 32;
+Int Ti345.6172 = 512;
+Int Ti346.6173 = 512;
 Int Ti347.6174 = 3;
 Unit Tu259.6175 = rt.6127(Ti345.6172, Ti346.6173, Ti347.6174);
 Unit

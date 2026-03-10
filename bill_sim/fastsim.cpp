@@ -66,6 +66,7 @@ enum Opcode {
   CEQ,
   CEQI,
   JEQ,
+  GOTO,
   JMP,
   JLT,
   JLEQ,
@@ -266,6 +267,14 @@ void load_binary(const string &filename) {
     if (opcode == 0xFF) {
       inst.op = QUIT;
       inst.original_line = "quit";
+    } else if ((w & 0x1F) == 0x11) {
+      int imm0 = (w >> 5) & 1;
+      int imm12_1 = (w >> 7) & 0xFFF;
+      int imm19_13 = (w >> 25) & 0x7F;
+      imm = (imm19_13 << 13) | (imm12_1 << 1) | imm0;
+      inst.op = GOTO;
+      inst.imm = imm & 0xFFFFF;
+      inst.original_line = "goto " + to_string(inst.imm);
     } else if ((w & 0x1F) == 0xD || (w & 0x1F) == 0x1D) {
       int imm0 = (w >> 5) & 1;
       int imm12_1 = (w >> 7) & 0xFFF;
@@ -495,7 +504,7 @@ void load_binary(const string &filename) {
           inst.op = FTERN;
           inst.is_float = true;
           inst.original_line = "ftern " + get_freg_name(inst.rd) + ", " +
-                               get_reg_name(inst.rs1) + ", " +
+                               get_freg_name(inst.rs1) + ", " +
                                get_freg_name(inst.rs2) + ", " +
                                get_freg_name(inst.rs3);
         } else if (is_imm) {
@@ -829,7 +838,7 @@ void exec_one_step(bool running) {
     set_x(inst.rd, (int32_t)get_x(inst.rs1) >> (get_x(inst.rs2) & 31));
     break;
   case FTERN:
-    set_f(inst.rd, get_x(inst.rs1) != 0 ? get_f(inst.rs2) : get_f(inst.rs3));
+    set_f(inst.rd, get_f(inst.rs1) != 0.0f ? get_f(inst.rs2) : get_f(inst.rs3));
     break;
   case SARI:
     set_x(inst.rd, (int32_t)get_x(inst.rs1) >> (inst.imm & 31));
@@ -933,6 +942,12 @@ void exec_one_step(bool running) {
   case JLEQ:
     do_branch((int32_t)get_x(inst.rs1) <= (int32_t)get_x(inst.rs2), inst.imm);
     break;
+
+  case GOTO: {
+    uint32_t target_addr = ((uint32_t)inst.imm & 0xFFFFF) << 2;
+    stats.jmp_target_count[target_addr]++;
+    next_pc = target_addr;
+  } break;
 
   case JMP: {
     uint32_t target_addr = inst.imm + get_x(inst.rs1);

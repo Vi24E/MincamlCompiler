@@ -1,4 +1,4 @@
-# .global use: 4472 words
+# .global use: 10232 words
 .data
 .align	8
 .text
@@ -503,15 +503,15 @@ ca_done.230672:
 	sw	%vi91, 1212(%i0)
 	mov	%vi92, %i0
 	sw	%vi92, 1932(%i0)
-	movi	%vi93, 32
+	movi	%vi93, 512
 	sw	%vi93, 1936(%i0)
-	movi	%vi94, 32
+	movi	%vi94, 512
 	sw	%vi94, 1940(%i0)
 	mov	%vi53, %vi93
-	movi	%vi95, 32
+	movi	%vi95, 512
 	sw	%vi95, 1944(%i0)
 	mov	%vi54, %vi94
-	movi	%vi96, 32
+	movi	%vi96, 512
 	sw	%vi96, 1948(%i0)
 	sari	%vi97, %vi93, 1
 	sw	%vi97, 1956(%i0)
@@ -524,7 +524,7 @@ ca_done.230672:
 	fmul	%vf92, %vf1, %vf91
 	sf	%vf92, 1964(%i0)
 	fmov	%vf72, %vf92
-	movi	%vi98, 32
+	movi	%vi98, 512
 	sw	%vi98, 1968(%i0)
 	movi	%vi99, 3
 	sw	%vi99, 1972(%i0)
@@ -976,14 +976,14 @@ ca_done.230675:
 	addi	%vti150, %vti150, -1560
 	add	%vti150, %i0, %vti150
 	sw	%vi189, 0(%vti150)
-	movi	%vi190, 30
+	movi	%vi190, 510
 	movui	%vti151, 1
-	addi	%vti151, %vti151, -1432
+	addi	%vti151, %vti151, 488
 	add	%vti151, %i0, %vti151
 	sw	%vi190, 0(%vti151)
 	mov	%vi191, %i0
 	movui	%vti152, 1
-	addi	%vti152, %vti152, -1428
+	addi	%vti152, %vti152, 492
 	add	%vti152, %i0, %vti152
 	sw	%vi191, 0(%vti152)
 	jleq	%i0, %vi190, then.230676
@@ -1209,7 +1209,7 @@ then.230676:
 	sw	%vi200, 4(%vi279)
 	sw	%vi194, 0(%vi279)
 	mov	%vi280, %vi279
-	sw	%vi280, 120(%vi189)
+	sw	%vi280, 2040(%vi189)
 	subi	%vi281, %vi190, 1
 	mov	%vi190, %vi281
 loop_start.224042:
@@ -1495,14 +1495,14 @@ cont.230680:
 loop_end.224043:
 	mov	%vi373, %vti182
 cont.230677:
-	movi	%vi374, 32
+	movi	%vi374, 512
 	movui	%vti241, 1
-	addi	%vti241, %vti241, -1424
+	addi	%vti241, %vti241, 496
 	add	%vti241, %i0, %vti241
 	sw	%vi374, 0(%vti241)
 	movi	%vi375, 3
 	movui	%vti242, 1
-	addi	%vti242, %vti242, -1420
+	addi	%vti242, %vti242, 500
 	add	%vti242, %i0, %vti242
 	sw	%vi375, 0(%vti242)
 	mov	%i4, %vi375
@@ -1511,12 +1511,12 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi377, %i4
 	movui	%vti244, 1
-	addi	%vti244, %vti244, -1416
+	addi	%vti244, %vti244, 504
 	add	%vti244, %i0, %vti244
 	sw	%vi377, 0(%vti244)
 	movi	%vi378, 3
 	movui	%vti245, 1
-	addi	%vti245, %vti245, -1404
+	addi	%vti245, %vti245, 516
 	add	%vti245, %i0, %vti245
 	sw	%vi378, 0(%vti245)
 	mov	%i4, %vi378
@@ -1525,12 +1525,12 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi380, %i4
 	movui	%vti247, 1
-	addi	%vti247, %vti247, -1400
+	addi	%vti247, %vti247, 520
 	add	%vti247, %i0, %vti247
 	sw	%vi380, 0(%vti247)
 	movi	%vi381, 5
 	movui	%vti248, 1
-	addi	%vti248, %vti248, -1388
+	addi	%vti248, %vti248, 532
 	add	%vti248, %i0, %vti248
 	sw	%vi381, 0(%vti248)
 	mov	%i4, %vi381
@@ -1544,12 +1544,12 @@ cont.230677:
 	addi	%i2, %i2, 20
 	mov	%vi383, %i4
 	movui	%vti250, 1
-	addi	%vti250, %vti250, -1384
+	addi	%vti250, %vti250, 536
 	add	%vti250, %i0, %vti250
 	sw	%vi383, 0(%vti250)
 	movi	%vi384, 3
 	movui	%vti251, 1
-	addi	%vti251, %vti251, -1360
+	addi	%vti251, %vti251, 560
 	add	%vti251, %i0, %vti251
 	sw	%vi384, 0(%vti251)
 	mov	%i4, %vi384
@@ -1558,13 +1558,13 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi386, %i4
 	movui	%vti253, 1
-	addi	%vti253, %vti253, -1356
+	addi	%vti253, %vti253, 564
 	add	%vti253, %i0, %vti253
 	sw	%vi386, 0(%vti253)
 	sw	%vi386, 4(%vi383)
 	movi	%vi387, 3
 	movui	%vti254, 1
-	addi	%vti254, %vti254, -1340
+	addi	%vti254, %vti254, 580
 	add	%vti254, %i0, %vti254
 	sw	%vi387, 0(%vti254)
 	mov	%i4, %vi387
@@ -1573,13 +1573,13 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi389, %i4
 	movui	%vti256, 1
-	addi	%vti256, %vti256, -1336
+	addi	%vti256, %vti256, 584
 	add	%vti256, %i0, %vti256
 	sw	%vi389, 0(%vti256)
 	sw	%vi389, 8(%vi383)
 	movi	%vi390, 3
 	movui	%vti257, 1
-	addi	%vti257, %vti257, -1320
+	addi	%vti257, %vti257, 600
 	add	%vti257, %i0, %vti257
 	sw	%vi390, 0(%vti257)
 	mov	%i4, %vi390
@@ -1588,13 +1588,13 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi392, %i4
 	movui	%vti259, 1
-	addi	%vti259, %vti259, -1316
+	addi	%vti259, %vti259, 604
 	add	%vti259, %i0, %vti259
 	sw	%vi392, 0(%vti259)
 	sw	%vi392, 12(%vi383)
 	movi	%vi393, 3
 	movui	%vti260, 1
-	addi	%vti260, %vti260, -1300
+	addi	%vti260, %vti260, 620
 	add	%vti260, %i0, %vti260
 	sw	%vi393, 0(%vti260)
 	mov	%i4, %vi393
@@ -1603,18 +1603,18 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi395, %i4
 	movui	%vti262, 1
-	addi	%vti262, %vti262, -1296
+	addi	%vti262, %vti262, 624
 	add	%vti262, %i0, %vti262
 	sw	%vi395, 0(%vti262)
 	sw	%vi395, 16(%vi383)
 	movi	%vi396, 5
 	movui	%vti263, 1
-	addi	%vti263, %vti263, -1284
+	addi	%vti263, %vti263, 636
 	add	%vti263, %i0, %vti263
 	sw	%vi396, 0(%vti263)
 	mov	%vi397, %i0
 	movui	%vti264, 1
-	addi	%vti264, %vti264, -1280
+	addi	%vti264, %vti264, 640
 	add	%vti264, %i0, %vti264
 	sw	%vi397, 0(%vti264)
 	mov	%i4, %vi396
@@ -1623,17 +1623,17 @@ cont.230677:
 	addi	%i2, %i2, 20
 	mov	%vi399, %i4
 	movui	%vti266, 1
-	addi	%vti266, %vti266, -1276
+	addi	%vti266, %vti266, 644
 	add	%vti266, %i0, %vti266
 	sw	%vi399, 0(%vti266)
 	movi	%vi400, 5
 	movui	%vti267, 1
-	addi	%vti267, %vti267, -1256
+	addi	%vti267, %vti267, 664
 	add	%vti267, %i0, %vti267
 	sw	%vi400, 0(%vti267)
 	mov	%vi401, %i0
 	movui	%vti268, 1
-	addi	%vti268, %vti268, -1252
+	addi	%vti268, %vti268, 668
 	add	%vti268, %i0, %vti268
 	sw	%vi401, 0(%vti268)
 	mov	%i4, %vi400
@@ -1642,12 +1642,12 @@ cont.230677:
 	addi	%i2, %i2, 20
 	mov	%vi403, %i4
 	movui	%vti270, 1
-	addi	%vti270, %vti270, -1248
+	addi	%vti270, %vti270, 672
 	add	%vti270, %i0, %vti270
 	sw	%vi403, 0(%vti270)
 	movi	%vi404, 3
 	movui	%vti271, 1
-	addi	%vti271, %vti271, -1228
+	addi	%vti271, %vti271, 692
 	add	%vti271, %i0, %vti271
 	sw	%vi404, 0(%vti271)
 	mov	%i4, %vi404
@@ -1656,12 +1656,12 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi406, %i4
 	movui	%vti273, 1
-	addi	%vti273, %vti273, -1224
+	addi	%vti273, %vti273, 696
 	add	%vti273, %i0, %vti273
 	sw	%vi406, 0(%vti273)
 	movi	%vi407, 5
 	movui	%vti274, 1
-	addi	%vti274, %vti274, -1212
+	addi	%vti274, %vti274, 708
 	add	%vti274, %i0, %vti274
 	sw	%vi407, 0(%vti274)
 	mov	%i4, %vi407
@@ -1675,12 +1675,12 @@ cont.230677:
 	addi	%i2, %i2, 20
 	mov	%vi409, %i4
 	movui	%vti276, 1
-	addi	%vti276, %vti276, -1208
+	addi	%vti276, %vti276, 712
 	add	%vti276, %i0, %vti276
 	sw	%vi409, 0(%vti276)
 	movi	%vi410, 3
 	movui	%vti277, 1
-	addi	%vti277, %vti277, -1184
+	addi	%vti277, %vti277, 736
 	add	%vti277, %i0, %vti277
 	sw	%vi410, 0(%vti277)
 	mov	%i4, %vi410
@@ -1689,13 +1689,13 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi412, %i4
 	movui	%vti279, 1
-	addi	%vti279, %vti279, -1180
+	addi	%vti279, %vti279, 740
 	add	%vti279, %i0, %vti279
 	sw	%vi412, 0(%vti279)
 	sw	%vi412, 4(%vi409)
 	movi	%vi413, 3
 	movui	%vti280, 1
-	addi	%vti280, %vti280, -1164
+	addi	%vti280, %vti280, 756
 	add	%vti280, %i0, %vti280
 	sw	%vi413, 0(%vti280)
 	mov	%i4, %vi413
@@ -1704,13 +1704,13 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi415, %i4
 	movui	%vti282, 1
-	addi	%vti282, %vti282, -1160
+	addi	%vti282, %vti282, 760
 	add	%vti282, %i0, %vti282
 	sw	%vi415, 0(%vti282)
 	sw	%vi415, 8(%vi409)
 	movi	%vi416, 3
 	movui	%vti283, 1
-	addi	%vti283, %vti283, -1144
+	addi	%vti283, %vti283, 776
 	add	%vti283, %i0, %vti283
 	sw	%vi416, 0(%vti283)
 	mov	%i4, %vi416
@@ -1719,13 +1719,13 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi418, %i4
 	movui	%vti285, 1
-	addi	%vti285, %vti285, -1140
+	addi	%vti285, %vti285, 780
 	add	%vti285, %i0, %vti285
 	sw	%vi418, 0(%vti285)
 	sw	%vi418, 12(%vi409)
 	movi	%vi419, 3
 	movui	%vti286, 1
-	addi	%vti286, %vti286, -1124
+	addi	%vti286, %vti286, 796
 	add	%vti286, %i0, %vti286
 	sw	%vi419, 0(%vti286)
 	mov	%i4, %vi419
@@ -1734,13 +1734,13 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi421, %i4
 	movui	%vti288, 1
-	addi	%vti288, %vti288, -1120
+	addi	%vti288, %vti288, 800
 	add	%vti288, %i0, %vti288
 	sw	%vi421, 0(%vti288)
 	sw	%vi421, 16(%vi409)
 	movi	%vi422, 3
 	movui	%vti289, 1
-	addi	%vti289, %vti289, -1108
+	addi	%vti289, %vti289, 812
 	add	%vti289, %i0, %vti289
 	sw	%vi422, 0(%vti289)
 	mov	%i4, %vi422
@@ -1749,12 +1749,12 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi424, %i4
 	movui	%vti291, 1
-	addi	%vti291, %vti291, -1104
+	addi	%vti291, %vti291, 816
 	add	%vti291, %i0, %vti291
 	sw	%vi424, 0(%vti291)
 	movi	%vi425, 5
 	movui	%vti292, 1
-	addi	%vti292, %vti292, -1092
+	addi	%vti292, %vti292, 828
 	add	%vti292, %i0, %vti292
 	sw	%vi425, 0(%vti292)
 	mov	%i4, %vi425
@@ -1768,12 +1768,12 @@ cont.230677:
 	addi	%i2, %i2, 20
 	mov	%vi427, %i4
 	movui	%vti294, 1
-	addi	%vti294, %vti294, -1088
+	addi	%vti294, %vti294, 832
 	add	%vti294, %i0, %vti294
 	sw	%vi427, 0(%vti294)
 	movi	%vi428, 3
 	movui	%vti295, 1
-	addi	%vti295, %vti295, -1064
+	addi	%vti295, %vti295, 856
 	add	%vti295, %i0, %vti295
 	sw	%vi428, 0(%vti295)
 	mov	%i4, %vi428
@@ -1782,13 +1782,13 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi430, %i4
 	movui	%vti297, 1
-	addi	%vti297, %vti297, -1060
+	addi	%vti297, %vti297, 860
 	add	%vti297, %i0, %vti297
 	sw	%vi430, 0(%vti297)
 	sw	%vi430, 4(%vi427)
 	movi	%vi431, 3
 	movui	%vti298, 1
-	addi	%vti298, %vti298, -1044
+	addi	%vti298, %vti298, 876
 	add	%vti298, %i0, %vti298
 	sw	%vi431, 0(%vti298)
 	mov	%i4, %vi431
@@ -1797,13 +1797,13 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi433, %i4
 	movui	%vti300, 1
-	addi	%vti300, %vti300, -1040
+	addi	%vti300, %vti300, 880
 	add	%vti300, %i0, %vti300
 	sw	%vi433, 0(%vti300)
 	sw	%vi433, 8(%vi427)
 	movi	%vi434, 3
 	movui	%vti301, 1
-	addi	%vti301, %vti301, -1024
+	addi	%vti301, %vti301, 896
 	add	%vti301, %i0, %vti301
 	sw	%vi434, 0(%vti301)
 	mov	%i4, %vi434
@@ -1812,13 +1812,13 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi436, %i4
 	movui	%vti303, 1
-	addi	%vti303, %vti303, -1020
+	addi	%vti303, %vti303, 900
 	add	%vti303, %i0, %vti303
 	sw	%vi436, 0(%vti303)
 	sw	%vi436, 12(%vi427)
 	movi	%vi437, 3
 	movui	%vti304, 1
-	addi	%vti304, %vti304, -1004
+	addi	%vti304, %vti304, 916
 	add	%vti304, %i0, %vti304
 	sw	%vi437, 0(%vti304)
 	mov	%i4, %vi437
@@ -1827,18 +1827,18 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi439, %i4
 	movui	%vti306, 1
-	addi	%vti306, %vti306, -1000
+	addi	%vti306, %vti306, 920
 	add	%vti306, %i0, %vti306
 	sw	%vi439, 0(%vti306)
 	sw	%vi439, 16(%vi427)
 	movi	%vi440, 1
 	movui	%vti307, 1
-	addi	%vti307, %vti307, -988
+	addi	%vti307, %vti307, 932
 	add	%vti307, %i0, %vti307
 	sw	%vi440, 0(%vti307)
 	mov	%vi441, %i0
 	movui	%vti308, 1
-	addi	%vti308, %vti308, -984
+	addi	%vti308, %vti308, 936
 	add	%vti308, %i0, %vti308
 	sw	%vi441, 0(%vti308)
 	mov	%i4, %vi440
@@ -1847,12 +1847,12 @@ cont.230677:
 	addi	%i2, %i2, 4
 	mov	%vi443, %i4
 	movui	%vti310, 1
-	addi	%vti310, %vti310, -980
+	addi	%vti310, %vti310, 940
 	add	%vti310, %i0, %vti310
 	sw	%vi443, 0(%vti310)
 	movi	%vi444, 3
 	movui	%vti311, 1
-	addi	%vti311, %vti311, -976
+	addi	%vti311, %vti311, 944
 	add	%vti311, %i0, %vti311
 	sw	%vi444, 0(%vti311)
 	mov	%i4, %vi444
@@ -1861,12 +1861,12 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi446, %i4
 	movui	%vti313, 1
-	addi	%vti313, %vti313, -972
+	addi	%vti313, %vti313, 948
 	add	%vti313, %i0, %vti313
 	sw	%vi446, 0(%vti313)
 	movi	%vi447, 5
 	movui	%vti314, 1
-	addi	%vti314, %vti314, -960
+	addi	%vti314, %vti314, 960
 	add	%vti314, %i0, %vti314
 	sw	%vi447, 0(%vti314)
 	mov	%i4, %vi447
@@ -1880,12 +1880,12 @@ cont.230677:
 	addi	%i2, %i2, 20
 	mov	%vi449, %i4
 	movui	%vti316, 1
-	addi	%vti316, %vti316, -956
+	addi	%vti316, %vti316, 964
 	add	%vti316, %i0, %vti316
 	sw	%vi449, 0(%vti316)
 	movi	%vi450, 3
 	movui	%vti317, 1
-	addi	%vti317, %vti317, -932
+	addi	%vti317, %vti317, 988
 	add	%vti317, %i0, %vti317
 	sw	%vi450, 0(%vti317)
 	mov	%i4, %vi450
@@ -1894,13 +1894,13 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi452, %i4
 	movui	%vti319, 1
-	addi	%vti319, %vti319, -928
+	addi	%vti319, %vti319, 992
 	add	%vti319, %i0, %vti319
 	sw	%vi452, 0(%vti319)
 	sw	%vi452, 4(%vi449)
 	movi	%vi453, 3
 	movui	%vti320, 1
-	addi	%vti320, %vti320, -912
+	addi	%vti320, %vti320, 1008
 	add	%vti320, %i0, %vti320
 	sw	%vi453, 0(%vti320)
 	mov	%i4, %vi453
@@ -1909,13 +1909,13 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi455, %i4
 	movui	%vti322, 1
-	addi	%vti322, %vti322, -908
+	addi	%vti322, %vti322, 1012
 	add	%vti322, %i0, %vti322
 	sw	%vi455, 0(%vti322)
 	sw	%vi455, 8(%vi449)
 	movi	%vi456, 3
 	movui	%vti323, 1
-	addi	%vti323, %vti323, -892
+	addi	%vti323, %vti323, 1028
 	add	%vti323, %i0, %vti323
 	sw	%vi456, 0(%vti323)
 	mov	%i4, %vi456
@@ -1924,13 +1924,13 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi458, %i4
 	movui	%vti325, 1
-	addi	%vti325, %vti325, -888
+	addi	%vti325, %vti325, 1032
 	add	%vti325, %i0, %vti325
 	sw	%vi458, 0(%vti325)
 	sw	%vi458, 12(%vi449)
 	movi	%vi459, 3
 	movui	%vti326, 1
-	addi	%vti326, %vti326, -872
+	addi	%vti326, %vti326, 1048
 	add	%vti326, %i0, %vti326
 	sw	%vi459, 0(%vti326)
 	mov	%i4, %vi459
@@ -1939,7 +1939,7 @@ cont.230677:
 	addi	%i2, %i2, 12
 	mov	%vi461, %i4
 	movui	%vti328, 1
-	addi	%vti328, %vti328, -868
+	addi	%vti328, %vti328, 1052
 	add	%vti328, %i0, %vti328
 	sw	%vi461, 0(%vti328)
 	sw	%vi461, 16(%vi449)
@@ -1971,17 +1971,17 @@ ca_cont.230694:
 ca_done.230695:
 	mov	%vi465, %i4
 	movui	%vti331, 1
-	addi	%vti331, %vti331, -856
+	addi	%vti331, %vti331, 1064
 	add	%vti331, %i0, %vti331
 	sw	%vi465, 0(%vti331)
-	movi	%vi466, 30
-	movui	%vti332, 1
-	addi	%vti332, %vti332, -728
+	movi	%vi466, 510
+	movui	%vti332, 2
+	addi	%vti332, %vti332, -984
 	add	%vti332, %i0, %vti332
 	sw	%vi466, 0(%vti332)
 	mov	%vi467, %i0
-	movui	%vti333, 1
-	addi	%vti333, %vti333, -724
+	movui	%vti333, 2
+	addi	%vti333, %vti333, -980
 	add	%vti333, %i0, %vti333
 	sw	%vi467, 0(%vti333)
 	jleq	%i0, %vi466, then.230696
@@ -2207,7 +2207,7 @@ then.230696:
 	sw	%vi476, 4(%vi555)
 	sw	%vi470, 0(%vi555)
 	mov	%vi556, %vi555
-	sw	%vi556, 120(%vi465)
+	sw	%vi556, 2040(%vi465)
 	subi	%vi557, %vi466, 1
 	mov	%vi466, %vi557
 loop_start.224074:
@@ -2493,14 +2493,14 @@ cont.230700:
 loop_end.224075:
 	mov	%vi649, %vti363
 cont.230697:
-	movi	%vi650, 32
-	movui	%vti422, 1
-	addi	%vti422, %vti422, -720
+	movi	%vi650, 512
+	movui	%vti422, 2
+	addi	%vti422, %vti422, -976
 	add	%vti422, %i0, %vti422
 	sw	%vi650, 0(%vti422)
 	movi	%vi651, 3
-	movui	%vti423, 1
-	addi	%vti423, %vti423, -716
+	movui	%vti423, 2
+	addi	%vti423, %vti423, -972
 	add	%vti423, %i0, %vti423
 	sw	%vi651, 0(%vti423)
 	mov	%i4, %vi651
@@ -2508,13 +2508,13 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi653, %i4
-	movui	%vti425, 1
-	addi	%vti425, %vti425, -712
+	movui	%vti425, 2
+	addi	%vti425, %vti425, -968
 	add	%vti425, %i0, %vti425
 	sw	%vi653, 0(%vti425)
 	movi	%vi654, 3
-	movui	%vti426, 1
-	addi	%vti426, %vti426, -700
+	movui	%vti426, 2
+	addi	%vti426, %vti426, -956
 	add	%vti426, %i0, %vti426
 	sw	%vi654, 0(%vti426)
 	mov	%i4, %vi654
@@ -2522,13 +2522,13 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi656, %i4
-	movui	%vti428, 1
-	addi	%vti428, %vti428, -696
+	movui	%vti428, 2
+	addi	%vti428, %vti428, -952
 	add	%vti428, %i0, %vti428
 	sw	%vi656, 0(%vti428)
 	movi	%vi657, 5
-	movui	%vti429, 1
-	addi	%vti429, %vti429, -684
+	movui	%vti429, 2
+	addi	%vti429, %vti429, -940
 	add	%vti429, %i0, %vti429
 	sw	%vi657, 0(%vti429)
 	mov	%i4, %vi657
@@ -2541,13 +2541,13 @@ cont.230697:
 	sw	%i5, 16(%i2)
 	addi	%i2, %i2, 20
 	mov	%vi659, %i4
-	movui	%vti431, 1
-	addi	%vti431, %vti431, -680
+	movui	%vti431, 2
+	addi	%vti431, %vti431, -936
 	add	%vti431, %i0, %vti431
 	sw	%vi659, 0(%vti431)
 	movi	%vi660, 3
-	movui	%vti432, 1
-	addi	%vti432, %vti432, -656
+	movui	%vti432, 2
+	addi	%vti432, %vti432, -912
 	add	%vti432, %i0, %vti432
 	sw	%vi660, 0(%vti432)
 	mov	%i4, %vi660
@@ -2555,14 +2555,14 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi662, %i4
-	movui	%vti434, 1
-	addi	%vti434, %vti434, -652
+	movui	%vti434, 2
+	addi	%vti434, %vti434, -908
 	add	%vti434, %i0, %vti434
 	sw	%vi662, 0(%vti434)
 	sw	%vi662, 4(%vi659)
 	movi	%vi663, 3
-	movui	%vti435, 1
-	addi	%vti435, %vti435, -636
+	movui	%vti435, 2
+	addi	%vti435, %vti435, -892
 	add	%vti435, %i0, %vti435
 	sw	%vi663, 0(%vti435)
 	mov	%i4, %vi663
@@ -2570,14 +2570,14 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi665, %i4
-	movui	%vti437, 1
-	addi	%vti437, %vti437, -632
+	movui	%vti437, 2
+	addi	%vti437, %vti437, -888
 	add	%vti437, %i0, %vti437
 	sw	%vi665, 0(%vti437)
 	sw	%vi665, 8(%vi659)
 	movi	%vi666, 3
-	movui	%vti438, 1
-	addi	%vti438, %vti438, -616
+	movui	%vti438, 2
+	addi	%vti438, %vti438, -872
 	add	%vti438, %i0, %vti438
 	sw	%vi666, 0(%vti438)
 	mov	%i4, %vi666
@@ -2585,14 +2585,14 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi668, %i4
-	movui	%vti440, 1
-	addi	%vti440, %vti440, -612
+	movui	%vti440, 2
+	addi	%vti440, %vti440, -868
 	add	%vti440, %i0, %vti440
 	sw	%vi668, 0(%vti440)
 	sw	%vi668, 12(%vi659)
 	movi	%vi669, 3
-	movui	%vti441, 1
-	addi	%vti441, %vti441, -596
+	movui	%vti441, 2
+	addi	%vti441, %vti441, -852
 	add	%vti441, %i0, %vti441
 	sw	%vi669, 0(%vti441)
 	mov	%i4, %vi669
@@ -2600,19 +2600,19 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi671, %i4
-	movui	%vti443, 1
-	addi	%vti443, %vti443, -592
+	movui	%vti443, 2
+	addi	%vti443, %vti443, -848
 	add	%vti443, %i0, %vti443
 	sw	%vi671, 0(%vti443)
 	sw	%vi671, 16(%vi659)
 	movi	%vi672, 5
-	movui	%vti444, 1
-	addi	%vti444, %vti444, -580
+	movui	%vti444, 2
+	addi	%vti444, %vti444, -836
 	add	%vti444, %i0, %vti444
 	sw	%vi672, 0(%vti444)
 	mov	%vi673, %i0
-	movui	%vti445, 1
-	addi	%vti445, %vti445, -576
+	movui	%vti445, 2
+	addi	%vti445, %vti445, -832
 	add	%vti445, %i0, %vti445
 	sw	%vi673, 0(%vti445)
 	mov	%i4, %vi672
@@ -2620,18 +2620,18 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 20
 	mov	%vi675, %i4
-	movui	%vti447, 1
-	addi	%vti447, %vti447, -572
+	movui	%vti447, 2
+	addi	%vti447, %vti447, -828
 	add	%vti447, %i0, %vti447
 	sw	%vi675, 0(%vti447)
 	movi	%vi676, 5
-	movui	%vti448, 1
-	addi	%vti448, %vti448, -552
+	movui	%vti448, 2
+	addi	%vti448, %vti448, -808
 	add	%vti448, %i0, %vti448
 	sw	%vi676, 0(%vti448)
 	mov	%vi677, %i0
-	movui	%vti449, 1
-	addi	%vti449, %vti449, -548
+	movui	%vti449, 2
+	addi	%vti449, %vti449, -804
 	add	%vti449, %i0, %vti449
 	sw	%vi677, 0(%vti449)
 	mov	%i4, %vi676
@@ -2639,13 +2639,13 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 20
 	mov	%vi679, %i4
-	movui	%vti451, 1
-	addi	%vti451, %vti451, -544
+	movui	%vti451, 2
+	addi	%vti451, %vti451, -800
 	add	%vti451, %i0, %vti451
 	sw	%vi679, 0(%vti451)
 	movi	%vi680, 3
-	movui	%vti452, 1
-	addi	%vti452, %vti452, -524
+	movui	%vti452, 2
+	addi	%vti452, %vti452, -780
 	add	%vti452, %i0, %vti452
 	sw	%vi680, 0(%vti452)
 	mov	%i4, %vi680
@@ -2653,13 +2653,13 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi682, %i4
-	movui	%vti454, 1
-	addi	%vti454, %vti454, -520
+	movui	%vti454, 2
+	addi	%vti454, %vti454, -776
 	add	%vti454, %i0, %vti454
 	sw	%vi682, 0(%vti454)
 	movi	%vi683, 5
-	movui	%vti455, 1
-	addi	%vti455, %vti455, -508
+	movui	%vti455, 2
+	addi	%vti455, %vti455, -764
 	add	%vti455, %i0, %vti455
 	sw	%vi683, 0(%vti455)
 	mov	%i4, %vi683
@@ -2672,13 +2672,13 @@ cont.230697:
 	sw	%i5, 16(%i2)
 	addi	%i2, %i2, 20
 	mov	%vi685, %i4
-	movui	%vti457, 1
-	addi	%vti457, %vti457, -504
+	movui	%vti457, 2
+	addi	%vti457, %vti457, -760
 	add	%vti457, %i0, %vti457
 	sw	%vi685, 0(%vti457)
 	movi	%vi686, 3
-	movui	%vti458, 1
-	addi	%vti458, %vti458, -480
+	movui	%vti458, 2
+	addi	%vti458, %vti458, -736
 	add	%vti458, %i0, %vti458
 	sw	%vi686, 0(%vti458)
 	mov	%i4, %vi686
@@ -2686,14 +2686,14 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi688, %i4
-	movui	%vti460, 1
-	addi	%vti460, %vti460, -476
+	movui	%vti460, 2
+	addi	%vti460, %vti460, -732
 	add	%vti460, %i0, %vti460
 	sw	%vi688, 0(%vti460)
 	sw	%vi688, 4(%vi685)
 	movi	%vi689, 3
-	movui	%vti461, 1
-	addi	%vti461, %vti461, -460
+	movui	%vti461, 2
+	addi	%vti461, %vti461, -716
 	add	%vti461, %i0, %vti461
 	sw	%vi689, 0(%vti461)
 	mov	%i4, %vi689
@@ -2701,14 +2701,14 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi691, %i4
-	movui	%vti463, 1
-	addi	%vti463, %vti463, -456
+	movui	%vti463, 2
+	addi	%vti463, %vti463, -712
 	add	%vti463, %i0, %vti463
 	sw	%vi691, 0(%vti463)
 	sw	%vi691, 8(%vi685)
 	movi	%vi692, 3
-	movui	%vti464, 1
-	addi	%vti464, %vti464, -440
+	movui	%vti464, 2
+	addi	%vti464, %vti464, -696
 	add	%vti464, %i0, %vti464
 	sw	%vi692, 0(%vti464)
 	mov	%i4, %vi692
@@ -2716,14 +2716,14 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi694, %i4
-	movui	%vti466, 1
-	addi	%vti466, %vti466, -436
+	movui	%vti466, 2
+	addi	%vti466, %vti466, -692
 	add	%vti466, %i0, %vti466
 	sw	%vi694, 0(%vti466)
 	sw	%vi694, 12(%vi685)
 	movi	%vi695, 3
-	movui	%vti467, 1
-	addi	%vti467, %vti467, -420
+	movui	%vti467, 2
+	addi	%vti467, %vti467, -676
 	add	%vti467, %i0, %vti467
 	sw	%vi695, 0(%vti467)
 	mov	%i4, %vi695
@@ -2731,14 +2731,14 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi697, %i4
-	movui	%vti469, 1
-	addi	%vti469, %vti469, -416
+	movui	%vti469, 2
+	addi	%vti469, %vti469, -672
 	add	%vti469, %i0, %vti469
 	sw	%vi697, 0(%vti469)
 	sw	%vi697, 16(%vi685)
 	movi	%vi698, 3
-	movui	%vti470, 1
-	addi	%vti470, %vti470, -404
+	movui	%vti470, 2
+	addi	%vti470, %vti470, -660
 	add	%vti470, %i0, %vti470
 	sw	%vi698, 0(%vti470)
 	mov	%i4, %vi698
@@ -2746,13 +2746,13 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi700, %i4
-	movui	%vti472, 1
-	addi	%vti472, %vti472, -400
+	movui	%vti472, 2
+	addi	%vti472, %vti472, -656
 	add	%vti472, %i0, %vti472
 	sw	%vi700, 0(%vti472)
 	movi	%vi701, 5
-	movui	%vti473, 1
-	addi	%vti473, %vti473, -388
+	movui	%vti473, 2
+	addi	%vti473, %vti473, -644
 	add	%vti473, %i0, %vti473
 	sw	%vi701, 0(%vti473)
 	mov	%i4, %vi701
@@ -2765,13 +2765,13 @@ cont.230697:
 	sw	%i5, 16(%i2)
 	addi	%i2, %i2, 20
 	mov	%vi703, %i4
-	movui	%vti475, 1
-	addi	%vti475, %vti475, -384
+	movui	%vti475, 2
+	addi	%vti475, %vti475, -640
 	add	%vti475, %i0, %vti475
 	sw	%vi703, 0(%vti475)
 	movi	%vi704, 3
-	movui	%vti476, 1
-	addi	%vti476, %vti476, -360
+	movui	%vti476, 2
+	addi	%vti476, %vti476, -616
 	add	%vti476, %i0, %vti476
 	sw	%vi704, 0(%vti476)
 	mov	%i4, %vi704
@@ -2779,14 +2779,14 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi706, %i4
-	movui	%vti478, 1
-	addi	%vti478, %vti478, -356
+	movui	%vti478, 2
+	addi	%vti478, %vti478, -612
 	add	%vti478, %i0, %vti478
 	sw	%vi706, 0(%vti478)
 	sw	%vi706, 4(%vi703)
 	movi	%vi707, 3
-	movui	%vti479, 1
-	addi	%vti479, %vti479, -340
+	movui	%vti479, 2
+	addi	%vti479, %vti479, -596
 	add	%vti479, %i0, %vti479
 	sw	%vi707, 0(%vti479)
 	mov	%i4, %vi707
@@ -2794,14 +2794,14 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi709, %i4
-	movui	%vti481, 1
-	addi	%vti481, %vti481, -336
+	movui	%vti481, 2
+	addi	%vti481, %vti481, -592
 	add	%vti481, %i0, %vti481
 	sw	%vi709, 0(%vti481)
 	sw	%vi709, 8(%vi703)
 	movi	%vi710, 3
-	movui	%vti482, 1
-	addi	%vti482, %vti482, -320
+	movui	%vti482, 2
+	addi	%vti482, %vti482, -576
 	add	%vti482, %i0, %vti482
 	sw	%vi710, 0(%vti482)
 	mov	%i4, %vi710
@@ -2809,14 +2809,14 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi712, %i4
-	movui	%vti484, 1
-	addi	%vti484, %vti484, -316
+	movui	%vti484, 2
+	addi	%vti484, %vti484, -572
 	add	%vti484, %i0, %vti484
 	sw	%vi712, 0(%vti484)
 	sw	%vi712, 12(%vi703)
 	movi	%vi713, 3
-	movui	%vti485, 1
-	addi	%vti485, %vti485, -300
+	movui	%vti485, 2
+	addi	%vti485, %vti485, -556
 	add	%vti485, %i0, %vti485
 	sw	%vi713, 0(%vti485)
 	mov	%i4, %vi713
@@ -2824,19 +2824,19 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi715, %i4
-	movui	%vti487, 1
-	addi	%vti487, %vti487, -296
+	movui	%vti487, 2
+	addi	%vti487, %vti487, -552
 	add	%vti487, %i0, %vti487
 	sw	%vi715, 0(%vti487)
 	sw	%vi715, 16(%vi703)
 	movi	%vi716, 1
-	movui	%vti488, 1
-	addi	%vti488, %vti488, -284
+	movui	%vti488, 2
+	addi	%vti488, %vti488, -540
 	add	%vti488, %i0, %vti488
 	sw	%vi716, 0(%vti488)
 	mov	%vi717, %i0
-	movui	%vti489, 1
-	addi	%vti489, %vti489, -280
+	movui	%vti489, 2
+	addi	%vti489, %vti489, -536
 	add	%vti489, %i0, %vti489
 	sw	%vi717, 0(%vti489)
 	mov	%i4, %vi716
@@ -2844,13 +2844,13 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 4
 	mov	%vi719, %i4
-	movui	%vti491, 1
-	addi	%vti491, %vti491, -276
+	movui	%vti491, 2
+	addi	%vti491, %vti491, -532
 	add	%vti491, %i0, %vti491
 	sw	%vi719, 0(%vti491)
 	movi	%vi720, 3
-	movui	%vti492, 1
-	addi	%vti492, %vti492, -272
+	movui	%vti492, 2
+	addi	%vti492, %vti492, -528
 	add	%vti492, %i0, %vti492
 	sw	%vi720, 0(%vti492)
 	mov	%i4, %vi720
@@ -2858,13 +2858,13 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi722, %i4
-	movui	%vti494, 1
-	addi	%vti494, %vti494, -268
+	movui	%vti494, 2
+	addi	%vti494, %vti494, -524
 	add	%vti494, %i0, %vti494
 	sw	%vi722, 0(%vti494)
 	movi	%vi723, 5
-	movui	%vti495, 1
-	addi	%vti495, %vti495, -256
+	movui	%vti495, 2
+	addi	%vti495, %vti495, -512
 	add	%vti495, %i0, %vti495
 	sw	%vi723, 0(%vti495)
 	mov	%i4, %vi723
@@ -2877,13 +2877,13 @@ cont.230697:
 	sw	%i5, 16(%i2)
 	addi	%i2, %i2, 20
 	mov	%vi725, %i4
-	movui	%vti497, 1
-	addi	%vti497, %vti497, -252
+	movui	%vti497, 2
+	addi	%vti497, %vti497, -508
 	add	%vti497, %i0, %vti497
 	sw	%vi725, 0(%vti497)
 	movi	%vi726, 3
-	movui	%vti498, 1
-	addi	%vti498, %vti498, -228
+	movui	%vti498, 2
+	addi	%vti498, %vti498, -484
 	add	%vti498, %i0, %vti498
 	sw	%vi726, 0(%vti498)
 	mov	%i4, %vi726
@@ -2891,14 +2891,14 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi728, %i4
-	movui	%vti500, 1
-	addi	%vti500, %vti500, -224
+	movui	%vti500, 2
+	addi	%vti500, %vti500, -480
 	add	%vti500, %i0, %vti500
 	sw	%vi728, 0(%vti500)
 	sw	%vi728, 4(%vi725)
 	movi	%vi729, 3
-	movui	%vti501, 1
-	addi	%vti501, %vti501, -208
+	movui	%vti501, 2
+	addi	%vti501, %vti501, -464
 	add	%vti501, %i0, %vti501
 	sw	%vi729, 0(%vti501)
 	mov	%i4, %vi729
@@ -2906,14 +2906,14 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi731, %i4
-	movui	%vti503, 1
-	addi	%vti503, %vti503, -204
+	movui	%vti503, 2
+	addi	%vti503, %vti503, -460
 	add	%vti503, %i0, %vti503
 	sw	%vi731, 0(%vti503)
 	sw	%vi731, 8(%vi725)
 	movi	%vi732, 3
-	movui	%vti504, 1
-	addi	%vti504, %vti504, -188
+	movui	%vti504, 2
+	addi	%vti504, %vti504, -444
 	add	%vti504, %i0, %vti504
 	sw	%vi732, 0(%vti504)
 	mov	%i4, %vi732
@@ -2921,14 +2921,14 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi734, %i4
-	movui	%vti506, 1
-	addi	%vti506, %vti506, -184
+	movui	%vti506, 2
+	addi	%vti506, %vti506, -440
 	add	%vti506, %i0, %vti506
 	sw	%vi734, 0(%vti506)
 	sw	%vi734, 12(%vi725)
 	movi	%vi735, 3
-	movui	%vti507, 1
-	addi	%vti507, %vti507, -168
+	movui	%vti507, 2
+	addi	%vti507, %vti507, -424
 	add	%vti507, %i0, %vti507
 	sw	%vi735, 0(%vti507)
 	mov	%i4, %vi735
@@ -2936,8 +2936,8 @@ cont.230697:
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
 	mov	%vi737, %i4
-	movui	%vti509, 1
-	addi	%vti509, %vti509, -164
+	movui	%vti509, 2
+	addi	%vti509, %vti509, -420
 	add	%vti509, %i0, %vti509
 	sw	%vi737, 0(%vti509)
 	sw	%vi737, 16(%vi725)
@@ -2968,18 +2968,18 @@ ca_cont.230714:
 	jmp	%i0, 0(%vti510)
 ca_done.230715:
 	mov	%vi741, %i4
-	movui	%vti512, 1
-	addi	%vti512, %vti512, -152
+	movui	%vti512, 2
+	addi	%vti512, %vti512, -408
 	add	%vti512, %i0, %vti512
 	sw	%vi741, 0(%vti512)
-	movi	%vi742, 30
-	movui	%vti513, 1
-	addi	%vti513, %vti513, -24
+	movi	%vi742, 510
+	movui	%vti513, 2
+	addi	%vti513, %vti513, 1640
 	add	%vti513, %i0, %vti513
 	sw	%vi742, 0(%vti513)
 	mov	%vi743, %i0
-	movui	%vti514, 1
-	addi	%vti514, %vti514, -20
+	movui	%vti514, 2
+	addi	%vti514, %vti514, 1644
 	add	%vti514, %i0, %vti514
 	sw	%vi743, 0(%vti514)
 	jleq	%i0, %vi742, then.230716
@@ -3205,7 +3205,7 @@ then.230716:
 	sw	%vi752, 4(%vi831)
 	sw	%vi746, 0(%vi831)
 	mov	%vi832, %vi831
-	sw	%vi832, 120(%vi741)
+	sw	%vi832, 2040(%vi741)
 	subi	%vi833, %vi742, 1
 	mov	%vi742, %vi833
 loop_start.224106:
@@ -3504,8 +3504,8 @@ cont.230717:
 	or	%i4, %i4, %vti603
 	mif	%f1, %i4
 	fmov	%vf94, %f1
-	movui	%vti604, 1
-	addi	%vti604, %vti604, -16
+	movui	%vti604, 2
+	addi	%vti604, %vti604, 1648
 	add	%vti604, %i0, %vti604
 	sf	%vf94, 0(%vti604)
 	fmov	%vf46, %vf94
@@ -3522,8 +3522,8 @@ cont.230717:
 	or	%i4, %i4, %vti605
 	mif	%f1, %i4
 	fmov	%vf96, %f1
-	movui	%vti606, 1
-	addi	%vti606, %vti606, -12
+	movui	%vti606, 2
+	addi	%vti606, %vti606, 1652
 	add	%vti606, %i0, %vti606
 	sf	%vf96, 0(%vti606)
 	fmov	%vf47, %vf96
@@ -3540,8 +3540,8 @@ cont.230717:
 	or	%i4, %i4, %vti607
 	mif	%f1, %i4
 	fmov	%vf98, %f1
-	movui	%vti608, 1
-	addi	%vti608, %vti608, -8
+	movui	%vti608, 2
+	addi	%vti608, %vti608, 1656
 	add	%vti608, %i0, %vti608
 	sf	%vf98, 0(%vti608)
 	fmov	%vf48, %vf98
@@ -3558,17 +3558,18 @@ cont.230717:
 	or	%i4, %i4, %vti609
 	mif	%f1, %i4
 	fmov	%vf100, %f1
-	movui	%vti610, 1
-	addi	%vti610, %vti610, -4
+	movui	%vti610, 2
+	addi	%vti610, %vti610, 1660
 	add	%vti610, %i0, %vti610
 	sf	%vf100, 0(%vti610)
 	fmul	%vf101, %vf100, %vf26
-	movui	%vti611, 1
+	movui	%vti611, 2
+	addi	%vti611, %vti611, 1664
 	add	%vti611, %i0, %vti611
 	sf	%vf101, 0(%vti611)
 	fsub	%vf102, %vf32, %vf101
-	movui	%vti612, 1
-	addi	%vti612, %vti612, 4
+	movui	%vti612, 2
+	addi	%vti612, %vti612, 1668
 	add	%vti612, %i0, %vti612
 	sf	%vf102, 0(%vti612)
 	fleq	%vti613, %vf102, %vf32
@@ -3659,8 +3660,8 @@ else.230739:
 	fmul	%vf156, %vf155, %vf148
 cont.230740:
 cont.230734:
-	movui	%vti623, 1
-	addi	%vti623, %vti623, 8
+	movui	%vti623, 2
+	addi	%vti623, %vti623, 1672
 	add	%vti623, %i0, %vti623
 	sf	%vf156, 0(%vti623)
 	fleq	%vti624, %vf101, %vf32
@@ -3751,8 +3752,8 @@ else.230747:
 	fmul	%vf210, %vf209, %vf202
 cont.230748:
 cont.230742:
-	movui	%vti634, 1
-	addi	%vti634, %vti634, 12
+	movui	%vti634, 2
+	addi	%vti634, %vti634, 1676
 	add	%vti634, %i0, %vti634
 	sf	%vf210, 0(%vti634)
 	movui	%i5, 0xf0000
@@ -3768,18 +3769,18 @@ cont.230742:
 	or	%i4, %i4, %vti635
 	mif	%f1, %i4
 	fmov	%vf212, %f1
-	movui	%vti636, 1
-	addi	%vti636, %vti636, 16
+	movui	%vti636, 2
+	addi	%vti636, %vti636, 1680
 	add	%vti636, %i0, %vti636
 	sf	%vf212, 0(%vti636)
 	fmul	%vf213, %vf212, %vf26
-	movui	%vti637, 1
-	addi	%vti637, %vti637, 20
+	movui	%vti637, 2
+	addi	%vti637, %vti637, 1684
 	add	%vti637, %i0, %vti637
 	sf	%vf213, 0(%vti637)
 	fsub	%vf214, %vf32, %vf213
-	movui	%vti638, 1
-	addi	%vti638, %vti638, 24
+	movui	%vti638, 2
+	addi	%vti638, %vti638, 1688
 	add	%vti638, %i0, %vti638
 	sf	%vf214, 0(%vti638)
 	fleq	%vti639, %vf214, %vf32
@@ -3870,8 +3871,8 @@ else.230755:
 	fmul	%vf268, %vf267, %vf260
 cont.230756:
 cont.230750:
-	movui	%vti649, 1
-	addi	%vti649, %vti649, 28
+	movui	%vti649, 2
+	addi	%vti649, %vti649, 1692
 	add	%vti649, %i0, %vti649
 	sf	%vf268, 0(%vti649)
 	fleq	%vti650, %vf213, %vf32
@@ -3962,83 +3963,83 @@ else.230763:
 	fmul	%vf322, %vf321, %vf314
 cont.230764:
 cont.230758:
-	movui	%vti660, 1
-	addi	%vti660, %vti660, 32
+	movui	%vti660, 2
+	addi	%vti660, %vti660, 1696
 	add	%vti660, %i0, %vti660
 	sf	%vf322, 0(%vti660)
 	fmul	%vf323, %vf156, %vf322
-	movui	%vti661, 1
-	addi	%vti661, %vti661, 36
+	movui	%vti661, 2
+	addi	%vti661, %vti661, 1700
 	add	%vti661, %i0, %vti661
 	sf	%vf323, 0(%vti661)
 	fmul	%vf324, %vf323, %vf25
-	movui	%vti662, 1
-	addi	%vti662, %vti662, 40
+	movui	%vti662, 2
+	addi	%vti662, %vti662, 1704
 	add	%vti662, %i0, %vti662
 	sf	%vf324, 0(%vti662)
 	fmov	%vf84, %vf324
 	fmul	%vf325, %vf210, %vf24
-	movui	%vti663, 1
-	addi	%vti663, %vti663, 44
+	movui	%vti663, 2
+	addi	%vti663, %vti663, 1708
 	add	%vti663, %i0, %vti663
 	sf	%vf325, 0(%vti663)
 	fmov	%vf85, %vf325
 	fmul	%vf326, %vf156, %vf268
-	movui	%vti664, 1
-	addi	%vti664, %vti664, 48
+	movui	%vti664, 2
+	addi	%vti664, %vti664, 1712
 	add	%vti664, %i0, %vti664
 	sf	%vf326, 0(%vti664)
 	fmul	%vf327, %vf326, %vf25
-	movui	%vti665, 1
-	addi	%vti665, %vti665, 52
+	movui	%vti665, 2
+	addi	%vti665, %vti665, 1716
 	add	%vti665, %i0, %vti665
 	sf	%vf327, 0(%vti665)
 	fmov	%vf86, %vf327
 	fmov	%vf79, %vf268
 	fneg	%vf328, %vf322
-	movui	%vti666, 1
-	addi	%vti666, %vti666, 56
+	movui	%vti666, 2
+	addi	%vti666, %vti666, 1720
 	add	%vti666, %i0, %vti666
 	sf	%vf328, 0(%vti666)
 	fmov	%vf80, %vf328
 	fneg	%vf329, %vf210
-	movui	%vti667, 1
-	addi	%vti667, %vti667, 60
+	movui	%vti667, 2
+	addi	%vti667, %vti667, 1724
 	add	%vti667, %i0, %vti667
 	sf	%vf329, 0(%vti667)
 	fmul	%vf330, %vf329, %vf322
-	movui	%vti668, 1
-	addi	%vti668, %vti668, 64
+	movui	%vti668, 2
+	addi	%vti668, %vti668, 1728
 	add	%vti668, %i0, %vti668
 	sf	%vf330, 0(%vti668)
 	fmov	%vf81, %vf330
 	fneg	%vf331, %vf156
-	movui	%vti669, 1
-	addi	%vti669, %vti669, 68
+	movui	%vti669, 2
+	addi	%vti669, %vti669, 1732
 	add	%vti669, %i0, %vti669
 	sf	%vf331, 0(%vti669)
 	fmov	%vf82, %vf331
 	fmul	%vf332, %vf329, %vf268
-	movui	%vti670, 1
-	addi	%vti670, %vti670, 72
+	movui	%vti670, 2
+	addi	%vti670, %vti670, 1736
 	add	%vti670, %i0, %vti670
 	sf	%vf332, 0(%vti670)
 	fmov	%vf83, %vf332
 	fsub	%vf333, %vf94, %vf324
-	movui	%vti671, 1
-	addi	%vti671, %vti671, 76
+	movui	%vti671, 2
+	addi	%vti671, %vti671, 1740
 	add	%vti671, %i0, %vti671
 	sf	%vf333, 0(%vti671)
 	fmov	%vf49, %vf333
 	fsub	%vf334, %vf96, %vf325
-	movui	%vti672, 1
-	addi	%vti672, %vti672, 80
+	movui	%vti672, 2
+	addi	%vti672, %vti672, 1744
 	add	%vti672, %i0, %vti672
 	sf	%vf334, 0(%vti672)
 	fmov	%vf50, %vf334
 	fsub	%vf335, %vf98, %vf327
-	movui	%vti673, 1
-	addi	%vti673, %vti673, 84
+	movui	%vti673, 2
+	addi	%vti673, %vti673, 1748
 	add	%vti673, %i0, %vti673
 	sf	%vf335, 0(%vti673)
 	fmov	%vf51, %vf335
@@ -4054,8 +4055,8 @@ cont.230758:
 	slli	%vti674, %vti674, 24
 	or	%i4, %i4, %vti674
 	mov	%vi935, %i4
-	movui	%vti675, 1
-	addi	%vti675, %vti675, 88
+	movui	%vti675, 2
+	addi	%vti675, %vti675, 1752
 	add	%vti675, %i0, %vti675
 	sw	%vi935, 0(%vti675)
 	movui	%i5, 0xf0000
@@ -4071,13 +4072,13 @@ cont.230758:
 	or	%i4, %i4, %vti676
 	mif	%f1, %i4
 	fmov	%vf337, %f1
-	movui	%vti677, 1
-	addi	%vti677, %vti677, 92
+	movui	%vti677, 2
+	addi	%vti677, %vti677, 1756
 	add	%vti677, %i0, %vti677
 	sf	%vf337, 0(%vti677)
 	fmul	%vf338, %vf337, %vf26
-	movui	%vti678, 1
-	addi	%vti678, %vti678, 96
+	movui	%vti678, 2
+	addi	%vti678, %vti678, 1760
 	add	%vti678, %i0, %vti678
 	sf	%vf338, 0(%vti678)
 	fleq	%vti679, %vf338, %vf32
@@ -4168,13 +4169,13 @@ else.230771:
 	fmul	%vf392, %vf391, %vf384
 cont.230772:
 cont.230766:
-	movui	%vti689, 1
-	addi	%vti689, %vti689, 100
+	movui	%vti689, 2
+	addi	%vti689, %vti689, 1764
 	add	%vti689, %i0, %vti689
 	sf	%vf392, 0(%vti689)
 	fneg	%vf393, %vf392
-	movui	%vti690, 1
-	addi	%vti690, %vti690, 104
+	movui	%vti690, 2
+	addi	%vti690, %vti690, 1768
 	add	%vti690, %i0, %vti690
 	sf	%vf393, 0(%vti690)
 	fmov	%vf53, %vf393
@@ -4191,18 +4192,18 @@ cont.230766:
 	or	%i4, %i4, %vti691
 	mif	%f1, %i4
 	fmov	%vf395, %f1
-	movui	%vti692, 1
-	addi	%vti692, %vti692, 108
+	movui	%vti692, 2
+	addi	%vti692, %vti692, 1772
 	add	%vti692, %i0, %vti692
 	sf	%vf395, 0(%vti692)
 	fmul	%vf396, %vf395, %vf26
-	movui	%vti693, 1
-	addi	%vti693, %vti693, 112
+	movui	%vti693, 2
+	addi	%vti693, %vti693, 1776
 	add	%vti693, %i0, %vti693
 	sf	%vf396, 0(%vti693)
 	fsub	%vf397, %vf32, %vf338
-	movui	%vti694, 1
-	addi	%vti694, %vti694, 116
+	movui	%vti694, 2
+	addi	%vti694, %vti694, 1780
 	add	%vti694, %i0, %vti694
 	sf	%vf397, 0(%vti694)
 	fleq	%vti695, %vf397, %vf32
@@ -4293,8 +4294,8 @@ else.230779:
 	fmul	%vf451, %vf450, %vf443
 cont.230780:
 cont.230774:
-	movui	%vti705, 1
-	addi	%vti705, %vti705, 120
+	movui	%vti705, 2
+	addi	%vti705, %vti705, 1784
 	add	%vti705, %i0, %vti705
 	sf	%vf451, 0(%vti705)
 	fleq	%vti706, %vf396, %vf32
@@ -4385,19 +4386,19 @@ else.230787:
 	fmul	%vf505, %vf504, %vf497
 cont.230788:
 cont.230782:
-	movui	%vti716, 1
-	addi	%vti716, %vti716, 124
+	movui	%vti716, 2
+	addi	%vti716, %vti716, 1788
 	add	%vti716, %i0, %vti716
 	sf	%vf505, 0(%vti716)
 	fmul	%vf506, %vf451, %vf505
-	movui	%vti717, 1
-	addi	%vti717, %vti717, 128
+	movui	%vti717, 2
+	addi	%vti717, %vti717, 1792
 	add	%vti717, %i0, %vti717
 	sf	%vf506, 0(%vti717)
 	fmov	%vf52, %vf506
 	fsub	%vf507, %vf32, %vf396
-	movui	%vti718, 1
-	addi	%vti718, %vti718, 132
+	movui	%vti718, 2
+	addi	%vti718, %vti718, 1796
 	add	%vti718, %i0, %vti718
 	sf	%vf507, 0(%vti718)
 	fleq	%vti719, %vf507, %vf32
@@ -4488,13 +4489,13 @@ else.230795:
 	fmul	%vf561, %vf560, %vf553
 cont.230796:
 cont.230790:
-	movui	%vti729, 1
-	addi	%vti729, %vti729, 136
+	movui	%vti729, 2
+	addi	%vti729, %vti729, 1800
 	add	%vti729, %i0, %vti729
 	sf	%vf561, 0(%vti729)
 	fmul	%vf562, %vf451, %vf561
-	movui	%vti730, 1
-	addi	%vti730, %vti730, 140
+	movui	%vti730, 2
+	addi	%vti730, %vti730, 1804
 	add	%vti730, %i0, %vti730
 	sf	%vf562, 0(%vti730)
 	fmov	%vf54, %vf562
@@ -4511,19 +4512,19 @@ cont.230790:
 	or	%i4, %i4, %vti731
 	mif	%f1, %i4
 	fmov	%vf564, %f1
-	movui	%vti732, 1
-	addi	%vti732, %vti732, 144
+	movui	%vti732, 2
+	addi	%vti732, %vti732, 1808
 	add	%vti732, %i0, %vti732
 	sf	%vf564, 0(%vti732)
 	fmov	%vf56, %vf564
 	mov	%vi944, %i0
-	movui	%vti733, 1
-	addi	%vti733, %vti733, 148
+	movui	%vti733, 2
+	addi	%vti733, %vti733, 1812
 	add	%vti733, %i0, %vti733
 	sw	%vi944, 0(%vti733)
 	movi	%vi945, 60
-	movui	%vti734, 1
-	addi	%vti734, %vti734, 152
+	movui	%vti734, 2
+	addi	%vti734, %vti734, 1816
 	add	%vti734, %i0, %vti734
 	sw	%vi945, 0(%vti734)
 	jleq	%vi945, %vi944, cont.230797
@@ -6737,18 +6738,18 @@ then.230871:
 cont.230872:
 cont.230797:
 	mov	%vi1118, %i0
-	movui	%vti947, 1
-	addi	%vti947, %vti947, 156
+	movui	%vti947, 2
+	addi	%vti947, %vti947, 1820
 	add	%vti947, %i0, %vti947
 	sw	%vi1118, 0(%vti947)
 	mov	%vi1119, %i0
-	movui	%vti948, 1
-	addi	%vti948, %vti948, 160
+	movui	%vti948, 2
+	addi	%vti948, %vti948, 1824
 	add	%vti948, %i0, %vti948
 	sw	%vi1119, 0(%vti948)
 	mov	%vi1120, %i0
-	movui	%vti949, 1
-	addi	%vti949, %vti949, 164
+	movui	%vti949, 2
+	addi	%vti949, %vti949, 1828
 	add	%vti949, %i0, %vti949
 	sw	%vi1120, 0(%vti949)
 	mov	%i4, %i0
@@ -6788,8 +6789,8 @@ loop_end.224221:
 then.230951:
 cont.230952:
 	mov	%vi1130, %i0
-	movui	%vti958, 1
-	addi	%vti958, %vti958, 172
+	movui	%vti958, 2
+	addi	%vti958, %vti958, 1836
 	add	%vti958, %i0, %vti958
 	sw	%vi1130, 0(%vti958)
 	mov	%i4, %i0
@@ -6797,133 +6798,133 @@ cont.230952:
 	mov	%vi1132, %i4
 	mov	%vi47, %vi1132
 	movi	%vi1133, 80
-	movui	%vti960, 1
-	addi	%vti960, %vti960, 176
+	movui	%vti960, 2
+	addi	%vti960, %vti960, 1840
 	add	%vti960, %i0, %vti960
 	sw	%vi1133, 0(%vti960)
 	mov	%i4, %vi1133
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%vi1134, 51
-	movui	%vti962, 1
-	addi	%vti962, %vti962, 180
+	movui	%vti962, 2
+	addi	%vti962, %vti962, 1844
 	add	%vti962, %i0, %vti962
 	sw	%vi1134, 0(%vti962)
 	mov	%i4, %vi1134
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%vi1135, 10
-	movui	%vti964, 1
-	addi	%vti964, %vti964, 184
+	movui	%vti964, 2
+	addi	%vti964, %vti964, 1848
 	add	%vti964, %i0, %vti964
 	sw	%vi1135, 0(%vti964)
 	mov	%i4, %vi1135
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
-	movi	%vi1136, 48
-	movui	%vti966, 1
-	addi	%vti966, %vti966, 188
+	movi	%vi1136, 50
+	movui	%vti966, 2
+	addi	%vti966, %vti966, 1852
 	add	%vti966, %i0, %vti966
 	sw	%vi1136, 0(%vti966)
 	mov	%i4, %vi1136
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
-	movi	%vi1137, 51
-	movui	%vti968, 1
-	addi	%vti968, %vti968, 192
+	movi	%vi1137, 57
+	movui	%vti968, 2
+	addi	%vti968, %vti968, 1856
 	add	%vti968, %i0, %vti968
 	sw	%vi1137, 0(%vti968)
 	mov	%i4, %vi1137
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
-	movi	%vi1138, 50
-	movui	%vti970, 1
-	addi	%vti970, %vti970, 196
+	movi	%vi1138, 57
+	movui	%vti970, 2
+	addi	%vti970, %vti970, 1860
 	add	%vti970, %i0, %vti970
 	sw	%vi1138, 0(%vti970)
 	mov	%i4, %vi1138
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%vi1139, 32
-	movui	%vti972, 1
-	addi	%vti972, %vti972, 200
+	movui	%vti972, 2
+	addi	%vti972, %vti972, 1864
 	add	%vti972, %i0, %vti972
 	sw	%vi1139, 0(%vti972)
 	mov	%i4, %vi1139
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
-	movi	%vi1140, 48
-	movui	%vti974, 1
-	addi	%vti974, %vti974, 204
+	movi	%vi1140, 50
+	movui	%vti974, 2
+	addi	%vti974, %vti974, 1868
 	add	%vti974, %i0, %vti974
 	sw	%vi1140, 0(%vti974)
 	mov	%i4, %vi1140
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
-	movi	%vi1141, 51
-	movui	%vti976, 1
-	addi	%vti976, %vti976, 208
+	movi	%vi1141, 57
+	movui	%vti976, 2
+	addi	%vti976, %vti976, 1872
 	add	%vti976, %i0, %vti976
 	sw	%vi1141, 0(%vti976)
 	mov	%i4, %vi1141
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
-	movi	%vi1142, 50
-	movui	%vti978, 1
-	addi	%vti978, %vti978, 212
+	movi	%vi1142, 57
+	movui	%vti978, 2
+	addi	%vti978, %vti978, 1876
 	add	%vti978, %i0, %vti978
 	sw	%vi1142, 0(%vti978)
 	mov	%i4, %vi1142
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%vi1143, 32
-	movui	%vti980, 1
-	addi	%vti980, %vti980, 216
+	movui	%vti980, 2
+	addi	%vti980, %vti980, 1880
 	add	%vti980, %i0, %vti980
 	sw	%vi1143, 0(%vti980)
 	mov	%i4, %vi1143
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%vi1144, 50
-	movui	%vti982, 1
-	addi	%vti982, %vti982, 220
+	movui	%vti982, 2
+	addi	%vti982, %vti982, 1884
 	add	%vti982, %i0, %vti982
 	sw	%vi1144, 0(%vti982)
 	mov	%i4, %vi1144
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%vi1145, 53
-	movui	%vti984, 1
-	addi	%vti984, %vti984, 224
+	movui	%vti984, 2
+	addi	%vti984, %vti984, 1888
 	add	%vti984, %i0, %vti984
 	sw	%vi1145, 0(%vti984)
 	mov	%i4, %vi1145
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%vi1146, 53
-	movui	%vti986, 1
-	addi	%vti986, %vti986, 228
+	movui	%vti986, 2
+	addi	%vti986, %vti986, 1892
 	add	%vti986, %i0, %vti986
 	sw	%vi1146, 0(%vti986)
 	mov	%i4, %vi1146
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%vi1147, 10
-	movui	%vti988, 1
-	addi	%vti988, %vti988, 232
+	movui	%vti988, 2
+	addi	%vti988, %vti988, 1896
 	add	%vti988, %i0, %vti988
 	sw	%vi1147, 0(%vti988)
 	mov	%i4, %vi1147
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
 	movi	%vi1148, 4
-	movui	%vti990, 1
-	addi	%vti990, %vti990, 236
+	movui	%vti990, 2
+	addi	%vti990, %vti990, 1900
 	add	%vti990, %i0, %vti990
 	sw	%vi1148, 0(%vti990)
 	mov	%vi1149, %i0
-	movui	%vti991, 1
-	addi	%vti991, %vti991, 240
+	movui	%vti991, 2
+	addi	%vti991, %vti991, 1904
 	add	%vti991, %i0, %vti991
 	sw	%vi1149, 0(%vti991)
 loop_start.224226:
@@ -7071,23 +7072,23 @@ cont.230958:
 loop_end.224227:
 	mov	%i0, %vti992
 	movi	%vi1186, 9
-	movui	%vti1011, 1
-	addi	%vti1011, %vti1011, 244
+	movui	%vti1011, 2
+	addi	%vti1011, %vti1011, 1908
 	add	%vti1011, %i0, %vti1011
 	sw	%vi1186, 0(%vti1011)
 	mov	%vi1187, %i0
-	movui	%vti1012, 1
-	addi	%vti1012, %vti1012, 248
+	movui	%vti1012, 2
+	addi	%vti1012, %vti1012, 1912
 	add	%vti1012, %i0, %vti1012
 	sw	%vi1187, 0(%vti1012)
 	mov	%vi1188, %i0
-	movui	%vti1013, 1
-	addi	%vti1013, %vti1013, 252
+	movui	%vti1013, 2
+	addi	%vti1013, %vti1013, 1916
 	add	%vti1013, %i0, %vti1013
 	sw	%vi1188, 0(%vti1013)
 	mov	%vi1189, %i0
-	movui	%vti1014, 1
-	addi	%vti1014, %vti1014, 256
+	movui	%vti1014, 2
+	addi	%vti1014, %vti1014, 1920
 	add	%vti1014, %i0, %vti1014
 	sw	%vi1189, 0(%vti1014)
 loop_start.224245:
@@ -8588,13 +8589,13 @@ cont.230977:
 loop_end.224246:
 	mov	%i0, %vti1015
 	movi	%vi1400, 4
-	movui	%vti1164, 1
-	addi	%vti1164, %vti1164, 260
+	movui	%vti1164, 2
+	addi	%vti1164, %vti1164, 1924
 	add	%vti1164, %i0, %vti1164
 	sw	%vi1400, 0(%vti1164)
 	mov	%vi1401, %i0
-	movui	%vti1165, 1
-	addi	%vti1165, %vti1165, 264
+	movui	%vti1165, 2
+	addi	%vti1165, %vti1165, 1928
 	add	%vti1165, %i0, %vti1165
 	sw	%vi1401, 0(%vti1165)
 loop_start.224342:
@@ -9116,23 +9117,23 @@ loop_end.224343:
 	fmov	%vf88, %vf393
 	fmov	%vf89, %vf562
 	mov	%vi1500, %vi21
-	movui	%vti1214, 1
-	addi	%vti1214, %vti1214, 268
+	movui	%vti1214, 2
+	addi	%vti1214, %vti1214, 1932
 	add	%vti1214, %i0, %vti1214
 	sw	%vi1500, 0(%vti1214)
 	subi	%vi1501, %vi1500, 1
-	movui	%vti1215, 1
-	addi	%vti1215, %vti1215, 276
+	movui	%vti1215, 2
+	addi	%vti1215, %vti1215, 1940
 	add	%vti1215, %i0, %vti1215
 	sw	%vi1501, 0(%vti1215)
 	mov	%vi1502, %vi1501
-	movui	%vti1216, 1
-	addi	%vti1216, %vti1216, 280
+	movui	%vti1216, 2
+	addi	%vti1216, %vti1216, 1944
 	add	%vti1216, %i0, %vti1216
 	sw	%vi1502, 0(%vti1216)
 	mov	%vi1503, %i0
-	movui	%vti1217, 1
-	addi	%vti1217, %vti1217, 284
+	movui	%vti1217, 2
+	addi	%vti1217, %vti1217, 1948
 	add	%vti1217, %i0, %vti1217
 	sw	%vi1503, 0(%vti1217)
 	jleq	%i0, %vi1502, then.231100
@@ -9581,18 +9582,18 @@ loop_end.224394:
 	mov	%i0, %vti1237
 cont.231101:
 	mov	%vi1582, %vi21
-	movui	%vti1260, 1
-	addi	%vti1260, %vti1260, 288
+	movui	%vti1260, 2
+	addi	%vti1260, %vti1260, 1952
 	add	%vti1260, %i0, %vti1260
 	sw	%vi1582, 0(%vti1260)
 	subi	%vi1583, %vi1582, 1
-	movui	%vti1261, 1
-	addi	%vti1261, %vti1261, 296
+	movui	%vti1261, 2
+	addi	%vti1261, %vti1261, 1960
 	add	%vti1261, %i0, %vti1261
 	sw	%vi1583, 0(%vti1261)
 	mov	%vi1584, %i0
-	movui	%vti1262, 1
-	addi	%vti1262, %vti1262, 300
+	movui	%vti1262, 2
+	addi	%vti1262, %vti1262, 1964
 	add	%vti1262, %i0, %vti1262
 	sw	%vi1584, 0(%vti1262)
 	.virtual_def	%vi2005, %vi2006
@@ -11745,79 +11746,79 @@ cont.231142:
 	tern	%vi2005, %vi2004, %vi2002, %vi2003
 cont.231140:
 	cleq	%vi2007, %i0, %vi1583
-	movui	%vti1452, 1
-	addi	%vti1452, %vti1452, 304
+	movui	%vti1452, 2
+	addi	%vti1452, %vti1452, 1968
 	add	%vti1452, %i0, %vti1452
 	sw	%vi2007, 0(%vti1452)
 	tern	%vi2008, %vi2007, %vi2005, %vi2006
-	movui	%vti1453, 1
-	addi	%vti1453, %vti1453, 308
+	movui	%vti1453, 2
+	addi	%vti1453, %vti1453, 1972
 	add	%vti1453, %i0, %vti1453
 	sw	%vi2008, 0(%vti1453)
 	mov	%vi2009, %i0
-	movui	%vti1454, 1
-	addi	%vti1454, %vti1454, 312
+	movui	%vti1454, 2
+	addi	%vti1454, %vti1454, 1976
 	add	%vti1454, %i0, %vti1454
 	sw	%vi2009, 0(%vti1454)
 	sub	%vi2010, %i0, %vi97
-	movui	%vti1455, 1
-	addi	%vti1455, %vti1455, 316
+	movui	%vti1455, 2
+	addi	%vti1455, %vti1455, 1980
 	add	%vti1455, %i0, %vti1455
 	sw	%vi2010, 0(%vti1455)
 	mov	%i4, %vi2010
 	itof	%vf3413, %i4
-	movui	%vti1457, 1
-	addi	%vti1457, %vti1457, 320
+	movui	%vti1457, 2
+	addi	%vti1457, %vti1457, 1984
 	add	%vti1457, %i0, %vti1457
 	sf	%vf3413, 0(%vti1457)
 	fmul	%vf3414, %vf92, %vf3413
-	movui	%vti1458, 1
-	addi	%vti1458, %vti1458, 324
+	movui	%vti1458, 2
+	addi	%vti1458, %vti1458, 1988
 	add	%vti1458, %i0, %vti1458
 	sf	%vf3414, 0(%vti1458)
 	fmul	%vf3415, %vf3414, %vf330
-	movui	%vti1459, 1
-	addi	%vti1459, %vti1459, 328
+	movui	%vti1459, 2
+	addi	%vti1459, %vti1459, 1992
 	add	%vti1459, %i0, %vti1459
 	sf	%vf3415, 0(%vti1459)
 	fadd	%vf3416, %vf3415, %vf324
-	movui	%vti1460, 1
-	addi	%vti1460, %vti1460, 332
+	movui	%vti1460, 2
+	addi	%vti1460, %vti1460, 1996
 	add	%vti1460, %i0, %vti1460
 	sf	%vf3416, 0(%vti1460)
 	fmul	%vf3417, %vf3414, %vf331
-	movui	%vti1461, 1
-	addi	%vti1461, %vti1461, 336
+	movui	%vti1461, 2
+	addi	%vti1461, %vti1461, 2000
 	add	%vti1461, %i0, %vti1461
 	sf	%vf3417, 0(%vti1461)
 	fadd	%vf3418, %vf3417, %vf325
-	movui	%vti1462, 1
-	addi	%vti1462, %vti1462, 340
+	movui	%vti1462, 2
+	addi	%vti1462, %vti1462, 2004
 	add	%vti1462, %i0, %vti1462
 	sf	%vf3418, 0(%vti1462)
 	fmul	%vf3419, %vf3414, %vf332
-	movui	%vti1463, 1
-	addi	%vti1463, %vti1463, 344
+	movui	%vti1463, 2
+	addi	%vti1463, %vti1463, 2008
 	add	%vti1463, %i0, %vti1463
 	sf	%vf3419, 0(%vti1463)
 	fadd	%vf3420, %vf3419, %vf327
-	movui	%vti1464, 1
-	addi	%vti1464, %vti1464, 348
+	movui	%vti1464, 2
+	addi	%vti1464, %vti1464, 2012
 	add	%vti1464, %i0, %vti1464
 	sf	%vf3420, 0(%vti1464)
-	movi	%vi2011, 31
-	movui	%vti1465, 1
-	addi	%vti1465, %vti1465, 352
+	movi	%vi2011, 511
+	movui	%vti1465, 2
+	addi	%vti1465, %vti1465, 2016
 	add	%vti1465, %i0, %vti1465
 	sw	%vi2011, 0(%vti1465)
 	mov	%vi2012, %i0
-	movui	%vti1466, 1
-	addi	%vti1466, %vti1466, 356
+	movui	%vti1466, 2
+	addi	%vti1466, %vti1466, 2020
 	add	%vti1466, %i0, %vti1466
 	sw	%vi2012, 0(%vti1466)
 	mov	%vi2013, %i0
-	movui	%vti1467, 1
-	addi	%vti1467, %vti1467, 360
+	movui	%vti1467, 2
+	addi	%vti1467, %vti1467, 2024
 	add	%vti1467, %i0, %vti1467
 	sw	%vi2013, 0(%vti1467)
 loop_start.224544:
@@ -27048,26 +27049,26 @@ cont.231319:
 loop_end.224545:
 	mov	%i0, %vti1468
 	mov	%vi4855, %i0
-	movui	%vti3159, 1
-	addi	%vti3159, %vti3159, 364
+	movui	%vti3159, 2
+	addi	%vti3159, %vti3159, 2028
 	add	%vti3159, %i0, %vti3159
 	sw	%vi4855, 0(%vti3159)
 	mov	%vi4856, %vi373
 	mov	%vi4857, %vi649
 	mov	%vi4858, %vi925
 	movi	%vi4859, 2
-	movui	%vti3160, 1
-	addi	%vti3160, %vti3160, 368
+	movui	%vti3160, 2
+	addi	%vti3160, %vti3160, 2032
 	add	%vti3160, %i0, %vti3160
 	sw	%vi4859, 0(%vti3160)
-	movi	%vi4860, 32
-	movui	%vti3161, 1
-	addi	%vti3161, %vti3161, 372
+	movi	%vi4860, 512
+	movui	%vti3161, 2
+	addi	%vti3161, %vti3161, 2036
 	add	%vti3161, %i0, %vti3161
 	sw	%vi4860, 0(%vti3161)
 loop_start.225302:
 	jleq	%vi4860, %vi4855, then.233120
-	movi	%vi4861, 31
+	movi	%vi4861, 511
 	jleq	%vi4861, %vi4855, cont.233122
 	addi	%vi4862, %vi4855, 1
 	mov	%vi4863, %vi4858
@@ -27082,7 +27083,7 @@ loop_start.225302:
 	fadd	%vf8790, %vf8789, %vf325
 	fmul	%vf8791, %vf8786, %vf332
 	fadd	%vf8792, %vf8791, %vf327
-	movi	%vi4866, 31
+	movi	%vi4866, 511
 	mov	%vi4867, %vi4864
 	mov	%vi4868, %i0
 loop_start.225304:

@@ -36,7 +36,9 @@ let rec checkExpPurity e =
   | Let(_, e1, e2) | IfEq(_, _, e1, e2) | IfLE(_, _, e1, e2) -> checkExpPurity e1 && checkExpPurity e2
   | LetRec(_, e) | LetTuple(_, _, e) -> checkExpPurity e
   | TernPhi(_, _, _) -> false
-  | While(_, _) | Assign(_, _, _, _) | Break(_) -> false
+  | While(e1, e2) ->
+      checkExpPurity e1 && checkExpPurity e2
+  | Assign(_, _, _, _) | Break(_) -> false
   | Put(_, _, _) | Get(_, _) -> false
   | ExtFunApp(f, _) -> 
     (match f with

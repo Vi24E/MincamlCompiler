@@ -42,6 +42,7 @@ enum {
   OP_SB = 0x9B,
   OP_SW = 0x19B,
   OP_JMP = 0x60,
+  OP_GOTO = 0x11,
   OP_JEQ = 0x29,
   OP_JLT = 0x39,
   OP_JLEQ = 0x35,
@@ -68,7 +69,8 @@ static const OpMap kOps[] = {{"add", OP_ADD},       {"sub", OP_SUB},
                              {"lw", OP_LW},         {"sb", OP_SB},
                              {"sw", OP_SW},         {"sf", OP_SF},
                              {"lf", OP_LF},         {"jmp", OP_JMP},
-                             {"jeq", OP_JEQ},       {"jlt", OP_JLT},
+                             {"goto", OP_GOTO},     {"jeq", OP_JEQ},
+                             {"jlt", OP_JLT},
                              {"jleq", OP_JLEQ},     {"movi", OP_MOVI},
                              {"movui", OP_MOVUI},   {"mif", OP_ADD},
                              {"mfi", OP_ADD},       {"finv", OP_FINV},
@@ -589,6 +591,18 @@ void second_pass(const VecLine *lines, const VecLabel *labels, VecWord *words,
     // -> quit
     u32 fin_pc = 0;
     if (vlabel_find(labels, "fin", &fin_pc) && pc == fin_pc) {
+      if (strncasecmp(line, "goto", 4) == 0) {
+        char tbuf[1024];
+        strncpy(tbuf, line, sizeof(tbuf) - 1);
+        tbuf[sizeof(tbuf) - 1] = 0;
+        char *arg = trim(tbuf + 4);
+        if (!strcasecmp(arg, "fin")) {
+          u32 w = OP_QUIT;
+          vword_push((VecWord *)words, w);
+          vitem_push(listing, pc, w, "quit (auto-replaced from goto fin)");
+          continue;
+        }
+      }
       if (strncasecmp(line, "set_label", 9) == 0) {
         if (i + 1 < lines->n) {
           const char *next_line = lines->v[i + 1].text;
@@ -644,6 +658,28 @@ void second_pass(const VecLine *lines, const VecLabel *labels, VecWord *words,
       int rd = parse_reg(ops[0]);
       long imm = parse_int(ops[1]);
       u32 w = ENCODE_SSIW_MOVI(OP_MOVI, rd, imm);
+      vword_push((VecWord *)words, w);
+      vitem_push(listing, pc, w, line);
+      continue;
+    }
+    if (!strcasecmp(mn, "goto")) {
+      if (nops != 1) {
+        fprintf(stderr, "[asm] goto label_or_word needs 1 operand\n");
+        exit(1);
+      }
+      u32 lpc = 0;
+      u32 target_word = 0;
+      if (vlabel_find(labels, ops[0], &lpc) == 1) {
+        target_word = lpc >> 2;
+      } else {
+        long imm = parse_int(ops[0]);
+        if (imm < 0 || imm > 0xFFFFF) {
+          fprintf(stderr, "[asm] goto immediate out of range (0..1048575): %ld\n", imm);
+          exit(1);
+        }
+        target_word = (u32)imm;
+      }
+      u32 w = ENCODE_SSIW_MOVI(OP_GOTO, 0, (long)target_word);
       vword_push((VecWord *)words, w);
       vitem_push(listing, pc, w, line);
       continue;

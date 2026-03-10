@@ -34,6 +34,24 @@ fn register_opt_iterations() -> usize {
         .unwrap_or(3)
 }
 
+fn disable_redundant_reload_opt() -> bool {
+    std::env::var("BACKEND_DISABLE_REDUNDANT_RELOAD")
+        .map(|v| v != "0")
+        .unwrap_or(false)
+}
+
+fn disable_alias_use_opt() -> bool {
+    std::env::var("BACKEND_DISABLE_ALIAS_USE")
+        .map(|v| v != "0")
+        .unwrap_or(false)
+}
+
+fn disable_reg_cse_opt() -> bool {
+    std::env::var("BACKEND_DISABLE_REG_CSE")
+        .map(|v| v != "0")
+        .unwrap_or(false)
+}
+
 pub fn optimize_virtual(instructions: Vec<Instruction>) -> VirtualOptimizeResult {
     let mut instructions = instructions;
     let mut val_trace_rewrites = 0usize;
@@ -46,9 +64,11 @@ pub fn optimize_virtual(instructions: Vec<Instruction>) -> VirtualOptimizeResult
         instructions = ins;
         val_trace_rewrites += r;
 
-        let (ins, r) = normalize_mov_alias_uses_virtual_opt(instructions);
-        instructions = ins;
-        alias_use_rewrites += r;
+        if !disable_alias_use_opt() {
+            let (ins, r) = normalize_mov_alias_uses_virtual_opt(instructions);
+            instructions = ins;
+            alias_use_rewrites += r;
+        }
 
         let (ins, r) = inv_beta_virtual_opt(instructions);
         instructions = ins;
@@ -152,9 +172,11 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
         instructions = ins;
         val_trace_rewrites += r;
 
-        let (ins, r) = normalize_mov_alias_uses_opt(instructions);
-        instructions = ins;
-        alias_use_rewrites += r;
+        if !disable_alias_use_opt() {
+            let (ins, r) = normalize_mov_alias_uses_opt(instructions);
+            instructions = ins;
+            alias_use_rewrites += r;
+        }
 
         let (ins, r) = inv_beta_opt(instructions);
         instructions = ins;
@@ -172,9 +194,11 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
         instructions = ins;
         dead_move_rewrites += r;
 
-        let (ins, r) = register_cse_opt(instructions);
-        instructions = ins;
-        reg_cse_rewrites += r;
+        if !disable_reg_cse_opt() {
+            let (ins, r) = register_cse_opt(instructions);
+            instructions = ins;
+            reg_cse_rewrites += r;
+        }
 
         let (ins, r) = hoist_loop_invariants_opt(instructions);
         instructions = ins;
@@ -192,13 +216,15 @@ pub fn optimize(instructions: Vec<Instruction>) -> OptimizeResult {
         instructions = ins;
         dead_move_rewrites += r;
 
-        let (ins, r) = redirect_global_const_stack_mirror_opt(instructions);
-        instructions = ins;
-        redundant_reload_rewrites += r;
+        if !disable_redundant_reload_opt() {
+            let (ins, r) = redirect_global_const_stack_mirror_opt(instructions);
+            instructions = ins;
+            redundant_reload_rewrites += r;
 
-        let (ins, r) = eliminate_redundant_store_load_opt(instructions);
-        instructions = ins;
-        redundant_reload_rewrites += r;
+            let (ins, r) = eliminate_redundant_store_load_opt(instructions);
+            instructions = ins;
+            redundant_reload_rewrites += r;
+        }
 
         let (ins, r) = jump_trampoline_elim(instructions);
         instructions = ins;
@@ -1255,6 +1281,18 @@ fn is_virtual_any_reg(reg: &str) -> bool {
     is_virtual_int_reg(reg) || is_virtual_float_reg(reg)
 }
 
+fn is_stage1_virtual_int_reg(reg: &str) -> bool {
+    is_virtual_int_reg(reg) || is_temp_virtual_int_reg(reg)
+}
+
+fn is_stage1_virtual_float_reg(reg: &str) -> bool {
+    is_virtual_float_reg(reg) || is_temp_virtual_float_reg(reg)
+}
+
+fn is_stage1_virtual_any_reg(reg: &str) -> bool {
+    is_stage1_virtual_int_reg(reg) || is_stage1_virtual_float_reg(reg)
+}
+
 fn float_reg_index(reg: &str) -> Option<usize> {
     let rest = reg.strip_prefix("%f")?;
     rest.parse::<usize>().ok()
@@ -1487,14 +1525,17 @@ fn build_cse_expr_with_mode(
     }
     let int_ok = |r: &str| {
         if virtual_only {
-            is_trackable_int_reg(r)
+            // Stage1 CSE must not track %vti* temps.
+            // They are later remapped to %i31 scratch and are not value-stable names.
+            is_virtual_int_reg(r)
         } else {
             is_int_reg(r)
         }
     };
     let float_ok = |r: &str| {
         if virtual_only {
-            is_trackable_float_reg(r)
+            // Same reason as int temps: %vtf* collapse to %f31 scratch later.
+            is_virtual_float_reg(r)
         } else {
             is_float_reg(r)
         }
@@ -1538,6 +1579,9 @@ fn build_cse_expr_with_mode(
             CseExpr::IntTern(ops[1].clone(), ops[2].clone(), ops[3].clone()),
         ),
         "lw" | "lb" if ops.len() == 2 => {
+            if virtual_only {
+                return None;
+            }
             let (off, base) = parse_mem_operand(&ops[1])?;
             if !is_mem_table_base(&base) {
                 return None;
@@ -1579,6 +1623,9 @@ fn build_cse_expr_with_mode(
             ))
         }
         "lf" if ops.len() == 2 => {
+            if virtual_only {
+                return None;
+            }
             let (off, base) = parse_mem_operand(&ops[1])?;
             if !is_mem_table_base(&base) {
                 return None;
@@ -1704,7 +1751,8 @@ fn define_cse_dest(inst: &Instruction, virtual_only: bool) -> Option<String> {
         return None;
     }
     if virtual_only {
-        if is_trackable_any_reg(&rd) && !is_forbidden_reg(&rd) {
+        // Restrict stage1 CSE destination tracking to stable virtuals only.
+        if is_virtual_any_reg(&rd) {
             return Some(rd);
         }
         return None;
@@ -3389,9 +3437,16 @@ fn eliminate_redundant_store_load_opt(instructions: Vec<Instruction>) -> (Vec<In
                             &mut int_last_store_idx,
                             &mut float_last_store_idx,
                         );
-                        alias_map.insert(rd.clone(), resolve_alias(&alias_map, &prev));
+                        let prev_resolved = resolve_alias(&alias_map, &prev);
+                        alias_map.insert(rd.clone(), prev_resolved.clone());
+                        int_mem_map
+                            .entry(base.clone())
+                            .or_default()
+                            .insert(off, rd.clone());
                         rewrites += 1;
-                        drop_or_nop_placeholder(&mut out, &inst);
+                        inst.mnemonic = Some("mov".to_string());
+                        inst.operands = vec![rd.clone(), prev_resolved];
+                        out.push(inst);
                         continue;
                     }
 
@@ -3446,9 +3501,16 @@ fn eliminate_redundant_store_load_opt(instructions: Vec<Instruction>) -> (Vec<In
                             &mut int_last_store_idx,
                             &mut float_last_store_idx,
                         );
-                        alias_map.insert(rd.clone(), resolve_alias(&alias_map, &prev));
+                        let prev_resolved = resolve_alias(&alias_map, &prev);
+                        alias_map.insert(rd.clone(), prev_resolved.clone());
+                        float_mem_map
+                            .entry(base.clone())
+                            .or_default()
+                            .insert(off, rd.clone());
                         rewrites += 1;
-                        drop_or_nop_placeholder(&mut out, &inst);
+                        inst.mnemonic = Some("fmov".to_string());
+                        inst.operands = vec![rd.clone(), prev_resolved];
+                        out.push(inst);
                         continue;
                     }
 

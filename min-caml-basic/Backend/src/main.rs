@@ -119,6 +119,18 @@ fn dump_live_all_path() -> String {
         .unwrap_or_else(|_| "../test/minrt.live_all.txt".to_string())
 }
 
+fn stage1_dump_path() -> Option<String> {
+    std::env::var("BACKEND_DUMP_STAGE1_PATH")
+        .ok()
+        .filter(|s| !s.trim().is_empty())
+}
+
+fn pre_adhoc_dump_path() -> Option<String> {
+    std::env::var("BACKEND_DUMP_PRE_ADHOC_PATH")
+        .ok()
+        .filter(|s| !s.trim().is_empty())
+}
+
 fn format_instruction_line(inst: &input::Instruction) -> String {
     let mut s = String::new();
     if let Some(label) = &inst.label {
@@ -140,6 +152,16 @@ fn format_instruction_line(inst: &input::Instruction) -> String {
     } else {
         s
     }
+}
+
+fn dump_instructions(path: &str, instructions: &[input::Instruction]) {
+    let mut file = File::create(path)
+        .unwrap_or_else(|e| panic!("failed to create instruction dump '{}': {}", path, e));
+    for (idx, inst) in instructions.iter().enumerate() {
+        writeln!(file, "{:06}: {}", idx, format_instruction_line(inst))
+            .unwrap_or_else(|e| panic!("failed to write instruction dump '{}': {}", path, e));
+    }
+    println!("Instruction dump written to {}", path);
 }
 
 fn dump_liveness_full(analyzed: &[analysis::AnalyzedInstruction]) {
@@ -1359,6 +1381,8 @@ fn main() {
             let enable_stage1_virtual_cse = env_enabled("BACKEND_STAGE1_VIRTUAL_CSE", true);
             let enable_stage1_virtual_beta_elim =
                 env_enabled("BACKEND_STAGE1_VIRTUAL_BETA_ELIM", false);
+            let enable_stage1_loop_inv_hoist =
+                env_enabled("BACKEND_STAGE1_LOOP_INV_HOIST", true);
             let enable_stage2 = env_enabled("BACKEND_PEEPHOLE_STAGE2", false);
             // let enable_stage3 = env_enabled("BACKEND_PEEPHOLE_STAGE3", true);
             let enable_stage3 = env_enabled("BACKEND_PEEPHOLE_STAGE3", false);
@@ -1407,10 +1431,11 @@ fn main() {
                 env::var("BACKEND_ALLOCATOR").unwrap_or_else(|_| "chaitin".to_string());
             let stage_opt_iter = stage_opt_iterations();
             println!(
-                "Peephole config: stage1={} stage1_virtual_cse={} stage1_virtual_beta_elim={} stage2={} stage3={} stage_opt_iter={} preference={} reorder={} rules={}/{}/{} verbose_stats={} func_color_report={} allocator={}",
+                "Peephole config: stage1={} stage1_virtual_cse={} stage1_virtual_beta_elim={} stage1_loop_inv_hoist={} stage2={} stage3={} stage_opt_iter={} preference={} reorder={} rules={}/{}/{} verbose_stats={} func_color_report={} allocator={}",
                 enable_stage1,
                 enable_stage1_virtual_cse,
                 enable_stage1_virtual_beta_elim,
+                enable_stage1_loop_inv_hoist,
                 enable_stage2,
                 enable_stage3,
                 stage_opt_iter,
@@ -1448,9 +1473,11 @@ fn main() {
                         stage1_insts = ins;
                     }
 
-                    let (ins, r) = adhoc::optimize_virtual_loop_invariant_hoist_only(stage1_insts);
-                    stage1_loop_inv_hoist_rewrites += r;
-                    stage1_insts = ins;
+                    if enable_stage1_loop_inv_hoist {
+                        let (ins, r) = adhoc::optimize_virtual_loop_invariant_hoist_only(stage1_insts);
+                        stage1_loop_inv_hoist_rewrites += r;
+                        stage1_insts = ins;
+                    }
                 }
 
                 println!(
@@ -1477,10 +1504,17 @@ fn main() {
                 } else {
                     println!("Stage1 virtual beta/elim rewrites: 0 (disabled)");
                 }
-                println!(
-                    "Stage1 loop invariant hoist rewrites: {}",
-                    stage1_loop_inv_hoist_rewrites
-                );
+                if enable_stage1_loop_inv_hoist {
+                    println!(
+                        "Stage1 loop invariant hoist rewrites: {}",
+                        stage1_loop_inv_hoist_rewrites
+                    );
+                } else {
+                    println!("Stage1 loop invariant hoist rewrites: 0 (disabled)");
+                }
+                if let Some(path) = stage1_dump_path() {
+                    dump_instructions(&path, &stage1_insts);
+                }
                 current_program = program::from_instructions(stage1_insts);
             } else {
                 println!("Peephole stage1 (frontend-like regs) rewrites: 0 (disabled)");
@@ -1764,6 +1798,10 @@ fn main() {
                         merged.extend(stage3_protected_tail);
                         merged
                     };
+
+                    if let Some(path) = pre_adhoc_dump_path() {
+                        dump_instructions(&path, &stage3_instructions);
+                    }
 
                     let adhoc_opt = adhoc::optimize(stage3_instructions);
                     println!(

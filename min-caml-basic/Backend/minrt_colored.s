@@ -377,7 +377,7 @@ ca_loop.230670:
 ca_done.230672:
 	sw	%i4, 303(%i0)
 	sw	%i0, 483(%i0)
-	movi	%i5, 32
+	movi	%i5, 512
 	sw	%i5, 484(%i0)
 	sw	%i5, 485(%i0)
 	mov	%i7, %i5
@@ -584,9 +584,9 @@ ca_loop.230673:
 	goto	ca_loop.230673
 ca_done.230675:
 	sw	%i4, 634(%i0)
-	movi	%i6, 30
-	sw	%i6, 666(%i0)
-	sw	%i0, 667(%i0)
+	movi	%i6, 510
+	sw	%i6, 1146(%i0)
+	sw	%i0, 1147(%i0)
 	jleq	%i0, %i6, then.230676
 	sw	%i4, 276(%i1)
 	goto	cont.230677
@@ -718,7 +718,7 @@ then.230676:
 	sw	%i5, 0(%i4)
 	mov	%i5, %i4
 	lw	%i4, 634(%i0)
-	sw	%i5, 30(%i4)
+	sw	%i5, 510(%i4)
 	subi	%i6, %i6, 1
 	lw	%i8, 99(%i1)
 	lw	%i9, 96(%i1)
@@ -907,19 +907,19 @@ loop_end.224043:
 	mov	%i30, %i31
 	sw	%i31, 276(%i1)
 cont.230677:
-	movi	%i4, 32
-	sw	%i4, 668(%i0)
+	movi	%i4, 512
+	sw	%i4, 1148(%i0)
 	movi	%i6, 3
-	sw	%i6, 669(%i0)
+	sw	%i6, 1149(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i5, 670(%i0)
-	sw	%i6, 673(%i0)
+	sw	%i5, 1150(%i0)
+	sw	%i6, 1153(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i5, 674(%i0)
+	sw	%i5, 1154(%i0)
 	movi	%i4, 5
-	sw	%i4, 677(%i0)
+	sw	%i4, 1157(%i0)
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -928,45 +928,45 @@ cont.230677:
 	sw	%i5, 4(%i2)
 	addi	%i2, %i2, 20
 	mov	%i5, %i4
-	sw	%i4, 678(%i0)
-	sw	%i6, 684(%i0)
+	sw	%i4, 1158(%i0)
+	sw	%i6, 1164(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 685(%i0)
+	sw	%i4, 1165(%i0)
 	sw	%i4, 1(%i5)
-	sw	%i6, 689(%i0)
+	sw	%i6, 1169(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 690(%i0)
+	sw	%i4, 1170(%i0)
 	sw	%i4, 2(%i5)
-	sw	%i6, 694(%i0)
+	sw	%i6, 1174(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 695(%i0)
+	sw	%i4, 1175(%i0)
 	sw	%i4, 3(%i5)
-	sw	%i6, 699(%i0)
+	sw	%i6, 1179(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 700(%i0)
+	sw	%i4, 1180(%i0)
 	sw	%i4, 4(%i5)
-	lw	%i6, 677(%i0)
-	sw	%i6, 703(%i0)
-	sw	%i0, 704(%i0)
+	lw	%i6, 1157(%i0)
+	sw	%i6, 1183(%i0)
+	sw	%i0, 1184(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i5, 705(%i0)
+	sw	%i5, 1185(%i0)
 	mov	%i8, %i6
-	sw	%i6, 710(%i0)
-	sw	%i0, 711(%i0)
+	sw	%i6, 1190(%i0)
+	sw	%i0, 1191(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i5, 712(%i0)
-	lw	%i6, 684(%i0)
-	sw	%i6, 717(%i0)
+	sw	%i5, 1192(%i0)
+	lw	%i6, 1164(%i0)
+	sw	%i6, 1197(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i5, 718(%i0)
-	sw	%i8, 721(%i0)
+	sw	%i5, 1198(%i0)
+	sw	%i8, 1201(%i0)
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -975,33 +975,33 @@ cont.230677:
 	sw	%i5, 4(%i2)
 	addi	%i2, %i2, 20
 	mov	%i5, %i4
-	sw	%i4, 722(%i0)
-	sw	%i6, 728(%i0)
+	sw	%i4, 1202(%i0)
+	sw	%i6, 1208(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 729(%i0)
+	sw	%i4, 1209(%i0)
 	sw	%i4, 1(%i5)
-	sw	%i6, 733(%i0)
+	sw	%i6, 1213(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 734(%i0)
+	sw	%i4, 1214(%i0)
 	sw	%i4, 2(%i5)
-	sw	%i6, 738(%i0)
+	sw	%i6, 1218(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 739(%i0)
+	sw	%i4, 1219(%i0)
 	sw	%i4, 3(%i5)
-	sw	%i6, 743(%i0)
+	sw	%i6, 1223(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 744(%i0)
+	sw	%i4, 1224(%i0)
 	sw	%i4, 4(%i5)
-	sw	%i6, 747(%i0)
+	sw	%i6, 1227(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i5, 748(%i0)
-	lw	%i4, 710(%i0)
-	sw	%i4, 751(%i0)
+	sw	%i5, 1228(%i0)
+	lw	%i4, 1190(%i0)
+	sw	%i4, 1231(%i0)
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -1010,39 +1010,39 @@ cont.230677:
 	sw	%i5, 4(%i2)
 	addi	%i2, %i2, 20
 	mov	%i5, %i4
-	sw	%i4, 752(%i0)
-	sw	%i6, 758(%i0)
+	sw	%i4, 1232(%i0)
+	sw	%i6, 1238(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 759(%i0)
+	sw	%i4, 1239(%i0)
 	sw	%i4, 1(%i5)
-	sw	%i6, 763(%i0)
+	sw	%i6, 1243(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 764(%i0)
+	sw	%i4, 1244(%i0)
 	sw	%i4, 2(%i5)
-	sw	%i6, 768(%i0)
+	sw	%i6, 1248(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 769(%i0)
+	sw	%i4, 1249(%i0)
 	sw	%i4, 3(%i5)
-	sw	%i6, 773(%i0)
+	sw	%i6, 1253(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 774(%i0)
+	sw	%i4, 1254(%i0)
 	sw	%i4, 4(%i5)
 	movi	%i5, 1
-	sw	%i5, 777(%i0)
-	sw	%i0, 778(%i0)
+	sw	%i5, 1257(%i0)
+	sw	%i0, 1258(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 4
-	sw	%i5, 779(%i0)
-	sw	%i6, 780(%i0)
+	sw	%i5, 1259(%i0)
+	sw	%i6, 1260(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i5, 781(%i0)
-	lw	%i4, 710(%i0)
-	sw	%i4, 784(%i0)
+	sw	%i5, 1261(%i0)
+	lw	%i4, 1190(%i0)
+	sw	%i4, 1264(%i0)
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -1051,45 +1051,45 @@ cont.230677:
 	sw	%i5, 4(%i2)
 	addi	%i2, %i2, 20
 	mov	%i5, %i4
-	sw	%i4, 785(%i0)
-	sw	%i6, 791(%i0)
+	sw	%i4, 1265(%i0)
+	sw	%i6, 1271(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 792(%i0)
+	sw	%i4, 1272(%i0)
 	sw	%i4, 1(%i5)
-	sw	%i6, 796(%i0)
+	sw	%i6, 1276(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 797(%i0)
+	sw	%i4, 1277(%i0)
 	sw	%i4, 2(%i5)
-	sw	%i6, 801(%i0)
+	sw	%i6, 1281(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 802(%i0)
+	sw	%i4, 1282(%i0)
 	sw	%i4, 3(%i5)
-	sw	%i6, 806(%i0)
+	sw	%i6, 1286(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 807(%i0)
+	sw	%i4, 1287(%i0)
 	sw	%i4, 4(%i5)
 	mov	%i4, %i2
 	addi	%i2, %i2, 32
 	sw	%i5, 7(%i4)
-	lw	%i5, 779(%i0)
+	lw	%i5, 1259(%i0)
 	sw	%i5, 6(%i4)
-	lw	%i5, 752(%i0)
+	lw	%i5, 1232(%i0)
 	sw	%i5, 5(%i4)
-	lw	%i5, 722(%i0)
+	lw	%i5, 1202(%i0)
 	sw	%i5, 4(%i4)
-	lw	%i5, 712(%i0)
+	lw	%i5, 1192(%i0)
 	sw	%i5, 3(%i4)
-	lw	%i5, 705(%i0)
+	lw	%i5, 1185(%i0)
 	sw	%i5, 2(%i4)
-	lw	%i5, 678(%i0)
+	lw	%i5, 1158(%i0)
 	sw	%i5, 1(%i4)
-	lw	%i5, 670(%i0)
+	lw	%i5, 1150(%i0)
 	sw	%i5, 0(%i4)
-	lw	%i29, 668(%i0)
+	lw	%i29, 1148(%i0)
 	mov	%i5, %i4
 	mov	%i4, %i2
 ca_loop.230693:
@@ -1099,10 +1099,10 @@ ca_loop.230693:
 	subi	%i29, %i29, 1
 	goto	ca_loop.230693
 ca_done.230695:
-	sw	%i4, 810(%i0)
-	movi	%i6, 30
-	sw	%i6, 842(%i0)
-	sw	%i0, 843(%i0)
+	sw	%i4, 1290(%i0)
+	movi	%i6, 510
+	sw	%i6, 1802(%i0)
+	sw	%i0, 1803(%i0)
 	jleq	%i0, %i6, then.230696
 	sw	%i4, 277(%i1)
 	goto	cont.230697
@@ -1233,8 +1233,8 @@ then.230696:
 	lw	%i5, 147(%i1)
 	sw	%i5, 0(%i4)
 	mov	%i5, %i4
-	lw	%i4, 810(%i0)
-	sw	%i5, 30(%i4)
+	lw	%i4, 1290(%i0)
+	sw	%i5, 510(%i4)
 	subi	%i6, %i6, 1
 	lw	%i8, 151(%i1)
 	lw	%i9, 148(%i1)
@@ -1414,7 +1414,7 @@ ca_done.230712:
 	sw	%i13, 1(%i4)
 	sw	%i14, 0(%i4)
 	mov	%i5, %i4
-	lw	%i4, 810(%i0)
+	lw	%i4, 1290(%i0)
 	add4	%i31, %i4, %i6
 	sw	%i5, 0(%i31)
 	subi	%i6, %i6, 1
@@ -1423,19 +1423,19 @@ loop_end.224075:
 	mov	%i30, %i31
 	sw	%i31, 277(%i1)
 cont.230697:
-	movi	%i4, 32
-	sw	%i4, 844(%i0)
+	movi	%i4, 512
+	sw	%i4, 1804(%i0)
 	movi	%i6, 3
-	sw	%i6, 845(%i0)
+	sw	%i6, 1805(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i5, 846(%i0)
-	sw	%i6, 849(%i0)
+	sw	%i5, 1806(%i0)
+	sw	%i6, 1809(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i5, 850(%i0)
+	sw	%i5, 1810(%i0)
 	movi	%i4, 5
-	sw	%i4, 853(%i0)
+	sw	%i4, 1813(%i0)
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -1444,45 +1444,45 @@ cont.230697:
 	sw	%i5, 4(%i2)
 	addi	%i2, %i2, 20
 	mov	%i5, %i4
-	sw	%i4, 854(%i0)
-	sw	%i6, 860(%i0)
+	sw	%i4, 1814(%i0)
+	sw	%i6, 1820(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 861(%i0)
+	sw	%i4, 1821(%i0)
 	sw	%i4, 1(%i5)
-	sw	%i6, 865(%i0)
+	sw	%i6, 1825(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 866(%i0)
+	sw	%i4, 1826(%i0)
 	sw	%i4, 2(%i5)
-	sw	%i6, 870(%i0)
+	sw	%i6, 1830(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 871(%i0)
+	sw	%i4, 1831(%i0)
 	sw	%i4, 3(%i5)
-	sw	%i6, 875(%i0)
+	sw	%i6, 1835(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 876(%i0)
+	sw	%i4, 1836(%i0)
 	sw	%i4, 4(%i5)
-	lw	%i6, 853(%i0)
-	sw	%i6, 879(%i0)
-	sw	%i0, 880(%i0)
+	lw	%i6, 1813(%i0)
+	sw	%i6, 1839(%i0)
+	sw	%i0, 1840(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i5, 881(%i0)
+	sw	%i5, 1841(%i0)
 	mov	%i8, %i6
-	sw	%i6, 886(%i0)
-	sw	%i0, 887(%i0)
+	sw	%i6, 1846(%i0)
+	sw	%i0, 1847(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 20
-	sw	%i5, 888(%i0)
-	lw	%i6, 860(%i0)
-	sw	%i6, 893(%i0)
+	sw	%i5, 1848(%i0)
+	lw	%i6, 1820(%i0)
+	sw	%i6, 1853(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i5, 894(%i0)
-	sw	%i8, 897(%i0)
+	sw	%i5, 1854(%i0)
+	sw	%i8, 1857(%i0)
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -1491,33 +1491,33 @@ cont.230697:
 	sw	%i5, 4(%i2)
 	addi	%i2, %i2, 20
 	mov	%i5, %i4
-	sw	%i4, 898(%i0)
-	sw	%i6, 904(%i0)
+	sw	%i4, 1858(%i0)
+	sw	%i6, 1864(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 905(%i0)
+	sw	%i4, 1865(%i0)
 	sw	%i4, 1(%i5)
-	sw	%i6, 909(%i0)
+	sw	%i6, 1869(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 910(%i0)
+	sw	%i4, 1870(%i0)
 	sw	%i4, 2(%i5)
-	sw	%i6, 914(%i0)
+	sw	%i6, 1874(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 915(%i0)
+	sw	%i4, 1875(%i0)
 	sw	%i4, 3(%i5)
-	sw	%i6, 919(%i0)
+	sw	%i6, 1879(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 920(%i0)
+	sw	%i4, 1880(%i0)
 	sw	%i4, 4(%i5)
-	sw	%i6, 923(%i0)
+	sw	%i6, 1883(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i5, 924(%i0)
-	lw	%i4, 886(%i0)
-	sw	%i4, 927(%i0)
+	sw	%i5, 1884(%i0)
+	lw	%i4, 1846(%i0)
+	sw	%i4, 1887(%i0)
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -1526,39 +1526,39 @@ cont.230697:
 	sw	%i5, 4(%i2)
 	addi	%i2, %i2, 20
 	mov	%i5, %i4
-	sw	%i4, 928(%i0)
-	sw	%i6, 934(%i0)
+	sw	%i4, 1888(%i0)
+	sw	%i6, 1894(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 935(%i0)
+	sw	%i4, 1895(%i0)
 	sw	%i4, 1(%i5)
-	sw	%i6, 939(%i0)
+	sw	%i6, 1899(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 940(%i0)
+	sw	%i4, 1900(%i0)
 	sw	%i4, 2(%i5)
-	sw	%i6, 944(%i0)
+	sw	%i6, 1904(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 945(%i0)
+	sw	%i4, 1905(%i0)
 	sw	%i4, 3(%i5)
-	sw	%i6, 949(%i0)
+	sw	%i6, 1909(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 950(%i0)
+	sw	%i4, 1910(%i0)
 	sw	%i4, 4(%i5)
 	movi	%i5, 1
-	sw	%i5, 953(%i0)
-	sw	%i0, 954(%i0)
+	sw	%i5, 1913(%i0)
+	sw	%i0, 1914(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 4
-	sw	%i5, 955(%i0)
-	sw	%i6, 956(%i0)
+	sw	%i5, 1915(%i0)
+	sw	%i6, 1916(%i0)
 	mov	%i5, %i2
 	addi	%i2, %i2, 12
-	sw	%i5, 957(%i0)
-	lw	%i4, 886(%i0)
-	sw	%i4, 960(%i0)
+	sw	%i5, 1917(%i0)
+	lw	%i4, 1846(%i0)
+	sw	%i4, 1920(%i0)
 	mov	%i4, %i2
 	sw	%i5, 0(%i2)
 	sw	%i5, 1(%i2)
@@ -1567,45 +1567,45 @@ cont.230697:
 	sw	%i5, 4(%i2)
 	addi	%i2, %i2, 20
 	mov	%i5, %i4
-	sw	%i4, 961(%i0)
-	sw	%i6, 967(%i0)
+	sw	%i4, 1921(%i0)
+	sw	%i6, 1927(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 968(%i0)
+	sw	%i4, 1928(%i0)
 	sw	%i4, 1(%i5)
-	sw	%i6, 972(%i0)
+	sw	%i6, 1932(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 973(%i0)
+	sw	%i4, 1933(%i0)
 	sw	%i4, 2(%i5)
-	sw	%i6, 977(%i0)
+	sw	%i6, 1937(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 978(%i0)
+	sw	%i4, 1938(%i0)
 	sw	%i4, 3(%i5)
-	sw	%i6, 982(%i0)
+	sw	%i6, 1942(%i0)
 	mov	%i4, %i2
 	addi	%i2, %i2, 12
-	sw	%i4, 983(%i0)
+	sw	%i4, 1943(%i0)
 	sw	%i4, 4(%i5)
 	mov	%i4, %i2
 	addi	%i2, %i2, 32
 	sw	%i5, 7(%i4)
-	lw	%i5, 955(%i0)
+	lw	%i5, 1915(%i0)
 	sw	%i5, 6(%i4)
-	lw	%i5, 928(%i0)
+	lw	%i5, 1888(%i0)
 	sw	%i5, 5(%i4)
-	lw	%i5, 898(%i0)
+	lw	%i5, 1858(%i0)
 	sw	%i5, 4(%i4)
-	lw	%i5, 888(%i0)
+	lw	%i5, 1848(%i0)
 	sw	%i5, 3(%i4)
-	lw	%i5, 881(%i0)
+	lw	%i5, 1841(%i0)
 	sw	%i5, 2(%i4)
-	lw	%i5, 854(%i0)
+	lw	%i5, 1814(%i0)
 	sw	%i5, 1(%i4)
-	lw	%i5, 846(%i0)
+	lw	%i5, 1806(%i0)
 	sw	%i5, 0(%i4)
-	lw	%i29, 844(%i0)
+	lw	%i29, 1804(%i0)
 	mov	%i5, %i4
 	mov	%i4, %i2
 ca_loop.230713:
@@ -1615,10 +1615,14 @@ ca_loop.230713:
 	subi	%i29, %i29, 1
 	goto	ca_loop.230713
 ca_done.230715:
-	sw	%i4, 986(%i0)
-	movi	%i6, 30
-	sw	%i6, 1018(%i0)
-	sw	%i0, 1019(%i0)
+	sw	%i4, 1946(%i0)
+	movi	%i6, 510
+	movui	%i31, 2
+	ori	%i31, %i31, 1640
+	sw	%i6, 0(%i31)
+	movui	%i31, 2
+	ori	%i31, %i31, 1644
+	sw	%i0, 0(%i31)
 	jleq	%i0, %i6, then.230716
 	sw	%i4, 278(%i1)
 	goto	cont.230717
@@ -1749,8 +1753,8 @@ then.230716:
 	lw	%i5, 197(%i1)
 	sw	%i5, 0(%i4)
 	mov	%i5, %i4
-	lw	%i4, 986(%i0)
-	sw	%i5, 30(%i4)
+	lw	%i4, 1946(%i0)
+	sw	%i5, 510(%i4)
 	subi	%i6, %i6, 1
 	lw	%i8, 200(%i1)
 	lw	%i9, 198(%i1)
@@ -1930,7 +1934,7 @@ ca_done.230732:
 	sw	%i13, 1(%i4)
 	sw	%i14, 0(%i4)
 	mov	%i5, %i4
-	lw	%i4, 986(%i0)
+	lw	%i4, 1946(%i0)
 	add4	%i31, %i4, %i6
 	sw	%i5, 0(%i31)
 	subi	%i6, %i6, 1
@@ -1951,7 +1955,10 @@ cont.230717:
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
 	mif	%f3, %i4
-	sf	%f3, 1020(%i0)
+	sf	%f3, 69(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1648
+	sf	%f3, 0(%i31)
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -1963,7 +1970,10 @@ cont.230717:
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
 	mif	%f3, %i4
-	sf	%f3, 1021(%i0)
+	sf	%f3, 70(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1652
+	sf	%f3, 0(%i31)
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -1975,7 +1985,10 @@ cont.230717:
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
 	mif	%f2, %i4
-	sf	%f2, 1022(%i0)
+	sf	%f2, 71(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1656
+	sf	%f2, 0(%i31)
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -1987,13 +2000,20 @@ cont.230717:
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
 	mif	%f1, %i4
-	sf	%f1, 1023(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1660
+	sf	%f1, 0(%i31)
 	lf	%f4, 25(%i0)
 	fmul	%f6, %f1, %f4
-	sf	%f6, 1024(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1664
+	sf	%f6, 0(%i31)
 	lf	%f31, 31(%i0)
 	fsub	%f5, %f31, %f6
-	sf	%f5, 1025(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1668
+	sf	%f5, 0(%i31)
+	lf	%f31, 31(%i0)
 	fleq	%i31, %f5, %f31
 	jzero	%i0, %i31, else.230733
 	lf	%f31, 32(%i0)
@@ -2086,7 +2106,9 @@ else.230739:
 	fmul	%f5, %f1, %f5
 cont.230740:
 cont.230734:
-	sf	%f5, 1026(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1672
+	sf	%f5, 0(%i31)
 	lf	%f31, 31(%i0)
 	fleq	%i31, %f6, %f31
 	jzero	%i0, %i31, else.230741
@@ -2182,7 +2204,9 @@ else.230747:
 	fmul	%f6, %f1, %f6
 cont.230748:
 cont.230742:
-	sf	%f6, 1027(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1676
+	sf	%f6, 0(%i31)
 	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
@@ -2195,13 +2219,20 @@ cont.230742:
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
 	mif	%f1, %i4
-	sf	%f1, 1028(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1680
+	sf	%f1, 0(%i31)
 	lf	%f4, 25(%i0)
 	fmul	%f7, %f1, %f4
-	sf	%f7, 1029(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1684
+	sf	%f7, 0(%i31)
 	lf	%f31, 31(%i0)
 	fsub	%f10, %f31, %f7
-	sf	%f10, 1030(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1688
+	sf	%f10, 0(%i31)
+	lf	%f31, 31(%i0)
 	fleq	%i31, %f10, %f31
 	jzero	%i0, %i31, else.230749
 	lf	%f31, 32(%i0)
@@ -2299,8 +2330,8 @@ else.230755:
 	sf	%f31, 279(%i1)
 cont.230756:
 cont.230750:
-	movui	%i31, 1
-	ori	%i31, %i31, 28
+	movui	%i31, 2
+	ori	%i31, %i31, 1692
 	lf	%f31, 279(%i1)
 	sf	%f31, 0(%i31)
 	lf	%f31, 31(%i0)
@@ -2398,39 +2429,78 @@ else.230763:
 	fmul	%f4, %f1, %f7
 cont.230764:
 cont.230758:
-	sf	%f4, 1032(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1696
+	sf	%f4, 0(%i31)
 	fmul	%f1, %f5, %f4
-	sf	%f1, 1033(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1700
+	sf	%f1, 0(%i31)
 	lf	%f3, 24(%i0)
 	fmul	%f7, %f1, %f3
-	sf	%f7, 1034(%i0)
+	sf	%f7, 41(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1704
+	sf	%f7, 0(%i31)
 	lf	%f1, 23(%i0)
 	fmul	%f2, %f6, %f1
-	sf	%f2, 1035(%i0)
+	sf	%f2, 42(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1708
+	sf	%f2, 0(%i31)
 	lf	%f31, 279(%i1)
 	fmul	%f1, %f5, %f31
-	sf	%f1, 1036(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1712
+	sf	%f1, 0(%i31)
 	fmul	%f1, %f1, %f3
-	sf	%f1, 1037(%i0)
+	sf	%f1, 43(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1716
+	sf	%f1, 0(%i31)
 	fneg	%f3, %f4
-	sf	%f3, 1038(%i0)
+	sf	%f3, 44(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1720
+	sf	%f3, 0(%i31)
 	fneg	%f6, %f6
-	sf	%f6, 1039(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1724
+	sf	%f6, 0(%i31)
 	fmul	%f4, %f6, %f4
-	sf	%f4, 1040(%i0)
+	sf	%f4, 46(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1728
+	sf	%f4, 0(%i31)
 	fneg	%f4, %f5
-	sf	%f4, 1041(%i0)
+	sf	%f4, 47(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1732
+	sf	%f4, 0(%i31)
+	lf	%f31, 279(%i1)
 	fmul	%f4, %f6, %f31
-	sf	%f4, 1042(%i0)
-	lf	%f3, 1020(%i0)
+	sf	%f4, 48(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1736
+	sf	%f4, 0(%i31)
+	lf	%f3, 69(%i1)
 	fsub	%f3, %f3, %f7
-	sf	%f3, 1043(%i0)
-	lf	%f3, 1021(%i0)
+	sf	%f3, 49(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1740
+	sf	%f3, 0(%i31)
+	lf	%f3, 70(%i1)
 	fsub	%f2, %f3, %f2
-	sf	%f2, 1044(%i0)
-	lf	%f2, 1022(%i0)
+	sf	%f2, 50(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1744
+	sf	%f2, 0(%i31)
+	lf	%f2, 71(%i1)
 	fsub	%f1, %f2, %f1
-	sf	%f1, 1045(%i0)
+	sf	%f1, 51(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1748
+	sf	%f1, 0(%i31)
 	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
@@ -2442,7 +2512,9 @@ cont.230758:
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
-	sw	%i4, 1046(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1752
+	sw	%i4, 0(%i31)
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -2454,10 +2526,14 @@ cont.230758:
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
 	mif	%f1, %i4
-	sf	%f1, 1047(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1756
+	sf	%f1, 0(%i31)
 	lf	%f4, 25(%i0)
 	fmul	%f5, %f1, %f4
-	sf	%f5, 1048(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1760
+	sf	%f5, 0(%i31)
 	lf	%f31, 31(%i0)
 	fleq	%i31, %f5, %f31
 	jzero	%i0, %i31, else.230765
@@ -2551,12 +2627,14 @@ else.230771:
 	fmul	%f1, %f1, %f7
 cont.230772:
 cont.230766:
-	sf	%f1, 1049(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1764
+	sf	%f1, 0(%i31)
 	fneg	%f31, %f1
 	sf	%f31, 280(%i1)
 	sf	%f31, 60(%i1)
-	movui	%i31, 1
-	ori	%i31, %i31, 104
+	movui	%i31, 2
+	ori	%i31, %i31, 1768
 	sf	%f31, 0(%i31)
 	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
@@ -2570,12 +2648,19 @@ cont.230766:
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
 	mif	%f1, %i4
-	sf	%f1, 1051(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1772
+	sf	%f1, 0(%i31)
 	fmul	%f6, %f1, %f4
-	sf	%f6, 1052(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1776
+	sf	%f6, 0(%i31)
 	lf	%f31, 31(%i0)
 	fsub	%f7, %f31, %f5
-	sf	%f7, 1053(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1780
+	sf	%f7, 0(%i31)
+	lf	%f31, 31(%i0)
 	fleq	%i31, %f7, %f31
 	jzero	%i0, %i31, else.230773
 	lf	%f31, 32(%i0)
@@ -2668,7 +2753,9 @@ else.230779:
 	fmul	%f5, %f1, %f7
 cont.230780:
 cont.230774:
-	sf	%f5, 1054(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1784
+	sf	%f5, 0(%i31)
 	lf	%f31, 31(%i0)
 	fleq	%i31, %f6, %f31
 	jzero	%i0, %i31, else.230781
@@ -2762,16 +2849,21 @@ else.230787:
 	fmul	%f1, %f1, %f10
 cont.230788:
 cont.230782:
-	sf	%f1, 1055(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1788
+	sf	%f1, 0(%i31)
 	fmul	%f31, %f5, %f1
 	sf	%f31, 281(%i1)
 	sf	%f31, 63(%i1)
-	movui	%i31, 1
-	ori	%i31, %i31, 128
+	movui	%i31, 2
+	ori	%i31, %i31, 1792
 	sf	%f31, 0(%i31)
 	lf	%f31, 31(%i0)
 	fsub	%f7, %f31, %f6
-	sf	%f7, 1057(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1796
+	sf	%f7, 0(%i31)
+	lf	%f31, 31(%i0)
 	fleq	%i31, %f7, %f31
 	jzero	%i0, %i31, else.230789
 	lf	%f31, 32(%i0)
@@ -2864,11 +2956,13 @@ else.230795:
 	fmul	%f1, %f1, %f7
 cont.230796:
 cont.230790:
-	sf	%f1, 1058(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1800
+	sf	%f1, 0(%i31)
 	fmul	%f31, %f5, %f1
 	sf	%f31, 282(%i1)
-	movui	%i31, 1
-	ori	%i31, %i31, 140
+	movui	%i31, 2
+	ori	%i31, %i31, 1804
 	sf	%f31, 0(%i31)
 	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
@@ -2882,12 +2976,20 @@ cont.230790:
 	slli	%i31, %i31, 24
 	or	%i4, %i4, %i31
 	mif	%f3, %i4
-	sf	%f3, 1060(%i0)
+	sf	%f3, 64(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1808
+	sf	%f3, 0(%i31)
 	fmov	%f1, %f3
 	mov	%i8, %i0
-	sw	%i0, 1061(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1812
+	sw	%i0, 0(%i31)
 	movi	%i4, 60
-	sw	%i4, 1062(%i0)
+	sw	%i4, 234(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1816
+	sw	%i4, 0(%i31)
 	jleq	%i4, %i0, cont.230797
 	sw	%i8, 235(%i1)
 	movui	%i5, 0xf0000
@@ -2925,8 +3027,9 @@ cont.230790:
 	or	%i4, %i4, %i31
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 24
-	or	%i6, %i4, %i31
-	sw	%i6, 238(%i1)
+	or	%i5, %i4, %i31
+	sw	%i5, 238(%i1)
+	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
 	lb	%i31, 0(%i5)
 	slli	%i31, %i31, 8
@@ -3163,8 +3266,8 @@ cont.230800:
 	lw	%i11, 240(%i1)
 	sw	%i11, 4(%i4)
 	sw	%i10, 3(%i4)
-	lw	%i6, 238(%i1)
-	sw	%i6, 2(%i4)
+	lw	%i5, 238(%i1)
+	sw	%i5, 2(%i4)
 	sw	%i13, 1(%i4)
 	lw	%i5, 236(%i1)
 	sw	%i5, 0(%i4)
@@ -3923,16 +4026,16 @@ cont.230799:
 	addi	%i8, %i8, 1
 	movi	%i4, -1
 	sw	%i4, 102(%i1)
-	movi	%i6, 3
-	sw	%i6, 73(%i1)
-	sw	%i6, 74(%i1)
+	movi	%i5, 3
+	sw	%i5, 73(%i1)
+	sw	%i5, 74(%i1)
 	movi	%i4, 2
 	sw	%i4, 76(%i1)
-	sw	%i6, 77(%i1)
-	sw	%i6, 78(%i1)
+	sw	%i5, 77(%i1)
+	sw	%i5, 78(%i1)
 	movi	%i4, 4
 	sw	%i4, 79(%i1)
-	sw	%i6, 103(%i1)
+	sw	%i5, 103(%i1)
 	lf	%f2, 30(%i0)
 	finv	%f1, %f2
 	sf	%f1, 1(%i1)
@@ -3948,7 +4051,7 @@ cont.230799:
 	sf	%f1, 11(%i1)
 	sf	%f1, 12(%i1)
 loop_start.224184:
-	lw	%i4, 1062(%i0)
+	lw	%i4, 234(%i1)
 	jleq	%i4, %i8, cont.230872
 	movui	%i5, 0xf0000
 	lb	%i4, 0(%i5)
@@ -4973,9 +5076,15 @@ then.230871:
 cont.230872:
 cont.230797:
 	mov	%i8, %i0
-	sw	%i0, 1063(%i0)
-	sw	%i0, 1064(%i0)
-	sw	%i0, 1065(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1820
+	sw	%i0, 0(%i31)
+	movui	%i31, 2
+	ori	%i31, %i31, 1824
+	sw	%i0, 0(%i31)
+	movui	%i31, 2
+	ori	%i31, %i31, 1828
+	sw	%i0, 0(%i31)
 	mov	%i4, %i8
 	subi	%i1, %i1, 8
 	sw	%i7, 0(%i1)
@@ -5012,7 +5121,9 @@ loop_start.224220:
 	goto	loop_start.224220
 then.230951:
 cont.230952:
-	sw	%i0, 1067(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1836
+	sw	%i0, 0(%i31)
 	mov	%i4, %i0
 	subi	%i1, %i1, 8
 	sw	%i7, 0(%i1)
@@ -5022,55 +5133,87 @@ cont.230952:
 	addi	%i1, %i1, 8
 	sw	%i30, 283(%i1)
 	movi	%i4, 80
-	sw	%i4, 1068(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1840
+	sw	%i4, 0(%i31)
 	movui	%i5, 0xf0000
 	sb	%i4, 0(%i5)
-	movi	%i6, 51
-	sw	%i6, 1069(%i0)
-	sb	%i6, 0(%i5)
-	movi	%i4, 10
-	sw	%i4, 1070(%i0)
+	movi	%i4, 51
+	movui	%i31, 2
+	ori	%i31, %i31, 1844
+	sw	%i4, 0(%i31)
 	sb	%i4, 0(%i5)
-	movi	%i10, 48
-	sw	%i10, 1071(%i0)
-	sb	%i10, 0(%i5)
-	mov	%i9, %i6
-	sw	%i6, 1072(%i0)
-	sb	%i6, 0(%i5)
+	movi	%i4, 10
+	sw	%i4, 82(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1848
+	sw	%i4, 0(%i31)
+	sb	%i4, 0(%i5)
 	movi	%i6, 50
-	sw	%i6, 1073(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1852
+	sw	%i6, 0(%i31)
 	sb	%i6, 0(%i5)
+	movi	%i4, 57
+	movui	%i31, 2
+	ori	%i31, %i31, 1856
+	sw	%i4, 0(%i31)
+	sb	%i4, 0(%i5)
+	mov	%i9, %i4
+	movui	%i31, 2
+	ori	%i31, %i31, 1860
+	sw	%i4, 0(%i31)
+	sb	%i4, 0(%i5)
 	movi	%i8, 32
-	sw	%i8, 1074(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1864
+	sw	%i8, 0(%i31)
 	sb	%i8, 0(%i5)
-	sw	%i10, 1075(%i0)
-	sb	%i10, 0(%i5)
-	sw	%i9, 1076(%i0)
-	sb	%i9, 0(%i5)
-	sw	%i6, 1077(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1868
+	sw	%i6, 0(%i31)
 	sb	%i6, 0(%i5)
-	sw	%i8, 1078(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1872
+	sw	%i9, 0(%i31)
+	sb	%i9, 0(%i5)
+	movui	%i31, 2
+	ori	%i31, %i31, 1876
+	sw	%i9, 0(%i31)
+	sb	%i9, 0(%i5)
+	movui	%i31, 2
+	ori	%i31, %i31, 1880
+	sw	%i8, 0(%i31)
 	sb	%i8, 0(%i5)
-	sw	%i6, 1079(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1884
+	sw	%i6, 0(%i31)
 	sb	%i6, 0(%i5)
 	movi	%i4, 53
-	sw	%i4, 1080(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1888
+	sw	%i4, 0(%i31)
 	sb	%i4, 0(%i5)
-	sw	%i4, 1081(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1892
+	sw	%i4, 0(%i31)
 	sb	%i4, 0(%i5)
-	lw	%i4, 1070(%i0)
-	sw	%i4, 1082(%i0)
+	lw	%i4, 82(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1896
+	sw	%i4, 0(%i31)
 	sb	%i4, 0(%i5)
 	movi	%i9, 4
-	sw	%i9, 1083(%i0)
-	sw	%i0, 1084(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1900
+	sw	%i9, 0(%i31)
+	movui	%i31, 2
+	ori	%i31, %i31, 1904
+	sw	%i0, 0(%i31)
 	lw	%i6, 254(%i1)
 	sw	%i0, 101(%i1)
 loop_start.224226:
-	jleq	%i0, %i9, then.230957
-	mov	%i31, %i0
-	goto	loop_end.224227
-then.230957:
+	jlt	%i9, %i0, loop_end.224227
 	movi	%i11, 120
 	mov	%i10, %i2
 	addi	%i2, %i2, 12
@@ -5158,19 +5301,24 @@ cont.230965:
 	goto	loop_start.224226
 loop_end.224227:
 	movi	%i10, 9
-	sw	%i10, 1085(%i31)
-	mov	%i9, %i31
-	sw	%i31, 1086(%i31)
+	movui	%i31, 2
+	ori	%i31, %i31, 1908
+	sw	%i10, 0(%i31)
+	mov	%i9, %i0
+	movui	%i31, 2
+	ori	%i31, %i31, 1912
+	sw	%i0, 0(%i31)
 	mov	%i8, %i9
-	sw	%i31, 1087(%i31)
-	sw	%i31, 1088(%i31)
+	movui	%i31, 2
+	ori	%i31, %i31, 1916
+	sw	%i0, 0(%i31)
+	movui	%i31, 2
+	ori	%i31, %i31, 1920
+	sw	%i0, 0(%i31)
 	mov	%i5, %i9
 	movi	%i6, 5
 loop_start.224245:
-	jleq	%i0, %i10, then.230976
-	mov	%i31, %i0
-	goto	loop_end.224246
-then.230976:
+	jlt	%i10, %i0, loop_end.224246
 	itof	%f1, %i10
 	fmul	%f1, %f1, %f8
 	fsub	%f4, %f1, %f9
@@ -6569,9 +6717,13 @@ loop_end.224248:
 	goto	loop_start.224245
 loop_end.224246:
 	movi	%i10, 4
-	sw	%i10, 1089(%i31)
-	sw	%i31, 1090(%i31)
-	mov	%i8, %i31
+	movui	%i31, 2
+	ori	%i31, %i31, 1924
+	sw	%i10, 0(%i31)
+	movui	%i31, 2
+	ori	%i31, %i31, 1928
+	sw	%i0, 0(%i31)
+	mov	%i8, %i0
 loop_start.224342:
 	jlt	%i10, %i0, loop_end.224343
 	slli	%i4, %i10, 2
@@ -6986,12 +7138,20 @@ loop_end.224343:
 	lf	%f31, 60(%i1)
 	sf	%f31, 280(%i1)
 	lw	%i4, 254(%i1)
-	sw	%i4, 1091(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1932
+	sw	%i4, 0(%i31)
 	subi	%i4, %i4, 1
-	sw	%i4, 1093(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1940
+	sw	%i4, 0(%i31)
 	mov	%i15, %i4
-	sw	%i4, 1094(%i0)
-	sw	%i0, 1095(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1944
+	sw	%i4, 0(%i31)
+	movui	%i31, 2
+	ori	%i31, %i31, 1948
+	sw	%i0, 0(%i31)
 	jlt	%i4, %i0, cont.231101
 	slli	%i4, %i15, 2
 	lw	%i6, 53(%i0)
@@ -7437,10 +7597,16 @@ cont.231123:
 loop_end.224394:
 cont.231101:
 	lw	%i4, 254(%i1)
-	sw	%i4, 1096(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1952
+	sw	%i4, 0(%i31)
 	subi	%i14, %i4, 1
-	sw	%i14, 1098(%i0)
-	sw	%i0, 1099(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1960
+	sw	%i14, 0(%i31)
+	movui	%i31, 2
+	ori	%i31, %i31, 1964
+	sw	%i0, 0(%i31)
 	jleq	%i0, %i14, then.231139
 	mov	%i8, %i0
 	goto	cont.231140
@@ -9216,47 +9382,75 @@ cont.231142:
 	tern	%i5, %i4, %i5, %i9
 cont.231140:
 	cleq	%i4, %i0, %i14
-	sw	%i4, 1100(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1968
+	sw	%i4, 0(%i31)
 	tern	%i4, %i4, %i5, %i8
-	sw	%i4, 1101(%i0)
-	sw	%i0, 1102(%i0)
+	sw	%i4, 98(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1972
+	sw	%i4, 0(%i31)
+	movui	%i31, 2
+	ori	%i31, %i31, 1976
+	sw	%i0, 0(%i31)
 	lw	%i31, 489(%i0)
 	sub	%i4, %i0, %i31
-	sw	%i4, 1103(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1980
+	sw	%i4, 0(%i31)
 	itof	%f1, %i4
-	sf	%f1, 1104(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1984
+	sf	%f1, 0(%i31)
 	lf	%f31, 491(%i0)
 	fmul	%f3, %f31, %f1
-	sf	%f3, 1105(%i0)
-	lf	%f4, 1040(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1988
+	sf	%f3, 0(%i31)
+	lf	%f4, 46(%i1)
 	fmul	%f1, %f3, %f4
-	sf	%f1, 1106(%i0)
-	lf	%f7, 1034(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 1992
+	sf	%f1, 0(%i31)
+	lf	%f7, 41(%i1)
 	fadd	%f1, %f1, %f7
-	sf	%f1, 1107(%i0)
-	lf	%f4, 1041(%i0)
+	sf	%f1, 59(%i1)
+	movui	%i31, 2
+	ori	%i31, %i31, 1996
+	sf	%f1, 0(%i31)
+	lf	%f4, 47(%i1)
 	fmul	%f1, %f3, %f4
-	sf	%f1, 1108(%i0)
-	lf	%f2, 1035(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 2000
+	sf	%f1, 0(%i31)
+	lf	%f2, 42(%i1)
 	fadd	%f9, %f1, %f2
-	sf	%f9, 1109(%i0)
-	lf	%f4, 1042(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 2004
+	sf	%f9, 0(%i31)
+	lf	%f4, 48(%i1)
 	fmul	%f2, %f3, %f4
-	sf	%f2, 1110(%i0)
-	lf	%f1, 1037(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 2008
+	sf	%f2, 0(%i31)
+	lf	%f1, 43(%i1)
 	fadd	%f8, %f2, %f1
-	sf	%f8, 1111(%i0)
-	movi	%i31, 31
+	movui	%i31, 2
+	ori	%i31, %i31, 2012
+	sf	%f8, 0(%i31)
+	movi	%i31, 511
 	sw	%i31, 284(%i1)
-	movui	%i31, 1
-	ori	%i31, %i31, 352
+	movui	%i31, 2
+	ori	%i31, %i31, 2016
 	lw	%i30, 284(%i1)
 	sw	%i30, 0(%i31)
 	sw	%i0, 285(%i1)
-	movui	%i31, 1
-	ori	%i31, %i31, 356
+	movui	%i31, 2
+	ori	%i31, %i31, 2020
 	sw	%i0, 0(%i31)
-	sw	%i0, 1114(%i0)
+	movui	%i31, 2
+	ori	%i31, %i31, 2024
+	sw	%i0, 0(%i31)
 	movi	%i4, 5
 	sw	%i4, 150(%i1)
 loop_start.224544:
@@ -9265,20 +9459,20 @@ loop_start.224544:
 	mov	%i31, %i0
 	goto	loop_end.224545
 then.231318:
-	lw	%i31, 489(%i0)
+	lw	%i30, 489(%i0)
 	lw	%i6, 284(%i1)
-	sub	%i4, %i6, %i31
+	sub	%i4, %i6, %i30
 	itof	%f1, %i4
 	lf	%f31, 491(%i0)
 	fmul	%f2, %f31, %f1
-	lf	%f1, 1107(%i0)
+	lf	%f1, 59(%i1)
 	lf	%f31, 279(%i1)
 	fma	%f1, %f2, %f31, %f1
 	lw	%i6, 222(%i0)
 	sf	%f1, 0(%i6)
 	fma	%f1, %f2, %f0, %f9
 	sf	%f1, 1(%i6)
-	lf	%f3, 1038(%i0)
+	lf	%f3, 44(%i1)
 	fma	%f1, %f2, %f3, %f8
 	sf	%f1, 2(%i6)
 	lf	%f5, 0(%i6)
@@ -9305,11 +9499,11 @@ then.231318:
 	sf	%f0, 263(%i1)
 	sf	%f0, 264(%i1)
 	sf	%f0, 265(%i1)
-	lf	%f31, 1043(%i0)
+	lf	%f31, 49(%i1)
 	sf	%f31, 266(%i1)
-	lf	%f31, 1044(%i0)
+	lf	%f31, 50(%i1)
 	sf	%f31, 267(%i1)
-	lf	%f31, 1045(%i0)
+	lf	%f31, 51(%i1)
 	sf	%f31, 268(%i1)
 	mov	%i6, %i7
 	lw	%i7, 284(%i1)
@@ -12711,7 +12905,7 @@ cont.231806:
 	goto	loop_start.224755
 loop_end.224756:
 cont.231796:
-	lw	%i4, 1101(%i0)
+	lw	%i4, 98(%i1)
 	subi	%i8, %i4, 1
 loop_start.224760:
 	jleq	%i0, %i8, then.231811
@@ -15036,7 +15230,7 @@ then.231542:
 	fmul	%f1, %f2, %f2
 	fmul	%f1, %f1, %f2
 	fmul	%f1, %f1, %f11
-	lf	%f3, 1060(%i0)
+	lf	%f3, 64(%i1)
 	fmul	%f2, %f1, %f3
 	lf	%f1, 263(%i1)
 	fadd	%f31, %f1, %f2
@@ -20812,8 +21006,8 @@ loop_end.224926:
 	goto	loop_start.224544
 loop_end.224545:
 	sw	%i31, 288(%i1)
-	movui	%i31, 1
-	ori	%i31, %i31, 364
+	movui	%i31, 2
+	ori	%i31, %i31, 2028
 	lw	%i30, 288(%i1)
 	sw	%i30, 0(%i31)
 	lw	%i30, 276(%i1)
@@ -20824,17 +21018,17 @@ loop_end.224545:
 	sw	%i30, 291(%i1)
 	movi	%i31, 2
 	sw	%i31, 292(%i1)
-	movui	%i31, 1
-	ori	%i31, %i31, 368
+	movui	%i31, 2
+	ori	%i31, %i31, 2032
 	lw	%i30, 292(%i1)
 	sw	%i30, 0(%i31)
-	movi	%i31, 32
+	movi	%i31, 512
 	sw	%i31, 293(%i1)
-	movui	%i31, 1
-	ori	%i31, %i31, 372
+	movui	%i31, 2
+	ori	%i31, %i31, 2036
 	lw	%i30, 293(%i1)
 	sw	%i30, 0(%i31)
-	movi	%i31, 31
+	movi	%i31, 511
 	sw	%i31, 294(%i1)
 	sw	%i0, 295(%i1)
 	movi	%i31, 5
@@ -20862,16 +21056,16 @@ Lrelax_skip_3:
 	itof	%f1, %i4
 	lf	%f31, 491(%i0)
 	fmul	%f3, %f31, %f1
-	lf	%f7, 1034(%i0)
-	lf	%f4, 1040(%i0)
+	lf	%f7, 41(%i1)
+	lf	%f4, 46(%i1)
 	fma	%f12, %f3, %f4, %f7
-	lf	%f2, 1035(%i0)
-	lf	%f4, 1041(%i0)
+	lf	%f2, 42(%i1)
+	lf	%f4, 47(%i1)
 	fma	%f9, %f3, %f4, %f2
-	lf	%f1, 1037(%i0)
-	lf	%f4, 1042(%i0)
+	lf	%f1, 43(%i1)
+	lf	%f4, 48(%i1)
 	fma	%f8, %f3, %f4, %f1
-	movi	%i31, 31
+	movi	%i31, 511
 	sw	%i31, 298(%i1)
 	sw	%i5, 299(%i1)
 loop_start.225304:
@@ -20891,7 +21085,7 @@ then.233124:
 	sf	%f1, 0(%i6)
 	fma	%f1, %f2, %f0, %f9
 	sf	%f1, 1(%i6)
-	lf	%f3, 1038(%i0)
+	lf	%f3, 44(%i1)
 	fma	%f1, %f2, %f3, %f8
 	sf	%f1, 2(%i6)
 	lf	%f5, 0(%i6)
@@ -20918,11 +21112,11 @@ then.233124:
 	sf	%f0, 263(%i1)
 	sf	%f0, 264(%i1)
 	sf	%f0, 265(%i1)
-	lf	%f31, 1043(%i0)
+	lf	%f31, 49(%i1)
 	sf	%f31, 266(%i1)
-	lf	%f31, 1044(%i0)
+	lf	%f31, 50(%i1)
 	sf	%f31, 267(%i1)
-	lf	%f31, 1045(%i0)
+	lf	%f31, 51(%i1)
 	sf	%f31, 268(%i1)
 	mov	%i6, %i7
 	lw	%i7, 297(%i1)
@@ -24304,7 +24498,7 @@ cont.233612:
 	goto	loop_start.225515
 loop_end.225516:
 cont.233602:
-	lw	%i4, 1101(%i0)
+	lw	%i4, 98(%i1)
 	subi	%i8, %i4, 1
 loop_start.225520:
 	jleq	%i0, %i8, then.233617
@@ -26601,7 +26795,7 @@ then.233348:
 	fmul	%f1, %f2, %f2
 	fmul	%f1, %f1, %f2
 	fmul	%f1, %f1, %f10
-	lf	%f3, 1060(%i0)
+	lf	%f3, 64(%i1)
 	fmul	%f2, %f1, %f3
 	lf	%f1, 263(%i1)
 	fadd	%f31, %f1, %f2
